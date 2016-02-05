@@ -15,7 +15,6 @@ class RequestSender: NSObject
     private let apiPrefix = "api"
     private let apiVersion = "V2"
     
-    
     func send(request: Request, withResponseHandler handler: ResponseHandler)
     {
         Alamofire.request(.GET, urlStringWithRequest(request)).responseJSON
