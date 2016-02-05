@@ -9,7 +9,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Nimble.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-CreatubblesAPIClient.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-CreatubblesAPIClientTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Quick.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>00C2AD16307C3F4F5CD09EE79D705FF2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1AE4B9E048A0E983F16913493BB93BAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>432ECC54282C84882B482CCB4CF227FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>A9D140B145C082AE014373938335EF4D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C5DB5104FED3C10F78978AFC810982B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F569ECF6E7F4414310CBB21 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6769274D8C574FCCA4E60B7 /* Pods_CreatubblesAPIClientTests.framework */; };
 		16CAAC99A2D4AACF0B7842FB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD89548AD3066D7FA02EE2AB /* Pods_CreatubblesAPIClient.framework */; };
 		1815D54D1C63658000EF4C38 /* CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */; };
 		1815D5521C63658000EF4C38 /* CreatubblesAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5511C63658000EF4C38 /* CreatubblesAPIClientTests.swift */; };
 		1815D5601C6383CF00EF4C38 /* CreatubblesAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */; };
 		1815D5611C6383CF00EF4C38 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1815D55F1C6383CF00EF4C38 /* Info.plist */; };
+		1815D5651C638BD200EF4C38 /* CTCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5641C638BD200EF4C38 /* CTCreator.swift */; };
+		1815D5671C638BE400EF4C38 /* CTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5661C638BE400EF4C38 /* CTUser.swift */; };
+		1815D5691C638BED00EF4C38 /* CTSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5681C638BED00EF4C38 /* CTSettings.swift */; };
+		1815D56B1C63996A00EF4C38 /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D56A1C63996A00EF4C38 /* RequestSender.swift */; };
+		1815D56D1C63997400EF4C38 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D56C1C63997400EF4C38 /* Request.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,8 +38,16 @@
 		1815D5531C63658000EF4C38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatubblesAPIClient.h; sourceTree = "<group>"; };
 		1815D55F1C6383CF00EF4C38 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1815D5641C638BD200EF4C38 /* CTCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTCreator.swift; sourceTree = "<group>"; };
+		1815D5661C638BE400EF4C38 /* CTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTUser.swift; sourceTree = "<group>"; };
+		1815D5681C638BED00EF4C38 /* CTSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTSettings.swift; sourceTree = "<group>"; };
+		1815D56A1C63996A00EF4C38 /* RequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
+		1815D56C1C63997400EF4C38 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.release.xcconfig"; sourceTree = "<group>"; };
+		AB74205CC51A73FB798D192F /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BD89548AD3066D7FA02EE2AB /* Pods_CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6769274D8C574FCCA4E60B7 /* Pods_CreatubblesAPIClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1815D54D1C63658000EF4C38 /* CreatubblesAPIClient.framework in Frameworks */,
+				0F569ECF6E7F4414310CBB21 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,8 +112,10 @@
 		1815D55C1C6383CF00EF4C38 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				1815D5621C63854300EF4C38 /* Model */,
 				1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */,
+				1815D56A1C63996A00EF4C38 /* RequestSender.swift */,
+				1815D5631C638B9C00EF4C38 /* Requests */,
+				1815D5621C63854300EF4C38 /* Model */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -114,14 +131,26 @@
 		1815D5621C63854300EF4C38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1815D5641C638BD200EF4C38 /* CTCreator.swift */,
+				1815D5661C638BE400EF4C38 /* CTUser.swift */,
+				1815D5681C638BED00EF4C38 /* CTSettings.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1815D5631C638B9C00EF4C38 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				1815D56C1C63997400EF4C38 /* Request.swift */,
+			);
+			path = Requests;
 			sourceTree = "<group>";
 		};
 		37D1870D087FA6B7170838D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				BD89548AD3066D7FA02EE2AB /* Pods_CreatubblesAPIClient.framework */,
+				C6769274D8C574FCCA4E60B7 /* Pods_CreatubblesAPIClientTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -131,6 +160,8 @@
 			children = (
 				055A4A2D59C871AD4EC1E7B9 /* Pods-CreatubblesAPIClient.debug.xcconfig */,
 				9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */,
+				AB74205CC51A73FB798D192F /* Pods-CreatubblesAPIClientTests.debug.xcconfig */,
+				3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -173,9 +204,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1815D5591C63658000EF4C38 /* Build configuration list for PBXNativeTarget "CreatubblesAPIClientTests" */;
 			buildPhases = (
+				7BA17717BE2CEC102072EE05 /* Check Pods Manifest.lock */,
 				1815D5481C63658000EF4C38 /* Sources */,
 				1815D5491C63658000EF4C38 /* Frameworks */,
 				1815D54A1C63658000EF4C38 /* Resources */,
+				91FA420455989F8BB8ED4F9D /* Embed Pods Frameworks */,
+				8B6D303F7B04F5C5E7340950 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -257,6 +291,51 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		7BA17717BE2CEC102072EE05 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8B6D303F7B04F5C5E7340950 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91FA420455989F8BB8ED4F9D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CE0DA052860E28DBC2440DF4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -279,6 +358,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1815D56B1C63996A00EF4C38 /* RequestSender.swift in Sources */,
+				1815D5691C638BED00EF4C38 /* CTSettings.swift in Sources */,
+				1815D56D1C63997400EF4C38 /* Request.swift in Sources */,
+				1815D5651C638BD200EF4C38 /* CTCreator.swift in Sources */,
+				1815D5671C638BE400EF4C38 /* CTUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +478,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 055A4A2D59C871AD4EC1E7B9 /* Pods-CreatubblesAPIClient.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -404,6 +489,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -411,6 +497,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -426,6 +513,7 @@
 		};
 		1815D55A1C63658000EF4C38 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB74205CC51A73FB798D192F /* Pods-CreatubblesAPIClientTests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = CreatubblesAPIClientTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -436,6 +524,7 @@
 		};
 		1815D55B1C63658000EF4C38 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = CreatubblesAPIClientTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
