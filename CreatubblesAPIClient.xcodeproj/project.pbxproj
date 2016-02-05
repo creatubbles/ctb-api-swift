@@ -24,6 +24,7 @@
 		188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEAE1C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift */; };
 		188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEB11C64E1C500EA4F11 /* RequestSender.swift */; };
 		188BCEB61C64E35100EA4F11 /* CreatubblesAPIClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEB51C64E35100EA4F11 /* CreatubblesAPIClientSpec.swift */; };
+		188BCEB81C64EA0000EA4F11 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEB71C64EA0000EA4F11 /* TestConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		188BCEAE1C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClientSettings.swift; sourceTree = "<group>"; };
 		188BCEB11C64E1C500EA4F11 /* RequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
 		188BCEB51C64E35100EA4F11 /* CreatubblesAPIClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClientSpec.swift; sourceTree = "<group>"; };
+		188BCEB71C64EA0000EA4F11 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.release.xcconfig"; sourceTree = "<group>"; };
 		AB74205CC51A73FB798D192F /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				188BCEA11C64CBB200EA4F11 /* RequestSenderTests.swift */,
 				1815D5511C63658000EF4C38 /* CreatubblesAPIClientTests.swift */,
 				1815D5531C63658000EF4C38 /* Info.plist */,
+				188BCEB71C64EA0000EA4F11 /* TestConfiguration.swift */,
 			);
 			path = CreatubblesAPIClientTests;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 			files = (
 				188BCEA21C64CBB200EA4F11 /* RequestSenderTests.swift in Sources */,
 				1815D5521C63658000EF4C38 /* CreatubblesAPIClientTests.swift in Sources */,
+				188BCEB81C64EA0000EA4F11 /* TestConfiguration.swift in Sources */,
 				188BCEB61C64E35100EA4F11 /* CreatubblesAPIClientSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
