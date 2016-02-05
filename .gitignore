@@ -1,6 +1,9 @@
 # OS X
 .DS_Store
 
+#Test credentials
+TestConfiguration.swift
+
 # Xcode
 build/
 *.pbxuser
