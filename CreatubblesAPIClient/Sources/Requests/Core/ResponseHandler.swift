@@ -7,16 +7,11 @@
 //
 
 import UIKit
-//import Alamofire
 
 class ResponseHandler: NSObject
 {
     func handleResponse(response: Dictionary<String, AnyObject>, error: NSError?)
     {
+        
     }
-    
-//    func handleResponse(response: Response<AnyObject, NSError>)
-//    {
-//
-//    }
 }

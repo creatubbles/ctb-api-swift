@@ -1,5 +1,5 @@
 //
-//  TestConfiguration.swift
+//  TestConfigurationTemplate.swift
 //  CreatubblesAPIClient
 //
 //  Created by Michal Miedlarz on 05.02.2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TestConfiguration: NSObject
+class TestConfigurationTemplate: NSObject
 {
     static let appId = "TEST_APP_ID"
     static let appSecret = "TEST_APP_SECRET"

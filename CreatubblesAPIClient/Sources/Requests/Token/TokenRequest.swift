@@ -15,8 +15,8 @@ class TokenRequest: Request
     override var parameters: Dictionary<String, AnyObject>
     {
         return [
-            "clientId": clientId,
-            "clientSecret": clientSecret
+            "client_id": clientId,
+            "client_secret": clientSecret
         ]
     }
     
