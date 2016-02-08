@@ -15,10 +15,11 @@
 		1815D5651C638BD200EF4C38 /* CTCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5641C638BD200EF4C38 /* CTCreator.swift */; };
 		1815D5671C638BE400EF4C38 /* CTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5661C638BE400EF4C38 /* CTUser.swift */; };
 		1815D5691C638BED00EF4C38 /* CTSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5681C638BED00EF4C38 /* CTSettings.swift */; };
-		1815D56D1C63997400EF4C38 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D56C1C63997400EF4C38 /* Request.swift */; };
-		188BCE9E1C64C74100EA4F11 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCE9D1C64C74100EA4F11 /* ResponseHandler.swift */; };
-		188BCEA21C64CBB200EA4F11 /* RequestSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEA11C64CBB200EA4F11 /* RequestSenderTests.swift */; };
-		188BCEA41C64CEDE00EA4F11 /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEA31C64CEDE00EA4F11 /* TokenRequest.swift */; };
+		18779DAF1C68A8A9000BFB57 /* RequestSenderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DAE1C68A8A9000BFB57 /* RequestSenderSpec.swift */; };
+		18779DB61C68D424000BFB57 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB11C68D424000BFB57 /* Request.swift */; };
+		18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB21C68D424000BFB57 /* ResponseHandler.swift */; };
+		18779DB81C68D424000BFB57 /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB41C68D424000BFB57 /* TokenRequest.swift */; };
+		18779DB91C68D424000BFB57 /* TokenResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB51C68D424000BFB57 /* TokenResponseHandler.swift */; };
 		188BCEA61C64D4AF00EA4F11 /* CTToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEA51C64D4AF00EA4F11 /* CTToken.swift */; };
 		188BCEAF1C64E19D00EA4F11 /* CreatubblesAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEAD1C64E19D00EA4F11 /* CreatubblesAPIClient.swift */; };
 		188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEAE1C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift */; };
@@ -48,10 +49,11 @@
 		1815D5641C638BD200EF4C38 /* CTCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTCreator.swift; sourceTree = "<group>"; };
 		1815D5661C638BE400EF4C38 /* CTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTUser.swift; sourceTree = "<group>"; };
 		1815D5681C638BED00EF4C38 /* CTSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTSettings.swift; sourceTree = "<group>"; };
-		1815D56C1C63997400EF4C38 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		188BCE9D1C64C74100EA4F11 /* ResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
-		188BCEA11C64CBB200EA4F11 /* RequestSenderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSenderTests.swift; sourceTree = "<group>"; };
-		188BCEA31C64CEDE00EA4F11 /* TokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenRequest.swift; sourceTree = "<group>"; };
+		18779DAE1C68A8A9000BFB57 /* RequestSenderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSenderSpec.swift; sourceTree = "<group>"; };
+		18779DB11C68D424000BFB57 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		18779DB21C68D424000BFB57 /* ResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
+		18779DB41C68D424000BFB57 /* TokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenRequest.swift; sourceTree = "<group>"; };
+		18779DB51C68D424000BFB57 /* TokenResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenResponseHandler.swift; sourceTree = "<group>"; };
 		188BCEA51C64D4AF00EA4F11 /* CTToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTToken.swift; sourceTree = "<group>"; };
 		188BCEAD1C64E19D00EA4F11 /* CreatubblesAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClient.swift; sourceTree = "<group>"; };
 		188BCEAE1C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClientSettings.swift; sourceTree = "<group>"; };
@@ -119,7 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				188BCEB51C64E35100EA4F11 /* CreatubblesAPIClientSpec.swift */,
-				188BCEA11C64CBB200EA4F11 /* RequestSenderTests.swift */,
+				18779DAE1C68A8A9000BFB57 /* RequestSenderSpec.swift */,
 				1815D5511C63658000EF4C38 /* CreatubblesAPIClientTests.swift */,
 				1815D5531C63658000EF4C38 /* Info.plist */,
 				188BCEB71C64EA0000EA4F11 /* TestConfiguration.swift */,
@@ -162,11 +164,28 @@
 			isa = PBXGroup;
 			children = (
 				188BCEB11C64E1C500EA4F11 /* RequestSender.swift */,
-				1815D56C1C63997400EF4C38 /* Request.swift */,
-				188BCE9D1C64C74100EA4F11 /* ResponseHandler.swift */,
-				188BCEA31C64CEDE00EA4F11 /* TokenRequest.swift */,
+				18779DB01C68D424000BFB57 /* Core */,
+				18779DB31C68D424000BFB57 /* Token */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		18779DB01C68D424000BFB57 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				18779DB11C68D424000BFB57 /* Request.swift */,
+				18779DB21C68D424000BFB57 /* ResponseHandler.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		18779DB31C68D424000BFB57 /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				18779DB41C68D424000BFB57 /* TokenRequest.swift */,
+				18779DB51C68D424000BFB57 /* TokenResponseHandler.swift */,
+			);
+			path = Token;
 			sourceTree = "<group>";
 		};
 		188BCEA71C64E09800EA4F11 /* DAO */ = {
@@ -397,15 +416,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1815D5691C638BED00EF4C38 /* CTSettings.swift in Sources */,
-				1815D56D1C63997400EF4C38 /* Request.swift in Sources */,
+				18779DB61C68D424000BFB57 /* Request.swift in Sources */,
+				18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */,
 				188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */,
 				188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */,
+				18779DB91C68D424000BFB57 /* TokenResponseHandler.swift in Sources */,
+				18779DB81C68D424000BFB57 /* TokenRequest.swift in Sources */,
 				1815D5651C638BD200EF4C38 /* CTCreator.swift in Sources */,
 				188BCEA61C64D4AF00EA4F11 /* CTToken.swift in Sources */,
 				1815D5671C638BE400EF4C38 /* CTUser.swift in Sources */,
 				188BCEAF1C64E19D00EA4F11 /* CreatubblesAPIClient.swift in Sources */,
-				188BCE9E1C64C74100EA4F11 /* ResponseHandler.swift in Sources */,
-				188BCEA41C64CEDE00EA4F11 /* TokenRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,10 +433,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				188BCEA21C64CBB200EA4F11 /* RequestSenderTests.swift in Sources */,
 				1815D5521C63658000EF4C38 /* CreatubblesAPIClientTests.swift in Sources */,
 				188BCEB81C64EA0000EA4F11 /* TestConfiguration.swift in Sources */,
 				188BCEB61C64E35100EA4F11 /* CreatubblesAPIClientSpec.swift in Sources */,
+				18779DAF1C68A8A9000BFB57 /* RequestSenderSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

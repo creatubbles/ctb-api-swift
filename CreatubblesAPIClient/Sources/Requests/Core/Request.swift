@@ -10,9 +10,7 @@ import UIKit
 
 enum RequestMethod
 {
-    case GET
-    case POST
-    case PUT
+    case OPTIONS, GET, HEAD, POST, PUT, PATCH, DELETE, TRACE, CONNECT
 }
 
 class Request: NSObject

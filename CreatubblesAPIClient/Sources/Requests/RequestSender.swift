@@ -11,21 +11,37 @@ import Alamofire
 
 class RequestSender: NSObject
 {
-    private let baseUrl = "https://www.creatubbles.com"
+    private let baseUrl = "https://staging.creatubbles.com"
     private let apiPrefix = "api"
     private let apiVersion = "V2"
+    private let basicAuthenticationUser = "BASIC_USER"
+    private let basicAuthenticationPassword = "BASIC_PASS"
+    
+    private let settings: CreatubblesAPIClientSettings
+    
+    init(settings: CreatubblesAPIClientSettings)
+    {
+        self.settings = settings
+        super.init()
+    }
+    
     
     func send(request: Request, withResponseHandler handler: ResponseHandler)
     {
-        Alamofire.request(.GET, urlStringWithRequest(request)).responseJSON
+        Alamofire.request(.GET, urlStringWithRequest(request))
+        .authenticate(user: basicAuthenticationUser, password: basicAuthenticationPassword)
+        .responseJSON
         {
             response -> Void in
-            handler.handleResponse(response)
+            handler.handleResponse(response.result.value as! Dictionary<String, AnyObject>,error: response.result.error)
         }
     }
     
+    //MARK: - Utils
     private func urlStringWithRequest(request: Request) -> String
     {
         return String(format: "%@/%@/%@/%@", arguments: [baseUrl, apiPrefix, apiVersion, request.endpoint])
     }
+    
+    
 }
