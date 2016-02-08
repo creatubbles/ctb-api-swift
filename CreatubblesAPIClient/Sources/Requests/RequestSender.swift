@@ -28,7 +28,7 @@ class RequestSender: NSObject
     
     func send(request: Request, withResponseHandler handler: ResponseHandler)
     {
-        Alamofire.request(.GET, urlStringWithRequest(request))
+        Alamofire.request(.GET, urlStringWithRequest(request), parameters:request.parameters)
         .authenticate(user: basicAuthenticationUser, password: basicAuthenticationPassword)
         .responseJSON
         {
