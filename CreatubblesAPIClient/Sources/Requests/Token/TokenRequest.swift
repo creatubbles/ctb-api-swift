@@ -15,6 +15,7 @@ class TokenRequest: Request
     override var parameters: Dictionary<String, AnyObject>
     {
         return [
+            "grant_type":"client_credentials",
             "client_id": clientId,
             "client_secret": clientSecret
         ]

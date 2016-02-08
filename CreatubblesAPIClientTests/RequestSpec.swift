@@ -43,7 +43,19 @@ class RequestSpec: QuickSpec
             {
                 let settings = CreatubblesAPIClientSettings(appId: TestConfiguration.appId, appSecret: TestConfiguration.appSecret)
                 let sender = RequestSender(settings: settings)
+                                                
+                waitUntil(timeout: 60)
+                {
+                    done in
+                    sender.send(TokenRequest(clientId: TestConfiguration.appId, clientSecret: TestConfiguration.appSecret), withResponseHandler: DummyResponseHandler(completion: { (response, error) -> Void in
+                        print(response)
+                        expect(response).notTo(beNil())
+                        expect(error).to(beNil())
+                        done()
+                    }))                    
+                }
                 
+
             }
         }
     }

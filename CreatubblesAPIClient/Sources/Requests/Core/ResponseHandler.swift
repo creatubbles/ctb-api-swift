@@ -10,7 +10,7 @@ import UIKit
 
 class ResponseHandler: NSObject
 {
-    func handleResponse(response: Dictionary<String, AnyObject>, error: NSError?)
+    func handleResponse(response: Dictionary<String, AnyObject>?, error: NSError?)
     {
         
     }

@@ -17,7 +17,7 @@ class TokenResponseHandler: ResponseHandler
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>, error: NSError?)
+    override func handleResponse(response: Dictionary<String, AnyObject>?, error: NSError?)
     {
         print(response)
     }

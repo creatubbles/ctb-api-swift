@@ -11,14 +11,14 @@ import UIKit
 
 class DummyResponseHandler: ResponseHandler
 {
-    private let completion: (response: Dictionary<String, AnyObject>, error:NSError?) -> Void
+    private let completion: (response: Dictionary<String, AnyObject>?, error:NSError?) -> Void
     
-    init(completion: (response: Dictionary<String, AnyObject>, error:NSError?) -> Void)
+    init(completion: (response: Dictionary<String, AnyObject>?, error:NSError?) -> Void)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>, error: NSError?)
+    override func handleResponse(response: Dictionary<String, AnyObject>?, error: NSError?)
     {
         completion(response: response, error: error)
     }

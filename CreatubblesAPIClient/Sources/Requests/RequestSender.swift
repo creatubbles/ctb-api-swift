@@ -13,10 +13,8 @@ class RequestSender: NSObject
 {
     private let baseUrl = "https://staging.creatubbles.com"
     private let apiPrefix = "api"
-    private let apiVersion = "V2"
-    private let basicAuthenticationUser = "BASIC_USER"
-    private let basicAuthenticationPassword = "BASIC_PASS"
-    
+    private let apiVersion = "v2"
+
     private let settings: CreatubblesAPIClientSettings
     
     init(settings: CreatubblesAPIClientSettings)
@@ -28,12 +26,16 @@ class RequestSender: NSObject
     
     func send(request: Request, withResponseHandler handler: ResponseHandler)
     {
-        Alamofire.request(.GET, urlStringWithRequest(request), parameters:request.parameters)
-        .authenticate(user: basicAuthenticationUser, password: basicAuthenticationPassword)
+        Alamofire.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
+        .responseString(completionHandler:
+        {
+            (response: Response<String, NSError>) -> Void in
+            print(response)
+        })
         .responseJSON
         {
             response -> Void in
-            handler.handleResponse(response.result.value as! Dictionary<String, AnyObject>,error: response.result.error)
+            handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)
         }
     }
     
@@ -43,5 +45,20 @@ class RequestSender: NSObject
         return String(format: "%@/%@/%@/%@", arguments: [baseUrl, apiPrefix, apiVersion, request.endpoint])
     }
     
+    private func alamofireMethod(method: RequestMethod) -> Alamofire.Method
+    {
+        switch method
+        {
+            case .OPTIONS:  return .OPTIONS
+            case .GET:      return .GET
+            case .HEAD:     return .HEAD
+            case .POST:     return .POST
+            case .PUT:      return .PUT
+            case .PATCH:    return .PATCH
+            case .DELETE:   return .DELETE
+            case .TRACE:    return .TRACE
+            case .CONNECT:  return .CONNECT
+        }
+    }
     
 }
