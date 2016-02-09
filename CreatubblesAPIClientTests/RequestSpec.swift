@@ -34,7 +34,6 @@ class RequestSpec: QuickSpec
                     let request = ProfileRequest(userId: "TestUser")
                     expect(request.endpoint).to(equal("users/TestUser"))
             }
-
             
             it("Should have proper method")
             {

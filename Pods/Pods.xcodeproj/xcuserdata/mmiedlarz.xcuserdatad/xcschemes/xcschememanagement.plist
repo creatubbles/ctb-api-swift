@@ -7,9 +7,14 @@
 		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<true/>
 		</dict>
 		<key>Nimble.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ObjectMapper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,12 +72,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C349477A80CB6286F31646A2AB086AE3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C5DB5104FED3C10F78978AFC810982B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CADD1081BF29DEBB526967466747250A</key>
+		<key>C8F54543305BD95F34FAB796C9CAAFCA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
