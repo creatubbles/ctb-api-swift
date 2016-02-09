@@ -8,25 +8,73 @@
 
 import UIKit
 import Alamofire
+import p2_OAuth2
+
 
 class RequestSender: NSObject
 {
-    private let baseUrl = "https://staging.creatubbles.com"
-    private let apiPrefix = "api"
-    private let apiVersion = "v2"
-
     private let settings: CreatubblesAPIClientSettings
+    private let oauth2Client: OAuth2PasswordGrant
+    
     
     init(settings: CreatubblesAPIClientSettings)
     {
         self.settings = settings
+        self.oauth2Client = RequestSender.prepareOauthClient(settings)
         super.init()
     }
     
+    private static func prepareOauthClient(settings: CreatubblesAPIClientSettings) -> OAuth2PasswordGrant
+    {
+        let oauthSettings =
+        [
+            "client_id": settings.appId,
+            "client_secret": settings.appSecret,
+            "authorize_uri": settings.authorizeUri,
+            "token_uri":     settings.tokenUri,
+        ] as OAuth2JSON
+        
+        let client = OAuth2PasswordGrant(settings: oauthSettings)
+        client.verbose = true
+        return client
+    }
+    
+    //MARK: - Interface
+    func login(username: String, password: String, completion: (ErrorType?) -> Void)
+    {
+
+        oauth2Client.username = username
+        oauth2Client.password = password
+        oauth2Client.onAuthorize =
+        {
+            [weak self](parameters: OAuth2JSON) -> Void in
+            if let weakSelf = self
+            {
+                weakSelf.oauth2Client.onAuthorize = nil
+            }
+            completion(nil)
+        }        
+        oauth2Client.onFailure =
+        {
+            [weak self](error: ErrorType?) -> Void in
+            if let weakSelf = self
+            {
+                weakSelf.oauth2Client.onFailure = nil
+            }
+            completion(error)
+        }
+        oauth2Client.authorize()
+    }
+    
+    func logout()
+    {
+        oauth2Client.forgetClient()
+        oauth2Client.forgetTokens()
+    }
     
     func send(request: Request, withResponseHandler handler: ResponseHandler)
     {
-        Alamofire.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
+        oauth2Client.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
         .responseString(completionHandler:
         {
             (response: Response<String, NSError>) -> Void in
@@ -39,10 +87,11 @@ class RequestSender: NSObject
         }
     }
     
+    
     //MARK: - Utils
     private func urlStringWithRequest(request: Request) -> String
     {
-        return String(format: "%@/%@/%@/%@", arguments: [baseUrl, apiPrefix, apiVersion, request.endpoint])
+        return String(format: "%@/%@/%@/%@", arguments: [settings.baseUrl, settings.apiPrefix, settings.apiVersion, request.endpoint])
     }
     
     private func alamofireMethod(method: RequestMethod) -> Alamofire.Method

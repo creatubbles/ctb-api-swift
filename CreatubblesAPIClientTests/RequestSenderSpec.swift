@@ -15,12 +15,49 @@ class RequestSenderSpec: QuickSpec
 {
     override func spec()
     {
+        afterEach
+        {
+            () -> () in
+            let settings = TestConfiguration.settings
+            let sender = RequestSender(settings: settings)
+            sender.logout()
+        }
+        
         describe("Request Sender")
         {
-            it("Have proper fields set")
+            it("Should login with proper credentials")
             {
-                
+                let settings = TestConfiguration.settings
+                let sender = RequestSender(settings: settings)
+
+                waitUntil(timeout: 60)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        done()
+                    })
+                }
             }
+            
+            it("Should throw error with wrong credentials")
+            {
+                let settings = TestConfiguration.settings
+                let sender = RequestSender(settings: settings)
+                
+                waitUntil(timeout: 60)
+                {
+                    done in
+                    sender.login("wrongEmail@wrong.com", password: "wrong password", completion:
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).notTo(beNil())
+                        done()
+                    })
+                }
+            }                        
         }
     }
 }

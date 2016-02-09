@@ -19,12 +19,23 @@ class CreatubblesAPIClientSpec: QuickSpec
         {
             it("Have proper fields set")
             {
-                let testAppId = "TestAppId"
-                let testAppSecret = "TestAppSecret"
-                let settings = CreatubblesAPIClientSettings(appId: testAppId, appSecret: testAppSecret)
+                let appId = "TestAppId"
+                let appSecret = "TestAppSecret"
+                let tokenUri = "TestTokenUri"
+                let authorizeUri = "TestAuthorizeUri"
+                let baseUrl = "TestBaseUrl"
+                let apiVersion = "TestApiVersion"
+                let apiPrefix = "TestApiPrefix"
                 
-                expect(settings.appId).to(equal(testAppId))
-                expect(settings.appSecret).to(equal(testAppSecret))
+                let settings = CreatubblesAPIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion, apiPrefix: apiPrefix)
+                
+                expect(settings.appId).to(equal(appId))
+                expect(settings.appSecret).to(equal(appSecret))
+                expect(settings.tokenUri).to(equal(tokenUri))            
+                expect(settings.authorizeUri).to(equal(authorizeUri))
+                expect(settings.baseUrl).to(equal(baseUrl))
+                expect(settings.apiVersion).to(equal(apiVersion))
+                expect(settings.apiPrefix).to(equal(apiPrefix))
             }
         }
     }
