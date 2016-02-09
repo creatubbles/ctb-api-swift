@@ -41,7 +41,7 @@ class RequestSpec: QuickSpec
                 expect(request.method).to(equal(RequestMethod.GET))
             }
             
-            it("Should return correct value")
+            it("Should return correct value after login")
             {
                 let settings = TestConfiguration.settings
                 let sender = RequestSender(settings: settings)
@@ -54,6 +54,63 @@ class RequestSpec: QuickSpec
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
                         sender.send(ProfileRequest(), withResponseHandler: DummyResponseHandler()
+                        {
+                            (response, error) -> Void in
+                            print(response)
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
+        
+        
+        describe("Creators and Managers request")
+        {
+            it("Should have proper endpoint")
+            {
+                let request = CreatorsAndManagersRequest()
+                expect(request.endpoint).to(equal("users"))
+            }
+            
+            it("Should have proper method")
+            {
+                let request = CreatorsAndManagersRequest()
+                expect(request.method).to(equal(RequestMethod.GET))
+            }
+            
+            it("Should have proper parameters set")
+            {
+                let userId = "TestUserId"
+                let page = 1
+                let pageCount = 10
+                let scope = [CreatorsAndManagersScopeElement.Creators, .Managers]
+                let scopeParams = ["creators","managers"]
+
+                let request = CreatorsAndManagersRequest(userId: userId, page: page, perPage: pageCount, scope: scope)
+                let params = request.parameters
+                expect(params["page"] as? Int).to(equal(page))
+                expect(params["per_page"] as? Int).to(equal(pageCount))
+                expect(params["user_id"] as? String).to(equal(userId))
+                expect(params["scope"] as? Array<String>).to(equal(scopeParams))
+            }
+            
+            it("Should return correct value after login")
+            {
+                let settings = TestConfiguration.settings
+                let sender = RequestSender(settings: settings)
+                
+                waitUntil(timeout: 5)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(CreatorsAndManagersRequest(), withResponseHandler: DummyResponseHandler()
                         {
                             (response, error) -> Void in
                             print(response)

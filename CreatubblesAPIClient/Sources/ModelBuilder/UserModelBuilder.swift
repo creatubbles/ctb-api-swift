@@ -55,43 +55,43 @@ class UserModelBuilder: NSObject, Mappable
     
     func mapping(map: Map)
     {
-        identifier  <- map["data.id"]
-        username  <- map["data.attributes.username"]
-        displayName  <- map["data.attributes.display_name"]
-        name <- map["data.attributes.name"]
-        role <- map["data.attributes.role"]
-        lastBubbledAt <- (map["data.attributes.last_bubbled_at"], DateTransform())
-        lastCommentedAt <- (map["data.attributes.last_commented_at"], DateTransform())
-        createdAt <- (map["data.attributes.created_at"], DateTransform())
-        updatedAt <- (map["data.attributes.updated_at"], DateTransform())
-        avatarUrl <- map["data.attributes.avatar_url"]
-        countryCode <- map["data.attributes.country_code"]
-        countryName <- map["data.attributes.country_name"]
-        age <- map["data.attributes.age"]
-        birthYear <- map["data.attributes.birth_year"]
-        birthMonth <- map["data.attributes.birth_month"]
-        groups <- map["data.attributes.groups"]
+        identifier  <- map["id"]
+        username  <- map["attributes.username"]
+        displayName  <- map["attributes.display_name"]
+        name <- map["attributes.name"]
+        role <- map["attributes.role"]
+        lastBubbledAt <- (map["attributes.last_bubbled_at"], DateTransform())
+        lastCommentedAt <- (map["attributes.last_commented_at"], DateTransform())
+        createdAt <- (map["attributes.created_at"], DateTransform())
+        updatedAt <- (map["attributes.updated_at"], DateTransform())
+        avatarUrl <- map["attributes.avatar_url"]
+        countryCode <- map["attributes.country_code"]
+        countryName <- map["attributes.country_name"]
+        age <- map["attributes.age"]
+        birthYear <- map["attributes.birth_year"]
+        birthMonth <- map["attributes.birth_month"]
+        groups <- map["attributes.groups"]
         
-        shortUrl <- map["data.attributes.short_url"]
-        bubbledByUserIds <- map["data.attributes.bubbled_by_user_ids"]
-        ownedTags <- map["data.attributes.owned_tags"]
+        shortUrl <- map["attributes.short_url"]
+        bubbledByUserIds <- map["attributes.bubbled_by_user_ids"]
+        ownedTags <- map["attributes.owned_tags"]
         
-        addedBubblesCount <- map["data.attributes.added_bubbles_count"]
-        activitiesCount <- map["data.attributes.activities_count"]
-        commentsCount <- map["data.attributes.comments_count"]
-        creationsCount <- map["data.attributes.creations_count"]
+        addedBubblesCount <- map["attributes.added_bubbles_count"]
+        activitiesCount <- map["attributes.activities_count"]
+        commentsCount <- map["attributes.comments_count"]
+        creationsCount <- map["attributes.creations_count"]
 
-        galleriesCount <- map["data.attributes.galleries_count"]
-        creatorsCount <- map["data.attributes.creators_count"]
-        managersCount <- map["data.attributes.managers_count"]
+        galleriesCount <- map["attributes.galleries_count"]
+        creatorsCount <- map["attributes.creators_count"]
+        managersCount <- map["attributes.managers_count"]
         
-        homeSchooling <- map["data.attributes.home_schooling"]
-        signedUpAsInstructor <- map["data.attributes.signed_up_as_instructor"]
-        isPartner <- map["data.attributes.is_partner"]
-        loggable <- map["data.attributes.loggable"]
-        gspSeen <- map["data.attributes.gsp_seen"]
-        uepUnwanted <- map["data.attributes.uep_unwanted"]
-        isMale <- map["data.attributes.is_male"]
+        homeSchooling <- map["attributes.home_schooling"]
+        signedUpAsInstructor <- map["attributes.signed_up_as_instructor"]
+        isPartner <- map["attributes.is_partner"]
+        loggable <- map["attributes.loggable"]
+        gspSeen <- map["attributes.gsp_seen"]
+        uepUnwanted <- map["attributes.uep_unwanted"]
+        isMale <- map["attributes.is_male"]
     }
     
     //MARK: - Parsing
