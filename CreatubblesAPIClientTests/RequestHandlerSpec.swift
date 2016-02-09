@@ -45,6 +45,25 @@ class RequestHandlerSpec: QuickSpec
                     }
                 }
             }
+            
+            it("Should return error when not logged in")
+            {
+                let settings = TestConfiguration.settings
+                let sender = RequestSender(settings: settings)
+                sender.logout()
+                
+                waitUntil(timeout: 5)
+                {
+                    done in
+                    sender.send(ProfileRequest(), withResponseHandler:ProfileResponseHandler()
+                    {
+                        (user: User?, error:NSError?) -> Void in
+                        expect(error).notTo(beNil())
+                        expect(user).to(beNil())
+                        done()
+                    })
+                }
+            }
         }
     }
 }
