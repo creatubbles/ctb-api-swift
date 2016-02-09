@@ -11,9 +11,7 @@
 		16CAAC99A2D4AACF0B7842FB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD89548AD3066D7FA02EE2AB /* Pods_CreatubblesAPIClient.framework */; };
 		1815D54D1C63658000EF4C38 /* CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */; };
 		1815D5601C6383CF00EF4C38 /* CreatubblesAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1815D5651C638BD200EF4C38 /* CTCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5641C638BD200EF4C38 /* CTCreator.swift */; };
-		1815D5671C638BE400EF4C38 /* CTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5661C638BE400EF4C38 /* CTUser.swift */; };
-		1815D5691C638BED00EF4C38 /* CTSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5681C638BED00EF4C38 /* CTSettings.swift */; };
+		1815D5651C638BD200EF4C38 /* Creator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5641C638BD200EF4C38 /* Creator.swift */; };
 		18779DAF1C68A8A9000BFB57 /* RequestSenderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DAE1C68A8A9000BFB57 /* RequestSenderSpec.swift */; };
 		18779DB61C68D424000BFB57 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB11C68D424000BFB57 /* Request.swift */; };
 		18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB21C68D424000BFB57 /* ResponseHandler.swift */; };
@@ -22,7 +20,13 @@
 		18779DC01C68E0D2000BFB57 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DBF1C68E0D2000BFB57 /* TestConfiguration.swift */; };
 		18779DC21C68E2D9000BFB57 /* TestConfigurationTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DC11C68E2D9000BFB57 /* TestConfigurationTemplate.swift */; };
 		18779DF01C69C9E3000BFB57 /* OAuth2+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DEF1C69C9E3000BFB57 /* OAuth2+Alamofire.swift */; };
-		188BCEA61C64D4AF00EA4F11 /* CTToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEA51C64D4AF00EA4F11 /* CTToken.swift */; };
+		18779DF31C69E7FB000BFB57 /* ProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DF21C69E7FB000BFB57 /* ProfileRequest.swift */; };
+		18779DF51C69E80F000BFB57 /* ProfileResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DF41C69E80F000BFB57 /* ProfileResponseHandler.swift */; };
+		18779DF71C69F394000BFB57 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DF61C69F394000BFB57 /* Country.swift */; };
+		18779DF91C69F39D000BFB57 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DF81C69F39D000BFB57 /* Group.swift */; };
+		18779DFD1C69F6EE000BFB57 /* CreatorModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DFC1C69F6EE000BFB57 /* CreatorModelBuilder.swift */; };
+		18779DFF1C69F6FD000BFB57 /* CountryModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DFE1C69F6FD000BFB57 /* CountryModelBuilder.swift */; };
+		18779E011C69F707000BFB57 /* GroupModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779E001C69F707000BFB57 /* GroupModelBuilder.swift */; };
 		188BCEAF1C64E19D00EA4F11 /* CreatubblesAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEAD1C64E19D00EA4F11 /* CreatubblesAPIClient.swift */; };
 		188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEAE1C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift */; };
 		188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEB11C64E1C500EA4F11 /* RequestSender.swift */; };
@@ -46,9 +50,7 @@
 		1815D5531C63658000EF4C38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatubblesAPIClient.h; sourceTree = "<group>"; };
 		1815D55F1C6383CF00EF4C38 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1815D5641C638BD200EF4C38 /* CTCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTCreator.swift; sourceTree = "<group>"; };
-		1815D5661C638BE400EF4C38 /* CTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTUser.swift; sourceTree = "<group>"; };
-		1815D5681C638BED00EF4C38 /* CTSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTSettings.swift; sourceTree = "<group>"; };
+		1815D5641C638BD200EF4C38 /* Creator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creator.swift; sourceTree = "<group>"; };
 		18779DAE1C68A8A9000BFB57 /* RequestSenderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSenderSpec.swift; sourceTree = "<group>"; };
 		18779DB11C68D424000BFB57 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		18779DB21C68D424000BFB57 /* ResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
@@ -57,7 +59,13 @@
 		18779DBF1C68E0D2000BFB57 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		18779DC11C68E2D9000BFB57 /* TestConfigurationTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfigurationTemplate.swift; sourceTree = "<group>"; };
 		18779DEF1C69C9E3000BFB57 /* OAuth2+Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuth2+Alamofire.swift"; sourceTree = "<group>"; };
-		188BCEA51C64D4AF00EA4F11 /* CTToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTToken.swift; sourceTree = "<group>"; };
+		18779DF21C69E7FB000BFB57 /* ProfileRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRequest.swift; sourceTree = "<group>"; };
+		18779DF41C69E80F000BFB57 /* ProfileResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileResponseHandler.swift; sourceTree = "<group>"; };
+		18779DF61C69F394000BFB57 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		18779DF81C69F39D000BFB57 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		18779DFC1C69F6EE000BFB57 /* CreatorModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatorModelBuilder.swift; sourceTree = "<group>"; };
+		18779DFE1C69F6FD000BFB57 /* CountryModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryModelBuilder.swift; sourceTree = "<group>"; };
+		18779E001C69F707000BFB57 /* GroupModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupModelBuilder.swift; sourceTree = "<group>"; };
 		188BCEAD1C64E19D00EA4F11 /* CreatubblesAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClient.swift; sourceTree = "<group>"; };
 		188BCEAE1C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClientSettings.swift; sourceTree = "<group>"; };
 		188BCEB11C64E1C500EA4F11 /* RequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
@@ -139,6 +147,7 @@
 				188BCEA71C64E09800EA4F11 /* DAO */,
 				1815D5631C638B9C00EF4C38 /* Requests */,
 				1815D5621C63854300EF4C38 /* Model */,
+				18779DFB1C69F6E0000BFB57 /* ModelBuilder */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -154,10 +163,9 @@
 		1815D5621C63854300EF4C38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1815D5641C638BD200EF4C38 /* CTCreator.swift */,
-				1815D5661C638BE400EF4C38 /* CTUser.swift */,
-				1815D5681C638BED00EF4C38 /* CTSettings.swift */,
-				188BCEA51C64D4AF00EA4F11 /* CTToken.swift */,
+				1815D5641C638BD200EF4C38 /* Creator.swift */,
+				18779DF61C69F394000BFB57 /* Country.swift */,
+				18779DF81C69F39D000BFB57 /* Group.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,6 +176,7 @@
 				188BCEB11C64E1C500EA4F11 /* RequestSender.swift */,
 				18779DEF1C69C9E3000BFB57 /* OAuth2+Alamofire.swift */,
 				18779DB01C68D424000BFB57 /* Core */,
+				18779DF11C69E7E6000BFB57 /* Profile */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -189,6 +198,25 @@
 				18779DBD1C68DFCB000BFB57 /* DummyResponseHandler.swift */,
 			);
 			path = TestUtils;
+			sourceTree = "<group>";
+		};
+		18779DF11C69E7E6000BFB57 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				18779DF21C69E7FB000BFB57 /* ProfileRequest.swift */,
+				18779DF41C69E80F000BFB57 /* ProfileResponseHandler.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		18779DFB1C69F6E0000BFB57 /* ModelBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				18779DFC1C69F6EE000BFB57 /* CreatorModelBuilder.swift */,
+				18779DFE1C69F6FD000BFB57 /* CountryModelBuilder.swift */,
+				18779E001C69F707000BFB57 /* GroupModelBuilder.swift */,
+			);
+			path = ModelBuilder;
 			sourceTree = "<group>";
 		};
 		188BCEA71C64E09800EA4F11 /* DAO */ = {
@@ -418,16 +446,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1815D5691C638BED00EF4C38 /* CTSettings.swift in Sources */,
 				18779DB61C68D424000BFB57 /* Request.swift in Sources */,
 				18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */,
 				188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */,
+				18779DF71C69F394000BFB57 /* Country.swift in Sources */,
 				188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */,
+				18779E011C69F707000BFB57 /* GroupModelBuilder.swift in Sources */,
+				18779DF51C69E80F000BFB57 /* ProfileResponseHandler.swift in Sources */,
+				18779DF91C69F39D000BFB57 /* Group.swift in Sources */,
 				18779DF01C69C9E3000BFB57 /* OAuth2+Alamofire.swift in Sources */,
-				1815D5651C638BD200EF4C38 /* CTCreator.swift in Sources */,
-				188BCEA61C64D4AF00EA4F11 /* CTToken.swift in Sources */,
-				1815D5671C638BE400EF4C38 /* CTUser.swift in Sources */,
+				18779DFD1C69F6EE000BFB57 /* CreatorModelBuilder.swift in Sources */,
+				1815D5651C638BD200EF4C38 /* Creator.swift in Sources */,
+				18779DF31C69E7FB000BFB57 /* ProfileRequest.swift in Sources */,
 				188BCEAF1C64E19D00EA4F11 /* CreatubblesAPIClient.swift in Sources */,
+				18779DFF1C69F6FD000BFB57 /* CountryModelBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
