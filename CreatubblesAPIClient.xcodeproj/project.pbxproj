@@ -17,8 +17,6 @@
 		18779DAF1C68A8A9000BFB57 /* RequestSenderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DAE1C68A8A9000BFB57 /* RequestSenderSpec.swift */; };
 		18779DB61C68D424000BFB57 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB11C68D424000BFB57 /* Request.swift */; };
 		18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB21C68D424000BFB57 /* ResponseHandler.swift */; };
-		18779DB81C68D424000BFB57 /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB41C68D424000BFB57 /* TokenRequest.swift */; };
-		18779DB91C68D424000BFB57 /* TokenResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB51C68D424000BFB57 /* TokenResponseHandler.swift */; };
 		18779DBB1C68DC06000BFB57 /* RequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DBA1C68DC06000BFB57 /* RequestSpec.swift */; };
 		18779DBE1C68DFCB000BFB57 /* DummyResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DBD1C68DFCB000BFB57 /* DummyResponseHandler.swift */; };
 		18779DC01C68E0D2000BFB57 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DBF1C68E0D2000BFB57 /* TestConfiguration.swift */; };
@@ -54,8 +52,6 @@
 		18779DAE1C68A8A9000BFB57 /* RequestSenderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSenderSpec.swift; sourceTree = "<group>"; };
 		18779DB11C68D424000BFB57 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		18779DB21C68D424000BFB57 /* ResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
-		18779DB41C68D424000BFB57 /* TokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenRequest.swift; sourceTree = "<group>"; };
-		18779DB51C68D424000BFB57 /* TokenResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenResponseHandler.swift; sourceTree = "<group>"; };
 		18779DBA1C68DC06000BFB57 /* RequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSpec.swift; sourceTree = "<group>"; };
 		18779DBD1C68DFCB000BFB57 /* DummyResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyResponseHandler.swift; sourceTree = "<group>"; };
 		18779DBF1C68E0D2000BFB57 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
@@ -172,7 +168,6 @@
 				188BCEB11C64E1C500EA4F11 /* RequestSender.swift */,
 				18779DEF1C69C9E3000BFB57 /* OAuth2+Alamofire.swift */,
 				18779DB01C68D424000BFB57 /* Core */,
-				18779DB31C68D424000BFB57 /* Token */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -184,15 +179,6 @@
 				18779DB21C68D424000BFB57 /* ResponseHandler.swift */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		18779DB31C68D424000BFB57 /* Token */ = {
-			isa = PBXGroup;
-			children = (
-				18779DB41C68D424000BFB57 /* TokenRequest.swift */,
-				18779DB51C68D424000BFB57 /* TokenResponseHandler.swift */,
-			);
-			path = Token;
 			sourceTree = "<group>";
 		};
 		18779DBC1C68DFAE000BFB57 /* TestUtils */ = {
@@ -437,8 +423,6 @@
 				18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */,
 				188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */,
 				188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */,
-				18779DB91C68D424000BFB57 /* TokenResponseHandler.swift in Sources */,
-				18779DB81C68D424000BFB57 /* TokenRequest.swift in Sources */,
 				18779DF01C69C9E3000BFB57 /* OAuth2+Alamofire.swift in Sources */,
 				1815D5651C638BD200EF4C38 /* CTCreator.swift in Sources */,
 				188BCEA61C64D4AF00EA4F11 /* CTToken.swift in Sources */,
