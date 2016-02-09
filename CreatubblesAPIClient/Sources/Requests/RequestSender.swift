@@ -75,10 +75,11 @@ class RequestSender: NSObject
     func send(request: Request, withResponseHandler handler: ResponseHandler)
     {
         oauth2Client.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
+        .validate()
         .responseString(completionHandler:
         {
             (response: Response<String, NSError>) -> Void in
-            print(response)
+            print(response.result)
         })
         .responseJSON
         {
@@ -86,7 +87,6 @@ class RequestSender: NSObject
             handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)
         }
     }
-    
     
     //MARK: - Utils
     private func urlStringWithRequest(request: Request) -> String

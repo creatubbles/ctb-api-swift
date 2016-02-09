@@ -85,11 +85,13 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-CreatubblesAPIClient/Alamofire.framework"
+  install_framework "Pods-CreatubblesAPIClient/ObjectMapper.framework"
   install_framework "Pods-CreatubblesAPIClient/SwiftKeychain.framework"
   install_framework "Pods-CreatubblesAPIClient/p2_OAuth2.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-CreatubblesAPIClient/Alamofire.framework"
+  install_framework "Pods-CreatubblesAPIClient/ObjectMapper.framework"
   install_framework "Pods-CreatubblesAPIClient/SwiftKeychain.framework"
   install_framework "Pods-CreatubblesAPIClient/p2_OAuth2.framework"
 fi
