@@ -1,1 +1,25 @@
+PODS:
+  - Alamofire (3.1.5)
+  - Nimble (3.0.0)
+  - ObjectMapper (1.1.2)
+  - p2.OAuth2 (2.2):
+    - SwiftKeychain (~> 0.1.5)
+  - Quick (0.9.0)
+  - SwiftKeychain (0.1.5)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.0)
+  - Nimble (= 3.0.0)
+  - ObjectMapper (~> 1.1)
+  - p2.OAuth2 (~> 2.2)
+  - Quick (~> 0.9.0)
+
+SPEC CHECKSUMS:
+  Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
+  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
+  ObjectMapper: 148765647481443b1a18983b4ac8ec3189cbce35
+  p2.OAuth2: 47b519c9da500af90b87101e0330c6278e1152c2
+  Quick: 332eb1da73125a2106dd637424c803f2ae97e4a9
+  SwiftKeychain: 1387edad8b56c659daa93d9ffc99526bac5b0088
+
 COCOAPODS: 0.39.0
