@@ -28,6 +28,8 @@
 		18779E031C6A15BF000BFB57 /* ResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779E021C6A15BF000BFB57 /* ResponseHandlerSpec.swift */; };
 		18779E0D1C6A2582000BFB57 /* CreatorsAndManagersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779E0C1C6A2582000BFB57 /* CreatorsAndManagersRequest.swift */; };
 		18779E0F1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779E0E1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift */; };
+		187901EE1C6B37E7008F5302 /* NewCreatorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187901ED1C6B37E7008F5302 /* NewCreatorRequest.swift */; };
+		187901F01C6B37F4008F5302 /* NewCreatorResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187901EF1C6B37F4008F5302 /* NewCreatorResponseHandler.swift */; };
 		188BCEAF1C64E19D00EA4F11 /* CreatubblesAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEAD1C64E19D00EA4F11 /* CreatubblesAPIClient.swift */; };
 		188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEAE1C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift */; };
 		188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEB11C64E1C500EA4F11 /* RequestSender.swift */; };
@@ -68,6 +70,8 @@
 		18779E021C6A15BF000BFB57 /* ResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		18779E0C1C6A2582000BFB57 /* CreatorsAndManagersRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatorsAndManagersRequest.swift; sourceTree = "<group>"; };
 		18779E0E1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatorsAndManagersResponseHandler.swift; sourceTree = "<group>"; };
+		187901ED1C6B37E7008F5302 /* NewCreatorRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreatorRequest.swift; sourceTree = "<group>"; };
+		187901EF1C6B37F4008F5302 /* NewCreatorResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreatorResponseHandler.swift; sourceTree = "<group>"; };
 		188BCEAD1C64E19D00EA4F11 /* CreatubblesAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClient.swift; sourceTree = "<group>"; };
 		188BCEAE1C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClientSettings.swift; sourceTree = "<group>"; };
 		188BCEB11C64E1C500EA4F11 /* RequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				18779DEF1C69C9E3000BFB57 /* OAuth2+Alamofire.swift */,
 				18779DB01C68D424000BFB57 /* Core */,
 				18779E0B1C6A2572000BFB57 /* CreatorsAndManagers */,
+				187901EC1C6B37D7008F5302 /* NewCreator */,
 				18779DF11C69E7E6000BFB57 /* Profile */,
 			);
 			path = Requests;
@@ -228,6 +233,15 @@
 				18779E0E1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift */,
 			);
 			path = CreatorsAndManagers;
+			sourceTree = "<group>";
+		};
+		187901EC1C6B37D7008F5302 /* NewCreator */ = {
+			isa = PBXGroup;
+			children = (
+				187901ED1C6B37E7008F5302 /* NewCreatorRequest.swift */,
+				187901EF1C6B37F4008F5302 /* NewCreatorResponseHandler.swift */,
+			);
+			path = NewCreator;
 			sourceTree = "<group>";
 		};
 		188BCEA71C64E09800EA4F11 /* DAO */ = {
@@ -458,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18779DB61C68D424000BFB57 /* Request.swift in Sources */,
+				187901F01C6B37F4008F5302 /* NewCreatorResponseHandler.swift in Sources */,
 				18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */,
 				188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */,
 				18779E0D1C6A2582000BFB57 /* CreatorsAndManagersRequest.swift in Sources */,
@@ -470,6 +485,7 @@
 				1815D5651C638BD200EF4C38 /* User.swift in Sources */,
 				18779E0F1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift in Sources */,
 				18779DF31C69E7FB000BFB57 /* ProfileRequest.swift in Sources */,
+				187901EE1C6B37E7008F5302 /* NewCreatorRequest.swift in Sources */,
 				188BCEAF1C64E19D00EA4F11 /* CreatubblesAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
