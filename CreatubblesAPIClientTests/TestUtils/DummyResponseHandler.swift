@@ -16,6 +16,7 @@ class DummyResponseHandler: ResponseHandler
     init(completion: (response: Dictionary<String, AnyObject>?, error:NSError?) -> Void)
     {
         self.completion = completion
+        
     }
     
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: NSError?)
