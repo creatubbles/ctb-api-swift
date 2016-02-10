@@ -30,6 +30,8 @@
 		18779E0F1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779E0E1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift */; };
 		187901EE1C6B37E7008F5302 /* NewCreatorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187901ED1C6B37E7008F5302 /* NewCreatorRequest.swift */; };
 		187901F01C6B37F4008F5302 /* NewCreatorResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187901EF1C6B37F4008F5302 /* NewCreatorResponseHandler.swift */; };
+		187901F21C6B43E1008F5302 /* TestRequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187901F11C6B43E1008F5302 /* TestRequestSender.swift */; };
+		187901F41C6B43FA008F5302 /* TestComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187901F31C6B43FA008F5302 /* TestComponentsFactory.swift */; };
 		188BCEAF1C64E19D00EA4F11 /* CreatubblesAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEAD1C64E19D00EA4F11 /* CreatubblesAPIClient.swift */; };
 		188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEAE1C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift */; };
 		188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEB11C64E1C500EA4F11 /* RequestSender.swift */; };
@@ -72,6 +74,8 @@
 		18779E0E1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatorsAndManagersResponseHandler.swift; sourceTree = "<group>"; };
 		187901ED1C6B37E7008F5302 /* NewCreatorRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreatorRequest.swift; sourceTree = "<group>"; };
 		187901EF1C6B37F4008F5302 /* NewCreatorResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreatorResponseHandler.swift; sourceTree = "<group>"; };
+		187901F11C6B43E1008F5302 /* TestRequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRequestSender.swift; sourceTree = "<group>"; };
+		187901F31C6B43FA008F5302 /* TestComponentsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestComponentsFactory.swift; sourceTree = "<group>"; };
 		188BCEAD1C64E19D00EA4F11 /* CreatubblesAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClient.swift; sourceTree = "<group>"; };
 		188BCEAE1C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClientSettings.swift; sourceTree = "<group>"; };
 		188BCEB11C64E1C500EA4F11 /* RequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
@@ -204,6 +208,8 @@
 				18779DC11C68E2D9000BFB57 /* TestConfigurationTemplate.swift */,
 				18779DBF1C68E0D2000BFB57 /* TestConfiguration.swift */,
 				18779DBD1C68DFCB000BFB57 /* DummyResponseHandler.swift */,
+				187901F11C6B43E1008F5302 /* TestRequestSender.swift */,
+				187901F31C6B43FA008F5302 /* TestComponentsFactory.swift */,
 			);
 			path = TestUtils;
 			sourceTree = "<group>";
@@ -495,9 +501,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				18779DBB1C68DC06000BFB57 /* RequestSpec.swift in Sources */,
+				187901F41C6B43FA008F5302 /* TestComponentsFactory.swift in Sources */,
 				188BCEB61C64E35100EA4F11 /* CreatubblesAPIClientSpec.swift in Sources */,
 				18779DAF1C68A8A9000BFB57 /* RequestSenderSpec.swift in Sources */,
 				18779DC01C68E0D2000BFB57 /* TestConfiguration.swift in Sources */,
+				187901F21C6B43E1008F5302 /* TestRequestSender.swift in Sources */,
 				18779E031C6A15BF000BFB57 /* ResponseHandlerSpec.swift in Sources */,
 				18779DC21C68E2D9000BFB57 /* TestConfigurationTemplate.swift in Sources */,
 				18779DBE1C68DFCB000BFB57 /* DummyResponseHandler.swift in Sources */,
