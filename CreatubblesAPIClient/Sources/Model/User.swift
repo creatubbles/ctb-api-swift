@@ -8,10 +8,10 @@
 
 import UIKit
 
-enum Gender
+enum Gender: Int
 {
-    case Male
-    case Female
+    case Male = 0
+    case Female = 1
 }
 
 enum Role: String
