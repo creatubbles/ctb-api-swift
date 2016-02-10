@@ -4,6 +4,9 @@
 #Test credentials
 *TestConfiguration.swift
 
+#Fastlane test results
+test_output/
+
 # Xcode
 build/
 *.pbxuser
