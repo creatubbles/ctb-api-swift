@@ -7,10 +7,16 @@
 //
 
 import UIKit
+enum GalleriesRequestSort: String
+{
+    case Popular = "popular"
+    case Recent = "recent"
+}
 
 class GalleriesRequest: Request
 {
     override var method: RequestMethod   { return .GET }
+    override var parameters: Dictionary<String, AnyObject> { return prepareParametersDict() }
     override var endpoint: String
     {
         if let galleryId = galleryId
@@ -20,14 +26,56 @@ class GalleriesRequest: Request
         return "galleries"
     }
     
-    override var parameters: Dictionary<String, AnyObject>
-    {
-        return Dictionary<String, AnyObject>()
-    }
-    
     private let galleryId: String?
-    init(galleryId: String? = nil)
+    private let page: Int?
+    private let perPage: Int?
+    private let sort: GalleriesRequestSort?
+    private let userId: String?
+    
+    init(galleryId: String)
     {
         self.galleryId = galleryId
+        self.page = nil
+        self.perPage = nil
+        self.sort = nil
+        self.userId = nil
+    }
+    
+    init(page: Int, perPage: Int, sort: GalleriesRequestSort, userId: String?)
+    {
+        self.galleryId = nil
+        self.page = page
+        self.perPage = perPage
+        self.sort = sort
+        self.userId = userId
+    }
+    
+    private func prepareParametersDict() -> Dictionary<String, AnyObject>
+    {
+        if let _ = galleryId
+        {
+            return Dictionary<String, AnyObject>()
+        }
+        else
+        {
+            var dict = Dictionary<String, AnyObject>()
+            if let page = page
+            {
+                dict["page"] = page
+            }
+            if let perPage = perPage
+            {
+                dict["per_page"] = perPage
+            }
+            if let sort = sort
+            {
+                dict["sort"] = sort.rawValue
+            }
+            if let userId = userId
+            {
+                dict["user_id"] = userId
+            }
+            return dict
+        }
     }
 }

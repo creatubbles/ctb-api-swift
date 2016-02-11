@@ -67,7 +67,6 @@ class RequestSpec: QuickSpec
             }
         }
         
-        
         describe("Creators and Managers request")
         {
             it("Should have proper endpoint")
@@ -186,7 +185,26 @@ class RequestSpec: QuickSpec
             }
         }
         
-        
-        
+        describe("Galleries request")
+        {
+            it("Should have proper method")
+            {
+                let request = GalleriesRequest(galleryId: "TestGalleryId")
+                expect(request.method).to(equal(RequestMethod.GET))
+            }
+            
+            it("Should have proper endpoint for specified gallery")
+            {
+                let id = "TestGalleryId"
+                let request = GalleriesRequest(galleryId: id)
+                expect(request.endpoint).to(equal("galleries/"+id))
+            }
+            
+            it("Should have proper endpoint for list of galleries")
+            {
+                let request = GalleriesRequest(page: 0, perPage: 20, sort: .Recent, userId: nil)
+                expect(request.endpoint).to(equal("galleries"))
+            }
+        }
     }
 }
