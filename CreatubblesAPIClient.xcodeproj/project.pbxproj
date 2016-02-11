@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0F569ECF6E7F4414310CBB21 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6769274D8C574FCCA4E60B7 /* Pods_CreatubblesAPIClientTests.framework */; };
 		16CAAC99A2D4AACF0B7842FB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD89548AD3066D7FA02EE2AB /* Pods_CreatubblesAPIClient.framework */; };
+		180C97A81C6CC0DA00BC682D /* NewGalleryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97A71C6CC0DA00BC682D /* NewGalleryRequest.swift */; };
+		180C97AA1C6CC0F100BC682D /* NewGalleryResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97A91C6CC0F100BC682D /* NewGalleryResponseHandler.swift */; };
 		1815D54D1C63658000EF4C38 /* CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */; };
 		1815D5601C6383CF00EF4C38 /* CreatubblesAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1815D5651C638BD200EF4C38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5641C638BD200EF4C38 /* User.swift */; };
@@ -55,6 +57,8 @@
 
 /* Begin PBXFileReference section */
 		055A4A2D59C871AD4EC1E7B9 /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
+		180C97A71C6CC0DA00BC682D /* NewGalleryRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGalleryRequest.swift; sourceTree = "<group>"; };
+		180C97A91C6CC0F100BC682D /* NewGalleryResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGalleryResponseHandler.swift; sourceTree = "<group>"; };
 		1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1815D54C1C63658000EF4C38 /* CreatubblesAPIClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CreatubblesAPIClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1815D5531C63658000EF4C38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -118,6 +122,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180C97A61C6CC0C800BC682D /* NewGallery */ = {
+			isa = PBXGroup;
+			children = (
+				180C97A71C6CC0DA00BC682D /* NewGalleryRequest.swift */,
+				180C97A91C6CC0F100BC682D /* NewGalleryResponseHandler.swift */,
+			);
+			path = NewGallery;
+			sourceTree = "<group>";
+		};
 		1815D5381C63658000EF4C38 = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +213,7 @@
 				18779E0B1C6A2572000BFB57 /* CreatorsAndManagers */,
 				187901F61C6B6BFE008F5302 /* Galleries */,
 				187901EC1C6B37D7008F5302 /* NewCreator */,
+				180C97A61C6CC0C800BC682D /* NewGallery */,
 				18779DF11C69E7E6000BFB57 /* Profile */,
 			);
 			path = Requests;
@@ -518,6 +532,8 @@
 				18779E0F1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift in Sources */,
 				187902021C6C8BAF008F5302 /* Gallery.swift in Sources */,
 				18779DF31C69E7FB000BFB57 /* ProfileRequest.swift in Sources */,
+				180C97A81C6CC0DA00BC682D /* NewGalleryRequest.swift in Sources */,
+				180C97AA1C6CC0F100BC682D /* NewGalleryResponseHandler.swift in Sources */,
 				187901EE1C6B37E7008F5302 /* NewCreatorRequest.swift in Sources */,
 				188BCEAF1C64E19D00EA4F11 /* CreatubblesAPIClient.swift in Sources */,
 			);
