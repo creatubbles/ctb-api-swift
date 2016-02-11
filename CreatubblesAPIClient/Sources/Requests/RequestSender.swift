@@ -16,7 +16,6 @@ class RequestSender: NSObject
     private let settings: CreatubblesAPIClientSettings
     private let oauth2Client: OAuth2PasswordGrant
     
-    
     init(settings: CreatubblesAPIClientSettings)
     {
         self.settings = settings
@@ -109,5 +108,4 @@ class RequestSender: NSObject
             case .CONNECT:  return .CONNECT
         }
     }
-    
 }

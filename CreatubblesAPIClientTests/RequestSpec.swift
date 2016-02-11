@@ -43,9 +43,7 @@ class RequestSpec: QuickSpec
             
             it("Should return correct value after login")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
-
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -66,7 +64,6 @@ class RequestSpec: QuickSpec
                 }
             }
         }
-        
         
         describe("Creators and Managers request")
         {
@@ -100,10 +97,8 @@ class RequestSpec: QuickSpec
             
             it("Should return correct value after login")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
-                
-                waitUntil(timeout: 5)
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -162,9 +157,7 @@ class RequestSpec: QuickSpec
             
             it("Should return correct value after login")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
-                
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -186,7 +179,49 @@ class RequestSpec: QuickSpec
             }
         }
         
-        
-        
+        describe("Galleries request")
+        {
+            it("Should have proper method")
+            {
+                let request = GalleriesRequest(galleryId: "TestGalleryId")
+                expect(request.method).to(equal(RequestMethod.GET))
+            }
+            
+            it("Should have proper endpoint for specified gallery")
+            {
+                let id = "TestGalleryId"
+                let request = GalleriesRequest(galleryId: id)
+                expect(request.endpoint).to(equal("galleries/"+id))
+            }
+            
+            it("Should have proper endpoint for list of galleries")
+            {
+                let request = GalleriesRequest(page: 0, perPage: 20, sort: .Recent, userId: nil)
+                expect(request.endpoint).to(equal("galleries"))
+            }
+            
+            it("Should return correct value after login")
+            {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(GalleriesRequest(galleryId: "TestGalleryId"), withResponseHandler: DummyResponseHandler()
+                        {
+                            (response, error) -> Void in
+                            print(response)
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
     }
 }
