@@ -160,8 +160,8 @@ class ResponseHandlerSpec: QuickSpec
         {
             it("Should return correct value for many galleries after login ")
             {
-                let request = GalleriesRequest(page: 1, perPage: 10, sort: .Recent, userId: nil)
-                let sender =  RequestSender(settings: TestConfiguration.settings)
+                let request = GalleriesRequest(page: 1, perPage: 10, sort: .Popular, userId: nil)
+                let sender =  TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -183,8 +183,8 @@ class ResponseHandlerSpec: QuickSpec
             
             it("Should return correct value for single gallery after login ")
             {
-                let request = GalleriesRequest(galleryId: "3n5rolTP")
-                let sender =  RequestSender(settings: TestConfiguration.settings)
+                let request = GalleriesRequest(galleryId: "NrLLiMVC")
+                let sender =  TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
