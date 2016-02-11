@@ -199,6 +199,29 @@ class RequestSpec: QuickSpec
                 let request = GalleriesRequest(page: 0, perPage: 20, sort: .Recent, userId: nil)
                 expect(request.endpoint).to(equal("galleries"))
             }
+            
+            it("Should return correct value after login")
+            {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(GalleriesRequest(galleryId: "TestGalleryId"), withResponseHandler: DummyResponseHandler()
+                        {
+                            (response, error) -> Void in
+                            print(response)
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
         }
     }
 }
