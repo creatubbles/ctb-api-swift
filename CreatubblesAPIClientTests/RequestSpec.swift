@@ -43,9 +43,7 @@ class RequestSpec: QuickSpec
             
             it("Should return correct value after login")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
-
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -100,10 +98,8 @@ class RequestSpec: QuickSpec
             
             it("Should return correct value after login")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
-                
-                waitUntil(timeout: 5)
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -162,9 +158,7 @@ class RequestSpec: QuickSpec
             
             it("Should return correct value after login")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
-                
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
