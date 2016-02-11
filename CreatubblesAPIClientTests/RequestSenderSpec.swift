@@ -27,10 +27,8 @@ class RequestSenderSpec: QuickSpec
         {
             it("Should login with proper credentials")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
-
-                waitUntil(timeout: 60)
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -44,10 +42,8 @@ class RequestSenderSpec: QuickSpec
             
             it("Should throw error with wrong credentials")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
-                
-                waitUntil(timeout: 60)
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
                 {
                     done in
                     sender.login("wrongEmail@wrong.com", password: "wrong password", completion:

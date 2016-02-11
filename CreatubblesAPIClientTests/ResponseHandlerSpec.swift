@@ -17,7 +17,7 @@ class ResponseHandlerSpec: QuickSpec
     {
         afterSuite
         {
-            let sender = RequestSender(settings: TestConfiguration.settings)
+            let sender = TestComponentsFactory.requestSender
             sender.logout()
         }
         
@@ -25,9 +25,7 @@ class ResponseHandlerSpec: QuickSpec
         {
             it("Should return correct value after login")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
-                                
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -48,11 +46,9 @@ class ResponseHandlerSpec: QuickSpec
             
             it("Should return error when not logged in")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
+                let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                
-                waitUntil(timeout: 5)
+                waitUntil(timeout: 10)
                 {
                     done in
                     sender.send(ProfileRequest(), withResponseHandler:ProfileResponseHandler()
@@ -70,9 +66,7 @@ class ResponseHandlerSpec: QuickSpec
         {
             it("Should return correct value after login")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
-                
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -97,7 +91,7 @@ class ResponseHandlerSpec: QuickSpec
                 let sender = RequestSender(settings: settings)
                 sender.logout()
                 
-                waitUntil(timeout: 5)
+                waitUntil(timeout: 10)
                 {
                     done in
                     sender.send(CreatorsAndManagersRequest(), withResponseHandler:CreatorsAndManagersResponseHandler()
@@ -125,9 +119,7 @@ class ResponseHandlerSpec: QuickSpec
 
             it("Should return correct value after login")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
-                
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -148,11 +140,9 @@ class ResponseHandlerSpec: QuickSpec
                 
             it("Should return error when not logged in")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
+                let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                
-                waitUntil(timeout: 5)
+                waitUntil(timeout: 10)
                 {
                     done in
                     sender.send(creatorRequest, withResponseHandler:NewCreatorResponseHandler()
