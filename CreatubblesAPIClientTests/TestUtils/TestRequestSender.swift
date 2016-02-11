@@ -39,12 +39,30 @@ class TestRequestSender: RequestSender
     {
         if(isLoggedIn)
         {
-            handler.handleResponse(Dictionary<String, AnyObject>(), error: nil)
+            handler.handleResponse(responseForRequest(request), error: nil)
         }
         else
         {
             let error = NSError(domain: "Creatubbles Test", code: 0, userInfo: nil)
             handler.handleResponse(nil, error: error)
         }
+    }
+    
+    private func responseForRequest(request: Request) -> Dictionary<String, AnyObject>
+    {
+        if request is ProfileRequest
+        {
+            return TestResponses.profileTestResponse
+        }
+        if request is CreatorsAndManagersRequest
+        {
+            return TestResponses.creatorsAndManagersTestResponse
+        }
+        if request is NewCreatorRequest
+        {
+            return TestResponses.newCreatorTestResponse
+        }
+        
+        return Dictionary<String, AnyObject>()
     }
 }
