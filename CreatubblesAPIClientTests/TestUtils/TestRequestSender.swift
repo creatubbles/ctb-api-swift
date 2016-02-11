@@ -37,6 +37,14 @@ class TestRequestSender: RequestSender
     
     override func send(request: Request, withResponseHandler handler: ResponseHandler)
     {
-        
+        if(isLoggedIn)
+        {
+            handler.handleResponse(Dictionary<String, AnyObject>(), error: nil)
+        }
+        else
+        {
+            let error = NSError(domain: "Creatubbles Test", code: 0, userInfo: nil)
+            handler.handleResponse(nil, error: error)
+        }
     }
 }
