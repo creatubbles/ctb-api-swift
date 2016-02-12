@@ -69,7 +69,11 @@ class TestRequestSender: RequestSender
         if request is GalleriesRequest && !request.endpoint.containsString("/")
         {
             return TestResponses.galleriesTestResponse
-        }        
+        }
+        if request is NewGalleryRequest
+        {
+            return TestResponses.newGalleryTestResponse
+        }
         
         return Dictionary<String, AnyObject>()
     }
