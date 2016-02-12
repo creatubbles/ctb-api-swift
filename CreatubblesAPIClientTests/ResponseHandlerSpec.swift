@@ -304,8 +304,8 @@ class ResponseHandlerSpec: QuickSpec
                     sender.send(NewCreationRequest(), withResponseHandler:NewCreationResponseHandler()
                     {
                         (creation: Creation?, error:ErrorType?) -> Void in
-                        expect(error).to(beNil())
-                        expect(creation).notTo(beNil())
+                        expect(error).notTo(beNil())
+                        expect(creation).to(beNil())
                         done()
                     })
                 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ObjectMapper
 
 class NewCreationResponseHandler: ResponseHandler
 {
@@ -18,6 +19,15 @@ class NewCreationResponseHandler: ResponseHandler
     
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: NSError?)
     {
-        completion(creation: Creation(), error: nil)
+        if  let response = response,
+            let builder = Mapper<CreationModelBuilder>().map(response["data"])
+        {
+            let creation = Creation(builder: builder)
+            completion(creation: creation, error: error)
+        }
+        else
+        {
+            completion(creation: nil, error: error)
+        }
     }
 }

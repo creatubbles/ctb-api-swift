@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-class GroupModelBuilder: NSObject, Mappable
+class GroupModelBuilder: Mappable
 {
     var identifier: String?
     var name: String?

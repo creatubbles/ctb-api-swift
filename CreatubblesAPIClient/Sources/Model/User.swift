@@ -21,7 +21,7 @@ enum Role: String
     case Creator = "creator"
 }
 
-class User: NSObject
+class User
 {
     let identifier: String
     let username: String
