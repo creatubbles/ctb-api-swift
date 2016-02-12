@@ -193,8 +193,82 @@ class RequestSpec: QuickSpec
             
             it("Should have proper endpoint for list of galleries")
             {
-                let request = GalleriesRequest(page: 0, perPage: 20, sort: .Recent, userId: nil)
+                let request = GalleriesRequest(page: 1, perPage: 20, sort: .Recent, userId: nil)
                 expect(request.endpoint).to(equal("galleries"))
+            }
+            
+            it("Should return correct value for single gallery after login")
+            {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(GalleriesRequest(galleryId: "NrLLiMVC"), withResponseHandler: DummyResponseHandler()
+                        {
+                            (response, error) -> Void in
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+            
+            it("Should return correct value for list of galleries after login")
+            {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(GalleriesRequest(page: 1, perPage: 20, sort: .Recent, userId: nil),
+                        withResponseHandler: DummyResponseHandler()
+                        {
+                            (response, error) -> Void in
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
+        
+        describe("New Gallery request")
+        {
+            let timestamp = String(Int(round(NSDate().timeIntervalSince1970 % 1000)))
+            let name = "MMGallery"+timestamp
+            let galleryDescription = "MMGallery"+timestamp
+            let openForAll = false
+            let ownerId = "B0SwCGhR"
+            let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: ownerId)
+            
+            it("Should have proper method")
+            {
+                expect(request.method).to(equal(RequestMethod.POST))
+            }
+                
+            it("Should have proper endpoint")
+            {
+                expect(request.endpoint).to(equal("galleries"))
+            }
+            
+            it("Should have proper parameters set")
+            {
+                let params = request.parameters
+                expect(params["name"] as? String).to(equal(name))
+                expect(params["description"] as? String).to(equal(galleryDescription))
+                expect(params["open_for_all"] as? Bool).to(equal(openForAll))
+                expect(params["owner_id"] as? String).to(equal(ownerId))
             }
             
             it("Should return correct value after login")
@@ -207,7 +281,7 @@ class RequestSpec: QuickSpec
                     {
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(GalleriesRequest(galleryId: "TestGalleryId"), withResponseHandler: DummyResponseHandler()
+                        sender.send(request, withResponseHandler: DummyResponseHandler()
                         {
                             (response, error) -> Void in
                             expect(response).notTo(beNil())
@@ -215,57 +289,6 @@ class RequestSpec: QuickSpec
                             sender.logout()
                             done()
                         })
-                    }
-                }
-            }
-            
-            describe("New Gallery request")
-            {
-                let timestamp = String(Int(round(NSDate().timeIntervalSince1970 % 1000)))
-                let name = "MMGallery"+timestamp
-                let galleryDescription = "MMGallery"+timestamp
-                let openForAll = false
-                let ownerId = "B0SwCGhR"
-                let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: ownerId)
-                
-                it("Should have proper method")
-                {
-                    expect(request.method).to(equal(RequestMethod.POST))
-                }
-                    
-                it("Should have proper endpoint")
-                {
-                    expect(request.endpoint).to(equal("galleries"))
-                }
-                
-                it("Should have proper parameters set")
-                {
-                    let params = request.parameters
-                    expect(params["name"] as? String).to(equal(name))
-                    expect(params["description"] as? String).to(equal(galleryDescription))
-                    expect(params["open_for_all"] as? Bool).to(equal(openForAll))
-                    expect(params["owner_id"] as? String).to(equal(ownerId))
-                }
-                
-                it("Should return correct value after login")
-                {
-                    let sender = TestComponentsFactory.requestSender
-                    waitUntil(timeout: 10)
-                    {
-                        done in
-                        sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                        {
-                            (error: ErrorType?) -> Void in
-                            expect(error).to(beNil())
-                            sender.send(request, withResponseHandler: DummyResponseHandler()
-                            {
-                                (response, error) -> Void in
-                                expect(response).notTo(beNil())
-                                expect(error).to(beNil())
-                                sender.logout()
-                                done()
-                            })
-                        }
                     }
                 }
             }
