@@ -78,6 +78,11 @@ class TestRequestSender: RequestSender
         {
             return TestResponses.newCreationTestResponse
         }
+        if request is NewCreationUploadRequest
+        {
+            return TestResponses.newCreationUploadTestResponse
+        }
+        
         
         return Dictionary<String, AnyObject>()
     }

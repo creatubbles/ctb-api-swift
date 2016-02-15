@@ -18,6 +18,7 @@
 		1815D54D1C63658000EF4C38 /* CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */; };
 		1815D5601C6383CF00EF4C38 /* CreatubblesAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1815D5651C638BD200EF4C38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5641C638BD200EF4C38 /* User.swift */; };
+		187047E01C71DCD600B202FD /* NewCreationUploadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187047DF1C71DCD600B202FD /* NewCreationUploadRequest.swift */; };
 		18779DAF1C68A8A9000BFB57 /* RequestSenderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DAE1C68A8A9000BFB57 /* RequestSenderSpec.swift */; };
 		18779DB61C68D424000BFB57 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB11C68D424000BFB57 /* Request.swift */; };
 		18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB21C68D424000BFB57 /* ResponseHandler.swift */; };
@@ -73,6 +74,7 @@
 		1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatubblesAPIClient.h; sourceTree = "<group>"; };
 		1815D55F1C6383CF00EF4C38 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1815D5641C638BD200EF4C38 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		187047DF1C71DCD600B202FD /* NewCreationUploadRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationUploadRequest.swift; sourceTree = "<group>"; };
 		18779DAE1C68A8A9000BFB57 /* RequestSenderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSenderSpec.swift; sourceTree = "<group>"; };
 		18779DB11C68D424000BFB57 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		18779DB21C68D424000BFB57 /* ResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
@@ -231,11 +233,20 @@
 				18779E0B1C6A2572000BFB57 /* CreatorsAndManagers */,
 				187901F61C6B6BFE008F5302 /* Galleries */,
 				180C97AB1C6DD3B600BC682D /* NewCreation */,
+				187047DE1C71DC3900B202FD /* NewCreationUpload */,
 				187901EC1C6B37D7008F5302 /* NewCreator */,
 				180C97A61C6CC0C800BC682D /* NewGallery */,
 				18779DF11C69E7E6000BFB57 /* Profile */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		187047DE1C71DC3900B202FD /* NewCreationUpload */ = {
+			isa = PBXGroup;
+			children = (
+				187047DF1C71DCD600B202FD /* NewCreationUploadRequest.swift */,
+			);
+			path = NewCreationUpload;
 			sourceTree = "<group>";
 		};
 		18779DB01C68D424000BFB57 /* Core */ = {
@@ -551,6 +562,7 @@
 				18779DF01C69C9E3000BFB57 /* OAuth2+Alamofire.swift in Sources */,
 				18779DFD1C69F6EE000BFB57 /* UserModelBuilder.swift in Sources */,
 				180C97AF1C6DD41900BC682D /* NewCreationResponseHandler.swift in Sources */,
+				187047E01C71DCD600B202FD /* NewCreationUploadRequest.swift in Sources */,
 				1815D5651C638BD200EF4C38 /* User.swift in Sources */,
 				180C97AD1C6DD40100BC682D /* NewCreationRequest.swift in Sources */,
 				18779E0F1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift in Sources */,
