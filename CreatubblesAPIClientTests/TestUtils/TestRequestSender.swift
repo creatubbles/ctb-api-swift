@@ -74,6 +74,10 @@ class TestRequestSender: RequestSender
         {
             return TestResponses.newGalleryTestResponse
         }
+        if request is NewCreationRequest
+        {
+            return TestResponses.newCreationTestResponse
+        }
         
         return Dictionary<String, AnyObject>()
     }

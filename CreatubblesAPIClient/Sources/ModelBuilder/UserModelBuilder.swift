@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-class UserModelBuilder: NSObject, Mappable
+class UserModelBuilder: Mappable
 {
     var identifier: String?
     var username: String?

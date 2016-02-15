@@ -87,10 +87,8 @@ class ResponseHandlerSpec: QuickSpec
             
             it("Should return error when not logged in")
             {
-                let settings = TestConfiguration.settings
-                let sender = RequestSender(settings: settings)
+                let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -266,6 +264,48 @@ class ResponseHandlerSpec: QuickSpec
                         (gallery: Gallery?, error:ErrorType?) -> Void in
                         expect(error).notTo(beNil())
                         expect(gallery).to(beNil())
+                        done()
+                    })
+                }
+            }
+        }
+        
+        
+        describe("New Creation response handler")
+        {
+            it("Should return correct value after login")
+            {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(NewCreationRequest(), withResponseHandler:NewCreationResponseHandler()
+                        {
+                            (creation: Creation?, error:ErrorType?) -> Void in
+                            expect(error).to(beNil())
+                            expect(creation).notTo(beNil())
+                            done()
+                        })
+                    }
+                }
+            }
+            
+            it("Should return error when not logged in")
+            {
+                let sender = TestComponentsFactory.requestSender
+                sender.logout()
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.send(NewCreationRequest(), withResponseHandler:NewCreationResponseHandler()
+                    {
+                        (creation: Creation?, error:ErrorType?) -> Void in
+                        expect(error).notTo(beNil())
+                        expect(creation).to(beNil())
                         done()
                     })
                 }

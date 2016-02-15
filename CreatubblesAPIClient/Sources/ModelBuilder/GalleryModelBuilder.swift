@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-class GalleryModelBuilder: NSObject, Mappable
+class GalleryModelBuilder: Mappable
 {
     var identifier: String?
     var name: String?
@@ -24,7 +24,6 @@ class GalleryModelBuilder: NSObject, Mappable
     var shortUrl: String?
     var bubbledByUserIds: Array<String>?
     var previewImageUrls: Array<String>?
-    
     
     required init?(_ map: Map)
     {
