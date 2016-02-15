@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CreatubblesAPIClient"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "A Creatubbles api framework pod."
 
   # This description is used to generate tags and improve search results.
@@ -62,10 +62,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   #  profile URL.
   #
 
-  s.author             = { "Jakub Jankowski" => "j.jankowski@nomtek.com" }
-  # Or just: s.author    = "Jakub Jankowski"
-  # s.authors            = { "Jakub Jankowski" => "kubajankowski90@gmail.com" }
-  # s.social_media_url   = "http://twitter.com/Jakub Jankowski"
+  s.author             =  "Creatubbles" 
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
