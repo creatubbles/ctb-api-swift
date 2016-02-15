@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CreatubblesAPIClient"
-  s.version      = "0.0.1"
+  s.version      = "0.0.3"
   s.summary      = "A Creatubbles api framework pod."
 
   # This description is used to generate tags and improve search results.
@@ -29,7 +29,6 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/creatubbles/ctb-api-swift"
-  # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -63,7 +62,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   #  profile URL.
   #
 
-  s.author             = { "Jakub Jankowski" => "j.jankowski@gmail.com" }
+  s.author             =  "Creatubbles" 
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #

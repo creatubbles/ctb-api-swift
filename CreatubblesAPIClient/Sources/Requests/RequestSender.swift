@@ -41,7 +41,6 @@ class RequestSender: NSObject
     //MARK: - Interface
     func login(username: String, password: String, completion: (ErrorType?) -> Void)
     {
-
         oauth2Client.username = username
         oauth2Client.password = password
         oauth2Client.onAuthorize =

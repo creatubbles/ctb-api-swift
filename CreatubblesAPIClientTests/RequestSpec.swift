@@ -193,8 +193,82 @@ class RequestSpec: QuickSpec
             
             it("Should have proper endpoint for list of galleries")
             {
-                let request = GalleriesRequest(page: 0, perPage: 20, sort: .Recent, userId: nil)
+                let request = GalleriesRequest(page: 1, perPage: 20, sort: .Recent, userId: nil)
                 expect(request.endpoint).to(equal("galleries"))
+            }
+            
+            it("Should return correct value for single gallery after login")
+            {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(GalleriesRequest(galleryId: "NrLLiMVC"), withResponseHandler: DummyResponseHandler()
+                        {
+                            (response, error) -> Void in
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+            
+            it("Should return correct value for list of galleries after login")
+            {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(GalleriesRequest(page: 1, perPage: 20, sort: .Recent, userId: nil),
+                        withResponseHandler: DummyResponseHandler()
+                        {
+                            (response, error) -> Void in
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
+        
+        describe("New Gallery request")
+        {
+            let timestamp = String(Int(round(NSDate().timeIntervalSince1970 % 1000)))
+            let name = "MMGallery"+timestamp
+            let galleryDescription = "MMGallery"+timestamp
+            let openForAll = false
+            let ownerId = "B0SwCGhR"
+            let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: ownerId)
+            
+            it("Should have proper method")
+            {
+                expect(request.method).to(equal(RequestMethod.POST))
+            }
+                
+            it("Should have proper endpoint")
+            {
+                expect(request.endpoint).to(equal("galleries"))
+            }
+            
+            it("Should have proper parameters set")
+            {
+                let params = request.parameters
+                expect(params["name"] as? String).to(equal(name))
+                expect(params["description"] as? String).to(equal(galleryDescription))
+                expect(params["open_for_all"] as? Bool).to(equal(openForAll))
+                expect(params["owner_id"] as? String).to(equal(ownerId))
             }
             
             it("Should return correct value after login")
@@ -207,7 +281,7 @@ class RequestSpec: QuickSpec
                     {
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(GalleriesRequest(galleryId: "TestGalleryId"), withResponseHandler: DummyResponseHandler()
+                        sender.send(request, withResponseHandler: DummyResponseHandler()
                         {
                             (response, error) -> Void in
                             expect(response).notTo(beNil())
@@ -218,54 +292,111 @@ class RequestSpec: QuickSpec
                     }
                 }
             }
-            
-            describe("New Gallery request")
+        }
+        
+        describe("New creation request")
+        {
+            it("Should have proper endpoint")
             {
-                let timestamp = String(Int(round(NSDate().timeIntervalSince1970 % 1000)))
-                let name = "MMGallery"+timestamp
-                let galleryDescription = "MMGallery"+timestamp
-                let openForAll = false
-                let ownerId = "B0SwCGhR"
-                let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: ownerId)
+                let request = NewCreationRequest()
+                expect(request.endpoint).to(equal("creations"))
+            }
+            
+            it("Should have proper method")
+            {
+                let request = NewCreationRequest()
+                expect(request.method).to(equal(RequestMethod.POST))
+            }
+            
+            it("Should have proper parameters set")
+            {
+                let name = "TestCreationName"
+                let creatorIds = ["TestCreationId1", "TestCreationId2"]
+                let creationMonth = 1
+                let creationYear = 2016
+                let reflectionText = "TestReflectionText"
+                let reflectionVideoUrl = "https://www.youtube.com/watch?v=L6B_4yMvOiQ"
                 
-                it("Should have proper method")
-                {
-                    expect(request.method).to(equal(RequestMethod.POST))
-                }
-                    
-                it("Should have proper endpoint")
-                {
-                    expect(request.endpoint).to(equal("galleries"))
-                }
+                let request = NewCreationRequest(name: name, creatorIds: creatorIds, creationYear: creationYear, creationMonth: creationMonth, reflectionText: reflectionText, reflectionVideoUrl: reflectionVideoUrl)
+                let params = request.parameters
                 
-                it("Should have proper parameters set")
+                expect(params["name"] as? String).to(equal(name))
+                expect(params["creator_ids"] as? Array<String>).to(equal(creatorIds))
+                expect(params["created_at_year"] as? Int).to(equal(creationYear))
+                expect(params["created_at_month"] as? Int).to(equal(creationMonth))
+                expect(params["reflection_text"] as? String).to(equal(reflectionText))
+                expect(params["reflection_video_url"] as? String).to(equal(reflectionVideoUrl))
+            }
+            
+            it("Should return correct value after login")
+            {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
                 {
-                    let params = request.parameters
-                    expect(params["name"] as? String).to(equal(name))
-                    expect(params["description"] as? String).to(equal(galleryDescription))
-                    expect(params["open_for_all"] as? Bool).to(equal(openForAll))
-                    expect(params["owner_id"] as? String).to(equal(ownerId))
-                }
-                
-                it("Should return correct value after login")
-                {
-                    let sender = TestComponentsFactory.requestSender
-                    waitUntil(timeout: 10)
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        done in
-                        sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(NewCreationRequest(), withResponseHandler: DummyResponseHandler()
                         {
-                            (error: ErrorType?) -> Void in
+                            (response, error) -> Void in
+                            expect(response).notTo(beNil())
                             expect(error).to(beNil())
-                            sender.send(request, withResponseHandler: DummyResponseHandler()
-                            {
-                                (response, error) -> Void in
-                                expect(response).notTo(beNil())
-                                expect(error).to(beNil())
-                                sender.logout()
-                                done()
-                            })
-                        }
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
+        
+        describe("New creation upload request")
+        {
+            it("Should have proper method")
+            {
+                let request = NewCreationUploadRequest(creationId: "TestId")
+                expect(request.method).to(equal(RequestMethod.POST))
+            }
+            
+            it("Should have proper endpoint")
+            {
+                let identifier = "TestId"
+                let request = NewCreationUploadRequest(creationId: identifier)
+                expect(request.endpoint).to(equal("creations/"+identifier+"/uploads"))
+            }
+            
+            it("Should have proper params")
+            {
+                let defaultRequest = NewCreationUploadRequest(creationId: "TestId")
+                expect(defaultRequest.parameters["extension"]).to(beNil())
+                
+                let availableExtensions = [UploadExtension.PNG, .JPG, .JPEG, .H264, .MPEG4, .WMV, .WEBM, .FLV, .OGG, .OGV, .MP4, .M4V, .MOV]
+                for availableExtension in availableExtensions
+                {
+                   let  request = NewCreationUploadRequest(creationId: "TestId", creationExtension: availableExtension)
+                    expect(request.parameters["extension"] as? String).to(equal(availableExtension.rawValue))
+                }
+            }
+            
+            it("Should return correct value after login")
+            {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(NewCreationUploadRequest(creationId: "QMH4I18k"), withResponseHandler: DummyResponseHandler()
+                        {
+                            (response, error) -> Void in
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
                     }
                 }
             }
