@@ -28,8 +28,7 @@ Pod::Spec.new do |s|
 			Api framework for Creatubbles app. Sets up a secure connection etc.
                    DESC
 
-  s.homepage     = "https://gitlab.nomtek.com/creatubbles/creatubbles_api_framework_ios.git"
-  # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
+  s.homepage     = "https://github.com/creatubbles/ctb-api-swift"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -63,7 +62,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   #  profile URL.
   #
 
-  s.author             = { "Jakub Jankowski" => "kubajankowski90@gmail.com" }
+  s.author             = { "Jakub Jankowski" => "j.jankowski@nomtek.com" }
   # Or just: s.author    = "Jakub Jankowski"
   # s.authors            = { "Jakub Jankowski" => "kubajankowski90@gmail.com" }
   # s.social_media_url   = "http://twitter.com/Jakub Jankowski"
@@ -90,7 +89,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => 'https://gitlab.nomtek.com/creatubbles/creatubbles_api_framework_ios.git', :tag => s.version }
+  s.source       = { :git => 'https://github.com/creatubbles/ctb-api-swift.git', :tag => s.version }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
