@@ -17,7 +17,7 @@ class TestResponses: NSObject
     class var singleGalleryTestResponse: Dictionary<String, AnyObject> { return dictionaryFromJSONString(singleGalleryResponseString) }
     class var newGalleryTestResponse: Dictionary<String, AnyObject> { return dictionaryFromJSONString(newGalleryResponseString) }
     class var newCreationTestResponse: Dictionary<String, AnyObject> { return dictionaryFromJSONString(newCreationResponseString) }
-    class var newCreationUploadTestResponse: Dictionary<String, AnyObject> { return dictionaryFromJSONString(newCreationResponseString) }    
+    class var newCreationUploadTestResponse: Dictionary<String, AnyObject> { return dictionaryFromJSONString(newCreationUploadResponseString) }
     
     private class func dictionaryFromJSONString(jsonString: String) -> Dictionary<String, AnyObject>
     {
