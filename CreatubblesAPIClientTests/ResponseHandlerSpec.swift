@@ -154,16 +154,31 @@ class ResponseHandlerSpec: QuickSpec
             }
         }
         
-//        describe("Fetch Creations response handler")
-//        {
-//            it("Should return correct value for creations after login")
-//            {
-//                //init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: CreationsRequestSortFilter?, search: String?)
-//
-//                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, search: nil)
-//                let sender =  TestComponentsFactory.requestSender
-//            }
-//        }
+        describe("Fetch Creations response handler")
+        {
+            it("Should return correct value for creations after login")
+            {
+                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, search: nil)
+                let sender =  RequestSender(settings: TestConfiguration.settings)
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:FetchCreationsResponseHandler
+                        {
+                            (creations: Array<Creation>?, error: ErrorType?) -> Void in
+                            expect(creations).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
 
         describe("Galleries response handler")
         {

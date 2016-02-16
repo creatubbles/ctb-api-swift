@@ -24,7 +24,6 @@
 		18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB21C68D424000BFB57 /* ResponseHandler.swift */; };
 		18779DBB1C68DC06000BFB57 /* RequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DBA1C68DC06000BFB57 /* RequestSpec.swift */; };
 		18779DBE1C68DFCB000BFB57 /* DummyResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DBD1C68DFCB000BFB57 /* DummyResponseHandler.swift */; };
-		18779DC01C68E0D2000BFB57 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DBF1C68E0D2000BFB57 /* TestConfiguration.swift */; };
 		18779DC21C68E2D9000BFB57 /* TestConfigurationTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DC11C68E2D9000BFB57 /* TestConfigurationTemplate.swift */; };
 		18779DF01C69C9E3000BFB57 /* OAuth2+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DEF1C69C9E3000BFB57 /* OAuth2+Alamofire.swift */; };
 		18779DF31C69E7FB000BFB57 /* ProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DF21C69E7FB000BFB57 /* ProfileRequest.swift */; };
@@ -53,6 +52,7 @@
 		188ECF601C71E96100AFEE4F /* CreationUploadModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF5F1C71E96100AFEE4F /* CreationUploadModelBuilder.swift */; };
 		216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843971C7345690052B835 /* FetchCreationsRequest.swift */; };
 		2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */; };
+		21F740941C735C9600E7F4D1 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F740931C735C9600E7F4D1 /* TestConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +85,6 @@
 		18779DB21C68D424000BFB57 /* ResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
 		18779DBA1C68DC06000BFB57 /* RequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSpec.swift; sourceTree = "<group>"; };
 		18779DBD1C68DFCB000BFB57 /* DummyResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyResponseHandler.swift; sourceTree = "<group>"; };
-		18779DBF1C68E0D2000BFB57 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		18779DC11C68E2D9000BFB57 /* TestConfigurationTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfigurationTemplate.swift; sourceTree = "<group>"; };
 		18779DEF1C69C9E3000BFB57 /* OAuth2+Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuth2+Alamofire.swift"; sourceTree = "<group>"; };
 		18779DF21C69E7FB000BFB57 /* ProfileRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRequest.swift; sourceTree = "<group>"; };
@@ -114,6 +113,7 @@
 		188ECF5F1C71E96100AFEE4F /* CreationUploadModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadModelBuilder.swift; sourceTree = "<group>"; };
 		216843971C7345690052B835 /* FetchCreationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsRequest.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsRequest.swift; sourceTree = SOURCE_ROOT; };
 		216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsResponseHandler.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsResponseHandler.swift; sourceTree = SOURCE_ROOT; };
+		21F740931C735C9600E7F4D1 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.release.xcconfig"; sourceTree = "<group>"; };
 		AB74205CC51A73FB798D192F /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -274,8 +274,8 @@
 		18779DBC1C68DFAE000BFB57 /* TestUtils */ = {
 			isa = PBXGroup;
 			children = (
+				21F740931C735C9600E7F4D1 /* TestConfiguration.swift */,
 				18779DC11C68E2D9000BFB57 /* TestConfigurationTemplate.swift */,
-				18779DBF1C68E0D2000BFB57 /* TestConfiguration.swift */,
 				18779DBD1C68DFCB000BFB57 /* DummyResponseHandler.swift */,
 				187901F11C6B43E1008F5302 /* TestRequestSender.swift */,
 				187901F31C6B43FA008F5302 /* TestComponentsFactory.swift */,
@@ -612,9 +612,9 @@
 				187901F41C6B43FA008F5302 /* TestComponentsFactory.swift in Sources */,
 				188BCEB61C64E35100EA4F11 /* CreatubblesAPIClientSpec.swift in Sources */,
 				18779DAF1C68A8A9000BFB57 /* RequestSenderSpec.swift in Sources */,
-				18779DC01C68E0D2000BFB57 /* TestConfiguration.swift in Sources */,
 				187901F21C6B43E1008F5302 /* TestRequestSender.swift in Sources */,
 				18779E031C6A15BF000BFB57 /* ResponseHandlerSpec.swift in Sources */,
+				21F740941C735C9600E7F4D1 /* TestConfiguration.swift in Sources */,
 				18779DC21C68E2D9000BFB57 /* TestConfigurationTemplate.swift in Sources */,
 				187901FE1C6C793F008F5302 /* TestResponses.swift in Sources */,
 				18779DBE1C68DFCB000BFB57 /* DummyResponseHandler.swift in Sources */,
