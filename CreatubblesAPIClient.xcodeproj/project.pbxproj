@@ -51,6 +51,8 @@
 		188ECF5C1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF5B1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift */; };
 		188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF5D1C71E91B00AFEE4F /* CreationUpload.swift */; };
 		188ECF601C71E96100AFEE4F /* CreationUploadModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF5F1C71E96100AFEE4F /* CreationUploadModelBuilder.swift */; };
+		216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843971C7345690052B835 /* FetchCreationsRequest.swift */; };
+		2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,8 @@
 		188ECF5B1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationUploadResponseHandler.swift; sourceTree = "<group>"; };
 		188ECF5D1C71E91B00AFEE4F /* CreationUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUpload.swift; sourceTree = "<group>"; };
 		188ECF5F1C71E96100AFEE4F /* CreationUploadModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadModelBuilder.swift; sourceTree = "<group>"; };
+		216843971C7345690052B835 /* FetchCreationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsRequest.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsRequest.swift; sourceTree = SOURCE_ROOT; };
+		216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsResponseHandler.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsResponseHandler.swift; sourceTree = SOURCE_ROOT; };
 		3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.release.xcconfig"; sourceTree = "<group>"; };
 		AB74205CC51A73FB798D192F /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -236,6 +240,7 @@
 			children = (
 				188BCEB11C64E1C500EA4F11 /* RequestSender.swift */,
 				18779DEF1C69C9E3000BFB57 /* OAuth2+Alamofire.swift */,
+				216843941C7343CB0052B835 /* FetchCreations */,
 				18779DB01C68D424000BFB57 /* Core */,
 				18779E0B1C6A2572000BFB57 /* CreatorsAndManagers */,
 				187901F61C6B6BFE008F5302 /* Galleries */,
@@ -341,6 +346,16 @@
 				188BCEAE1C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		216843941C7343CB0052B835 /* FetchCreations */ = {
+			isa = PBXGroup;
+			children = (
+				216843971C7345690052B835 /* FetchCreationsRequest.swift */,
+				216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */,
+			);
+			name = FetchCreations;
+			path = FetchGalleries;
 			sourceTree = "<group>";
 		};
 		37D1870D087FA6B7170838D9 /* Frameworks */ = {
@@ -559,8 +574,10 @@
 				18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */,
 				188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */,
 				188ECF601C71E96100AFEE4F /* CreationUploadModelBuilder.swift in Sources */,
+				2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */,
 				18779E0D1C6A2582000BFB57 /* CreatorsAndManagersRequest.swift in Sources */,
 				188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */,
+				216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */,
 				187902001C6C80AD008F5302 /* GalleriesResponseHandler.swift in Sources */,
 				188ECF5C1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift in Sources */,
 				18779E011C69F707000BFB57 /* GroupModelBuilder.swift in Sources */,
