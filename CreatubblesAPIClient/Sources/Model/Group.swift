@@ -10,12 +10,14 @@ import UIKit
 
 class Group
 {
-    let identifier: String
+    let identifier: Int
     let name: String
+    let taggingsCount: Int
     
     init(builder: GroupModelBuilder)
     {
         identifier = builder.identifier!
         name = builder.name!
+        taggingsCount = builder.taggingsCount!
     }
 }
