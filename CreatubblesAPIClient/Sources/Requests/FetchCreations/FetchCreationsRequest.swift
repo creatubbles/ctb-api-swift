@@ -18,7 +18,7 @@ class FetchCreationsRequest: Request
 {
     override var method: RequestMethod  { return .GET }
     override var endpoint: String       { return "creations" }
-    override var parameters: Dictionary<String, AnyObject>
+    override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
     
     private let page: Int?
     private let perPage: Int?
@@ -59,12 +59,13 @@ class FetchCreationsRequest: Request
         }
         if let sort = sort
         {
-            params["sort"] = sort
+            params["sort"] = sort.rawValue
         }
         if let search = search
         {
             params["search"] = search
         }
+        return params
     }
 }
 

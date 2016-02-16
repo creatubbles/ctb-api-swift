@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ObjectMapper
 
 class FetchCreationsResponseHandler: ResponseHandler
 {
@@ -30,7 +31,7 @@ class FetchCreationsResponseHandler: ResponseHandler
             completion(creations: creations, error: error)
         }
         else if let response = response,
-            let builder = Mapper<GalleryModelBuilder>().map(response["data"])
+            let builder = Mapper<CreationModelBuilder>().map(response["data"])
         {
             let creation = Creation(builder: builder)
             completion(creations: [creation], error: error)

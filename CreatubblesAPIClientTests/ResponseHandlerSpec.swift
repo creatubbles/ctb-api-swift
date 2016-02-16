@@ -154,9 +154,20 @@ class ResponseHandlerSpec: QuickSpec
             }
         }
         
+//        describe("Fetch Creations response handler")
+//        {
+//            it("Should return correct value for creations after login")
+//            {
+//                //init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: CreationsRequestSortFilter?, search: String?)
+//
+//                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, search: nil)
+//                let sender =  TestComponentsFactory.requestSender
+//            }
+//        }
+
         describe("Galleries response handler")
         {
-            it("Should return correct value for many galleries after login ")
+            it("Should return correct value for many galleries after login")
             {
                 let request = GalleriesRequest(page: 1, perPage: 10, sort: .Popular, userId: nil)
                 let sender =  TestComponentsFactory.requestSender
