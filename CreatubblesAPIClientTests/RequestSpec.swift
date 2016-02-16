@@ -190,7 +190,7 @@ class RequestSpec: QuickSpec
                 expect(request.endpoint).to(equal("creations"))
             }
             
-            it("Should return a correct value after login")
+            it("Should return a correct value for creations after login")
             {
                 let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
@@ -212,7 +212,28 @@ class RequestSpec: QuickSpec
                     }
                 }
             }
-            
+            it("Should return a correct value for single creation after login")
+            {
+                
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(FetchCreationsRequest(creationId: "YNzO8Rmv"), withResponseHandler: DummyResponseHandler()
+                        {
+                            (response, error) -> Void in
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
         }
         
         describe("Galleries request")

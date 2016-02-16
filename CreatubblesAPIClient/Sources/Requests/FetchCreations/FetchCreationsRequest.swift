@@ -17,7 +17,15 @@ enum CreationsRequestSortFilter: String
 class FetchCreationsRequest: Request
 {
     override var method: RequestMethod  { return .GET }
-    override var endpoint: String       { return "creations" }
+    override var endpoint: String
+    {
+        if let creationId = creationId
+        {
+            return "creations/"+creationId
+        }
+        return "creations"
+    }
+    
     override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
     
     private let page: Int?
@@ -26,6 +34,7 @@ class FetchCreationsRequest: Request
     private let userId: String?
     private let sort: CreationsRequestSortFilter?
     private let search: String?
+    private let creationId: String?
     
     init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: CreationsRequestSortFilter?, search: String?)
     {
@@ -35,6 +44,19 @@ class FetchCreationsRequest: Request
         self.userId = userId
         self.sort = sort
         self.search = search
+        self.creationId = nil
+    }
+    
+    init(creationId: String)
+    {
+        self.page = nil
+        self.perPage = nil
+        self.galleryId = nil
+        self.userId = nil
+        self.sort = nil
+        self.search = nil
+        self.creationId = creationId
+
     }
     
     func prepareParametersDictionary() -> Dictionary<String, AnyObject>
