@@ -107,7 +107,11 @@ class UserModelBuilder: Mappable
     
     func parseGroups() -> Array<Group>
     {
-        print(self.groups)
-        return Array<Group>()
+        var groups = Array<Group>()
+        for builder in self.groups!
+        {
+            groups.append(Group(builder: builder))
+        }
+        return groups
     }
 }
