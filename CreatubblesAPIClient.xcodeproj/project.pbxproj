@@ -51,6 +51,8 @@
 		188ECF5C1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF5B1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift */; };
 		188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF5D1C71E91B00AFEE4F /* CreationUpload.swift */; };
 		188ECF601C71E96100AFEE4F /* CreationUploadModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF5F1C71E96100AFEE4F /* CreationUploadModelBuilder.swift */; };
+		188ECF621C736AE500AFEE4F /* DataUploaderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF611C736AE500AFEE4F /* DataUploaderSpec.swift */; };
+		188ECF671C737A7000AFEE4F /* creatubbles_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 188ECF661C737A7000AFEE4F /* creatubbles_logo.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,8 @@
 		188ECF5B1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationUploadResponseHandler.swift; sourceTree = "<group>"; };
 		188ECF5D1C71E91B00AFEE4F /* CreationUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUpload.swift; sourceTree = "<group>"; };
 		188ECF5F1C71E96100AFEE4F /* CreationUploadModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadModelBuilder.swift; sourceTree = "<group>"; };
+		188ECF611C736AE500AFEE4F /* DataUploaderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataUploaderSpec.swift; sourceTree = "<group>"; };
+		188ECF661C737A7000AFEE4F /* creatubbles_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = creatubbles_logo.jpg; sourceTree = "<group>"; };
 		3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.release.xcconfig"; sourceTree = "<group>"; };
 		AB74205CC51A73FB798D192F /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,11 +192,13 @@
 		1815D5501C63658000EF4C38 /* CreatubblesAPIClientTests */ = {
 			isa = PBXGroup;
 			children = (
+				188ECF631C73798900AFEE4F /* Resources */,
 				18779DBC1C68DFAE000BFB57 /* TestUtils */,
 				188BCEB51C64E35100EA4F11 /* CreatubblesAPIClientSpec.swift */,
 				18779DAE1C68A8A9000BFB57 /* RequestSenderSpec.swift */,
 				18779DBA1C68DC06000BFB57 /* RequestSpec.swift */,
 				18779E021C6A15BF000BFB57 /* ResponseHandlerSpec.swift */,
+				188ECF611C736AE500AFEE4F /* DataUploaderSpec.swift */,
 				1815D5531C63658000EF4C38 /* Info.plist */,
 			);
 			path = CreatubblesAPIClientTests;
@@ -343,6 +349,14 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		188ECF631C73798900AFEE4F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				188ECF661C737A7000AFEE4F /* creatubbles_logo.jpg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		37D1870D087FA6B7170838D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +480,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188ECF671C737A7000AFEE4F /* creatubbles_logo.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,6 +614,7 @@
 				187901F21C6B43E1008F5302 /* TestRequestSender.swift in Sources */,
 				18779E031C6A15BF000BFB57 /* ResponseHandlerSpec.swift in Sources */,
 				18779DC21C68E2D9000BFB57 /* TestConfigurationTemplate.swift in Sources */,
+				188ECF621C736AE500AFEE4F /* DataUploaderSpec.swift in Sources */,
 				187901FE1C6C793F008F5302 /* TestResponses.swift in Sources */,
 				18779DBE1C68DFCB000BFB57 /* DummyResponseHandler.swift in Sources */,
 			);

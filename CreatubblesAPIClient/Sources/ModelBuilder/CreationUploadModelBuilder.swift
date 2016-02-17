@@ -11,16 +11,20 @@ import ObjectMapper
 
 class CreationUploadModelBuilder: NSObject, Mappable
 {
-
     var identifier: String?
     var uploadUrl: String?
     var contentType: String?
     var pingUrl: String?
     var completedAt: NSDate?
     
+    override init()
+    {
+        //Ignore
+    }
+    
     required init?(_ map: Map)
     {
-        
+        //Ignore
     }
     
     func mapping(map: Map)
