@@ -154,9 +154,58 @@ class ResponseHandlerSpec: QuickSpec
             }
         }
         
+        describe("Fetch Creations response handler")
+        {
+            it("Should return correct value for creations after login")
+            {
+                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, search: nil)
+                let sender =  TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:FetchCreationsResponseHandler
+                        {
+                            (creations: Array<Creation>?, error: ErrorType?) -> Void in
+                            expect(creations).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+            it("Should return a correct value for single creation after login")
+            {
+                let request = FetchCreationsRequest(creationId: "YNzO8Rmv")
+                let sender =  TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:FetchCreationsResponseHandler
+                        {
+                            (creations: Array<Creation>?, error: ErrorType?) -> Void in
+                            expect(creations).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
+        
+
         describe("Galleries response handler")
         {
-            it("Should return correct value for many galleries after login ")
+            it("Should return correct value for many galleries after login")
             {
                 let request = GalleriesRequest(page: 1, perPage: 10, sort: .Popular, userId: nil)
                 let sender =  TestComponentsFactory.requestSender
