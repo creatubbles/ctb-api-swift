@@ -425,7 +425,6 @@ class RequestSpec: QuickSpec
                 expect(successfulRequest.parameters).to(beEmpty())
                 expect(failedRequest.parameters["aborted_with"] as? String).to(equal(abortError))
             }
-            
         }
     }
 }

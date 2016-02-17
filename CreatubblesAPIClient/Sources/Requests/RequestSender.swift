@@ -39,7 +39,7 @@ class RequestSender: NSObject
     }
     
     //MARK: - Interface
-    func login(username: String, password: String, completion: (ErrorType?) -> Void?)
+    func login(username: String, password: String, completion: (ErrorType?) -> Void)
     {
         oauth2Client.username = username
         oauth2Client.password = password
@@ -95,12 +95,10 @@ class RequestSender: NSObject
             (written, totalWritten, totalExpected) -> Void in
             progressChanged(bytesWritten: Int(written), totalBytesWritten: Int(totalWritten), totalBytesExpectedToWrite: Int(totalExpected))
         })
-        .responseJSON
-        {
-            response -> Void in
+        .responseString(completionHandler: { (response) -> Void in
             completion(error: response.result.error)
-        }
-    }        
+        })
+    }
     
     //MARK: - Utils
     private func urlStringWithRequest(request: Request) -> String

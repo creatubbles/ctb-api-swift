@@ -10,5 +10,15 @@ import UIKit
 
 class NewCreationPingResponseHandler: ResponseHandler
 {
-
+    private let completion: (error:ErrorType?) -> Void
+    
+    init(completion: (error:ErrorType?) -> Void)
+    {
+        self.completion = completion
+    }
+    
+    override func handleResponse(response: Dictionary<String, AnyObject>?, error: NSError?)
+    {
+        completion(error: error)
+    }
 }
