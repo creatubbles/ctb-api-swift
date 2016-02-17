@@ -53,6 +53,8 @@
 		188ECF601C71E96100AFEE4F /* CreationUploadModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF5F1C71E96100AFEE4F /* CreationUploadModelBuilder.swift */; };
 		188ECF621C736AE500AFEE4F /* DataUploaderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF611C736AE500AFEE4F /* DataUploaderSpec.swift */; };
 		188ECF671C737A7000AFEE4F /* creatubbles_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 188ECF661C737A7000AFEE4F /* creatubbles_logo.jpg */; };
+		188ECF6B1C74613700AFEE4F /* NewCreationPingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF6A1C74613700AFEE4F /* NewCreationPingRequest.swift */; };
+		188ECF6D1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF6C1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,8 @@
 		188ECF5F1C71E96100AFEE4F /* CreationUploadModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadModelBuilder.swift; sourceTree = "<group>"; };
 		188ECF611C736AE500AFEE4F /* DataUploaderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataUploaderSpec.swift; sourceTree = "<group>"; };
 		188ECF661C737A7000AFEE4F /* creatubbles_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = creatubbles_logo.jpg; sourceTree = "<group>"; };
+		188ECF6A1C74613700AFEE4F /* NewCreationPingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationPingRequest.swift; sourceTree = "<group>"; };
+		188ECF6C1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationPingResponseHandler.swift; sourceTree = "<group>"; };
 		3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.release.xcconfig"; sourceTree = "<group>"; };
 		AB74205CC51A73FB798D192F /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 				187901F61C6B6BFE008F5302 /* Galleries */,
 				180C97AB1C6DD3B600BC682D /* NewCreation */,
 				187047DE1C71DC3900B202FD /* NewCreationUpload */,
+				188ECF691C74612200AFEE4F /* NewCreationPing */,
 				187901EC1C6B37D7008F5302 /* NewCreator */,
 				180C97A61C6CC0C800BC682D /* NewGallery */,
 				18779DF11C69E7E6000BFB57 /* Profile */,
@@ -355,6 +360,15 @@
 				188ECF661C737A7000AFEE4F /* creatubbles_logo.jpg */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		188ECF691C74612200AFEE4F /* NewCreationPing */ = {
+			isa = PBXGroup;
+			children = (
+				188ECF6A1C74613700AFEE4F /* NewCreationPingRequest.swift */,
+				188ECF6C1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift */,
+			);
+			path = NewCreationPing;
 			sourceTree = "<group>";
 		};
 		37D1870D087FA6B7170838D9 /* Frameworks */ = {
@@ -578,6 +592,7 @@
 				188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */,
 				187902001C6C80AD008F5302 /* GalleriesResponseHandler.swift in Sources */,
 				188ECF5C1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift in Sources */,
+				188ECF6D1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift in Sources */,
 				18779E011C69F707000BFB57 /* GroupModelBuilder.swift in Sources */,
 				187902041C6C8BFC008F5302 /* GalleryModelBuilder.swift in Sources */,
 				18779DF51C69E80F000BFB57 /* ProfileResponseHandler.swift in Sources */,
@@ -597,6 +612,7 @@
 				180C97A81C6CC0DA00BC682D /* NewGalleryRequest.swift in Sources */,
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,
 				180C97AA1C6CC0F100BC682D /* NewGalleryResponseHandler.swift in Sources */,
+				188ECF6B1C74613700AFEE4F /* NewCreationPingRequest.swift in Sources */,
 				187901EE1C6B37E7008F5302 /* NewCreatorRequest.swift in Sources */,
 				188BCEAF1C64E19D00EA4F11 /* CreatubblesAPIClient.swift in Sources */,
 			);
