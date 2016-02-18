@@ -45,27 +45,27 @@ public class CreatubblesAPIClient: NSObject
     //MARK: - Creators managment
     public func getUser(userId: String, completion: UserClousure)
     {
-        
+        userDAO.getUser(userId, completion: completion)
     }
     
     public func getCurrentUser(completion: UserClousure)
     {
-        
+        userDAO.getCurrentUser(completion)
     }
     
-    public func getCreators(completion: UsersClousure?)
+    public func getCreators(userId: String?, pagingData: PagingData?, completion: UsersClousure?)
     {
-        
+        userDAO.getCreators(userId, pagingData: pagingData, completion: completion)
     }
     
-    public func getManagers(completion: UsersClousure?)
+    public func getManagers(userId: String?, pagingData: PagingData?, completion: UsersClousure?)
     {
-    
+        userDAO.getManagers(userId, pagingData: pagingData, completion: completion)
     }
     
-    public func newCreator(completion: UserClousure?)
+    public func newCreator(creatorData: NewCreatorData,completion: UserClousure?)
     {
-        
+        userDAO.newCreator(creatorData, completion: completion)
     }
     
     //MARK: - Gallery managment
