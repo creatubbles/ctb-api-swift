@@ -35,7 +35,7 @@ class ResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(ProfileRequest(), withResponseHandler:ProfileResponseHandler()
                         {
-                            (user: User?, error:NSError?) -> Void in
+                            (user: User?, error: ErrorType?) -> Void in
                             expect(error).to(beNil())
                             expect(user).notTo(beNil())
                             done()
@@ -53,7 +53,7 @@ class ResponseHandlerSpec: QuickSpec
                     done in
                     sender.send(ProfileRequest(), withResponseHandler:ProfileResponseHandler()
                     {
-                        (user: User?, error:NSError?) -> Void in
+                        (user: User?, error: ErrorType?) -> Void in
                         expect(error).notTo(beNil())
                         expect(user).to(beNil())
                         done()
@@ -76,7 +76,7 @@ class ResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(CreatorsAndManagersRequest(), withResponseHandler:CreatorsAndManagersResponseHandler()
                         {
-                            (users: Array<User>?, error:NSError?) -> Void in
+                            (users: Array<User>?, error: ErrorType?) -> Void in
                             expect(error).to(beNil())
                             expect(users).notTo(beNil())
                             done()
@@ -94,7 +94,7 @@ class ResponseHandlerSpec: QuickSpec
                     done in
                     sender.send(CreatorsAndManagersRequest(), withResponseHandler:CreatorsAndManagersResponseHandler()
                     {
-                        (users: Array<User>?, error:NSError?) -> Void in
+                        (users: Array<User>?, error: ErrorType?) -> Void in
                         expect(error).notTo(beNil())
                         expect(users).to(beNil())
                         done()
@@ -127,7 +127,7 @@ class ResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(creatorRequest, withResponseHandler:NewCreatorResponseHandler()
                         {
-                            (user: User?, error:NSError?) -> Void in
+                            (user: User?, error: ErrorType?) -> Void in
                             expect(error).to(beNil())
                             expect(user).notTo(beNil())
                             done()
@@ -145,7 +145,7 @@ class ResponseHandlerSpec: QuickSpec
                     done in
                     sender.send(creatorRequest, withResponseHandler:NewCreatorResponseHandler()
                     {
-                        (user: User?, error:NSError?) -> Void in
+                        (user: User?, error: ErrorType?) -> Void in
                         expect(error).notTo(beNil())
                         expect(user).to(beNil())
                         done()
@@ -158,7 +158,7 @@ class ResponseHandlerSpec: QuickSpec
         {
             it("Should return correct value for creations after login")
             {
-                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, search: nil)
+                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, keyword: nil)
                 let sender =  TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
@@ -261,7 +261,7 @@ class ResponseHandlerSpec: QuickSpec
                     done in
                     sender.send(request, withResponseHandler:NewCreatorResponseHandler()
                     {
-                        (user: User?, error:NSError?) -> Void in
+                        (user: User?, error:ErrorType?) -> Void in
                         expect(error).notTo(beNil())
                         expect(user).to(beNil())
                         done()
@@ -332,7 +332,8 @@ class ResponseHandlerSpec: QuickSpec
                     {
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(NewCreationRequest(), withResponseHandler:NewCreationResponseHandler()
+                        
+                        sender.send(NewCreationRequest(creationData: NewCreationData(image: UIImage())), withResponseHandler:NewCreationResponseHandler()
                         {
                             (creation: Creation?, error:ErrorType?) -> Void in
                             expect(error).to(beNil())
@@ -350,7 +351,7 @@ class ResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.send(NewCreationRequest(), withResponseHandler:NewCreationResponseHandler()
+                    sender.send(NewCreationRequest(creationData: NewCreationData(image:UIImage())), withResponseHandler:NewCreationResponseHandler()
                     {
                         (creation: Creation?, error:ErrorType?) -> Void in
                         expect(error).notTo(beNil())

@@ -21,46 +21,31 @@ enum CreationUploadSessionState: Int
 
 class CreationUploadSession: ResponseHandler
 {
-    private let image: UIImage
+    private let creationData: NewCreationData
     private let requestSender: RequestSender
+    
     private var state: CreationUploadSessionState
     private var isActive: Bool
     
     private let imageFileName: String
-    private let relativeImageFilePath: String
-    
-    private let name: String?
-    private let reflectionText: String?
-    private let reflectionVideoUrl: String?
-    private let galleryId: String?
-    private let creatorIds: Array<String>?
-    private let creationYear: Int?
-    private let creationMonth: Int?
+    private let relativeImageFilePath: String    
     
     //Fields filled during creation upload flow
-    private var creationId: String?
+    private var creation: Creation?
     private var creationUpload: CreationUpload?
     
-    init(image: UIImage, requestSender: RequestSender, name: String? = nil, reflectionText: String? = nil, reflectionVideoUrl: String? = nil, galleryId: String? = nil, creatorIds: Array<String>? = nil, creationYear: Int? = nil, creationMonth: Int? = nil)
+    init(data: NewCreationData, requestSender: RequestSender)
     {
-        self.image = image
+        self.isActive = false
         self.state = .Initialized
         self.requestSender = requestSender
-        self.isActive = false
+        self.creationData = data
         
         self.imageFileName = String(NSDate().timeIntervalSince1970)+"_creation.jpg"
         self.relativeImageFilePath = "images/"+imageFileName
-        
-        self.name = name
-        self.galleryId = galleryId
-        self.creatorIds = creatorIds
-        self.reflectionText = reflectionText
-        self.reflectionVideoUrl = reflectionVideoUrl
-        self.creationYear = creationYear
-        self.creationMonth = creationMonth
     }
     
-    func start(completion: (ErrorType?) -> Void)
+    func start(completion: CreationClousure?)
     {
         self.isActive = true
         saveImageOnDisk(nil) { [weak self](error) -> Void in
@@ -70,8 +55,9 @@ class CreationUploadSession: ResponseHandler
                         weakSelf.uploadImage(error, completion: { (error) -> Void in
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
                                 print("Upload flow finished with error: \(error)")
+                                
                                 weakSelf.isActive = false
-                                completion(error)
+                                completion?(weakSelf.creation, error)
                             })
                         })
                     })
@@ -119,15 +105,14 @@ class CreationUploadSession: ResponseHandler
             completion(nil)
             return
         }
-        
-        let request = NewCreationRequest(name: name, creatorIds: creatorIds, creationYear: creationYear, creationMonth: creationMonth, reflectionText: reflectionText, reflectionVideoUrl: reflectionVideoUrl)
+        let request = NewCreationRequest(creationData: creationData)
         let handler = NewCreationResponseHandler
         {
             [weak self](creation, error) -> Void in
             if let weakSelf = self,
                let creation = creation
             {
-                weakSelf.creationId = creation.identifier
+                weakSelf.creation = creation
                 weakSelf.state = .CreationAllocated
             }
             completion(error)
@@ -147,7 +132,7 @@ class CreationUploadSession: ResponseHandler
             completion(nil)
             return
         }
-        let request = NewCreationUploadRequest(creationId: self.creationId!, creationExtension: .JPEG)
+        let request = NewCreationUploadRequest(creationId: self.creation!.identifier, creationExtension: .JPEG)
         let handler = NewCreationUploadResponseHandler
         {
             [weak self](creationUpload, error) -> Void in
@@ -174,7 +159,8 @@ class CreationUploadSession: ResponseHandler
             completion(nil)
             return
         }
-        requestSender.send(UIImageJPEGRepresentation(image, 1)!, uploadData: creationUpload!,
+        
+        requestSender.send(UIImageJPEGRepresentation(creationData.image, 1)!, uploadData: creationUpload!,
         progressChanged:
         {
             (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
@@ -225,7 +211,7 @@ class CreationUploadSession: ResponseHandler
     //MARK: - Utils
     private func saveCurrentImage(completion: (ErrorType?) -> Void)
     {
-        let data = UIImageJPEGRepresentation(image, 1)!
+        let data = UIImageJPEGRepresentation(creationData.image, 1)!
         let url = NSURL(fileURLWithPath: relativeImageFilePath)
         let fileManager = NSFileManager.defaultManager()
         if !fileManager.fileExistsAtPath(url.path!.stringByDeletingLastPathComponent)

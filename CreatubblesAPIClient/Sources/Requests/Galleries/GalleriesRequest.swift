@@ -7,11 +7,6 @@
 //
 
 import UIKit
-enum GalleriesRequestSort: String
-{
-    case Popular = "popular"
-    case Recent = "recent"
-}
 
 class GalleriesRequest: Request
 {
@@ -29,7 +24,7 @@ class GalleriesRequest: Request
     private let galleryId: String?
     private let page: Int?
     private let perPage: Int?
-    private let sort: GalleriesRequestSort?
+    private let sort: SortOrder?
     private let userId: String?
     
     init(galleryId: String)
@@ -41,7 +36,7 @@ class GalleriesRequest: Request
         self.userId = nil
     }
     
-    init(page: Int, perPage: Int, sort: GalleriesRequestSort, userId: String?)
+    init(page: Int, perPage: Int, sort: SortOrder, userId: String?)
     {
         self.galleryId = nil
         self.page = page

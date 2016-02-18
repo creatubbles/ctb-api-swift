@@ -38,8 +38,8 @@ class RequestSender: NSObject
         return client
     }
     
-    //MARK: - Interface
-    func login(username: String, password: String, completion: (ErrorType?) -> Void)
+    //MARK: - Authentication
+    func login(username: String, password: String, completion: ((ErrorType?) -> Void)?)
     {
         oauth2Client.username = username
         oauth2Client.password = password
@@ -50,7 +50,7 @@ class RequestSender: NSObject
             {
                 weakSelf.oauth2Client.onAuthorize = nil
             }
-            completion(nil)
+            completion?(nil)
         }        
         oauth2Client.onFailure =
         {
@@ -59,17 +59,23 @@ class RequestSender: NSObject
             {
                 weakSelf.oauth2Client.onFailure = nil
             }
-            completion(error)
+            completion?(error)
         }
         oauth2Client.authorize()
     }
     
     func logout()
-    {
+    {        
         oauth2Client.forgetClient()
         oauth2Client.forgetTokens()
     }
     
+    func isLoggedIn() -> Bool
+    {
+        return oauth2Client.hasUnexpiredAccessToken()
+    }
+    
+    //MARK: - Request sending
     func send(request: Request, withResponseHandler handler: ResponseHandler)
     {
         oauth2Client.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)

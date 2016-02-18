@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Creation
+public class Creation
 {
     let identifier: String
     let name: String

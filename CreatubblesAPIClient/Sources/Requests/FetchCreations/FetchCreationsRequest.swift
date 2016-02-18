@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum CreationsRequestSortFilter: String
-{
-    case Popular = "popular"
-    case Recent = "recent"
-}
-
 class FetchCreationsRequest: Request
 {
     override var method: RequestMethod  { return .GET }
@@ -32,18 +26,18 @@ class FetchCreationsRequest: Request
     private let perPage: Int?
     private let galleryId: String?
     private let userId: String?
-    private let sort: CreationsRequestSortFilter?
-    private let search: String?
+    private let sort: SortOrder?
+    private let keyword: String?
     private let creationId: String?
     
-    init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: CreationsRequestSortFilter?, search: String?)
+    init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: SortOrder?, keyword: String?)
     {
         self.page = page
         self.perPage = perPage
         self.galleryId = galleryId
         self.userId = userId
         self.sort = sort
-        self.search = search
+        self.keyword = keyword
         self.creationId = nil
     }
     
@@ -54,7 +48,7 @@ class FetchCreationsRequest: Request
         self.galleryId = nil
         self.userId = nil
         self.sort = nil
-        self.search = nil
+        self.keyword = nil
         self.creationId = creationId
 
     }
@@ -83,9 +77,9 @@ class FetchCreationsRequest: Request
         {
             params["sort"] = sort.rawValue
         }
-        if let search = search
+        if let keyword = keyword
         {
-            params["search"] = search
+            params["search"] = keyword
         }
         return params
     }
