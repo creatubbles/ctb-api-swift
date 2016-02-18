@@ -24,6 +24,12 @@ public enum Gender: Int
     case Female = 1
 }
 
+public enum GalleriesSort: String
+{
+    case Popular = "popular"
+    case Recent = "recent"
+}
+
 //MARK: - Structs
 public struct PagingData
 {
@@ -39,4 +45,13 @@ public struct NewCreatorData
     public var birthMonth: Int
     public var countryCode: String
     public var gender: Gender
+}
+
+
+public struct NewGalleryData
+{
+    public var name: String
+    public var galleryDescription: String
+    public var openForAll: Bool
+    public var ownerId: String?
 }

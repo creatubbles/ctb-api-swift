@@ -11,8 +11,8 @@ import ObjectMapper
 
 class GalleriesResponseHandler: ResponseHandler
 {
-    private let completion: (galleries: Array<Gallery>?, error: ErrorType?) -> Void        
-    init(completion: (galleries: Array<Gallery>?, error: ErrorType?) -> Void)
+    private let completion: GalleriesClousure?
+    init(completion: GalleriesClousure?)
     {
         self.completion = completion
     }
@@ -27,17 +27,17 @@ class GalleriesResponseHandler: ResponseHandler
             {
                 galleries.append(Gallery(builder: builder))
             }
-            completion(galleries: galleries, error: error)
+            completion?(galleries, error)
         }
         else if let response = response,
                 let builder = Mapper<GalleryModelBuilder>().map(response["data"])
         {
             let gallery = Gallery(builder: builder)
-            completion(galleries: [gallery], error: error)
+            completion?([gallery], error)
         }
         else
         {
-            completion(galleries: nil, error: error)
+            completion?(nil, error)
         }
     }
 }
