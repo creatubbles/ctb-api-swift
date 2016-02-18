@@ -11,9 +11,9 @@ import ObjectMapper
 
 class ProfileResponseHandler: ResponseHandler
 {
-    private let completion: (user: User?, error:NSError?) -> Void
+    private let completion: UserClousure?
     
-    init(completion: (user: User?, error:NSError?) -> Void)
+    init(completion: UserClousure?)
     {
         self.completion = completion
     }
@@ -24,11 +24,11 @@ class ProfileResponseHandler: ResponseHandler
             let userBuilder = Mapper<UserModelBuilder>().map(response["data"])
         {
             let user = User(builder: userBuilder)
-            completion(user: user, error: error)
+            completion?(user, error)
         }
         else
         {
-            completion(user: nil, error: error)
+            completion?(nil, error)
         }
     }
 }

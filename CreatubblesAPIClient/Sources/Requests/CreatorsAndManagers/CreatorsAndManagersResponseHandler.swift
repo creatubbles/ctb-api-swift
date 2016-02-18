@@ -11,8 +11,8 @@ import ObjectMapper
 
 class CreatorsAndManagersResponseHandler: ResponseHandler
 {
-    private let completion: (users: Array<User>?, error:NSError?) -> Void
-    init(completion: (users: Array<User>?, error:NSError?) -> Void)
+    private let completion: UsersClousure?
+    init(completion: UsersClousure?)
     {
         self.completion = completion
     }
@@ -27,11 +27,11 @@ class CreatorsAndManagersResponseHandler: ResponseHandler
             {
                 users.append(User(builder: builder))
             }
-            completion(users: users, error: error)
+            completion?(users, error)
         }
         else
         {
-            completion(users: nil, error: error)
+            completion?(nil, error)
         }
     }
 }

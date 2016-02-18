@@ -21,13 +21,13 @@ class TestRequestSender: RequestSender
     }
     
     //MARK: - Interface
-    override func login(username: String, password: String, completion: (ErrorType?) -> Void?)
+    override func login(username: String, password: String, completion: ((ErrorType?) -> Void)?)
     {
         let authorized = username == TestConfiguration.username &&
                          password == TestConfiguration.password
         let error: NSError? = authorized ? nil : NSError(domain: "CreatubblesTest", code: 0, userInfo: nil)
         isLoggedIn = authorized
-        completion(error)
+        completion?(error)
     }
     
     override func logout()
