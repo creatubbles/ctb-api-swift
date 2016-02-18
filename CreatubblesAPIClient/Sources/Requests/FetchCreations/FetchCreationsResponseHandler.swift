@@ -11,9 +11,9 @@ import ObjectMapper
 
 class FetchCreationsResponseHandler: ResponseHandler
 {
-    private let completion: (creations: Array<Creation>?, error: ErrorType?) -> Void
+    private let completion: CreationsClousure?
     
-    init(completion: (creations: Array<Creation>?, error: ErrorType?) -> Void)
+    init(completion: CreationsClousure?)
     {
         self.completion = completion
     }
@@ -28,17 +28,17 @@ class FetchCreationsResponseHandler: ResponseHandler
             {
                 creations.append(Creation(builder: builder))
             }
-            completion(creations: creations, error: error)
+            completion?(creations, error)
         }
         else if let response = response,
             let builder = Mapper<CreationModelBuilder>().map(response["data"])
         {
             let creation = Creation(builder: builder)
-            completion(creations: [creation], error: error)
+            completion?([creation], error)
         }
         else
         {
-            completion(creations: nil, error: error)
+            completion?(nil, error)
         }
     }
 

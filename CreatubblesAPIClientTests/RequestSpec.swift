@@ -180,13 +180,13 @@ class RequestSpec: QuickSpec
         {
             it("Should have a proper method")
             {
-               let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, search: nil)
+               let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, keyword: nil)
                 expect(request.method).to(equal(RequestMethod.GET))
             }
             
             it("Should have a proper endpoint")
             {
-                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, search: nil)
+                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, keyword: nil)
                 expect(request.endpoint).to(equal("creations"))
             }
             
@@ -200,7 +200,7 @@ class RequestSpec: QuickSpec
                     {
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, search: nil), withResponseHandler: DummyResponseHandler()
+                        sender.send(FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, keyword: nil), withResponseHandler: DummyResponseHandler()
                         {
                             (response, error) -> Void in
                             expect(response).notTo(beNil())
@@ -370,22 +370,23 @@ class RequestSpec: QuickSpec
             
             it("Should have proper parameters set")
             {
-                let name = "TestCreationName"
-                let creatorIds = ["TestCreationId1", "TestCreationId2"]
-                let creationMonth = 1
-                let creationYear = 2016
-                let reflectionText = "TestReflectionText"
-                let reflectionVideoUrl = "https://www.youtube.com/watch?v=L6B_4yMvOiQ"
+                var data = NewCreationData(image: UIImage())
+                data.name = "TestCreationName"
+                data.creatorIds = ["TestCreationId1", "TestCreationId2"]
+                data.creationMonth = 1
+                data.creationYear = 2016
+                data.reflectionText = "TestReflectionText"
+                data.reflectionVideoUrl = "https://www.youtube.com/watch?v=L6B_4yMvOiQ"
                 
-                let request = NewCreationRequest(name: name, creatorIds: creatorIds, creationYear: creationYear, creationMonth: creationMonth, reflectionText: reflectionText, reflectionVideoUrl: reflectionVideoUrl)
+                let request = NewCreationRequest(creationData: data)
                 let params = request.parameters
                 
-                expect(params["name"] as? String).to(equal(name))
-                expect(params["creator_ids"] as? Array<String>).to(equal(creatorIds))
-                expect(params["created_at_year"] as? Int).to(equal(creationYear))
-                expect(params["created_at_month"] as? Int).to(equal(creationMonth))
-                expect(params["reflection_text"] as? String).to(equal(reflectionText))
-                expect(params["reflection_video_url"] as? String).to(equal(reflectionVideoUrl))
+                expect(params["name"] as? String).to(equal(data.name))
+                expect(params["creator_ids"] as? Array<String>).to(equal(data.creatorIds))
+                expect(params["created_at_year"] as? Int).to(equal(data.creationYear))
+                expect(params["created_at_month"] as? Int).to(equal(data.creationMonth))
+                expect(params["reflection_text"] as? String).to(equal(data.reflectionText))
+                expect(params["reflection_video_url"] as? String).to(equal(data.reflectionVideoUrl))
             }
             
             it("Should return correct value after login")

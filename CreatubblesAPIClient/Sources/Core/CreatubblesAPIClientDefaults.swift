@@ -24,7 +24,7 @@ public enum Gender: Int
     case Female = 1
 }
 
-public enum GalleriesSort: String
+public enum SortOrder: String
 {
     case Popular = "popular"
     case Recent = "recent"
@@ -47,6 +47,22 @@ public struct NewCreatorData
     public var gender: Gender
 }
 
+public struct NewCreationData
+{
+    init(image: UIImage)
+    {
+        self.image = image        
+    }
+    
+    public var image: UIImage
+    public var name: String? = nil
+    public var reflectionText: String? = nil
+    public var reflectionVideoUrl: String? = nil
+    public var galleryId: String? = nil
+    public var creatorIds: Array<String>? = nil
+    public var creationYear: Int? = nil
+    public var creationMonth: Int? = nil
+}
 
 public struct NewGalleryData
 {

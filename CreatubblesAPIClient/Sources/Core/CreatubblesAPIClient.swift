@@ -16,6 +16,7 @@ public class CreatubblesAPIClient: NSObject
     private let creationsDAO: CreationsDAO
     private let userDAO: UserDAO
     private let galleryDAO: GalleryDAO
+    private let creationUploadService: CreationUploadService
     
     public init(settings: CreatubblesAPIClientSettings)
     {
@@ -24,6 +25,7 @@ public class CreatubblesAPIClient: NSObject
         self.creationsDAO = CreationsDAO(requestSender: requestSender)
         self.userDAO = UserDAO(requestSender: requestSender)
         self.galleryDAO = GalleryDAO(requestSender: requestSender)
+        self.creationUploadService = CreationUploadService(requestSender: requestSender)
     }
     
     //MARK: - Authentication
@@ -74,7 +76,7 @@ public class CreatubblesAPIClient: NSObject
         galleryDAO.getGallery(galleryId, completion: completion)
     }
     
-    public func getGalleries(userId: String?, pagingData: PagingData, sort: GalleriesSort, completion: GalleriesClousure?)
+    public func getGalleries(userId: String?, pagingData: PagingData, sort: SortOrder, completion: GalleriesClousure?)
     {
         galleryDAO.getGalleries(userId, pagingData: pagingData, sort: sort, completion: completion)
     }
@@ -87,16 +89,16 @@ public class CreatubblesAPIClient: NSObject
     //MARK: - Creation managment
     public func getCreation(creationId: String, completion: CreationClousure?)
     {
-        
+        creationsDAO.getCreation(creationId, completion: completion)
     }
     
-    public func getCreations(completion: CreationsClousure?)
+    public func getCreations(galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, completion: CreationsClousure?)
     {
-    
+        creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, completion: completion)
     }
     
-    public func newCreation(completion: CreationClousure?)
+    public func newCreation(creationData: NewCreationData, completion: CreationClousure?)
     {
-        
+        creationUploadService.uploadCreation(creationData, completion: completion)
     }
 }

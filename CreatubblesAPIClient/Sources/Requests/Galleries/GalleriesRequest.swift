@@ -24,7 +24,7 @@ class GalleriesRequest: Request
     private let galleryId: String?
     private let page: Int?
     private let perPage: Int?
-    private let sort: GalleriesSort?
+    private let sort: SortOrder?
     private let userId: String?
     
     init(galleryId: String)
@@ -36,7 +36,7 @@ class GalleriesRequest: Request
         self.userId = nil
     }
     
-    init(page: Int, perPage: Int, sort: GalleriesSort, userId: String?)
+    init(page: Int, perPage: Int, sort: SortOrder, userId: String?)
     {
         self.galleryId = nil
         self.page = page

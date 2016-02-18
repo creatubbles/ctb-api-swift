@@ -158,7 +158,7 @@ class ResponseHandlerSpec: QuickSpec
         {
             it("Should return correct value for creations after login")
             {
-                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, search: nil)
+                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, keyword: nil)
                 let sender =  TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
@@ -332,7 +332,8 @@ class ResponseHandlerSpec: QuickSpec
                     {
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(NewCreationRequest(), withResponseHandler:NewCreationResponseHandler()
+                        
+                        sender.send(NewCreationRequest(creationData: NewCreationData(image: UIImage())), withResponseHandler:NewCreationResponseHandler()
                         {
                             (creation: Creation?, error:ErrorType?) -> Void in
                             expect(error).to(beNil())
@@ -350,7 +351,7 @@ class ResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.send(NewCreationRequest(), withResponseHandler:NewCreationResponseHandler()
+                    sender.send(NewCreationRequest(creationData: NewCreationData(image:UIImage())), withResponseHandler:NewCreationResponseHandler()
                     {
                         (creation: Creation?, error:ErrorType?) -> Void in
                         expect(error).notTo(beNil())

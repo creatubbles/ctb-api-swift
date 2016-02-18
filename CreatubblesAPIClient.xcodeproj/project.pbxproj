@@ -19,6 +19,7 @@
 		1815D5601C6383CF00EF4C38 /* CreatubblesAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1815D5651C638BD200EF4C38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5641C638BD200EF4C38 /* User.swift */; };
 		1847FBEC1C75D2BF00FE5FF3 /* CreatubblesAPIClientDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847FBEB1C75D2BF00FE5FF3 /* CreatubblesAPIClientDefaults.swift */; };
+		1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847FBED1C75EAF900FE5FF3 /* CreationUploadService.swift */; };
 		187047E01C71DCD600B202FD /* NewCreationUploadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187047DF1C71DCD600B202FD /* NewCreationUploadRequest.swift */; };
 		18779DAF1C68A8A9000BFB57 /* RequestSenderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DAE1C68A8A9000BFB57 /* RequestSenderSpec.swift */; };
 		18779DB61C68D424000BFB57 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18779DB11C68D424000BFB57 /* Request.swift */; };
@@ -90,6 +91,7 @@
 		1815D55F1C6383CF00EF4C38 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1815D5641C638BD200EF4C38 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1847FBEB1C75D2BF00FE5FF3 /* CreatubblesAPIClientDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClientDefaults.swift; sourceTree = "<group>"; };
+		1847FBED1C75EAF900FE5FF3 /* CreationUploadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadService.swift; sourceTree = "<group>"; };
 		187047DF1C71DCD600B202FD /* NewCreationUploadRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationUploadRequest.swift; sourceTree = "<group>"; };
 		18779DAE1C68A8A9000BFB57 /* RequestSenderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSenderSpec.swift; sourceTree = "<group>"; };
 		18779DB11C68D424000BFB57 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 		188ECF6E1C746F8200AFEE4F /* CreationUploadSession */ = {
 			isa = PBXGroup;
 			children = (
+				1847FBED1C75EAF900FE5FF3 /* CreationUploadService.swift */,
 				188ECF6F1C74703200AFEE4F /* CreationUploadSession.swift */,
 			);
 			path = CreationUploadSession;
@@ -635,6 +638,7 @@
 				18779DB61C68D424000BFB57 /* Request.swift in Sources */,
 				187901F01C6B37F4008F5302 /* NewCreatorResponseHandler.swift in Sources */,
 				18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */,
+				1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */,
 				188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */,
 				188ECF601C71E96100AFEE4F /* CreationUploadModelBuilder.swift in Sources */,
 				2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */,
