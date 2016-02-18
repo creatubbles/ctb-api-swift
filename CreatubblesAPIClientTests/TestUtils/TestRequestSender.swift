@@ -82,6 +82,10 @@ class TestRequestSender: RequestSender
         {
             return TestResponses.newCreationUploadTestResponse
         }
+        if request is FetchCreationsRequest
+        {
+            return TestResponses.fetchCreationsTestResponse
+        }
         
         
         return Dictionary<String, AnyObject>()
