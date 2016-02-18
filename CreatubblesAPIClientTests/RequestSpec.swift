@@ -350,5 +350,81 @@ class RequestSpec: QuickSpec
                 }
             }
         }
+        
+        describe("New creation upload request")
+        {
+            it("Should have proper method")
+            {
+                let request = NewCreationUploadRequest(creationId: "TestId")
+                expect(request.method).to(equal(RequestMethod.POST))
+            }
+            
+            it("Should have proper endpoint")
+            {
+                let identifier = "TestId"
+                let request = NewCreationUploadRequest(creationId: identifier)
+                expect(request.endpoint).to(equal("creations/"+identifier+"/uploads"))
+            }
+            
+            it("Should have proper params")
+            {
+                let defaultRequest = NewCreationUploadRequest(creationId: "TestId")
+                expect(defaultRequest.parameters["extension"]).to(beNil())
+                
+                let availableExtensions = [UploadExtension.PNG, .JPG, .JPEG, .H264, .MPEG4, .WMV, .WEBM, .FLV, .OGG, .OGV, .MP4, .M4V, .MOV]
+                for availableExtension in availableExtensions
+                {
+                   let  request = NewCreationUploadRequest(creationId: "TestId", creationExtension: availableExtension)
+                    expect(request.parameters["extension"] as? String).to(equal(availableExtension.rawValue))
+                }
+            }
+            
+            it("Should return correct value after login")
+            {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(NewCreationUploadRequest(creationId: "QMH4I18k"), withResponseHandler: DummyResponseHandler()
+                        {
+                            (response, error) -> Void in
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
+        
+        describe("Creation ping request")
+        {
+            it("Should have proper method")
+            {
+                let request = NewCreationPingRequest(uploadId: "12345")
+                expect(request.method).to(equal(RequestMethod.PUT))
+            }
+            
+            it("Should have proper endpoint")
+            {
+                let uploadId = "12345"
+                let request = NewCreationPingRequest(uploadId: uploadId)
+                expect(request.endpoint).to(equal("uploads/"+uploadId))
+            }
+            
+            it("Should have proper parameters")
+            {
+                let abortError = "AbortError"
+                let successfulRequest = NewCreationPingRequest(uploadId: "12345")
+                let failedRequest = NewCreationPingRequest(uploadId: "12345", abortError: abortError)
+                expect(successfulRequest.parameters).to(beEmpty())
+                expect(failedRequest.parameters["aborted_with"] as? String).to(equal(abortError))
+            }
+        }
     }
 }

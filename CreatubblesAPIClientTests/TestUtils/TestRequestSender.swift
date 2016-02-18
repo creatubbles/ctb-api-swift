@@ -21,7 +21,7 @@ class TestRequestSender: RequestSender
     }
     
     //MARK: - Interface
-    override func login(username: String, password: String, completion: (ErrorType?) -> Void)
+    override func login(username: String, password: String, completion: (ErrorType?) -> Void?)
     {
         let authorized = username == TestConfiguration.username &&
                          password == TestConfiguration.password
@@ -78,6 +78,11 @@ class TestRequestSender: RequestSender
         {
             return TestResponses.newCreationTestResponse
         }
+        if request is NewCreationUploadRequest
+        {
+            return TestResponses.newCreationUploadTestResponse
+        }
+        
         
         return Dictionary<String, AnyObject>()
     }
