@@ -71,16 +71,17 @@ public class CreatubblesAPIClient: NSObject
     //MARK: - Gallery managment
     public func getGallery(galleryId: String, completion: GalleryClousure?)
     {
+        galleryDAO.getGallery(galleryId, completion: completion)
     }
     
-    public func getGalleries(completion: GalleriesClousure?)
+    public func getGalleries(userId: String?, pagingData: PagingData, sort: GalleriesSort, completion: GalleriesClousure?)
     {
-    
+        galleryDAO.getGalleries(userId, pagingData: pagingData, sort: sort, completion: completion)
     }
     
-    public func newGallery(completion: GalleryClousure?)
+    public func newGallery(galleryData: NewGalleryData, completion: GalleryClousure?)
     {
-    
+        galleryDAO.newGallery(galleryData, completion: completion)
     }
     
     //MARK: - Creation managment
