@@ -19,6 +19,7 @@ class CreationUploadSessionEntity: Object
     
     dynamic var creationEntity: CreationEntity?
     dynamic var creationUploadEntity: CreationUploadEntity?
+    dynamic var creationEntityIdentifier: String?
     
     var state: CreationUploadSessionState
     {
@@ -34,7 +35,7 @@ class CreationUploadSessionEntity: Object
     
     override static func primaryKey() -> String?
     {
-        return "creationEntity"
+        return "creationEntityIdentifier"
     }
 }
 

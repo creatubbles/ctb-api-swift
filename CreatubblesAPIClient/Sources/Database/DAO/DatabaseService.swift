@@ -11,10 +11,11 @@ import RealmSwift
 
 class DatabaseService: NSObject
 {
+    let realm = try! Realm()
+    
     func saveCreationUploadSessionToDatabase(creationUploadSession: CreationUploadSession)
     {
         let creationUploadSessionEntity: CreationUploadSessionEntity = CreationUploadSessionEntity()
-        let realm = try! Realm()
         
         creationUploadSessionEntity.isActive = creationUploadSession.isActive
         creationUploadSessionEntity.stateRaw = creationUploadSession.state.rawValue
@@ -22,6 +23,7 @@ class DatabaseService: NSObject
         creationUploadSessionEntity.relativeImageFilePath = creationUploadSession.relativeImageFilePath
         
         creationUploadSessionEntity.creationDataEntity = getNewCreationDataEntityFromCreationData(creationUploadSession.creationData)
+        creationUploadSessionEntity.creationEntityIdentifier = creationUploadSession.creation?.identifier
         
         if let creation = creationUploadSession.creation
         {
@@ -45,6 +47,19 @@ class DatabaseService: NSObject
         let creationUploadSessionEntitiesArray = Array(realm.objects(CreationUploadSessionEntity))
         
         return creationUploadSessionEntitiesArray
+    }
+    
+    func fetchASincleCreationUploadSessionWithCreationIdentifier(creationIdentifier: String) -> CreationEntity
+    {
+        let creationUploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter("creationEntityIdentifier = %@", creationIdentifier)
+        if(creationUploadSessionEntities.count == 1)
+        {
+            return (creationUploadSessionEntities.first?.creationEntity)!
+        }
+        else
+        {
+            NSLog("Incorrect number of objects in RLMResults array when fetching a single Creation Upload Session with id: %@", creationIdentifier)
+        }
     }
     
     func getNewCreationDataEntityFromCreationData(newCreationData: NewCreationData) -> NewCreationDataEntity
