@@ -9,9 +9,9 @@
 import Foundation
 import RealmSwift
 
-class NewCreationDataEntity: Object {
+class NewCreationDataEntity: Object
+{
     
-    dynamic var image: NSData?
     dynamic var name: String? = nil
     dynamic var reflectionText: String? = nil
     dynamic var reflectionVideoUrl: String? = nil

@@ -67,6 +67,7 @@
 		21BB32A61C7743D2006F9A3A /* NewCreationDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB32A51C7743D2006F9A3A /* NewCreationDataEntity.swift */; };
 		21BB32AA1C77495D006F9A3A /* CreationUploadEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB32A91C77495D006F9A3A /* CreationUploadEntity.swift */; };
 		21BB32AC1C774979006F9A3A /* CreationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB32AB1C774979006F9A3A /* CreationEntity.swift */; };
+		21BB32AF1C775712006F9A3A /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB32AE1C775712006F9A3A /* DatabaseService.swift */; };
 		21F740941C735C9600E7F4D1 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F740931C735C9600E7F4D1 /* TestConfiguration.swift */; };
 		C4F7F7A90121042C6E45878F /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CEF4C03DFDE992D399AFF8 /* Pods_CreatubblesAPIClient.framework */; };
 		D85230BA8D277D54749CB81D /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C976C6C2233F7FB94E731680 /* Pods_CreatubblesAPIClientTests.framework */; };
@@ -149,6 +150,7 @@
 		21BB32A51C7743D2006F9A3A /* NewCreationDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationDataEntity.swift; sourceTree = "<group>"; };
 		21BB32A91C77495D006F9A3A /* CreationUploadEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadEntity.swift; sourceTree = "<group>"; };
 		21BB32AB1C774979006F9A3A /* CreationEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationEntity.swift; sourceTree = "<group>"; };
+		21BB32AE1C775712006F9A3A /* DatabaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		21F740931C735C9600E7F4D1 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		57CEF4C03DFDE992D399AFF8 /* Pods_CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7158BD3386B61A0E2C22D78A /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 		21AB56E11C76034C0010FFD0 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				21BB32AD1C7756B8006F9A3A /* DAO */,
 				21AB56E21C76037C0010FFD0 /* UploadModel */,
 			);
 			path = Database;
@@ -489,6 +492,14 @@
 				21BB32A91C77495D006F9A3A /* CreationUploadEntity.swift */,
 			);
 			path = CreationUpload;
+			sourceTree = "<group>";
+		};
+		21BB32AD1C7756B8006F9A3A /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				21BB32AE1C775712006F9A3A /* DatabaseService.swift */,
+			);
+			path = DAO;
 			sourceTree = "<group>";
 		};
 		4DBE3A3372EEFAC43B0E5604 /* Frameworks */ = {
@@ -725,6 +736,7 @@
 				21BB32A11C77437D006F9A3A /* CreationUploadSessionEntity.swift in Sources */,
 				18779E011C69F707000BFB57 /* GroupModelBuilder.swift in Sources */,
 				187902041C6C8BFC008F5302 /* GalleryModelBuilder.swift in Sources */,
+				21BB32AF1C775712006F9A3A /* DatabaseService.swift in Sources */,
 				21BB32A61C7743D2006F9A3A /* NewCreationDataEntity.swift in Sources */,
 				18779DF51C69E80F000BFB57 /* ProfileResponseHandler.swift in Sources */,
 				188ECF731C747FDE00AFEE4F /* String+Path.swift in Sources */,

@@ -9,7 +9,8 @@
 import Foundation
 import RealmSwift
 
-class CreationEntity: Object {
+class CreationEntity: Object
+{
     
     dynamic var identifier: String?
     dynamic var name: String?

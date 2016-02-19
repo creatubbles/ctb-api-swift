@@ -12,14 +12,14 @@ import RealmSwift
 class CreationUploadSessionEntity: Object
 {
 
-    dynamic var creationData: NewCreationDataEntity?
+    dynamic var creationDataEntity: NewCreationDataEntity?
     var stateRaw: Int? = 0
     var isActive: Bool?
     dynamic var imageFileName: String?
     dynamic var relativeImageFilePath: String?
     
-    private var creation: CreationEntity?
-    private var creationUpload: CreationUploadEntity?
+    dynamic var creationEntity: CreationEntity?
+    dynamic var creationUploadEntity: CreationUploadEntity?
     
     var state: CreationUploadSessionState
     {
@@ -31,6 +31,11 @@ class CreationUploadSessionEntity: Object
             }
             return CreationUploadSessionState.Initialized
         }
+    }
+    
+    override static func primaryKey() -> String?
+    {
+        return "creationEntity"
     }
 }
 

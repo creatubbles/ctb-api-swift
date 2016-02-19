@@ -21,18 +21,18 @@ enum CreationUploadSessionState: Int
 
 class CreationUploadSession: ResponseHandler
 {
-    private let creationData: NewCreationData
-    private let requestSender: RequestSender
+    let creationData: NewCreationData
+    let requestSender: RequestSender
     
-    private var state: CreationUploadSessionState
-    private var isActive: Bool
+    var state: CreationUploadSessionState
+    var isActive: Bool
     
-    private let imageFileName: String
-    private let relativeImageFilePath: String    
+    let imageFileName: String
+    let relativeImageFilePath: String
     
     //Fields filled during creation upload flow
-    private var creation: Creation?
-    private var creationUpload: CreationUpload?
+    var creation: Creation?
+    var creationUpload: CreationUpload?
     
     init(data: NewCreationData, requestSender: RequestSender)
     {
