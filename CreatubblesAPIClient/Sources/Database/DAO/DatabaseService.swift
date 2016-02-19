@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DatabaseService: NSObject
 {
     func saveCreationUploadSessionToDatabase(creationUploadSession: CreationUploadSession)
     {
         let creationUploadSessionEntity: CreationUploadSessionEntity = CreationUploadSessionEntity()
+        let realm = try! Realm()
         
         creationUploadSessionEntity.isActive = creationUploadSession.isActive
         creationUploadSessionEntity.stateRaw = creationUploadSession.state.rawValue
@@ -20,6 +22,7 @@ class DatabaseService: NSObject
         creationUploadSessionEntity.relativeImageFilePath = creationUploadSession.relativeImageFilePath
         
         creationUploadSessionEntity.creationDataEntity = getNewCreationDataEntityFromCreationData(creationUploadSession.creationData)
+        
         if let creation = creationUploadSession.creation
         {
             creationUploadSessionEntity.creationEntity = getCreationEntityFromCreation(creation)
@@ -30,9 +33,18 @@ class DatabaseService: NSObject
              creationUploadSessionEntity.creationUploadEntity = getCreationUploadEntityFromCreationUpload(creationUpload)
         }
         
+        try! realm.write
+        {
+            realm.add(creationUploadSessionEntity, update: true)
+        }
+    }
+    
+    func fetchAllCreationUploadSessionEntities() -> Array<CreationUploadSessionEntity>
+    {
+        let realm = try! Realm()
+        let creationUploadSessionEntitiesArray = Array(realm.objects(CreationUploadSessionEntity))
         
-        
-        
+        return creationUploadSessionEntitiesArray
     }
     
     func getNewCreationDataEntityFromCreationData(newCreationData: NewCreationData) -> NewCreationDataEntity
