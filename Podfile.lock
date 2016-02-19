@@ -6,6 +6,7 @@ PODS:
     - SwiftKeychain (~> 0.1.5)
   - Quick (0.9.0)
   - SwiftKeychain (0.1.5)
+  - XCGLogger (3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - ObjectMapper (~> 1.1)
   - p2.OAuth2 (~> 2.2)
   - Quick (~> 0.9.0)
+  - XCGLogger (~> 3.2)
 
 SPEC CHECKSUMS:
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
@@ -21,5 +23,6 @@ SPEC CHECKSUMS:
   p2.OAuth2: 47b519c9da500af90b87101e0330c6278e1152c2
   Quick: 332eb1da73125a2106dd637424c803f2ae97e4a9
   SwiftKeychain: 1387edad8b56c659daa93d9ffc99526bac5b0088
+  XCGLogger: da1f341f4bb8979db6e1df64232f04d9698402d4
 
 COCOAPODS: 0.39.0

@@ -78,6 +78,7 @@ class RequestSender: NSObject
     //MARK: - Request sending
     func send(request: Request, withResponseHandler handler: ResponseHandler)
     {
+        Logger.log.debug("Sending request: \(request.dynamicType)")
         oauth2Client.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
         .validate()
         .responseString(completionHandler:

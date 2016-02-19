@@ -37,6 +37,7 @@ class TestRequestSender: RequestSender
     
     override func send(request: Request, withResponseHandler handler: ResponseHandler)
     {
+        Logger.log.debug("Sending request: \(request.dynamicType)")
         if(isLoggedIn)
         {
             handler.handleResponse(responseForRequest(request), error: nil)

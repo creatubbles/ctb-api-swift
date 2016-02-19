@@ -145,5 +145,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.ios.dependency 'ObjectMapper', '~> 1.1'
   s.ios.dependency 'Quick', '~> 0.9.0'
   s.ios.dependency 'Nimble', '3.0.0'
-
+  s.ios.dependency 'XCGLogger', '~> 3.2'
 end

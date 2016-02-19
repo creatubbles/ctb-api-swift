@@ -26,6 +26,7 @@ public class CreatubblesAPIClient: NSObject
         self.userDAO = UserDAO(requestSender: requestSender)
         self.galleryDAO = GalleryDAO(requestSender: requestSender)
         self.creationUploadService = CreationUploadService(requestSender: requestSender)
+        Logger.setup()
     }
     
     //MARK: - Authentication
