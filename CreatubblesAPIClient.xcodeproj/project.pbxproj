@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F569ECF6E7F4414310CBB21 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6769274D8C574FCCA4E60B7 /* Pods_CreatubblesAPIClientTests.framework */; };
-		16CAAC99A2D4AACF0B7842FB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD89548AD3066D7FA02EE2AB /* Pods_CreatubblesAPIClient.framework */; };
 		180C97A81C6CC0DA00BC682D /* NewGalleryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97A71C6CC0DA00BC682D /* NewGalleryRequest.swift */; };
 		180C97AA1C6CC0F100BC682D /* NewGalleryResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97A91C6CC0F100BC682D /* NewGalleryResponseHandler.swift */; };
 		180C97AD1C6DD40100BC682D /* NewCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97AC1C6DD40100BC682D /* NewCreationRequest.swift */; };
@@ -63,7 +61,15 @@
 		18C1CFF91C75C4B000A02DE3 /* GalleryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */; };
 		216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843971C7345690052B835 /* FetchCreationsRequest.swift */; };
 		2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */; };
+		21BB329D1C774004006F9A3A /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BB329B1C774004006F9A3A /* Realm.framework */; };
+		21BB329E1C774004006F9A3A /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BB329C1C774004006F9A3A /* RealmSwift.framework */; };
+		21BB32A11C77437D006F9A3A /* CreationUploadSessionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB32A01C77437D006F9A3A /* CreationUploadSessionEntity.swift */; };
+		21BB32A61C7743D2006F9A3A /* NewCreationDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB32A51C7743D2006F9A3A /* NewCreationDataEntity.swift */; };
+		21BB32AA1C77495D006F9A3A /* CreationUploadEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB32A91C77495D006F9A3A /* CreationUploadEntity.swift */; };
+		21BB32AC1C774979006F9A3A /* CreationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB32AB1C774979006F9A3A /* CreationEntity.swift */; };
 		21F740941C735C9600E7F4D1 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F740931C735C9600E7F4D1 /* TestConfiguration.swift */; };
+		C4F7F7A90121042C6E45878F /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CEF4C03DFDE992D399AFF8 /* Pods_CreatubblesAPIClient.framework */; };
+		D85230BA8D277D54749CB81D /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C976C6C2233F7FB94E731680 /* Pods_CreatubblesAPIClientTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		055A4A2D59C871AD4EC1E7B9 /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
+		02230270A8D1A1341B6FF6E6 /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
 		180C97A71C6CC0DA00BC682D /* NewGalleryRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGalleryRequest.swift; sourceTree = "<group>"; };
 		180C97A91C6CC0F100BC682D /* NewGalleryResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGalleryResponseHandler.swift; sourceTree = "<group>"; };
 		180C97AC1C6DD40100BC682D /* NewCreationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationRequest.swift; sourceTree = "<group>"; };
@@ -135,12 +141,20 @@
 		18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDAO.swift; sourceTree = "<group>"; };
 		216843971C7345690052B835 /* FetchCreationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsRequest.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsRequest.swift; sourceTree = SOURCE_ROOT; };
 		216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsResponseHandler.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsResponseHandler.swift; sourceTree = SOURCE_ROOT; };
+		21BB32971C773F08006F9A3A /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../Downloads/realm-swift-0.98.2/ios/swift-2.1.1/Realm.framework"; sourceTree = "<group>"; };
+		21BB32981C773F08006F9A3A /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../Downloads/realm-swift-0.98.2/ios/swift-2.1.1/RealmSwift.framework"; sourceTree = "<group>"; };
+		21BB329B1C774004006F9A3A /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "Utilities/realm-swift-0.98.2/ios/swift-2.1.1/Realm.framework"; sourceTree = "<group>"; };
+		21BB329C1C774004006F9A3A /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Utilities/realm-swift-0.98.2/ios/swift-2.1.1/RealmSwift.framework"; sourceTree = "<group>"; };
+		21BB32A01C77437D006F9A3A /* CreationUploadSessionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadSessionEntity.swift; sourceTree = "<group>"; };
+		21BB32A51C7743D2006F9A3A /* NewCreationDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationDataEntity.swift; sourceTree = "<group>"; };
+		21BB32A91C77495D006F9A3A /* CreationUploadEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadEntity.swift; sourceTree = "<group>"; };
+		21BB32AB1C774979006F9A3A /* CreationEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationEntity.swift; sourceTree = "<group>"; };
 		21F740931C735C9600E7F4D1 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
-		3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
-		9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.release.xcconfig"; sourceTree = "<group>"; };
-		AB74205CC51A73FB798D192F /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
-		BD89548AD3066D7FA02EE2AB /* Pods_CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C6769274D8C574FCCA4E60B7 /* Pods_CreatubblesAPIClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		57CEF4C03DFDE992D399AFF8 /* Pods_CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7158BD3386B61A0E2C22D78A /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
+		7554C263D40AB1380D49BFC6 /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B78BEC23B64A58009FBB629B /* Pods-CreatubblesAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.release.xcconfig"; sourceTree = "<group>"; };
+		C976C6C2233F7FB94E731680 /* Pods_CreatubblesAPIClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +162,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16CAAC99A2D4AACF0B7842FB /* Pods_CreatubblesAPIClient.framework in Frameworks */,
+				C4F7F7A90121042C6E45878F /* Pods_CreatubblesAPIClient.framework in Frameworks */,
+				21BB329D1C774004006F9A3A /* Realm.framework in Frameworks */,
+				21BB329E1C774004006F9A3A /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1815D54D1C63658000EF4C38 /* CreatubblesAPIClient.framework in Frameworks */,
-				0F569ECF6E7F4414310CBB21 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */,
+				D85230BA8D277D54749CB81D /* Pods_CreatubblesAPIClientTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,8 +204,8 @@
 				1815D5441C63658000EF4C38 /* CreatubblesAPIClient */,
 				1815D5501C63658000EF4C38 /* CreatubblesAPIClientTests */,
 				1815D5431C63658000EF4C38 /* Products */,
-				5E9519F66C7D83FC3B57FBC6 /* Pods */,
-				37D1870D087FA6B7170838D9 /* Frameworks */,
+				790BA5BFE53C88A7819E8368 /* Pods */,
+				4DBE3A3372EEFAC43B0E5604 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -230,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */,
+				21AB56E11C76034C0010FFD0 /* Database */,
 				188BCEAC1C64E19D00EA4F11 /* Core */,
 				188ECF6E1C746F8200AFEE4F /* CreationUploadSession */,
 				188BCEA71C64E09800EA4F11 /* DAO */,
@@ -423,22 +440,77 @@
 			path = FetchGalleries;
 			sourceTree = "<group>";
 		};
-		37D1870D087FA6B7170838D9 /* Frameworks */ = {
+		21AB56E11C76034C0010FFD0 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				BD89548AD3066D7FA02EE2AB /* Pods_CreatubblesAPIClient.framework */,
-				C6769274D8C574FCCA4E60B7 /* Pods_CreatubblesAPIClientTests.framework */,
+				21AB56E21C76037C0010FFD0 /* UploadModel */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		21AB56E21C76037C0010FFD0 /* UploadModel */ = {
+			isa = PBXGroup;
+			children = (
+				21BB32A71C774946006F9A3A /* Creation */,
+				21BB32A81C774946006F9A3A /* CreationUpload */,
+				21BB32A41C7743C2006F9A3A /* CreationData */,
+				21BB329F1C77437D006F9A3A /* UploadSession */,
+			);
+			path = UploadModel;
+			sourceTree = "<group>";
+		};
+		21BB329F1C77437D006F9A3A /* UploadSession */ = {
+			isa = PBXGroup;
+			children = (
+				21BB32A01C77437D006F9A3A /* CreationUploadSessionEntity.swift */,
+			);
+			path = UploadSession;
+			sourceTree = "<group>";
+		};
+		21BB32A41C7743C2006F9A3A /* CreationData */ = {
+			isa = PBXGroup;
+			children = (
+				21BB32A51C7743D2006F9A3A /* NewCreationDataEntity.swift */,
+			);
+			path = CreationData;
+			sourceTree = "<group>";
+		};
+		21BB32A71C774946006F9A3A /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				21BB32AB1C774979006F9A3A /* CreationEntity.swift */,
+			);
+			path = Creation;
+			sourceTree = "<group>";
+		};
+		21BB32A81C774946006F9A3A /* CreationUpload */ = {
+			isa = PBXGroup;
+			children = (
+				21BB32A91C77495D006F9A3A /* CreationUploadEntity.swift */,
+			);
+			path = CreationUpload;
+			sourceTree = "<group>";
+		};
+		4DBE3A3372EEFAC43B0E5604 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21BB329B1C774004006F9A3A /* Realm.framework */,
+				21BB329C1C774004006F9A3A /* RealmSwift.framework */,
+				21BB32971C773F08006F9A3A /* Realm.framework */,
+				21BB32981C773F08006F9A3A /* RealmSwift.framework */,
+				57CEF4C03DFDE992D399AFF8 /* Pods_CreatubblesAPIClient.framework */,
+				C976C6C2233F7FB94E731680 /* Pods_CreatubblesAPIClientTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5E9519F66C7D83FC3B57FBC6 /* Pods */ = {
+		790BA5BFE53C88A7819E8368 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				055A4A2D59C871AD4EC1E7B9 /* Pods-CreatubblesAPIClient.debug.xcconfig */,
-				9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */,
-				AB74205CC51A73FB798D192F /* Pods-CreatubblesAPIClientTests.debug.xcconfig */,
-				3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */,
+				02230270A8D1A1341B6FF6E6 /* Pods-CreatubblesAPIClient.debug.xcconfig */,
+				B78BEC23B64A58009FBB629B /* Pods-CreatubblesAPIClient.release.xcconfig */,
+				7554C263D40AB1380D49BFC6 /* Pods-CreatubblesAPIClientTests.debug.xcconfig */,
+				7158BD3386B61A0E2C22D78A /* Pods-CreatubblesAPIClientTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -461,12 +533,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1815D5561C63658000EF4C38 /* Build configuration list for PBXNativeTarget "CreatubblesAPIClient" */;
 			buildPhases = (
-				3CE9937AB37645EA09DB7662 /* Check Pods Manifest.lock */,
+				254E3F4CDD9059E5283CF509 /* Check Pods Manifest.lock */,
 				1815D53D1C63658000EF4C38 /* Sources */,
 				1815D53E1C63658000EF4C38 /* Frameworks */,
 				1815D53F1C63658000EF4C38 /* Headers */,
 				1815D5401C63658000EF4C38 /* Resources */,
-				CE0DA052860E28DBC2440DF4 /* Copy Pods Resources */,
+				7C24342BFB12F3CCF4B374C0 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -481,12 +553,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1815D5591C63658000EF4C38 /* Build configuration list for PBXNativeTarget "CreatubblesAPIClientTests" */;
 			buildPhases = (
-				7BA17717BE2CEC102072EE05 /* Check Pods Manifest.lock */,
+				68AB9E2AA8E3A5F7B904C837 /* Check Pods Manifest.lock */,
 				1815D5481C63658000EF4C38 /* Sources */,
 				1815D5491C63658000EF4C38 /* Frameworks */,
 				1815D54A1C63658000EF4C38 /* Resources */,
-				91FA420455989F8BB8ED4F9D /* Embed Pods Frameworks */,
-				8B6D303F7B04F5C5E7340950 /* Copy Pods Resources */,
+				5C3B7A0092DBB7534DFB7AFA /* Embed Pods Frameworks */,
+				CE41FC97B1FED466A0F19CEB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -553,7 +625,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3CE9937AB37645EA09DB7662 /* Check Pods Manifest.lock */ = {
+		254E3F4CDD9059E5283CF509 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -568,37 +640,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		7BA17717BE2CEC102072EE05 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		8B6D303F7B04F5C5E7340950 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		91FA420455989F8BB8ED4F9D /* Embed Pods Frameworks */ = {
+		5C3B7A0092DBB7534DFB7AFA /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -613,7 +655,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CE0DA052860E28DBC2440DF4 /* Copy Pods Resources */ = {
+		68AB9E2AA8E3A5F7B904C837 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7C24342BFB12F3CCF4B374C0 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -628,6 +685,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CE41FC97B1FED466A0F19CEB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -639,6 +711,7 @@
 				187901F01C6B37F4008F5302 /* NewCreatorResponseHandler.swift in Sources */,
 				18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */,
 				1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */,
+				21BB32AA1C77495D006F9A3A /* CreationUploadEntity.swift in Sources */,
 				188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */,
 				188ECF601C71E96100AFEE4F /* CreationUploadModelBuilder.swift in Sources */,
 				2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */,
@@ -649,8 +722,10 @@
 				1847FBEC1C75D2BF00FE5FF3 /* CreatubblesAPIClientDefaults.swift in Sources */,
 				188ECF5C1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift in Sources */,
 				188ECF6D1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift in Sources */,
+				21BB32A11C77437D006F9A3A /* CreationUploadSessionEntity.swift in Sources */,
 				18779E011C69F707000BFB57 /* GroupModelBuilder.swift in Sources */,
 				187902041C6C8BFC008F5302 /* GalleryModelBuilder.swift in Sources */,
+				21BB32A61C7743D2006F9A3A /* NewCreationDataEntity.swift in Sources */,
 				18779DF51C69E80F000BFB57 /* ProfileResponseHandler.swift in Sources */,
 				188ECF731C747FDE00AFEE4F /* String+Path.swift in Sources */,
 				180C97B11C6DEA4100BC682D /* Creation.swift in Sources */,
@@ -670,6 +745,7 @@
 				18779E0F1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift in Sources */,
 				187902021C6C8BAF008F5302 /* Gallery.swift in Sources */,
 				18779DF31C69E7FB000BFB57 /* ProfileRequest.swift in Sources */,
+				21BB32AC1C774979006F9A3A /* CreationEntity.swift in Sources */,
 				180C97A81C6CC0DA00BC682D /* NewGalleryRequest.swift in Sources */,
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,
 				180C97AA1C6CC0F100BC682D /* NewGalleryResponseHandler.swift in Sources */,
@@ -799,13 +875,17 @@
 		};
 		1815D5571C63658000EF4C38 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 055A4A2D59C871AD4EC1E7B9 /* Pods-CreatubblesAPIClient.debug.xcconfig */;
+			baseConfigurationReference = 02230270A8D1A1341B6FF6E6 /* Pods-CreatubblesAPIClient.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Utilities/realm-swift-0.98.2/ios/swift-2.1.1",
+				);
 				INFOPLIST_FILE = "CreatubblesAPIClient/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -818,13 +898,17 @@
 		};
 		1815D5581C63658000EF4C38 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */;
+			baseConfigurationReference = B78BEC23B64A58009FBB629B /* Pods-CreatubblesAPIClient.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Utilities/realm-swift-0.98.2/ios/swift-2.1.1",
+				);
 				INFOPLIST_FILE = "CreatubblesAPIClient/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -836,8 +920,9 @@
 		};
 		1815D55A1C63658000EF4C38 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB74205CC51A73FB798D192F /* Pods-CreatubblesAPIClientTests.debug.xcconfig */;
+			baseConfigurationReference = 7554C263D40AB1380D49BFC6 /* Pods-CreatubblesAPIClientTests.debug.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "~/creatubbles_api_framework_ios/utilities/realm-swift-0.98.2/ios/swift-2.1.1/RealmSwift.framework";
 				INFOPLIST_FILE = CreatubblesAPIClientTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;
@@ -847,8 +932,9 @@
 		};
 		1815D55B1C63658000EF4C38 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */;
+			baseConfigurationReference = 7158BD3386B61A0E2C22D78A /* Pods-CreatubblesAPIClientTests.release.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "~/creatubbles_api_framework_ios/utilities/realm-swift-0.98.2/ios/swift-2.1.1/RealmSwift.framework";
 				INFOPLIST_FILE = CreatubblesAPIClientTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;
