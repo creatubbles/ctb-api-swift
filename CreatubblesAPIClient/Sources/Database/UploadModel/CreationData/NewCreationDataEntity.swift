@@ -11,7 +11,6 @@ import RealmSwift
 
 class NewCreationDataEntity: Object
 {
-    
     dynamic var name: String? = nil
     dynamic var reflectionText: String? = nil
     dynamic var reflectionVideoUrl: String? = nil

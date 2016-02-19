@@ -45,6 +45,20 @@ class CreationUploadSession: ResponseHandler
         self.relativeImageFilePath = "images/"+imageFileName
     }
     
+    init(creationUploadSessionEntity: CreationUploadSessionEntity, requestSender: RequestSender)
+    {
+        self.isActive = creationUploadSessionEntity.isActive!
+        self.state = creationUploadSessionEntity.state
+        self.requestSender = requestSender
+        self.imageFileName = creationUploadSessionEntity.imageFileName
+        self.relativeImageFilePath = creationUploadSessionEntity.relativeImageFilePath
+        
+        self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, image: UIImage(contentsOfFile: relativeImageFilePath)!)
+        
+        self.creation = Creation(creationEntity: creationUploadSessionEntity.creationEntity!)
+        self.creationUpload = CreationUpload(creationUploadEntity: creationUploadSessionEntity.creationUploadEntity!)
+    }
+    
     func start(completion: CreationClousure?)
     {
         self.isActive = true

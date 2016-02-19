@@ -53,4 +53,24 @@ public class Creation
         shortUrl = builder.shortUrl!
         createdAtAge = builder.createdAtAge!
     }
+    init(creationEntity: CreationEntity)
+    {
+        identifier = creationEntity.identifier!
+        name = creationEntity.name!
+        createdAt = creationEntity.createdAt!
+        updatedAt = creationEntity.updatedAt!
+        createdAtYear = creationEntity.createdAtYear!
+        createdAtMonth = creationEntity.createdAtMonth!
+        imageStatus = creationEntity.imageStatus!
+        image = creationEntity.image!
+        bubblesCount = creationEntity.bubblesCount!
+        commentsCount = creationEntity.commentsCount!
+        viewsCount = creationEntity.viewsCount!
+        lastBubbledAt = creationEntity.lastBubbledAt!
+        lastCommentedAt = creationEntity.lastCommentedAt!
+        lastSubmittedAt = creationEntity.lastSubmittedAt!
+        approved = creationEntity.approved!
+        shortUrl = creationEntity.shortUrl!
+        createdAtAge = creationEntity.createdAtAge!
+    }
 }

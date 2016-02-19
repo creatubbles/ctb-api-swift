@@ -54,6 +54,18 @@ public struct NewCreationData
         self.image = image        
     }
     
+    init(creationDataEntity: NewCreationDataEntity, image: UIImage)
+    {
+        self.image = image
+        self.name = creationDataEntity.name
+        self.reflectionText = creationDataEntity.reflectionText
+        self.reflectionVideoUrl = creationDataEntity.reflectionVideoUrl
+        self.galleryId = creationDataEntity.galleryId
+        self.creatorIds = creationDataEntity.creatorIds
+        self.creationMonth = creationDataEntity.creationMonth
+        self.creationYear = creationDataEntity.creationYear
+    }
+    
     public var image: UIImage
     public var name: String? = nil
     public var reflectionText: String? = nil

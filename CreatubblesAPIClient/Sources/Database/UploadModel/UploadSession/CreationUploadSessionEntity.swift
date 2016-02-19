@@ -11,12 +11,11 @@ import RealmSwift
 
 class CreationUploadSessionEntity: Object
 {
-
     dynamic var creationDataEntity: NewCreationDataEntity?
     var stateRaw: Int? = 0
     var isActive: Bool?
-    dynamic var imageFileName: String?
-    dynamic var relativeImageFilePath: String?
+    dynamic var imageFileName: String = ""
+    dynamic var relativeImageFilePath: String = ""
     
     dynamic var creationEntity: CreationEntity?
     dynamic var creationUploadEntity: CreationUploadEntity?
