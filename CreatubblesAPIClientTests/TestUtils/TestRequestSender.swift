@@ -87,6 +87,10 @@ class TestRequestSender: RequestSender
         {
             return TestResponses.fetchCreationsTestResponse
         }
+        if request is GallerySubmissionRequest
+        {
+            return TestResponses.gallerySubmissionTestResponse
+        }
         
         
         return Dictionary<String, AnyObject>()
