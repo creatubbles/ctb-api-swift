@@ -223,7 +223,7 @@ class CreatubblesAPIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getGalleries(identifier, pagingData: nil, sort: .Popular)
+                        client.getGalleries(identifier, pagingData: nil, sort: nil)
                         {
                             (galleries, error) -> (Void) in
                             expect(galleries).notTo(beNil())
