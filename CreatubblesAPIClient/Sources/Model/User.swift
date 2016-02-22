@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum Gender: Int
-{
-    case Male = 0
-    case Female = 1
-}
-
 enum Role: String
 {
     case Parent = "parent"
@@ -21,7 +15,7 @@ enum Role: String
     case Creator = "creator"
 }
 
-class User: NSObject
+public class User
 {
     let identifier: String
     let username: String

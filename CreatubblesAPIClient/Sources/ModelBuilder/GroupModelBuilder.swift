@@ -9,9 +9,9 @@
 import UIKit
 import ObjectMapper
 
-class GroupModelBuilder: NSObject, Mappable
+class GroupModelBuilder: Mappable
 {
-    var identifier: String?
+    var identifier: Int?
     var name: String?
     var taggingsCount: Int?
     

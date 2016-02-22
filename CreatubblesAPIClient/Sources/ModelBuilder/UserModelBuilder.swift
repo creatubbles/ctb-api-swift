@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-class UserModelBuilder: NSObject, Mappable
+class UserModelBuilder: Mappable
 {
     var identifier: String?
     var username: String?
@@ -107,7 +107,11 @@ class UserModelBuilder: NSObject, Mappable
     
     func parseGroups() -> Array<Group>
     {
-        print(self.groups)
-        return Array<Group>()
+        var groups = Array<Group>()
+        for builder in self.groups!
+        {
+            groups.append(Group(builder: builder))
+        }
+        return groups
     }
 }

@@ -38,10 +38,9 @@ class RequestSender: NSObject
         return client
     }
     
-    //MARK: - Interface
-    func login(username: String, password: String, completion: (ErrorType?) -> Void)
+    //MARK: - Authentication
+    func login(username: String, password: String, completion: ((ErrorType?) -> Void)?)
     {
-
         oauth2Client.username = username
         oauth2Client.password = password
         oauth2Client.onAuthorize =
@@ -51,7 +50,7 @@ class RequestSender: NSObject
             {
                 weakSelf.oauth2Client.onAuthorize = nil
             }
-            completion(nil)
+            completion?(nil)
         }        
         oauth2Client.onFailure =
         {
@@ -60,31 +59,46 @@ class RequestSender: NSObject
             {
                 weakSelf.oauth2Client.onFailure = nil
             }
-            completion(error)
+            completion?(error)
         }
         oauth2Client.authorize()
     }
     
     func logout()
-    {
-        oauth2Client.forgetClient()
+    {        
         oauth2Client.forgetTokens()
     }
     
+    func isLoggedIn() -> Bool
+    {
+        return oauth2Client.hasUnexpiredAccessToken()
+    }
+    
+    //MARK: - Request sending
     func send(request: Request, withResponseHandler handler: ResponseHandler)
     {
+        Logger.log.debug("Sending request: \(request.dynamicType)")
         oauth2Client.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
         .validate()
-        .responseString(completionHandler:
-        {
-            (response: Response<String, NSError>) -> Void in
-            print(response.result)
-        })
         .responseJSON
         {
             response -> Void in
             handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)
         }
+    }
+    
+    //MARK: - Creation sending
+    func send(data: NSData, uploadData: CreationUpload, progressChanged: (bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int) -> Void, completion: (error: ErrorType?) -> Void)
+    {
+        Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], data: data)
+        .progress(
+        {
+            (written, totalWritten, totalExpected) -> Void in
+            progressChanged(bytesWritten: Int(written), totalBytesWritten: Int(totalWritten), totalBytesExpectedToWrite: Int(totalExpected))
+        })
+        .responseString(completionHandler: { (response) -> Void in
+            completion(error: response.result.error)
+        })
     }
     
     //MARK: - Utils

@@ -21,13 +21,13 @@ class TestRequestSender: RequestSender
     }
     
     //MARK: - Interface
-    override func login(username: String, password: String, completion: (ErrorType?) -> Void)
+    override func login(username: String, password: String, completion: ((ErrorType?) -> Void)?)
     {
         let authorized = username == TestConfiguration.username &&
                          password == TestConfiguration.password
         let error: NSError? = authorized ? nil : NSError(domain: "CreatubblesTest", code: 0, userInfo: nil)
         isLoggedIn = authorized
-        completion(error)
+        completion?(error)
     }
     
     override func logout()
@@ -37,6 +37,7 @@ class TestRequestSender: RequestSender
     
     override func send(request: Request, withResponseHandler handler: ResponseHandler)
     {
+        Logger.log.debug("Sending request: \(request.dynamicType)")
         if(isLoggedIn)
         {
             handler.handleResponse(responseForRequest(request), error: nil)
@@ -69,7 +70,28 @@ class TestRequestSender: RequestSender
         if request is GalleriesRequest && !request.endpoint.containsString("/")
         {
             return TestResponses.galleriesTestResponse
-        }        
+        }
+        if request is NewGalleryRequest
+        {
+            return TestResponses.newGalleryTestResponse
+        }
+        if request is NewCreationRequest
+        {
+            return TestResponses.newCreationTestResponse
+        }
+        if request is NewCreationUploadRequest
+        {
+            return TestResponses.newCreationUploadTestResponse
+        }
+        if request is FetchCreationsRequest
+        {
+            return TestResponses.fetchCreationsTestResponse
+        }
+        if request is GallerySubmissionRequest
+        {
+            return TestResponses.gallerySubmissionTestResponse
+        }
+        
         
         return Dictionary<String, AnyObject>()
     }

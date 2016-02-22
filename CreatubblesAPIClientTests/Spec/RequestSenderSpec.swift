@@ -28,6 +28,7 @@ class RequestSenderSpec: QuickSpec
             it("Should login with proper credentials")
             {
                 let sender = TestComponentsFactory.requestSender
+                sender.logout()
                 waitUntil(timeout: 10)
                 {
                     done in

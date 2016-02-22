@@ -11,13 +11,13 @@ import ObjectMapper
 
 class CreatorsAndManagersResponseHandler: ResponseHandler
 {
-    private let completion: (users: Array<User>?, error:NSError?) -> Void
-    init(completion: (users: Array<User>?, error:NSError?) -> Void)
+    private let completion: UsersClousure?
+    init(completion: UsersClousure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: NSError?)
+    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         if  let response = response,
             let usersBuilder = Mapper<UserModelBuilder>().mapArray(response["data"])
@@ -27,11 +27,11 @@ class CreatorsAndManagersResponseHandler: ResponseHandler
             {
                 users.append(User(builder: builder))
             }
-            completion(users: users, error: error)
+            completion?(users, error)
         }
         else
         {
-            completion(users: nil, error: error)
+            completion?(nil, error)
         }
     }
 }

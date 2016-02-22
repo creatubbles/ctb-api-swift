@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Gallery: NSObject
+public class Gallery
 {
     let identifier: String
     let name: String

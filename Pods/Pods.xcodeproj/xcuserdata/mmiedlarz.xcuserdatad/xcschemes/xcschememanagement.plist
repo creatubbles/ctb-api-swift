@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>XCGLogger.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>p2.OAuth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -53,6 +58,11 @@
 			<true/>
 		</dict>
 		<key>1AE4B9E048A0E983F16913493BB93BAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3323E2ECBB3C486E0D8B2B128D35F0F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -83,6 +93,11 @@
 			<true/>
 		</dict>
 		<key>C8F54543305BD95F34FAB796C9CAAFCA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E149C4B675763110B1E728CA80392345</key>
 		<dict>
 			<key>primary</key>
 			<true/>
