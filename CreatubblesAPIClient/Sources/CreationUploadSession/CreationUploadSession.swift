@@ -34,6 +34,8 @@ class CreationUploadSession: ResponseHandler
     var creation: Creation?
     var creationUpload: CreationUpload?
     
+    var databaseDAO: DatabaseDAO?
+        
     init(data: NewCreationData, requestSender: RequestSender)
     {
         self.isActive = false
@@ -65,6 +67,7 @@ class CreationUploadSession: ResponseHandler
         saveImageOnDisk(nil) { [weak self](error) -> Void in
             if let weakSelf = self {
                 weakSelf.allocateCreation(error, completion: { (error) -> Void in
+                    self?.databaseDAO?.saveCreationUploadSessionToDatabase(self!)
                     weakSelf.obtainUploadPath(error, completion: { (error) -> Void in
                         weakSelf.uploadImage(error, completion: { (error) -> Void in
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
@@ -132,6 +135,7 @@ class CreationUploadSession: ResponseHandler
             completion(error)
         }
         requestSender.send(request, withResponseHandler: handler)
+        
     }
 
     private func obtainUploadPath(error: ErrorType?, completion: (ErrorType?) -> Void)

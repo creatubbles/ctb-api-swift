@@ -63,7 +63,7 @@ class DatabaseService: NSObject
         }
     }
     
-    func getNewCreationDataEntityFromCreationData(newCreationData: NewCreationData) -> NewCreationDataEntity
+    private func getNewCreationDataEntityFromCreationData(newCreationData: NewCreationData) -> NewCreationDataEntity
     {
         let newCreationDataEntity = NewCreationDataEntity()
         
@@ -77,7 +77,7 @@ class DatabaseService: NSObject
         return newCreationDataEntity
     }
     
-    func getCreationEntityFromCreation(creation: Creation) -> CreationEntity
+    private func getCreationEntityFromCreation(creation: Creation) -> CreationEntity
     {
         let creationEntity = CreationEntity()
         
@@ -102,7 +102,7 @@ class DatabaseService: NSObject
         return creationEntity
     }
     
-    func getCreationUploadEntityFromCreationUpload(creationUpload: CreationUpload) -> CreationUploadEntity
+    private func getCreationUploadEntityFromCreationUpload(creationUpload: CreationUpload) -> CreationUploadEntity
     {
        let creationUploadEntity = CreationUploadEntity()
         
