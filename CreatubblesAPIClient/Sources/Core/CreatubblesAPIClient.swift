@@ -77,7 +77,7 @@ public class CreatubblesAPIClient: NSObject
         galleryDAO.getGallery(galleryId, completion: completion)
     }
     
-    public func getGalleries(userId: String?, pagingData: PagingData, sort: SortOrder, completion: GalleriesClousure?)
+    public func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClousure?)
     {
         galleryDAO.getGalleries(userId, pagingData: pagingData, sort: sort, completion: completion)
     }

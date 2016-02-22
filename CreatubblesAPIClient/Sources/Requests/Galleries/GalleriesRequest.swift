@@ -36,7 +36,7 @@ class GalleriesRequest: Request
         self.userId = nil
     }
     
-    init(page: Int, perPage: Int, sort: SortOrder, userId: String?)
+    init(page: Int?, perPage: Int?, sort: SortOrder?, userId: String?)
     {
         self.galleryId = nil
         self.page = page

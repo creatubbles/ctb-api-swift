@@ -28,9 +28,9 @@ class GalleryDAO
         requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getGalleries(userId: String?, pagingData: PagingData, sort: SortOrder, completion: GalleriesClousure?)
+    func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClousure?)
     {
-        let request = GalleriesRequest(page: pagingData.page, perPage: pagingData.pageSize, sort: sort, userId: userId)
+        let request = GalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, sort: sort, userId: userId)
         let handler = GalleriesResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }

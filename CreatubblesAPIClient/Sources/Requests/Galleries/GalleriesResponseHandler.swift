@@ -17,7 +17,7 @@ class GalleriesResponseHandler: ResponseHandler
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: NSError?)
+    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         if  let response = response,
             let builders = Mapper<GalleryModelBuilder>().mapArray(response["data"])

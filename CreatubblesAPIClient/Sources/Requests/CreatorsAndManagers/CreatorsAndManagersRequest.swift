@@ -23,9 +23,9 @@ class CreatorsAndManagersRequest: Request
     private let userId: String?
     private let page: Int?
     private let perPage: Int?
-    private let scope: Array<CreatorsAndManagersScopeElement>?
+    private let scope: CreatorsAndManagersScopeElement?
     
-    init(userId: String? = nil, page: Int? = nil, perPage: Int? = nil, scope:Array<CreatorsAndManagersScopeElement>? = nil)
+    init(userId: String? = nil, page: Int? = nil, perPage: Int? = nil, scope:CreatorsAndManagersScopeElement? = nil)
     {
         self.userId = userId
         self.page = page
@@ -51,15 +51,7 @@ class CreatorsAndManagersRequest: Request
         }
         if let scope = scope
         {
-            var scopeStringSet = Set<String>()
-            for option in scope
-            {
-                scopeStringSet.insert(option.rawValue)
-            }
-            if scopeStringSet.count > 0
-            {
-                params["scope"] = Array(scopeStringSet)
-            }
+            params["scope"] = scope.rawValue
         }
         
         return params

@@ -17,7 +17,7 @@ class CreatorsAndManagersResponseHandler: ResponseHandler
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: NSError?)
+    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         if  let response = response,
             let usersBuilder = Mapper<UserModelBuilder>().mapArray(response["data"])

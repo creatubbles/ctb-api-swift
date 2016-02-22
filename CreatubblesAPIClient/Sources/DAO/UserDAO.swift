@@ -33,14 +33,14 @@ class UserDAO
     
     func getCreators(userId: String?, pagingData: PagingData?,completion: UsersClousure?)
     {
-        let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: [CreatorsAndManagersScopeElement.Creators])
+        let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Creators)
         let handler = CreatorsAndManagersResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }
     
     func getManagers(userId: String?, pagingData: PagingData?,completion: UsersClousure?)
     {
-        let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: [CreatorsAndManagersScopeElement.Managers])
+        let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Managers)
         let handler = CreatorsAndManagersResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }

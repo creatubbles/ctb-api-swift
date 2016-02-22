@@ -83,20 +83,19 @@ class RequestSpec: QuickSpec
                 let userId = "TestUserId"
                 let page = 1
                 let pageCount = 10
-                let scope = [CreatorsAndManagersScopeElement.Creators, .Managers]
-                let scopeParams = ["creators","managers"]
+                let scope = CreatorsAndManagersScopeElement.Creators
 
                 let request = CreatorsAndManagersRequest(userId: userId, page: page, perPage: pageCount, scope: scope)
                 let params = request.parameters
                 expect(params["page"] as? Int).to(equal(page))
                 expect(params["per_page"] as? Int).to(equal(pageCount))
                 expect(params["user_id"] as? String).to(equal(userId))
-                expect(params["scope"] as? Array<String>).to(equal(scopeParams))
+                expect(params["scope"] as? String).to(equal(scope.rawValue))
             }
             
             it("Should return correct value after login")
             {
-                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -104,7 +103,7 @@ class RequestSpec: QuickSpec
                     {
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(CreatorsAndManagersRequest(), withResponseHandler: DummyResponseHandler()
+                        sender.send(CreatorsAndManagersRequest(userId:nil, page: nil, perPage: nil, scope:.Managers), withResponseHandler: DummyResponseHandler()
                         {
                             (response, error) -> Void in
                             expect(response).notTo(beNil())
@@ -487,5 +486,52 @@ class RequestSpec: QuickSpec
                 expect(failedRequest.parameters["aborted_with"] as? String).to(equal(abortError))
             }
         }
+        
+        describe("Creation Submission request")
+        {
+            it("Should have proper method")
+            {
+                let request = GallerySubmissionRequest(galleryId: "12345", creationId: "12345")
+                expect(request.method).to(equal(RequestMethod.POST))
+            }
+            
+            it("Should have proper endpoint")
+            {
+                let request = GallerySubmissionRequest(galleryId: "12345", creationId: "12345")
+                expect(request.endpoint).to(equal("gallery_submissions"))
+            }
+            
+            it("Should have proper parameters")
+            {
+                let creationId = "TestCreationId"
+                let galleryId = "TestGalleryId"
+                let request = GallerySubmissionRequest(galleryId: galleryId, creationId: creationId)
+                expect(request.parameters["gallery_id"] as? String).to(equal(galleryId))
+                expect(request.parameters["creation_id"] as? String).to(equal(creationId))
+            }
+            
+            it("Should return correct value after login")
+            {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(GallerySubmissionRequest(galleryId: "x3pUEOeZ", creationId: "OvM8Xmqj"), withResponseHandler: DummyResponseHandler()
+                        {
+                            (response, error) -> Void in
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
+
     }
 }

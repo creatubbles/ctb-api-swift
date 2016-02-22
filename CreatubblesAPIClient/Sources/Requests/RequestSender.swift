@@ -66,7 +66,6 @@ class RequestSender: NSObject
     
     func logout()
     {        
-        oauth2Client.forgetClient()
         oauth2Client.forgetTokens()
     }
     
@@ -81,11 +80,6 @@ class RequestSender: NSObject
         Logger.log.debug("Sending request: \(request.dynamicType)")
         oauth2Client.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
         .validate()
-        .responseString(completionHandler:
-        {
-            (response: Response<String, NSError>) -> Void in
-            print(response.result)
-        })
         .responseJSON
         {
             response -> Void in
