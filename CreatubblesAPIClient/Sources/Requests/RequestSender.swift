@@ -66,7 +66,7 @@ class RequestSender: NSObject
     
     func logout()
     {        
-        oauth2Client.forgetClient()
+//        oauth2Client.forgetClient()
         oauth2Client.forgetTokens()
     }
     

@@ -224,6 +224,10 @@ class CreationUploadSession: ResponseHandler
             {
                 completion(error)
             }
+            defer
+            {
+            
+            }
         }
         if fileManager.fileExistsAtPath(url.path!)
         {

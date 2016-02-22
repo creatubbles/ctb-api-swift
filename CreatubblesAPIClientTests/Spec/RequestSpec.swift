@@ -83,20 +83,19 @@ class RequestSpec: QuickSpec
                 let userId = "TestUserId"
                 let page = 1
                 let pageCount = 10
-                let scope = [CreatorsAndManagersScopeElement.Creators, .Managers]
-                let scopeParams = ["creators","managers"]
+                let scope = CreatorsAndManagersScopeElement.Creators
 
                 let request = CreatorsAndManagersRequest(userId: userId, page: page, perPage: pageCount, scope: scope)
                 let params = request.parameters
                 expect(params["page"] as? Int).to(equal(page))
                 expect(params["per_page"] as? Int).to(equal(pageCount))
                 expect(params["user_id"] as? String).to(equal(userId))
-                expect(params["scope"] as? Array<String>).to(equal(scopeParams))
+                expect(params["scope"] as? String).to(equal(scope.rawValue))
             }
             
             it("Should return correct value after login")
             {
-                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -104,7 +103,7 @@ class RequestSpec: QuickSpec
                     {
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(CreatorsAndManagersRequest(), withResponseHandler: DummyResponseHandler()
+                        sender.send(CreatorsAndManagersRequest(userId:nil, page: nil, perPage: nil, scope:.Managers), withResponseHandler: DummyResponseHandler()
                         {
                             (response, error) -> Void in
                             expect(response).notTo(beNil())
