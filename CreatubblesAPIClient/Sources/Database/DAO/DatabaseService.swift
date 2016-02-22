@@ -49,7 +49,7 @@ class DatabaseService: NSObject
         return creationUploadSessionEntitiesArray
     }
     
-    func fetchASincleCreationUploadSessionWithCreationIdentifier(creationIdentifier: String) -> CreationEntity
+    func fetchASincleCreationUploadSessionWithCreationIdentifier(creationIdentifier: String) -> CreationEntity?
     {
         let creationUploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter("creationEntityIdentifier = %@", creationIdentifier)
         if(creationUploadSessionEntities.count == 1)
@@ -59,6 +59,7 @@ class DatabaseService: NSObject
         else
         {
             NSLog("Incorrect number of objects in RLMResults array when fetching a single Creation Upload Session with id: %@", creationIdentifier)
+            return nil
         }
     }
     

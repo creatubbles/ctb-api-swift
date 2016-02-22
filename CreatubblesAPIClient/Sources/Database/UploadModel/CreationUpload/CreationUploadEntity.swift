@@ -11,9 +11,9 @@ import RealmSwift
 
 class CreationUploadEntity: Object
 {
-    dynamic var identifier: String = ""
-    dynamic var uploadUrl: String = ""
-    dynamic var contentType: String = ""
-    dynamic var pingUrl: String = ""
+    dynamic var identifier: String?
+    dynamic var uploadUrl: String?
+    dynamic var contentType: String?
+    dynamic var pingUrl: String?
     dynamic var completedAt: NSDate?
 }

@@ -50,8 +50,8 @@ class CreationUploadSession: ResponseHandler
         self.isActive = creationUploadSessionEntity.isActive!
         self.state = creationUploadSessionEntity.state
         self.requestSender = requestSender
-        self.imageFileName = creationUploadSessionEntity.imageFileName
-        self.relativeImageFilePath = creationUploadSessionEntity.relativeImageFilePath
+        self.imageFileName = creationUploadSessionEntity.imageFileName!
+        self.relativeImageFilePath = creationUploadSessionEntity.relativeImageFilePath!
         
         self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, image: UIImage(contentsOfFile: relativeImageFilePath)!)
         

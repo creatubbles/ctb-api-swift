@@ -26,10 +26,10 @@ class CreationUpload: NSObject
     }
     init(creationUploadEntity: CreationUploadEntity)
     {
-        identifier = creationUploadEntity.identifier
-        uploadUrl = creationUploadEntity.uploadUrl
-        contentType = creationUploadEntity.contentType
-        pingUrl = creationUploadEntity.pingUrl
+        identifier = creationUploadEntity.identifier!
+        uploadUrl = creationUploadEntity.uploadUrl!
+        contentType = creationUploadEntity.contentType!
+        pingUrl = creationUploadEntity.pingUrl!
         completedAt = creationUploadEntity.completedAt
     }
 }
