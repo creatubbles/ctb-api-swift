@@ -8,14 +8,25 @@
 
 import UIKit
 
-enum Role: String
+enum Role: Int
 {
-    case Parent = "parent"
-    case Teacher = "teacher"
-    case Creator = "creator"
+    case Parent
+    case Teacher
+    case Creator        
+    
+    var stringValue: String
+    {
+        switch self
+        {
+            case .Parent:   return "parent"
+            case .Teacher:  return "teacher"
+            case .Creator:  return "creator"
+        }
+    }
 }
 
-public class User
+@objc
+public class User: NSObject
 {
     let identifier: String
     let username: String

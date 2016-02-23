@@ -8,6 +8,7 @@
 
 import UIKit
 
+@objc
 class CreationUpload: NSObject
 {
     let identifier: String

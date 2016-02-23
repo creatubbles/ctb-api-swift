@@ -8,7 +8,8 @@
 
 import UIKit
 
-public class Creation
+@objc
+public class Creation: NSObject
 {
     let identifier: String
     let name: String

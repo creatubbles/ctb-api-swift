@@ -8,7 +8,8 @@
 
 import UIKit
 
-class Group
+@objc
+class Group: NSObject
 {
     let identifier: Int
     let name: String

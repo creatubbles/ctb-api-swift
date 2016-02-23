@@ -97,7 +97,13 @@ class UserModelBuilder: Mappable
     //MARK: - Parsing
     func parseRole() -> Role
     {
-        return Role(rawValue: self.role!)!
+        switch self.role!
+        {
+            case "parent":  return Role.Parent
+            case "teacher": return Role.Teacher
+            case "creator": return Role.Creator
+            default:        return Role.Creator
+        }
     }
     
     func parseGender() -> Gender
