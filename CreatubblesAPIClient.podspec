@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CreatubblesAPIClient"
-  s.version      = "0.0.3"
+  s.version      = "0.0.5"
   s.summary      = "A Creatubbles api framework pod."
 
   # This description is used to generate tags and improve search results.
@@ -145,5 +145,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.ios.dependency 'ObjectMapper', '~> 1.1'
   s.ios.dependency 'Quick', '~> 0.9.0'
   s.ios.dependency 'Nimble', '3.0.0'
-  s.ios.dependency 'XCGLogger', '~> 3.2'
+  s.ios.dependency 'XCGLogger, '~> 3.2'
+
 end
