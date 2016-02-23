@@ -67,7 +67,7 @@ class CreationUploadSession: ResponseHandler
         saveImageOnDisk(nil) { [weak self](error) -> Void in
             if let weakSelf = self {
                 weakSelf.allocateCreation(error, completion: { (error) -> Void in
-                    self?.databaseDAO?.saveCreationUploadSessionToDatabase(self!)
+                    weakSelf.databaseDAO?.saveCreationUploadSessionToDatabase(self!)
                     weakSelf.obtainUploadPath(error, completion: { (error) -> Void in
                         weakSelf.uploadImage(error, completion: { (error) -> Void in
                             weakSelf.notifyServer(error, completion: { (error) -> Void in

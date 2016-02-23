@@ -938,7 +938,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7554C263D40AB1380D49BFC6 /* Pods-CreatubblesAPIClientTests.debug.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "~/creatubbles_api_framework_ios/utilities/realm-swift-0.98.2/ios/swift-2.1.1/RealmSwift.framework";
+				FRAMEWORK_SEARCH_PATHS = "./Utilities/realm-swift-0.98.2/ios/swift-2.1.1/";
 				INFOPLIST_FILE = CreatubblesAPIClientTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;
@@ -950,7 +950,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7158BD3386B61A0E2C22D78A /* Pods-CreatubblesAPIClientTests.release.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "~/creatubbles_api_framework_ios/utilities/realm-swift-0.98.2/ios/swift-2.1.1/RealmSwift.framework";
+				FRAMEWORK_SEARCH_PATHS = "./Utilities/realm-swift-0.98.2/ios/swift-2.1.1/";
 				INFOPLIST_FILE = CreatubblesAPIClientTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;
