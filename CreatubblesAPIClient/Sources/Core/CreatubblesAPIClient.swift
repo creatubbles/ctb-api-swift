@@ -8,6 +8,37 @@
 
 import UIKit
 
+//MARK: - Typealiases
+public typealias ErrorClousure = (ErrorType?) -> (Void)
+public typealias UserClousure = (User?, ErrorType?) -> (Void)
+public typealias UsersClousure = (Array<User>?, ErrorType?) -> (Void)
+public typealias CreationClousure = (Creation?, ErrorType?) -> (Void)
+public typealias CreationsClousure = (Array<Creation>?, ErrorType?) -> (Void)
+public typealias GalleryClousure = (Gallery?, ErrorType?) -> (Void)
+public typealias GalleriesClousure = (Array<Gallery>?, ErrorType?) -> (Void)
+
+//MARK: - Enums
+public enum Gender: Int
+{
+    case Male = 0
+    case Female = 1
+}
+
+public enum SortOrder: Int
+{
+    case Popular
+    case Recent
+    
+    var stringValue: String
+    {
+        switch self
+        {
+            case .Popular:  return "popular"
+            case .Recent:   return "recent"
+        }
+    }
+}
+
 public class CreatubblesAPIClient: NSObject
 {
     //MARK: - Internal

@@ -369,7 +369,7 @@ class RequestSpec: QuickSpec
             
             it("Should have proper parameters set")
             {
-                var data = NewCreationData(image: UIImage())
+                let data = NewCreationData(image: UIImage())
                 data.name = "TestCreationName"
                 data.creatorIds = ["TestCreationId1", "TestCreationId2"]
                 data.creationMonth = 1

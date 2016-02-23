@@ -75,7 +75,7 @@ class FetchCreationsRequest: Request
         }
         if let sort = sort
         {
-            params["sort"] = sort.rawValue
+            params["sort"] = sort.stringValue
         }
         if let keyword = keyword
         {

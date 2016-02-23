@@ -64,7 +64,7 @@ class GalleriesRequest: Request
             }
             if let sort = sort
             {
-                dict["sort"] = sort.rawValue
+                dict["sort"] = sort.stringValue
             }
             if let userId = userId
             {
