@@ -60,6 +60,26 @@ class CreatubblesAPIClientSpec: QuickSpec
                     })
                 }
             }
+            
+            //MARK: - Authentication
+            it("Should return error on failed login attempt")
+            {
+                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                client.logout()
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    client.login("WrongUsername", password: "WrongPassword", completion:
+                    {
+                        (error) -> (Void) in
+                        expect(error).notTo(beNil())
+                        expect(client.isLoggedIn()).to(beFalse())
+                        client.logout()
+                        expect(client.isLoggedIn()).to(beFalse())
+                        done()
+                    })
+                }
+            }
 
             //MARK: - Profile
             it("Should fetch current user")

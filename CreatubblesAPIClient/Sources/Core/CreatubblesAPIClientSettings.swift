@@ -18,6 +18,17 @@ public class CreatubblesAPIClientSettings: NSObject
     let apiVersion: String
     let apiPrefix: String
     
+    public init(appId: String, appSecret: String)
+    {
+        self.appId = appId
+        self.appSecret = appSecret
+        self.tokenUri = "https://staging.creatubbles.com/api/v2/oauth/token"
+        self.authorizeUri = "https://staging.creatubbles.com/api/v2/oauth/token"
+        self.baseUrl = "https://staging.creatubbles.com"
+        self.apiVersion = "v2"
+        self.apiPrefix = "api"
+    }
+    
     public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, apiPrefix: String)
     {
         self.appId = appId
