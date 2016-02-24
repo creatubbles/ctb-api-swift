@@ -1,30 +1,64 @@
-# ctb-api-swift
-=======
-# CreatubblesAPIClient
+[![](https://stateoftheart.creatubbles.com/wp-content/uploads/2015/01/ctb_home_logo.png)](https://www.creatubbles.com/)
 
 [![Version](https://img.shields.io/cocoapods/v/creatubbles_api.svg?style=flat)](https://cocoapods.org/pods/CreatubblesAPIClient)
 [![License](https://img.shields.io/cocoapods/l/creatubbles_api.svg?style=flat)](https://cocoapods.org/pods/CreatubblesAPIClient)
 [![Platform](https://img.shields.io/cocoapods/p/creatubbles_api.svg?style=flat)](https://cocoapods.org/pods/CreatubblesAPIClient)
 
-## Usage
+## Creatubbles API Client
+CreatubblesAPIClient is a simple library built to help you to communicate with latest [Creatubbles API](https://stateoftheart.creatubbles.com/api/). It works both with Swift and Objective-C.
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+Please note, that library is still under heavy development, and interface may be slightly changed.
 
-## Requirements
+## Author
+[Creatubbles](https://www.creatubbles.com/)
+
+## Dependencies
+- [Alamofire](https://github.com/Alamofire/Alamofire) 
+- [OAuth2](https://github.com/p2/OAuth2)
+- [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper)
+- [XCGLogger](https://github.com/DaveWoodCom/XCGLogger)
 
 ## Installation
 
-creatubblesAPIClient is available through [CocoaPods](http://cocoapods.org). To install
+CreatubblesAPIClient is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-```ruby
-pod "CreatubblesAPIClient"
+```Ruby
+pod 'CreatubblesAPIClient'
 ```
 
-## Author
+## Usage (Swift)
+```Swift
+import CreatubblesAPIClient
 
-Creatubbles
+let settings = CreatubblesAPIClientSettings(appId: "YOUR_APP_ID", appSecret: "YOUR_APP_SECRET")
+let client = CreatubblesAPIClient(settings: settings)
+
+client.login("username", password: "password")
+{
+  (error) -> (Void) in
+  if error != nil
+  {
+    print("Wohoo! We're authorized!")
+  }
+}
+```
+## Usage (Objective-C)
+Use methods with '_' prefix to communicate from Objective-C
+
+```ObjectiveC
+CreatubblesAPIClientSettings *settings = [[CreatubblesAPIClientSettings alloc] initWithAppId:@"YOUR_APP_ID" appSecret:@"YOUR_APP_SECRET"];
+CreatubblesAPIClient *client = [[CreatubblesAPIClient alloc] initWithSettings:settings];
+[client _login:@"username" password:@"password" completion:
+^(NSError* error)
+{
+  if(!error)
+  {
+    NSLog(@"Wohoo! We're authorized from Objective-C code!");
+  }
+}];
+```
 
 ## License
 
-CreatubblesAPIClient is available under the MIT license.
+CreatubblesAPIClient is available under the [MIT license](https://github.com/creatubbles/ctb-api-swift/blob/master/LICENSE.md).
