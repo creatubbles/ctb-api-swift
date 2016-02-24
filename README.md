@@ -12,13 +12,14 @@ Please note, that library is still under heavy development, and interface may be
 ## Author
 [Creatubbles](https://www.creatubbles.com/)
 
+
 ## Dependencies
 - [Alamofire](https://github.com/Alamofire/Alamofire) 
 - [OAuth2](https://github.com/p2/OAuth2)
 - [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper)
 - [XCGLogger](https://github.com/DaveWoodCom/XCGLogger)
 - [Quick](https://github.com/Quick/Quick)
-- [Nimble](https://pl.wikipedia.org/wiki/CompactFlash)
+- [Nimble](https://github.com/Quick/Nimble)
 
 ## Installation
 
