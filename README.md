@@ -60,4 +60,4 @@ CreatubblesAPIClient *client = [[CreatubblesAPIClient alloc] initWithSettings:se
 
 ## License
 
-CreatubblesAPIClient is available under the MIT license.
+CreatubblesAPIClient is available under the [MIT license](https://github.com/creatubbles/ctb-api-swift/blob/master/LICENSE.md).
