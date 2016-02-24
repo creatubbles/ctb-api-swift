@@ -63,7 +63,7 @@ CreatubblesAPIClient *client = [[CreatubblesAPIClient alloc] initWithSettings:se
 ```
 
 ## Contact
-In order to receive your AppId and AppSecret please contact us at [support@creatubbles.com](support@creatubbles.com).
+In order to receive your AppId and AppSecret please contact us at <support@creatubbles.com>.
 
 ## License
 
