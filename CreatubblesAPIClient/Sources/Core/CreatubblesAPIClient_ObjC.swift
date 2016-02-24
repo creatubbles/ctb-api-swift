@@ -133,7 +133,7 @@ extension CreatubblesAPIClient
     //MARK: - Utils
     private static func errorTypeToNSError(error: ErrorType?) -> NSError?
     {
-        if let error = error
+        if let _ = error
         {
             //TODO - Add proper error handling
             let userInfo = Dictionary<NSObject, AnyObject>()
