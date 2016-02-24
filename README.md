@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/creatubbles_api.svg?style=flat)](https://cocoapods.org/pods/CreatubblesAPIClient)
 
 ## Creatubbles API Client
-CreatubblesAPIClient is a simple library built to help you communicate with latest [Creatubbles API](https://stateoftheart.creatubbles.com/api/). It works with both Swift and Objective-C.
+CreatubblesAPIClient is a simple library built to help you communicate with the latest [Creatubbles API](https://stateoftheart.creatubbles.com/api/). It works with both Swift and Objective-C.
 
 Please note, that library is still under heavy development, and interface may be slightly changed.
 
