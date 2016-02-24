@@ -6,6 +6,7 @@
 
 ## Creatubbles API Client
 CreatubblesAPIClient is a simple library built to help you to communicate with latest [Creatubbles API](https://stateoftheart.creatubbles.com/api/). It works both with Swift and Objective-C.
+
 Please note, that library is still under heavy development, and interface may be slightly changed.
 
 ## Author
@@ -38,7 +39,7 @@ client.login("username", password: "password")
   (error) -> (Void) in
   if error != nil
   {
-    print("Wohoo! We're authorized")
+    print("Wohoo! We're authorized!")
   }
 }
 ```
@@ -46,14 +47,14 @@ client.login("username", password: "password")
 Use methods with '_' prefix to communicate from Objective-C
 
 ```ObjectiveC
-CreatubblesAPIClientSettings *settings = [[CreatubblesAPIClientSettings alloc] initWithAppId:@"APP_ID" appSecret:@"APP_SECRET"];
+CreatubblesAPIClientSettings *settings = [[CreatubblesAPIClientSettings alloc] initWithAppId:@"YOUR_APP_ID" appSecret:@"YOUR_APP_SECRET"];
 CreatubblesAPIClient *client = [[CreatubblesAPIClient alloc] initWithSettings:settings];
 [client _login:@"username" password:@"password" completion:
 ^(NSError* error)
 {
   if(!error)
   {
-    NSLog(@"Wohoo!");
+    NSLog(@"Wohoo! We're authorized from Objective-C code!");
   }
 }];
 ```
