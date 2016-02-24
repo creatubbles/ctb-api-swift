@@ -50,7 +50,6 @@ class FetchCreationsRequest: Request
         self.sort = nil
         self.keyword = nil
         self.creationId = creationId
-
     }
     
     func prepareParametersDictionary() -> Dictionary<String, AnyObject>
@@ -75,7 +74,7 @@ class FetchCreationsRequest: Request
         }
         if let sort = sort
         {
-            params["sort"] = sort.stringValue
+            params["sort"] = Request.sortOrderStringValue(sort)
         }
         if let keyword = keyword
         {

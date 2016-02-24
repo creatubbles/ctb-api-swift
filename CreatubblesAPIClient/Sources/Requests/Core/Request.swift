@@ -18,4 +18,13 @@ class Request: NSObject
     var method: RequestMethod   { return .GET }
     var endpoint: String        { return ""   }
     var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
+    
+    class func sortOrderStringValue(sortOrder: SortOrder) -> String
+    {
+        switch sortOrder
+        {
+            case .Popular:  return "popular"
+            case .Recent:   return "recent"
+        }
+    }
 }

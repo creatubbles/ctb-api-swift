@@ -18,25 +18,16 @@ public typealias GalleryClousure = (Gallery?, ErrorType?) -> (Void)
 public typealias GalleriesClousure = (Array<Gallery>?, ErrorType?) -> (Void)
 
 //MARK: - Enums
-public enum Gender: Int
+@objc public enum Gender: Int
 {
     case Male = 0
     case Female = 1
 }
 
-public enum SortOrder: Int
+@objc public enum SortOrder: Int
 {
     case Popular
     case Recent
-    
-    var stringValue: String
-    {
-        switch self
-        {
-            case .Popular:  return "popular"
-            case .Recent:   return "recent"
-        }
-    }
 }
 
 public class CreatubblesAPIClient: NSObject
