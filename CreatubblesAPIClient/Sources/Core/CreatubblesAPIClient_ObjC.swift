@@ -94,7 +94,7 @@ extension CreatubblesAPIClient
         }
     }
     
-    public func _getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClousure?)
+    public func _getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder, completion: ((Array<Gallery>?, NSError?) -> (Void))?)
     {
         getGalleries(userId, pagingData: pagingData, sort: sort)
         {
@@ -112,7 +112,7 @@ extension CreatubblesAPIClient
             completion?(creation, CreatubblesAPIClient.errorTypeToNSError(error))
         }
     }
-    public func _getCreations(galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, completion: ((Array<Creation>?, NSError?) -> (Void))?)
+    public func _getCreations(galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder, completion: ((Array<Creation>?, NSError?) -> (Void))?)
     {
         getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder)
         {
