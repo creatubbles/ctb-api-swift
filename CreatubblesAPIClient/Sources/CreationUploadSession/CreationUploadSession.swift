@@ -29,6 +29,7 @@ class CreationUploadSession: ResponseHandler
 {
 
     weak var delegate: CreationUploadSessionDelegate?
+    var creationUploadService: CreationUploadService?
     
     let creationData: NewCreationData
     private let requestSender: RequestSender
@@ -43,14 +44,14 @@ class CreationUploadSession: ResponseHandler
     var creation: Creation?
     var creationUpload: CreationUpload?
     
-    var databaseDAO: DatabaseDAO?
-        
     init(data: NewCreationData, requestSender: RequestSender)
     {
         self.isActive = false
         self.state = .Initialized
         self.requestSender = requestSender
         self.creationData = data
+        self.creationUploadService = CreationUploadService(requestSender: self.requestSender)
+        self.delegate = self.creationUploadService
         
         self.imageFileName = String(NSDate().timeIntervalSince1970)+"_creation.jpg"
         self.relativeImageFilePath = "images/"+imageFileName
@@ -76,7 +77,7 @@ class CreationUploadSession: ResponseHandler
         saveImageOnDisk(nil) { [weak self](error) -> Void in
             if let weakSelf = self {
                 weakSelf.allocateCreation(error, completion: { (error) -> Void in
-                    weakSelf.databaseDAO?.saveCreationUploadSessionToDatabase(self!)
+                    weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
                     weakSelf.obtainUploadPath(error, completion: { (error) -> Void in
                         weakSelf.uploadImage(error, completion: { (error) -> Void in
                             weakSelf.notifyServer(error, completion: { (error) -> Void in

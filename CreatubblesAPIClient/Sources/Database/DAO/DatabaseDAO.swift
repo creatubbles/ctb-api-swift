@@ -14,12 +14,12 @@ class DatabaseDAO: NSObject
     
     override init()
     {
-        databaseService = DatabaseService()
+        self.databaseService = DatabaseService()
     }
     
     func saveCreationUploadSessionToDatabase(creationUploadSession: CreationUploadSession)
     {
-        databaseService.saveCreationUploadSessionToDatabase(creationUploadSession)
+        self.databaseService.saveCreationUploadSessionToDatabase(creationUploadSession)
     }
     
     func fetchAllCreationUploadSessionEntities() -> Array<CreationUploadSessionEntity>

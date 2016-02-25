@@ -5,6 +5,11 @@ PODS:
   - p2.OAuth2 (2.2):
     - SwiftKeychain (~> 0.1.5)
   - Quick (0.9.0)
+  - Realm (0.98.2):
+    - Realm/Headers (= 0.98.2)
+  - Realm/Headers (0.98.2)
+  - RealmSwift (0.98.2):
+    - Realm (= 0.98.2)
   - SwiftKeychain (0.1.5)
 
 DEPENDENCIES:
@@ -13,6 +18,7 @@ DEPENDENCIES:
   - ObjectMapper (~> 1.1)
   - p2.OAuth2 (~> 2.2)
   - Quick (~> 0.9.0)
+  - RealmSwift (~> 0.98.2)
 
 SPEC CHECKSUMS:
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
@@ -20,8 +26,8 @@ SPEC CHECKSUMS:
   ObjectMapper: 148765647481443b1a18983b4ac8ec3189cbce35
   p2.OAuth2: 47b519c9da500af90b87101e0330c6278e1152c2
   Quick: 332eb1da73125a2106dd637424c803f2ae97e4a9
+  Realm: 88a147fe04b8f07191a676b15c779b2b448991de
+  RealmSwift: 9907c7415b3e19ef2ab9f89878fc890f03f93aea
   SwiftKeychain: 1387edad8b56c659daa93d9ffc99526bac5b0088
 
-PODFILE CHECKSUM: 012134fd26e02a17b1d1173f1e50c087b3686c63
-
-COCOAPODS: 1.0.0.beta.3
+COCOAPODS: 0.39.0

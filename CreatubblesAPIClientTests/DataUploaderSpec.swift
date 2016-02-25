@@ -26,7 +26,7 @@ class DataUploaderSpec: QuickSpec
                 let requestSender = RequestSender(settings: TestConfiguration.settings)
                 let session = CreationUploadSession(data: NewCreationData(image: image), requestSender: requestSender)
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 100)
                 {
                     done in
                     requestSender.login(TestConfiguration.username, password: TestConfiguration.password)

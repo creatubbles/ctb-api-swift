@@ -1,6 +1,8 @@
 platform :ios, '8.0'
 use_frameworks!
 
+pod 'RealmSwift', '~> 0.98.2'
+
 target 'CreatubblesAPIClient' do
 
 pod 'p2.OAuth2', '~> 2.2'

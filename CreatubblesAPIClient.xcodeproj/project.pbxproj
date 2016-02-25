@@ -61,8 +61,6 @@
 		18C1CFF91C75C4B000A02DE3 /* GalleryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */; };
 		216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843971C7345690052B835 /* FetchCreationsRequest.swift */; };
 		2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */; };
-		21BB329D1C774004006F9A3A /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BB329B1C774004006F9A3A /* Realm.framework */; };
-		21BB329E1C774004006F9A3A /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BB329C1C774004006F9A3A /* RealmSwift.framework */; };
 		21BB32A11C77437D006F9A3A /* CreationUploadSessionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB32A01C77437D006F9A3A /* CreationUploadSessionEntity.swift */; };
 		21BB32A61C7743D2006F9A3A /* NewCreationDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB32A51C7743D2006F9A3A /* NewCreationDataEntity.swift */; };
 		21BB32AA1C77495D006F9A3A /* CreationUploadEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB32A91C77495D006F9A3A /* CreationUploadEntity.swift */; };
@@ -70,6 +68,7 @@
 		21BB32AF1C775712006F9A3A /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB32AE1C775712006F9A3A /* DatabaseService.swift */; };
 		21BB32B11C7B4118006F9A3A /* DatabaseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB32B01C7B4118006F9A3A /* DatabaseDAO.swift */; };
 		21F740941C735C9600E7F4D1 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F740931C735C9600E7F4D1 /* TestConfiguration.swift */; };
+		60854FB8DCE7C1878DB134A3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C889ECE738B418B5F5A862 /* Pods.framework */; };
 		C4F7F7A90121042C6E45878F /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CEF4C03DFDE992D399AFF8 /* Pods_CreatubblesAPIClient.framework */; };
 		D85230BA8D277D54749CB81D /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C976C6C2233F7FB94E731680 /* Pods_CreatubblesAPIClientTests.framework */; };
 /* End PBXBuildFile section */
@@ -153,6 +152,7 @@
 		21BB32AB1C774979006F9A3A /* CreationEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationEntity.swift; sourceTree = "<group>"; };
 		21BB32AE1C775712006F9A3A /* DatabaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		21BB32B01C7B4118006F9A3A /* DatabaseDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseDAO.swift; sourceTree = "<group>"; };
+		21C889ECE738B418B5F5A862 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21F740931C735C9600E7F4D1 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		57CEF4C03DFDE992D399AFF8 /* Pods_CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7158BD3386B61A0E2C22D78A /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -167,8 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4F7F7A90121042C6E45878F /* Pods_CreatubblesAPIClient.framework in Frameworks */,
-				21BB329D1C774004006F9A3A /* Realm.framework in Frameworks */,
-				21BB329E1C774004006F9A3A /* RealmSwift.framework in Frameworks */,
+				60854FB8DCE7C1878DB134A3 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +513,7 @@
 				21BB32981C773F08006F9A3A /* RealmSwift.framework */,
 				57CEF4C03DFDE992D399AFF8 /* Pods_CreatubblesAPIClient.framework */,
 				C976C6C2233F7FB94E731680 /* Pods_CreatubblesAPIClientTests.framework */,
+				21C889ECE738B418B5F5A862 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

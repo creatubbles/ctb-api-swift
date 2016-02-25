@@ -70,7 +70,14 @@ class DatabaseService: NSObject
         newCreationDataEntity.reflectionText = newCreationData.reflectionText
         newCreationDataEntity.reflectionVideoUrl = newCreationData.reflectionVideoUrl
         newCreationDataEntity.galleryId = newCreationData.galleryId
-        newCreationDataEntity.creatorIds = newCreationData.creatorIds
+        
+        for creatorId in newCreationData.creatorIds!
+        {
+            let creatorIdEntity = CreatorIdString()
+            creatorIdEntity.creatorIdString = creatorId
+            newCreationDataEntity.creatorIds?.append(creatorIdEntity)
+        }
+        
         newCreationDataEntity.creationYear = newCreationData.creationYear
         newCreationDataEntity.creationMonth = newCreationData.creationMonth
         

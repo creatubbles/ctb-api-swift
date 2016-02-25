@@ -9,13 +9,18 @@
 import Foundation
 import RealmSwift
 
+class CreatorIdString: Object
+{
+    dynamic var creatorIdString: String?
+}
+
 class NewCreationDataEntity: Object
 {
-    dynamic var name: String? = nil
-    dynamic var reflectionText: String? = nil
-    dynamic var reflectionVideoUrl: String? = nil
-    dynamic var galleryId: String? = nil
-    dynamic var creatorIds: Array<String>? = nil
-    var creationYear: Int? = nil
-    var creationMonth: Int? = nil
+    dynamic var name: String?
+    dynamic var reflectionText: String?
+    dynamic var reflectionVideoUrl: String?
+    dynamic var galleryId: String?
+    var creatorIds: List<CreatorIdString>?
+    var creationYear: Int?
+    var creationMonth: Int?
 }

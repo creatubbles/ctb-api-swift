@@ -61,7 +61,11 @@ public struct NewCreationData
         self.reflectionText = creationDataEntity.reflectionText
         self.reflectionVideoUrl = creationDataEntity.reflectionVideoUrl
         self.galleryId = creationDataEntity.galleryId
-        self.creatorIds = creationDataEntity.creatorIds
+        
+        for creatorId in creationDataEntity.creatorIds!
+        {
+            self.creatorIds?.append(creatorId.creatorIdString!)
+        }
         self.creationMonth = creationDataEntity.creationMonth
         self.creationYear = creationDataEntity.creationYear
     }

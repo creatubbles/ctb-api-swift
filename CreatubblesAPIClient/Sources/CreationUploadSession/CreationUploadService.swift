@@ -17,12 +17,14 @@ protocol CreationUploadServiceDelegate
 class CreationUploadService: CreationUploadSessionDelegate
 {
     weak var delegate: CreationUploadServiceDelegate?
+    let databaseDAO: DatabaseDAO
     
     let requestSender: RequestSender
     
     init(requestSender: RequestSender)
     {
         self.requestSender = requestSender
+        self.databaseDAO = DatabaseDAO()
     }
     
     func uploadCreation(data: NewCreationData, completion: CreationClousure?)
@@ -33,7 +35,7 @@ class CreationUploadService: CreationUploadSessionDelegate
     
     @objc func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
     {
-        creationUploadSession.delegate = self
         delegate?.creationUploadSessionChangedState?(creationUploadSession)
+        databaseDAO.saveCreationUploadSessionToDatabase(creationUploadSession)
     }
 }
