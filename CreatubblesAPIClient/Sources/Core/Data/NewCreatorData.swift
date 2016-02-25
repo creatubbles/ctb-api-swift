@@ -18,7 +18,7 @@ public class NewCreatorData: NSObject
     public let countryCode: String
     public let gender: Gender
     
-    init(name: String, displayName: String, birthYear: Int, birthMonth: Int, countryCode: String, gender: Gender)
+    public init(name: String, displayName: String, birthYear: Int, birthMonth: Int, countryCode: String, gender: Gender)
     {
         self.name = name
         self.displayName = displayName

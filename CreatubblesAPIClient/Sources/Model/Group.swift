@@ -9,11 +9,11 @@
 import UIKit
 
 @objc
-class Group: NSObject
+public class Group: NSObject
 {
-    let identifier: Int
-    let name: String
-    let taggingsCount: Int
+    public let identifier: Int
+    public let name: String
+    public let taggingsCount: Int
     
     init(builder: GroupModelBuilder)
     {

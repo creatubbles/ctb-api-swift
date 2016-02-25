@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Role: Int
+@objc public enum Role: Int
 {
     case Parent
     case Teacher
@@ -28,41 +28,41 @@ enum Role: Int
 @objc
 public class User: NSObject
 {
-    let identifier: String
-    let username: String
-    let displayName: String
-    let name: String
-    let role: Role
-    let lastBubbledAt: NSDate?
-    let lastCommentedAt: NSDate?
-    let createdAt: NSDate
-    let updatedAt: NSDate
-    let avatarUrl: String
-    let countryCode: String
-    let countryName: String
-    let age: String
-    let gender: Gender
-    let birthYear: Int
-    let birthMonth: Int?
-    let groups: Array<Group>
-    let shortUrl: String
-    let bubbledByUserIds: Array<String>
-    let ownedTags: Array<String>
+    public let identifier: String
+    public let username: String
+    public let displayName: String
+    public let name: String
+    public let role: Role
+    public let lastBubbledAt: NSDate?
+    public let lastCommentedAt: NSDate?
+    public let createdAt: NSDate
+    public let updatedAt: NSDate
+    public let avatarUrl: String
+    public let countryCode: String
+    public let countryName: String
+    public let age: String
+    public let gender: Gender
+    public let birthYear: Int
+    public let birthMonth: Int?
+    public let groups: Array<Group>
+    public let shortUrl: String
+    public let bubbledByUserIds: Array<String>
+    public let ownedTags: Array<String>
     
-    let addedBubblesCount: Int
-    let activitiesCount: Int
-    let commentsCount: Int
-    let creationsCount: Int
-    let creatorsCount: Int
-    let galleriesCount: Int
-    let managersCount: Int
+    public let addedBubblesCount: Int
+    public let activitiesCount: Int
+    public let commentsCount: Int
+    public let creationsCount: Int
+    public let creatorsCount: Int
+    public let galleriesCount: Int
+    public let managersCount: Int
     
-    let homeSchooling: Bool
-    let signedUpAsInstructor: Bool
-    let isPartner: Bool
-    let loggable: Bool
-    let gspSeen: Bool
-    let uepUnwanted: Bool
+    public let homeSchooling: Bool
+    public let signedUpAsInstructor: Bool
+    public let isPartner: Bool
+    public let loggable: Bool
+    public let gspSeen: Bool
+    public let uepUnwanted: Bool
     
     init(builder: UserModelBuilder)
     {

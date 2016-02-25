@@ -19,8 +19,8 @@ public class NewCreationData: NSObject
     public var creatorIds: Array<String>? = nil
     public var creationYear: Int? = nil
     public var creationMonth: Int? = nil
-
-    init(image: UIImage)
+    
+    public init(image: UIImage)
     {
         self.image = image
     }
