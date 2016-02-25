@@ -19,10 +19,19 @@ enum CreationUploadSessionState: Int
     case Completed = 6
 }
 
+@objc
+protocol CreationUploadSessionDelegate
+{
+    optional func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
+}
+
 class CreationUploadSession: ResponseHandler
 {
+
+    weak var delegate: CreationUploadSessionDelegate?
+    
     let creationData: NewCreationData
-    let requestSender: RequestSender
+    private let requestSender: RequestSender
     
     var state: CreationUploadSessionState
     var isActive: Bool
@@ -256,5 +265,10 @@ class CreationUploadSession: ResponseHandler
         }
         data.writeToURL(url, atomically: true)
         completion(nil)
+    }
+    
+    private func notifyDelegateSessionChanged()
+    {
+        delegate?.creationUploadSessionChangedState?(self)
     }
 }

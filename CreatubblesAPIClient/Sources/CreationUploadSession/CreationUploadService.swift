@@ -8,8 +8,16 @@
 
 import UIKit
 
-class CreationUploadService
+@objc
+protocol CreationUploadServiceDelegate
 {
+    optional func creationUploadSessionChangedState(creationUploadService: CreationUploadSession)
+}
+
+class CreationUploadService: CreationUploadSessionDelegate
+{
+    weak var delegate: CreationUploadServiceDelegate?
+    
     let requestSender: RequestSender
     
     init(requestSender: RequestSender)
@@ -21,5 +29,11 @@ class CreationUploadService
     {
         let session = CreationUploadSession(data: data, requestSender: requestSender)
         session.start(completion)
+    }
+    
+    @objc func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
+    {
+        creationUploadSession.delegate = self
+        delegate?.creationUploadSessionChangedState?(creationUploadSession)
     }
 }
