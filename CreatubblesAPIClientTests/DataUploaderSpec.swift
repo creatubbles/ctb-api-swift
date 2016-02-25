@@ -9,6 +9,8 @@
 import UIKit
 import Quick
 import Nimble
+import Realm
+
 @testable import CreatubblesAPIClient
 
 class DataUploaderSpec: QuickSpec
@@ -17,28 +19,28 @@ class DataUploaderSpec: QuickSpec
     {        
         describe("Creation upload session")
         {
-//            it("Should upload")
-//            {
-//                let path = NSBundle(forClass: self.dynamicType).URLForResource("creatubbles_logo", withExtension: "jpg")
-//                let image = UIImage(contentsOfFile: path!.path!)!
-//                let requestSender = RequestSender(settings: TestConfiguration.settings)
-//                let session = CreationUploadSession(image: image, requestSender:requestSender)
-//                
-//                waitUntil(timeout: 10)
-//                {
-//                    done in
-//                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
-//                    {
-//                        (error: ErrorType?) -> Void in
-//                        session.start
-//                        {
-//                            (error) -> Void in
-//                            expect(error).to(beNil())
-//                            done()
-//                        }
-//                    }
-//                }
-//            }
+            it("Should upload")
+            {
+                let path = NSBundle(forClass: self.dynamicType).URLForResource("creatubbles_logo", withExtension: "jpg")
+                let image = UIImage(contentsOfFile: path!.path!)!
+                let requestSender = RequestSender(settings: TestConfiguration.settings)
+                let session = CreationUploadSession(data: NewCreationData(image: image), requestSender: requestSender)
+                
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        session.start
+                        {
+                            (error) -> Void in
+                            expect(error).to(beNil())
+                            done()
+                        }
+                    }
+                }
+            }
         }
     }
 }
