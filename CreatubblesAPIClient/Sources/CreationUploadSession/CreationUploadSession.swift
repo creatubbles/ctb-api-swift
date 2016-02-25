@@ -79,9 +79,13 @@ class CreationUploadSession: ResponseHandler
                 weakSelf.allocateCreation(error, completion: { (error) -> Void in
                     weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
                     weakSelf.obtainUploadPath(error, completion: { (error) -> Void in
+                        
+                        weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
                         weakSelf.uploadImage(error, completion: { (error) -> Void in
+                            
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
                                 print("Upload flow finished with error: \(error)")
+                                weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
                                 
                                 weakSelf.isActive = false
                                 completion?(weakSelf.creation, error)
