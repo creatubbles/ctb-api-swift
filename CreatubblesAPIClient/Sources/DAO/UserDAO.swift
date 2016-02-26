@@ -45,6 +45,18 @@ class UserDAO
         requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getCreators(userId: String?, completion: UsersBatchClousure?)
+    {
+        let batchFetcher = UsersBatchFetcher(requestSender: requestSender)
+        batchFetcher.fetch(userId, scope: .Creators, completion: completion)
+    }
+    
+    func getManagers(userId: String?, completion: UsersBatchClousure?)
+    {
+        let batchFetcher = UsersBatchFetcher(requestSender: requestSender)
+        batchFetcher.fetch(userId, scope: .Managers, completion: completion)
+    }
+    
     func newCreator(data: NewCreatorData, completion: UserClousure?)
     {
         let request = NewCreatorRequest(name: data.name, displayName: data.displayName, birthYear: data.birthYear, birthMonth: data.birthMonth, countryCode: data.countryCode, gender: data.gender)

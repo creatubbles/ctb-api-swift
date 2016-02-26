@@ -34,4 +34,11 @@ class CreationsDAO
         let handler = FetchCreationsResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, completion: CreationsBatchClousure?)
+    {
+        let fetcher = CreationsBatchFetcher(requestSender: requestSender)
+        fetcher.fetch(userId, galleryId: galleryId, keyword: keyword, sort: sortOrder, completion: completion)
+    }
+
 }

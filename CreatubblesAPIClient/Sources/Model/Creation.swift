@@ -32,7 +32,7 @@ public class Creation: NSObject
 
     let approved: Bool
     let shortUrl: String
-    let createdAtAge: String
+    let createdAtAge: String?
  
     init(builder: CreationModelBuilder)
     {
@@ -52,6 +52,6 @@ public class Creation: NSObject
         lastSubmittedAt = builder.lastSubmittedAt
         approved = builder.approved!
         shortUrl = builder.shortUrl!
-        createdAtAge = builder.createdAtAge!
+        createdAtAge = builder.createdAtAge
     }
 }

@@ -11,6 +11,10 @@
 		16CAAC99A2D4AACF0B7842FB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD89548AD3066D7FA02EE2AB /* Pods_CreatubblesAPIClient.framework */; };
 		1804B16C1C8059D800E0704C /* PagingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1804B16B1C8059D800E0704C /* PagingInfo.swift */; };
 		1804B16E1C805CBD00E0704C /* PagingInfoModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1804B16D1C805CBD00E0704C /* PagingInfoModelBuilder.swift */; };
+		1804B1711C8073C400E0704C /* UsersBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1804B1701C8073C400E0704C /* UsersBatchFetcher.swift */; };
+		1804B1731C8073D100E0704C /* GalleriesBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1804B1721C8073D100E0704C /* GalleriesBatchFetcher.swift */; };
+		1804B1751C8073E200E0704C /* CreationsBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1804B1741C8073E200E0704C /* CreationsBatchFetcher.swift */; };
+		1804B1771C80744800E0704C /* BatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1804B1761C80744800E0704C /* BatchFetcher.swift */; };
 		180C97A81C6CC0DA00BC682D /* NewGalleryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97A71C6CC0DA00BC682D /* NewGalleryRequest.swift */; };
 		180C97AA1C6CC0F100BC682D /* NewGalleryResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97A91C6CC0F100BC682D /* NewGalleryResponseHandler.swift */; };
 		180C97AD1C6DD40100BC682D /* NewCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97AC1C6DD40100BC682D /* NewCreationRequest.swift */; };
@@ -89,6 +93,10 @@
 		055A4A2D59C871AD4EC1E7B9 /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
 		1804B16B1C8059D800E0704C /* PagingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfo.swift; sourceTree = "<group>"; };
 		1804B16D1C805CBD00E0704C /* PagingInfoModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfoModelBuilder.swift; sourceTree = "<group>"; };
+		1804B1701C8073C400E0704C /* UsersBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersBatchFetcher.swift; sourceTree = "<group>"; };
+		1804B1721C8073D100E0704C /* GalleriesBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleriesBatchFetcher.swift; sourceTree = "<group>"; };
+		1804B1741C8073E200E0704C /* CreationsBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsBatchFetcher.swift; sourceTree = "<group>"; };
+		1804B1761C80744800E0704C /* BatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchFetcher.swift; sourceTree = "<group>"; };
 		180C97A71C6CC0DA00BC682D /* NewGalleryRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGalleryRequest.swift; sourceTree = "<group>"; };
 		180C97A91C6CC0F100BC682D /* NewGalleryResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGalleryResponseHandler.swift; sourceTree = "<group>"; };
 		180C97AC1C6DD40100BC682D /* NewCreationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationRequest.swift; sourceTree = "<group>"; };
@@ -182,6 +190,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1804B16F1C8073B600E0704C /* BatchFetch */ = {
+			isa = PBXGroup;
+			children = (
+				1804B1761C80744800E0704C /* BatchFetcher.swift */,
+				1804B1701C8073C400E0704C /* UsersBatchFetcher.swift */,
+				1804B1721C8073D100E0704C /* GalleriesBatchFetcher.swift */,
+				1804B1741C8073E200E0704C /* CreationsBatchFetcher.swift */,
+			);
+			path = BatchFetch;
+			sourceTree = "<group>";
+		};
 		180C97A61C6CC0C800BC682D /* NewGallery */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +409,7 @@
 		188BCEA71C64E09800EA4F11 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				1804B16F1C8073B600E0704C /* BatchFetch */,
 				18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */,
 				18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */,
 				18C1CFF61C75C46C00A02DE3 /* CreationsDAO.swift */,
@@ -699,6 +719,7 @@
 				187671401C7CA00500733E9E /* CreatubblesAPIClient_ObjC.swift in Sources */,
 				216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */,
 				187902001C6C80AD008F5302 /* GalleriesResponseHandler.swift in Sources */,
+				1804B1731C8073D100E0704C /* GalleriesBatchFetcher.swift in Sources */,
 				187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */,
 				188ECF5C1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift in Sources */,
 				188ECF6D1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift in Sources */,
@@ -725,14 +746,17 @@
 				180C97AF1C6DD41900BC682D /* NewCreationResponseHandler.swift in Sources */,
 				187047E01C71DCD600B202FD /* NewCreationUploadRequest.swift in Sources */,
 				1815D5651C638BD200EF4C38 /* User.swift in Sources */,
+				1804B1751C8073E200E0704C /* CreationsBatchFetcher.swift in Sources */,
 				180C97AD1C6DD40100BC682D /* NewCreationRequest.swift in Sources */,
 				18779E0F1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift in Sources */,
 				187902021C6C8BAF008F5302 /* Gallery.swift in Sources */,
 				18779DF31C69E7FB000BFB57 /* ProfileRequest.swift in Sources */,
 				180C97A81C6CC0DA00BC682D /* NewGalleryRequest.swift in Sources */,
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,
+				1804B1711C8073C400E0704C /* UsersBatchFetcher.swift in Sources */,
 				180C97AA1C6CC0F100BC682D /* NewGalleryResponseHandler.swift in Sources */,
 				188ECF6B1C74613700AFEE4F /* NewCreationPingRequest.swift in Sources */,
+				1804B1771C80744800E0704C /* BatchFetcher.swift in Sources */,
 				187901EE1C6B37E7008F5302 /* NewCreatorRequest.swift in Sources */,
 				18EFFF681C771C7800BE0B70 /* GallerySubmissionResponseHandler.swift in Sources */,
 				188BCEAF1C64E19D00EA4F11 /* CreatubblesAPIClient.swift in Sources */,

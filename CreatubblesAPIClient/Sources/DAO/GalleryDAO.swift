@@ -41,4 +41,10 @@ class GalleryDAO
         let handler = NewGalleryResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }
+
+    func getGalleries(userId: String?, sort: SortOrder?, completion: GalleriesBatchClousure?)
+    {
+        let fetcher = GalleriesBatchFetcher(requestSender: requestSender)
+        fetcher.fetch(userId, sort: sort, completion: completion)
+    }
 }

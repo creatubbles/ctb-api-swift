@@ -117,6 +117,7 @@ extension CreatubblesAPIClient
             completion?(creation, CreatubblesAPIClient.errorTypeToNSError(error))
         }
     }
+    
     public func _getCreations(galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?)
     {
         getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder)
@@ -132,6 +133,44 @@ extension CreatubblesAPIClient
         {
             (creation, error) -> (Void) in
             completion?(creation, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    //MARK: - Batch fetching
+
+    public func _getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder, completion: ((Array<Creation>?, NSError?) -> (Void))?)
+    {
+        getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder)
+        {
+            (creations, error) -> (Void) in
+            completion?(creations, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    public func _getGalleries(userId: String?, sort: SortOrder, completion: ((Array<Gallery>?, NSError?) -> (Void))?)
+    {
+        getGalleries(userId, sort: sort)
+        {
+            (galleries, error) -> (Void) in
+            completion?(galleries, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    public func _getCreators(userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
+    {
+        getCreators(userId)
+        {
+            (users, error) -> (Void) in
+            completion?(users, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    public func _getManagers(userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
+    {
+        getManagers(userId)
+        {
+            (users, error) -> (Void) in
+            completion?(users, CreatubblesAPIClient.errorTypeToNSError(error))
         }
     }
 

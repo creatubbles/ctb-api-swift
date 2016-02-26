@@ -10,12 +10,18 @@ import UIKit
 
 //MARK: - Typealiases
 public typealias ErrorClousure = (ErrorType?) -> (Void)
+
 public typealias UserClousure = (User?, ErrorType?) -> (Void)
 public typealias UsersClousure = (Array<User>?,PagingInfo? ,ErrorType?) -> (Void)
+public typealias UsersBatchClousure = (Array<User>? ,ErrorType?) -> (Void)
+
 public typealias CreationClousure = (Creation?, ErrorType?) -> (Void)
 public typealias CreationsClousure = (Array<Creation>?, PagingInfo?, ErrorType?) -> (Void)
+public typealias CreationsBatchClousure = (Array<Creation>?, ErrorType?) -> (Void)
+
 public typealias GalleryClousure = (Gallery?, ErrorType?) -> (Void)
 public typealias GalleriesClousure = (Array<Gallery>?, PagingInfo?, ErrorType?) -> (Void)
+public typealias GalleriesBatchClousure = (Array<Gallery>?, ErrorType?) -> (Void)
 
 //MARK: - Enums
 @objc public enum Gender: Int
@@ -92,6 +98,16 @@ public class CreatubblesAPIClient: NSObject
     {
         userDAO.getManagers(userId, pagingData: pagingData, completion: completion)
     }
+
+    public func getCreators(userId: String?, completion: UsersBatchClousure?)
+    {
+        userDAO.getCreators(userId, completion: completion)
+    }
+    
+    public func getManagers(userId: String?, completion: UsersBatchClousure?)
+    {
+        userDAO.getManagers(userId, completion: completion)
+    }
     
     public func newCreator(creatorData: NewCreatorData,completion: UserClousure?)
     {
@@ -109,6 +125,11 @@ public class CreatubblesAPIClient: NSObject
         galleryDAO.getGalleries(userId, pagingData: pagingData, sort: sort, completion: completion)
     }
     
+    public func getGalleries(userId: String?, sort: SortOrder?, completion: GalleriesBatchClousure?)
+    {
+        galleryDAO.getGalleries(userId, sort: sort, completion: completion)
+    }
+    
     public func newGallery(galleryData: NewGalleryData, completion: GalleryClousure?)
     {
         galleryDAO.newGallery(galleryData, completion: completion)
@@ -120,9 +141,14 @@ public class CreatubblesAPIClient: NSObject
         creationsDAO.getCreation(creationId, completion: completion)
     }
     
-    public func getCreations(galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, completion: CreationsClousure?)
+    public func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, completion: CreationsClousure?)
     {
         creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, completion: completion)
+    }
+    
+    public func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, completion: CreationsBatchClousure?)
+    {
+        creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, completion: completion)
     }
     
     public func newCreation(creationData: NewCreationData, completion: CreationClousure?)
