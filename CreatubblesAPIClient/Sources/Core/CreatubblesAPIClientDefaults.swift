@@ -62,12 +62,12 @@ public struct NewCreationData
         self.reflectionVideoUrl = creationDataEntity.reflectionVideoUrl
         self.galleryId = creationDataEntity.galleryId
         
-        for creatorId in creationDataEntity.creatorIds!
+        for creatorId in creationDataEntity.creatorIds
         {
             self.creatorIds?.append(creatorId.creatorIdString!)
         }
-        self.creationMonth = creationDataEntity.creationMonth
-        self.creationYear = creationDataEntity.creationYear
+        self.creationMonth = creationDataEntity.creationMonth.value
+        self.creationYear = creationDataEntity.creationYear.value
     }
     
     public var image: UIImage

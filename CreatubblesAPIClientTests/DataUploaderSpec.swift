@@ -41,6 +41,36 @@ class DataUploaderSpec: QuickSpec
                     }
                 }
             }
+            
+            it("Should upload database sessions")
+            {
+                let databaseDAO = DatabaseDAO()
+                let requestSender = RequestSender(settings: TestConfiguration.settings)
+                
+                let creationUploadSessions = databaseDAO.fetchAllCreationUploadSessions(requestSender)
+                
+                waitUntil(timeout: 100)
+                {
+                done in
+                if(creationUploadSessions.count == 0)
+                {
+                    done()
+                }
+                requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
+                {
+                    (error: ErrorType?) -> Void in
+                    for session in creationUploadSessions
+                    {
+                        session.start
+                        {
+                            (error) -> Void in
+                            expect(error).to(beNil())
+                            done()
+                        }
+                    }
+                }
+                }
+            }
         }
     }
 }

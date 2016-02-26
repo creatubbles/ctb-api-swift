@@ -12,8 +12,8 @@ import RealmSwift
 class CreationUploadSessionEntity: Object
 {
     dynamic var creationDataEntity: NewCreationDataEntity?
-    var stateRaw: Int?
-    var isActive: Bool?
+    var stateRaw = RealmOptional<Int>()
+    var isActive = RealmOptional<Bool>()
     dynamic var imageFileName: String?
     dynamic var relativeImageFilePath: String?
     
@@ -25,11 +25,7 @@ class CreationUploadSessionEntity: Object
     {
         get
         {
-            if let state = CreationUploadSessionState(rawValue: stateRaw!)
-            {
-                return state
-            }
-            return CreationUploadSessionState.Initialized
+            return CreationUploadSessionState(rawValue: stateRaw.value!)!
         }
     }
     

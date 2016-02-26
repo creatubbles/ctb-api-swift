@@ -17,21 +17,21 @@ class CreationEntity: Object
     dynamic var createdAt: NSDate?
     dynamic var updatedAt: NSDate?
     
-    var createdAtYear: Int?
-    var createdAtMonth: Int?
+    var createdAtYear = RealmOptional<Int>()
+    var createdAtMonth = RealmOptional<Int>()
     
-    var imageStatus: Int?
+    var imageStatus = RealmOptional<Int>()
     dynamic var image: String?
     
-    var bubblesCount: Int?
-    var commentsCount: Int?
-    var viewsCount: Int?
+    var bubblesCount = RealmOptional<Int>()
+    var commentsCount = RealmOptional<Int>()
+    var viewsCount = RealmOptional<Int>()
     
     dynamic var lastBubbledAt: NSDate?
     dynamic var lastCommentedAt: NSDate?
     dynamic var lastSubmittedAt: NSDate?
     
-    var approved: Bool?
+    var approved = RealmOptional<Bool>()
     dynamic var shortUrl: String?
     dynamic var createdAtAge: String?
 }

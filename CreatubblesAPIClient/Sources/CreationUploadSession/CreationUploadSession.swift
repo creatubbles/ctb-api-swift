@@ -59,7 +59,7 @@ class CreationUploadSession: ResponseHandler
     
     init(creationUploadSessionEntity: CreationUploadSessionEntity, requestSender: RequestSender)
     {
-        self.isActive = creationUploadSessionEntity.isActive!
+        self.isActive = creationUploadSessionEntity.isActive.value!
         self.state = creationUploadSessionEntity.state
         self.requestSender = requestSender
         self.imageFileName = creationUploadSessionEntity.imageFileName!
@@ -68,7 +68,7 @@ class CreationUploadSession: ResponseHandler
         self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, image: UIImage(contentsOfFile: relativeImageFilePath)!)
         
         self.creation = Creation(creationEntity: creationUploadSessionEntity.creationEntity!)
-        self.creationUpload = CreationUpload(creationUploadEntity: creationUploadSessionEntity.creationUploadEntity!)
+        //self.creationUpload = CreationUpload(creationUploadEntity: creationUploadSessionEntity.creationUploadEntity!)
     }
     
     func start(completion: CreationClousure?)
@@ -86,7 +86,6 @@ class CreationUploadSession: ResponseHandler
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
                                 print("Upload flow finished with error: \(error)")
                                 weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
-                                
                                 weakSelf.isActive = false
                                 completion?(weakSelf.creation, error)
                             })

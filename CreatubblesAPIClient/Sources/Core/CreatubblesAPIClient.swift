@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CreatubblesAPIClient: NSObject
+public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
 {
     //MARK: - Internal
     private let settings: CreatubblesAPIClientSettings
@@ -17,6 +17,7 @@ public class CreatubblesAPIClient: NSObject
     private let userDAO: UserDAO
     private let galleryDAO: GalleryDAO
     private let creationUploadService: CreationUploadService
+    weak var delegate: CreationUploadServiceDelegate?
     
     public init(settings: CreatubblesAPIClientSettings)
     {
@@ -100,5 +101,10 @@ public class CreatubblesAPIClient: NSObject
     public func newCreation(creationData: NewCreationData, completion: CreationClousure?)
     {
         creationUploadService.uploadCreation(creationData, completion: completion)
+    }
+    
+    @objc func creationUploadSessionUploadFinished(creationUploadService: CreationUploadSession)
+    {
+        
     }
 }

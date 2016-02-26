@@ -17,8 +17,8 @@ class DatabaseService: NSObject
     {
         let creationUploadSessionEntity: CreationUploadSessionEntity = CreationUploadSessionEntity()
         
-        creationUploadSessionEntity.isActive = creationUploadSession.isActive
-        creationUploadSessionEntity.stateRaw = creationUploadSession.state.rawValue
+        creationUploadSessionEntity.isActive.value = creationUploadSession.isActive
+        creationUploadSessionEntity.stateRaw.value = creationUploadSession.state.rawValue
         creationUploadSessionEntity.imageFileName = creationUploadSession.imageFileName
         creationUploadSessionEntity.relativeImageFilePath = creationUploadSession.relativeImageFilePath
         
@@ -44,9 +44,29 @@ class DatabaseService: NSObject
     func fetchAllCreationUploadSessionEntities() -> Array<CreationUploadSessionEntity>
     {
         let realm = try! Realm()
-        let creationUploadSessionEntitiesArray = Array(realm.objects(CreationUploadSessionEntity))
+        let realmObjects = realm.objects(CreationUploadSessionEntity)
+        var creationUploadSessionEntitiesArray = [CreationUploadSessionEntity]()
         
+        //creationUploadSessionEntitiesArray.append(realmObjects[0])
+        for entity in realmObjects
+        {
+            creationUploadSessionEntitiesArray.append(entity)
+        }
         return creationUploadSessionEntitiesArray
+    }
+    
+    func fetchAllCreationUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
+    {
+        let sessionEntities = fetchAllCreationUploadSessionEntities()
+        var sessions = [CreationUploadSession]()
+        
+        for entity in sessionEntities
+        {
+            let session = CreationUploadSession(creationUploadSessionEntity: entity, requestSender: requestSender)
+            sessions.append(session)
+        }
+        
+        return sessions
     }
     
     func fetchASincleCreationUploadSessionWithCreationIdentifier(creationIdentifier: String) -> CreationEntity?
@@ -77,12 +97,12 @@ class DatabaseService: NSObject
             {
                 let creatorIdEntity = CreatorIdString()
                 creatorIdEntity.creatorIdString = creatorId
-                newCreationDataEntity.creatorIds?.append(creatorIdEntity)
+                newCreationDataEntity.creatorIds.append(creatorIdEntity)
             }
         }
         
-        newCreationDataEntity.creationYear = newCreationData.creationYear
-        newCreationDataEntity.creationMonth = newCreationData.creationMonth
+        newCreationDataEntity.creationYear.value = newCreationData.creationYear
+        newCreationDataEntity.creationMonth.value = newCreationData.creationMonth
         
         return newCreationDataEntity
     }
@@ -95,17 +115,17 @@ class DatabaseService: NSObject
         creationEntity.name = creation.name
         creationEntity.createdAt = creation.createdAt
         creationEntity.updatedAt = creation.updatedAt
-        creationEntity.createdAtYear = creation.createdAtYear
-        creationEntity.createdAtMonth = creation.createdAtMonth
-        creationEntity.imageStatus = creation.imageStatus
+        creationEntity.createdAtYear.value = creation.createdAtYear
+        creationEntity.createdAtMonth.value = creation.createdAtMonth
+        creationEntity.imageStatus.value = creation.imageStatus
         creationEntity.image = creation.image
-        creationEntity.bubblesCount = creation.bubblesCount
-        creationEntity.commentsCount = creation.commentsCount
-        creationEntity.viewsCount = creation.viewsCount
+        creationEntity.bubblesCount.value = creation.bubblesCount
+        creationEntity.commentsCount.value = creation.commentsCount
+        creationEntity.viewsCount.value = creation.viewsCount
         creationEntity.lastBubbledAt = creation.lastBubbledAt
         creationEntity.lastCommentedAt = creation.lastCommentedAt
         creationEntity.lastSubmittedAt = creation.lastSubmittedAt
-        creationEntity.approved = creation.approved
+        creationEntity.approved.value = creation.approved
         creationEntity.shortUrl = creation.shortUrl
         creationEntity.createdAtAge = creation.createdAtAge
         

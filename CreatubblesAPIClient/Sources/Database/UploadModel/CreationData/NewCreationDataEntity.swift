@@ -20,7 +20,7 @@ class NewCreationDataEntity: Object
     dynamic var reflectionText: String?
     dynamic var reflectionVideoUrl: String?
     dynamic var galleryId: String?
-    var creatorIds: List<CreatorIdString>?
-    var creationYear: Int?
-    var creationMonth: Int?
+    var creatorIds = List<CreatorIdString>()
+    var creationYear = RealmOptional<Int>()
+    var creationMonth = RealmOptional<Int>()
 }
