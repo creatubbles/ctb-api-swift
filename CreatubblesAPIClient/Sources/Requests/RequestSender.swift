@@ -39,6 +39,8 @@ class RequestSender: NSObject
     }
     
     //MARK: - Authentication
+    
+    var authenticationToken: String? { return oauth2Client.accessToken }
     func login(username: String, password: String, completion: ((ErrorType?) -> Void)?)
     {
 

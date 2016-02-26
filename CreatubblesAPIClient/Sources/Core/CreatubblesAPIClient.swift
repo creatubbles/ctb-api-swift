@@ -52,6 +52,11 @@ public class CreatubblesAPIClient: NSObject
     }
     
     //MARK: - Authentication
+    public func authenticationToken() -> String?
+    {
+        return requestSender.authenticationToken;
+    }
+    
     public func login(username: String, password: String, completion:ErrorClousure?)
     {
         requestSender.login(username, password: password, completion: completion)

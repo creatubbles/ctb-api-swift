@@ -29,7 +29,12 @@ extension CreatubblesAPIClient
         return isLoggedIn()
     }
     
-    //MARK: - Users hangling
+    //MARK: - Users handling
+    public func _authenticationToken() -> String?
+    {
+        return authenticationToken()
+    }
+    
     public func _getUser(userId: String, completion: ((User?, NSError?) -> (Void))?)
     {
         getUser(userId)
@@ -135,8 +140,7 @@ extension CreatubblesAPIClient
     {
         if let error = error
         {
-            //TODO - Add proper error handling
-            let userInfo = Dictionary<NSObject, AnyObject>()
+            let userInfo = [NSLocalizedDescriptionKey :String(error)]
             return NSError(domain: "com.creatubbles.errordomain", code: 1, userInfo: userInfo)
         }
         return nil
