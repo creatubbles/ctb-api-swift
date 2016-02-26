@@ -22,7 +22,7 @@ class GalleryDAO
         let request = GalleriesRequest(galleryId: galleryId)
         let handler = GalleriesResponseHandler
         {
-            (galleries, error) -> Void in
+            (galleries, pageInfo, error) -> Void in
             completion?(galleries?.first, error)
         }
         requestSender.send(request, withResponseHandler: handler)

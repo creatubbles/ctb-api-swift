@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0F569ECF6E7F4414310CBB21 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6769274D8C574FCCA4E60B7 /* Pods_CreatubblesAPIClientTests.framework */; };
 		16CAAC99A2D4AACF0B7842FB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD89548AD3066D7FA02EE2AB /* Pods_CreatubblesAPIClient.framework */; };
+		1804B16C1C8059D800E0704C /* PagingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1804B16B1C8059D800E0704C /* PagingInfo.swift */; };
+		1804B16E1C805CBD00E0704C /* PagingInfoModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1804B16D1C805CBD00E0704C /* PagingInfoModelBuilder.swift */; };
 		180C97A81C6CC0DA00BC682D /* NewGalleryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97A71C6CC0DA00BC682D /* NewGalleryRequest.swift */; };
 		180C97AA1C6CC0F100BC682D /* NewGalleryResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97A91C6CC0F100BC682D /* NewGalleryResponseHandler.swift */; };
 		180C97AD1C6DD40100BC682D /* NewCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97AC1C6DD40100BC682D /* NewCreationRequest.swift */; };
@@ -85,6 +87,8 @@
 
 /* Begin PBXFileReference section */
 		055A4A2D59C871AD4EC1E7B9 /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
+		1804B16B1C8059D800E0704C /* PagingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfo.swift; sourceTree = "<group>"; };
+		1804B16D1C805CBD00E0704C /* PagingInfoModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfoModelBuilder.swift; sourceTree = "<group>"; };
 		180C97A71C6CC0DA00BC682D /* NewGalleryRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGalleryRequest.swift; sourceTree = "<group>"; };
 		180C97A91C6CC0F100BC682D /* NewGalleryResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGalleryResponseHandler.swift; sourceTree = "<group>"; };
 		180C97AC1C6DD40100BC682D /* NewCreationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationRequest.swift; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 				187902011C6C8BAF008F5302 /* Gallery.swift */,
 				180C97B01C6DEA4100BC682D /* Creation.swift */,
 				188ECF5D1C71E91B00AFEE4F /* CreationUpload.swift */,
+				1804B16B1C8059D800E0704C /* PagingInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 				187902031C6C8BFC008F5302 /* GalleryModelBuilder.swift */,
 				180C97B21C6DF3E900BC682D /* CreationModelBuilder.swift */,
 				188ECF5F1C71E96100AFEE4F /* CreationUploadModelBuilder.swift */,
+				1804B16D1C805CBD00E0704C /* PagingInfoModelBuilder.swift */,
 			);
 			path = ModelBuilder;
 			sourceTree = "<group>";
@@ -697,6 +703,7 @@
 				188ECF5C1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift in Sources */,
 				188ECF6D1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift in Sources */,
 				18779E011C69F707000BFB57 /* GroupModelBuilder.swift in Sources */,
+				1804B16E1C805CBD00E0704C /* PagingInfoModelBuilder.swift in Sources */,
 				187902041C6C8BFC008F5302 /* GalleryModelBuilder.swift in Sources */,
 				18779DF51C69E80F000BFB57 /* ProfileResponseHandler.swift in Sources */,
 				188ECF731C747FDE00AFEE4F /* String+Path.swift in Sources */,
@@ -708,6 +715,7 @@
 				18779DF01C69C9E3000BFB57 /* OAuth2+Alamofire.swift in Sources */,
 				18EFFF661C770F8700BE0B70 /* GallerySubmissionRequest.swift in Sources */,
 				1847FBF01C76024300FE5FF3 /* CreatubblesAPIClientLogger.swift in Sources */,
+				1804B16C1C8059D800E0704C /* PagingInfo.swift in Sources */,
 				18779DFD1C69F6EE000BFB57 /* UserModelBuilder.swift in Sources */,
 				187671491C7CA31600733E9E /* NewGalleryData.swift in Sources */,
 				18C1CFF51C75C40A00A02DE3 /* UserDAO.swift in Sources */,

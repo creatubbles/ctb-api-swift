@@ -76,9 +76,10 @@ class ResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(CreatorsAndManagersRequest(), withResponseHandler:CreatorsAndManagersResponseHandler()
                         {
-                            (users: Array<User>?, error: ErrorType?) -> Void in
+                            (users: Array<User>?,pageInfo: PagingInfo?, error: ErrorType?) -> Void in
                             expect(error).to(beNil())
                             expect(users).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
                             done()
                         })
                     }
@@ -94,9 +95,10 @@ class ResponseHandlerSpec: QuickSpec
                     done in
                     sender.send(CreatorsAndManagersRequest(), withResponseHandler:CreatorsAndManagersResponseHandler()
                     {
-                        (users: Array<User>?, error: ErrorType?) -> Void in
+                        (users: Array<User>?, pageInfo: PagingInfo?, error: ErrorType?) -> Void in
                         expect(error).notTo(beNil())
                         expect(users).to(beNil())
+                        expect(pageInfo).to(beNil())
                         done()
                     })
                 }
@@ -169,9 +171,10 @@ class ResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:FetchCreationsResponseHandler
                         {
-                            (creations: Array<Creation>?, error: ErrorType?) -> Void in
+                            (creations: Array<Creation>?,pageInfo: PagingInfo?, error: ErrorType?) -> Void in
                             expect(creations).notTo(beNil())
                             expect(error).to(beNil())
+                            expect(pageInfo).notTo(beNil())
                             sender.logout()
                             done()
                         })
@@ -191,9 +194,10 @@ class ResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:FetchCreationsResponseHandler
                         {
-                            (creations: Array<Creation>?, error: ErrorType?) -> Void in
+                            (creations: Array<Creation>?, pageInfo: PagingInfo?, error: ErrorType?) -> Void in
                             expect(creations).notTo(beNil())
                             expect(error).to(beNil())
+                            expect(pageInfo).notTo(beNil())
                             sender.logout()
                             done()
                         })
@@ -218,9 +222,10 @@ class ResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:GalleriesResponseHandler()
                         {
-                            (galleries: Array<Gallery>?, error: ErrorType?) -> Void in
+                            (galleries: Array<Gallery>?,pageInfo: PagingInfo?, error: ErrorType?) -> Void in
                             expect(galleries).notTo(beNil())
                             expect(error).to(beNil())
+                            expect(pageInfo).notTo(beNil())
                             sender.logout()
                             done()
                         })
@@ -241,9 +246,10 @@ class ResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:GalleriesResponseHandler()
                         {
-                            (galleries: Array<Gallery>?, error: ErrorType?) -> Void in
+                            (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: ErrorType?) -> Void in
                             expect(galleries).notTo(beNil())
                             expect(error).to(beNil())
+                            expect(pageInfo).to(beNil())
                             sender.logout()
                             done()
                         })

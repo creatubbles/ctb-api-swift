@@ -28,17 +28,21 @@ class FetchCreationsResponseHandler: ResponseHandler
             {
                 creations.append(Creation(builder: builder))
             }
-            completion?(creations, error)
+            
+            let pageInfoBuilder = Mapper<PagingInfoModelBuilder>().map(response["meta"])!
+            let pageInfo = PagingInfo(builder: pageInfoBuilder)
+            
+            completion?(creations,pageInfo, error)
         }
         else if let response = response,
             let builder = Mapper<CreationModelBuilder>().map(response["data"])
         {
             let creation = Creation(builder: builder)
-            completion?([creation], error)
+            completion?([creation], nil, error)
         }
         else
         {
-            completion?(nil, error)
+            completion?(nil, nil, error)
         }
     }
 

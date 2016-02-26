@@ -142,8 +142,9 @@ class CreatubblesAPIClientSpec: QuickSpec
                         expect(client.isLoggedIn()).to(beTrue())
                         client.getCreators(identifier, pagingData: nil)
                         {
-                            (users, error) -> (Void) in
+                            (users, pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
                             expect(error).to(beNil())
                             done()
                         }
@@ -165,8 +166,9 @@ class CreatubblesAPIClientSpec: QuickSpec
                         expect(client.isLoggedIn()).to(beTrue())
                         client.getManagers(identifier, pagingData: nil)
                         {
-                            (users, error) -> (Void) in
+                            (users,pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
                             expect(error).to(beNil())
                             done()
                         }
@@ -245,9 +247,10 @@ class CreatubblesAPIClientSpec: QuickSpec
                         expect(client.isLoggedIn()).to(beTrue())
                         client.getGalleries(identifier, pagingData: nil, sort: nil)
                         {
-                            (galleries, error) -> (Void) in
+                            (galleries, pageInfo, error) -> (Void) in
                             expect(galleries).notTo(beNil())
                             expect(galleries).notTo(beEmpty())
+                            expect(pageInfo).notTo(beNil())
                             expect(error).to(beNil())
                             done()
                         }
@@ -268,9 +271,10 @@ class CreatubblesAPIClientSpec: QuickSpec
                         expect(client.isLoggedIn()).to(beTrue())
                         client.getGalleries(nil, pagingData: nil, sort: .Popular)
                         {
-                            (galleries, error) -> (Void) in
+                            (galleries, pageInfo, error) -> (Void) in
                             expect(galleries).notTo(beNil())
                             expect(galleries).notTo(beEmpty())
+                            expect(pageInfo).notTo(beNil())
                             expect(error).to(beNil())
                             done()
                         }

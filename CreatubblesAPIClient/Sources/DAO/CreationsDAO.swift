@@ -22,7 +22,7 @@ class CreationsDAO
         let request = FetchCreationsRequest(creationId: creationId)
         let handler = FetchCreationsResponseHandler
         {
-            (creations, error) -> (Void) in
+            (creations, pageInfo, error) -> (Void) in
             completion?(creations?.first, error)
         }
         requestSender.send(request, withResponseHandler: handler)

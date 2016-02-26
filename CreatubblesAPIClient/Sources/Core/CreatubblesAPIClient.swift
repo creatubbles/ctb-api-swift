@@ -11,11 +11,11 @@ import UIKit
 //MARK: - Typealiases
 public typealias ErrorClousure = (ErrorType?) -> (Void)
 public typealias UserClousure = (User?, ErrorType?) -> (Void)
-public typealias UsersClousure = (Array<User>?, ErrorType?) -> (Void)
+public typealias UsersClousure = (Array<User>?,PagingInfo? ,ErrorType?) -> (Void)
 public typealias CreationClousure = (Creation?, ErrorType?) -> (Void)
-public typealias CreationsClousure = (Array<Creation>?, ErrorType?) -> (Void)
+public typealias CreationsClousure = (Array<Creation>?, PagingInfo?, ErrorType?) -> (Void)
 public typealias GalleryClousure = (Gallery?, ErrorType?) -> (Void)
-public typealias GalleriesClousure = (Array<Gallery>?, ErrorType?) -> (Void)
+public typealias GalleriesClousure = (Array<Gallery>?, PagingInfo?, ErrorType?) -> (Void)
 
 //MARK: - Enums
 @objc public enum Gender: Int

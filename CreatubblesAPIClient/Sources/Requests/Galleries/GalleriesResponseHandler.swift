@@ -27,17 +27,21 @@ class GalleriesResponseHandler: ResponseHandler
             {
                 galleries.append(Gallery(builder: builder))
             }
-            completion?(galleries, error)
+            
+            let pageInfoBuilder = Mapper<PagingInfoModelBuilder>().map(response["meta"])!
+            let pageInfo = PagingInfo(builder: pageInfoBuilder)
+            
+            completion?(galleries, pageInfo, error)
         }
         else if let response = response,
                 let builder = Mapper<GalleryModelBuilder>().map(response["data"])
         {
             let gallery = Gallery(builder: builder)
-            completion?([gallery], error)
+            completion?([gallery], nil, error)
         }
         else
         {
-            completion?(nil, error)
+            completion?(nil, nil, error)
         }
     }
 }

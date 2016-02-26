@@ -27,11 +27,15 @@ class CreatorsAndManagersResponseHandler: ResponseHandler
             {
                 users.append(User(builder: builder))
             }
-            completion?(users, error)
+            
+            let pageInfoBuilder = Mapper<PagingInfoModelBuilder>().map(response["meta"])!
+            let pageInfo = PagingInfo(builder: pageInfoBuilder)
+
+            completion?(users, pageInfo, error)
         }
         else
         {
-            completion?(nil, error)
+            completion?(nil, nil, error)
         }
     }
 }
