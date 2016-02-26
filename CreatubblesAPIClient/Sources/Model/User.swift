@@ -102,4 +102,15 @@ public class User: NSObject
         gspSeen = builder.gspSeen!
         uepUnwanted = builder.uepUnwanted!
     }
+    
+    //MARK: - Objective-C compability
+    public func getBirthMonth() -> NSNumber?
+    {
+        if let month = birthMonth
+        {
+            return NSNumber(integer: month)
+        }
+        return nil;
+    }
+
 }

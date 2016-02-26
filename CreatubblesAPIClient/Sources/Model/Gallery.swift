@@ -11,20 +11,20 @@ import UIKit
 @objc
 public class Gallery: NSObject
 {
-    let identifier: String
-    let name: String
-    let createdAt: NSDate
-    let updatedAt: NSDate
-    let creationsCount: Int
-    let bubblesCount: Int
-    let commentsCount: Int
-    let shortUrl: String
-    let bubbledByUserIds: Array<String>
-    let previewImageUrls: Array<String>
+    public let identifier: String
+    public let name: String
+    public let createdAt: NSDate
+    public let updatedAt: NSDate
+    public let creationsCount: Int
+    public let bubblesCount: Int
+    public let commentsCount: Int
+    public let shortUrl: String
+    public let bubbledByUserIds: Array<String>
+    public let previewImageUrls: Array<String>
     
-    let lastBubbledAt: NSDate?
-    let lastCommentedAt: NSDate?
-    let galleryDescription: String?
+    public let lastBubbledAt: NSDate?
+    public let lastCommentedAt: NSDate?
+    public let galleryDescription: String?
     
     init(builder: GalleryModelBuilder)
     {
