@@ -1,5 +1,5 @@
 //
-//  String+Path.swift
+//  PagingInfo.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -24,54 +24,21 @@
 
 import UIKit
 
-extension String
-{    
-    var lastPathComponent: String {
-        
-        get {
-            return (self as NSString).lastPathComponent
-        }
-    }
-    var pathExtension: String {
-        
-        get {
-            
-            return (self as NSString).pathExtension
-        }
-    }
-    var stringByDeletingLastPathComponent: String {
-        
-        get {
-            
-            return (self as NSString).stringByDeletingLastPathComponent
-        }
-    }
-    var stringByDeletingPathExtension: String {
-        
-        get {
-            
-            return (self as NSString).stringByDeletingPathExtension
-        }
-    }
-    var pathComponents: [String] {
-        
-        get {
-            
-            return (self as NSString).pathComponents
-        }
+@objc
+public class PagingInfo: NSObject
+{
+    public let totalPages: Int
+    public let totalCount: Int
+    
+    init(totalPages: Int, totalCount: Int)
+    {
+        self.totalPages = totalPages
+        self.totalCount = totalCount
     }
     
-    func stringByAppendingPathComponent(path: String) -> String {
-        
-        let nsSt = self as NSString
-        
-        return nsSt.stringByAppendingPathComponent(path)
-    }
-    
-    func stringByAppendingPathExtension(ext: String) -> String? {
-        
-        let nsSt = self as NSString
-        
-        return nsSt.stringByAppendingPathExtension(ext)
+    init(builder: PagingInfoModelBuilder)
+    {
+        self.totalCount = builder.totalCount!
+        self.totalPages = builder.totalPages!
     }
 }

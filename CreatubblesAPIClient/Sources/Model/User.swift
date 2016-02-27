@@ -2,13 +2,29 @@
 //  User.swift
 //  CreatubblesAPIClient
 //
-//  Created by Michal Miedlarz on 04.02.2016.
-//  Copyright © 2016 Nomtek. All rights reserved.
+//  Copyright (c) 2016 Creatubbles Pte. Ltd.
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 import UIKit
 
-enum Role: Int
+@objc public enum Role: Int
 {
     case Parent
     case Teacher
@@ -28,41 +44,41 @@ enum Role: Int
 @objc
 public class User: NSObject
 {
-    let identifier: String
-    let username: String
-    let displayName: String
-    let name: String
-    let role: Role
-    let lastBubbledAt: NSDate?
-    let lastCommentedAt: NSDate?
-    let createdAt: NSDate
-    let updatedAt: NSDate
-    let avatarUrl: String
-    let countryCode: String
-    let countryName: String
-    let age: String
-    let gender: Gender
-    let birthYear: Int
-    let birthMonth: Int?
-    let groups: Array<Group>
-    let shortUrl: String
-    let bubbledByUserIds: Array<String>
-    let ownedTags: Array<String>
+    public let identifier: String
+    public let username: String
+    public let displayName: String
+    public let name: String
+    public let role: Role
+    public let lastBubbledAt: NSDate?
+    public let lastCommentedAt: NSDate?
+    public let createdAt: NSDate
+    public let updatedAt: NSDate
+    public let avatarUrl: String
+    public let countryCode: String
+    public let countryName: String
+    public let age: String
+    public let gender: Gender
+    public let birthYear: Int
+    public let birthMonth: Int?
+    public let groups: Array<Group>
+    public let shortUrl: String
+    public let bubbledByUserIds: Array<String>
+    public let ownedTags: Array<String>
     
-    let addedBubblesCount: Int
-    let activitiesCount: Int
-    let commentsCount: Int
-    let creationsCount: Int
-    let creatorsCount: Int
-    let galleriesCount: Int
-    let managersCount: Int
+    public let addedBubblesCount: Int
+    public let activitiesCount: Int
+    public let commentsCount: Int
+    public let creationsCount: Int
+    public let creatorsCount: Int
+    public let galleriesCount: Int
+    public let managersCount: Int
     
-    let homeSchooling: Bool
-    let signedUpAsInstructor: Bool
-    let isPartner: Bool
-    let loggable: Bool
-    let gspSeen: Bool
-    let uepUnwanted: Bool
+    public let homeSchooling: Bool
+    public let signedUpAsInstructor: Bool
+    public let isPartner: Bool
+    public let loggable: Bool
+    public let gspSeen: Bool
+    public let uepUnwanted: Bool
     
     init(builder: UserModelBuilder)
     {
@@ -102,4 +118,15 @@ public class User: NSObject
         gspSeen = builder.gspSeen!
         uepUnwanted = builder.uepUnwanted!
     }
+    
+    //MARK: - Objective-C compability
+    public func getBirthMonth() -> NSNumber?
+    {
+        if let month = birthMonth
+        {
+            return NSNumber(integer: month)
+        }
+        return nil;
+    }
+
 }

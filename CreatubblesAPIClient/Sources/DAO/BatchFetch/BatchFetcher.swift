@@ -1,5 +1,5 @@
 //
-//  String+Path.swift
+//  BatchFetcher.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -24,54 +24,15 @@
 
 import UIKit
 
-extension String
-{    
-    var lastPathComponent: String {
-        
-        get {
-            return (self as NSString).lastPathComponent
-        }
-    }
-    var pathExtension: String {
-        
-        get {
-            
-            return (self as NSString).pathExtension
-        }
-    }
-    var stringByDeletingLastPathComponent: String {
-        
-        get {
-            
-            return (self as NSString).stringByDeletingLastPathComponent
-        }
-    }
-    var stringByDeletingPathExtension: String {
-        
-        get {
-            
-            return (self as NSString).stringByDeletingPathExtension
-        }
-    }
-    var pathComponents: [String] {
-        
-        get {
-            
-            return (self as NSString).pathComponents
-        }
-    }
+class BatchFetcher: NSObject
+{
+    let maxPageCount = 20
+    let perPage = 20
+    var page = 1
     
-    func stringByAppendingPathComponent(path: String) -> String {
-        
-        let nsSt = self as NSString
-        
-        return nsSt.stringByAppendingPathComponent(path)
-    }
-    
-    func stringByAppendingPathExtension(ext: String) -> String? {
-        
-        let nsSt = self as NSString
-        
-        return nsSt.stringByAppendingPathExtension(ext)
+    let requestSender: RequestSender
+    init(requestSender: RequestSender)
+    {
+        self.requestSender = requestSender
     }
 }

@@ -1,5 +1,5 @@
 //
-//  String+Path.swift
+//  PagingInfoModelBuilder.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -23,55 +23,21 @@
 //  THE SOFTWARE.
 
 import UIKit
+import ObjectMapper
 
-extension String
-{    
-    var lastPathComponent: String {
+class PagingInfoModelBuilder: Mappable
+{
+    var totalPages: Int?
+    var totalCount: Int?
+    
+    required init?(_ map: Map)
+    {
         
-        get {
-            return (self as NSString).lastPathComponent
-        }
-    }
-    var pathExtension: String {
-        
-        get {
-            
-            return (self as NSString).pathExtension
-        }
-    }
-    var stringByDeletingLastPathComponent: String {
-        
-        get {
-            
-            return (self as NSString).stringByDeletingLastPathComponent
-        }
-    }
-    var stringByDeletingPathExtension: String {
-        
-        get {
-            
-            return (self as NSString).stringByDeletingPathExtension
-        }
-    }
-    var pathComponents: [String] {
-        
-        get {
-            
-            return (self as NSString).pathComponents
-        }
     }
     
-    func stringByAppendingPathComponent(path: String) -> String {
-        
-        let nsSt = self as NSString
-        
-        return nsSt.stringByAppendingPathComponent(path)
-    }
-    
-    func stringByAppendingPathExtension(ext: String) -> String? {
-        
-        let nsSt = self as NSString
-        
-        return nsSt.stringByAppendingPathExtension(ext)
+    func mapping(map: Map)
+    {
+        totalPages <- map["total_pages"]
+        totalCount <- map["total_count"]        
     }
 }

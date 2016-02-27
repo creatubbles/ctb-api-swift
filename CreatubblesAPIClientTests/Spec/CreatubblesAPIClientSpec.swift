@@ -2,9 +2,25 @@
 //  CreatubblesAPIClientSpec.swift
 //  CreatubblesAPIClient
 //
-//  Created by Michal Miedlarz on 05.02.2016.
-//  Copyright © 2016 Nomtek. All rights reserved.
+//  Copyright (c) 2016 Creatubbles Pte. Ltd.
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 import UIKit
 import Quick
@@ -142,8 +158,9 @@ class CreatubblesAPIClientSpec: QuickSpec
                         expect(client.isLoggedIn()).to(beTrue())
                         client.getCreators(identifier, pagingData: nil)
                         {
-                            (users, error) -> (Void) in
+                            (users, pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
                             expect(error).to(beNil())
                             done()
                         }
@@ -165,8 +182,9 @@ class CreatubblesAPIClientSpec: QuickSpec
                         expect(client.isLoggedIn()).to(beTrue())
                         client.getManagers(identifier, pagingData: nil)
                         {
-                            (users, error) -> (Void) in
+                            (users,pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
                             expect(error).to(beNil())
                             done()
                         }
@@ -245,9 +263,10 @@ class CreatubblesAPIClientSpec: QuickSpec
                         expect(client.isLoggedIn()).to(beTrue())
                         client.getGalleries(identifier, pagingData: nil, sort: nil)
                         {
-                            (galleries, error) -> (Void) in
+                            (galleries, pageInfo, error) -> (Void) in
                             expect(galleries).notTo(beNil())
                             expect(galleries).notTo(beEmpty())
+                            expect(pageInfo).notTo(beNil())
                             expect(error).to(beNil())
                             done()
                         }
@@ -268,9 +287,10 @@ class CreatubblesAPIClientSpec: QuickSpec
                         expect(client.isLoggedIn()).to(beTrue())
                         client.getGalleries(nil, pagingData: nil, sort: .Popular)
                         {
-                            (galleries, error) -> (Void) in
+                            (galleries, pageInfo, error) -> (Void) in
                             expect(galleries).notTo(beNil())
                             expect(galleries).notTo(beEmpty())
+                            expect(pageInfo).notTo(beNil())
                             expect(error).to(beNil())
                             done()
                         }
@@ -328,7 +348,79 @@ class CreatubblesAPIClientSpec: QuickSpec
                         })
                     })
                 }
-            }                        
+            }
+            
+            //MARK: - Batch fetching
+            it("Should batch fetch galleries")
+            {
+                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: 20)
+                {
+                    done in
+                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    {
+                        (error) -> (Void) in
+                        expect(error).to(beNil())
+                        expect(client.isLoggedIn()).to(beTrue())
+                        client.getGalleries(nil, sort: .Popular, completion:
+                        { (galleries, error) -> (Void) in
+                            expect(galleries).notTo(beNil())
+                            expect(galleries).notTo(beEmpty())
+                            expect(error).to(beNil())
+                            done()
+                        })
+                        
+                    })
+                }
+            }
+            
+            it("Should batch fetch creations")
+            {
+                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: 20)
+                {
+                    done in
+                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    {
+                        (error) -> (Void) in
+                        expect(error).to(beNil())
+                        expect(client.isLoggedIn()).to(beTrue())
+                        
+                        client.getCreations(nil, userId: "B0SwCGhR", keyword: nil, sortOrder: nil, completion:
+                        {
+                            (creations, error) -> (Void) in
+                            expect(creations).notTo(beNil())
+                            expect(creations).notTo(beEmpty())
+                            expect(error).to(beNil())
+                            done()
+                        })
+                    })
+                }
+            }
+            
+            it("Should batch fetch creators")
+            {
+                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: 20)
+                {
+                    done in
+                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    {
+                        (error) -> (Void) in
+                        expect(error).to(beNil())
+                        expect(client.isLoggedIn()).to(beTrue())
+                        client.getCreators(nil, completion:
+                        {
+                            (creators, error) -> (Void) in
+                            expect(creators).notTo(beNil())
+                            expect(creators).notTo(beEmpty())
+                            expect(error).to(beNil())
+                            done()
+                        })
+                        
+                    })
+                }
+            }
         }
     }
 }
