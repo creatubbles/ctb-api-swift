@@ -102,7 +102,6 @@ class DatabaseService: NSObject
         }
         else
         {
-            NSLog("Incorrect number of objects in RLMResults array when fetching a single Creation Upload Session with id: %@", creationIdentifier)
             return nil
         }
     }
