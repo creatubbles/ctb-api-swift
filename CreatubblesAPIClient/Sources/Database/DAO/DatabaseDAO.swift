@@ -36,14 +36,10 @@ class DatabaseDAO: NSObject
         return creationSessions
     }
     
-    func fetchASincleCreationUploadSessionWithCreationIdentifier(creationIdentifier: String) -> CreationEntity?
+    func fetchASincleCreationUploadSessionEntityWithCreationIdentifier(creationIdentifier: String) -> CreationUploadSessionEntity?
     {
-        let creationEntity = databaseService.fetchASingleCreationUploadSessionWithCreationIdentifier(creationIdentifier)
+        let creationUploadSessionEntity = databaseService.fetchASingleCreationUploadSessionWithCreationIdentifier(creationIdentifier)
         
-        return creationEntity
+        return creationUploadSessionEntity
     }
-    
-    
-
-    
 }

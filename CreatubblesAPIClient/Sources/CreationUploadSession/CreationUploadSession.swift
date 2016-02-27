@@ -16,7 +16,6 @@ enum CreationUploadSessionState: Int
     case UploadPathObtained = 3
     case ImageUploaded = 4
     case ServerNotified = 5
-    case Completed = 6
 }
 
 @objc
@@ -44,6 +43,8 @@ class CreationUploadSession: ResponseHandler
     var creation: Creation?
     var creationUpload: CreationUpload?
     private let databaseInitialSessionState: CreationUploadSessionState
+    
+    private var isAlreadyFinished: Bool {return state == .ServerNotified }
     
     init(data: NewCreationData, requestSender: RequestSender)
     {
@@ -78,34 +79,37 @@ class CreationUploadSession: ResponseHandler
     
     func start(completion: CreationClousure?)
     {
-        if(databaseInitialSessionState.rawValue < 5)
+        if isAlreadyFinished
         {
-            self.isActive = true
-            saveImageOnDisk(nil) { [weak self](error) -> Void in
-                if let weakSelf = self {
-                    weakSelf.allocateCreation(error, completion: { (error) -> Void in
+            completion?(self.creation, nil)
+            return
+        }
+        
+        self.isActive = true
+        saveImageOnDisk(nil) { [weak self](error) -> Void in
+            if let weakSelf = self {
+                weakSelf.allocateCreation(error, completion: { (error) -> Void in
+
+                    weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
+                    weakSelf.obtainUploadPath(error, completion: { (error) -> Void in
 
                         weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
-                        weakSelf.obtainUploadPath(error, completion: { (error) -> Void in
+                        weakSelf.uploadImage(error, completion: { (error) -> Void in
 
                             weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
-                            weakSelf.uploadImage(error, completion: { (error) -> Void in
-
+                            weakSelf.notifyServer(error, completion: { (error) -> Void in
+                                
+                                print("Upload flow finished with error: \(error)")
+                                weakSelf.isActive = false
                                 weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
-                                weakSelf.notifyServer(error, completion: { (error) -> Void in
-                                    
-                                    print("Upload flow finished with error: \(error)")
-                                    weakSelf.isActive = false
-                                    weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
-                                    completion?(weakSelf.creation, error)
-                                })
+                                completion?(weakSelf.creation, error)
                             })
                         })
                     })
-                }
+                })
             }
-
         }
+
    }
     
     //MARK: Upload Flow
@@ -241,7 +245,7 @@ class CreationUploadSession: ResponseHandler
             [weak self](error) -> Void in
             if let weakSelf = self
             {
-                if error != nil
+                if error == nil
                 {
                     weakSelf.state = .ServerNotified
                 }

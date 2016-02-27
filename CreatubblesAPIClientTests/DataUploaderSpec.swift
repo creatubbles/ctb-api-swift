@@ -19,28 +19,29 @@ class DataUploaderSpec: QuickSpec
     {        
         describe("Creation upload session")
         {
-//            it("Should upload")
-//            {
-//                let path = NSBundle(forClass: self.dynamicType).URLForResource("creatubbles_logo", withExtension: "jpg")
-//                let image = UIImage(contentsOfFile: path!.path!)!
-//                let requestSender = RequestSender(settings: TestConfiguration.settings)
-//                let session = CreationUploadSession(data: NewCreationData(image: image), requestSender: requestSender)
-//                
-//                waitUntil(timeout: 100)
-//                {
-//                    done in
-//                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
-//                    {
-//                        (error: ErrorType?) -> Void in
-//                        session.start
-//                        {
-//                            (error) -> Void in
-//                            expect(error).to(beNil())
-//                            done()
-//                        }
-//                    }
-//                }
-//            }
+            it("Should upload")
+            {
+                let path = NSBundle(forClass: self.dynamicType).URLForResource("creatubbles_logo", withExtension: "jpg")
+                let image = UIImage(contentsOfFile: path!.path!)!
+                let requestSender = RequestSender(settings: TestConfiguration.settings)
+                let session = CreationUploadSession(data: NewCreationData(image: image), requestSender: requestSender)
+                
+                waitUntil(timeout: 200)
+                {
+                    done in
+                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        session.start
+                        {
+                            (creation: Creation? ,error: ErrorType?) -> Void in
+                            expect(creation).notTo(beNil())
+                            expect(error).to(beNil())
+                            done()
+                        }
+                    }
+                }
+            }
 
             it("Should upload database sessions")
             {
@@ -49,26 +50,29 @@ class DataUploaderSpec: QuickSpec
                 
                 let creationUploadSessions = databaseDAO.fetchAllCreationUploadSessions(requestSender)
                 
-                waitUntil(timeout: 100)
+                waitUntil(timeout: 200)
                 {
-                done in
-                if(creationUploadSessions.count == 0)
-                {
-                    done()
-                }
-                requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
-                {
-                    (error: ErrorType?) -> Void in
-                    for session in creationUploadSessions
+                    done in
+                    if(creationUploadSessions.count == 0)
                     {
-                        session.start
+                        done()
+                        return
+                    }
+                        
+                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        for session in creationUploadSessions
                         {
-                            (error) -> Void in
-                            expect(error).to(beNil())
-                            done()
+                            session.start
+                            {
+                                (creation: Creation? ,error: ErrorType?) -> Void in
+                                expect(creation).notTo(beNil())
+                                expect(error).to(beNil())
+                                done()
+                            }
                         }
                     }
-                }
                 }
             }
         }

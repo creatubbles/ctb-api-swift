@@ -17,6 +17,14 @@ class DatabaseService: NSObject
     {
         let creationUploadSessionEntity: CreationUploadSessionEntity = CreationUploadSessionEntity()
         
+        if let creationUploadSessionEntityFromDatabase = fetchASingleCreationUploadSessionWithCreationIdentifier((creationUploadSession.creation?.identifier)!)
+        {
+            try! realm.write
+            {
+                deleteOldDatabaseObjects(creationUploadSessionEntityFromDatabase)
+            }
+        }
+        
         creationUploadSessionEntity.isActive.value = creationUploadSession.isActive
         creationUploadSessionEntity.stateRaw.value = creationUploadSession.state.rawValue
         creationUploadSessionEntity.imageFileName = creationUploadSession.imageFileName
@@ -38,6 +46,22 @@ class DatabaseService: NSObject
         try! realm.write
         {
             realm.add(creationUploadSessionEntity, update: true)
+        }
+    }
+    
+    func deleteOldDatabaseObjects(creationUploadSessionEntity: CreationUploadSessionEntity)
+    {
+        if let creationEntity = creationUploadSessionEntity.creationEntity
+        {
+            realm.delete(creationEntity)
+        }
+        if let creationUploadEntity = creationUploadSessionEntity.creationUploadEntity
+        {
+            realm.delete(creationUploadEntity)
+        }
+        if let creationDataEntity = creationUploadSessionEntity.creationDataEntity
+        {
+            realm.delete(creationDataEntity)
         }
     }
     
@@ -69,12 +93,12 @@ class DatabaseService: NSObject
         return sessions
     }
     
-    func fetchASingleCreationUploadSessionWithCreationIdentifier(creationIdentifier: String) -> CreationEntity?
+    func fetchASingleCreationUploadSessionWithCreationIdentifier(creationIdentifier: String) -> CreationUploadSessionEntity?
     {
         let creationUploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter("creationEntityIdentifier = %@", creationIdentifier)
         if(creationUploadSessionEntities.count == 1)
         {
-            return (creationUploadSessionEntities.first?.creationEntity)!
+            return (creationUploadSessionEntities.first)!
         }
         else
         {
