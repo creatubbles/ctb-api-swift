@@ -84,10 +84,14 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-CreatubblesAPIClientTests/Realm.framework"
+  install_framework "Pods-CreatubblesAPIClientTests/RealmSwift.framework"
   install_framework "Pods-CreatubblesAPIClientTests/Nimble.framework"
   install_framework "Pods-CreatubblesAPIClientTests/Quick.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-CreatubblesAPIClientTests/Realm.framework"
+  install_framework "Pods-CreatubblesAPIClientTests/RealmSwift.framework"
   install_framework "Pods-CreatubblesAPIClientTests/Nimble.framework"
   install_framework "Pods-CreatubblesAPIClientTests/Quick.framework"
 fi

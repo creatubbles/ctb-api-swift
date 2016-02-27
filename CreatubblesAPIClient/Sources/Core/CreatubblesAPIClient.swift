@@ -30,7 +30,9 @@ public typealias GalleriesClousure = (Array<Gallery>?, ErrorType?) -> (Void)
     case Recent
 }
 
-public class CreatubblesAPIClient: NSObject
+//add protocol
+
+public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
 {
     //MARK: - Internal
     private let settings: CreatubblesAPIClientSettings
@@ -39,6 +41,7 @@ public class CreatubblesAPIClient: NSObject
     private let userDAO: UserDAO
     private let galleryDAO: GalleryDAO
     private let creationUploadService: CreationUploadService
+    weak var delegate: CreationUploadServiceDelegate?
     
     public init(settings: CreatubblesAPIClientSettings)
     {
@@ -49,6 +52,8 @@ public class CreatubblesAPIClient: NSObject
         self.galleryDAO = GalleryDAO(requestSender: requestSender)
         self.creationUploadService = CreationUploadService(requestSender: requestSender)
         Logger.setup()
+        super.init()
+        self.creationUploadService.delegate = self
     }
     
     //MARK: - Authentication
@@ -123,5 +128,15 @@ public class CreatubblesAPIClient: NSObject
     public func newCreation(creationData: NewCreationData, completion: CreationClousure?)
     {
         creationUploadService.uploadCreation(creationData, completion: completion)
+    }
+    
+    func creationUploadSessionUploadFinished(creationUploadService: CreationUploadSession)
+    {
+        
+    }
+    
+    func creationUploadSessionProgressChanged(creationUploadSession: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+    {
+        
     }
 }

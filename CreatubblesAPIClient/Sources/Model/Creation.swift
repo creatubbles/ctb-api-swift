@@ -54,4 +54,24 @@ public class Creation: NSObject
         shortUrl = builder.shortUrl!
         createdAtAge = builder.createdAtAge!
     }
+    init(creationEntity: CreationEntity)
+    {
+        identifier = creationEntity.identifier!
+        name = creationEntity.name!
+        createdAt = creationEntity.createdAt!
+        updatedAt = creationEntity.updatedAt!
+        createdAtYear = creationEntity.createdAtYear.value!
+        createdAtMonth = creationEntity.createdAtMonth.value!
+        imageStatus = creationEntity.imageStatus.value!
+        image = creationEntity.image
+        bubblesCount = creationEntity.bubblesCount.value!
+        commentsCount = creationEntity.commentsCount.value!
+        viewsCount = creationEntity.viewsCount.value!
+        lastBubbledAt = creationEntity.lastBubbledAt
+        lastCommentedAt = creationEntity.lastCommentedAt
+        lastSubmittedAt = creationEntity.lastSubmittedAt
+        approved = creationEntity.approved.value!
+        shortUrl = creationEntity.shortUrl!
+        createdAtAge = creationEntity.createdAtAge!
+    }
 }

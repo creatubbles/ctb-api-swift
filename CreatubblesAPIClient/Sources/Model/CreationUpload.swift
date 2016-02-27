@@ -25,4 +25,12 @@ class CreationUpload: NSObject
         pingUrl = builder.pingUrl!
         completedAt = builder.completedAt
     }
+    init(creationUploadEntity: CreationUploadEntity)
+    {
+        identifier = creationUploadEntity.identifier!
+        uploadUrl = creationUploadEntity.uploadUrl!
+        contentType = creationUploadEntity.contentType!
+        pingUrl = creationUploadEntity.pingUrl!
+        completedAt = creationUploadEntity.completedAt
+    }
 }
