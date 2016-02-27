@@ -18,17 +18,17 @@ enum CreationUploadSessionState: Int
     case ServerNotified = 5
 }
 
-@objc
-protocol CreationUploadSessionDelegate
+
+protocol CreationUploadSessionDelegate: class
 {
-    optional func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
+    func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
+    func creationUploadSessionChangedProgress(creationUploadSession: CreationUploadSession,bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
 }
 
 class CreationUploadSession: ResponseHandler
 {
 
     weak var delegate: CreationUploadSessionDelegate?
-    var creationUploadService: CreationUploadService?
     
     let creationData: NewCreationData
     private let requestSender: RequestSender
@@ -42,7 +42,6 @@ class CreationUploadSession: ResponseHandler
     //Fields filled during creation upload flow
     var creation: Creation?
     var creationUpload: CreationUpload?
-    private let databaseInitialSessionState: CreationUploadSessionState
     
     private var isAlreadyFinished: Bool {return state == .ServerNotified }
     
@@ -52,29 +51,23 @@ class CreationUploadSession: ResponseHandler
         self.state = .Initialized
         self.requestSender = requestSender
         self.creationData = data
-        self.creationUploadService = CreationUploadService(requestSender: self.requestSender)
-        self.delegate = self.creationUploadService
         
         self.imageFileName = String(NSDate().timeIntervalSince1970)+"_creation.jpg"
         self.relativeImageFilePath = "images/"+imageFileName
-        self.databaseInitialSessionState = .Initialized
     }
     
     init(creationUploadSessionEntity: CreationUploadSessionEntity, requestSender: RequestSender)
     {
-        self.isActive = creationUploadSessionEntity.isActive.value!
+        self.isActive = false
         self.state = creationUploadSessionEntity.state
         self.requestSender = requestSender
         self.imageFileName = creationUploadSessionEntity.imageFileName!
         self.relativeImageFilePath = creationUploadSessionEntity.relativeImageFilePath!
-        self.creationUploadService = CreationUploadService(requestSender: self.requestSender)
-        self.delegate = self.creationUploadService
         self.creationUpload = CreationUpload(creationUploadEntity: creationUploadSessionEntity.creationUploadEntity!)
         
         self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, image: UIImage(contentsOfFile: relativeImageFilePath)!)
         
         self.creation = Creation(creationEntity: creationUploadSessionEntity.creationEntity!)
-        self.databaseInitialSessionState = creationUploadSessionEntity.state
     }
     
     func start(completion: CreationClousure?)
@@ -90,18 +83,18 @@ class CreationUploadSession: ResponseHandler
             if let weakSelf = self {
                 weakSelf.allocateCreation(error, completion: { (error) -> Void in
 
-                    weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
+                    weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                     weakSelf.obtainUploadPath(error, completion: { (error) -> Void in
 
-                        weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
+                        weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                         weakSelf.uploadImage(error, completion: { (error) -> Void in
 
-                            weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
+                            weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
                                 
                                 print("Upload flow finished with error: \(error)")
                                 weakSelf.isActive = false
-                                weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
+                                weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                                 completion?(weakSelf.creation, error)
                             })
                         })
@@ -130,7 +123,7 @@ class CreationUploadSession: ResponseHandler
             [weak self](error: ErrorType?) -> Void in
             if let weakSelf = self
             {
-                if error != nil
+                if error == nil
                 {
                     weakSelf.state = .ImageSavedOnDisk
                 }
@@ -211,7 +204,7 @@ class CreationUploadSession: ResponseHandler
         progressChanged:
         {
             (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
-            
+                self.delegate?.creationUploadSessionChangedProgress(self, bytesWritten: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
         },
         completion:
         {
@@ -289,6 +282,6 @@ class CreationUploadSession: ResponseHandler
     
     private func notifyDelegateSessionChanged()
     {
-        delegate?.creationUploadSessionChangedState?(self)
+        delegate?.creationUploadSessionChangedState(self)
     }
 }

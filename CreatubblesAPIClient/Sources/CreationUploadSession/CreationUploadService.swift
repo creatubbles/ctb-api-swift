@@ -8,10 +8,11 @@
 
 import UIKit
 
-@objc
-protocol CreationUploadServiceDelegate
+
+protocol CreationUploadServiceDelegate: class
 {
-    optional func creationUploadSessionUploadFinished(creationUploadService: CreationUploadSession)
+    func creationUploadSessionUploadFinished(creationUploadService: CreationUploadSession)
+    func creationUploadSessionProgressChanged(creationUploadSession: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
 }
 
 class CreationUploadService: CreationUploadSessionDelegate
@@ -30,15 +31,21 @@ class CreationUploadService: CreationUploadSessionDelegate
     func uploadCreation(data: NewCreationData, completion: CreationClousure?)
     {
         let session = CreationUploadSession(data: data, requestSender: requestSender)
+        session.delegate = self
         session.start(completion)
     }
     
-    @objc func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
+    func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
     {
         databaseDAO.saveCreationUploadSessionToDatabase(creationUploadSession)
-        if(creationUploadSession.state.rawValue > 4)
+        if(creationUploadSession.state == .ServerNotified)
         {
-            delegate?.creationUploadSessionUploadFinished?(creationUploadSession)
+            delegate?.creationUploadSessionUploadFinished(creationUploadSession)
         }
+    }
+    
+    func creationUploadSessionChangedProgress(creationUploadSession: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+    {
+        delegate?.creationUploadSessionProgressChanged(creationUploadSession, bytesWritten: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
     }
 }

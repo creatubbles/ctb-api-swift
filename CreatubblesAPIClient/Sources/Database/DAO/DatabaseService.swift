@@ -15,39 +15,34 @@ class DatabaseService: NSObject
     
     func saveCreationUploadSessionToDatabase(creationUploadSession: CreationUploadSession)
     {
-        let creationUploadSessionEntity: CreationUploadSessionEntity = CreationUploadSessionEntity()
+        let creationUploadSessionEntity = getUploadSessionEntityFromCreationUploadSession(creationUploadSession)
         
         if let creationUploadSessionEntityFromDatabase = fetchASingleCreationUploadSessionWithCreationIdentifier((creationUploadSession.creation?.identifier)!)
         {
-            try! realm.write
+            do
             {
-                deleteOldDatabaseObjects(creationUploadSessionEntityFromDatabase)
+                try realm.write({ () -> Void in
+                    deleteOldDatabaseObjects(creationUploadSessionEntityFromDatabase)
+                })                            
+            }
+            catch let error
+            {
+                print(error)
             }
         }
-        
-        creationUploadSessionEntity.isActive.value = creationUploadSession.isActive
-        creationUploadSessionEntity.stateRaw.value = creationUploadSession.state.rawValue
-        creationUploadSessionEntity.imageFileName = creationUploadSession.imageFileName
-        creationUploadSessionEntity.relativeImageFilePath = creationUploadSession.relativeImageFilePath
-        
-        creationUploadSessionEntity.creationDataEntity = getNewCreationDataEntityFromCreationData(creationUploadSession.creationData)
-        creationUploadSessionEntity.creationEntityIdentifier = creationUploadSession.creation?.identifier
-        
-        if let creation = creationUploadSession.creation
+
+        do
         {
-            creationUploadSessionEntity.creationEntity = getCreationEntityFromCreation(creation)
+            try realm.write({ () -> Void in
+                realm.add(creationUploadSessionEntity, update: true)
+            })
         }
-        
-        if let creationUpload = creationUploadSession.creationUpload
+        catch let error
         {
-             creationUploadSessionEntity.creationUploadEntity = getCreationUploadEntityFromCreationUpload(creationUpload)
-        }
-        
-        try! realm.write
-        {
-            realm.add(creationUploadSessionEntity, update: true)
+            print(error)
         }
     }
+    
     
     func deleteOldDatabaseObjects(creationUploadSessionEntity: CreationUploadSessionEntity)
     {
@@ -67,11 +62,9 @@ class DatabaseService: NSObject
     
     func fetchAllCreationUploadSessionEntities() -> Array<CreationUploadSessionEntity>
     {
-        let realm = try! Realm()
         let realmObjects = realm.objects(CreationUploadSessionEntity)
         var creationUploadSessionEntitiesArray = [CreationUploadSessionEntity]()
         
-        //creationUploadSessionEntitiesArray.append(realmObjects[0])
         for entity in realmObjects
         {
             creationUploadSessionEntitiesArray.append(entity)
@@ -95,15 +88,32 @@ class DatabaseService: NSObject
     
     func fetchASingleCreationUploadSessionWithCreationIdentifier(creationIdentifier: String) -> CreationUploadSessionEntity?
     {
-        let creationUploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter("creationEntityIdentifier = %@", creationIdentifier)
-        if(creationUploadSessionEntities.count == 1)
+        let creationUploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter("identifier = %@", creationIdentifier)
+        return creationUploadSessionEntities.first
+    }
+    
+    //MARK: - Transforms
+    private func getUploadSessionEntityFromCreationUploadSession(creationUploadSession: CreationUploadSession) -> CreationUploadSessionEntity
+    {
+        let creationUploadSessionEntity = CreationUploadSessionEntity()
+        
+        creationUploadSessionEntity.stateRaw.value = creationUploadSession.state.rawValue
+        creationUploadSessionEntity.imageFileName = creationUploadSession.imageFileName
+        creationUploadSessionEntity.relativeImageFilePath = creationUploadSession.relativeImageFilePath
+        creationUploadSessionEntity.creationDataEntity = getNewCreationDataEntityFromCreationData(creationUploadSession.creationData)
+        creationUploadSessionEntity.identifier = creationUploadSession.creation?.identifier
+        
+        if let creation = creationUploadSession.creation
         {
-            return (creationUploadSessionEntities.first)!
+            creationUploadSessionEntity.creationEntity = getCreationEntityFromCreation(creation)
         }
-        else
+        
+        if let creationUpload = creationUploadSession.creationUpload
         {
-            return nil
+            creationUploadSessionEntity.creationUploadEntity = getCreationUploadEntityFromCreationUpload(creationUpload)
         }
+        
+        return creationUploadSessionEntity
     }
     
     private func getNewCreationDataEntityFromCreationData(newCreationData: NewCreationData) -> NewCreationDataEntity
@@ -141,10 +151,12 @@ class DatabaseService: NSObject
         creationEntity.createdAtYear.value = creation.createdAtYear
         creationEntity.createdAtMonth.value = creation.createdAtMonth
         creationEntity.imageStatus.value = creation.imageStatus
+        
         if let image = creation.image
         {
             creationEntity.image = image
         }
+        
         creationEntity.bubblesCount.value = creation.bubblesCount
         creationEntity.commentsCount.value = creation.commentsCount
         creationEntity.viewsCount.value = creation.viewsCount

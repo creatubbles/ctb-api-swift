@@ -8,6 +8,8 @@
 
 import UIKit
 
+//add protocol
+
 public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
 {
     //MARK: - Internal
@@ -105,7 +107,12 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         creationUploadService.uploadCreation(creationData, completion: completion)
     }
     
-    @objc func creationUploadSessionUploadFinished(creationUploadService: CreationUploadSession)
+    func creationUploadSessionUploadFinished(creationUploadService: CreationUploadSession)
+    {
+        
+    }
+    
+    func creationUploadSessionProgressChanged(creationUploadSession: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
     {
         
     }

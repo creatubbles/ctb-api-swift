@@ -10,36 +10,20 @@ import UIKit
 
 class DatabaseDAO: NSObject
 {
-    var databaseService: DatabaseService
-    
-    override init()
-    {
-        self.databaseService = DatabaseService()
-    }
+    let databaseService = DatabaseService()
     
     func saveCreationUploadSessionToDatabase(creationUploadSession: CreationUploadSession)
     {
-        self.databaseService.saveCreationUploadSessionToDatabase(creationUploadSession)
-    }
-    
-    func fetchAllCreationUploadSessionEntities() -> Array<CreationUploadSessionEntity>
-    {
-        let creationsEntitiesArray = databaseService.fetchAllCreationUploadSessionEntities()
-        
-        return creationsEntitiesArray
+        databaseService.saveCreationUploadSessionToDatabase(creationUploadSession)
     }
     
     func fetchAllCreationUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
     {
-        let creationSessions = databaseService.fetchAllCreationUploadSessions(requestSender)
-        
-        return creationSessions
+        return databaseService.fetchAllCreationUploadSessions(requestSender)
     }
     
     func fetchASincleCreationUploadSessionEntityWithCreationIdentifier(creationIdentifier: String) -> CreationUploadSessionEntity?
     {
-        let creationUploadSessionEntity = databaseService.fetchASingleCreationUploadSessionWithCreationIdentifier(creationIdentifier)
-        
-        return creationUploadSessionEntity
+        return databaseService.fetchASingleCreationUploadSessionWithCreationIdentifier(creationIdentifier)
     }
 }

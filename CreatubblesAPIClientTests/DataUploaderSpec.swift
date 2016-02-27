@@ -76,5 +76,27 @@ class DataUploaderSpec: QuickSpec
                 }
             }
         }
+        
+        describe("Api Client new creation")
+        {
+            it("Should upload new creation")
+            {
+                let path = NSBundle(forClass: self.dynamicType).URLForResource("creatubbles_logo", withExtension: "jpg")
+                let image = UIImage(contentsOfFile: path!.path!)!
+                let apiClient = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                
+                waitUntil(timeout: 200)
+                {
+                    done in
+                    apiClient.newCreation(NewCreationData(image: image), completion: { (creation, error) -> (Void) in
+                        expect(creation).notTo(beNil())
+                        expect(error).to(beNil())
+                        done()
+                    })
+                }
+            }
+                
+        }
+
     }
 }
