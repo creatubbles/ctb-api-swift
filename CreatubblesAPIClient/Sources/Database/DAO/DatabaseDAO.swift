@@ -38,7 +38,7 @@ class DatabaseDAO: NSObject
     
     func fetchASincleCreationUploadSessionWithCreationIdentifier(creationIdentifier: String) -> CreationEntity?
     {
-        let creationEntity = databaseService.fetchASincleCreationUploadSessionWithCreationIdentifier(creationIdentifier)
+        let creationEntity = databaseService.fetchASingleCreationUploadSessionWithCreationIdentifier(creationIdentifier)
         
         return creationEntity
     }

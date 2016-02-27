@@ -39,7 +39,7 @@ class CreationUploadService: CreationUploadSessionDelegate
     @objc func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
     {
         databaseDAO.saveCreationUploadSessionToDatabase(creationUploadSession)
-        if(creationUploadSession.state.rawValue > 4)
+        if(creationUploadSession.state.rawValue >= 4)
         {
             delegate?.creationUploadSessionUploadFinished?(creationUploadSession)
         }

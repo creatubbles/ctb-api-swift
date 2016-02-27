@@ -21,7 +21,7 @@ class CreationEntity: Object
     var createdAtMonth = RealmOptional<Int>()
     
     var imageStatus = RealmOptional<Int>()
-    dynamic var image: String?
+    dynamic var image = ""
     
     var bubblesCount = RealmOptional<Int>()
     var commentsCount = RealmOptional<Int>()

@@ -69,7 +69,7 @@ class DatabaseService: NSObject
         return sessions
     }
     
-    func fetchASincleCreationUploadSessionWithCreationIdentifier(creationIdentifier: String) -> CreationEntity?
+    func fetchASingleCreationUploadSessionWithCreationIdentifier(creationIdentifier: String) -> CreationEntity?
     {
         let creationUploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter("creationEntityIdentifier = %@", creationIdentifier)
         if(creationUploadSessionEntities.count == 1)
@@ -118,7 +118,10 @@ class DatabaseService: NSObject
         creationEntity.createdAtYear.value = creation.createdAtYear
         creationEntity.createdAtMonth.value = creation.createdAtMonth
         creationEntity.imageStatus.value = creation.imageStatus
-        creationEntity.image = creation.image
+        if let image = creation.image
+        {
+            creationEntity.image = image
+        }
         creationEntity.bubblesCount.value = creation.bubblesCount
         creationEntity.commentsCount.value = creation.commentsCount
         creationEntity.viewsCount.value = creation.viewsCount

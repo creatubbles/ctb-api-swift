@@ -43,6 +43,7 @@ class CreationUploadSession: ResponseHandler
     //Fields filled during creation upload flow
     var creation: Creation?
     var creationUpload: CreationUpload?
+    private let databaseInitialSessionState: CreationUploadSessionState
     
     init(data: NewCreationData, requestSender: RequestSender)
     {
@@ -55,6 +56,7 @@ class CreationUploadSession: ResponseHandler
         
         self.imageFileName = String(NSDate().timeIntervalSince1970)+"_creation.jpg"
         self.relativeImageFilePath = "images/"+imageFileName
+        self.databaseInitialSessionState = .Initialized
     }
     
     init(creationUploadSessionEntity: CreationUploadSessionEntity, requestSender: RequestSender)
@@ -64,37 +66,47 @@ class CreationUploadSession: ResponseHandler
         self.requestSender = requestSender
         self.imageFileName = creationUploadSessionEntity.imageFileName!
         self.relativeImageFilePath = creationUploadSessionEntity.relativeImageFilePath!
+        self.creationUploadService = CreationUploadService(requestSender: self.requestSender)
+        self.delegate = self.creationUploadService
+        self.creationUpload = CreationUpload(creationUploadEntity: creationUploadSessionEntity.creationUploadEntity!)
         
         self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, image: UIImage(contentsOfFile: relativeImageFilePath)!)
         
         self.creation = Creation(creationEntity: creationUploadSessionEntity.creationEntity!)
-        //self.creationUpload = CreationUpload(creationUploadEntity: creationUploadSessionEntity.creationUploadEntity!)
+        self.databaseInitialSessionState = creationUploadSessionEntity.state
     }
     
     func start(completion: CreationClousure?)
     {
-        self.isActive = true
-        saveImageOnDisk(nil) { [weak self](error) -> Void in
-            if let weakSelf = self {
-                weakSelf.allocateCreation(error, completion: { (error) -> Void in
-                    weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
-                    weakSelf.obtainUploadPath(error, completion: { (error) -> Void in
-                        
+        if(databaseInitialSessionState.rawValue < 5)
+        {
+            self.isActive = true
+            saveImageOnDisk(nil) { [weak self](error) -> Void in
+                if let weakSelf = self {
+                    weakSelf.allocateCreation(error, completion: { (error) -> Void in
+
                         weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
-                        weakSelf.uploadImage(error, completion: { (error) -> Void in
-                            
-                            weakSelf.notifyServer(error, completion: { (error) -> Void in
-                                print("Upload flow finished with error: \(error)")
+                        weakSelf.obtainUploadPath(error, completion: { (error) -> Void in
+
+                            weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
+                            weakSelf.uploadImage(error, completion: { (error) -> Void in
+
                                 weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
-                                weakSelf.isActive = false
-                                completion?(weakSelf.creation, error)
+                                weakSelf.notifyServer(error, completion: { (error) -> Void in
+                                    
+                                    print("Upload flow finished with error: \(error)")
+                                    weakSelf.isActive = false
+                                    weakSelf.delegate?.creationUploadSessionChangedState?(weakSelf)
+                                    completion?(weakSelf.creation, error)
+                                })
                             })
                         })
                     })
-                })
+                }
             }
+
         }
-    }
+   }
     
     //MARK: Upload Flow
     private func saveImageOnDisk(error: ErrorType?,completion: (ErrorType?) -> Void)
@@ -202,7 +214,7 @@ class CreationUploadSession: ResponseHandler
             [weak self](error) -> Void in
             if  let weakSelf = self
             {
-                if error != nil
+                if error == nil
                 {
                     weakSelf.state = .ImageUploaded
                 }

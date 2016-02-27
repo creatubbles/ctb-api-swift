@@ -62,13 +62,13 @@ public class Creation
         createdAtYear = creationEntity.createdAtYear.value!
         createdAtMonth = creationEntity.createdAtMonth.value!
         imageStatus = creationEntity.imageStatus.value!
-        image = creationEntity.image!
+        image = creationEntity.image
         bubblesCount = creationEntity.bubblesCount.value!
         commentsCount = creationEntity.commentsCount.value!
         viewsCount = creationEntity.viewsCount.value!
-        lastBubbledAt = creationEntity.lastBubbledAt!
-        lastCommentedAt = creationEntity.lastCommentedAt!
-        lastSubmittedAt = creationEntity.lastSubmittedAt!
+        lastBubbledAt = creationEntity.lastBubbledAt
+        lastCommentedAt = creationEntity.lastCommentedAt
+        lastSubmittedAt = creationEntity.lastSubmittedAt
         approved = creationEntity.approved.value!
         shortUrl = creationEntity.shortUrl!
         createdAtAge = creationEntity.createdAtAge!
