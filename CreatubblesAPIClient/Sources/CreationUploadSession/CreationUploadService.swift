@@ -27,8 +27,9 @@ import UIKit
 
 protocol CreationUploadServiceDelegate: class
 {
-    func creationUploadSessionUploadFinished(creationUploadService: CreationUploadSession)
-    func creationUploadSessionProgressChanged(creationUploadSession: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+    func creationUploadServiceUploadFinished(service:CreationUploadService, session: CreationUploadSession)
+    func creationUploadServiceUploadFailed(service:CreationUploadService, session: CreationUploadSession, error: ErrorType)
+    func creationUploadServiceProgressChanged(service:CreationUploadService, session: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
 }
 
 class CreationUploadService: CreationUploadSessionDelegate
@@ -56,12 +57,17 @@ class CreationUploadService: CreationUploadSessionDelegate
         databaseDAO.saveCreationUploadSessionToDatabase(creationUploadSession)
         if(creationUploadSession.state == .ServerNotified)
         {
-            delegate?.creationUploadSessionUploadFinished(creationUploadSession)
+            delegate?.creationUploadServiceUploadFinished(self,session: creationUploadSession)
         }
     }
     
     func creationUploadSessionChangedProgress(creationUploadSession: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
     {
-        delegate?.creationUploadSessionProgressChanged(creationUploadSession, bytesWritten: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
+        delegate?.creationUploadServiceProgressChanged(self, session: creationUploadSession, bytesWritten: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
+    }
+    
+    func creationUploadSessionUploadFailed(creationUploadSession: CreationUploadSession, error: ErrorType)
+    {
+        delegate?.creationUploadServiceUploadFailed(self, session: creationUploadSession, error: error)
     }
 }

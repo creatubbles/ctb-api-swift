@@ -191,7 +191,7 @@ extension CreatubblesAPIClient
     }
 
     //MARK: - Utils
-    private static func errorTypeToNSError(error: ErrorType?) -> NSError?
+    static func errorTypeToNSError(error: ErrorType?) -> NSError?
     {
         if let error = error
         {

@@ -38,6 +38,7 @@ enum CreationUploadSessionState: Int
 protocol CreationUploadSessionDelegate: class
 {
     func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
+    func creationUploadSessionUploadFailed(creationUploadSession: CreationUploadSession, error: ErrorType)
     func creationUploadSessionChangedProgress(creationUploadSession: CreationUploadSession,bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
 }
 
@@ -111,6 +112,11 @@ class CreationUploadSession: ResponseHandler
                                 print("Upload flow finished with error: \(error)")
                                 weakSelf.isActive = false
                                 weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                                if let error = error
+                                {
+                                    weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
+                                }
+                                
                                 completion?(weakSelf.creation, error)
                             })
                         })
