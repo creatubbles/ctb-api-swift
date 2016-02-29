@@ -36,28 +36,28 @@ class GalleriesResponseHandler: ResponseHandler
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         if  let response = response,
-            let builders = Mapper<GalleryModelBuilder>().mapArray(response["data"])
+            let mappers = Mapper<GalleryMapper>().mapArray(response["data"])
         {
             var galleries = Array<Gallery>()
-            for builder in builders
+            for mapper in mappers
             {
-                galleries.append(Gallery(builder: builder))
+                galleries.append(Gallery(mapper: mapper))
             }
             
-            let pageInfoBuilder = Mapper<PagingInfoModelBuilder>().map(response["meta"])!
-            let pageInfo = PagingInfo(builder: pageInfoBuilder)
+            let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
+            let pageInfo = PagingInfo(mapper: pageInfoMapper)
             
-            completion?(galleries, pageInfo, error)
+            completion?(galleries, pageInfo, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else if let response = response,
-                let builder = Mapper<GalleryModelBuilder>().map(response["data"])
+                let mapper = Mapper<GalleryMapper>().map(response["data"])
         {
-            let gallery = Gallery(builder: builder)
-            completion?([gallery], nil, error)
+            let gallery = Gallery(mapper: mapper)
+            completion?([gallery], nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else
         {
-            completion?(nil, nil, error)
+            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
     }
 }

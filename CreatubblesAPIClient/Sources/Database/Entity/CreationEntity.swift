@@ -1,5 +1,5 @@
 //
-//  Gallery.swift
+//  CreationEntity.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -22,41 +22,32 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
+import Foundation
+import RealmSwift
 
-@objc
-public class Gallery: NSObject
+class CreationEntity: Object
 {
-    public let identifier: String
-    public let name: String
-    public let createdAt: NSDate
-    public let updatedAt: NSDate
-    public let creationsCount: Int
-    public let bubblesCount: Int
-    public let commentsCount: Int
-    public let shortUrl: String
-    public let bubbledByUserIds: Array<String>
-    public let previewImageUrls: Array<String>
     
-    public let lastBubbledAt: NSDate?
-    public let lastCommentedAt: NSDate?
-    public let galleryDescription: String?
+    dynamic var identifier: String?
+    dynamic var name: String?
+    dynamic var createdAt: NSDate?
+    dynamic var updatedAt: NSDate?
     
-    init(mapper: GalleryMapper)
-    {
-        identifier = mapper.identifier!
-        name = mapper.name!
-        createdAt = mapper.createdAt!
-        updatedAt = mapper.updatedAt!
-        creationsCount = mapper.creationsCount!
-        bubblesCount = mapper.creationsCount!
-        commentsCount = mapper.commentsCount!
-        shortUrl = mapper.shortUrl!
-        bubbledByUserIds = mapper.bubbledByUserIds!
-        previewImageUrls = mapper.previewImageUrls!
-        
-        lastBubbledAt = mapper.lastBubbledAt
-        lastCommentedAt = mapper.lastCommentedAt
-        galleryDescription = mapper.galleryDescription
-    }
+    var createdAtYear = RealmOptional<Int>()
+    var createdAtMonth = RealmOptional<Int>()
+    
+    var imageStatus = RealmOptional<Int>()
+    dynamic var image: String?
+    
+    var bubblesCount = RealmOptional<Int>()
+    var commentsCount = RealmOptional<Int>()
+    var viewsCount = RealmOptional<Int>()
+    
+    dynamic var lastBubbledAt: NSDate?
+    dynamic var lastCommentedAt: NSDate?
+    dynamic var lastSubmittedAt: NSDate?
+    
+    var approved = RealmOptional<Bool>()
+    dynamic var shortUrl: String?
+    dynamic var createdAtAge: String?
 }

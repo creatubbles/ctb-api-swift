@@ -31,10 +31,10 @@ public class Group: NSObject
     public let name: String
     public let taggingsCount: Int
     
-    init(builder: GroupModelBuilder)
+    init(mapper: GroupMapper)
     {
-        identifier = builder.identifier!
-        name = builder.name!
-        taggingsCount = builder.taggingsCount!
+        identifier = mapper.identifier!
+        name = mapper.name!
+        taggingsCount = mapper.taggingsCount!
     }
 }

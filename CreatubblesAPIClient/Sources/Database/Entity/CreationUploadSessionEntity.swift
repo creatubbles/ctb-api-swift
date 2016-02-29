@@ -1,5 +1,5 @@
 //
-//  Gallery.swift
+//  CreationUploadSessionEntity.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -22,41 +22,32 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
+import Foundation
+import RealmSwift
 
-@objc
-public class Gallery: NSObject
+class CreationUploadSessionEntity: Object
 {
-    public let identifier: String
-    public let name: String
-    public let createdAt: NSDate
-    public let updatedAt: NSDate
-    public let creationsCount: Int
-    public let bubblesCount: Int
-    public let commentsCount: Int
-    public let shortUrl: String
-    public let bubbledByUserIds: Array<String>
-    public let previewImageUrls: Array<String>
+    dynamic var identifier: String?
     
-    public let lastBubbledAt: NSDate?
-    public let lastCommentedAt: NSDate?
-    public let galleryDescription: String?
+    var stateRaw = RealmOptional<Int>()
+    dynamic var creationDataEntity: NewCreationDataEntity?
+    dynamic var imageFileName: String?
+    dynamic var relativeImageFilePath: String?
     
-    init(mapper: GalleryMapper)
+    dynamic var creationEntity: CreationEntity?
+    dynamic var creationUploadEntity: CreationUploadEntity?
+    
+    var state: CreationUploadSessionState
     {
-        identifier = mapper.identifier!
-        name = mapper.name!
-        createdAt = mapper.createdAt!
-        updatedAt = mapper.updatedAt!
-        creationsCount = mapper.creationsCount!
-        bubblesCount = mapper.creationsCount!
-        commentsCount = mapper.commentsCount!
-        shortUrl = mapper.shortUrl!
-        bubbledByUserIds = mapper.bubbledByUserIds!
-        previewImageUrls = mapper.previewImageUrls!
-        
-        lastBubbledAt = mapper.lastBubbledAt
-        lastCommentedAt = mapper.lastCommentedAt
-        galleryDescription = mapper.galleryDescription
+        get
+        {
+            return CreationUploadSessionState(rawValue: stateRaw.value!)!
+        }
+    }
+    
+    override static func primaryKey() -> String?
+    {
+        return "identifier"
     }
 }
+

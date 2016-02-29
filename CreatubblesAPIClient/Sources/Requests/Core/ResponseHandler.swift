@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 
 import UIKit
+import ObjectMapper
 
 class ResponseHandler: NSObject
 {

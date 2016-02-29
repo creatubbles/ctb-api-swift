@@ -35,30 +35,30 @@ class FetchCreationsResponseHandler: ResponseHandler
     }
 
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
-    {
+    {        
         if  let response = response,
-            let builders = Mapper<CreationModelBuilder>().mapArray(response["data"])
+            let mappers = Mapper<CreationMapper>().mapArray(response["data"])
         {
             var creations = Array<Creation>()
-            for builder in builders
+            for mapper in mappers
             {
-                creations.append(Creation(builder: builder))
+                creations.append(Creation(mapper: mapper))
             }
             
-            let pageInfoBuilder = Mapper<PagingInfoModelBuilder>().map(response["meta"])!
-            let pageInfo = PagingInfo(builder: pageInfoBuilder)
+            let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
+            let pageInfo = PagingInfo(mapper: pageInfoMapper)
             
-            completion?(creations,pageInfo, error)
+            completion?(creations,pageInfo, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else if let response = response,
-            let builder = Mapper<CreationModelBuilder>().map(response["data"])
+                let mapper = Mapper<CreationMapper>().map(response["data"])
         {
-            let creation = Creation(builder: builder)
-            completion?([creation], nil, error)
+            let creation = Creation(mapper: mapper)
+            completion?([creation], nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else
         {
-            completion?(nil, nil, error)
+            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
     }
 

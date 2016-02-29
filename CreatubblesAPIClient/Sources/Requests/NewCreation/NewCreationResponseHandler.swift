@@ -36,9 +36,9 @@ class NewCreationResponseHandler: ResponseHandler
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         if  let response = response,
-            let builder = Mapper<CreationModelBuilder>().map(response["data"])
+            let mapper = Mapper<CreationMapper>().map(response["data"])
         {
-            let creation = Creation(builder: builder)
+            let creation = Creation(mapper: mapper)
             completion(creation: creation, error: error)
         }
         else

@@ -1,5 +1,5 @@
 //
-//  Gallery.swift
+//  DatabaseDAO.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -24,39 +24,22 @@
 
 import UIKit
 
-@objc
-public class Gallery: NSObject
+class DatabaseDAO: NSObject
 {
-    public let identifier: String
-    public let name: String
-    public let createdAt: NSDate
-    public let updatedAt: NSDate
-    public let creationsCount: Int
-    public let bubblesCount: Int
-    public let commentsCount: Int
-    public let shortUrl: String
-    public let bubbledByUserIds: Array<String>
-    public let previewImageUrls: Array<String>
+    let databaseService = DatabaseService()
     
-    public let lastBubbledAt: NSDate?
-    public let lastCommentedAt: NSDate?
-    public let galleryDescription: String?
-    
-    init(mapper: GalleryMapper)
+    func saveCreationUploadSessionToDatabase(creationUploadSession: CreationUploadSession)
     {
-        identifier = mapper.identifier!
-        name = mapper.name!
-        createdAt = mapper.createdAt!
-        updatedAt = mapper.updatedAt!
-        creationsCount = mapper.creationsCount!
-        bubblesCount = mapper.creationsCount!
-        commentsCount = mapper.commentsCount!
-        shortUrl = mapper.shortUrl!
-        bubbledByUserIds = mapper.bubbledByUserIds!
-        previewImageUrls = mapper.previewImageUrls!
-        
-        lastBubbledAt = mapper.lastBubbledAt
-        lastCommentedAt = mapper.lastCommentedAt
-        galleryDescription = mapper.galleryDescription
+        databaseService.saveCreationUploadSessionToDatabase(creationUploadSession)
+    }
+    
+    func fetchAllCreationUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
+    {
+        return databaseService.fetchAllCreationUploadSessions(requestSender)
+    }
+    
+    func fetchASincleCreationUploadSessionEntityWithCreationIdentifier(creationIdentifier: String) -> CreationUploadSessionEntity?
+    {
+        return databaseService.fetchASingleCreationUploadSessionWithCreationIdentifier(creationIdentifier)
     }
 }

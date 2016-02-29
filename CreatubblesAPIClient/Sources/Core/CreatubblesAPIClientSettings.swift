@@ -38,9 +38,9 @@ public class CreatubblesAPIClientSettings: NSObject
     {
         self.appId = appId
         self.appSecret = appSecret
-        self.tokenUri = "https://staging.creatubbles.com/api/v2/oauth/token"
-        self.authorizeUri = "https://staging.creatubbles.com/api/v2/oauth/token"
-        self.baseUrl = "https://staging.creatubbles.com"
+        self.tokenUri = "https://www.creatubbles.com/api/v2/oauth/token"
+        self.authorizeUri = "https://www.creatubbles.com/api/v2/oauth/token"
+        self.baseUrl = "https://www.creatubbles.com"
         self.apiVersion = "v2"
         self.apiPrefix = "api"
     }

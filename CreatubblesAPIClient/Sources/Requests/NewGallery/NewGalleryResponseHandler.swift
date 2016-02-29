@@ -36,14 +36,14 @@ class NewGalleryResponseHandler: ResponseHandler
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         if let response = response,
-           let builder = Mapper<GalleryModelBuilder>().map(response["data"])
+           let mapper = Mapper<GalleryMapper>().map(response["data"])
         {
-            let gallery = Gallery(builder: builder)
-            completion?(gallery, error)
+            let gallery = Gallery(mapper: mapper)
+            completion?(gallery, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else
         {
-            completion?(nil, error)
+            completion?(nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
     }
 }

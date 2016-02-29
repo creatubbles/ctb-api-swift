@@ -33,14 +33,15 @@ class CreationUpload: NSObject
     let pingUrl: String
     let completedAt: NSDate?
 
-    init(builder: CreationUploadModelBuilder)
+    init(mapper: CreationUploadMapper)
     {
-        identifier = builder.identifier!
-        uploadUrl = builder.uploadUrl!
-        contentType = builder.contentType!
-        pingUrl = builder.pingUrl!
-        completedAt = builder.completedAt
+        identifier = mapper.identifier!
+        uploadUrl = mapper.uploadUrl!
+        contentType = mapper.contentType!
+        pingUrl = mapper.pingUrl!
+        completedAt = mapper.completedAt
     }
+    
     init(creationUploadEntity: CreationUploadEntity)
     {
         identifier = creationUploadEntity.identifier!

@@ -80,43 +80,43 @@ public class User: NSObject
     public let gspSeen: Bool
     public let uepUnwanted: Bool
     
-    init(builder: UserModelBuilder)
+    init(mapper: UserMapper)
     {
-        identifier = builder.identifier!
-        username = builder.username!
-        displayName = builder.displayName!
-        name = builder.name!
-        role = builder.parseRole()
-        lastBubbledAt = builder.lastBubbledAt
-        lastCommentedAt = builder.lastCommentedAt
-        createdAt = builder.createdAt!
-        updatedAt = builder.updatedAt!
-        avatarUrl = builder.avatarUrl!
-        countryCode = builder.countryCode!
-        countryName = builder.countryName!
-        age = builder.age!
-        gender = builder.parseGender()
-        birthYear = builder.birthYear!
-        birthMonth = builder.birthMonth
-        groups = builder.parseGroups()
-        shortUrl = builder.shortUrl!
-        bubbledByUserIds = builder.bubbledByUserIds!
-        ownedTags = builder.ownedTags!
+        identifier = mapper.identifier!
+        username = mapper.username!
+        displayName = mapper.displayName!
+        name = mapper.name!
+        role = mapper.parseRole()
+        lastBubbledAt = mapper.lastBubbledAt
+        lastCommentedAt = mapper.lastCommentedAt
+        createdAt = mapper.createdAt!
+        updatedAt = mapper.updatedAt!
+        avatarUrl = mapper.avatarUrl!
+        countryCode = mapper.countryCode!
+        countryName = mapper.countryName!
+        age = mapper.age!
+        gender = mapper.parseGender()
+        birthYear = mapper.birthYear!
+        birthMonth = mapper.birthMonth
+        groups = mapper.parseGroups()
+        shortUrl = mapper.shortUrl!
+        bubbledByUserIds = mapper.bubbledByUserIds!
+        ownedTags = mapper.ownedTags!
                         
-        addedBubblesCount = builder.addedBubblesCount!
-        activitiesCount = builder.activitiesCount!
-        commentsCount = builder.commentsCount!
-        creationsCount = builder.creationsCount!
-        creatorsCount = builder.creatorsCount!
-        galleriesCount = builder.galleriesCount!
-        managersCount = builder.managersCount!
+        addedBubblesCount = mapper.addedBubblesCount!
+        activitiesCount = mapper.activitiesCount!
+        commentsCount = mapper.commentsCount!
+        creationsCount = mapper.creationsCount!
+        creatorsCount = mapper.creatorsCount!
+        galleriesCount = mapper.galleriesCount!
+        managersCount = mapper.managersCount!
 
-        homeSchooling = builder.homeSchooling!
-        signedUpAsInstructor = builder.signedUpAsInstructor!
-        isPartner = builder.isPartner!
-        loggable = builder.loggable!
-        gspSeen = builder.gspSeen!
-        uepUnwanted = builder.uepUnwanted!
+        homeSchooling = mapper.homeSchooling!
+        signedUpAsInstructor = mapper.signedUpAsInstructor!
+        isPartner = mapper.isPartner!
+        loggable = mapper.loggable!
+        gspSeen = mapper.gspSeen!
+        uepUnwanted = mapper.uepUnwanted!
     }
     
     //MARK: - Objective-C compability

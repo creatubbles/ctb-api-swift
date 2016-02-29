@@ -1,5 +1,5 @@
 //
-//  GallerySubmissionResponseHandler.swift
+//  CreationUploadEntity.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -22,18 +22,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
+import Foundation
+import RealmSwift
 
-class GallerySubmissionResponseHandler: ResponseHandler
+class CreationUploadEntity: Object
 {
-    private let completion: ErrorClousure?
-    init(completion: ErrorClousure?)
-    {
-        self.completion = completion
-    }
-    
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
-    {
-        completion?( CreatubblesAPIClientError.Generic(error.debugDescription) )
-    }    
+    dynamic var identifier: String?
+    dynamic var uploadUrl: String?
+    dynamic var contentType: String?
+    dynamic var pingUrl: String?
+    dynamic var completedAt: NSDate?
 }
