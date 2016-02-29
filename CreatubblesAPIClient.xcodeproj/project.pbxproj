@@ -82,6 +82,7 @@
 		21A79F701C81E6C5009E95D1 /* CreationsBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */; };
 		21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6D1C81E6C5009E95D1 /* GalleriesBatchFetcher.swift */; };
 		21A79F721C81E6C5009E95D1 /* UsersBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6E1C81E6C5009E95D1 /* UsersBatchFetcher.swift */; };
+		21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F751C8494C4009E95D1 /* CreationUploadSessionPublicData.swift */; };
 		21F740941C735C9600E7F4D1 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F740931C735C9600E7F4D1 /* TestConfiguration.swift */; };
 /* End PBXBuildFile section */
 
@@ -175,6 +176,7 @@
 		21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsBatchFetcher.swift; sourceTree = "<group>"; };
 		21A79F6D1C81E6C5009E95D1 /* GalleriesBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleriesBatchFetcher.swift; sourceTree = "<group>"; };
 		21A79F6E1C81E6C5009E95D1 /* UsersBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersBatchFetcher.swift; sourceTree = "<group>"; };
+		21A79F751C8494C4009E95D1 /* CreationUploadSessionPublicData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadSessionPublicData.swift; sourceTree = "<group>"; };
 		21F740931C735C9600E7F4D1 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.release.xcconfig"; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 			children = (
 				1847FBED1C75EAF900FE5FF3 /* CreationUploadService.swift */,
 				188ECF6F1C74703200AFEE4F /* CreationUploadSession.swift */,
+				21A79F751C8494C4009E95D1 /* CreationUploadSessionPublicData.swift */,
 			);
 			path = CreationUploadSession;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 				18C1CFF71C75C46C00A02DE3 /* CreationsDAO.swift in Sources */,
 				188ECF701C74703200AFEE4F /* CreationUploadSession.swift in Sources */,
 				180C97AF1C6DD41900BC682D /* NewCreationResponseHandler.swift in Sources */,
+				21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */,
 				187047E01C71DCD600B202FD /* NewCreationUploadRequest.swift in Sources */,
 				18C744F01C84588400A07E4C /* UserMapper.swift in Sources */,
 				21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */,

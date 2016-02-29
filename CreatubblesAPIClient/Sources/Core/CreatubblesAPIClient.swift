@@ -181,21 +181,42 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, completion: completion)
     }
     
-    //MARK: - Upload Sessions fetch
-    func getAllActiveUploadSessions() -> Array<CreationUploadSession>
+    //MARK: - Upload Sessions
+    func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
         let databaseDAO = DatabaseDAO()
         let activeUploads = databaseDAO.fetchAllActiveUploadSessions(requestSender)
+        var activeUploadsPublicData = [CreationUploadSessionPublicData]()
         
-        return activeUploads
+        for activeUpload in activeUploads
+        {
+            activeUploadsPublicData.append(CreationUploadSessionPublicData(creationUploadSession: activeUpload))
+        }
+        return activeUploadsPublicData
     }
     
-    func getAllFinishedUploadSessions() -> Array<CreationUploadSession>
+    func getAllFinishedUploadSessions() -> Array<CreationUploadSessionPublicData>
     {
         let databaseDAO = DatabaseDAO()
         let finishedUploads = databaseDAO.fetchAllFinishedUploadSessions(requestSender)
+        var finishedUploadsPublicData = [CreationUploadSessionPublicData]()
         
-        return finishedUploads
+        for finishedUpload in finishedUploads
+        {
+            finishedUploadsPublicData.append(CreationUploadSessionPublicData(creationUploadSession: finishedUpload))
+        }
+        return finishedUploadsPublicData
+    }
+    
+    func startAllNotFinishedUploadSessions(completion: CreationClousure?)
+    {
+        let databaseDAO = DatabaseDAO()
+        let sessions = databaseDAO.fetchAllActiveUploadSessions(requestSender)
+        
+        for session in sessions
+        {
+            session.start(completion)
+        }
     }
     
     //MARK: - Creation flow
