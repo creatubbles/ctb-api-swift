@@ -79,7 +79,7 @@ class RequestSender: NSObject
             {
                 weakSelf.oauth2Client.onFailure = nil
             }
-            Logger.log.error("Error during login:\(error)")
+            Logger.log.error("Error while login:\(error)")
             
             let err = error as! OAuth2Error
             completion?(CreatubblesAPIClientError.Generic(err.description))
@@ -108,7 +108,7 @@ class RequestSender: NSObject
             (response) -> Void in
             if let err = response.result.error
             {
-                Logger.log.error("Error during sending request:\(request.dynamicType) \nError:\n \(err) \nResponse:\n \(response.result.value)")
+                Logger.log.error("Error while sending request:\(request.dynamicType) \nError:\n \(err) \nResponse:\n \(response.result.value)")
             }
         }
         .responseJSON
