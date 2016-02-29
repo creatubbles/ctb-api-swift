@@ -25,19 +25,19 @@
 import UIKit
 
 //MARK: - Typealiases
-public typealias ErrorClousure = (ErrorType?) -> (Void)
+public typealias ErrorClousure = (CreatubblesAPIClientError?) -> (Void)
 
-public typealias UserClousure = (User?, ErrorType?) -> (Void)
-public typealias UsersClousure = (Array<User>?,PagingInfo? ,ErrorType?) -> (Void)
-public typealias UsersBatchClousure = (Array<User>? ,ErrorType?) -> (Void)
+public typealias UserClousure = (User?, CreatubblesAPIClientError?) -> (Void)
+public typealias UsersClousure = (Array<User>?,PagingInfo? ,CreatubblesAPIClientError?) -> (Void)
+public typealias UsersBatchClousure = (Array<User>? ,CreatubblesAPIClientError?) -> (Void)
 
-public typealias CreationClousure = (Creation?, ErrorType?) -> (Void)
-public typealias CreationsClousure = (Array<Creation>?, PagingInfo?, ErrorType?) -> (Void)
-public typealias CreationsBatchClousure = (Array<Creation>?, ErrorType?) -> (Void)
+public typealias CreationClousure = (Creation?, CreatubblesAPIClientError?) -> (Void)
+public typealias CreationsClousure = (Array<Creation>?, PagingInfo?, CreatubblesAPIClientError?) -> (Void)
+public typealias CreationsBatchClousure = (Array<Creation>?, CreatubblesAPIClientError?) -> (Void)
 
-public typealias GalleryClousure = (Gallery?, ErrorType?) -> (Void)
-public typealias GalleriesClousure = (Array<Gallery>?, PagingInfo?, ErrorType?) -> (Void)
-public typealias GalleriesBatchClousure = (Array<Gallery>?, ErrorType?) -> (Void)
+public typealias GalleryClousure = (Gallery?, CreatubblesAPIClientError?) -> (Void)
+public typealias GalleriesClousure = (Array<Gallery>?, PagingInfo?, CreatubblesAPIClientError?) -> (Void)
+public typealias GalleriesBatchClousure = (Array<Gallery>?, CreatubblesAPIClientError?) -> (Void)
 
 //MARK: - Enums
 @objc public enum Gender: Int

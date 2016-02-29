@@ -57,7 +57,7 @@ class RequestSender: NSObject
     //MARK: - Authentication
     
     var authenticationToken: String? { return oauth2Client.accessToken }
-    func login(username: String, password: String, completion: ((ErrorType?) -> Void)?)
+    func login(username: String, password: String, completion: ErrorClousure?)
     {
 
         oauth2Client.username = username
@@ -78,7 +78,8 @@ class RequestSender: NSObject
             {
                 weakSelf.oauth2Client.onFailure = nil
             }
-            completion?(error)
+            let err = error as! OAuth2Error
+            completion?(CreatubblesAPIClientError.Generic(err.description))
         }
         oauth2Client.authorize()
     }

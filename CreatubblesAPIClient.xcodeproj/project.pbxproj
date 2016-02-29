@@ -74,6 +74,8 @@
 		18EFFF721C772A4E00BE0B70 /* RequestSenderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF6D1C772A4E00BE0B70 /* RequestSenderSpec.swift */; };
 		18EFFF731C772A4E00BE0B70 /* RequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF6E1C772A4E00BE0B70 /* RequestSpec.swift */; };
 		18EFFF741C772A4E00BE0B70 /* ResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF6F1C772A4E00BE0B70 /* ResponseHandlerSpec.swift */; };
+		18FD152D1C81BB1B00A353C1 /* CreatubblesAPIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD152C1C81BB1B00A353C1 /* CreatubblesAPIClientError.swift */; };
+		18FD152F1C81C08B00A353C1 /* ErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD152E1C81C08B00A353C1 /* ErrorMapper.swift */; };
 		216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843971C7345690052B835 /* FetchCreationsRequest.swift */; };
 		2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */; };
 		21F740941C735C9600E7F4D1 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F740931C735C9600E7F4D1 /* TestConfiguration.swift */; };
@@ -159,6 +161,8 @@
 		18EFFF6D1C772A4E00BE0B70 /* RequestSenderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSenderSpec.swift; sourceTree = "<group>"; };
 		18EFFF6E1C772A4E00BE0B70 /* RequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSpec.swift; sourceTree = "<group>"; };
 		18EFFF6F1C772A4E00BE0B70 /* ResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		18FD152C1C81BB1B00A353C1 /* CreatubblesAPIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClientError.swift; sourceTree = "<group>"; };
+		18FD152E1C81C08B00A353C1 /* ErrorMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMapper.swift; sourceTree = "<group>"; };
 		216843971C7345690052B835 /* FetchCreationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsRequest.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsRequest.swift; sourceTree = SOURCE_ROOT; };
 		216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsResponseHandler.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsResponseHandler.swift; sourceTree = SOURCE_ROOT; };
 		21F740931C735C9600E7F4D1 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
@@ -375,6 +379,7 @@
 				180C97B21C6DF3E900BC682D /* CreationModelBuilder.swift */,
 				188ECF5F1C71E96100AFEE4F /* CreationUploadModelBuilder.swift */,
 				1804B16D1C805CBD00E0704C /* PagingInfoModelBuilder.swift */,
+				18FD152E1C81C08B00A353C1 /* ErrorMapper.swift */,
 			);
 			path = ModelBuilder;
 			sourceTree = "<group>";
@@ -424,6 +429,7 @@
 				188BCEAD1C64E19D00EA4F11 /* CreatubblesAPIClient.swift */,
 				1876713F1C7CA00500733E9E /* CreatubblesAPIClient_ObjC.swift */,
 				188BCEAE1C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift */,
+				18FD152C1C81BB1B00A353C1 /* CreatubblesAPIClientError.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -723,6 +729,7 @@
 				187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */,
 				188ECF5C1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift in Sources */,
 				188ECF6D1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift in Sources */,
+				18FD152D1C81BB1B00A353C1 /* CreatubblesAPIClientError.swift in Sources */,
 				18779E011C69F707000BFB57 /* GroupModelBuilder.swift in Sources */,
 				1804B16E1C805CBD00E0704C /* PagingInfoModelBuilder.swift in Sources */,
 				187902041C6C8BFC008F5302 /* GalleryModelBuilder.swift in Sources */,
@@ -740,6 +747,7 @@
 				18779DFD1C69F6EE000BFB57 /* UserModelBuilder.swift in Sources */,
 				187671491C7CA31600733E9E /* NewGalleryData.swift in Sources */,
 				18C1CFF51C75C40A00A02DE3 /* UserDAO.swift in Sources */,
+				18FD152F1C81C08B00A353C1 /* ErrorMapper.swift in Sources */,
 				187671431C7CA0F700733E9E /* PagingData.swift in Sources */,
 				18C1CFF71C75C46C00A02DE3 /* CreationsDAO.swift in Sources */,
 				188ECF701C74703200AFEE4F /* CreationUploadSession.swift in Sources */,

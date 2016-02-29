@@ -1,5 +1,6 @@
+
 //
-//  GallerySubmissionResponseHandler.swift
+//  CreatubblesAPIClientError.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -24,16 +25,17 @@
 
 import UIKit
 
-class GallerySubmissionResponseHandler: ResponseHandler
+public enum CreatubblesAPIClientError: ErrorType
 {
-    private let completion: ErrorClousure?
-    init(completion: ErrorClousure?)
-    {
-        self.completion = completion
-    }
+    case Generic(String)
+    case NetworkError
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    public var errorDescription: String
     {
-        completion?( CreatubblesAPIClientError.Generic(error.debugDescription) )
-    }    
+        switch self
+        {
+            case .Generic(let desc): return desc
+            case .NetworkError:  return "Network error"
+        }
+    }
 }

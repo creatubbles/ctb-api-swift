@@ -23,11 +23,31 @@
 //  THE SOFTWARE.
 
 import UIKit
+import ObjectMapper
 
 class ResponseHandler: NSObject
 {
     func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         
+    }
+    
+    func errorsFromResponse(response: Dictionary<String, AnyObject>?) -> Array<CreatubblesAPIClientError>
+    {
+        if  let response = response,
+            let mappers = Mapper<ErrorMapper>().mapArray(response["errors"])
+        {
+            var errors = Array<CreatubblesAPIClientError>()
+            for mapper in mappers
+            {
+                if let detail = mapper.detail
+                {
+                    errors.append(CreatubblesAPIClientError.Generic(detail))
+                }
+            }
+            return errors
+        }
+        
+        return Array<CreatubblesAPIClientError>()
     }
 }
