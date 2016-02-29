@@ -24,18 +24,50 @@
 
 import UIKit
 
-class CreationUploadService
+
+protocol CreationUploadServiceDelegate: class
 {
+    func creationUploadServiceUploadFinished(service:CreationUploadService, session: CreationUploadSession)
+    func creationUploadServiceUploadFailed(service:CreationUploadService, session: CreationUploadSession, error: ErrorType)
+    func creationUploadServiceProgressChanged(service:CreationUploadService, session: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+}
+
+class CreationUploadService: CreationUploadSessionDelegate
+{
+    weak var delegate: CreationUploadServiceDelegate?
+    let databaseDAO: DatabaseDAO
+    
     let requestSender: RequestSender
     
     init(requestSender: RequestSender)
     {
         self.requestSender = requestSender
+        self.databaseDAO = DatabaseDAO()
     }
     
     func uploadCreation(data: NewCreationData, completion: CreationClousure?)
     {
         let session = CreationUploadSession(data: data, requestSender: requestSender)
+        session.delegate = self
         session.start(completion)
+    }
+    
+    func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
+    {
+        databaseDAO.saveCreationUploadSessionToDatabase(creationUploadSession)
+        if(creationUploadSession.state == .ServerNotified)
+        {
+            delegate?.creationUploadServiceUploadFinished(self,session: creationUploadSession)
+        }
+    }
+    
+    func creationUploadSessionChangedProgress(creationUploadSession: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+    {
+        delegate?.creationUploadServiceProgressChanged(self, session: creationUploadSession, bytesWritten: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
+    }
+    
+    func creationUploadSessionUploadFailed(creationUploadSession: CreationUploadSession, error: ErrorType)
+    {
+        delegate?.creationUploadServiceUploadFailed(self, session: creationUploadSession, error: error)
     }
 }

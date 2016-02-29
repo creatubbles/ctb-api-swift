@@ -35,7 +35,7 @@ class FetchCreationsResponseHandler: ResponseHandler
     }
 
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
-    {
+    {        
         if  let response = response,
             let builders = Mapper<CreationModelBuilder>().mapArray(response["data"])
         {

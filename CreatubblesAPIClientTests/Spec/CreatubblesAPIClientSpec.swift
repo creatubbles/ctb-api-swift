@@ -386,7 +386,7 @@ class CreatubblesAPIClientSpec: QuickSpec
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
                         
-                        client.getCreations(nil, userId: nil, keyword: nil, sortOrder: nil, completion:
+                        client.getCreations(nil, userId: "B0SwCGhR", keyword: nil, sortOrder: nil, completion:
                         {
                             (creations, error) -> (Void) in
                             expect(creations).notTo(beNil())

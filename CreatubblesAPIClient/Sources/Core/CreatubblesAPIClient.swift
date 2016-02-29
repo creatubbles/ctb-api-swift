@@ -51,10 +51,19 @@ public typealias GalleriesBatchClousure = (Array<Gallery>?, CreatubblesAPIClient
     case Popular
     case Recent
 }
-/**
 
- */
-public class CreatubblesAPIClient: NSObject
+//add protocol
+
+@objc
+public protocol CreatubblesAPIClientDelegate
+{
+    func creatubblesAPIClientImageUploadFinished(apiClient: CreatubblesAPIClient, creation: Creation, data: NewCreationData)
+    func creatubblesAPIClientImageUploadFailed(apiClient: CreatubblesAPIClient, creation: Creation?, data: NewCreationData, error: NSError)
+    func creatubblesAPIClientImageUploadProcessChanged(apiClient: CreatubblesAPIClient, creation: Creation, data: NewCreationData, bytesUploaded: Int, bytesExpectedToUpload: Int)
+}
+
+@objc
+public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
 {
     //MARK: - Internal
     private let settings: CreatubblesAPIClientSettings
@@ -63,6 +72,7 @@ public class CreatubblesAPIClient: NSObject
     private let userDAO: UserDAO
     private let galleryDAO: GalleryDAO
     private let creationUploadService: CreationUploadService
+    weak var delegate: CreatubblesAPIClientDelegate?
     
     public init(settings: CreatubblesAPIClientSettings)
     {
@@ -73,6 +83,8 @@ public class CreatubblesAPIClient: NSObject
         self.galleryDAO = GalleryDAO(requestSender: requestSender)
         self.creationUploadService = CreationUploadService(requestSender: requestSender)
         Logger.setup()
+        super.init()
+        self.creationUploadService.delegate = self
     }
     
     //MARK: - Authentication
@@ -169,8 +181,25 @@ public class CreatubblesAPIClient: NSObject
         creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, completion: completion)
     }
     
+    //MARK: - Creation flow
     public func newCreation(creationData: NewCreationData, completion: CreationClousure?)
     {
         creationUploadService.uploadCreation(creationData, completion: completion)
+    }
+    
+    //MARK: - Delegate
+    func creationUploadServiceUploadFinished(service: CreationUploadService, session: CreationUploadSession)
+    {
+       delegate?.creatubblesAPIClientImageUploadFinished(self, creation: session.creation!, data: session.creationData)
+    }
+    
+    func creationUploadServiceProgressChanged(service: CreationUploadService, session: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+    {
+        delegate?.creatubblesAPIClientImageUploadProcessChanged(self, creation: session.creation!, data: session.creationData, bytesUploaded: totalBytesWritten, bytesExpectedToUpload: totalBytesExpectedToWrite)
+    }
+    
+    func creationUploadServiceUploadFailed(service: CreationUploadService, session: CreationUploadSession, error: ErrorType)
+    {
+        delegate?.creatubblesAPIClientImageUploadFailed(self, creation: session.creation, data: session.creationData, error: CreatubblesAPIClient.errorTypeToNSError(error)!)
     }
 }

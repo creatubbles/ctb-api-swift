@@ -40,4 +40,21 @@ public class NewCreationData: NSObject
     {
         self.image = image
     }
+    
+    init(creationDataEntity: NewCreationDataEntity, image: UIImage)
+    {
+        self.image = image
+        self.name = creationDataEntity.name
+        self.reflectionText = creationDataEntity.reflectionText
+        self.reflectionVideoUrl = creationDataEntity.reflectionVideoUrl
+        self.galleryId = creationDataEntity.galleryId
+        
+        for creatorId in creationDataEntity.creatorIds
+        {
+            self.creatorIds?.append(creatorId.creatorIdString!)
+        }
+        self.creationMonth = creationDataEntity.creationMonth.value
+        self.creationYear = creationDataEntity.creationYear.value
+    }
+
 }

@@ -47,7 +47,12 @@ class ResponseHandler: NSObject
             }
             return errors
         }
-        
         return Array<CreatubblesAPIClientError>()
+    }
+    
+    
+    func errorFromErrorType(error: ErrorType?) -> CreatubblesAPIClientError?
+    {
+        return nil;
     }
 }
