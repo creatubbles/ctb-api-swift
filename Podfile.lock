@@ -19,7 +19,7 @@ DEPENDENCIES:
   - ObjectMapper (~> 1.1)
   - p2.OAuth2 (~> 2.2)
   - Quick (~> 0.9.0)
-  - RealmSwift (~> 0.98.2)
+  - RealmSwift (~> 0.98.3)
   - XCGLogger (~> 3.2)
 
 SPEC CHECKSUMS:
