@@ -41,7 +41,8 @@ class TestRequestSender: RequestSender
     {
         let authorized = username == TestConfiguration.username &&
                          password == TestConfiguration.password
-        let error: NSError? = authorized ? nil : NSError(domain: "CreatubblesTest", code: 0, userInfo: nil)
+
+        let error: CreatubblesAPIClientError? = authorized ? nil : CreatubblesAPIClientError.Generic("CreatubblesTest - Not Logged In")
         isLoggedIn = authorized
         completion?(error)
     }
@@ -60,7 +61,7 @@ class TestRequestSender: RequestSender
         }
         else
         {
-            let error = NSError(domain: "Creatubbles Test", code: 0, userInfo: nil)
+            let error = CreatubblesAPIClientError.Generic("CreatubblesTest - Not Logged In")
             handler.handleResponse(nil, error: error)
         }
     }
@@ -107,8 +108,7 @@ class TestRequestSender: RequestSender
         {
             return TestResponses.gallerySubmissionTestResponse
         }
-        
-        
+                
         return Dictionary<String, AnyObject>()
     }
 }

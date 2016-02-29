@@ -30,6 +30,7 @@ public enum CreatubblesAPIClientError: ErrorType
 {
     case Generic(String)
     case NetworkError
+    case Unknown
     
     public var errorDescription: String
     {
@@ -37,6 +38,7 @@ public enum CreatubblesAPIClientError: ErrorType
         {
             case .Generic(let desc): return desc
             case .NetworkError:  return "Network error"
+            case .Unknown: return "Unknown"
         }
     }
 }
@@ -45,9 +47,13 @@ class ErrorTransformer
 {
     class func errorFromResponse(response: Dictionary<String, AnyObject>?,error: ErrorType?) -> CreatubblesAPIClientError?
     {
-        if let apiError = errorsFromResponse(response).first
+        if let err = error as? CreatubblesAPIClientError
         {
-            return apiError
+            return err
+        }
+        if let err = errorsFromResponse(response).first
+        {
+            return err
         }
         return errorFromErrorType(error)
     }
@@ -73,7 +79,12 @@ class ErrorTransformer
     
     private class func errorFromErrorType(error: ErrorType?) -> CreatubblesAPIClientError?
     {
-        //TODO
-        return nil;
+        //TODO: Handle it properly.
+        if let _ = error
+        {
+            return CreatubblesAPIClientError.Unknown;
+        }
+        
+        return nil
     }
 }
