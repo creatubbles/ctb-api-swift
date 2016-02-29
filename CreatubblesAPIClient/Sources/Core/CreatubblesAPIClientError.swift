@@ -24,6 +24,7 @@
 //  THE SOFTWARE.
 
 import UIKit
+import ObjectMapper
 
 public enum CreatubblesAPIClientError: ErrorType
 {
@@ -37,5 +38,42 @@ public enum CreatubblesAPIClientError: ErrorType
             case .Generic(let desc): return desc
             case .NetworkError:  return "Network error"
         }
+    }
+}
+
+class ErrorTransformer
+{
+    class func errorFromResponse(response: Dictionary<String, AnyObject>?,error: ErrorType?) -> CreatubblesAPIClientError?
+    {
+        if let apiError = errorsFromResponse(response).first
+        {
+            return apiError
+        }
+        return errorFromErrorType(error)
+    }
+    
+    private class func errorsFromResponse(response: Dictionary<String, AnyObject>?) -> Array<CreatubblesAPIClientError>
+    {
+        if  let response = response,
+            let mappers = Mapper<ErrorMapper>().mapArray(response["errors"])
+        {
+            var errors = Array<CreatubblesAPIClientError>()
+            for mapper in mappers
+            {
+                if let detail = mapper.detail
+                {
+                    errors.append(CreatubblesAPIClientError.Generic(detail))
+                }
+            }
+            return errors
+        }
+        return Array<CreatubblesAPIClientError>()
+    }
+    
+    
+    private class func errorFromErrorType(error: ErrorType?) -> CreatubblesAPIClientError?
+    {
+        //TODO
+        return nil;
     }
 }

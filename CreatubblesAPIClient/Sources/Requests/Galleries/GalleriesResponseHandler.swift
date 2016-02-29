@@ -47,17 +47,17 @@ class GalleriesResponseHandler: ResponseHandler
             let pageInfoBuilder = Mapper<PagingInfoModelBuilder>().map(response["meta"])!
             let pageInfo = PagingInfo(builder: pageInfoBuilder)
             
-            completion?(galleries, pageInfo, error)
+            completion?(galleries, pageInfo, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else if let response = response,
                 let builder = Mapper<GalleryModelBuilder>().map(response["data"])
         {
             let gallery = Gallery(builder: builder)
-            completion?([gallery], nil, error)
+            completion?([gallery], nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else
         {
-            completion?(nil, nil, error)
+            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
     }
 }

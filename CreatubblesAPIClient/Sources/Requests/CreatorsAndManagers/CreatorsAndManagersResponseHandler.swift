@@ -47,11 +47,11 @@ class CreatorsAndManagersResponseHandler: ResponseHandler
             let pageInfoBuilder = Mapper<PagingInfoModelBuilder>().map(response["meta"])!
             let pageInfo = PagingInfo(builder: pageInfoBuilder)
 
-            completion?(users, pageInfo, error)
+            completion?(users, pageInfo, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else
         {
-            completion?(nil, nil, error)
+            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
     }
 }

@@ -110,6 +110,7 @@ class CreationUploadSession: ResponseHandler
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
                                 
                                 print("Upload flow finished with error: \(error)")
+                                
                                 weakSelf.isActive = false
                                 weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                                 if let error = error
@@ -117,7 +118,7 @@ class CreationUploadSession: ResponseHandler
                                     weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
                                 }
                                 
-                                completion?(weakSelf.creation, error)
+                                completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
                             })
                         })
                     })

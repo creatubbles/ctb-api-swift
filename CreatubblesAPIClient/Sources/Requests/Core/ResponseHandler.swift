@@ -31,28 +31,4 @@ class ResponseHandler: NSObject
     {
         
     }
-    
-    func errorsFromResponse(response: Dictionary<String, AnyObject>?) -> Array<CreatubblesAPIClientError>
-    {
-        if  let response = response,
-            let mappers = Mapper<ErrorMapper>().mapArray(response["errors"])
-        {
-            var errors = Array<CreatubblesAPIClientError>()
-            for mapper in mappers
-            {
-                if let detail = mapper.detail
-                {
-                    errors.append(CreatubblesAPIClientError.Generic(detail))
-                }
-            }
-            return errors
-        }
-        return Array<CreatubblesAPIClientError>()
-    }
-    
-    
-    func errorFromErrorType(error: ErrorType?) -> CreatubblesAPIClientError?
-    {
-        return nil;
-    }
 }

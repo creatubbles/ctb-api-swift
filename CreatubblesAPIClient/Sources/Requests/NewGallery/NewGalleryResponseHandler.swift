@@ -39,11 +39,11 @@ class NewGalleryResponseHandler: ResponseHandler
            let builder = Mapper<GalleryModelBuilder>().map(response["data"])
         {
             let gallery = Gallery(builder: builder)
-            completion?(gallery, error)
+            completion?(gallery, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else
         {
-            completion?(nil, error)
+            completion?(nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
     }
 }
