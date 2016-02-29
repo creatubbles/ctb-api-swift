@@ -185,17 +185,13 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     public func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
         let databaseDAO = DatabaseDAO()
-        let activeUploadsPublicData = databaseDAO.getAllActiveUploadSessionsPublicData(requestSender)
-
-        return activeUploadsPublicData
+        return databaseDAO.getAllActiveUploadSessionsPublicData(requestSender)
     }
     
     public func getAllFinishedUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
         let databaseDAO = DatabaseDAO()
-        let finishedUploadsPublicData = databaseDAO.getAllFinishedUploadSessionsPublicData(requestSender)
-
-        return finishedUploadsPublicData
+        return databaseDAO.getAllFinishedUploadSessionsPublicData(requestSender)
     }
     
     public func startAllNotFinishedUploadSessions(completion: CreationClousure?)
