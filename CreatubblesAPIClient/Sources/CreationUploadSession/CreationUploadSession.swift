@@ -2,9 +2,25 @@
 //  CreationUploadSession.swift
 //  CreatubblesAPIClient
 //
-//  Created by Michal Miedlarz on 17.02.2016.
-//  Copyright © 2016 Nomtek. All rights reserved.
+//  Copyright (c) 2016 Creatubbles Pte. Ltd.
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 import UIKit
 
@@ -16,23 +32,35 @@ enum CreationUploadSessionState: Int
     case UploadPathObtained = 3
     case ImageUploaded = 4
     case ServerNotified = 5
-    case Completed = 6
+}
+
+
+protocol CreationUploadSessionDelegate: class
+{
+    func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
+    func creationUploadSessionUploadFailed(creationUploadSession: CreationUploadSession, error: ErrorType)
+    func creationUploadSessionChangedProgress(creationUploadSession: CreationUploadSession,bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
 }
 
 class CreationUploadSession: ResponseHandler
 {
-    private let creationData: NewCreationData
+
+    weak var delegate: CreationUploadSessionDelegate?
+    
+    let creationData: NewCreationData
     private let requestSender: RequestSender
     
-    private var state: CreationUploadSessionState
-    private var isActive: Bool
+    var state: CreationUploadSessionState
+    var isActive: Bool
     
-    private let imageFileName: String
-    private let relativeImageFilePath: String    
+    let imageFileName: String
+    let relativeImageFilePath: String
     
     //Fields filled during creation upload flow
-    private var creation: Creation?
-    private var creationUpload: CreationUpload?
+    var creation: Creation?
+    var creationUpload: CreationUpload?
+    
+    private var isAlreadyFinished: Bool {return state == .ServerNotified }
     
     init(data: NewCreationData, requestSender: RequestSender)
     {
@@ -45,26 +73,60 @@ class CreationUploadSession: ResponseHandler
         self.relativeImageFilePath = "images/"+imageFileName
     }
     
+    init(creationUploadSessionEntity: CreationUploadSessionEntity, requestSender: RequestSender)
+    {
+        self.isActive = false
+        self.state = creationUploadSessionEntity.state
+        self.requestSender = requestSender
+        self.imageFileName = creationUploadSessionEntity.imageFileName!
+        self.relativeImageFilePath = creationUploadSessionEntity.relativeImageFilePath!
+        self.creationUpload = CreationUpload(creationUploadEntity: creationUploadSessionEntity.creationUploadEntity!)
+        
+        self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, image: UIImage(contentsOfFile: relativeImageFilePath)!)
+        
+        self.creation = Creation(creationEntity: creationUploadSessionEntity.creationEntity!)
+    }
+    
     func start(completion: CreationClousure?)
     {
+        if isAlreadyFinished
+        {
+            completion?(self.creation, nil)
+            return
+        }
+        
         self.isActive = true
         saveImageOnDisk(nil) { [weak self](error) -> Void in
             if let weakSelf = self {
                 weakSelf.allocateCreation(error, completion: { (error) -> Void in
+
+                    weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                     weakSelf.obtainUploadPath(error, completion: { (error) -> Void in
+
+                        weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                         weakSelf.uploadImage(error, completion: { (error) -> Void in
+
+                            weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
+                                
                                 print("Upload flow finished with error: \(error)")
                                 
                                 weakSelf.isActive = false
-                                completion?(weakSelf.creation, error)
+                                weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                                if let error = error
+                                {
+                                    weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
+                                }
+                                
+                                completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
                             })
                         })
                     })
                 })
             }
         }
-    }
+
+   }
     
     //MARK: Upload Flow
     private func saveImageOnDisk(error: ErrorType?,completion: (ErrorType?) -> Void)
@@ -84,7 +146,7 @@ class CreationUploadSession: ResponseHandler
             [weak self](error: ErrorType?) -> Void in
             if let weakSelf = self
             {
-                if error != nil
+                if error == nil
                 {
                     weakSelf.state = .ImageSavedOnDisk
                 }
@@ -118,6 +180,7 @@ class CreationUploadSession: ResponseHandler
             completion(error)
         }
         requestSender.send(request, withResponseHandler: handler)
+        
     }
 
     private func obtainUploadPath(error: ErrorType?, completion: (ErrorType?) -> Void)
@@ -164,14 +227,14 @@ class CreationUploadSession: ResponseHandler
         progressChanged:
         {
             (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
-            
+                self.delegate?.creationUploadSessionChangedProgress(self, bytesWritten: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
         },
         completion:
         {
             [weak self](error) -> Void in
             if  let weakSelf = self
             {
-                if error != nil
+                if error == nil
                 {
                     weakSelf.state = .ImageUploaded
                 }
@@ -198,7 +261,7 @@ class CreationUploadSession: ResponseHandler
             [weak self](error) -> Void in
             if let weakSelf = self
             {
-                if error != nil
+                if error == nil
                 {
                     weakSelf.state = .ServerNotified
                 }
@@ -224,10 +287,6 @@ class CreationUploadSession: ResponseHandler
             {
                 completion(error)
             }
-            defer
-            {
-            
-            }
         }
         if fileManager.fileExistsAtPath(url.path!)
         {
@@ -242,5 +301,10 @@ class CreationUploadSession: ResponseHandler
         }
         data.writeToURL(url, atomically: true)
         completion(nil)
+    }
+    
+    private func notifyDelegateSessionChanged()
+    {
+        delegate?.creationUploadSessionChangedState(self)
     }
 }

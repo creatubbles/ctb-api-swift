@@ -2,9 +2,25 @@
 //  RequestSender.swift
 //  CreatubblesAPIClient
 //
-//  Created by Michal Miedlarz on 04.02.2016.
-//  Copyright © 2016 Nomtek. All rights reserved.
+//  Copyright (c) 2016 Creatubbles Pte. Ltd.
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 import UIKit
 import Alamofire
@@ -39,8 +55,11 @@ class RequestSender: NSObject
     }
     
     //MARK: - Authentication
-    func login(username: String, password: String, completion: ((ErrorType?) -> Void)?)
+    
+    var authenticationToken: String? { return oauth2Client.accessToken }
+    func login(username: String, password: String, completion: ErrorClousure?)
     {
+
         oauth2Client.username = username
         oauth2Client.password = password
         oauth2Client.onAuthorize =
@@ -50,6 +69,7 @@ class RequestSender: NSObject
             {
                 weakSelf.oauth2Client.onAuthorize = nil
             }
+            Logger.log.debug("User logged in successfully")
             completion?(nil)
         }        
         oauth2Client.onFailure =
@@ -59,7 +79,10 @@ class RequestSender: NSObject
             {
                 weakSelf.oauth2Client.onFailure = nil
             }
-            completion?(error)
+            Logger.log.error("Error while login:\(error)")
+            
+            let err = error as! OAuth2Error
+            completion?(CreatubblesAPIClientError.Generic(err.description))
         }
         oauth2Client.authorize()
     }
@@ -80,6 +103,14 @@ class RequestSender: NSObject
         Logger.log.debug("Sending request: \(request.dynamicType)")
         oauth2Client.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
         .validate()
+        .responseString
+        {
+            (response) -> Void in
+            if let err = response.result.error
+            {
+                Logger.log.error("Error while sending request:\(request.dynamicType) \nError:\n \(err) \nResponse:\n \(response.result.value)")
+            }
+        }
         .responseJSON
         {
             response -> Void in
@@ -90,13 +121,17 @@ class RequestSender: NSObject
     //MARK: - Creation sending
     func send(data: NSData, uploadData: CreationUpload, progressChanged: (bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int) -> Void, completion: (error: ErrorType?) -> Void)
     {
+        Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
         Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], data: data)
         .progress(
         {
             (written, totalWritten, totalExpected) -> Void in
+            Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(totalWritten)/\(totalExpected)")
+            
             progressChanged(bytesWritten: Int(written), totalBytesWritten: Int(totalWritten), totalBytesExpectedToWrite: Int(totalExpected))
         })
         .responseString(completionHandler: { (response) -> Void in
+            Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
             completion(error: response.result.error)
         })
     }

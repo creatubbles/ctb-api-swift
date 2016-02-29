@@ -2,45 +2,61 @@
 //  Gallery.swift
 //  CreatubblesAPIClient
 //
-//  Created by Michal Miedlarz on 11.02.2016.
-//  Copyright © 2016 Nomtek. All rights reserved.
+//  Copyright (c) 2016 Creatubbles Pte. Ltd.
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 import UIKit
 
 @objc
 public class Gallery: NSObject
 {
-    let identifier: String
-    let name: String
-    let createdAt: NSDate
-    let updatedAt: NSDate
-    let creationsCount: Int
-    let bubblesCount: Int
-    let commentsCount: Int
-    let shortUrl: String
-    let bubbledByUserIds: Array<String>
-    let previewImageUrls: Array<String>
+    public let identifier: String
+    public let name: String
+    public let createdAt: NSDate
+    public let updatedAt: NSDate
+    public let creationsCount: Int
+    public let bubblesCount: Int
+    public let commentsCount: Int
+    public let shortUrl: String
+    public let bubbledByUserIds: Array<String>
+    public let previewImageUrls: Array<String>
     
-    let lastBubbledAt: NSDate?
-    let lastCommentedAt: NSDate?
-    let galleryDescription: String?
+    public let lastBubbledAt: NSDate?
+    public let lastCommentedAt: NSDate?
+    public let galleryDescription: String?
     
-    init(builder: GalleryModelBuilder)
+    init(mapper: GalleryMapper)
     {
-        identifier = builder.identifier!
-        name = builder.name!
-        createdAt = builder.createdAt!
-        updatedAt = builder.updatedAt!
-        creationsCount = builder.creationsCount!
-        bubblesCount = builder.creationsCount!
-        commentsCount = builder.commentsCount!
-        shortUrl = builder.shortUrl!
-        bubbledByUserIds = builder.bubbledByUserIds!
-        previewImageUrls = builder.previewImageUrls!
+        identifier = mapper.identifier!
+        name = mapper.name!
+        createdAt = mapper.createdAt!
+        updatedAt = mapper.updatedAt!
+        creationsCount = mapper.creationsCount!
+        bubblesCount = mapper.creationsCount!
+        commentsCount = mapper.commentsCount!
+        shortUrl = mapper.shortUrl!
+        bubbledByUserIds = mapper.bubbledByUserIds!
+        previewImageUrls = mapper.previewImageUrls!
         
-        lastBubbledAt = builder.lastBubbledAt
-        lastCommentedAt = builder.lastCommentedAt
-        galleryDescription = builder.galleryDescription
+        lastBubbledAt = mapper.lastBubbledAt
+        lastCommentedAt = mapper.lastCommentedAt
+        galleryDescription = mapper.galleryDescription
     }
 }

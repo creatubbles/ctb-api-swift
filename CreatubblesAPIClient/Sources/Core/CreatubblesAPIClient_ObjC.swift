@@ -2,9 +2,25 @@
 //  CreatubblesAPIClient_ObjC.swift
 //  CreatubblesAPIClient
 //
-//  Created by Michal Miedlarz on 23.02.2016.
-//  Copyright © 2016 Nomtek. All rights reserved.
+//  Copyright (c) 2016 Creatubbles Pte. Ltd.
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 import UIKit
 extension CreatubblesAPIClient
@@ -29,7 +45,12 @@ extension CreatubblesAPIClient
         return isLoggedIn()
     }
     
-    //MARK: - Users hangling
+    //MARK: - Users handling
+    public func _authenticationToken() -> String?
+    {
+        return authenticationToken()
+    }
+    
     public func _getUser(userId: String, completion: ((User?, NSError?) -> (Void))?)
     {
         getUser(userId)
@@ -48,21 +69,21 @@ extension CreatubblesAPIClient
         }
     }
     
-    public func _getCreators(userId: String?, pagingData: PagingData?, completion: ((Array<User>?, NSError?) -> (Void))?)
+    public func _getCreators(userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?)
     {
         getCreators(userId, pagingData: pagingData)
         {
-            (users, error) -> (Void) in
-            completion?(users, CreatubblesAPIClient.errorTypeToNSError(error))
+            (users, pInfo, error) -> (Void) in
+            completion?(users, pInfo,CreatubblesAPIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getManagers(userId: String?, pagingData: PagingData?, completion: ((Array<User>?, NSError?) -> (Void))?)
+    public func _getManagers(userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo?, NSError?) -> (Void))?)
     {
         getManagers(userId, pagingData: pagingData)
         {
-            (users, error) -> (Void) in
-            completion?(users, CreatubblesAPIClient.errorTypeToNSError(error))
+            (users, pInfo, error) -> (Void) in
+            completion?(users, pInfo,CreatubblesAPIClient.errorTypeToNSError(error))
         }
     }
     
@@ -94,12 +115,12 @@ extension CreatubblesAPIClient
         }
     }
     
-    public func _getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder, completion: ((Array<Gallery>?, NSError?) -> (Void))?)
+    public func _getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?)
     {
         getGalleries(userId, pagingData: pagingData, sort: sort)
         {
-            (galleries, error) -> (Void) in
-            completion?(galleries, CreatubblesAPIClient.errorTypeToNSError(error))
+            (galleries, pInfo, error) -> (Void) in
+            completion?(galleries, pInfo, CreatubblesAPIClient.errorTypeToNSError(error))
         }
     }
     
@@ -112,12 +133,13 @@ extension CreatubblesAPIClient
             completion?(creation, CreatubblesAPIClient.errorTypeToNSError(error))
         }
     }
-    public func _getCreations(galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder, completion: ((Array<Creation>?, NSError?) -> (Void))?)
+    
+    public func _getCreations(galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?)
     {
         getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder)
         {
-            (creations, error) -> (Void) in
-            completion?(creations, CreatubblesAPIClient.errorTypeToNSError(error))
+            (creations, pInfo, error) -> (Void) in
+            completion?(creations, pInfo, CreatubblesAPIClient.errorTypeToNSError(error))
         }
     }
     
@@ -129,14 +151,51 @@ extension CreatubblesAPIClient
             completion?(creation, CreatubblesAPIClient.errorTypeToNSError(error))
         }
     }
+    
+    //MARK: - Batch fetching
+
+    public func _getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder, completion: ((Array<Creation>?, NSError?) -> (Void))?)
+    {
+        getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder)
+        {
+            (creations, error) -> (Void) in
+            completion?(creations, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    public func _getGalleries(userId: String?, sort: SortOrder, completion: ((Array<Gallery>?, NSError?) -> (Void))?)
+    {
+        getGalleries(userId, sort: sort)
+        {
+            (galleries, error) -> (Void) in
+            completion?(galleries, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    public func _getCreators(userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
+    {
+        getCreators(userId)
+        {
+            (users, error) -> (Void) in
+            completion?(users, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    public func _getManagers(userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
+    {
+        getManagers(userId)
+        {
+            (users, error) -> (Void) in
+            completion?(users, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
 
     //MARK: - Utils
-    private static func errorTypeToNSError(error: ErrorType?) -> NSError?
+    static func errorTypeToNSError(error: ErrorType?) -> NSError?
     {
         if let _ = error
         {
-            //TODO - Add proper error handling
-            let userInfo = Dictionary<NSObject, AnyObject>()
+            let userInfo = [NSLocalizedDescriptionKey :String(error)]
             return NSError(domain: "com.creatubbles.errordomain", code: 1, userInfo: userInfo)
         }
         return nil
