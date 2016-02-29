@@ -182,33 +182,23 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     }
     
     //MARK: - Upload Sessions
-    func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
+    public func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
         let databaseDAO = DatabaseDAO()
-        let activeUploads = databaseDAO.fetchAllActiveUploadSessions(requestSender)
-        var activeUploadsPublicData = [CreationUploadSessionPublicData]()
-        
-        for activeUpload in activeUploads
-        {
-            activeUploadsPublicData.append(CreationUploadSessionPublicData(creationUploadSession: activeUpload))
-        }
+        let activeUploadsPublicData = databaseDAO.getAllActiveUploadSessionsPublicData(requestSender)
+
         return activeUploadsPublicData
     }
     
-    func getAllFinishedUploadSessions() -> Array<CreationUploadSessionPublicData>
+    public func getAllFinishedUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
         let databaseDAO = DatabaseDAO()
-        let finishedUploads = databaseDAO.fetchAllFinishedUploadSessions(requestSender)
-        var finishedUploadsPublicData = [CreationUploadSessionPublicData]()
-        
-        for finishedUpload in finishedUploads
-        {
-            finishedUploadsPublicData.append(CreationUploadSessionPublicData(creationUploadSession: finishedUpload))
-        }
+        let finishedUploadsPublicData = databaseDAO.getAllFinishedUploadSessionsPublicData(requestSender)
+
         return finishedUploadsPublicData
     }
     
-    func startAllNotFinishedUploadSessions(completion: CreationClousure?)
+    public func startAllNotFinishedUploadSessions(completion: CreationClousure?)
     {
         let databaseDAO = DatabaseDAO()
         let sessions = databaseDAO.fetchAllActiveUploadSessions(requestSender)

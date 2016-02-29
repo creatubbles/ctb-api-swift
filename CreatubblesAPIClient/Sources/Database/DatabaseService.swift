@@ -137,6 +137,30 @@ class DatabaseService: NSObject
         return finishedUploadSessions
     }
     
+    func getAllActiveUploadSessionsPublicData(requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
+    {
+        let activeUploads = getAllActiveUploadSessions(requestSender)
+        var activeUploadsPublicData = [CreationUploadSessionPublicData]()
+        
+        for activeUpload in activeUploads
+        {
+            activeUploadsPublicData.append(CreationUploadSessionPublicData(creationUploadSession: activeUpload))
+        }
+        return activeUploadsPublicData
+    }
+    
+    func getAllFinishedUploadSessionPublicData(requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
+    {
+        let finishedUploads = getAllFinishedUploadSessions(requestSender)
+        var finishedUploadsPublicData = [CreationUploadSessionPublicData]()
+        
+        for finishedUpload in finishedUploads
+        {
+            finishedUploadsPublicData.append(CreationUploadSessionPublicData(creationUploadSession: finishedUpload))
+        }
+        return finishedUploadsPublicData
+    }
+    
     //MARK: - Transforms
     private func getUploadSessionEntityFromCreationUploadSession(creationUploadSession: CreationUploadSession) -> CreationUploadSessionEntity
     {
