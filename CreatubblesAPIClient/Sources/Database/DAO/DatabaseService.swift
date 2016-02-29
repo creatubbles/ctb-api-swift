@@ -95,7 +95,8 @@ class DatabaseService: NSObject
     func getAllActiveUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
     {
         var activeUploadSessions = [CreationUploadSession]()
-        let predicate = NSPredicate(format: "stateRaw < 5")
+
+        let predicate = NSPredicate(format: "stateRaw < \(CreationUploadSessionState.ServerNotified.rawValue)")
         let uploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter(predicate)
         
         for uploadSessionEntity in uploadSessionEntities
@@ -109,7 +110,7 @@ class DatabaseService: NSObject
     func getAllFinishedUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
     {
         var finishedUploadSessions = [CreationUploadSession]()
-        let predicate = NSPredicate(format: "stateRaw >= 5")
+        let predicate = NSPredicate(format: "stateRaw >= \(CreationUploadSessionState.ServerNotified.rawValue)")
         let uploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter(predicate)
         
         for uploadSessionEntity in uploadSessionEntities
