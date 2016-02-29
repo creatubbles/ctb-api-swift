@@ -51,16 +51,16 @@
 		188ECF6D1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF6C1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift */; };
 		188ECF701C74703200AFEE4F /* CreationUploadSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF6F1C74703200AFEE4F /* CreationUploadSession.swift */; };
 		188ECF731C747FDE00AFEE4F /* String+Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF721C747FDE00AFEE4F /* String+Path.swift */; };
+		189D9F5C1C84B36100857CC6 /* CreationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F551C84B36100857CC6 /* CreationMapper.swift */; };
+		189D9F5D1C84B36100857CC6 /* CreationUploadMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F561C84B36100857CC6 /* CreationUploadMapper.swift */; };
+		189D9F5E1C84B36100857CC6 /* ErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F571C84B36100857CC6 /* ErrorMapper.swift */; };
+		189D9F5F1C84B36100857CC6 /* GalleryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F581C84B36100857CC6 /* GalleryMapper.swift */; };
+		189D9F601C84B36100857CC6 /* GroupMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F591C84B36100857CC6 /* GroupMapper.swift */; };
+		189D9F611C84B36100857CC6 /* PagingInfoMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F5A1C84B36100857CC6 /* PagingInfoMapper.swift */; };
+		189D9F621C84B36100857CC6 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F5B1C84B36100857CC6 /* UserMapper.swift */; };
 		18C1CFF51C75C40A00A02DE3 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */; };
 		18C1CFF71C75C46C00A02DE3 /* CreationsDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF61C75C46C00A02DE3 /* CreationsDAO.swift */; };
 		18C1CFF91C75C4B000A02DE3 /* GalleryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */; };
-		18C744EA1C84588400A07E4C /* CreationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744E31C84588400A07E4C /* CreationMapper.swift */; };
-		18C744EB1C84588400A07E4C /* CreationUploadMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744E41C84588400A07E4C /* CreationUploadMapper.swift */; };
-		18C744EC1C84588400A07E4C /* ErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744E51C84588400A07E4C /* ErrorMapper.swift */; };
-		18C744ED1C84588400A07E4C /* GalleryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744E61C84588400A07E4C /* GalleryMapper.swift */; };
-		18C744EE1C84588400A07E4C /* GroupMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744E71C84588400A07E4C /* GroupMapper.swift */; };
-		18C744EF1C84588400A07E4C /* PagingInfoMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744E81C84588400A07E4C /* PagingInfoMapper.swift */; };
-		18C744F01C84588400A07E4C /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744E91C84588400A07E4C /* UserMapper.swift */; };
 		18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F11C84610800A07E4C /* DatabaseDAO.swift */; };
 		18C744FA1C84611600A07E4C /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F41C84611600A07E4C /* DatabaseService.swift */; };
 		18C744FB1C84611600A07E4C /* CreationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F61C84611600A07E4C /* CreationEntity.swift */; };
@@ -145,16 +145,16 @@
 		188ECF6C1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationPingResponseHandler.swift; sourceTree = "<group>"; };
 		188ECF6F1C74703200AFEE4F /* CreationUploadSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadSession.swift; sourceTree = "<group>"; };
 		188ECF721C747FDE00AFEE4F /* String+Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Path.swift"; sourceTree = "<group>"; };
+		189D9F551C84B36100857CC6 /* CreationMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationMapper.swift; sourceTree = "<group>"; };
+		189D9F561C84B36100857CC6 /* CreationUploadMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadMapper.swift; sourceTree = "<group>"; };
+		189D9F571C84B36100857CC6 /* ErrorMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMapper.swift; sourceTree = "<group>"; };
+		189D9F581C84B36100857CC6 /* GalleryMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryMapper.swift; sourceTree = "<group>"; };
+		189D9F591C84B36100857CC6 /* GroupMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMapper.swift; sourceTree = "<group>"; };
+		189D9F5A1C84B36100857CC6 /* PagingInfoMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfoMapper.swift; sourceTree = "<group>"; };
+		189D9F5B1C84B36100857CC6 /* UserMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
 		18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		18C1CFF61C75C46C00A02DE3 /* CreationsDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsDAO.swift; sourceTree = "<group>"; };
 		18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDAO.swift; sourceTree = "<group>"; };
-		18C744E31C84588400A07E4C /* CreationMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationMapper.swift; sourceTree = "<group>"; };
-		18C744E41C84588400A07E4C /* CreationUploadMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadMapper.swift; sourceTree = "<group>"; };
-		18C744E51C84588400A07E4C /* ErrorMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMapper.swift; sourceTree = "<group>"; };
-		18C744E61C84588400A07E4C /* GalleryMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryMapper.swift; sourceTree = "<group>"; };
-		18C744E71C84588400A07E4C /* GroupMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMapper.swift; sourceTree = "<group>"; };
-		18C744E81C84588400A07E4C /* PagingInfoMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfoMapper.swift; sourceTree = "<group>"; };
-		18C744E91C84588400A07E4C /* UserMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
 		18C744F11C84610800A07E4C /* DatabaseDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseDAO.swift; sourceTree = "<group>"; };
 		18C744F41C84611600A07E4C /* DatabaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		18C744F61C84611600A07E4C /* CreationEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationEntity.swift; sourceTree = "<group>"; };
@@ -269,7 +269,7 @@
 				188BCEA71C64E09800EA4F11 /* DAO */,
 				18C744F31C84611600A07E4C /* Database */,
 				1815D5631C638B9C00EF4C38 /* Requests */,
-				18C744E21C84588400A07E4C /* Mapper */,
+				189D9F541C84B36100857CC6 /* Mapper */,
 				1815D5621C63854300EF4C38 /* Model */,
 				188ECF711C747E1F00AFEE4F /* Utils */,
 			);
@@ -455,19 +455,18 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		18C744E21C84588400A07E4C /* Mapper */ = {
+		189D9F541C84B36100857CC6 /* Mapper */ = {
 			isa = PBXGroup;
 			children = (
-				18C744E31C84588400A07E4C /* CreationMapper.swift */,
-				18C744E41C84588400A07E4C /* CreationUploadMapper.swift */,
-				18C744E51C84588400A07E4C /* ErrorMapper.swift */,
-				18C744E61C84588400A07E4C /* GalleryMapper.swift */,
-				18C744E71C84588400A07E4C /* GroupMapper.swift */,
-				18C744E81C84588400A07E4C /* PagingInfoMapper.swift */,
-				18C744E91C84588400A07E4C /* UserMapper.swift */,
+				189D9F551C84B36100857CC6 /* CreationMapper.swift */,
+				189D9F561C84B36100857CC6 /* CreationUploadMapper.swift */,
+				189D9F571C84B36100857CC6 /* ErrorMapper.swift */,
+				189D9F581C84B36100857CC6 /* GalleryMapper.swift */,
+				189D9F591C84B36100857CC6 /* GroupMapper.swift */,
+				189D9F5A1C84B36100857CC6 /* PagingInfoMapper.swift */,
+				189D9F5B1C84B36100857CC6 /* UserMapper.swift */,
 			);
-			name = Mapper;
-			path = Model/Mapper;
+			path = Mapper;
 			sourceTree = "<group>";
 		};
 		18C744F31C84611600A07E4C /* Database */ = {
@@ -742,7 +741,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18C744ED1C84588400A07E4C /* GalleryMapper.swift in Sources */,
+				189D9F621C84B36100857CC6 /* UserMapper.swift in Sources */,
 				18779DB61C68D424000BFB57 /* Request.swift in Sources */,
 				187901F01C6B37F4008F5302 /* NewCreatorResponseHandler.swift in Sources */,
 				18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */,
@@ -755,27 +754,28 @@
 				18779E0D1C6A2582000BFB57 /* CreatorsAndManagersRequest.swift in Sources */,
 				188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */,
 				187671471C7CA2D800733E9E /* NewCreationData.swift in Sources */,
-				18C744EA1C84588400A07E4C /* CreationMapper.swift in Sources */,
 				21A79F701C81E6C5009E95D1 /* CreationsBatchFetcher.swift in Sources */,
 				187671401C7CA00500733E9E /* CreatubblesAPIClient_ObjC.swift in Sources */,
+				189D9F5D1C84B36100857CC6 /* CreationUploadMapper.swift in Sources */,
+				189D9F5C1C84B36100857CC6 /* CreationMapper.swift in Sources */,
+				189D9F611C84B36100857CC6 /* PagingInfoMapper.swift in Sources */,
 				216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */,
 				187902001C6C80AD008F5302 /* GalleriesResponseHandler.swift in Sources */,
 				187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */,
 				188ECF5C1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift in Sources */,
 				188ECF6D1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift in Sources */,
-				18C744EC1C84588400A07E4C /* ErrorMapper.swift in Sources */,
 				21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */,
-				18C744EB1C84588400A07E4C /* CreationUploadMapper.swift in Sources */,
 				18779DF51C69E80F000BFB57 /* ProfileResponseHandler.swift in Sources */,
 				188ECF731C747FDE00AFEE4F /* String+Path.swift in Sources */,
 				180C97B11C6DEA4100BC682D /* Creation.swift in Sources */,
 				18779DF91C69F39D000BFB57 /* Group.swift in Sources */,
-				18C744EE1C84588400A07E4C /* GroupMapper.swift in Sources */,
 				18C1CFF91C75C4B000A02DE3 /* GalleryDAO.swift in Sources */,
+				189D9F5F1C84B36100857CC6 /* GalleryMapper.swift in Sources */,
 				187901FF1C6C80AA008F5302 /* GalleriesRequest.swift in Sources */,
 				18779DF01C69C9E3000BFB57 /* OAuth2+Alamofire.swift in Sources */,
 				18EFFF661C770F8700BE0B70 /* GallerySubmissionRequest.swift in Sources */,
 				18C744FA1C84611600A07E4C /* DatabaseService.swift in Sources */,
+				189D9F601C84B36100857CC6 /* GroupMapper.swift in Sources */,
 				1847FBF01C76024300FE5FF3 /* Logger.swift in Sources */,
 				187671491C7CA31600733E9E /* NewGalleryData.swift in Sources */,
 				18C1CFF51C75C40A00A02DE3 /* UserDAO.swift in Sources */,
@@ -786,19 +786,18 @@
 				180C97AF1C6DD41900BC682D /* NewCreationResponseHandler.swift in Sources */,
 				21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */,
 				187047E01C71DCD600B202FD /* NewCreationUploadRequest.swift in Sources */,
-				18C744F01C84588400A07E4C /* UserMapper.swift in Sources */,
 				21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */,
 				1815D5651C638BD200EF4C38 /* User.swift in Sources */,
 				180C97AD1C6DD40100BC682D /* NewCreationRequest.swift in Sources */,
 				18779E0F1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift in Sources */,
 				187902021C6C8BAF008F5302 /* Gallery.swift in Sources */,
 				18FD15311C84315200A353C1 /* CreatubblesAPIClientError.swift in Sources */,
+				189D9F5E1C84B36100857CC6 /* ErrorMapper.swift in Sources */,
 				18779DF31C69E7FB000BFB57 /* ProfileRequest.swift in Sources */,
 				18C744FB1C84611600A07E4C /* CreationEntity.swift in Sources */,
 				180C97A81C6CC0DA00BC682D /* NewGalleryRequest.swift in Sources */,
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,
 				18C744FC1C84611600A07E4C /* CreationUploadEntity.swift in Sources */,
-				18C744EF1C84588400A07E4C /* PagingInfoMapper.swift in Sources */,
 				180C97AA1C6CC0F100BC682D /* NewGalleryResponseHandler.swift in Sources */,
 				188ECF6B1C74613700AFEE4F /* NewCreationPingRequest.swift in Sources */,
 				187901EE1C6B37E7008F5302 /* NewCreatorRequest.swift in Sources */,
