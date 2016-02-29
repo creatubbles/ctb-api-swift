@@ -1,5 +1,5 @@
 //
-//  Gallery.swift
+//  CreationUploadMapper.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -23,40 +23,32 @@
 //  THE SOFTWARE.
 
 import UIKit
+import ObjectMapper
 
-@objc
-public class Gallery: NSObject
+class CreationUploadMapper: NSObject, Mappable
 {
-    public let identifier: String
-    public let name: String
-    public let createdAt: NSDate
-    public let updatedAt: NSDate
-    public let creationsCount: Int
-    public let bubblesCount: Int
-    public let commentsCount: Int
-    public let shortUrl: String
-    public let bubbledByUserIds: Array<String>
-    public let previewImageUrls: Array<String>
+    var identifier: String?
+    var uploadUrl: String?
+    var contentType: String?
+    var pingUrl: String?
+    var completedAt: NSDate?
     
-    public let lastBubbledAt: NSDate?
-    public let lastCommentedAt: NSDate?
-    public let galleryDescription: String?
-    
-    init(mapper: GalleryMapper)
+    override init()
     {
-        identifier = mapper.identifier!
-        name = mapper.name!
-        createdAt = mapper.createdAt!
-        updatedAt = mapper.updatedAt!
-        creationsCount = mapper.creationsCount!
-        bubblesCount = mapper.creationsCount!
-        commentsCount = mapper.commentsCount!
-        shortUrl = mapper.shortUrl!
-        bubbledByUserIds = mapper.bubbledByUserIds!
-        previewImageUrls = mapper.previewImageUrls!
-        
-        lastBubbledAt = mapper.lastBubbledAt
-        lastCommentedAt = mapper.lastCommentedAt
-        galleryDescription = mapper.galleryDescription
+        //Ignore
+    }
+    
+    required init?(_ map: Map)
+    {
+        //Ignore
+    }
+    
+    func mapping(map: Map)
+    {
+        identifier  <- map["id"]
+        uploadUrl <- map["attributes.url"]
+        pingUrl <- map["attributes.ping_url"]
+        contentType <- map["attributes.content_type"]
+        completedAt <- (map["attributes.completed_at"], DateTransform())
     }
 }

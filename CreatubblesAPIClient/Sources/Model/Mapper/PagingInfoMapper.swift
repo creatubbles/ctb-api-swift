@@ -1,5 +1,5 @@
 //
-//  Gallery.swift
+//  PagingInfoMapper.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -23,40 +23,21 @@
 //  THE SOFTWARE.
 
 import UIKit
+import ObjectMapper
 
-@objc
-public class Gallery: NSObject
+class PagingInfoMapper: Mappable
 {
-    public let identifier: String
-    public let name: String
-    public let createdAt: NSDate
-    public let updatedAt: NSDate
-    public let creationsCount: Int
-    public let bubblesCount: Int
-    public let commentsCount: Int
-    public let shortUrl: String
-    public let bubbledByUserIds: Array<String>
-    public let previewImageUrls: Array<String>
+    var totalPages: Int?
+    var totalCount: Int?
     
-    public let lastBubbledAt: NSDate?
-    public let lastCommentedAt: NSDate?
-    public let galleryDescription: String?
-    
-    init(mapper: GalleryMapper)
+    required init?(_ map: Map)
     {
-        identifier = mapper.identifier!
-        name = mapper.name!
-        createdAt = mapper.createdAt!
-        updatedAt = mapper.updatedAt!
-        creationsCount = mapper.creationsCount!
-        bubblesCount = mapper.creationsCount!
-        commentsCount = mapper.commentsCount!
-        shortUrl = mapper.shortUrl!
-        bubbledByUserIds = mapper.bubbledByUserIds!
-        previewImageUrls = mapper.previewImageUrls!
         
-        lastBubbledAt = mapper.lastBubbledAt
-        lastCommentedAt = mapper.lastCommentedAt
-        galleryDescription = mapper.galleryDescription
+    }
+    
+    func mapping(map: Map)
+    {
+        totalPages <- map["total_pages"]
+        totalCount <- map["total_count"]        
     }
 }

@@ -37,9 +37,9 @@ class ProfileResponseHandler: ResponseHandler
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         if  let response = response,
-            let userBuilder = Mapper<UserModelBuilder>().map(response["data"])
+            let userMapper = Mapper<UserMapper>().map(response["data"])
         {
-            let user = User(builder: userBuilder)
+            let user = User(mapper: userMapper)
             completion?(user, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else

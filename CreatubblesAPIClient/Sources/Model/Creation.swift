@@ -50,25 +50,25 @@ public class Creation: NSObject
     let shortUrl: String
     let createdAtAge: String?
  
-    init(builder: CreationModelBuilder)
+    init(mapper: CreationMapper)
     {
-        identifier = builder.identifier!
-        name = builder.name!
-        createdAt = builder.createdAt!
-        updatedAt = builder.updatedAt!
-        createdAtYear = builder.createdAtYear!
-        createdAtMonth = builder.createdAtMonth!
-        imageStatus = builder.imageStatus!
-        image = builder.image
-        bubblesCount = builder.bubblesCount!
-        commentsCount = builder.commentsCount!
-        viewsCount = builder.viewsCount!
-        lastBubbledAt = builder.lastBubbledAt
-        lastCommentedAt = builder.lastCommentedAt
-        lastSubmittedAt = builder.lastSubmittedAt
-        approved = builder.approved!
-        shortUrl = builder.shortUrl!
-        createdAtAge = builder.createdAtAge
+        identifier = mapper.identifier!
+        name = mapper.name!
+        createdAt = mapper.createdAt!
+        updatedAt = mapper.updatedAt!
+        createdAtYear = mapper.createdAtYear!
+        createdAtMonth = mapper.createdAtMonth!
+        imageStatus = mapper.imageStatus!
+        image = mapper.image
+        bubblesCount = mapper.bubblesCount!
+        commentsCount = mapper.commentsCount!
+        viewsCount = mapper.viewsCount!
+        lastBubbledAt = mapper.lastBubbledAt
+        lastCommentedAt = mapper.lastCommentedAt
+        lastSubmittedAt = mapper.lastSubmittedAt
+        approved = mapper.approved!
+        shortUrl = mapper.shortUrl!
+        createdAtAge = mapper.createdAtAge
     }
     init(creationEntity: CreationEntity)
     {

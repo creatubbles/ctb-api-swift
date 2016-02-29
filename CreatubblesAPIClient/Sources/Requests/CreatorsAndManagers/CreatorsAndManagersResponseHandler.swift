@@ -36,16 +36,16 @@ class CreatorsAndManagersResponseHandler: ResponseHandler
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         if  let response = response,
-            let usersBuilder = Mapper<UserModelBuilder>().mapArray(response["data"])
+            let usersMapper = Mapper<UserMapper>().mapArray(response["data"])
         {
             var users = Array<User>()
-            for builder in usersBuilder
+            for mapper in usersMapper
             {
-                users.append(User(builder: builder))
+                users.append(User(mapper: mapper))
             }
             
-            let pageInfoBuilder = Mapper<PagingInfoModelBuilder>().map(response["meta"])!
-            let pageInfo = PagingInfo(builder: pageInfoBuilder)
+            let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
+            let pageInfo = PagingInfo(mapper: pageInfoMapper)
 
             completion?(users, pageInfo, ErrorTransformer.errorFromResponse(response, error: error))
         }

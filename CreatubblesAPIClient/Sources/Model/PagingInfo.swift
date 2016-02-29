@@ -36,9 +36,9 @@ public class PagingInfo: NSObject
         self.totalCount = totalCount
     }
     
-    init(builder: PagingInfoModelBuilder)
+    init(mapper: PagingInfoMapper)
     {
-        self.totalCount = builder.totalCount!
-        self.totalPages = builder.totalPages!
+        self.totalCount = mapper.totalCount!
+        self.totalPages = mapper.totalPages!
     }
 }
