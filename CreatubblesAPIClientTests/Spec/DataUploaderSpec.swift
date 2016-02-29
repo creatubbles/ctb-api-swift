@@ -101,7 +101,7 @@ class DataUploaderSpec: QuickSpec
                 let image = UIImage(contentsOfFile: path!.path!)!
                 let apiClient = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 
-                waitUntil(timeout: 200)
+                waitUntil(timeout: 20)
                 {
                     done in
                     apiClient.newCreation(NewCreationData(image: image), completion: { (creation, error) -> (Void) in

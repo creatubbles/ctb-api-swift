@@ -92,6 +92,34 @@ class DatabaseService: NSObject
         return creationUploadSessionEntities.first
     }
     
+    func getAllActiveUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
+    {
+        var activeUploadSessions = [CreationUploadSession]()
+        let predicate = NSPredicate(format: "stateRaw < 5")
+        let uploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter(predicate)
+        
+        for uploadSessionEntity in uploadSessionEntities
+        {
+            activeUploadSessions.append(CreationUploadSession(creationUploadSessionEntity: uploadSessionEntity, requestSender: requestSender))
+        }
+        
+        return activeUploadSessions
+    }
+    
+    func getAllFinishedUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
+    {
+        var finishedUploadSessions = [CreationUploadSession]()
+        let predicate = NSPredicate(format: "stateRaw >= 5")
+        let uploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter(predicate)
+        
+        for uploadSessionEntity in uploadSessionEntities
+        {
+            finishedUploadSessions.append(CreationUploadSession(creationUploadSessionEntity: uploadSessionEntity, requestSender: requestSender))
+        }
+        
+        return finishedUploadSessions
+    }
+    
     //MARK: - Transforms
     private func getUploadSessionEntityFromCreationUploadSession(creationUploadSession: CreationUploadSession) -> CreationUploadSessionEntity
     {

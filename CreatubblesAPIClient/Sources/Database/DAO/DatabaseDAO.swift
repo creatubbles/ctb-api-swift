@@ -26,4 +26,14 @@ class DatabaseDAO: NSObject
     {
         return databaseService.fetchASingleCreationUploadSessionWithCreationIdentifier(creationIdentifier)
     }
+    
+    func fetchAllFinishedUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
+    {
+        return databaseService.getAllFinishedUploadSessions(requestSender)
+    }
+    
+    func fetchAllActiveUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
+    {
+        return databaseService.getAllActiveUploadSessions(requestSender)
+    }
 }

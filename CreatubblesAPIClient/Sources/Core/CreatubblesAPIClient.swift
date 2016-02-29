@@ -181,6 +181,23 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, completion: completion)
     }
     
+    //MARK: - Upload Sessions fetch
+    func getAllActiveUploadSessions() -> Array<CreationUploadSession>
+    {
+        let databaseDAO = DatabaseDAO()
+        let activeUploads = databaseDAO.fetchAllActiveUploadSessions(requestSender)
+        
+        return activeUploads
+    }
+    
+    func getAllFinishedUploadSessions() -> Array<CreationUploadSession>
+    {
+        let databaseDAO = DatabaseDAO()
+        let finishedUploads = databaseDAO.fetchAllFinishedUploadSessions(requestSender)
+        
+        return finishedUploads
+    }
+    
     //MARK: - Creation flow
     public func newCreation(creationData: NewCreationData, completion: CreationClousure?)
     {
@@ -202,4 +219,5 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     {
         delegate?.creatubblesAPIClientImageUploadFailed(self, creation: session.creation, data: session.creationData, error: CreatubblesAPIClient.errorTypeToNSError(error)!)
     }
+
 }
