@@ -69,6 +69,7 @@ class RequestSender: NSObject
             {
                 weakSelf.oauth2Client.onAuthorize = nil
             }
+            Logger.log.debug("User logged in successfully")
             completion?(nil)
         }        
         oauth2Client.onFailure =
@@ -78,6 +79,8 @@ class RequestSender: NSObject
             {
                 weakSelf.oauth2Client.onFailure = nil
             }
+            Logger.log.error("Error during login:\(error)")
+            
             let err = error as! OAuth2Error
             completion?(CreatubblesAPIClientError.Generic(err.description))
         }
@@ -100,6 +103,14 @@ class RequestSender: NSObject
         Logger.log.debug("Sending request: \(request.dynamicType)")
         oauth2Client.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
         .validate()
+        .responseString
+        {
+            (response) -> Void in
+            if let err = response.result.error
+            {
+                Logger.log.error("Error during sending request:\(request.dynamicType) \nError:\n \(err) \nResponse:\n \(response.result.value)")
+            }
+        }
         .responseJSON
         {
             response -> Void in
@@ -110,13 +121,17 @@ class RequestSender: NSObject
     //MARK: - Creation sending
     func send(data: NSData, uploadData: CreationUpload, progressChanged: (bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int) -> Void, completion: (error: ErrorType?) -> Void)
     {
+        Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
         Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], data: data)
         .progress(
         {
             (written, totalWritten, totalExpected) -> Void in
+            Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(totalWritten)/\(totalExpected)")
+            
             progressChanged(bytesWritten: Int(written), totalBytesWritten: Int(totalWritten), totalBytesExpectedToWrite: Int(totalExpected))
         })
         .responseString(completionHandler: { (response) -> Void in
+            Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
             completion(error: response.result.error)
         })
     }
