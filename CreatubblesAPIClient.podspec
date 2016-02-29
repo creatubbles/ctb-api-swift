@@ -123,7 +123,5 @@ Pod::Spec.new do |s|
   s.ios.dependency 'ObjectMapper', '~> 1.1'
   s.ios.dependency "XCGLogger", "~> 3.2"
   s.ios.dependency 'RealmSwift', '~> 0.98.3'
-  s.ios.dependency 'Quick', '~> 0.9.0'
-  s.ios.dependency 'Nimble', '3.0.0'
 
 end
