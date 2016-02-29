@@ -72,6 +72,7 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     private let userDAO: UserDAO
     private let galleryDAO: GalleryDAO
     private let creationUploadService: CreationUploadService
+    private let databaseDAO: DatabaseDAO
     weak var delegate: CreatubblesAPIClientDelegate?
     
     public init(settings: CreatubblesAPIClientSettings)
@@ -82,6 +83,7 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         self.userDAO = UserDAO(requestSender: requestSender)
         self.galleryDAO = GalleryDAO(requestSender: requestSender)
         self.creationUploadService = CreationUploadService(requestSender: requestSender)
+        self.databaseDAO = DatabaseDAO()
         Logger.setup()
         super.init()
         self.creationUploadService.delegate = self
@@ -184,21 +186,17 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     //MARK: - Upload Sessions
     public func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
-        let databaseDAO = DatabaseDAO()
         return databaseDAO.getAllActiveUploadSessionsPublicData(requestSender)
     }
     
     public func getAllFinishedUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
-        let databaseDAO = DatabaseDAO()
         return databaseDAO.getAllFinishedUploadSessionsPublicData(requestSender)
     }
     
     public func startAllNotFinishedUploadSessions(completion: CreationClousure?)
     {
-        let databaseDAO = DatabaseDAO()
         let sessions = databaseDAO.fetchAllActiveUploadSessions(requestSender)
-        
         for session in sessions
         {
             session.start(completion)

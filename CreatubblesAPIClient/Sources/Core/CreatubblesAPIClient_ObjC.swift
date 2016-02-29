@@ -189,6 +189,25 @@ extension CreatubblesAPIClient
             completion?(users, CreatubblesAPIClient.errorTypeToNSError(error))
         }
     }
+    
+    //MARK: - Upload Sessions
+    public func _getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
+    {
+        return getAllActiveUploadSessionPublicData()
+    }
+    
+    public func _getAllFinishedUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
+    {
+        return getAllFinishedUploadSessionPublicData()
+    }
+    
+    public func _startAllNotFinishedUploadSessions(completion: ((Creation?, NSError?) -> (Void))?)
+    {
+        startAllNotFinishedUploadSessions {
+            (creation, error) -> (Void) in
+            completion?(creation, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
 
     //MARK: - Utils
     static func errorTypeToNSError(error: ErrorType?) -> NSError?
