@@ -11,8 +11,8 @@ import UIKit
 @objc
 public class CreationUploadSessionPublicData: NSObject
 {
-    let creation: Creation?
-    let creationData: NewCreationData
+    public let creation: Creation?
+    public let creationData: NewCreationData
     
     init(creationUploadSession: CreationUploadSession)
     {
