@@ -36,7 +36,16 @@ public class Creation: NSObject
     public let createdAtMonth: Int
 
     public let imageStatus: Int
-    public let image: String?
+    
+    public let imageOriginalUrl: String?
+    public let imageFullViewUrl: String?
+    public let imageListViewUrl: String?
+    public let imageListViewRetinaUrl: String?
+    public let imageMatrixViewUrl: String?
+    public let imageMatrixViewRetinaUrl: String?
+    public let imageGalleryMobileUrl: String?
+    public let imageExploreMobileUrl: String?
+    public let imageShareUrl: String?
     
     public let bubblesCount: Int
     public let commentsCount: Int
@@ -59,7 +68,6 @@ public class Creation: NSObject
         createdAtYear = mapper.createdAtYear!
         createdAtMonth = mapper.createdAtMonth!
         imageStatus = mapper.imageStatus!
-        image = mapper.image
         bubblesCount = mapper.bubblesCount!
         commentsCount = mapper.commentsCount!
         viewsCount = mapper.viewsCount!
@@ -69,7 +77,18 @@ public class Creation: NSObject
         approved = mapper.approved!
         shortUrl = mapper.shortUrl!
         createdAtAge = mapper.createdAtAge
+        
+        imageOriginalUrl = mapper.imageOriginalUrl
+        imageFullViewUrl = mapper.imageFullViewUrl
+        imageListViewUrl = mapper.imageListViewUrl
+        imageListViewRetinaUrl = mapper.imageListViewRetinaUrl
+        imageMatrixViewUrl = mapper.imageMatrixViewUrl
+        imageMatrixViewRetinaUrl = mapper.imageMatrixViewRetinaUrl
+        imageGalleryMobileUrl = mapper.imageGalleryMobileUrl
+        imageExploreMobileUrl = mapper.imageExploreMobileUrl
+        imageShareUrl = mapper.imageShareUrl
     }
+    
     init(creationEntity: CreationEntity)
     {
         identifier = creationEntity.identifier!
@@ -79,7 +98,6 @@ public class Creation: NSObject
         createdAtYear = creationEntity.createdAtYear.value!
         createdAtMonth = creationEntity.createdAtMonth.value!
         imageStatus = creationEntity.imageStatus.value!
-        image = creationEntity.image
         bubblesCount = creationEntity.bubblesCount.value!
         commentsCount = creationEntity.commentsCount.value!
         viewsCount = creationEntity.viewsCount.value!
@@ -89,5 +107,15 @@ public class Creation: NSObject
         approved = creationEntity.approved.value!
         shortUrl = creationEntity.shortUrl!
         createdAtAge = creationEntity.createdAtAge!
+        
+        imageOriginalUrl = creationEntity.imageOriginalUrl
+        imageFullViewUrl = creationEntity.imageFullViewUrl
+        imageListViewUrl = creationEntity.imageListViewUrl
+        imageListViewRetinaUrl = creationEntity.imageListViewRetinaUrl
+        imageMatrixViewUrl = creationEntity.imageMatrixViewUrl
+        imageMatrixViewRetinaUrl = creationEntity.imageMatrixViewRetinaUrl
+        imageGalleryMobileUrl = creationEntity.imageGalleryMobileUrl
+        imageExploreMobileUrl = creationEntity.imageExploreMobileUrl
+        imageShareUrl = creationEntity.imageShareUrl
     }
 }

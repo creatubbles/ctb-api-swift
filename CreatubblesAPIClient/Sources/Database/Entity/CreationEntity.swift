@@ -27,17 +27,25 @@ import RealmSwift
 
 class CreationEntity: Object
 {
-    
     dynamic var identifier: String?
     dynamic var name: String?
     dynamic var createdAt: NSDate?
     dynamic var updatedAt: NSDate?
     
+    dynamic var imageOriginalUrl: String?
+    dynamic var imageFullViewUrl: String?
+    dynamic var imageListViewUrl: String?
+    dynamic var imageListViewRetinaUrl: String?
+    dynamic var imageMatrixViewUrl: String?
+    dynamic var imageMatrixViewRetinaUrl: String?
+    dynamic var imageGalleryMobileUrl: String?
+    dynamic var imageExploreMobileUrl: String?
+    dynamic var imageShareUrl: String?
+    
     var createdAtYear = RealmOptional<Int>()
     var createdAtMonth = RealmOptional<Int>()
     
     var imageStatus = RealmOptional<Int>()
-    dynamic var image: String?
     
     var bubblesCount = RealmOptional<Int>()
     var commentsCount = RealmOptional<Int>()

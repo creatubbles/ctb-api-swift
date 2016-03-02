@@ -397,7 +397,7 @@ class RequestSpec: QuickSpec
                 let params = request.parameters
                 
                 expect(params["name"] as? String).to(equal(data.name))
-                expect(params["creator_ids"] as? Array<String>).to(equal(data.creatorIds))
+                expect(params["creator_ids"] as? Array<String>).to(equal(data.creatorIds?.joinWithSeparator(",")))
                 expect(params["created_at_year"] as? Int).to(equal(data.creationYear))
                 expect(params["created_at_month"] as? Int).to(equal(data.creationMonth))
                 expect(params["reflection_text"] as? String).to(equal(data.reflectionText))

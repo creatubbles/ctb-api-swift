@@ -36,9 +36,17 @@ class CreationMapper: Mappable
     var createdAtMonth: Int?
     
     var imageStatus: Int?
-    var image: String?
     
-    
+    var imageOriginalUrl: String?
+    var imageFullViewUrl: String?
+    var imageListViewUrl: String?
+    var imageListViewRetinaUrl: String?
+    var imageMatrixViewUrl: String?
+    var imageMatrixViewRetinaUrl: String?
+    var imageGalleryMobileUrl: String?
+    var imageExploreMobileUrl: String?
+    var imageShareUrl: String?
+
     var bubblesCount: Int?
     var commentsCount: Int?
     var viewsCount: Int?
@@ -67,7 +75,16 @@ class CreationMapper: Mappable
         createdAtMonth <- map["attributes.created_at_month"]
         
         imageStatus <- map["attributes.image_status"]
-        image <- map["attributes.image"]
+        
+        imageOriginalUrl <- map["attributes.image.links.original"]
+        imageFullViewUrl <- map["attributes.image.links.full_view"]
+        imageListViewUrl <- map["attributes.image.links.list_view_retina"]
+        imageListViewRetinaUrl <- map["attributes.image.links.list_view_retina"]
+        imageMatrixViewUrl <- map["attributes.image.links.matrix_view"]
+        imageMatrixViewRetinaUrl <- map["attributes.image.links.matrix_view_retina"]
+        imageGalleryMobileUrl <- map["attributes.image.links.gallery_mobile"]
+        imageExploreMobileUrl <- map["attributes.image.links.explore_mobile"]
+        imageShareUrl <- map["attributes.image.links.share"]
         
         bubblesCount <- map["attributes.bubbles_count"]
         commentsCount <- map["attributes.comments_count"]

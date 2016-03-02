@@ -220,12 +220,7 @@ class DatabaseService: NSObject
         creationEntity.createdAtYear.value = creation.createdAtYear
         creationEntity.createdAtMonth.value = creation.createdAtMonth
         creationEntity.imageStatus.value = creation.imageStatus
-        
-        if let image = creation.image
-        {
-            creationEntity.image = image
-        }
-        
+                
         creationEntity.bubblesCount.value = creation.bubblesCount
         creationEntity.commentsCount.value = creation.commentsCount
         creationEntity.viewsCount.value = creation.viewsCount
@@ -235,6 +230,16 @@ class DatabaseService: NSObject
         creationEntity.approved.value = creation.approved
         creationEntity.shortUrl = creation.shortUrl
         creationEntity.createdAtAge = creation.createdAtAge
+
+        creationEntity.imageOriginalUrl = creation.imageOriginalUrl
+        creationEntity.imageFullViewUrl = creation.imageFullViewUrl
+        creationEntity.imageListViewUrl = creation.imageListViewUrl
+        creationEntity.imageListViewRetinaUrl = creation.imageListViewRetinaUrl
+        creationEntity.imageMatrixViewUrl = creation.imageMatrixViewUrl
+        creationEntity.imageMatrixViewRetinaUrl = creation.imageMatrixViewRetinaUrl
+        creationEntity.imageGalleryMobileUrl = creation.imageGalleryMobileUrl
+        creationEntity.imageExploreMobileUrl = creation.imageExploreMobileUrl
+        creationEntity.imageShareUrl = creation.imageShareUrl
         
         return creationEntity
     }
