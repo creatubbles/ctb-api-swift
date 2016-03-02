@@ -32,6 +32,7 @@ public class PagingData: NSObject
     
     public init(page: Int, pageSize: Int)
     {
+        assert(page >= 1, "Page indexing starts from 1")
         self.page = page
         self.pageSize = pageSize
     }    
