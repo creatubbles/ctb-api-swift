@@ -27,28 +27,28 @@ import UIKit
 @objc
 public class Creation: NSObject
 {
-    let identifier: String
-    let name: String
-    let createdAt: NSDate
-    let updatedAt: NSDate
+    public let identifier: String
+    public let name: String
+    public let createdAt: NSDate
+    public let updatedAt: NSDate
     
-    let createdAtYear: Int
-    let createdAtMonth: Int
+    public let createdAtYear: Int
+    public let createdAtMonth: Int
 
-    let imageStatus: Int
-    let image: String?
+    public let imageStatus: Int
+    public let image: String?
     
-    let bubblesCount: Int
-    let commentsCount: Int
-    let viewsCount: Int
+    public let bubblesCount: Int
+    public let commentsCount: Int
+    public let viewsCount: Int
     
-    let lastBubbledAt: NSDate?
-    let lastCommentedAt: NSDate?
-    let lastSubmittedAt: NSDate?
+    public let lastBubbledAt: NSDate?
+    public let lastCommentedAt: NSDate?
+    public let lastSubmittedAt: NSDate?
 
-    let approved: Bool
-    let shortUrl: String
-    let createdAtAge: String?
+    public let approved: Bool
+    public let shortUrl: String
+    public let createdAtAge: String?
  
     init(mapper: CreationMapper)
     {

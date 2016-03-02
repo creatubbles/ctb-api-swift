@@ -56,5 +56,39 @@ public class NewCreationData: NSObject
         self.creationMonth = creationDataEntity.creationMonth.value
         self.creationYear = creationDataEntity.creationYear.value
     }
-
+    
+    //MARK: objc compability
+    public func getCreationYear() -> NSNumber?
+    {
+        if let year = creationYear
+        {
+            return NSNumber(integer: year)
+        }
+        return nil
+    }
+    
+    public func getCreationMonth() -> NSNumber?
+    {
+        if let month = creationMonth
+        {
+            return NSNumber(integer: month)
+        }
+        return nil
+    }
+    
+    public func setCreationYear(year: NSNumber?)
+    {
+        if let year = year
+        {
+            creationYear = year.integerValue;
+        }
+    }
+    
+    public func setCreationMonth(month: NSNumber?)
+    {
+        if let month = month
+        {
+            creationMonth = month.integerValue
+        }
+    }
 }
