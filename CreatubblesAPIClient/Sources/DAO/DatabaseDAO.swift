@@ -59,6 +59,6 @@ class DatabaseDAO: NSObject
     }
     func getAllFinishedUploadSessionsPublicData(requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
     {
-        return databaseService.getAllActiveUploadSessionsPublicData(requestSender)
+        return databaseService.getAllFinishedUploadSessionPublicData(requestSender)
     }
 }

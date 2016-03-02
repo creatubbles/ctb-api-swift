@@ -52,7 +52,7 @@ class NewCreationRequest: Request
         }
         if let creatorIds = creationData.creatorIds
         {
-            params["creator_ids"] = creatorIds
+            params["creator_ids"] = creatorIds.joinWithSeparator(",")
         }
         if let creationMonth = creationData.creationMonth
         {

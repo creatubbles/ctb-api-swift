@@ -73,7 +73,7 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     private let galleryDAO: GalleryDAO
     private let creationUploadService: CreationUploadService
     private let databaseDAO: DatabaseDAO
-    weak var delegate: CreatubblesAPIClientDelegate?
+    public weak var delegate: CreatubblesAPIClientDelegate?
     
     public init(settings: CreatubblesAPIClientSettings)
     {
