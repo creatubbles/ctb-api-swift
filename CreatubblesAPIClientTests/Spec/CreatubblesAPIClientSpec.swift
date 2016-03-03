@@ -421,24 +421,23 @@ class CreatubblesAPIClientSpec: QuickSpec
                     })
                 }
             }
-//            it("Should fetch all finished UploadSessions")
-//            {
-//                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
-//                waitUntil(timeout: 20)
-//                {
-//                    done in
-//                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
-//                    {
-//                        (error) -> (Void) in
-//                        expect(error).to(beNil())
-//                        expect(client.isLoggedIn()).to(beTrue())
-//                        let activeUploadSessions = client.getAllFinishedUploadSessions()
-//                        
-//                        expect(activeUploadSessions).notTo(beNil())
-//                        done()
-//                    }
-//                )}
-//            }
+            it("Should fetch all finished UploadSessions")
+            {
+                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: 20)
+                {
+                    done in
+                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    {
+                        (error) -> (Void) in
+                        expect(error).to(beNil())
+                        expect(client.isLoggedIn()).to(beTrue())
+                        let activeUploadSessions = client.getAllFinishedUploadSessionPublicData()
+
+                        done()
+                    }
+                )}
+            }
         }
     }
 }
