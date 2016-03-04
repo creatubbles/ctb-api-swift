@@ -211,6 +211,11 @@ extension CreatubblesAPIClient
     //MARK: - Utils
     static func errorTypeToNSError(error: ErrorType?) -> NSError?
     {
+        if let error = error as? CreatubblesAPIClientError
+        {
+            let userInfo = [NSLocalizedDescriptionKey : error.errorDescription]
+            return NSError(domain: "com.creatubbles.errordomain", code: 1, userInfo: userInfo)
+        }
         if let _ = error
         {
             let userInfo = [NSLocalizedDescriptionKey :String(error)]

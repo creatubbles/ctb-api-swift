@@ -48,6 +48,7 @@ class CreationUploadService: CreationUploadSessionDelegate
     func uploadCreation(data: NewCreationData, completion: CreationClousure?)
     {
         let session = CreationUploadSession(data: data, requestSender: requestSender)
+        databaseDAO.saveCreationUploadSessionToDatabase(session)
         session.delegate = self
         session.start(completion)
     }

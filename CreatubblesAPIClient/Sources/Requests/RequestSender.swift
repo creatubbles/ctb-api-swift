@@ -102,7 +102,6 @@ class RequestSender: NSObject
     {
         Logger.log.debug("Sending request: \(request.dynamicType)")
         oauth2Client.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
-        .validate()
         .responseString
         {
             (response) -> Void in
