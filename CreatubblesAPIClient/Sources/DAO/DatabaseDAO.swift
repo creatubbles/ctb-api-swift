@@ -38,9 +38,9 @@ class DatabaseDAO: NSObject
         return databaseService.fetchAllCreationUploadSessions(requestSender)
     }
     
-    func fetchASincleCreationUploadSessionEntityWithCreationIdentifier(creationIdentifier: String) -> CreationUploadSessionEntity?
+    func fetchASingleCreationUploadSessionWithLocalIdentifier(localIdentifier: String) -> CreationUploadSessionEntity?
     {
-        return databaseService.fetchASingleCreationUploadSessionWithCreationIdentifier(creationIdentifier)
+        return databaseService.fetchASingleCreationUploadSessionWithLocalIdentifier(localIdentifier)
     }
     
     func fetchAllFinishedUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>

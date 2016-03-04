@@ -57,9 +57,9 @@ public typealias GalleriesBatchClousure = (Array<Gallery>?, CreatubblesAPIClient
 @objc
 public protocol CreatubblesAPIClientDelegate
 {
-    func creatubblesAPIClientImageUploadFinished(apiClient: CreatubblesAPIClient, creation: Creation, data: NewCreationData)
-    func creatubblesAPIClientImageUploadFailed(apiClient: CreatubblesAPIClient, creation: Creation?, data: NewCreationData, error: NSError)
-    func creatubblesAPIClientImageUploadProcessChanged(apiClient: CreatubblesAPIClient, creation: Creation, data: NewCreationData, bytesUploaded: Int, bytesExpectedToUpload: Int)
+    func creatubblesAPIClientImageUploadFinished(apiClient: CreatubblesAPIClient, uploadSessionData: CreationUploadSessionPublicData)
+    func creatubblesAPIClientImageUploadFailed(apiClient: CreatubblesAPIClient,  uploadSessionData: CreationUploadSessionPublicData, error: NSError)
+    func creatubblesAPIClientImageUploadProcessChanged(apiClient: CreatubblesAPIClient, uploadSessionData: CreationUploadSessionPublicData, bytesUploaded: Int, bytesExpectedToUpload: Int)
 }
 
 @objc
@@ -212,17 +212,20 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     //MARK: - Delegate
     func creationUploadServiceUploadFinished(service: CreationUploadService, session: CreationUploadSession)
     {
-       delegate?.creatubblesAPIClientImageUploadFinished(self, creation: session.creation!, data: session.creationData)
+        let data = CreationUploadSessionPublicData(creationUploadSession: session)
+        delegate?.creatubblesAPIClientImageUploadFinished(self, uploadSessionData: data)
     }
     
     func creationUploadServiceProgressChanged(service: CreationUploadService, session: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
     {
-        delegate?.creatubblesAPIClientImageUploadProcessChanged(self, creation: session.creation!, data: session.creationData, bytesUploaded: totalBytesWritten, bytesExpectedToUpload: totalBytesExpectedToWrite)
+        let data = CreationUploadSessionPublicData(creationUploadSession: session)
+        delegate?.creatubblesAPIClientImageUploadProcessChanged(self, uploadSessionData: data, bytesUploaded: totalBytesWritten, bytesExpectedToUpload: totalBytesExpectedToWrite)
     }
     
     func creationUploadServiceUploadFailed(service: CreationUploadService, session: CreationUploadSession, error: ErrorType)
     {
-        delegate?.creatubblesAPIClientImageUploadFailed(self, creation: session.creation, data: session.creationData, error: CreatubblesAPIClient.errorTypeToNSError(error)!)
+        let data = CreationUploadSessionPublicData(creationUploadSession: session)
+        delegate?.creatubblesAPIClientImageUploadFailed(self, uploadSessionData: data, error: CreatubblesAPIClient.errorTypeToNSError(error)!)
     }
 
 }

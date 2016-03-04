@@ -48,10 +48,11 @@ public class NewCreationData: NSObject
         self.reflectionText = creationDataEntity.reflectionText
         self.reflectionVideoUrl = creationDataEntity.reflectionVideoUrl
         self.galleryId = creationDataEntity.galleryId
+        self.creatorIds = Array<String>()
         
         for creatorId in creationDataEntity.creatorIds
         {
-            self.creatorIds?.append(creatorId.creatorIdString!)
+            self.creatorIds!.append(creatorId.creatorIdString!)
         }
         self.creationMonth = creationDataEntity.creationMonth.value
         self.creationYear = creationDataEntity.creationYear.value

@@ -33,7 +33,7 @@ class DatabaseService: NSObject
     {
         let creationUploadSessionEntity = getUploadSessionEntityFromCreationUploadSession(creationUploadSession)
         
-        if let creationUploadSessionEntityFromDatabase = fetchASingleCreationUploadSessionWithCreationIdentifier((creationUploadSession.creation?.identifier)!)
+        if let creationUploadSessionEntityFromDatabase = fetchASingleCreationUploadSessionWithLocalIdentifier(creationUploadSession.localIdentifier)
         {
             do
             {
@@ -102,9 +102,9 @@ class DatabaseService: NSObject
         return sessions
     }
     
-    func fetchASingleCreationUploadSessionWithCreationIdentifier(creationIdentifier: String) -> CreationUploadSessionEntity?
+    func fetchASingleCreationUploadSessionWithLocalIdentifier(localIdentifier: String) -> CreationUploadSessionEntity?
     {
-        let creationUploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter("identifier = %@", creationIdentifier)
+        let creationUploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter("localIdentifier = %@", localIdentifier)
         return creationUploadSessionEntities.first
     }
     
@@ -170,7 +170,7 @@ class DatabaseService: NSObject
         creationUploadSessionEntity.imageFileName = creationUploadSession.imageFileName
         creationUploadSessionEntity.relativeImageFilePath = creationUploadSession.relativeImageFilePath
         creationUploadSessionEntity.creationDataEntity = getNewCreationDataEntityFromCreationData(creationUploadSession.creationData)
-        creationUploadSessionEntity.identifier = creationUploadSession.creation?.identifier
+        creationUploadSessionEntity.localIdentifier = creationUploadSession.localIdentifier
         
         if let creation = creationUploadSession.creation
         {

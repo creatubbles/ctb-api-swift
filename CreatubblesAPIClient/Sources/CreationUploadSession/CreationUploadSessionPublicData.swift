@@ -11,11 +11,13 @@ import UIKit
 @objc
 public class CreationUploadSessionPublicData: NSObject
 {
-    public let creation: Creation?
+    public let identifier: String
     public let creationData: NewCreationData
+    public let creation: Creation?
     
     init(creationUploadSession: CreationUploadSession)
     {
+        self.identifier = creationUploadSession.localIdentifier
         creation = creationUploadSession.creation
         creationData = creationUploadSession.creationData
     }

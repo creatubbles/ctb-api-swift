@@ -153,7 +153,6 @@ extension CreatubblesAPIClient
     }
     
     //MARK: - Batch fetching
-
     public func _getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder, completion: ((Array<Creation>?, NSError?) -> (Void))?)
     {
         getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder)

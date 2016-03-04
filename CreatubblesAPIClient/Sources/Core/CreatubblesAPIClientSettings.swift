@@ -26,12 +26,39 @@ import UIKit
 
 public class CreatubblesAPIClientSettings: NSObject
 {
+    /*
+     Personal application identifier. Please contact support@creatubbles.com to obtain it.
+    */
     let appId: String
+    
+    /*
+     Personal application secret. Please contact support@creatubbles.com to obtain it.
+     */
     let appSecret: String
+    
+    /*
+        OAuth2 token uri. https://www.creatubbles.com/api/v2/oauth/token by default.
+     */
     let tokenUri: String
+    
+    /*
+        OAuth2 authorization uri. https://www.creatubbles.com/api/v2/oauth/token by default.
+    */
     let authorizeUri: String
+    
+    /*
+        API base url.https://www.creatubbles.com by default.
+    */
     let baseUrl: String
+    
+    /*
+        API version string. 'v2' by defaults.
+    */
     let apiVersion: String
+    
+    /*
+        Prefix used to create proper endpoints with baseUrl and apiVersion. 'api' by default.
+    */
     let apiPrefix: String
     
     public init(appId: String, appSecret: String)

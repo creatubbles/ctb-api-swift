@@ -27,8 +27,7 @@ import RealmSwift
 
 class CreationUploadSessionEntity: Object
 {
-    dynamic var identifier: String?
-    
+    dynamic var localIdentifier: String?
     var stateRaw = RealmOptional<Int>()
     dynamic var creationDataEntity: NewCreationDataEntity?
     dynamic var imageFileName: String?
@@ -47,7 +46,7 @@ class CreationUploadSessionEntity: Object
     
     override static func primaryKey() -> String?
     {
-        return "identifier"
+        return "localIdentifier"
     }
 }
 
