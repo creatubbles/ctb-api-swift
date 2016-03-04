@@ -432,8 +432,7 @@ class CreatubblesAPIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        let activeUploadSessions = client.getAllFinishedUploadSessionPublicData()
-
+                        client.getAllFinishedUploadSessionPublicData()
                         done()
                     }
                 )}
