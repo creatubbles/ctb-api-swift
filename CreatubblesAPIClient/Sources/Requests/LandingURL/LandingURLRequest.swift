@@ -15,7 +15,7 @@ class LandingURLRequest: Request
     {
         if let creationId = creationId
         {
-            return "\(creationId)/landing_url"
+            return "creations/\(creationId)/landing_url"
         }
         if let typeStr = LandingURLRequest.typeStringFromType(type)
         {

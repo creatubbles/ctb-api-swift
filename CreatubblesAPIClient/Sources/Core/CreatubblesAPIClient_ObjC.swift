@@ -50,7 +50,7 @@ extension CreatubblesAPIClient
         return authenticationToken()
     }
     
-    public func _getLandingURL(type: LandingURLType?, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
+    public func _getLandingURL(type: LandingURLType, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
     {
         getLandingURL(type)
         {
@@ -59,7 +59,7 @@ extension CreatubblesAPIClient
         }
     }
     
-    public func _getLandingURL(creationId: String, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
+    public func _getLandingURLForCreation(creationId: String, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
     {
         getLandingURL(creationId)
         {

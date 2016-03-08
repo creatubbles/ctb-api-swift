@@ -573,7 +573,7 @@ class RequestSpec: QuickSpec
             {
                 let creationId = "MyCreationId"
                 let request = LandingURLRequest(creationId: creationId)
-                expect(request.endpoint).to(equal("\(creationId)/landing_url"))
+                expect(request.endpoint).to(equal("creations/\(creationId)/landing_url"))
             }            
         }
     }
