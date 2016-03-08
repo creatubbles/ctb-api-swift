@@ -54,6 +54,20 @@ class UserDAO
         requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getLandingURL(creationId: String, completion: LandingURLClousure?)
+    {
+        let request = LandingURLRequest(creationId: creationId)
+        let handler = LandingURLResponseHandler(completion: completion)
+        requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func getLandingURL(type: LandingURLType?, completion: LandingURLClousure?)
+    {
+        let request = LandingURLRequest(type: type)
+        let handler = LandingURLResponseHandler(completion: completion)
+        requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getManagers(userId: String?, pagingData: PagingData?,completion: UsersClousure?)
     {
         let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Managers)

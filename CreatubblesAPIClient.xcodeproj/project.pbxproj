@@ -67,6 +67,10 @@
 		18C744FC1C84611600A07E4C /* CreationUploadEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F71C84611600A07E4C /* CreationUploadEntity.swift */; };
 		18C744FD1C84611600A07E4C /* CreationUploadSessionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F81C84611600A07E4C /* CreationUploadSessionEntity.swift */; };
 		18C744FE1C84611600A07E4C /* NewCreationDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F91C84611600A07E4C /* NewCreationDataEntity.swift */; };
+		18E30BE61C8DA307000794B6 /* LandingURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E30BE51C8DA307000794B6 /* LandingURLRequest.swift */; };
+		18E30BE81C8DA318000794B6 /* LandingURLResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E30BE71C8DA318000794B6 /* LandingURLResponseHandler.swift */; };
+		18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E30BE91C8DA7DD000794B6 /* LandingURL.swift */; };
+		18E30BEC1C8DAAE0000794B6 /* LandingURLMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E30BEB1C8DAAE0000794B6 /* LandingURLMapper.swift */; };
 		18EFFF661C770F8700BE0B70 /* GallerySubmissionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF651C770F8700BE0B70 /* GallerySubmissionRequest.swift */; };
 		18EFFF681C771C7800BE0B70 /* GallerySubmissionResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF671C771C7800BE0B70 /* GallerySubmissionResponseHandler.swift */; };
 		18EFFF701C772A4E00BE0B70 /* CreatubblesAPIClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF6B1C772A4E00BE0B70 /* CreatubblesAPIClientSpec.swift */; };
@@ -161,6 +165,10 @@
 		18C744F71C84611600A07E4C /* CreationUploadEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadEntity.swift; sourceTree = "<group>"; };
 		18C744F81C84611600A07E4C /* CreationUploadSessionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadSessionEntity.swift; sourceTree = "<group>"; };
 		18C744F91C84611600A07E4C /* NewCreationDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationDataEntity.swift; sourceTree = "<group>"; };
+		18E30BE51C8DA307000794B6 /* LandingURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingURLRequest.swift; sourceTree = "<group>"; };
+		18E30BE71C8DA318000794B6 /* LandingURLResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingURLResponseHandler.swift; sourceTree = "<group>"; };
+		18E30BE91C8DA7DD000794B6 /* LandingURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingURL.swift; sourceTree = "<group>"; };
+		18E30BEB1C8DAAE0000794B6 /* LandingURLMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingURLMapper.swift; sourceTree = "<group>"; };
 		18EFFF651C770F8700BE0B70 /* GallerySubmissionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GallerySubmissionRequest.swift; sourceTree = "<group>"; };
 		18EFFF671C771C7800BE0B70 /* GallerySubmissionResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GallerySubmissionResponseHandler.swift; sourceTree = "<group>"; };
 		18EFFF6B1C772A4E00BE0B70 /* CreatubblesAPIClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClientSpec.swift; sourceTree = "<group>"; };
@@ -293,6 +301,7 @@
 				187902011C6C8BAF008F5302 /* Gallery.swift */,
 				180C97B01C6DEA4100BC682D /* Creation.swift */,
 				188ECF5D1C71E91B00AFEE4F /* CreationUpload.swift */,
+				18E30BE91C8DA7DD000794B6 /* LandingURL.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -307,6 +316,7 @@
 				216843941C7343CB0052B835 /* FetchCreations */,
 				187901F61C6B6BFE008F5302 /* Galleries */,
 				18EFFF641C770F7600BE0B70 /* GallerySubmission */,
+				18E30BE41C8DA2ED000794B6 /* LandingURL */,
 				180C97AB1C6DD3B600BC682D /* NewCreation */,
 				187047DE1C71DC3900B202FD /* NewCreationUpload */,
 				188ECF691C74612200AFEE4F /* NewCreationPing */,
@@ -465,6 +475,7 @@
 				189D9F591C84B36100857CC6 /* GroupMapper.swift */,
 				189D9F5A1C84B36100857CC6 /* PagingInfoMapper.swift */,
 				189D9F5B1C84B36100857CC6 /* UserMapper.swift */,
+				18E30BEB1C8DAAE0000794B6 /* LandingURLMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -487,6 +498,15 @@
 				18C744F91C84611600A07E4C /* NewCreationDataEntity.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		18E30BE41C8DA2ED000794B6 /* LandingURL */ = {
+			isa = PBXGroup;
+			children = (
+				18E30BE51C8DA307000794B6 /* LandingURLRequest.swift */,
+				18E30BE71C8DA318000794B6 /* LandingURLResponseHandler.swift */,
+			);
+			path = LandingURL;
 			sourceTree = "<group>";
 		};
 		18EFFF641C770F7600BE0B70 /* GallerySubmission */ = {
@@ -752,6 +772,8 @@
 				188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */,
 				2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */,
 				18779E0D1C6A2582000BFB57 /* CreatorsAndManagersRequest.swift in Sources */,
+				18E30BE81C8DA318000794B6 /* LandingURLResponseHandler.swift in Sources */,
+				18E30BE61C8DA307000794B6 /* LandingURLRequest.swift in Sources */,
 				188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */,
 				187671471C7CA2D800733E9E /* NewCreationData.swift in Sources */,
 				21A79F701C81E6C5009E95D1 /* CreationsBatchFetcher.swift in Sources */,
@@ -766,6 +788,7 @@
 				188ECF6D1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift in Sources */,
 				21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */,
 				18779DF51C69E80F000BFB57 /* ProfileResponseHandler.swift in Sources */,
+				18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */,
 				188ECF731C747FDE00AFEE4F /* String+Path.swift in Sources */,
 				180C97B11C6DEA4100BC682D /* Creation.swift in Sources */,
 				18779DF91C69F39D000BFB57 /* Group.swift in Sources */,
@@ -783,6 +806,7 @@
 				18C744FE1C84611600A07E4C /* NewCreationDataEntity.swift in Sources */,
 				18C1CFF71C75C46C00A02DE3 /* CreationsDAO.swift in Sources */,
 				188ECF701C74703200AFEE4F /* CreationUploadSession.swift in Sources */,
+				18E30BEC1C8DAAE0000794B6 /* LandingURLMapper.swift in Sources */,
 				180C97AF1C6DD41900BC682D /* NewCreationResponseHandler.swift in Sources */,
 				21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */,
 				187047E01C71DCD600B202FD /* NewCreationUploadRequest.swift in Sources */,
@@ -929,6 +953,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 055A4A2D59C871AD4EC1E7B9 /* Pods-CreatubblesAPIClient.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -948,6 +973,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -966,6 +992,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB74205CC51A73FB798D192F /* Pods-CreatubblesAPIClientTests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				INFOPLIST_FILE = CreatubblesAPIClientTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;
@@ -977,6 +1004,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				INFOPLIST_FILE = CreatubblesAPIClientTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;

@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-CreatubblesAPIClientMacOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-CreatubblesAPIClientTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,6 +72,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>0C3B82485D0D920272E1FD090B870B32</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1AE4B9E048A0E983F16913493BB93BAB</key>
 		<dict>
 			<key>primary</key>
@@ -87,6 +97,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>746F77AD3F0B8BC42FB16209888C099D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7A6B39D1E73EEB1755E4D3DBBF878EDA</key>
 		<dict>
 			<key>primary</key>
@@ -97,7 +112,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>AAF54258ADB3A0D56D81B39E086DF0D1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B9F3EEC5335E0753D046FF74B19072D0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BBE0DB4D61A01C7A0E0D2F76864E57D0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C50D702B4343BAAD436C5E81F2109526</key>
 		<dict>
 			<key>primary</key>
 			<true/>

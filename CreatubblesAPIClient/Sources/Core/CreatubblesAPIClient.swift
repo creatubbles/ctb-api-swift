@@ -39,6 +39,8 @@ public typealias GalleryClousure = (Gallery?, CreatubblesAPIClientError?) -> (Vo
 public typealias GalleriesClousure = (Array<Gallery>?, PagingInfo?, CreatubblesAPIClientError?) -> (Void)
 public typealias GalleriesBatchClousure = (Array<Gallery>?, CreatubblesAPIClientError?) -> (Void)
 
+public typealias LandingURLClousure = (Array<LandingURL>?, CreatubblesAPIClientError?) -> (Void)
+
 //MARK: - Enums
 @objc public enum Gender: Int
 {
@@ -50,6 +52,17 @@ public typealias GalleriesBatchClousure = (Array<Gallery>?, CreatubblesAPIClient
 {
     case Popular
     case Recent
+}
+
+@objc public enum LandingURLType: Int
+{
+    case AboutUs
+    case TermsOfUse
+    case PrivacyPolicy
+    case Registration
+    case UserProfile
+    case Explore
+    case Creation
 }
 
 //add protocol
@@ -110,13 +123,23 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         return requestSender.isLoggedIn()
     }
     
+    public func getLandingURL(type: LandingURLType?, completion: LandingURLClousure?)
+    {
+        userDAO.getLandingURL(type, completion: completion)
+    }
+
+    public func getLandingURL(creationId: String, completion: LandingURLClousure?)
+    {
+        userDAO.getLandingURL(creationId, completion: completion)
+    }
+    
     //MARK: - Creators managment
-    public func getUser(userId: String, completion: UserClousure)
+    public func getUser(userId: String, completion: UserClousure?)
     {
         userDAO.getUser(userId, completion: completion)
     }
     
-    public func getCurrentUser(completion: UserClousure)
+    public func getCurrentUser(completion: UserClousure?)
     {
         userDAO.getCurrentUser(completion)
     }

@@ -354,7 +354,7 @@ class CreatubblesAPIClientSpec: QuickSpec
             it("Should batch fetch galleries")
             {
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 20)
+                waitUntil(timeout: 200)
                 {
                     done in
                     client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -377,7 +377,7 @@ class CreatubblesAPIClientSpec: QuickSpec
             it("Should batch fetch creations")
             {
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 20)
+                waitUntil(timeout: 200)
                 {
                     done in
                     client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -401,7 +401,7 @@ class CreatubblesAPIClientSpec: QuickSpec
             it("Should batch fetch creators")
             {
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 20)
+                waitUntil(timeout: 200)
                 {
                     done in
                     client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
