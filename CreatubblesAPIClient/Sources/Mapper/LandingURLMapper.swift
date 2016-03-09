@@ -35,6 +35,7 @@ class LandingURLMapper: Mappable
             case "ctb-user_profile": return LandingURLType.UserProfile
             case "ctb-registration": return LandingURLType.Registration
             case "ctb-explore": return LandingURLType.Explore
+            case "ctb-forgot_password": return LandingURLType.ForgotPassword
             
             default: return LandingURLType.Explore
         }

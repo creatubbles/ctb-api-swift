@@ -46,13 +46,14 @@ class LandingURLRequest: Request
         {
             switch type
             {
-                case .AboutUs:      return "ctb-about_us"
-                case .TermsOfUse:   return "ctb-terms_of_use"
-                case .PrivacyPolicy:return "ctb-privacy_policy"
-                case .Registration: return "ctb-registration"
-                case .UserProfile:  return "ctb-user_profile"
-                case .Explore:      return "ctb-explore"
-                case .Creation:     return nil
+                case .AboutUs:        return "ctb-about_us"
+                case .TermsOfUse:     return "ctb-terms_of_use"
+                case .PrivacyPolicy:  return "ctb-privacy_policy"
+                case .Registration:   return "ctb-registration"
+                case .UserProfile:    return "ctb-user_profile"
+                case .Explore:        return "ctb-explore"
+                case .ForgotPassword: return "ctb-forgot_password"
+                case .Creation:       return nil
             }
         }
         return nil
