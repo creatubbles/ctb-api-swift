@@ -192,6 +192,7 @@ class DatabaseService: NSObject
         newCreationDataEntity.reflectionText = newCreationData.reflectionText
         newCreationDataEntity.reflectionVideoUrl = newCreationData.reflectionVideoUrl
         newCreationDataEntity.galleryId = newCreationData.galleryId
+        newCreationDataEntity.dataTypeRaw.value = newCreationData.dataType.rawValue
         
         if let _ = newCreationData.creatorIds
         {

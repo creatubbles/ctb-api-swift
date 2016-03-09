@@ -34,7 +34,6 @@ enum CreationUploadSessionState: Int
     case ServerNotified = 5
 }
 
-
 protocol CreationUploadSessionDelegate: class
 {
     func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
@@ -49,8 +48,10 @@ class CreationUploadSession: ResponseHandler
     let imageFileName: String
     let relativeImageFilePath: String
     var state: CreationUploadSessionState
+    let creationDataType: CreationDataType
     var isActive: Bool
     weak var delegate: CreationUploadSessionDelegate?
+    
     
     //Fields filled during creation upload flow
     var creation: Creation?
@@ -66,8 +67,8 @@ class CreationUploadSession: ResponseHandler
         self.state = .Initialized
         self.requestSender = requestSender
         self.creationData = data
-        
-        self.imageFileName = String(Int(NSDate().timeIntervalSince1970))+"_creation.jpg"
+        //MARK: TODO
+        self.imageFileName = localIdentifier+"_creation"//+extension
         self.relativeImageFilePath = "images/"+imageFileName
         
     }
@@ -88,9 +89,9 @@ class CreationUploadSession: ResponseHandler
         
         let url = NSURL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
         
-        let image = UIImage(contentsOfFile: url.path!)!
+        //let image = UIImage(contentsOfFile: url.path!)
         
-        self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, image: image)
+        self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, url: url)
         
         if let creationEntity = creationUploadSessionEntity.creationEntity
         {
@@ -235,7 +236,13 @@ class CreationUploadSession: ResponseHandler
             return
         }
         
-        requestSender.send(UIImageJPEGRepresentation(creationData.image, 1)!, uploadData: creationUpload!,
+//        case Image = 0
+//        case Url = 1
+//        case Data = 2
+        
+        if(creationData.dataType.rawValue == 0)
+        {
+            requestSender.send(creationData.url, uploadData: creationUpload!,
             progressChanged:
             {
                 (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
@@ -253,6 +260,7 @@ class CreationUploadSession: ResponseHandler
                     completion(error)
                 }
             })
+        }
     }
     
     private func notifyServer(error: ErrorType?, completion: (ErrorType?) -> Void)
