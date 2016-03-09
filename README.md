@@ -14,7 +14,7 @@ Please note, that library is still under heavy development, and interface may be
 
 
 ## Dependencies
-- [Alamofire](https://github.com/Alamofire/Alamofire) 
+- [Alamofire](https://github.com/Alamofire/Alamofire)
 - [OAuth2](https://github.com/p2/OAuth2)
 - [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper)
 - [XCGLogger](https://github.com/DaveWoodCom/XCGLogger)
@@ -27,6 +27,8 @@ CreatubblesAPIClient is available through [CocoaPods](http://cocoapods.org). To 
 it, simply add the following line to your Podfile:
 
 ```Ruby
+use_frameworks!
+
 pod 'CreatubblesAPIClient'
 ```
 
@@ -47,9 +49,11 @@ client.login("username", password: "password")
 }
 ```
 ## Usage (Objective-C)
-Use methods with '_' prefix to communicate using Objective-C
+Use methods with _ prefix to communicate using Objective-C
 
 ```ObjectiveC
+import CreatubblesAPIClient;
+
 CreatubblesAPIClientSettings *settings = [[CreatubblesAPIClientSettings alloc] initWithAppId:@"YOUR_APP_ID" appSecret:@"YOUR_APP_SECRET"];
 CreatubblesAPIClient *client = [[CreatubblesAPIClient alloc] initWithSettings:settings];
 [client _login:@"username" password:@"password" completion:
