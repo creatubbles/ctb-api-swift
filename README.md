@@ -65,6 +65,8 @@ CreatubblesAPIClient *client = [[CreatubblesAPIClient alloc] initWithSettings:se
   }
 }];
 ```
+### Objective-C API Client
+Feel free to use our own CTAPIClient wrapper for your Objective-C projects. You can check it out [here](https://github.com/creatubbles/ctb-api-swift/tree/develop/ObjectiveC_APIClient)
 
 ## Contact
 In order to receive your AppId and AppSecret please contact us at <support@creatubbles.com>.

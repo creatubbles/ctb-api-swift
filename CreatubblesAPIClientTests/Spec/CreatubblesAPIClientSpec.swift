@@ -41,9 +41,8 @@ class CreatubblesAPIClientSpec: QuickSpec
                 let authorizeUri = "TestAuthorizeUri"
                 let baseUrl = "TestBaseUrl"
                 let apiVersion = "TestApiVersion"
-                let apiPrefix = "TestApiPrefix"
                 
-                let settings = CreatubblesAPIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion, apiPrefix: apiPrefix)
+                let settings = CreatubblesAPIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion)
                 
                 expect(settings.appId).to(equal(appId))
                 expect(settings.appSecret).to(equal(appSecret))
@@ -51,7 +50,6 @@ class CreatubblesAPIClientSpec: QuickSpec
                 expect(settings.authorizeUri).to(equal(authorizeUri))
                 expect(settings.baseUrl).to(equal(baseUrl))
                 expect(settings.apiVersion).to(equal(apiVersion))
-                expect(settings.apiPrefix).to(equal(apiPrefix))
             }
         }
         

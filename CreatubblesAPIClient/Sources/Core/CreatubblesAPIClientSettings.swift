@@ -37,17 +37,17 @@ public class CreatubblesAPIClientSettings: NSObject
     let appSecret: String
     
     /*
-        OAuth2 token uri. https://www.creatubbles.com/api/v2/oauth/token by default.
+        OAuth2 token uri. https://api.creatubbles.com/v2/oauth/token by default.
      */
     let tokenUri: String
     
     /*
-        OAuth2 authorization uri. https://www.creatubbles.com/api/v2/oauth/token by default.
+        OAuth2 authorization uri. https://api.creatubbles.com/v2/oauth/token by default.
     */
     let authorizeUri: String
     
     /*
-        API base url.https://www.creatubbles.com by default.
+        API base url.https://api.creatubbles.com by default.
     */
     let baseUrl: String
     
@@ -55,11 +55,6 @@ public class CreatubblesAPIClientSettings: NSObject
         API version string. 'v2' by defaults.
     */
     let apiVersion: String
-    
-    /*
-        Prefix used to create proper endpoints with baseUrl and apiVersion. 'api' by default.
-    */
-    let apiPrefix: String
     
     public init(appId: String, appSecret: String)
     {
@@ -69,10 +64,9 @@ public class CreatubblesAPIClientSettings: NSObject
         self.authorizeUri = "https://www.creatubbles.com/api/v2/oauth/token"
         self.baseUrl = "https://www.creatubbles.com"
         self.apiVersion = "v2"
-        self.apiPrefix = "api"
     }
     
-    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, apiPrefix: String)
+    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String)
     {
         self.appId = appId
         self.appSecret = appSecret
@@ -80,6 +74,5 @@ public class CreatubblesAPIClientSettings: NSObject
         self.authorizeUri = authorizeUri
         self.baseUrl = baseUrl
         self.apiVersion = apiVersion
-        self.apiPrefix = apiPrefix
     }
 }
