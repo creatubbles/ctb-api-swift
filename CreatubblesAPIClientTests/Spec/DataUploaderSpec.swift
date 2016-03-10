@@ -35,7 +35,7 @@ class DataUploaderSpec: QuickSpec
     {        
         describe("Creation upload session")
         {
-            it("Should upload")
+            it("Should upload image")
             {
                 let path = NSBundle(forClass: self.dynamicType).URLForResource("creatubbles_logo", withExtension: "jpg")
                 let image = UIImage(contentsOfFile: path!.path!)!
@@ -58,6 +58,51 @@ class DataUploaderSpec: QuickSpec
                     }
                 }
             }
+            it("Should upload video")
+            {
+                let path = NSBundle(forClass: self.dynamicType).URLForResource("testVideo", withExtension: "mp4")
+                let requestSender = RequestSender(settings: TestConfiguration.settings)
+                let session = CreationUploadSession(data: NewCreationData(url: path!), requestSender: requestSender)
+                
+                waitUntil(timeout: 10000)
+                {
+                    done in
+                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        session.start
+                        {
+                            (creation: Creation? ,error: ErrorType?) -> Void in
+                            expect(creation).notTo(beNil())
+                            expect(error).to(beNil())
+                            done()
+                        }
+                    }
+                }
+            }
+            it("Should upload zip file")
+            {
+                let path = NSBundle(forClass: self.dynamicType).URLForResource("test", withExtension: "zip")
+                let requestSender = RequestSender(settings: TestConfiguration.settings)
+                let session = CreationUploadSession(data: NewCreationData(data: NSData(contentsOfURL: path!)!), requestSender: requestSender)
+                
+                waitUntil(timeout: 10000)
+                {
+                    done in
+                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        session.start
+                        {
+                            (creation: Creation? ,error: ErrorType?) -> Void in
+                            expect(creation).notTo(beNil())
+                            expect(error).to(beNil())
+                            done()
+                        }
+                    }
+                }
+            }
+            
 
             it("Should upload database sessions")
             {

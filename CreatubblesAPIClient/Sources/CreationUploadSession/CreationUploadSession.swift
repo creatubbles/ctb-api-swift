@@ -234,32 +234,25 @@ class CreationUploadSession: ResponseHandler
             completion(nil)
             return
         }
-        
-//        case Image = 0
-//        case Url = 1
-//        case Data = 2
-        
-        if(creationData.dataType.rawValue == 0)
+
+        requestSender.send(creationData, uploadData: creationUpload!,
+        progressChanged:
         {
-            requestSender.send(creationData, uploadData: creationUpload!,
-            progressChanged:
+            (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
+            self.delegate?.creationUploadSessionChangedProgress(self, bytesWritten: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
+        },
+        completion:
+        {
+            [weak self](error) -> Void in
+            if  let weakSelf = self
             {
-                (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
-                self.delegate?.creationUploadSessionChangedProgress(self, bytesWritten: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
-            },
-            completion:
-            {
-                [weak self](error) -> Void in
-                if  let weakSelf = self
+                if error == nil
                 {
-                    if error == nil
-                    {
-                        weakSelf.state = .ImageUploaded
-                    }
-                    completion(error)
+                    weakSelf.state = .ImageUploaded
                 }
-            })
-        }
+                completion(error)
+            }
+        })
     }
     
     private func notifyServer(error: ErrorType?, completion: (ErrorType?) -> Void)
@@ -299,6 +292,11 @@ class CreationUploadSession: ResponseHandler
     
     private func saveCurrentImage(completion: (ErrorType?) -> Void)
     {
+        if(creationData.dataType != .Image)
+        {
+            completion(nil)
+            return
+        }
         let data = UIImageJPEGRepresentation(creationData.image!, 1)!
         let url = NSURL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
         let fileManager = NSFileManager.defaultManager()

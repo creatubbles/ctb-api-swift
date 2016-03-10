@@ -86,6 +86,8 @@
 		21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6D1C81E6C5009E95D1 /* GalleriesBatchFetcher.swift */; };
 		21A79F721C81E6C5009E95D1 /* UsersBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6E1C81E6C5009E95D1 /* UsersBatchFetcher.swift */; };
 		21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F751C8494C4009E95D1 /* CreationUploadSessionPublicData.swift */; };
+		21BF68D81C91CDF600BBAB11 /* test.zip in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D61C91CDF600BBAB11 /* test.zip */; };
+		21BF68D91C91CDF600BBAB11 /* testVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */; };
 		21C349931C904B38002972EC /* NewCreationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C349921C904B38002972EC /* NewCreationData.swift */; };
 		21F740941C735C9600E7F4D1 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F740931C735C9600E7F4D1 /* TestConfiguration.swift */; };
 /* End PBXBuildFile section */
@@ -184,6 +186,8 @@
 		21A79F6D1C81E6C5009E95D1 /* GalleriesBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleriesBatchFetcher.swift; sourceTree = "<group>"; };
 		21A79F6E1C81E6C5009E95D1 /* UsersBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersBatchFetcher.swift; sourceTree = "<group>"; };
 		21A79F751C8494C4009E95D1 /* CreationUploadSessionPublicData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadSessionPublicData.swift; sourceTree = "<group>"; };
+		21BF68D61C91CDF600BBAB11 /* test.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = test.zip; sourceTree = "<group>"; };
+		21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = testVideo.mp4; sourceTree = "<group>"; };
 		21C349921C904B38002972EC /* NewCreationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationData.swift; sourceTree = "<group>"; };
 		21F740931C735C9600E7F4D1 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -433,6 +437,8 @@
 			isa = PBXGroup;
 			children = (
 				188ECF661C737A7000AFEE4F /* creatubbles_logo.jpg */,
+				21BF68D61C91CDF600BBAB11 /* test.zip */,
+				21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -673,6 +679,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				188ECF671C737A7000AFEE4F /* creatubbles_logo.jpg in Resources */,
+				21BF68D81C91CDF600BBAB11 /* test.zip in Resources */,
+				21BF68D91C91CDF600BBAB11 /* testVideo.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

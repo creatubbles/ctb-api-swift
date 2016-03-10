@@ -106,7 +106,7 @@ public class Creation: NSObject
         lastSubmittedAt = creationEntity.lastSubmittedAt
         approved = creationEntity.approved.value!
         shortUrl = creationEntity.shortUrl!
-        createdAtAge = creationEntity.createdAtAge!
+        createdAtAge = creationEntity.createdAtAge
         
         imageOriginalUrl = creationEntity.imageOriginalUrl
         imageFullViewUrl = creationEntity.imageFullViewUrl

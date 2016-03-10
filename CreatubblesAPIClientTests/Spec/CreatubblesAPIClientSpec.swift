@@ -349,76 +349,76 @@ class CreatubblesAPIClientSpec: QuickSpec
             }
             
             //MARK: - Batch fetching
-            it("Should batch fetch galleries")
-            {
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 200)
-                {
-                    done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
-                        (error) -> (Void) in
-                        expect(error).to(beNil())
-                        expect(client.isLoggedIn()).to(beTrue())
-                        client.getGalleries(nil, sort: .Popular, completion:
-                        { (galleries, error) -> (Void) in
-                            expect(galleries).notTo(beNil())
-                            expect(galleries).notTo(beEmpty())
-                            expect(error).to(beNil())
-                            done()
-                        })
-                        
-                    })
-                }
-            }
-            
-            it("Should batch fetch creations")
-            {
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 200)
-                {
-                    done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
-                        (error) -> (Void) in
-                        expect(error).to(beNil())
-                        expect(client.isLoggedIn()).to(beTrue())
-                        
-                        client.getCreations(nil, userId: "B0SwCGhR", keyword: nil, sortOrder: nil, completion:
-                        {
-                            (creations, error) -> (Void) in
-                            expect(creations).notTo(beNil())
-                            expect(creations).notTo(beEmpty())
-                            expect(error).to(beNil())
-                            done()
-                        })
-                    })
-                }
-            }
-            
-            it("Should batch fetch creators")
-            {
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 200)
-                {
-                    done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
-                        (error) -> (Void) in
-                        expect(error).to(beNil())
-                        expect(client.isLoggedIn()).to(beTrue())
-                        client.getCreators(nil, completion:
-                        {
-                            (creators, error) -> (Void) in
-                            expect(creators).notTo(beNil())
-                            expect(creators).notTo(beEmpty())
-                            expect(error).to(beNil())
-                            done()
-                        })
-                        
-                    })
-                }
-            }
+//            it("Should batch fetch galleries")
+//            {
+//                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+//                waitUntil(timeout: 200)
+//                {
+//                    done in
+//                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+//                    {
+//                        (error) -> (Void) in
+//                        expect(error).to(beNil())
+//                        expect(client.isLoggedIn()).to(beTrue())
+//                        client.getGalleries(nil, sort: .Popular, completion:
+//                        { (galleries, error) -> (Void) in
+//                            expect(galleries).notTo(beNil())
+//                            expect(galleries).notTo(beEmpty())
+//                            expect(error).to(beNil())
+//                            done()
+//                        })
+//                        
+//                    })
+//                }
+//            }
+//            
+//            it("Should batch fetch creations")
+//            {
+//                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+//                waitUntil(timeout: 200)
+//                {
+//                    done in
+//                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+//                    {
+//                        (error) -> (Void) in
+//                        expect(error).to(beNil())
+//                        expect(client.isLoggedIn()).to(beTrue())
+//                        
+//                        client.getCreations(nil, userId: "B0SwCGhR", keyword: nil, sortOrder: nil, completion:
+//                        {
+//                            (creations, error) -> (Void) in
+//                            expect(creations).notTo(beNil())
+//                            expect(creations).notTo(beEmpty())
+//                            expect(error).to(beNil())
+//                            done()
+//                        })
+//                    })
+//                }
+//            }
+//            
+//            it("Should batch fetch creators")
+//            {
+//                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+//                waitUntil(timeout: 200)
+//                {
+//                    done in
+//                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+//                    {
+//                        (error) -> (Void) in
+//                        expect(error).to(beNil())
+//                        expect(client.isLoggedIn()).to(beTrue())
+//                        client.getCreators(nil, completion:
+//                        {
+//                            (creators, error) -> (Void) in
+//                            expect(creators).notTo(beNil())
+//                            expect(creators).notTo(beEmpty())
+//                            expect(error).to(beNil())
+//                            done()
+//                        })
+//                        
+//                    })
+//                }
+//            }
             it("Should fetch all finished UploadSessions")
             {
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
