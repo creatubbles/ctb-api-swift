@@ -48,7 +48,6 @@ class CreationUploadSession: ResponseHandler
     let imageFileName: String
     let relativeImageFilePath: String
     var state: CreationUploadSessionState
-    let creationDataType: CreationDataType
     var isActive: Bool
     weak var delegate: CreationUploadSessionDelegate?
     
@@ -242,7 +241,7 @@ class CreationUploadSession: ResponseHandler
         
         if(creationData.dataType.rawValue == 0)
         {
-            requestSender.send(creationData.url, uploadData: creationUpload!,
+            requestSender.send(creationData, uploadData: creationUpload!,
             progressChanged:
             {
                 (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
@@ -300,7 +299,7 @@ class CreationUploadSession: ResponseHandler
     
     private func saveCurrentImage(completion: (ErrorType?) -> Void)
     {
-        let data = UIImageJPEGRepresentation(creationData.image, 1)!
+        let data = UIImageJPEGRepresentation(creationData.image!, 1)!
         let url = NSURL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
         let fileManager = NSFileManager.defaultManager()
         
