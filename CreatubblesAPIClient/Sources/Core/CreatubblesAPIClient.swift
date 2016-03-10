@@ -63,6 +63,7 @@ public typealias LandingURLClousure = (Array<LandingURL>?, CreatubblesAPIClientE
     case UserProfile
     case Explore
     case Creation
+    case ForgotPassword
 }
 
 //add protocol
