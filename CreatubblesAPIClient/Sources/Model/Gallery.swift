@@ -35,7 +35,6 @@ public class Gallery: NSObject
     public let bubblesCount: Int
     public let commentsCount: Int
     public let shortUrl: String
-    public let bubbledByUserIds: Array<String>
     public let previewImageUrls: Array<String>
     
     public let lastBubbledAt: NSDate?
@@ -52,7 +51,6 @@ public class Gallery: NSObject
         bubblesCount = mapper.creationsCount!
         commentsCount = mapper.commentsCount!
         shortUrl = mapper.shortUrl!
-        bubbledByUserIds = mapper.bubbledByUserIds!
         previewImageUrls = mapper.previewImageUrls!
         
         lastBubbledAt = mapper.lastBubbledAt

@@ -37,7 +37,6 @@ class GalleryMapper: Mappable
     var bubblesCount: Int?
     var commentsCount: Int?
     var shortUrl: String?
-    var bubbledByUserIds: Array<String>?
     var previewImageUrls: Array<String>?
     
     required init?(_ map: Map)
@@ -58,7 +57,6 @@ class GalleryMapper: Mappable
         creationsCount <- map["attributes.creations_count"]
         bubblesCount <- map["attributes.bubbles_count"]
         shortUrl <- map["attributes.short_url"]
-        bubbledByUserIds <- map["attributes.bubbled_by_user_ids"]
         previewImageUrls <- map["attributes.preview_image_urls"]
     }
 }

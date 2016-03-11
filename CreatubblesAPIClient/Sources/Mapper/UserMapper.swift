@@ -40,11 +40,8 @@ class UserMapper: Mappable
     var countryCode: String?
     var countryName: String?
     var age: String?
-    var birthYear: Int?
-    var birthMonth: Int?
     var groups: Array<GroupMapper>?
     var shortUrl: String?
-    var bubbledByUserIds: Array<String>?
     var ownedTags: Array<String>?
     
     var addedBubblesCount: Int?
@@ -57,9 +54,7 @@ class UserMapper: Mappable
     
     var homeSchooling: Bool?
     var signedUpAsInstructor: Bool?
-    var isPartner: Bool?
     var loggable: Bool?
-    var gspSeen: Bool?
     var uepUnwanted: Bool?
     var isMale: Bool?
     
@@ -84,12 +79,9 @@ class UserMapper: Mappable
         countryCode <- map["attributes.country_code"]
         countryName <- map["attributes.country_name"]
         age <- map["attributes.age"]
-        birthYear <- map["attributes.birth_year"]
-        birthMonth <- map["attributes.birth_month"]
         groups <- map["attributes.groups"]
         
         shortUrl <- map["attributes.short_url"]
-        bubbledByUserIds <- map["attributes.bubbled_by_user_ids"]
         ownedTags <- map["attributes.owned_tags"]
         
         addedBubblesCount <- map["attributes.added_bubbles_count"]
@@ -103,9 +95,7 @@ class UserMapper: Mappable
         
         homeSchooling <- map["attributes.home_schooling"]
         signedUpAsInstructor <- map["attributes.signed_up_as_instructor"]
-        isPartner <- map["attributes.is_partner"]
         loggable <- map["attributes.loggable"]
-        gspSeen <- map["attributes.gsp_seen"]
         uepUnwanted <- map["attributes.uep_unwanted"]
         isMale <- map["attributes.is_male"]
     }

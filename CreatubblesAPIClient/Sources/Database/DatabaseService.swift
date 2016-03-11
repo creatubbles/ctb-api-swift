@@ -27,7 +27,12 @@ import RealmSwift
 
 class DatabaseService: NSObject
 {
-    let realm = try! Realm()
+    let realm = DatabaseService.prepareRealm()
+    
+    private class func prepareRealm() -> Realm
+    {
+        return try! Realm()
+    }
     
     func saveCreationUploadSessionToDatabase(creationUploadSession: CreationUploadSession)
     {
@@ -217,8 +222,6 @@ class DatabaseService: NSObject
         creationEntity.name = creation.name
         creationEntity.createdAt = creation.createdAt
         creationEntity.updatedAt = creation.updatedAt
-        creationEntity.createdAtYear.value = creation.createdAtYear
-        creationEntity.createdAtMonth.value = creation.createdAtMonth
         creationEntity.imageStatus.value = creation.imageStatus
                 
         creationEntity.bubblesCount.value = creation.bubblesCount

@@ -56,13 +56,10 @@ public class User: NSObject
     public let avatarUrl: String
     public let countryCode: String
     public let countryName: String
-    public let age: String
+    public let age: String?
     public let gender: Gender
-    public let birthYear: Int
-    public let birthMonth: Int?
     public let groups: Array<Group>
     public let shortUrl: String
-    public let bubbledByUserIds: Array<String>
     public let ownedTags: Array<String>
     
     public let addedBubblesCount: Int
@@ -75,9 +72,7 @@ public class User: NSObject
     
     public let homeSchooling: Bool
     public let signedUpAsInstructor: Bool
-    public let isPartner: Bool
     public let loggable: Bool
-    public let gspSeen: Bool
     public let uepUnwanted: Bool
     
     init(mapper: UserMapper)
@@ -94,13 +89,10 @@ public class User: NSObject
         avatarUrl = mapper.avatarUrl!
         countryCode = mapper.countryCode!
         countryName = mapper.countryName!
-        age = mapper.age!
+        age = mapper.age
         gender = mapper.parseGender()
-        birthYear = mapper.birthYear!
-        birthMonth = mapper.birthMonth
         groups = mapper.parseGroups()
         shortUrl = mapper.shortUrl!
-        bubbledByUserIds = mapper.bubbledByUserIds!
         ownedTags = mapper.ownedTags!
                         
         addedBubblesCount = mapper.addedBubblesCount!
@@ -113,20 +105,7 @@ public class User: NSObject
 
         homeSchooling = mapper.homeSchooling!
         signedUpAsInstructor = mapper.signedUpAsInstructor!
-        isPartner = mapper.isPartner!
         loggable = mapper.loggable!
-        gspSeen = mapper.gspSeen!
         uepUnwanted = mapper.uepUnwanted!
     }
-    
-    //MARK: - Objective-C compability
-    public func getBirthMonth() -> NSNumber?
-    {
-        if let month = birthMonth
-        {
-            return NSNumber(integer: month)
-        }
-        return nil;
-    }
-
 }
