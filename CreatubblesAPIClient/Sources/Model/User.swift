@@ -58,9 +58,7 @@ public class User: NSObject
     public let countryName: String
     public let age: String?
     public let gender: Gender
-    public let groups: Array<Group>
     public let shortUrl: String
-    public let ownedTags: Array<String>
     
     public let addedBubblesCount: Int
     public let activitiesCount: Int
@@ -72,8 +70,6 @@ public class User: NSObject
     
     public let homeSchooling: Bool
     public let signedUpAsInstructor: Bool
-    public let loggable: Bool
-    public let uepUnwanted: Bool
     
     init(mapper: UserMapper)
     {
@@ -91,9 +87,7 @@ public class User: NSObject
         countryName = mapper.countryName!
         age = mapper.age
         gender = mapper.parseGender()
-        groups = mapper.parseGroups()
         shortUrl = mapper.shortUrl!
-        ownedTags = mapper.ownedTags!
                         
         addedBubblesCount = mapper.addedBubblesCount!
         activitiesCount = mapper.activitiesCount!
@@ -105,7 +99,5 @@ public class User: NSObject
 
         homeSchooling = mapper.homeSchooling!
         signedUpAsInstructor = mapper.signedUpAsInstructor!
-        loggable = mapper.loggable!
-        uepUnwanted = mapper.uepUnwanted!
     }
 }

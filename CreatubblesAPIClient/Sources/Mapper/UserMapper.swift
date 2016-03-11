@@ -40,9 +40,7 @@ class UserMapper: Mappable
     var countryCode: String?
     var countryName: String?
     var age: String?
-    var groups: Array<GroupMapper>?
     var shortUrl: String?
-    var ownedTags: Array<String>?
     
     var addedBubblesCount: Int?
     var activitiesCount: Int?
@@ -54,8 +52,7 @@ class UserMapper: Mappable
     
     var homeSchooling: Bool?
     var signedUpAsInstructor: Bool?
-    var loggable: Bool?
-    var uepUnwanted: Bool?
+
     var isMale: Bool?
     
     //MARK: - Mappable
@@ -79,10 +76,8 @@ class UserMapper: Mappable
         countryCode <- map["attributes.country_code"]
         countryName <- map["attributes.country_name"]
         age <- map["attributes.age"]
-        groups <- map["attributes.groups"]
-        
         shortUrl <- map["attributes.short_url"]
-        ownedTags <- map["attributes.owned_tags"]
+
         
         addedBubblesCount <- map["attributes.added_bubbles_count"]
         activitiesCount <- map["attributes.activities_count"]
@@ -95,8 +90,6 @@ class UserMapper: Mappable
         
         homeSchooling <- map["attributes.home_schooling"]
         signedUpAsInstructor <- map["attributes.signed_up_as_instructor"]
-        loggable <- map["attributes.loggable"]
-        uepUnwanted <- map["attributes.uep_unwanted"]
         isMale <- map["attributes.is_male"]
     }
     
@@ -115,15 +108,5 @@ class UserMapper: Mappable
     func parseGender() -> Gender
     {
         return isMale! ? .Male : .Female
-    }
-    
-    func parseGroups() -> Array<Group>
-    {
-        var groups = Array<Group>()
-        for mapper in self.groups!
-        {
-            groups.append(Group(mapper: mapper))
-        }
-        return groups
     }
 }
