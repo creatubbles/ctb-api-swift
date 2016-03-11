@@ -386,6 +386,10 @@ class CreatubblesAPIClientSpec: QuickSpec
             
             it("Should batch fetch creations")
             {
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testUserIdentifier!
+                
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 200)
                 {
@@ -396,7 +400,7 @@ class CreatubblesAPIClientSpec: QuickSpec
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
                         
-                        client.getCreations(nil, userId: "B0SwCGhR", keyword: nil, sortOrder: nil, completion:
+                        client.getCreations(nil, userId: identifier, keyword: nil, sortOrder: nil, completion:
                         {
                             (creations, error) -> (Void) in
                             expect(creations).notTo(beNil())
