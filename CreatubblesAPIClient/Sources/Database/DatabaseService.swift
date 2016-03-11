@@ -24,6 +24,7 @@
 
 import UIKit
 import RealmSwift
+import Realm
 
 class DatabaseService: NSObject
 {
@@ -31,6 +32,24 @@ class DatabaseService: NSObject
     
     private class func prepareRealm() -> Realm
     {
+        do
+        {
+            let r = try Realm()
+            return r
+        }
+        catch let realmError
+        {
+            Logger.log.error("Realm error error: \(realmError)")
+            do
+            {
+                let path = RLMRealmConfiguration.defaultConfiguration().path
+                try NSFileManager.defaultManager().removeItemAtPath(path!)
+            }
+            catch let fileManagerError
+            {
+                Logger.log.error("File manager error: \(fileManagerError)")
+            }
+        }
         return try! Realm()
     }
     
