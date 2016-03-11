@@ -1,8 +1,9 @@
-language: objective-c 
+language: objective-c
 osx_image: xcode7.2
 xcode_workspace: CreatubblesAPIClient.xcworkspace
 xcode_scheme: CreatubblesAPIClient
 xcode_sdk: iphonesimulator9.2
-
 before_install:
-        openssl aes-256-cbc -K $encrypted_a17d81b45780_key -iv $encrypted_a17d81b45780_iv -in TestConfiguration.swift.enc -out CreatubblesAPIClientTests/TestUtils/TestConfiguration.swift -d
+- openssl aes-256-cbc -K $encrypted_a17d81b45780_key -iv $encrypted_a17d81b45780_iv
+  -in TestConfiguration.swift.enc -out CreatubblesAPIClientTests/TestUtils/TestConfiguration.swift
+  -d
