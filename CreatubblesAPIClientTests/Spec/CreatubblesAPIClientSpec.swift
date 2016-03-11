@@ -41,9 +41,8 @@ class CreatubblesAPIClientSpec: QuickSpec
                 let authorizeUri = "TestAuthorizeUri"
                 let baseUrl = "TestBaseUrl"
                 let apiVersion = "TestApiVersion"
-                let apiPrefix = "TestApiPrefix"
                 
-                let settings = CreatubblesAPIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion, apiPrefix: apiPrefix)
+                let settings = CreatubblesAPIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion)
                 
                 expect(settings.appId).to(equal(appId))
                 expect(settings.appSecret).to(equal(appSecret))
@@ -51,7 +50,6 @@ class CreatubblesAPIClientSpec: QuickSpec
                 expect(settings.authorizeUri).to(equal(authorizeUri))
                 expect(settings.baseUrl).to(equal(baseUrl))
                 expect(settings.apiVersion).to(equal(apiVersion))
-                expect(settings.apiPrefix).to(equal(apiPrefix))
             }
         }
         
@@ -122,7 +120,9 @@ class CreatubblesAPIClientSpec: QuickSpec
             
             it("Should fetch user with provided id")
             {
-                let identifier = "B0SwCGhR"
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testUserIdentifier!
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
@@ -146,7 +146,9 @@ class CreatubblesAPIClientSpec: QuickSpec
             
             it("Should fetch creators of user")
             {
-                let identifier = "B0SwCGhR"
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testUserIdentifier!
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
@@ -170,7 +172,9 @@ class CreatubblesAPIClientSpec: QuickSpec
             
             it("Should fetch managers of user")
             {
-                let identifier = "B0SwCGhR"
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testUserIdentifier!
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
@@ -227,7 +231,9 @@ class CreatubblesAPIClientSpec: QuickSpec
             //MARK: - Gallery
             it("Should fetch gallery with identifier")
             {
-                let identifier = "x3pUEOeZ"                
+                guard TestConfiguration.testGalleryIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testGalleryIdentifier!
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
@@ -251,7 +257,9 @@ class CreatubblesAPIClientSpec: QuickSpec
             
             it("Should fetch galleries from given user")
             {
-                let identifier = "B0SwCGhR"
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testUserIdentifier!
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
@@ -327,7 +335,9 @@ class CreatubblesAPIClientSpec: QuickSpec
             //MARK: - Creation
             it("Should fetch specific creation")
             {
-                let identifier = "OvM8Xmqj"
+                guard TestConfiguration.testCreationIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testCreationIdentifier!
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
@@ -354,7 +364,7 @@ class CreatubblesAPIClientSpec: QuickSpec
             it("Should batch fetch galleries")
             {
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 20)
+                waitUntil(timeout: 200)
                 {
                     done in
                     client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -376,8 +386,12 @@ class CreatubblesAPIClientSpec: QuickSpec
             
             it("Should batch fetch creations")
             {
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testUserIdentifier!
+                
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 20)
+                waitUntil(timeout: 200)
                 {
                     done in
                     client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -386,7 +400,7 @@ class CreatubblesAPIClientSpec: QuickSpec
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
                         
-                        client.getCreations(nil, userId: "B0SwCGhR", keyword: nil, sortOrder: nil, completion:
+                        client.getCreations(nil, userId: identifier, keyword: nil, sortOrder: nil, completion:
                         {
                             (creations, error) -> (Void) in
                             expect(creations).notTo(beNil())
@@ -401,7 +415,7 @@ class CreatubblesAPIClientSpec: QuickSpec
             it("Should batch fetch creators")
             {
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 20)
+                waitUntil(timeout: 200)
                 {
                     done in
                     client.login(TestConfiguration.username, password: TestConfiguration.password, completion:

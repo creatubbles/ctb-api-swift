@@ -1,5 +1,5 @@
 //
-//  Gallery.swift
+//  LandingURLResponseHandler.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -23,38 +23,37 @@
 //  THE SOFTWARE.
 
 import UIKit
+import ObjectMapper
 
-@objc
-public class Gallery: NSObject
+class LandingURLResponseHandler: ResponseHandler
 {
-    public let identifier: String
-    public let name: String
-    public let createdAt: NSDate
-    public let updatedAt: NSDate
-    public let creationsCount: Int
-    public let bubblesCount: Int
-    public let commentsCount: Int
-    public let shortUrl: String
-    public let previewImageUrls: Array<String>
-    
-    public let lastBubbledAt: NSDate?
-    public let lastCommentedAt: NSDate?
-    public let galleryDescription: String?
-    
-    init(mapper: GalleryMapper)
+    private let completion: LandingURLClousure?
+    init(completion: LandingURLClousure?)
     {
-        identifier = mapper.identifier!
-        name = mapper.name!
-        createdAt = mapper.createdAt!
-        updatedAt = mapper.updatedAt!
-        creationsCount = mapper.creationsCount!
-        bubblesCount = mapper.creationsCount!
-        commentsCount = mapper.commentsCount!
-        shortUrl = mapper.shortUrl!
-        previewImageUrls = mapper.previewImageUrls!
-        
-        lastBubbledAt = mapper.lastBubbledAt
-        lastCommentedAt = mapper.lastCommentedAt
-        galleryDescription = mapper.galleryDescription
+        self.completion = completion
+    }
+    
+    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    {
+        if  let response = response,
+            let mappers = Mapper<LandingURLMapper>().mapArray(response["data"])
+        {
+            var landingUrls = Array<LandingURL>()
+            for mapper in mappers
+            {
+                landingUrls.append(LandingURL(mapper: mapper))
+            }
+            completion?(landingUrls, ErrorTransformer.errorFromResponse(response, error: error))
+        }
+        else if let response = response,
+                let mapper = Mapper<LandingURLMapper>().map(response["data"])
+        {
+            let landingURL = LandingURL(mapper: mapper)
+            completion?([landingURL], ErrorTransformer.errorFromResponse(response, error: error))
+        }
+        else
+        {
+            completion?(nil, ErrorTransformer.errorFromResponse(response, error: error))
+        }
     }
 }

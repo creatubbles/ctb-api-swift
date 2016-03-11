@@ -41,10 +41,7 @@ class CreationEntity: Object
     dynamic var imageGalleryMobileUrl: String?
     dynamic var imageExploreMobileUrl: String?
     dynamic var imageShareUrl: String?
-    
-    var createdAtYear = RealmOptional<Int>()
-    var createdAtMonth = RealmOptional<Int>()
-    
+        
     var imageStatus = RealmOptional<Int>()
     
     var bubblesCount = RealmOptional<Int>()

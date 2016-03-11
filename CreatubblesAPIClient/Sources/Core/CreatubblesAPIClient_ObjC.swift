@@ -45,11 +45,31 @@ extension CreatubblesAPIClient
         return isLoggedIn()
     }
     
-    //MARK: - Users handling
     public func _authenticationToken() -> String?
     {
         return authenticationToken()
     }
+    
+    public func _getLandingURL(type: LandingURLType, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
+    {
+        getLandingURL(type)
+        {
+            (landingUrls, error) -> (Void) in
+            completion?(landingUrls, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    public func _getLandingURLForCreation(creationId: String, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
+    {
+        getLandingURL(creationId)
+        {
+            (landingUrls, error) -> (Void) in
+            completion?(landingUrls, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    //MARK: - Users handling
+   
     
     public func _getUser(userId: String, completion: ((User?, NSError?) -> (Void))?)
     {

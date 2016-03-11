@@ -44,6 +44,17 @@ class CreationUploadService: CreationUploadSessionDelegate
         self.requestSender = requestSender
         self.databaseDAO = DatabaseDAO()
     }
+        
+    func startAllNotFinishedUploadSessions(completion: CreationClousure?)
+    {
+        let sessions = databaseDAO.fetchAllActiveUploadSessions(requestSender)
+        for session in sessions
+        {
+            session.delegate = self
+            session.start(completion)
+        }
+
+    }
     
     func uploadCreation(data: NewCreationData, completion: CreationClousure?)
     {

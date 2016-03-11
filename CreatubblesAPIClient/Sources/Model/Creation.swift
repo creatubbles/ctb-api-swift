@@ -32,9 +32,6 @@ public class Creation: NSObject
     public let createdAt: NSDate
     public let updatedAt: NSDate
     
-    public let createdAtYear: Int
-    public let createdAtMonth: Int
-
     public let imageStatus: Int
     
     public let imageOriginalUrl: String?
@@ -65,8 +62,6 @@ public class Creation: NSObject
         name = mapper.name!
         createdAt = mapper.createdAt!
         updatedAt = mapper.updatedAt!
-        createdAtYear = mapper.createdAtYear!
-        createdAtMonth = mapper.createdAtMonth!
         imageStatus = mapper.imageStatus!
         bubblesCount = mapper.bubblesCount!
         commentsCount = mapper.commentsCount!
@@ -95,8 +90,6 @@ public class Creation: NSObject
         name = creationEntity.name!
         createdAt = creationEntity.createdAt!
         updatedAt = creationEntity.updatedAt!
-        createdAtYear = creationEntity.createdAtYear.value!
-        createdAtMonth = creationEntity.createdAtMonth.value!
         imageStatus = creationEntity.imageStatus.value!
         bubblesCount = creationEntity.bubblesCount.value!
         commentsCount = creationEntity.commentsCount.value!
@@ -106,7 +99,7 @@ public class Creation: NSObject
         lastSubmittedAt = creationEntity.lastSubmittedAt
         approved = creationEntity.approved.value!
         shortUrl = creationEntity.shortUrl!
-        createdAtAge = creationEntity.createdAtAge!
+        createdAtAge = creationEntity.createdAtAge
         
         imageOriginalUrl = creationEntity.imageOriginalUrl
         imageFullViewUrl = creationEntity.imageFullViewUrl

@@ -24,10 +24,34 @@
 
 import UIKit
 import RealmSwift
+import Realm
 
 class DatabaseService: NSObject
 {
-    let realm = try! Realm()
+    let realm = DatabaseService.prepareRealm()
+    
+    private class func prepareRealm() -> Realm
+    {
+        do
+        {
+            let r = try Realm()
+            return r
+        }
+        catch let realmError
+        {
+            Logger.log.error("Realm error error: \(realmError)")
+            do
+            {
+                let path = RLMRealmConfiguration.defaultConfiguration().path
+                try NSFileManager.defaultManager().removeItemAtPath(path!)
+            }
+            catch let fileManagerError
+            {
+                Logger.log.error("File manager error: \(fileManagerError)")
+            }
+        }
+        return try! Realm()
+    }
     
     func saveCreationUploadSessionToDatabase(creationUploadSession: CreationUploadSession)
     {
@@ -192,6 +216,7 @@ class DatabaseService: NSObject
         newCreationDataEntity.reflectionText = newCreationData.reflectionText
         newCreationDataEntity.reflectionVideoUrl = newCreationData.reflectionVideoUrl
         newCreationDataEntity.galleryId = newCreationData.galleryId
+        newCreationDataEntity.dataTypeRaw.value = newCreationData.dataType.rawValue
         
         if let _ = newCreationData.creatorIds
         {
@@ -217,8 +242,6 @@ class DatabaseService: NSObject
         creationEntity.name = creation.name
         creationEntity.createdAt = creation.createdAt
         creationEntity.updatedAt = creation.updatedAt
-        creationEntity.createdAtYear.value = creation.createdAtYear
-        creationEntity.createdAtMonth.value = creation.createdAtMonth
         creationEntity.imageStatus.value = creation.imageStatus
                 
         creationEntity.bubblesCount.value = creation.bubblesCount

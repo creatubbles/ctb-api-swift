@@ -1,5 +1,5 @@
 //
-//  Gallery.swift
+//  LandingURL.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -25,36 +25,21 @@
 import UIKit
 
 @objc
-public class Gallery: NSObject
+public class LandingURL: NSObject
 {
-    public let identifier: String
-    public let name: String
-    public let createdAt: NSDate
-    public let updatedAt: NSDate
-    public let creationsCount: Int
-    public let bubblesCount: Int
-    public let commentsCount: Int
-    public let shortUrl: String
-    public let previewImageUrls: Array<String>
+    public let destination: String
+    public let type: LandingURLType
     
-    public let lastBubbledAt: NSDate?
-    public let lastCommentedAt: NSDate?
-    public let galleryDescription: String?
-    
-    init(mapper: GalleryMapper)
+ 
+    init(mapper: LandingURLMapper)
     {
-        identifier = mapper.identifier!
-        name = mapper.name!
-        createdAt = mapper.createdAt!
-        updatedAt = mapper.updatedAt!
-        creationsCount = mapper.creationsCount!
-        bubblesCount = mapper.creationsCount!
-        commentsCount = mapper.commentsCount!
-        shortUrl = mapper.shortUrl!
-        previewImageUrls = mapper.previewImageUrls!
-        
-        lastBubbledAt = mapper.lastBubbledAt
-        lastCommentedAt = mapper.lastCommentedAt
-        galleryDescription = mapper.galleryDescription
+        self.destination = mapper.destination!
+        self.type = mapper.type
+    }
+    
+    init(destination: String, type: LandingURLType)
+    {
+        self.destination = destination
+        self.type = type
     }
 }

@@ -30,16 +30,22 @@ import p2_OAuth2
 class RequestSender: NSObject
 {
     private let settings: CreatubblesAPIClientSettings
-    private let oauth2Client: OAuth2PasswordGrant
+    private let oauth2PrivateClient: OAuth2PasswordGrant
+    private let oauth2PublicClient: OAuth2ImplicitGrant
+    private var oauth2: OAuth2
+    {
+        return oauth2PrivateClient.hasUnexpiredAccessToken() ? oauth2PrivateClient : oauth2PublicClient
+    }
     
     init(settings: CreatubblesAPIClientSettings)
     {
         self.settings = settings
-        self.oauth2Client = RequestSender.prepareOauthClient(settings)
+        self.oauth2PrivateClient = RequestSender.prepareOauthPrivateClient(settings)
+        self.oauth2PublicClient = RequestSender.prepareOauthPublicClient(settings)
         super.init()
     }
     
-    private static func prepareOauthClient(settings: CreatubblesAPIClientSettings) -> OAuth2PasswordGrant
+    private static func prepareOauthPrivateClient(settings: CreatubblesAPIClientSettings) -> OAuth2PasswordGrant
     {
         let oauthSettings =
         [
@@ -50,58 +56,73 @@ class RequestSender: NSObject
         ] as OAuth2JSON
         
         let client = OAuth2PasswordGrant(settings: oauthSettings)
-        client.verbose = true
+        client.verbose = false
+        return client
+    }
+    
+    private static func prepareOauthPublicClient(settings: CreatubblesAPIClientSettings) -> OAuth2ImplicitGrant
+    {
+        let oauthSettings =
+        [
+            "client_id": settings.appId,
+            "client_secret": settings.appSecret,
+            "authorize_uri": settings.authorizeUri,
+            "token_uri":     settings.tokenUri,
+            ] as OAuth2JSON
+        
+        let client = OAuth2ImplicitGrant(settings: oauthSettings)
+        client.verbose = false
         return client
     }
     
     //MARK: - Authentication
     
-    var authenticationToken: String? { return oauth2Client.accessToken }
+    var authenticationToken: String? { return oauth2PrivateClient.accessToken }
     func login(username: String, password: String, completion: ErrorClousure?)
     {
 
-        oauth2Client.username = username
-        oauth2Client.password = password
-        oauth2Client.onAuthorize =
+        oauth2PrivateClient.username = username
+        oauth2PrivateClient.password = password
+        oauth2PrivateClient.onAuthorize =
         {
             [weak self](parameters: OAuth2JSON) -> Void in
             if let weakSelf = self
             {
-                weakSelf.oauth2Client.onAuthorize = nil
+                weakSelf.oauth2PrivateClient.onAuthorize = nil
             }
             Logger.log.debug("User logged in successfully")
             completion?(nil)
         }        
-        oauth2Client.onFailure =
+        oauth2PrivateClient.onFailure =
         {
             [weak self](error: ErrorType?) -> Void in
             if let weakSelf = self
             {
-                weakSelf.oauth2Client.onFailure = nil
+                weakSelf.oauth2PrivateClient.onFailure = nil
             }
             Logger.log.error("Error while login:\(error)")
             
             let err = error as! OAuth2Error
             completion?(CreatubblesAPIClientError.Generic(err.description))
         }
-        oauth2Client.authorize()
+        oauth2PrivateClient.authorize()
     }
     
     func logout()
     {        
-        oauth2Client.forgetTokens()
+        oauth2PrivateClient.forgetTokens()
     }
     
     func isLoggedIn() -> Bool
     {
-        return oauth2Client.hasUnexpiredAccessToken()
+        return oauth2PrivateClient.hasUnexpiredAccessToken()
     }
     
     //MARK: - Request sending
     func send(request: Request, withResponseHandler handler: ResponseHandler)
     {
         Logger.log.debug("Sending request: \(request.dynamicType)")
-        oauth2Client.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
+        oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
         .responseString
         {
             (response) -> Void in
@@ -118,6 +139,60 @@ class RequestSender: NSObject
     }
     
     //MARK: - Creation sending
+    
+    func send(creationData: NewCreationData, uploadData: CreationUpload, progressChanged: (bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int) -> Void, completion: (error: ErrorType?) -> Void)
+    {
+        if(creationData.dataType == .Image)
+        {
+            Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
+            Alamofire.upload(.PUT, uploadData.uploadUrl, headers:  ["Content-Type":uploadData.contentType], data: UIImagePNGRepresentation(creationData.image!)!)
+            .progress(
+            {
+                (written, totalWritten, totalExpected) -> Void in
+                Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(totalWritten)/\(totalExpected)")
+                
+                progressChanged(bytesWritten: Int(written), totalBytesWritten: Int(totalWritten), totalBytesExpectedToWrite: Int(totalExpected))
+            })
+            .responseString(completionHandler: { (response) -> Void in
+                Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
+                completion(error: response.result.error)
+            })
+        }
+        else if(creationData.dataType == .Url)
+        {
+            Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
+            Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], file: creationData.url!)
+            .progress(
+            {
+                (written, totalWritten, totalExpected) -> Void in
+                Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(totalWritten)/\(totalExpected)")
+                
+                progressChanged(bytesWritten: Int(written), totalBytesWritten: Int(totalWritten), totalBytesExpectedToWrite: Int(totalExpected))
+            })
+            .responseString(completionHandler: { (response) -> Void in
+                Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
+                completion(error: response.result.error)
+            })
+        }
+        else if(creationData.dataType == .Data)
+        {
+            Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
+            Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], data: creationData.data!)
+            .progress(
+            {
+                (written, totalWritten, totalExpected) -> Void in
+                Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(totalWritten)/\(totalExpected)")
+                
+                progressChanged(bytesWritten: Int(written), totalBytesWritten: Int(totalWritten), totalBytesExpectedToWrite: Int(totalExpected))
+            })
+            .responseString(completionHandler: { (response) -> Void in
+                Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
+                completion(error: response.result.error)
+            })
+        }
+
+    }
+    
     func send(data: NSData, uploadData: CreationUpload, progressChanged: (bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int) -> Void, completion: (error: ErrorType?) -> Void)
     {
         Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
@@ -138,7 +213,7 @@ class RequestSender: NSObject
     //MARK: - Utils
     private func urlStringWithRequest(request: Request) -> String
     {
-        return String(format: "%@/%@/%@/%@", arguments: [settings.baseUrl, settings.apiPrefix, settings.apiVersion, request.endpoint])
+        return String(format: "%@/%@/%@", arguments: [settings.baseUrl, settings.apiVersion, request.endpoint])
     }
     
     private func alamofireMethod(method: RequestMethod) -> Alamofire.Method

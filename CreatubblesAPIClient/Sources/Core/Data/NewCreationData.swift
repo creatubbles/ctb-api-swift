@@ -24,10 +24,20 @@
 
 import UIKit
 
+enum CreationDataType: Int
+{
+    case Image = 0
+    case Url = 1
+    case Data = 2
+}
+
 @objc
 public class NewCreationData: NSObject
 {
-    public var image: UIImage
+    public var data: NSData?
+    public var image: UIImage?
+    public var url: NSURL?
+    
     public var name: String? = nil
     public var reflectionText: String? = nil
     public var reflectionVideoUrl: String? = nil
@@ -36,14 +46,25 @@ public class NewCreationData: NSObject
     public var creationYear: Int? = nil
     public var creationMonth: Int? = nil
     
+    let dataType: CreationDataType
+    
+    public init(data: NSData)
+    {
+        self.data = data
+        self.dataType = .Data
+    }
     public init(image: UIImage)
     {
         self.image = image
+        self.dataType = .Image
     }
-    
-    init(creationDataEntity: NewCreationDataEntity, image: UIImage)
+    public init(url: NSURL)
     {
-        self.image = image
+        self.url = url
+        self.dataType = .Url
+    }
+    init(creationDataEntity: NewCreationDataEntity, url: NSURL)
+    {
         self.name = creationDataEntity.name
         self.reflectionText = creationDataEntity.reflectionText
         self.reflectionVideoUrl = creationDataEntity.reflectionVideoUrl
@@ -56,6 +77,20 @@ public class NewCreationData: NSObject
         }
         self.creationMonth = creationDataEntity.creationMonth.value
         self.creationYear = creationDataEntity.creationYear.value
+        self.dataType = creationDataEntity.dataType
+        
+        if(dataType.rawValue == 0)
+        {
+            self.image = UIImage(contentsOfFile: url.path!)
+        }
+        else if(dataType.rawValue == 1)
+        {
+            self.url = url
+        }
+        else if(dataType.rawValue == 2)
+        {
+            self.data = NSData(contentsOfFile: "\(url)")
+        }
     }
     
     //MARK: objc compability
