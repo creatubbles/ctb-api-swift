@@ -66,9 +66,8 @@ class CreationUploadSession: ResponseHandler
         self.state = .Initialized
         self.requestSender = requestSender
         self.creationData = data
-        //MARK: TODO
-        self.imageFileName = localIdentifier+"_creation"//+extension
-        self.relativeImageFilePath = "images/"+imageFileName
+        self.imageFileName = localIdentifier+"_creation"
+        self.relativeImageFilePath = "creations/"+imageFileName
         
     }
     
@@ -87,8 +86,6 @@ class CreationUploadSession: ResponseHandler
         }
         
         let url = NSURL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
-        
-        //let image = UIImage(contentsOfFile: url.path!)
         
         self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, url: url)
         

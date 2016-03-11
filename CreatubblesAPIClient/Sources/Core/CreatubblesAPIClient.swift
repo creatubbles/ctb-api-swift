@@ -66,8 +66,6 @@ public typealias LandingURLClousure = (Array<LandingURL>?, CreatubblesAPIClientE
     case ForgotPassword
 }
 
-//add protocol
-
 @objc
 public protocol CreatubblesAPIClientDelegate
 {
