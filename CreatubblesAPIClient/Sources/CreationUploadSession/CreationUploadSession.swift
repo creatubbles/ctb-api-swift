@@ -34,7 +34,6 @@ enum CreationUploadSessionState: Int
     case ServerNotified = 5
 }
 
-
 protocol CreationUploadSessionDelegate: class
 {
     func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
@@ -52,6 +51,7 @@ class CreationUploadSession: ResponseHandler
     var isActive: Bool
     weak var delegate: CreationUploadSessionDelegate?
     
+    
     //Fields filled during creation upload flow
     var creation: Creation?
     var creationUpload: CreationUpload?
@@ -66,9 +66,8 @@ class CreationUploadSession: ResponseHandler
         self.state = .Initialized
         self.requestSender = requestSender
         self.creationData = data
-        
-        self.imageFileName = String(Int(NSDate().timeIntervalSince1970))+"_creation.jpg"
-        self.relativeImageFilePath = "images/"+imageFileName
+        self.imageFileName = localIdentifier+"_creation"
+        self.relativeImageFilePath = "creations/"+imageFileName
         
     }
     
@@ -88,9 +87,7 @@ class CreationUploadSession: ResponseHandler
         
         let url = NSURL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
         
-        let image = UIImage(contentsOfFile: url.path!)!
-        
-        self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, image: image)
+        self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, url: url)
         
         if let creationEntity = creationUploadSessionEntity.creationEntity
         {
@@ -234,25 +231,25 @@ class CreationUploadSession: ResponseHandler
             completion(nil)
             return
         }
-        
-        requestSender.send(UIImageJPEGRepresentation(creationData.image, 1)!, uploadData: creationUpload!,
-            progressChanged:
+
+        requestSender.send(creationData, uploadData: creationUpload!,
+        progressChanged:
+        {
+            (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
+            self.delegate?.creationUploadSessionChangedProgress(self, bytesWritten: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
+        },
+        completion:
+        {
+            [weak self](error) -> Void in
+            if  let weakSelf = self
             {
-                (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
-                self.delegate?.creationUploadSessionChangedProgress(self, bytesWritten: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
-            },
-            completion:
-            {
-                [weak self](error) -> Void in
-                if  let weakSelf = self
+                if error == nil
                 {
-                    if error == nil
-                    {
-                        weakSelf.state = .ImageUploaded
-                    }
-                    completion(error)
+                    weakSelf.state = .ImageUploaded
                 }
-            })
+                completion(error)
+            }
+        })
     }
     
     private func notifyServer(error: ErrorType?, completion: (ErrorType?) -> Void)
@@ -292,7 +289,12 @@ class CreationUploadSession: ResponseHandler
     
     private func saveCurrentImage(completion: (ErrorType?) -> Void)
     {
-        let data = UIImageJPEGRepresentation(creationData.image, 1)!
+        if(creationData.dataType != .Image)
+        {
+            completion(nil)
+            return
+        }
+        let data = UIImageJPEGRepresentation(creationData.image!, 1)!
         let url = NSURL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
         let fileManager = NSFileManager.defaultManager()
         

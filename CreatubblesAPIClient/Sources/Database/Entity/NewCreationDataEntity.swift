@@ -39,4 +39,13 @@ class NewCreationDataEntity: Object
     var creatorIds = List<CreatorIdString>()
     var creationYear = RealmOptional<Int>()
     var creationMonth = RealmOptional<Int>()
+    
+    var dataTypeRaw = RealmOptional<Int>()
+    var dataType: CreationDataType
+    {
+        get
+        {
+            return CreationDataType(rawValue: dataTypeRaw.value!)!
+        }
+    }
 }
