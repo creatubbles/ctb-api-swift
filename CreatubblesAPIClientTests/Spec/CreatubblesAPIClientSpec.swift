@@ -120,7 +120,9 @@ class CreatubblesAPIClientSpec: QuickSpec
             
             it("Should fetch user with provided id")
             {
-                let identifier = "B0SwCGhR"
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testUserIdentifier!
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
@@ -144,7 +146,9 @@ class CreatubblesAPIClientSpec: QuickSpec
             
             it("Should fetch creators of user")
             {
-                let identifier = "B0SwCGhR"
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testUserIdentifier!
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
@@ -168,7 +172,9 @@ class CreatubblesAPIClientSpec: QuickSpec
             
             it("Should fetch managers of user")
             {
-                let identifier = "B0SwCGhR"
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testUserIdentifier!
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
@@ -225,7 +231,9 @@ class CreatubblesAPIClientSpec: QuickSpec
             //MARK: - Gallery
             it("Should fetch gallery with identifier")
             {
-                let identifier = "x3pUEOeZ"                
+                guard TestConfiguration.testGalleryIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testGalleryIdentifier!
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
@@ -249,7 +257,9 @@ class CreatubblesAPIClientSpec: QuickSpec
             
             it("Should fetch galleries from given user")
             {
-                let identifier = "B0SwCGhR"
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testUserIdentifier!
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
@@ -325,7 +335,9 @@ class CreatubblesAPIClientSpec: QuickSpec
             //MARK: - Creation
             it("Should fetch specific creation")
             {
-                let identifier = "OvM8Xmqj"
+                guard TestConfiguration.testCreationIdentifier != nil else { return }
+                
+                let identifier = TestConfiguration.testCreationIdentifier!
                 let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {

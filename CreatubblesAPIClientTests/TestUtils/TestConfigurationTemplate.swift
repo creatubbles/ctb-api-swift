@@ -37,6 +37,10 @@ class TestConfigurationTemplate: NSObject
     static let username = "TEST_USERNAME"
     static let password = "TEST_PASSWORD"
     
+    static let testCreationIdentifier: String? = nil
+    static let testUserIdentifier: String? = nil
+    static let testGalleryIdentifier: String? = nil
+    
     static var settings: CreatubblesAPIClientSettings
     {
         return CreatubblesAPIClientSettings(
