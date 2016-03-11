@@ -220,11 +220,7 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     
     public func startAllNotFinishedUploadSessions(completion: CreationClousure?)
     {
-        let sessions = databaseDAO.fetchAllActiveUploadSessions(requestSender)
-        for session in sessions
-        {
-            session.start(completion)
-        }
+        creationUploadService.startAllNotFinishedUploadSessions(completion)
     }
     
     //MARK: - Creation flow
