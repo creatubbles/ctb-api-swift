@@ -1,8 +1,8 @@
 [![](https://stateoftheart.creatubbles.com/wp-content/uploads/2015/01/ctb_home_logo.png)](https://www.creatubbles.com/)
 
-[![Version](https://img.shields.io/cocoapods/v/creatubbles_api.svg?style=flat)](https://cocoapods.org/pods/CreatubblesAPIClient)
-[![License](https://img.shields.io/cocoapods/l/creatubbles_api.svg?style=flat)](https://cocoapods.org/pods/CreatubblesAPIClient)
-[![Platform](https://img.shields.io/cocoapods/p/creatubbles_api.svg?style=flat)](https://cocoapods.org/pods/CreatubblesAPIClient)
+[![Version](https://img.shields.io/cocoapods/v/CreatubblesAPIClient.svg?style=flat)](https://cocoapods.org/pods/CreatubblesAPIClient)
+[![License](https://img.shields.io/cocoapods/l/CreatubblesAPIClient.svg?style=flat)](https://cocoapods.org/pods/CreatubblesAPIClient)
+[![Platform](https://img.shields.io/cocoapods/p/CreatubblesAPIClient.svg?style=flat)](https://cocoapods.org/pods/CreatubblesAPIClient)
 
 ## Creatubbles API Client
 CreatubblesAPIClient is a simple library built to help you communicate with the latest [Creatubbles API](https://stateoftheart.creatubbles.com/api/). It works with both Swift and Objective-C.
