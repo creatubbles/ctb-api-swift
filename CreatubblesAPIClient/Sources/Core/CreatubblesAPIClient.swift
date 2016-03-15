@@ -227,6 +227,19 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         creationUploadService.uploadCreation(creationData, completion: completion)
     }
     
+    //MARK: - Background session
+    public var backgroundCompletionHandler: (() -> Void)?
+    {
+        get
+        {
+            return requestSender.backgroundCompletionHandler
+        }
+        set
+        {
+            requestSender.backgroundCompletionHandler = newValue
+        }
+    }
+    
     //MARK: - Delegate
     func creationUploadServiceUploadFinished(service: CreationUploadService, session: CreationUploadSession)
     {

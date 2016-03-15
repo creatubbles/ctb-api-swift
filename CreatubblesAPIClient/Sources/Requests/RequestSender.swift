@@ -224,6 +224,18 @@ class RequestSender: NSObject
             completion(error: response.result.error)
         })
     }
+    //MARK: - Background session
+    var backgroundCompletionHandler: (() -> Void)?
+    {
+        get
+        {
+            return uploadManager.backgroundCompletionHandler
+        }
+        set
+        {
+            uploadManager.backgroundCompletionHandler = newValue
+        }
+    }
     
     //MARK: - Utils
     private func urlStringWithRequest(request: Request) -> String
