@@ -29,6 +29,7 @@ import p2_OAuth2
 
 class RequestSender: NSObject
 {
+    private let uploadManager: Alamofire.Manager
     private let settings: CreatubblesAPIClientSettings
     private let oauth2PrivateClient: OAuth2PasswordGrant
     private let oauth2PublicClient: OAuth2ImplicitGrant
@@ -41,8 +42,23 @@ class RequestSender: NSObject
     {
         self.settings = settings
         self.oauth2PrivateClient = RequestSender.prepareOauthPrivateClient(settings)
-        self.oauth2PublicClient = RequestSender.prepareOauthPublicClient(settings)
+        self.oauth2PublicClient  = RequestSender.prepareOauthPublicClient(settings)
+        self.uploadManager       = RequestSender.prepareUploadManager(settings)
         super.init()
+    }
+    
+    private static func prepareUploadManager(settings: CreatubblesAPIClientSettings) -> Alamofire.Manager
+    {
+        if let identifier = settings.backgroundSessionConfigurationIdentifier
+        {
+            let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier(identifier)
+            return Alamofire.Manager(configuration: configuration)
+        }
+        else
+        {
+            let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            return Alamofire.Manager(configuration: configuration)
+        }
     }
     
     private static func prepareOauthPrivateClient(settings: CreatubblesAPIClientSettings) -> OAuth2PasswordGrant
@@ -80,7 +96,6 @@ class RequestSender: NSObject
     var authenticationToken: String? { return oauth2PrivateClient.accessToken }
     func login(username: String, password: String, completion: ErrorClousure?)
     {
-
         oauth2PrivateClient.username = username
         oauth2PrivateClient.password = password
         oauth2PrivateClient.onAuthorize =
@@ -196,7 +211,7 @@ class RequestSender: NSObject
     func send(data: NSData, uploadData: CreationUpload, progressChanged: (bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int) -> Void, completion: (error: ErrorType?) -> Void)
     {
         Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
-        Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], data: data)
+        uploadManager.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], data: data)
         .progress(
         {
             (written, totalWritten, totalExpected) -> Void in

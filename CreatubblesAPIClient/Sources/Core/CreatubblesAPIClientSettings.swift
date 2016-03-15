@@ -56,7 +56,14 @@ public class CreatubblesAPIClientSettings: NSObject
     */
     let apiVersion: String
     
-    public init(appId: String, appSecret: String)
+    /*
+        Background session configuration identifier.
+        If set, application will upload creation using background sessions.
+    */
+    let backgroundSessionConfigurationIdentifier: String?
+    
+    
+    public init(appId: String, appSecret: String, backgroundSessionConfigurationIdentifier: String? = nil)
     {
         self.appId = appId
         self.appSecret = appSecret
@@ -64,9 +71,10 @@ public class CreatubblesAPIClientSettings: NSObject
         self.authorizeUri = "https://api.creatubbles.com/v2/oauth/token"
         self.baseUrl = "https://api.creatubbles.com"
         self.apiVersion = "v2"
+        self.backgroundSessionConfigurationIdentifier = backgroundSessionConfigurationIdentifier
     }
     
-    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String)
+    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, backgroundSessionConfigurationIdentifier: String? = nil)
     {
         self.appId = appId
         self.appSecret = appSecret
@@ -74,5 +82,6 @@ public class CreatubblesAPIClientSettings: NSObject
         self.authorizeUri = authorizeUri
         self.baseUrl = baseUrl
         self.apiVersion = apiVersion
+        self.backgroundSessionConfigurationIdentifier = backgroundSessionConfigurationIdentifier
     }
 }
