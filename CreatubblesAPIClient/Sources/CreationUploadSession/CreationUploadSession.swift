@@ -247,6 +247,11 @@ class CreationUploadSession: ResponseHandler
                 {
                     weakSelf.state = .ImageUploaded
                 }
+                else
+                {
+                    //MM: Failure can be related to expired AWS token. Will update token for safety.
+                    weakSelf.state = .CreationAllocated
+                }
                 completion(error)
             }
         })
