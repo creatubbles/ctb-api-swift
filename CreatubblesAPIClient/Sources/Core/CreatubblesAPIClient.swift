@@ -101,6 +101,7 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         self.galleryDAO = GalleryDAO(requestSender: requestSender)
         self.creationUploadService = CreationUploadService(requestSender: requestSender)
         self.bubbleDAO = BubbleDAO(requestSender: requestSender)
+        self.commentsDAO = CommentsDAO(requestSender: requestSender)
         self.databaseDAO = DatabaseDAO()
         Logger.setup()
         super.init()
@@ -262,6 +263,21 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         bubbleDAO.getBubblesForGalleryWithIdentifier(identifier, completion: completion)
     }
     
+    func newBubble(data: NewBubbleData, completion: ErrorClousure?)
+    {
+        bubbleDAO.newBubble(data, completion: completion)
+    }
+    
+    func updateBubble(data: UpdateBubbleData, completion: ErrorClousure?)
+    {
+        bubbleDAO.updateBubble(data, completion: completion)
+    }
+    
+    func deleteBubble(bubbleId: String, completion: ErrorClousure?)
+    {
+        bubbleDAO.deleteBubble(bubbleId, completion: completion)
+    }
+
     //MARK: - Comments
     func getCommentsForCreationWithIdentifier(identifier: String, completion: CommentsClosure?)
     {
@@ -275,7 +291,6 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     {
         commentsDAO.getCommentsForGalleryWithIdentifier(identifier, completion: completion)
     }
-    
     
     //MARK: - Delegate
     func creationUploadServiceUploadFinished(service: CreationUploadService, session: CreationUploadSession)
