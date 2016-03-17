@@ -132,8 +132,7 @@ class CreationUploadSession: ResponseHandler
                     })
                 })
             }
-        }
-        
+        }        
     }
     
     //MARK: Upload Flow
