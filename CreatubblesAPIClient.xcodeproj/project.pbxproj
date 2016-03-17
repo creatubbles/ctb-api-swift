@@ -86,6 +86,9 @@
 		18F14E931C9ABA2100744E7B /* NewBubbleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14E921C9ABA2100744E7B /* NewBubbleData.swift */; };
 		18F14E951C9AC59200744E7B /* NewBubbleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14E941C9AC59200744E7B /* NewBubbleRequest.swift */; };
 		18F14E971C9AC83000744E7B /* NewBubbleResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14E961C9AC83000744E7B /* NewBubbleResponseHandler.swift */; };
+		18F14E991C9AD6A400744E7B /* UpdateBubbleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14E981C9AD6A400744E7B /* UpdateBubbleData.swift */; };
+		18F14E9B1C9AD76000744E7B /* UpdateBubbleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14E9A1C9AD76000744E7B /* UpdateBubbleRequest.swift */; };
+		18F14E9D1C9AD77500744E7B /* UpdateBubbleResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14E9C1C9AD77500744E7B /* UpdateBubbleResponseHandler.swift */; };
 		18FD15311C84315200A353C1 /* CreatubblesAPIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD15301C84315200A353C1 /* CreatubblesAPIClientError.swift */; };
 		216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843971C7345690052B835 /* FetchCreationsRequest.swift */; };
 		2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */; };
@@ -195,6 +198,9 @@
 		18F14E921C9ABA2100744E7B /* NewBubbleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBubbleData.swift; sourceTree = "<group>"; };
 		18F14E941C9AC59200744E7B /* NewBubbleRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBubbleRequest.swift; sourceTree = "<group>"; };
 		18F14E961C9AC83000744E7B /* NewBubbleResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBubbleResponseHandler.swift; sourceTree = "<group>"; };
+		18F14E981C9AD6A400744E7B /* UpdateBubbleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateBubbleData.swift; sourceTree = "<group>"; };
+		18F14E9A1C9AD76000744E7B /* UpdateBubbleRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateBubbleRequest.swift; sourceTree = "<group>"; };
+		18F14E9C1C9AD77500744E7B /* UpdateBubbleResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateBubbleResponseHandler.swift; sourceTree = "<group>"; };
 		18FD15301C84315200A353C1 /* CreatubblesAPIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClientError.swift; sourceTree = "<group>"; };
 		216843971C7345690052B835 /* FetchCreationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsRequest.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsRequest.swift; sourceTree = SOURCE_ROOT; };
 		216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FetchCreationsResponseHandler.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsResponseHandler.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -372,6 +378,7 @@
 				187671481C7CA31600733E9E /* NewGalleryData.swift */,
 				21C349921C904B38002972EC /* NewCreationData.swift */,
 				18F14E921C9ABA2100744E7B /* NewBubbleData.swift */,
+				18F14E981C9AD6A400744E7B /* UpdateBubbleData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -520,6 +527,8 @@
 				18C30D6A1C99BA1B00163DDF /* BubblesFetchResponseHandler.swift */,
 				18F14E941C9AC59200744E7B /* NewBubbleRequest.swift */,
 				18F14E961C9AC83000744E7B /* NewBubbleResponseHandler.swift */,
+				18F14E9A1C9AD76000744E7B /* UpdateBubbleRequest.swift */,
+				18F14E9C1C9AD77500744E7B /* UpdateBubbleResponseHandler.swift */,
 			);
 			path = Bubbles;
 			sourceTree = "<group>";
@@ -835,6 +844,7 @@
 				189D9F611C84B36100857CC6 /* PagingInfoMapper.swift in Sources */,
 				216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */,
 				187902001C6C80AD008F5302 /* GalleriesResponseHandler.swift in Sources */,
+				18F14E991C9AD6A400744E7B /* UpdateBubbleData.swift in Sources */,
 				187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */,
 				188ECF5C1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift in Sources */,
 				188ECF6D1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift in Sources */,
@@ -843,6 +853,7 @@
 				18779DF51C69E80F000BFB57 /* ProfileResponseHandler.swift in Sources */,
 				18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */,
 				188ECF731C747FDE00AFEE4F /* String+Path.swift in Sources */,
+				18F14E9B1C9AD76000744E7B /* UpdateBubbleRequest.swift in Sources */,
 				180C97B11C6DEA4100BC682D /* Creation.swift in Sources */,
 				18779DF91C69F39D000BFB57 /* Group.swift in Sources */,
 				18C1CFF91C75C4B000A02DE3 /* GalleryDAO.swift in Sources */,
@@ -873,6 +884,7 @@
 				18FD15311C84315200A353C1 /* CreatubblesAPIClientError.swift in Sources */,
 				189D9F5E1C84B36100857CC6 /* ErrorMapper.swift in Sources */,
 				18779DF31C69E7FB000BFB57 /* ProfileRequest.swift in Sources */,
+				18F14E9D1C9AD77500744E7B /* UpdateBubbleResponseHandler.swift in Sources */,
 				18C744FB1C84611600A07E4C /* CreationEntity.swift in Sources */,
 				180C97A81C6CC0DA00BC682D /* NewGalleryRequest.swift in Sources */,
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,

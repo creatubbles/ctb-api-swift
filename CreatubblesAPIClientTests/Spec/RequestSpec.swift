@@ -594,6 +594,35 @@ class RequestSpec: QuickSpec
             }
         }
         
+        describe("UpdateBubble request")
+        {
+            it("Should have proper method")
+            {
+                let data = UpdateBubbleData(bubbleId: "", colorName: nil)
+                let request = UpdateBubbleRequest(data: data)
+                expect(request.method).to(equal(RequestMethod.PUT))
+            }
+            
+            it("Should have proper endpoint")
+            {
+                let identifier = "bubbleIdentifier"
+                let data = UpdateBubbleData(bubbleId: identifier, colorName: nil)
+                let request = UpdateBubbleRequest(data: data)
+                expect(request.endpoint).to(equal("bubbles/\(identifier)"))
+            }
+            
+            it("Should have proper parameters set")
+            {
+                let identifier = "identifier"
+                let colorName = "TestColorName"
+                let data = UpdateBubbleData(bubbleId: identifier, colorName: colorName)
+                let request = UpdateBubbleRequest(data: data)
+                
+                expect(request.parameters["id"] as? String).to(equal(identifier))
+                expect(request.parameters["color"] as? String).to(equal(colorName))
+            }
+        }
+        
         describe("NewBubble request")
         {
             it("Should have proper method")

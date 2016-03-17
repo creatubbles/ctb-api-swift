@@ -264,6 +264,11 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         bubbleDAO.newBubble(data, completion: completion)
     }
     
+    func updateBubble(data: UpdateBubbleData, completion: ErrorClousure?)
+    {
+        bubbleDAO.updateBubble(data, completion: completion)
+    }
+    
     //MARK: - Delegate
     func creationUploadServiceUploadFinished(service: CreationUploadService, session: CreationUploadSession)
     {

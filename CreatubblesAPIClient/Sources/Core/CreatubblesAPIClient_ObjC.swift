@@ -264,6 +264,15 @@ extension CreatubblesAPIClient
             completion?(CreatubblesAPIClient.errorTypeToNSError(error))
         }
     }
+    
+    func _updateBubble(data: UpdateBubbleData, completion: ((NSError?) -> (Void))?)
+    {
+        updateBubble(data)
+            {
+                (error) -> (Void) in
+                completion?(CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
 
     //MARK: - Utils
     static func errorTypeToNSError(error: ErrorType?) -> NSError?

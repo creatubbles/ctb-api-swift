@@ -573,6 +573,55 @@ class ResponseHandlerSpec: QuickSpec
                 }
             }
         }
+        
+        
+        describe("UpdateBubble response handler")
+        {
+            it("Should return error when not logged in")
+            {
+                let data = UpdateBubbleData(bubbleId: "Identifier", colorName: "blue")
+                let request = UpdateBubbleRequest(data:data)
+                
+                let requestSender = TestComponentsFactory.requestSender
+                requestSender.logout()
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    requestSender.send(request, withResponseHandler: UpdateBubbleResponseHandler()
+                    {
+                        (error) -> (Void) in
+                        expect(error).notTo(beNil())
+                        done()
+                    })
+                }
+            }
+            
+            it("Shouldn't return error when logged in")
+            {
+                guard TestConfiguration.testBubbleIdentifier != nil else { return }
+                
+                let data = UpdateBubbleData(bubbleId: TestConfiguration.testBubbleIdentifier!, colorName: "blue")
+                let request = UpdateBubbleRequest(data:data)
+            
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:UpdateBubbleResponseHandler()
+                        {
+                            (error) -> (Void) in
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
     }
 }
 

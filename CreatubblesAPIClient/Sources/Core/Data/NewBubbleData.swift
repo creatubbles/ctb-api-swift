@@ -26,7 +26,7 @@ public class NewBubbleData: NSObject
     public let xPosition: Float?
     public let yPosition: Float?
     
-    init(userId: String)
+    public init(userId: String)
     {
         self.bubbledObjectIdentifier = userId
         self.type = .User
@@ -35,7 +35,7 @@ public class NewBubbleData: NSObject
         self.yPosition = nil
     }
     
-    init(galleryId: String)
+    public init(galleryId: String)
     {
         self.bubbledObjectIdentifier = galleryId
         self.type = .Gallery
@@ -44,7 +44,7 @@ public class NewBubbleData: NSObject
         self.yPosition = nil
     }
     
-    init(creationId: String, colorName: String?, xPosition: Float?, yPosition: Float?)
+    public init(creationId: String, colorName: String?, xPosition: Float?, yPosition: Float?)
     {
         self.bubbledObjectIdentifier = creationId
         self.type = .Creation
