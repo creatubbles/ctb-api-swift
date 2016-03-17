@@ -82,10 +82,10 @@
 		21151FE81C99947A00CE92B7 /* CommentsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21151FE71C99947A00CE92B7 /* CommentsRequest.swift */; };
 		216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843971C7345690052B835 /* FetchCreationsRequest.swift */; };
 		2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */; };
-		2188BA101C9AC51C0039A072 /* CommentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188BA0F1C9AC51C0039A072 /* CommentMapper.swift */; };
 		21A401431C9ACD1F00754E8F /* NewCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A401421C9ACD1F00754E8F /* NewCommentRequest.swift */; };
 		21A401451C9ACD5100754E8F /* CommentsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A401441C9ACD5100754E8F /* CommentsResponseHandler.swift */; };
 		21A401471C9ACE4900754E8F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A401461C9ACE4900754E8F /* Comment.swift */; };
+		21A401491C9AD32A00754E8F /* CommentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A401481C9AD32A00754E8F /* CommentMapper.swift */; };
 		21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F661C81E6A2009E95D1 /* PagingInfo.swift */; };
 		21A79F6F1C81E6C5009E95D1 /* BatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */; };
 		21A79F701C81E6C5009E95D1 /* CreationsBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */; };
@@ -188,10 +188,10 @@
 		21151FE71C99947A00CE92B7 /* CommentsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsRequest.swift; sourceTree = "<group>"; };
 		216843971C7345690052B835 /* FetchCreationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsRequest.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsRequest.swift; sourceTree = SOURCE_ROOT; };
 		216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FetchCreationsResponseHandler.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsResponseHandler.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		2188BA0F1C9AC51C0039A072 /* CommentMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentMapper.swift; sourceTree = "<group>"; };
 		21A401421C9ACD1F00754E8F /* NewCommentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCommentRequest.swift; sourceTree = "<group>"; };
 		21A401441C9ACD5100754E8F /* CommentsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsResponseHandler.swift; sourceTree = "<group>"; };
 		21A401461C9ACE4900754E8F /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		21A401481C9AD32A00754E8F /* CommentMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentMapper.swift; sourceTree = "<group>"; };
 		21A79F661C81E6A2009E95D1 /* PagingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfo.swift; sourceTree = "<group>"; };
 		21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchFetcher.swift; sourceTree = "<group>"; };
 		21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsBatchFetcher.swift; sourceTree = "<group>"; };
@@ -500,7 +500,7 @@
 				189D9F5A1C84B36100857CC6 /* PagingInfoMapper.swift */,
 				189D9F5B1C84B36100857CC6 /* UserMapper.swift */,
 				18E30BEB1C8DAAE0000794B6 /* LandingURLMapper.swift */,
-				2188BA0F1C9AC51C0039A072 /* CommentMapper.swift */,
+				21A401481C9AD32A00754E8F /* CommentMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -824,7 +824,6 @@
 				187902001C6C80AD008F5302 /* GalleriesResponseHandler.swift in Sources */,
 				187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */,
 				188ECF5C1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift in Sources */,
-				2188BA101C9AC51C0039A072 /* CommentMapper.swift in Sources */,
 				188ECF6D1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift in Sources */,
 				21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */,
 				21C349931C904B38002972EC /* NewCreationData.swift in Sources */,
@@ -839,6 +838,7 @@
 				189D9F5F1C84B36100857CC6 /* GalleryMapper.swift in Sources */,
 				187901FF1C6C80AA008F5302 /* GalleriesRequest.swift in Sources */,
 				18779DF01C69C9E3000BFB57 /* OAuth2+Alamofire.swift in Sources */,
+				21A401491C9AD32A00754E8F /* CommentMapper.swift in Sources */,
 				18EFFF661C770F8700BE0B70 /* GallerySubmissionRequest.swift in Sources */,
 				18C744FA1C84611600A07E4C /* DatabaseService.swift in Sources */,
 				189D9F601C84B36100857CC6 /* GroupMapper.swift in Sources */,

@@ -18,9 +18,9 @@ class CommentMapper: Mappable
     public var commentableType: String?
     public var commenterId: String?
     
-    public let commentedUserId: String?
-    public let commentedCreationId: String?
-    public let commentedGalleryId: String?
+    public var commentedUserId: String?
+    public var commentedCreationId: String?
+    public var commentedGalleryId: String?
     
     required init?(_ map: Map)
     {

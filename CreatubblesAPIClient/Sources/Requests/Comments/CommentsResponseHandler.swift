@@ -12,9 +12,9 @@ import ObjectMapper
 class CommentsResponseHandler: ResponseHandler
 {
 
-    private let completion: BubblesClousure?
+    private let completion: CommentsClosure?
     
-    init(completion: BubblesClousure?)
+    init(completion: CommentsClosure?)
     {
         self.completion = completion
     }
@@ -22,20 +22,19 @@ class CommentsResponseHandler: ResponseHandler
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         if  let response = response,
-            let mappers = Mapper<BubbleMapper>().mapArray(response["data"])
+            let mappers = Mapper<CommentMapper>().mapArray(response["data"])
         {
-            var bubbles = Array<Bubble>()
+            var comments = Array<Comment>()
             for mapper in mappers
             {
-                bubbles.append(Bubble(mapper: mapper))
+                comments.append(Comment(mapper: mapper))
             }
             
-            completion?(bubbles, ErrorTransformer.errorFromResponse(response, error: error))
+            completion?(comments, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else
         {
             completion?(nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
     }
-    
 }

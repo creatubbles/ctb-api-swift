@@ -8,7 +8,8 @@
 
 import UIKit
 
-class Comment: NSObject
+@objc
+public class Comment: NSObject
 {
     public var identifier: String
     public var text: String
@@ -23,7 +24,16 @@ class Comment: NSObject
     
     init(mapper: CommentMapper)
     {
+        identifier = mapper.identifier!
+        text = mapper.text!
+        approved = mapper.approved!
+        createdAt = mapper.createdAt!
+        commentableType = mapper.commentableType!
+        commenterId = mapper.commenterId!
         
+        commentedUserId = mapper.commentedUserId
+        commentedCreationId = mapper.commentedCreationId
+        commentedGalleryId = mapper.commentedGalleryId
     }
 
 }
