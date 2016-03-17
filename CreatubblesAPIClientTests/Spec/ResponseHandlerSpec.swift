@@ -443,6 +443,7 @@ class ResponseHandlerSpec: QuickSpec
                             expect(error).to(beNil())
                             expect(landingUrls).notTo(beNil())
                             expect(landingUrls).notTo(beEmpty())
+                            sender.logout()
                             done()
                         })
                     }
@@ -466,6 +467,7 @@ class ResponseHandlerSpec: QuickSpec
                             expect(landingUrls).notTo(beNil())
                             expect(landingUrls).notTo(beEmpty())
                             expect(landingUrls?.count).to(equal(1))
+                            sender.logout()
                             done()
                         })
                     }
@@ -489,6 +491,34 @@ class ResponseHandlerSpec: QuickSpec
                             expect(landingUrls).notTo(beNil())
                             expect(landingUrls).notTo(beEmpty())
                             expect(landingUrls?.count).to(equal(1))
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
+        
+        describe("BubblesFetch Response Handler")
+        {
+            it("Should return bubbles")
+            {
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(BubblesFetchReqest(userId: TestConfiguration.testUserIdentifier!), withResponseHandler:BubblesFetchResponseHandler()
+                        {
+                            (bubbles, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(bubbles).notTo(beNil())
+                            sender.logout()
                             done()
                         })
                     }
@@ -497,3 +527,19 @@ class ResponseHandlerSpec: QuickSpec
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

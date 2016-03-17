@@ -1,5 +1,5 @@
 //
-//  FetchBubblesResponseHandler.swift
+//  BubblesFetchResponseHandler.swift
 //  CreatubblesAPIClient
 //
 //  Created by Michal Miedlarz on 16.03.2016.
@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-class FetchBubblesResponseHandler: ResponseHandler
+class BubblesFetchResponseHandler: ResponseHandler
 {
     private let completion: BubblesClousure?
     

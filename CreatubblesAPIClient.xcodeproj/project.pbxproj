@@ -61,8 +61,8 @@
 		18C1CFF51C75C40A00A02DE3 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */; };
 		18C1CFF71C75C46C00A02DE3 /* CreationsDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF61C75C46C00A02DE3 /* CreationsDAO.swift */; };
 		18C1CFF91C75C4B000A02DE3 /* GalleryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */; };
-		18C30D691C99B87500163DDF /* FetchBubblesReqest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D681C99B87500163DDF /* FetchBubblesReqest.swift */; };
-		18C30D6B1C99BA1B00163DDF /* FetchBubblesResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D6A1C99BA1B00163DDF /* FetchBubblesResponseHandler.swift */; };
+		18C30D691C99B87500163DDF /* BubblesFetchReqest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D681C99B87500163DDF /* BubblesFetchReqest.swift */; };
+		18C30D6B1C99BA1B00163DDF /* BubblesFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D6A1C99BA1B00163DDF /* BubblesFetchResponseHandler.swift */; };
 		18C30D6D1C99BA7600163DDF /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D6C1C99BA7600163DDF /* Bubble.swift */; };
 		18C30D6F1C99BC6600163DDF /* BubbleMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D6E1C99BC6600163DDF /* BubbleMapper.swift */; };
 		18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F11C84610800A07E4C /* DatabaseDAO.swift */; };
@@ -166,8 +166,8 @@
 		18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		18C1CFF61C75C46C00A02DE3 /* CreationsDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsDAO.swift; sourceTree = "<group>"; };
 		18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDAO.swift; sourceTree = "<group>"; };
-		18C30D681C99B87500163DDF /* FetchBubblesReqest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchBubblesReqest.swift; sourceTree = "<group>"; };
-		18C30D6A1C99BA1B00163DDF /* FetchBubblesResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchBubblesResponseHandler.swift; sourceTree = "<group>"; };
+		18C30D681C99B87500163DDF /* BubblesFetchReqest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubblesFetchReqest.swift; sourceTree = "<group>"; };
+		18C30D6A1C99BA1B00163DDF /* BubblesFetchResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubblesFetchResponseHandler.swift; sourceTree = "<group>"; };
 		18C30D6C1C99BA7600163DDF /* Bubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
 		18C30D6E1C99BC6600163DDF /* BubbleMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleMapper.swift; sourceTree = "<group>"; };
 		18C744F11C84610800A07E4C /* DatabaseDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseDAO.swift; sourceTree = "<group>"; };
@@ -506,8 +506,8 @@
 		18C30D671C99B84600163DDF /* Bubbles */ = {
 			isa = PBXGroup;
 			children = (
-				18C30D681C99B87500163DDF /* FetchBubblesReqest.swift */,
-				18C30D6A1C99BA1B00163DDF /* FetchBubblesResponseHandler.swift */,
+				18C30D681C99B87500163DDF /* BubblesFetchReqest.swift */,
+				18C30D6A1C99BA1B00163DDF /* BubblesFetchResponseHandler.swift */,
 			);
 			path = Bubbles;
 			sourceTree = "<group>";
@@ -797,7 +797,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18C30D691C99B87500163DDF /* FetchBubblesReqest.swift in Sources */,
+				18C30D691C99B87500163DDF /* BubblesFetchReqest.swift in Sources */,
 				189D9F621C84B36100857CC6 /* UserMapper.swift in Sources */,
 				18779DB61C68D424000BFB57 /* Request.swift in Sources */,
 				187901F01C6B37F4008F5302 /* NewCreatorResponseHandler.swift in Sources */,
@@ -806,7 +806,7 @@
 				21A79F721C81E6C5009E95D1 /* UsersBatchFetcher.swift in Sources */,
 				18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */,
 				1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */,
-				18C30D6B1C99BA1B00163DDF /* FetchBubblesResponseHandler.swift in Sources */,
+				18C30D6B1C99BA1B00163DDF /* BubblesFetchResponseHandler.swift in Sources */,
 				188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */,
 				18C30D6D1C99BA7600163DDF /* Bubble.swift in Sources */,
 				2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */,

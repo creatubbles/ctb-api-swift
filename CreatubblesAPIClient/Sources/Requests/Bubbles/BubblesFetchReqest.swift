@@ -1,5 +1,5 @@
 //
-//  FetchBubblesReqest.swift
+//  BubblesFetchReqest.swift
 //  CreatubblesAPIClient
 //
 //  Created by Michal Miedlarz on 16.03.2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FetchBubblesReqest: Request
+class BubblesFetchReqest: Request
 {
     override var method: RequestMethod  { return .GET }
     override var parameters: Dictionary<String, AnyObject> { return Dictionary<String,AnyObject>() }

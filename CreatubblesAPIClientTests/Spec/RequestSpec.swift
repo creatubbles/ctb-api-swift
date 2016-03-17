@@ -549,7 +549,6 @@ class RequestSpec: QuickSpec
             }
         }
         
-        
         describe("LandingURL request")
         {
             it("Should have proper method")
@@ -576,6 +575,23 @@ class RequestSpec: QuickSpec
                 let request = LandingURLRequest(creationId: creationId)
                 expect(request.endpoint).to(equal("creations/\(creationId)/landing_url"))
             }            
+        }
+        
+        describe("BubblesFetch request")
+        {
+            it("Should have proper method")
+            {
+                let request = BubblesFetchReqest(creationId: "")
+                expect(request.method).to(equal(RequestMethod.GET))
+            }
+            
+            it("Should have proper endpoint for bubbles source")
+            {
+                let identifier = "ObjectId"
+                expect(BubblesFetchReqest(creationId: identifier).endpoint).to(equal("creations/\(identifier)/bubbles"))
+                expect(BubblesFetchReqest(galleryId: identifier).endpoint).to(equal("galleries/\(identifier)/bubbles"))
+                expect(BubblesFetchReqest(userId: identifier).endpoint).to(equal("users/\(identifier)/bubbles"))
+            }
         }
     }
 }
