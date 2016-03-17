@@ -42,6 +42,8 @@ public typealias GalleriesBatchClousure = (Array<Gallery>?, CreatubblesAPIClient
 public typealias LandingURLClousure = (Array<LandingURL>?, CreatubblesAPIClientError?) -> (Void)
 public typealias BubblesClousure = (Array<Bubble>?, CreatubblesAPIClientError?) -> (Void)
 
+public typealias CommentsClosure = (Array<Comment>?, CreatubblesAPIClientError?) -> (Void)
+
 //MARK: - Enums
 @objc public enum Gender: Int
 {
