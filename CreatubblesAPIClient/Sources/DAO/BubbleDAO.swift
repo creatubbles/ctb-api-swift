@@ -37,4 +37,11 @@ class BubbleDAO: NSObject
         let handler = BubblesFetchResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func newBubble(data: NewBubbleData, completion: ErrorClousure?)
+    {
+        let request = NewBubbleRequest(data: data)
+        let handler = NewBubbleResponseHandler(completion: completion)
+        requestSender.send(request, withResponseHandler: handler)
+    }
 }
