@@ -61,10 +61,6 @@
 		18C1CFF51C75C40A00A02DE3 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */; };
 		18C1CFF71C75C46C00A02DE3 /* CreationsDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF61C75C46C00A02DE3 /* CreationsDAO.swift */; };
 		18C1CFF91C75C4B000A02DE3 /* GalleryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */; };
-		18C30D691C99B87500163DDF /* BubblesFetchReqest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D681C99B87500163DDF /* BubblesFetchReqest.swift */; };
-		18C30D6B1C99BA1B00163DDF /* BubblesFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D6A1C99BA1B00163DDF /* BubblesFetchResponseHandler.swift */; };
-		18C30D6D1C99BA7600163DDF /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D6C1C99BA7600163DDF /* Bubble.swift */; };
-		18C30D6F1C99BC6600163DDF /* BubbleMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D6E1C99BC6600163DDF /* BubbleMapper.swift */; };
 		18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F11C84610800A07E4C /* DatabaseDAO.swift */; };
 		18C744FA1C84611600A07E4C /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F41C84611600A07E4C /* DatabaseService.swift */; };
 		18C744FB1C84611600A07E4C /* CreationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F61C84611600A07E4C /* CreationEntity.swift */; };
@@ -82,10 +78,11 @@
 		18EFFF721C772A4E00BE0B70 /* RequestSenderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF6D1C772A4E00BE0B70 /* RequestSenderSpec.swift */; };
 		18EFFF731C772A4E00BE0B70 /* RequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF6E1C772A4E00BE0B70 /* RequestSpec.swift */; };
 		18EFFF741C772A4E00BE0B70 /* ResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF6F1C772A4E00BE0B70 /* ResponseHandlerSpec.swift */; };
-		18F14E911C9AB68900744E7B /* BubbleDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14E901C9AB68900744E7B /* BubbleDAO.swift */; };
 		18FD15311C84315200A353C1 /* CreatubblesAPIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD15301C84315200A353C1 /* CreatubblesAPIClientError.swift */; };
+		21151FE81C99947A00CE92B7 /* CommentsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21151FE71C99947A00CE92B7 /* CommentsRequest.swift */; };
 		216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843971C7345690052B835 /* FetchCreationsRequest.swift */; };
 		2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */; };
+		2188BA101C9AC51C0039A072 /* CommentsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188BA0F1C9AC51C0039A072 /* CommentsMapper.swift */; };
 		21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F661C81E6A2009E95D1 /* PagingInfo.swift */; };
 		21A79F6F1C81E6C5009E95D1 /* BatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */; };
 		21A79F701C81E6C5009E95D1 /* CreationsBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */; };
@@ -167,10 +164,6 @@
 		18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		18C1CFF61C75C46C00A02DE3 /* CreationsDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsDAO.swift; sourceTree = "<group>"; };
 		18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDAO.swift; sourceTree = "<group>"; };
-		18C30D681C99B87500163DDF /* BubblesFetchReqest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubblesFetchReqest.swift; sourceTree = "<group>"; };
-		18C30D6A1C99BA1B00163DDF /* BubblesFetchResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubblesFetchResponseHandler.swift; sourceTree = "<group>"; };
-		18C30D6C1C99BA7600163DDF /* Bubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
-		18C30D6E1C99BC6600163DDF /* BubbleMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleMapper.swift; sourceTree = "<group>"; };
 		18C744F11C84610800A07E4C /* DatabaseDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseDAO.swift; sourceTree = "<group>"; };
 		18C744F41C84611600A07E4C /* DatabaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		18C744F61C84611600A07E4C /* CreationEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationEntity.swift; sourceTree = "<group>"; };
@@ -188,10 +181,11 @@
 		18EFFF6D1C772A4E00BE0B70 /* RequestSenderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSenderSpec.swift; sourceTree = "<group>"; };
 		18EFFF6E1C772A4E00BE0B70 /* RequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSpec.swift; sourceTree = "<group>"; };
 		18EFFF6F1C772A4E00BE0B70 /* ResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandlerSpec.swift; sourceTree = "<group>"; };
-		18F14E901C9AB68900744E7B /* BubbleDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleDAO.swift; sourceTree = "<group>"; };
 		18FD15301C84315200A353C1 /* CreatubblesAPIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClientError.swift; sourceTree = "<group>"; };
+		21151FE71C99947A00CE92B7 /* CommentsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsRequest.swift; sourceTree = "<group>"; };
 		216843971C7345690052B835 /* FetchCreationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsRequest.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsRequest.swift; sourceTree = SOURCE_ROOT; };
 		216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FetchCreationsResponseHandler.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsResponseHandler.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		2188BA0F1C9AC51C0039A072 /* CommentsMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsMapper.swift; sourceTree = "<group>"; };
 		21A79F661C81E6A2009E95D1 /* PagingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfo.swift; sourceTree = "<group>"; };
 		21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchFetcher.swift; sourceTree = "<group>"; };
 		21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsBatchFetcher.swift; sourceTree = "<group>"; };
@@ -322,7 +316,6 @@
 				180C97B01C6DEA4100BC682D /* Creation.swift */,
 				188ECF5D1C71E91B00AFEE4F /* CreationUpload.swift */,
 				18E30BE91C8DA7DD000794B6 /* LandingURL.swift */,
-				18C30D6C1C99BA7600163DDF /* Bubble.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -333,7 +326,7 @@
 				188BCEB11C64E1C500EA4F11 /* RequestSender.swift */,
 				18779DEF1C69C9E3000BFB57 /* OAuth2+Alamofire.swift */,
 				18779DB01C68D424000BFB57 /* Core */,
-				18C30D671C99B84600163DDF /* Bubbles */,
+				21151FE61C99944D00CE92B7 /* Comments */,
 				18779E0B1C6A2572000BFB57 /* CreatorsAndManagers */,
 				216843941C7343CB0052B835 /* FetchCreations */,
 				187901F61C6B6BFE008F5302 /* Galleries */,
@@ -435,7 +428,6 @@
 				18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */,
 				18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */,
 				18C1CFF61C75C46C00A02DE3 /* CreationsDAO.swift */,
-				18F14E901C9AB68900744E7B /* BubbleDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -501,18 +493,9 @@
 				189D9F5A1C84B36100857CC6 /* PagingInfoMapper.swift */,
 				189D9F5B1C84B36100857CC6 /* UserMapper.swift */,
 				18E30BEB1C8DAAE0000794B6 /* LandingURLMapper.swift */,
-				18C30D6E1C99BC6600163DDF /* BubbleMapper.swift */,
+				2188BA0F1C9AC51C0039A072 /* CommentsMapper.swift */,
 			);
 			path = Mapper;
-			sourceTree = "<group>";
-		};
-		18C30D671C99B84600163DDF /* Bubbles */ = {
-			isa = PBXGroup;
-			children = (
-				18C30D681C99B87500163DDF /* BubblesFetchReqest.swift */,
-				18C30D6A1C99BA1B00163DDF /* BubblesFetchResponseHandler.swift */,
-			);
-			path = Bubbles;
 			sourceTree = "<group>";
 		};
 		18C744F31C84611600A07E4C /* Database */ = {
@@ -563,6 +546,14 @@
 				18EFFF6F1C772A4E00BE0B70 /* ResponseHandlerSpec.swift */,
 			);
 			path = Spec;
+			sourceTree = "<group>";
+		};
+		21151FE61C99944D00CE92B7 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				21151FE71C99947A00CE92B7 /* CommentsRequest.swift */,
+			);
+			path = Comments;
 			sourceTree = "<group>";
 		};
 		216843941C7343CB0052B835 /* FetchCreations */ = {
@@ -800,7 +791,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18C30D691C99B87500163DDF /* BubblesFetchReqest.swift in Sources */,
 				189D9F621C84B36100857CC6 /* UserMapper.swift in Sources */,
 				18779DB61C68D424000BFB57 /* Request.swift in Sources */,
 				187901F01C6B37F4008F5302 /* NewCreatorResponseHandler.swift in Sources */,
@@ -809,9 +799,7 @@
 				21A79F721C81E6C5009E95D1 /* UsersBatchFetcher.swift in Sources */,
 				18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */,
 				1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */,
-				18C30D6B1C99BA1B00163DDF /* BubblesFetchResponseHandler.swift in Sources */,
 				188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */,
-				18C30D6D1C99BA7600163DDF /* Bubble.swift in Sources */,
 				2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */,
 				18779E0D1C6A2582000BFB57 /* CreatorsAndManagersRequest.swift in Sources */,
 				18E30BE81C8DA318000794B6 /* LandingURLResponseHandler.swift in Sources */,
@@ -826,6 +814,7 @@
 				187902001C6C80AD008F5302 /* GalleriesResponseHandler.swift in Sources */,
 				187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */,
 				188ECF5C1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift in Sources */,
+				2188BA101C9AC51C0039A072 /* CommentsMapper.swift in Sources */,
 				188ECF6D1C74614E00AFEE4F /* NewCreationPingResponseHandler.swift in Sources */,
 				21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */,
 				21C349931C904B38002972EC /* NewCreationData.swift in Sources */,
@@ -834,6 +823,7 @@
 				188ECF731C747FDE00AFEE4F /* String+Path.swift in Sources */,
 				180C97B11C6DEA4100BC682D /* Creation.swift in Sources */,
 				18779DF91C69F39D000BFB57 /* Group.swift in Sources */,
+				21151FE81C99947A00CE92B7 /* CommentsRequest.swift in Sources */,
 				18C1CFF91C75C4B000A02DE3 /* GalleryDAO.swift in Sources */,
 				189D9F5F1C84B36100857CC6 /* GalleryMapper.swift in Sources */,
 				187901FF1C6C80AA008F5302 /* GalleriesRequest.swift in Sources */,
@@ -850,12 +840,10 @@
 				188ECF701C74703200AFEE4F /* CreationUploadSession.swift in Sources */,
 				18E30BEC1C8DAAE0000794B6 /* LandingURLMapper.swift in Sources */,
 				180C97AF1C6DD41900BC682D /* NewCreationResponseHandler.swift in Sources */,
-				18F14E911C9AB68900744E7B /* BubbleDAO.swift in Sources */,
 				21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */,
 				187047E01C71DCD600B202FD /* NewCreationUploadRequest.swift in Sources */,
 				21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */,
 				1815D5651C638BD200EF4C38 /* User.swift in Sources */,
-				18C30D6F1C99BC6600163DDF /* BubbleMapper.swift in Sources */,
 				180C97AD1C6DD40100BC682D /* NewCreationRequest.swift in Sources */,
 				18779E0F1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift in Sources */,
 				187902021C6C8BAF008F5302 /* Gallery.swift in Sources */,
@@ -921,7 +909,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -970,8 +957,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
