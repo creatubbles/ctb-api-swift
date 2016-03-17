@@ -12,9 +12,9 @@ import UIKit
 public class Bubble: NSObject
 {
     public let identifier: String
-    public let xPosition: Float
-    public let yPosition: Float
-    public let colorName: String
+    public let xPosition: Float?
+    public let yPosition: Float?
+    public let colorName: String?
     public let createdAt: NSDate
     public let bubblerId: String
     public let isPositionRandom: Bool
@@ -26,9 +26,9 @@ public class Bubble: NSObject
     init(mapper: BubbleMapper)
     {
         identifier = mapper.identifier!
-        xPosition = mapper.xPosition!
-        yPosition = mapper.yPosition!
-        colorName = mapper.colorName!
+        xPosition = mapper.xPosition
+        yPosition = mapper.yPosition
+        colorName = mapper.colorName
         createdAt = mapper.createdAt!
         bubblerId = mapper.bubblerId!
         isPositionRandom = mapper.isPositionRandom!
