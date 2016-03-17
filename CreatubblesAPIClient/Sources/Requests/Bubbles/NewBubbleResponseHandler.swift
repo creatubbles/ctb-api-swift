@@ -8,17 +8,7 @@
 
 import UIKit
 
-class NewBubbleResponseHandler: ResponseHandler
+class NewBubbleResponseHandler: ErrorResponseHandler
 {
-    private let completion: ErrorClousure?
     
-    init(completion: ErrorClousure?)
-    {
-        self.completion = completion
-    }
-    
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
-    {
-        completion?( ErrorTransformer.errorFromResponse(response, error: error))
-    }
 }

@@ -51,5 +51,12 @@ class BubbleDAO: NSObject
         let handler = UpdateBubbleResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func deleteBubble(bubbleId: String, completion: ErrorClousure?)
+    {
+        let request = DeleteBubbleRequest(bubbleId: bubbleId)
+        let handler = DeleteBubbleResponseHandler(completion: completion)
+        requestSender.send(request, withResponseHandler: handler)
+    }
 
 }

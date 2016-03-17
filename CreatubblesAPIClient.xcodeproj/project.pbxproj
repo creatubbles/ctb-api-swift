@@ -89,6 +89,9 @@
 		18F14E991C9AD6A400744E7B /* UpdateBubbleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14E981C9AD6A400744E7B /* UpdateBubbleData.swift */; };
 		18F14E9B1C9AD76000744E7B /* UpdateBubbleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14E9A1C9AD76000744E7B /* UpdateBubbleRequest.swift */; };
 		18F14E9D1C9AD77500744E7B /* UpdateBubbleResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14E9C1C9AD77500744E7B /* UpdateBubbleResponseHandler.swift */; };
+		18F14E9F1C9ADCE000744E7B /* ErrorResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14E9E1C9ADCE000744E7B /* ErrorResponseHandler.swift */; };
+		18F14EA11C9ADD2100744E7B /* DeleteBubbleResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14EA01C9ADD2100744E7B /* DeleteBubbleResponseHandler.swift */; };
+		18F14EA31C9ADD2F00744E7B /* DeleteBubbleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14EA21C9ADD2F00744E7B /* DeleteBubbleRequest.swift */; };
 		18FD15311C84315200A353C1 /* CreatubblesAPIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD15301C84315200A353C1 /* CreatubblesAPIClientError.swift */; };
 		216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843971C7345690052B835 /* FetchCreationsRequest.swift */; };
 		2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */; };
@@ -201,6 +204,9 @@
 		18F14E981C9AD6A400744E7B /* UpdateBubbleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateBubbleData.swift; sourceTree = "<group>"; };
 		18F14E9A1C9AD76000744E7B /* UpdateBubbleRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateBubbleRequest.swift; sourceTree = "<group>"; };
 		18F14E9C1C9AD77500744E7B /* UpdateBubbleResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateBubbleResponseHandler.swift; sourceTree = "<group>"; };
+		18F14E9E1C9ADCE000744E7B /* ErrorResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponseHandler.swift; sourceTree = "<group>"; };
+		18F14EA01C9ADD2100744E7B /* DeleteBubbleResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBubbleResponseHandler.swift; sourceTree = "<group>"; };
+		18F14EA21C9ADD2F00744E7B /* DeleteBubbleRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBubbleRequest.swift; sourceTree = "<group>"; };
 		18FD15301C84315200A353C1 /* CreatubblesAPIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClientError.swift; sourceTree = "<group>"; };
 		216843971C7345690052B835 /* FetchCreationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsRequest.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsRequest.swift; sourceTree = SOURCE_ROOT; };
 		216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FetchCreationsResponseHandler.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsResponseHandler.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -388,6 +394,7 @@
 			children = (
 				18779DB11C68D424000BFB57 /* Request.swift */,
 				18779DB21C68D424000BFB57 /* ResponseHandler.swift */,
+				18F14E9E1C9ADCE000744E7B /* ErrorResponseHandler.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -529,6 +536,8 @@
 				18F14E961C9AC83000744E7B /* NewBubbleResponseHandler.swift */,
 				18F14E9A1C9AD76000744E7B /* UpdateBubbleRequest.swift */,
 				18F14E9C1C9AD77500744E7B /* UpdateBubbleResponseHandler.swift */,
+				18F14EA21C9ADD2F00744E7B /* DeleteBubbleRequest.swift */,
+				18F14EA01C9ADD2100744E7B /* DeleteBubbleResponseHandler.swift */,
 			);
 			path = Bubbles;
 			sourceTree = "<group>";
@@ -836,12 +845,14 @@
 				18E30BE81C8DA318000794B6 /* LandingURLResponseHandler.swift in Sources */,
 				18E30BE61C8DA307000794B6 /* LandingURLRequest.swift in Sources */,
 				188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */,
+				18F14EA31C9ADD2F00744E7B /* DeleteBubbleRequest.swift in Sources */,
 				21A79F701C81E6C5009E95D1 /* CreationsBatchFetcher.swift in Sources */,
 				187671401C7CA00500733E9E /* CreatubblesAPIClient_ObjC.swift in Sources */,
 				189D9F5D1C84B36100857CC6 /* CreationUploadMapper.swift in Sources */,
 				18F14E931C9ABA2100744E7B /* NewBubbleData.swift in Sources */,
 				189D9F5C1C84B36100857CC6 /* CreationMapper.swift in Sources */,
 				189D9F611C84B36100857CC6 /* PagingInfoMapper.swift in Sources */,
+				18F14EA11C9ADD2100744E7B /* DeleteBubbleResponseHandler.swift in Sources */,
 				216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */,
 				187902001C6C80AD008F5302 /* GalleriesResponseHandler.swift in Sources */,
 				18F14E991C9AD6A400744E7B /* UpdateBubbleData.swift in Sources */,
@@ -862,6 +873,7 @@
 				18779DF01C69C9E3000BFB57 /* OAuth2+Alamofire.swift in Sources */,
 				18EFFF661C770F8700BE0B70 /* GallerySubmissionRequest.swift in Sources */,
 				18C744FA1C84611600A07E4C /* DatabaseService.swift in Sources */,
+				18F14E9F1C9ADCE000744E7B /* ErrorResponseHandler.swift in Sources */,
 				189D9F601C84B36100857CC6 /* GroupMapper.swift in Sources */,
 				1847FBF01C76024300FE5FF3 /* Logger.swift in Sources */,
 				187671491C7CA31600733E9E /* NewGalleryData.swift in Sources */,

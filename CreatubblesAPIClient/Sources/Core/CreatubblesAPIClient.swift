@@ -269,6 +269,11 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         bubbleDAO.updateBubble(data, completion: completion)
     }
     
+    func deleteBubble(bubbleId: String, completion: ErrorClousure?)
+    {
+        bubbleDAO.deleteBubble(bubbleId, completion: completion)
+    }
+    
     //MARK: - Delegate
     func creationUploadServiceUploadFinished(service: CreationUploadService, session: CreationUploadSession)
     {

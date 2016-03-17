@@ -573,8 +573,7 @@ class ResponseHandlerSpec: QuickSpec
                 }
             }
         }
-        
-        
+                
         describe("UpdateBubble response handler")
         {
             it("Should return error when not logged in")

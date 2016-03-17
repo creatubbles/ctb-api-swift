@@ -623,6 +623,22 @@ class RequestSpec: QuickSpec
             }
         }
         
+        describe("Delete bubble request")
+        {
+            it("Should have proper method")
+            {
+                let request = DeleteBubbleRequest(bubbleId: "")
+                expect(request.method).to(equal(RequestMethod.DELETE))
+            }
+
+            it("Should have proper endpoint")
+            {
+                let identifier = "TestBubbleId"
+                let request = DeleteBubbleRequest(bubbleId: identifier)
+                expect(request.endpoint).to(equal("bubbles/\(identifier)"))
+            }        
+        }
+        
         describe("NewBubble request")
         {
             it("Should have proper method")

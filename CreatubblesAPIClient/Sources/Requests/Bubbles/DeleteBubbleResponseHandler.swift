@@ -1,5 +1,5 @@
 //
-//  UpdateBubbleResponseHandler.swift
+//  DeleteBubbleResponseHandler.swift
 //  CreatubblesAPIClient
 //
 //  Created by Michal Miedlarz on 17.03.2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdateBubbleResponseHandler: ErrorResponseHandler
+class DeleteBubbleResponseHandler: ErrorResponseHandler
 {
 
 }
