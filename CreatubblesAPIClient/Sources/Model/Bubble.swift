@@ -15,6 +15,7 @@ public class Bubble: NSObject
     public let xPosition: Float?
     public let yPosition: Float?
     public let colorName: String?
+    public let colorHex: String?
     public let createdAt: NSDate
     public let bubblerId: String
     public let isPositionRandom: Bool
@@ -32,6 +33,7 @@ public class Bubble: NSObject
         createdAt = mapper.createdAt!
         bubblerId = mapper.bubblerId!
         isPositionRandom = mapper.isPositionRandom!
+        colorHex = mapper.colorHex
         
         bubbledUserId = mapper.bubbledUserId
         bubbledCreationId = mapper.bubbledCreationId
