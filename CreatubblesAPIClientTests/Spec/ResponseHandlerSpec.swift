@@ -525,6 +525,54 @@ class ResponseHandlerSpec: QuickSpec
                 }
             }
         }
+        
+        describe("NewBubble response handler")
+        {
+            it("Should return error when not logged in")
+            {
+                let data = NewBubbleData(userId: "TestId")
+                let request = NewBubbleRequest(data: data)
+                
+                let requestSender = TestComponentsFactory.requestSender
+                requestSender.logout()
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    requestSender.send(request, withResponseHandler: NewBubbleResponseHandler()
+                    {
+                        (error) -> (Void) in
+                        expect(error).notTo(beNil())
+                        done()
+                    })
+                }
+            }
+            
+            it("Shouldn't return error when logged in")
+            {
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let data = NewBubbleData(userId: TestConfiguration.testUserIdentifier!)
+                let request = NewBubbleRequest(data: data)
+                
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:NewBubbleResponseHandler()
+                        {
+                            (error) -> (Void) in
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
     }
 }
 
