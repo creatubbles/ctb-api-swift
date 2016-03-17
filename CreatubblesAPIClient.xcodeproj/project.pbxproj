@@ -82,6 +82,7 @@
 		18EFFF721C772A4E00BE0B70 /* RequestSenderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF6D1C772A4E00BE0B70 /* RequestSenderSpec.swift */; };
 		18EFFF731C772A4E00BE0B70 /* RequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF6E1C772A4E00BE0B70 /* RequestSpec.swift */; };
 		18EFFF741C772A4E00BE0B70 /* ResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF6F1C772A4E00BE0B70 /* ResponseHandlerSpec.swift */; };
+		18F14E911C9AB68900744E7B /* BubbleDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F14E901C9AB68900744E7B /* BubbleDAO.swift */; };
 		18FD15311C84315200A353C1 /* CreatubblesAPIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD15301C84315200A353C1 /* CreatubblesAPIClientError.swift */; };
 		216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843971C7345690052B835 /* FetchCreationsRequest.swift */; };
 		2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */; };
@@ -187,6 +188,7 @@
 		18EFFF6D1C772A4E00BE0B70 /* RequestSenderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSenderSpec.swift; sourceTree = "<group>"; };
 		18EFFF6E1C772A4E00BE0B70 /* RequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSpec.swift; sourceTree = "<group>"; };
 		18EFFF6F1C772A4E00BE0B70 /* ResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		18F14E901C9AB68900744E7B /* BubbleDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleDAO.swift; sourceTree = "<group>"; };
 		18FD15301C84315200A353C1 /* CreatubblesAPIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatubblesAPIClientError.swift; sourceTree = "<group>"; };
 		216843971C7345690052B835 /* FetchCreationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsRequest.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsRequest.swift; sourceTree = SOURCE_ROOT; };
 		216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FetchCreationsResponseHandler.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsResponseHandler.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -433,6 +435,7 @@
 				18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */,
 				18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */,
 				18C1CFF61C75C46C00A02DE3 /* CreationsDAO.swift */,
+				18F14E901C9AB68900744E7B /* BubbleDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -847,6 +850,7 @@
 				188ECF701C74703200AFEE4F /* CreationUploadSession.swift in Sources */,
 				18E30BEC1C8DAAE0000794B6 /* LandingURLMapper.swift in Sources */,
 				180C97AF1C6DD41900BC682D /* NewCreationResponseHandler.swift in Sources */,
+				18F14E911C9AB68900744E7B /* BubbleDAO.swift in Sources */,
 				21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */,
 				187047E01C71DCD600B202FD /* NewCreationUploadRequest.swift in Sources */,
 				21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */,

@@ -86,6 +86,7 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     private let galleryDAO: GalleryDAO
     private let creationUploadService: CreationUploadService
     private let databaseDAO: DatabaseDAO
+    private let bubbleDAO: BubbleDAO
     public weak var delegate: CreatubblesAPIClientDelegate?
     
     public init(settings: CreatubblesAPIClientSettings)
@@ -96,6 +97,7 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         self.userDAO = UserDAO(requestSender: requestSender)
         self.galleryDAO = GalleryDAO(requestSender: requestSender)
         self.creationUploadService = CreationUploadService(requestSender: requestSender)
+        self.bubbleDAO = BubbleDAO(requestSender: requestSender)
         self.databaseDAO = DatabaseDAO()
         Logger.setup()
         super.init()
@@ -239,6 +241,22 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         {
             requestSender.backgroundCompletionHandler = newValue
         }
+    }
+    
+    //MARK: - Bubbles
+    func getBubblesForCreationWithIdentifier(identifier: String, completion: BubblesClousure?)
+    {
+        bubbleDAO.getBubblesForCreationWithIdentifier(identifier, completion: completion)
+    }
+    
+    func getBubblesForUserWithIdentifier(identifier: String, completion: BubblesClousure)
+    {
+        bubbleDAO.getBubblesForUserWithIdentifier(identifier, completion: completion)
+    }
+    
+    func getBubblesForGalleryWithIdentifier(identifier: String, completion: BubblesClousure)
+    {
+        bubbleDAO.getBubblesForGalleryWithIdentifier(identifier, completion: completion)
     }
     
     //MARK: - Delegate
