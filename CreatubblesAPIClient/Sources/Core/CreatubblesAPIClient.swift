@@ -89,6 +89,7 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     private let creationUploadService: CreationUploadService
     private let databaseDAO: DatabaseDAO
     private let bubbleDAO: BubbleDAO
+    private let commentsDAO: CommentsDAO
     public weak var delegate: CreatubblesAPIClientDelegate?
     
     public init(settings: CreatubblesAPIClientSettings)
@@ -260,6 +261,21 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     {
         bubbleDAO.getBubblesForGalleryWithIdentifier(identifier, completion: completion)
     }
+    
+    //MARK: - Comments
+    func getCommentsForCreationWithIdentifier(identifier: String, completion: CommentsClosure?)
+    {
+        commentsDAO.getCommentsForCreationWithIdentifier(identifier, completion: completion)
+    }
+    func getCommentsForUserWithIdentifier(identifier: String, completion: CommentsClosure?)
+    {
+        commentsDAO.getCommentsForUserWithIdentifier(identifier, completion: completion)
+    }
+    func getCommentsForGalleryWithIdentifier(identifier: String, completion: CommentsClosure?)
+    {
+        commentsDAO.getCommentsForGalleryWithIdentifier(identifier, completion: completion)
+    }
+    
     
     //MARK: - Delegate
     func creationUploadServiceUploadFinished(service: CreationUploadService, session: CreationUploadSession)

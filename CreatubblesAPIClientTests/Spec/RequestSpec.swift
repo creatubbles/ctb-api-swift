@@ -593,5 +593,22 @@ class RequestSpec: QuickSpec
                 expect(BubblesFetchReqest(userId: identifier).endpoint).to(equal("users/\(identifier)/bubbles"))
             }
         }
+        
+        describe("Comments request")
+        {
+            it("Should have a proper method")
+            {
+                let request = CommentsRequest(creationId: "")
+                expect(request.method).to(equal(RequestMethod.GET))
+            }
+            
+            it("Should have a proper endpoint for comments source")
+            {
+                let identifier = "ObjectId"
+                expect(CommentsRequest(creationId: identifier).endpoint).to(equal("creations/\(identifier)/comments"))
+                expect(CommentsRequest(galleryId: identifier).endpoint).to(equal("galleries/\(identifier)/comments"))
+                expect(CommentsRequest(userId: identifier).endpoint).to(equal("users/\(identifier)/comments"))
+            }
+        }
     }
 }

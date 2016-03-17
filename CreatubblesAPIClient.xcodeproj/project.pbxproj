@@ -86,6 +86,9 @@
 		21A401451C9ACD5100754E8F /* CommentsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A401441C9ACD5100754E8F /* CommentsResponseHandler.swift */; };
 		21A401471C9ACE4900754E8F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A401461C9ACE4900754E8F /* Comment.swift */; };
 		21A401491C9AD32A00754E8F /* CommentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A401481C9AD32A00754E8F /* CommentMapper.swift */; };
+		21A4014D1C9AD95400754E8F /* BubblesFetchReqest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A4014B1C9AD95400754E8F /* BubblesFetchReqest.swift */; };
+		21A4014E1C9AD95400754E8F /* BubblesFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A4014C1C9AD95400754E8F /* BubblesFetchResponseHandler.swift */; };
+		21A401501C9AD98500754E8F /* CommentsDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A4014F1C9AD98500754E8F /* CommentsDAO.swift */; };
 		21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F661C81E6A2009E95D1 /* PagingInfo.swift */; };
 		21A79F6F1C81E6C5009E95D1 /* BatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */; };
 		21A79F701C81E6C5009E95D1 /* CreationsBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */; };
@@ -192,6 +195,9 @@
 		21A401441C9ACD5100754E8F /* CommentsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsResponseHandler.swift; sourceTree = "<group>"; };
 		21A401461C9ACE4900754E8F /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		21A401481C9AD32A00754E8F /* CommentMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentMapper.swift; sourceTree = "<group>"; };
+		21A4014B1C9AD95400754E8F /* BubblesFetchReqest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubblesFetchReqest.swift; sourceTree = "<group>"; };
+		21A4014C1C9AD95400754E8F /* BubblesFetchResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubblesFetchResponseHandler.swift; sourceTree = "<group>"; };
+		21A4014F1C9AD98500754E8F /* CommentsDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsDAO.swift; sourceTree = "<group>"; };
 		21A79F661C81E6A2009E95D1 /* PagingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfo.swift; sourceTree = "<group>"; };
 		21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchFetcher.swift; sourceTree = "<group>"; };
 		21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsBatchFetcher.swift; sourceTree = "<group>"; };
@@ -332,6 +338,7 @@
 			children = (
 				188BCEB11C64E1C500EA4F11 /* RequestSender.swift */,
 				18779DEF1C69C9E3000BFB57 /* OAuth2+Alamofire.swift */,
+				21A4014A1C9AD95400754E8F /* Bubbles */,
 				18779DB01C68D424000BFB57 /* Core */,
 				21151FE61C99944D00CE92B7 /* Comments */,
 				18779E0B1C6A2572000BFB57 /* CreatorsAndManagers */,
@@ -575,6 +582,15 @@
 			path = FetchGalleries;
 			sourceTree = "<group>";
 		};
+		21A4014A1C9AD95400754E8F /* Bubbles */ = {
+			isa = PBXGroup;
+			children = (
+				21A4014B1C9AD95400754E8F /* BubblesFetchReqest.swift */,
+				21A4014C1C9AD95400754E8F /* BubblesFetchResponseHandler.swift */,
+			);
+			path = Bubbles;
+			sourceTree = "<group>";
+		};
 		21A79F6A1C81E6C5009E95D1 /* BatchFetch */ = {
 			isa = PBXGroup;
 			children = (
@@ -582,6 +598,7 @@
 				21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */,
 				21A79F6D1C81E6C5009E95D1 /* GalleriesBatchFetcher.swift */,
 				21A79F6E1C81E6C5009E95D1 /* UsersBatchFetcher.swift */,
+				21A4014F1C9AD98500754E8F /* CommentsDAO.swift */,
 			);
 			path = BatchFetch;
 			sourceTree = "<group>";
@@ -806,6 +823,7 @@
 				18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */,
 				18C744FD1C84611600A07E4C /* CreationUploadSessionEntity.swift in Sources */,
 				21A79F721C81E6C5009E95D1 /* UsersBatchFetcher.swift in Sources */,
+				21A4014D1C9AD95400754E8F /* BubblesFetchReqest.swift in Sources */,
 				18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */,
 				1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */,
 				188BCEB21C64E1C500EA4F11 /* RequestSender.swift in Sources */,
@@ -813,6 +831,7 @@
 				18779E0D1C6A2582000BFB57 /* CreatorsAndManagersRequest.swift in Sources */,
 				18E30BE81C8DA318000794B6 /* LandingURLResponseHandler.swift in Sources */,
 				18E30BE61C8DA307000794B6 /* LandingURLRequest.swift in Sources */,
+				21A401501C9AD98500754E8F /* CommentsDAO.swift in Sources */,
 				188BCEB01C64E19D00EA4F11 /* CreatubblesAPIClientSettings.swift in Sources */,
 				21A79F701C81E6C5009E95D1 /* CreationsBatchFetcher.swift in Sources */,
 				187671401C7CA00500733E9E /* CreatubblesAPIClient_ObjC.swift in Sources */,
@@ -821,6 +840,7 @@
 				21A401431C9ACD1F00754E8F /* NewCommentRequest.swift in Sources */,
 				189D9F611C84B36100857CC6 /* PagingInfoMapper.swift in Sources */,
 				216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */,
+				21A4014E1C9AD95400754E8F /* BubblesFetchResponseHandler.swift in Sources */,
 				187902001C6C80AD008F5302 /* GalleriesResponseHandler.swift in Sources */,
 				187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */,
 				188ECF5C1C71E8D900AFEE4F /* NewCreationUploadResponseHandler.swift in Sources */,
