@@ -593,5 +593,54 @@ class RequestSpec: QuickSpec
                 expect(BubblesFetchReqest(userId: identifier).endpoint).to(equal("users/\(identifier)/bubbles"))
             }
         }
+        
+        describe("NewBubble request")
+        {
+            it("Should have proper method")
+            {
+                let data = NewBubbleData(userId: "")
+                let request = NewBubbleRequest(data: data)
+                expect(request.method).to(equal(RequestMethod.POST))
+            }
+            
+            it("Should have proper endpoint for bubbling creation")
+            {
+                let id = "identifier"
+                let data = NewBubbleData(creationId: id, colorName: nil, xPosition: nil, yPosition: nil)
+                let request = NewBubbleRequest(data: data)
+                expect(request.endpoint).to(equal("galleries/\(id)/bubbles"))
+            }
+            
+            it("Should have proper endpoint for bubbling user")
+            {
+                let id = "identifier"
+                let data = NewBubbleData(userId: id)
+                let request = NewBubbleRequest(data: data)
+                expect(request.endpoint).to(equal("users/\(id)/bubbles"))
+            }
+            
+            it("Should have proper endpoint for bubbling gallery")
+            {
+                let id = "identifier"
+                let data = NewBubbleData(galleryId: id)
+                let request = NewBubbleRequest(data: data)
+                expect(request.endpoint).to(equal("galleries/\(id)/bubbles"))
+            }
+            
+            it("Should have proper parameters when bubbling creation")
+            {
+                let identifier = "identifier"
+                let colorName = "TestColorName"
+                let xPosition: Float = 1
+                let yPosition: Float = 1
+                
+                let data = NewBubbleData(creationId: identifier, colorName: colorName, xPosition: xPosition, yPosition: yPosition)
+                let request = NewBubbleRequest(data: data)
+                expect(request.parameters["creation_id"] as? String).to(equal(identifier))
+                expect(request.parameters["color"] as? String).to(equal(colorName))
+                expect(request.parameters["x_pos"] as? Float).to(equal(xPosition))
+                expect(request.parameters["y_pos"] as? Float).to(equal(yPosition))
+            }
+        }
     }
 }
