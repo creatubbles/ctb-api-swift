@@ -227,6 +227,34 @@ extension CreatubblesAPIClient
             completion?(creation, CreatubblesAPIClient.errorTypeToNSError(error))
         }
     }
+    
+    //MARK: - Bubbles
+    func _getBubblesForCreationWithIdentifier(identifier: String, completion: ((Array<Bubble>?,NSError?) -> (Void))?)
+    {
+        getBubblesForCreationWithIdentifier(identifier)
+        {
+            (bubbles, error) -> (Void) in
+            completion?(bubbles, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    func _getBubblesForUserWithIdentifier(identifier: String, completion: ((Array<Bubble>?,NSError?) -> (Void))?)
+    {
+        getBubblesForUserWithIdentifier(identifier)
+        {
+            (bubbles, error) -> (Void) in
+            completion?(bubbles, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    func _getBubblesForGalleryWithIdentifier(identifier: String, completion: ((Array<Bubble>?,NSError?) -> (Void))?)
+    {
+        getBubblesForGalleryWithIdentifier(identifier)
+        {
+            (bubbles, error) -> (Void) in
+            completion?(bubbles, CreatubblesAPIClient.errorTypeToNSError(error))
+        }
+    }
 
     //MARK: - Utils
     static func errorTypeToNSError(error: ErrorType?) -> NSError?
