@@ -37,7 +37,7 @@ class TestRequestSender: RequestSender
     }
     
     //MARK: - Interface
-    override func login(username: String, password: String, completion: ErrorClousure?)
+    override func login(username: String, password: String, completion: ErrorClosure?)
     {
         let authorized = username == TestConfiguration.username &&
                          password == TestConfiguration.password

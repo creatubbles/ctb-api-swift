@@ -27,8 +27,8 @@ import ObjectMapper
 
 class GalleriesResponseHandler: ResponseHandler
 {
-    private let completion: GalleriesClousure?
-    init(completion: GalleriesClousure?)
+    private let completion: GalleriesClosure?
+    init(completion: GalleriesClosure?)
     {
         self.completion = completion
     }

@@ -33,61 +33,61 @@ class UserDAO
         self.requestSender = requestSender
     }
     
-    func getUser(userId: String, completion: UserClousure?)
+    func getUser(userId: String, completion: UserClosure?)
     {
         let request = ProfileRequest(userId: userId)
         let handler = ProfileResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCurrentUser(completion: UserClousure?)
+    func getCurrentUser(completion: UserClosure?)
     {
         let request = ProfileRequest()
         let handler = ProfileResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCreators(userId: String?, pagingData: PagingData?,completion: UsersClousure?)
+    func getCreators(userId: String?, pagingData: PagingData?,completion: UsersClosure?)
     {
         let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Creators)
         let handler = CreatorsAndManagersResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getLandingURL(creationId: String, completion: LandingURLClousure?)
+    func getLandingURL(creationId: String, completion: LandingURLClosure?)
     {
         let request = LandingURLRequest(creationId: creationId)
         let handler = LandingURLResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getLandingURL(type: LandingURLType?, completion: LandingURLClousure?)
+    func getLandingURL(type: LandingURLType?, completion: LandingURLClosure?)
     {
         let request = LandingURLRequest(type: type)
         let handler = LandingURLResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getManagers(userId: String?, pagingData: PagingData?,completion: UsersClousure?)
+    func getManagers(userId: String?, pagingData: PagingData?,completion: UsersClosure?)
     {
         let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Managers)
         let handler = CreatorsAndManagersResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCreators(userId: String?, completion: UsersBatchClousure?)
+    func getCreators(userId: String?, completion: UsersBatchClosure?)
     {
         let batchFetcher = UsersBatchFetcher(requestSender: requestSender)
         batchFetcher.fetch(userId, scope: .Creators, completion: completion)
     }
     
-    func getManagers(userId: String?, completion: UsersBatchClousure?)
+    func getManagers(userId: String?, completion: UsersBatchClosure?)
     {
         let batchFetcher = UsersBatchFetcher(requestSender: requestSender)
         batchFetcher.fetch(userId, scope: .Managers, completion: completion)
     }
     
-    func newCreator(data: NewCreatorData, completion: UserClousure?)
+    func newCreator(data: NewCreatorData, completion: UserClosure?)
     {
         let request = NewCreatorRequest(name: data.name, displayName: data.displayName, birthYear: data.birthYear, birthMonth: data.birthMonth, countryCode: data.countryCode, gender: data.gender)
         let handler = NewCreatorResponseHandler(completion: completion)

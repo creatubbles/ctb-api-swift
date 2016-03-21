@@ -94,7 +94,7 @@ class RequestSender: NSObject
     //MARK: - Authentication
     
     var authenticationToken: String? { return oauth2PrivateClient.accessToken }
-    func login(username: String, password: String, completion: ErrorClousure?)
+    func login(username: String, password: String, completion: ErrorClosure?)
     {
         oauth2PrivateClient.username = username
         oauth2PrivateClient.password = password

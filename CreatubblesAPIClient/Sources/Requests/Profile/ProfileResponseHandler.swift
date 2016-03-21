@@ -27,9 +27,9 @@ import ObjectMapper
 
 class ProfileResponseHandler: ResponseHandler
 {
-    private let completion: UserClousure?
+    private let completion: UserClosure?
     
-    init(completion: UserClousure?)
+    init(completion: UserClosure?)
     {
         self.completion = completion
     }

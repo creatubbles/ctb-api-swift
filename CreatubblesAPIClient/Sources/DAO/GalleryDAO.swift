@@ -33,7 +33,7 @@ class GalleryDAO
         self.requestSender = requestSender
     }
     
-    func getGallery(galleryId: String, completion: GalleryClousure?)
+    func getGallery(galleryId: String, completion: GalleryClosure?)
     {
         let request = GalleriesRequest(galleryId: galleryId)
         let handler = GalleriesResponseHandler
@@ -44,21 +44,21 @@ class GalleryDAO
         requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClousure?)
+    func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?)
     {
         let request = GalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, sort: sort, userId: userId)
         let handler = GalleriesResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }
     
-    func newGallery(galleryData: NewGalleryData, completion: GalleryClousure?)
+    func newGallery(galleryData: NewGalleryData, completion: GalleryClosure?)
     {
         let request = NewGalleryRequest(name: galleryData.name, galleryDescription: galleryData.galleryDescription, openForAll: galleryData.openForAll, ownerId: galleryData.ownerId)
         let handler = NewGalleryResponseHandler(completion: completion)
         requestSender.send(request, withResponseHandler: handler)
     }
 
-    func getGalleries(userId: String?, sort: SortOrder?, completion: GalleriesBatchClousure?)
+    func getGalleries(userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?)
     {
         let fetcher = GalleriesBatchFetcher(requestSender: requestSender)
         fetcher.fetch(userId, sort: sort, completion: completion)

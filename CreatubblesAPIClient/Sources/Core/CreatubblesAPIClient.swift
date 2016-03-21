@@ -25,21 +25,21 @@
 import UIKit
 
 //MARK: - Typealiases
-public typealias ErrorClousure = (CreatubblesAPIClientError?) -> (Void)
+public typealias ErrorClosure = (CreatubblesAPIClientError?) -> (Void)
 
-public typealias UserClousure = (User?, CreatubblesAPIClientError?) -> (Void)
-public typealias UsersClousure = (Array<User>?,PagingInfo? ,CreatubblesAPIClientError?) -> (Void)
-public typealias UsersBatchClousure = (Array<User>? ,CreatubblesAPIClientError?) -> (Void)
+public typealias UserClosure = (User?, CreatubblesAPIClientError?) -> (Void)
+public typealias UsersClosure = (Array<User>?,PagingInfo? ,CreatubblesAPIClientError?) -> (Void)
+public typealias UsersBatchClosure = (Array<User>? ,CreatubblesAPIClientError?) -> (Void)
 
-public typealias CreationClousure = (Creation?, CreatubblesAPIClientError?) -> (Void)
-public typealias CreationsClousure = (Array<Creation>?, PagingInfo?, CreatubblesAPIClientError?) -> (Void)
-public typealias CreationsBatchClousure = (Array<Creation>?, CreatubblesAPIClientError?) -> (Void)
+public typealias CreationClosure = (Creation?, CreatubblesAPIClientError?) -> (Void)
+public typealias CreationsClosure = (Array<Creation>?, PagingInfo?, CreatubblesAPIClientError?) -> (Void)
+public typealias CreationsBatchClosure = (Array<Creation>?, CreatubblesAPIClientError?) -> (Void)
 
-public typealias GalleryClousure = (Gallery?, CreatubblesAPIClientError?) -> (Void)
-public typealias GalleriesClousure = (Array<Gallery>?, PagingInfo?, CreatubblesAPIClientError?) -> (Void)
-public typealias GalleriesBatchClousure = (Array<Gallery>?, CreatubblesAPIClientError?) -> (Void)
+public typealias GalleryClosure = (Gallery?, CreatubblesAPIClientError?) -> (Void)
+public typealias GalleriesClosure = (Array<Gallery>?, PagingInfo?, CreatubblesAPIClientError?) -> (Void)
+public typealias GalleriesBatchClosure = (Array<Gallery>?, CreatubblesAPIClientError?) -> (Void)
 
-public typealias LandingURLClousure = (Array<LandingURL>?, CreatubblesAPIClientError?) -> (Void)
+public typealias LandingURLClosure = (Array<LandingURL>?, CreatubblesAPIClientError?) -> (Void)
 
 //MARK: - Enums
 @objc public enum Gender: Int
@@ -107,7 +107,7 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         return requestSender.authenticationToken;
     }
     
-    public func login(username: String, password: String, completion:ErrorClousure?)
+    public func login(username: String, password: String, completion:ErrorClosure?)
     {
         requestSender.login(username, password: password, completion: completion)
     }
@@ -122,85 +122,85 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         return requestSender.isLoggedIn()
     }
     
-    public func getLandingURL(type: LandingURLType?, completion: LandingURLClousure?)
+    public func getLandingURL(type: LandingURLType?, completion: LandingURLClosure?)
     {
         userDAO.getLandingURL(type, completion: completion)
     }
 
-    public func getLandingURL(creationId: String, completion: LandingURLClousure?)
+    public func getLandingURL(creationId: String, completion: LandingURLClosure?)
     {
         userDAO.getLandingURL(creationId, completion: completion)
     }
     
     //MARK: - Creators managment
-    public func getUser(userId: String, completion: UserClousure?)
+    public func getUser(userId: String, completion: UserClosure?)
     {
         userDAO.getUser(userId, completion: completion)
     }
     
-    public func getCurrentUser(completion: UserClousure?)
+    public func getCurrentUser(completion: UserClosure?)
     {
         userDAO.getCurrentUser(completion)
     }
     
-    public func getCreators(userId: String?, pagingData: PagingData?, completion: UsersClousure?)
+    public func getCreators(userId: String?, pagingData: PagingData?, completion: UsersClosure?)
     {
         userDAO.getCreators(userId, pagingData: pagingData, completion: completion)
     }
     
-    public func getManagers(userId: String?, pagingData: PagingData?, completion: UsersClousure?)
+    public func getManagers(userId: String?, pagingData: PagingData?, completion: UsersClosure?)
     {
         userDAO.getManagers(userId, pagingData: pagingData, completion: completion)
     }
 
-    public func getCreators(userId: String?, completion: UsersBatchClousure?)
+    public func getCreators(userId: String?, completion: UsersBatchClosure?)
     {
         userDAO.getCreators(userId, completion: completion)
     }
     
-    public func getManagers(userId: String?, completion: UsersBatchClousure?)
+    public func getManagers(userId: String?, completion: UsersBatchClosure?)
     {
         userDAO.getManagers(userId, completion: completion)
     }
     
-    public func newCreator(creatorData: NewCreatorData,completion: UserClousure?)
+    public func newCreator(creatorData: NewCreatorData,completion: UserClosure?)
     {
         userDAO.newCreator(creatorData, completion: completion)
     }
     
     //MARK: - Gallery managment
-    public func getGallery(galleryId: String, completion: GalleryClousure?)
+    public func getGallery(galleryId: String, completion: GalleryClosure?)
     {
         galleryDAO.getGallery(galleryId, completion: completion)
     }
     
-    public func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClousure?)
+    public func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?)
     {
         galleryDAO.getGalleries(userId, pagingData: pagingData, sort: sort, completion: completion)
     }
     
-    public func getGalleries(userId: String?, sort: SortOrder?, completion: GalleriesBatchClousure?)
+    public func getGalleries(userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?)
     {
         galleryDAO.getGalleries(userId, sort: sort, completion: completion)
     }
     
-    public func newGallery(galleryData: NewGalleryData, completion: GalleryClousure?)
+    public func newGallery(galleryData: NewGalleryData, completion: GalleryClosure?)
     {
         galleryDAO.newGallery(galleryData, completion: completion)
     }
     
     //MARK: - Creation managment
-    public func getCreation(creationId: String, completion: CreationClousure?)
+    public func getCreation(creationId: String, completion: CreationClosure?)
     {
         creationsDAO.getCreation(creationId, completion: completion)
     }
     
-    public func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, completion: CreationsClousure?)
+    public func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, completion: CreationsClosure?)
     {
         creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, completion: completion)
     }
     
-    public func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, completion: CreationsBatchClousure?)
+    public func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, completion: CreationsBatchClosure?)
     {
         creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, completion: completion)
     }
@@ -216,13 +216,13 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
         return databaseDAO.getAllFinishedUploadSessionsPublicData(requestSender)
     }
     
-    public func startAllNotFinishedUploadSessions(completion: CreationClousure?)
+    public func startAllNotFinishedUploadSessions(completion: CreationClosure?)
     {
         creationUploadService.startAllNotFinishedUploadSessions(completion)
     }
     
     //MARK: - Creation flow
-    public func newCreation(creationData: NewCreationData, completion: CreationClousure?)
+    public func newCreation(creationData: NewCreationData, completion: CreationClosure?)
     {
         creationUploadService.uploadCreation(creationData, completion: completion)
     }

@@ -45,7 +45,7 @@ class CreationUploadService: CreationUploadSessionDelegate
         self.databaseDAO = DatabaseDAO()
     }
         
-    func startAllNotFinishedUploadSessions(completion: CreationClousure?)
+    func startAllNotFinishedUploadSessions(completion: CreationClosure?)
     {
         let sessions = databaseDAO.fetchAllActiveUploadSessions(requestSender)
         for session in sessions
@@ -56,7 +56,7 @@ class CreationUploadService: CreationUploadSessionDelegate
 
     }
     
-    func uploadCreation(data: NewCreationData, completion: CreationClousure?)
+    func uploadCreation(data: NewCreationData, completion: CreationClosure?)
     {
         let session = CreationUploadSession(data: data, requestSender: requestSender)
         databaseDAO.saveCreationUploadSessionToDatabase(session)
