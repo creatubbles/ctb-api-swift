@@ -1,6 +1,6 @@
 //
-//  CreatubblesAPIClient.swift
-//  CreatubblesAPIClient
+//  APIClient.swift
+//  APIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
 //
@@ -25,21 +25,21 @@
 import UIKit
 
 //MARK: - Typealiases
-public typealias ErrorClousure = (CreatubblesAPIClientError?) -> (Void)
+public typealias ErrorClousure = (APIClientError?) -> (Void)
 
-public typealias UserClousure = (User?, CreatubblesAPIClientError?) -> (Void)
-public typealias UsersClousure = (Array<User>?,PagingInfo? ,CreatubblesAPIClientError?) -> (Void)
-public typealias UsersBatchClousure = (Array<User>? ,CreatubblesAPIClientError?) -> (Void)
+public typealias UserClousure = (User?, APIClientError?) -> (Void)
+public typealias UsersClousure = (Array<User>?,PagingInfo? ,APIClientError?) -> (Void)
+public typealias UsersBatchClousure = (Array<User>? ,APIClientError?) -> (Void)
 
-public typealias CreationClousure = (Creation?, CreatubblesAPIClientError?) -> (Void)
-public typealias CreationsClousure = (Array<Creation>?, PagingInfo?, CreatubblesAPIClientError?) -> (Void)
-public typealias CreationsBatchClousure = (Array<Creation>?, CreatubblesAPIClientError?) -> (Void)
+public typealias CreationClousure = (Creation?, APIClientError?) -> (Void)
+public typealias CreationsClousure = (Array<Creation>?, PagingInfo?, APIClientError?) -> (Void)
+public typealias CreationsBatchClousure = (Array<Creation>?, APIClientError?) -> (Void)
 
-public typealias GalleryClousure = (Gallery?, CreatubblesAPIClientError?) -> (Void)
-public typealias GalleriesClousure = (Array<Gallery>?, PagingInfo?, CreatubblesAPIClientError?) -> (Void)
-public typealias GalleriesBatchClousure = (Array<Gallery>?, CreatubblesAPIClientError?) -> (Void)
+public typealias GalleryClousure = (Gallery?, APIClientError?) -> (Void)
+public typealias GalleriesClousure = (Array<Gallery>?, PagingInfo?, APIClientError?) -> (Void)
+public typealias GalleriesBatchClousure = (Array<Gallery>?, APIClientError?) -> (Void)
 
-public typealias LandingURLClousure = (Array<LandingURL>?, CreatubblesAPIClientError?) -> (Void)
+public typealias LandingURLClousure = (Array<LandingURL>?, APIClientError?) -> (Void)
 
 //MARK: - Enums
 @objc public enum Gender: Int
@@ -69,16 +69,16 @@ public typealias LandingURLClousure = (Array<LandingURL>?, CreatubblesAPIClientE
 @objc
 public protocol CreatubblesAPIClientDelegate
 {
-    func creatubblesAPIClientImageUploadFinished(apiClient: CreatubblesAPIClient, uploadSessionData: CreationUploadSessionPublicData)
-    func creatubblesAPIClientImageUploadFailed(apiClient: CreatubblesAPIClient,  uploadSessionData: CreationUploadSessionPublicData, error: NSError)
-    func creatubblesAPIClientImageUploadProcessChanged(apiClient: CreatubblesAPIClient, uploadSessionData: CreationUploadSessionPublicData, bytesUploaded: Int, bytesExpectedToUpload: Int)
+    func creatubblesAPIClientImageUploadFinished(apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData)
+    func creatubblesAPIClientImageUploadFailed(apiClient: APIClient,  uploadSessionData: CreationUploadSessionPublicData, error: NSError)
+    func creatubblesAPIClientImageUploadProcessChanged(apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData, bytesUploaded: Int, bytesExpectedToUpload: Int)
 }
 
 @objc
-public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
+public class APIClient: NSObject, CreationUploadServiceDelegate
 {
     //MARK: - Internal
-    private let settings: CreatubblesAPIClientSettings
+    private let settings: APIClientSettings
     private let requestSender: RequestSender
     private let creationsDAO: CreationsDAO
     private let userDAO: UserDAO
@@ -87,7 +87,7 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     private let databaseDAO: DatabaseDAO
     public weak var delegate: CreatubblesAPIClientDelegate?
     
-    public init(settings: CreatubblesAPIClientSettings)
+    public init(settings: APIClientSettings)
     {
         self.settings = settings
         self.requestSender = RequestSender(settings: settings)
@@ -256,7 +256,7 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     func creationUploadServiceUploadFailed(service: CreationUploadService, session: CreationUploadSession, error: ErrorType)
     {
         let data = CreationUploadSessionPublicData(creationUploadSession: session)
-        delegate?.creatubblesAPIClientImageUploadFailed(self, uploadSessionData: data, error: CreatubblesAPIClient.errorTypeToNSError(error)!)
+        delegate?.creatubblesAPIClientImageUploadFailed(self, uploadSessionData: data, error: APIClient.errorTypeToNSError(error)!)
     }
 
 }

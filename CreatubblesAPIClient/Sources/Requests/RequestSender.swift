@@ -30,7 +30,7 @@ import p2_OAuth2
 class RequestSender: NSObject
 {
     private let uploadManager: Alamofire.Manager
-    private let settings: CreatubblesAPIClientSettings
+    private let settings: APIClientSettings
     private let oauth2PrivateClient: OAuth2PasswordGrant
     private let oauth2PublicClient: OAuth2ImplicitGrant
     private var oauth2: OAuth2
@@ -38,7 +38,7 @@ class RequestSender: NSObject
         return oauth2PrivateClient.hasUnexpiredAccessToken() ? oauth2PrivateClient : oauth2PublicClient
     }
     
-    init(settings: CreatubblesAPIClientSettings)
+    init(settings: APIClientSettings)
     {
         self.settings = settings
         self.oauth2PrivateClient = RequestSender.prepareOauthPrivateClient(settings)
@@ -47,7 +47,7 @@ class RequestSender: NSObject
         super.init()
     }
     
-    private static func prepareUploadManager(settings: CreatubblesAPIClientSettings) -> Alamofire.Manager
+    private static func prepareUploadManager(settings: APIClientSettings) -> Alamofire.Manager
     {
         if let identifier = settings.backgroundSessionConfigurationIdentifier
         {
@@ -61,7 +61,7 @@ class RequestSender: NSObject
         }
     }
     
-    private static func prepareOauthPrivateClient(settings: CreatubblesAPIClientSettings) -> OAuth2PasswordGrant
+    private static func prepareOauthPrivateClient(settings: APIClientSettings) -> OAuth2PasswordGrant
     {
         let oauthSettings =
         [
@@ -76,7 +76,7 @@ class RequestSender: NSObject
         return client
     }
     
-    private static func prepareOauthPublicClient(settings: CreatubblesAPIClientSettings) -> OAuth2ImplicitGrant
+    private static func prepareOauthPublicClient(settings: APIClientSettings) -> OAuth2ImplicitGrant
     {
         let oauthSettings =
         [
@@ -118,7 +118,7 @@ class RequestSender: NSObject
             Logger.log.error("Error while login:\(error)")
             
             let err = error as! OAuth2Error
-            completion?(CreatubblesAPIClientError.Generic(err.description))
+            completion?(APIClientError.Generic(err.description))
         }
         oauth2PrivateClient.authorize()
     }

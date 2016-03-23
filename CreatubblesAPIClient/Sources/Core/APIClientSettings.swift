@@ -24,7 +24,7 @@
 
 import UIKit
 
-public class CreatubblesAPIClientSettings: NSObject
+public class APIClientSettings: NSObject
 {
     /*
      Personal application identifier. Please contact support@creatubbles.com to obtain it.

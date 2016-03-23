@@ -41,9 +41,9 @@ class TestConfigurationTemplate: NSObject
     static let testUserIdentifier: String? = nil
     static let testGalleryIdentifier: String? = nil
     
-    static var settings: CreatubblesAPIClientSettings
+    static var settings: APIClientSettings
     {
-        return CreatubblesAPIClientSettings(
+        return APIClientSettings(
                 appId: appId,
                 appSecret: appSecret,
                 tokenUri: tokenUri,

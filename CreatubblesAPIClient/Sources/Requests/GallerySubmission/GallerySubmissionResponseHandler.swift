@@ -34,6 +34,6 @@ class GallerySubmissionResponseHandler: ResponseHandler
     
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
-        completion?( CreatubblesAPIClientError.Generic(error.debugDescription) )
+        completion?( APIClientError.Generic(error.debugDescription) )
     }    
 }
