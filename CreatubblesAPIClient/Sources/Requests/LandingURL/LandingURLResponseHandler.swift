@@ -27,8 +27,8 @@ import ObjectMapper
 
 class LandingURLResponseHandler: ResponseHandler
 {
-    private let completion: LandingURLClousure?
-    init(completion: LandingURLClousure?)
+    private let completion: LandingURLClosure?
+    init(completion: LandingURLClosure?)
     {
         self.completion = completion
     }

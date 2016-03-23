@@ -27,9 +27,9 @@ import ObjectMapper
 
 class FetchCreationsResponseHandler: ResponseHandler
 {
-    private let completion: CreationsClousure?
+    private let completion: CreationsClosure?
     
-    init(completion: CreationsClousure?)
+    init(completion: CreationsClosure?)
     {
         self.completion = completion
     }

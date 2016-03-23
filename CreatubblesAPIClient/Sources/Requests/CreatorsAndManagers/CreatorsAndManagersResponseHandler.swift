@@ -27,8 +27,8 @@ import ObjectMapper
 
 class CreatorsAndManagersResponseHandler: ResponseHandler
 {
-    private let completion: UsersClousure?
-    init(completion: UsersClousure?)
+    private let completion: UsersClosure?
+    init(completion: UsersClosure?)
     {
         self.completion = completion
     }

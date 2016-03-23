@@ -1,6 +1,6 @@
 //
-//  APIClient.swift
-//  APIClient
+//  CreatubblesAPIClient.swift
+//  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
 //
@@ -25,21 +25,21 @@
 import UIKit
 
 //MARK: - Typealiases
-public typealias ErrorClousure = (APIClientError?) -> (Void)
+public typealias ErrorClosure = (APIClientError?) -> (Void)
 
-public typealias UserClousure = (User?, APIClientError?) -> (Void)
-public typealias UsersClousure = (Array<User>?,PagingInfo? ,APIClientError?) -> (Void)
-public typealias UsersBatchClousure = (Array<User>? ,APIClientError?) -> (Void)
+public typealias UserClosure = (User?, APIClientError?) -> (Void)
+public typealias UsersClosure = (Array<User>?,PagingInfo? ,APIClientError?) -> (Void)
+public typealias UsersBatchClosure = (Array<User>? ,APIClientError?) -> (Void)
 
-public typealias CreationClousure = (Creation?, APIClientError?) -> (Void)
-public typealias CreationsClousure = (Array<Creation>?, PagingInfo?, APIClientError?) -> (Void)
-public typealias CreationsBatchClousure = (Array<Creation>?, APIClientError?) -> (Void)
+public typealias CreationClosure = (Creation?, APIClientError?) -> (Void)
+public typealias CreationsClosure = (Array<Creation>?, PagingInfo?, APIClientError?) -> (Void)
+public typealias CreationsBatchClosure = (Array<Creation>?, APIClientError?) -> (Void)
 
-public typealias GalleryClousure = (Gallery?, APIClientError?) -> (Void)
-public typealias GalleriesClousure = (Array<Gallery>?, PagingInfo?, APIClientError?) -> (Void)
-public typealias GalleriesBatchClousure = (Array<Gallery>?, APIClientError?) -> (Void)
+public typealias GalleryClosure = (Gallery?, APIClientError?) -> (Void)
+public typealias GalleriesClosure = (Array<Gallery>?, PagingInfo?, APIClientError?) -> (Void)
+public typealias GalleriesBatchClosure = (Array<Gallery>?, APIClientError?) -> (Void)
 
-public typealias LandingURLClousure = (Array<LandingURL>?, APIClientError?) -> (Void)
+public typealias LandingURLClosure = (Array<LandingURL>?, APIClientError?) -> (Void)
 
 //MARK: - Enums
 @objc public enum Gender: Int
@@ -67,7 +67,7 @@ public typealias LandingURLClousure = (Array<LandingURL>?, APIClientError?) -> (
 }
 
 @objc
-public protocol CreatubblesAPIClientDelegate
+public protocol APIClientSettingsDelegate
 {
     func creatubblesAPIClientImageUploadFinished(apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData)
     func creatubblesAPIClientImageUploadFailed(apiClient: APIClient,  uploadSessionData: CreationUploadSessionPublicData, error: NSError)
@@ -85,7 +85,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     private let galleryDAO: GalleryDAO
     private let creationUploadService: CreationUploadService
     private let databaseDAO: DatabaseDAO
-    public weak var delegate: CreatubblesAPIClientDelegate?
+    public weak var delegate: APIClientSettingsDelegate?
     
     public init(settings: APIClientSettings)
     {
@@ -107,7 +107,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return requestSender.authenticationToken;
     }
     
-    public func login(username: String, password: String, completion:ErrorClousure?)
+    public func login(username: String, password: String, completion:ErrorClosure?)
     {
         requestSender.login(username, password: password, completion: completion)
     }
@@ -122,85 +122,85 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return requestSender.isLoggedIn()
     }
     
-    public func getLandingURL(type: LandingURLType?, completion: LandingURLClousure?)
+    public func getLandingURL(type: LandingURLType?, completion: LandingURLClosure?)
     {
         userDAO.getLandingURL(type, completion: completion)
     }
 
-    public func getLandingURL(creationId: String, completion: LandingURLClousure?)
+    public func getLandingURL(creationId: String, completion: LandingURLClosure?)
     {
         userDAO.getLandingURL(creationId, completion: completion)
     }
     
     //MARK: - Creators managment
-    public func getUser(userId: String, completion: UserClousure?)
+    public func getUser(userId: String, completion: UserClosure?)
     {
         userDAO.getUser(userId, completion: completion)
     }
     
-    public func getCurrentUser(completion: UserClousure?)
+    public func getCurrentUser(completion: UserClosure?)
     {
         userDAO.getCurrentUser(completion)
     }
     
-    public func getCreators(userId: String?, pagingData: PagingData?, completion: UsersClousure?)
+    public func getCreators(userId: String?, pagingData: PagingData?, completion: UsersClosure?)
     {
         userDAO.getCreators(userId, pagingData: pagingData, completion: completion)
     }
     
-    public func getManagers(userId: String?, pagingData: PagingData?, completion: UsersClousure?)
+    public func getManagers(userId: String?, pagingData: PagingData?, completion: UsersClosure?)
     {
         userDAO.getManagers(userId, pagingData: pagingData, completion: completion)
     }
 
-    public func getCreators(userId: String?, completion: UsersBatchClousure?)
+    public func getCreators(userId: String?, completion: UsersBatchClosure?)
     {
         userDAO.getCreators(userId, completion: completion)
     }
     
-    public func getManagers(userId: String?, completion: UsersBatchClousure?)
+    public func getManagers(userId: String?, completion: UsersBatchClosure?)
     {
         userDAO.getManagers(userId, completion: completion)
     }
     
-    public func newCreator(creatorData: NewCreatorData,completion: UserClousure?)
+    public func newCreator(creatorData: NewCreatorData,completion: UserClosure?)
     {
         userDAO.newCreator(creatorData, completion: completion)
     }
     
     //MARK: - Gallery managment
-    public func getGallery(galleryId: String, completion: GalleryClousure?)
+    public func getGallery(galleryId: String, completion: GalleryClosure?)
     {
         galleryDAO.getGallery(galleryId, completion: completion)
     }
     
-    public func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClousure?)
+    public func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?)
     {
         galleryDAO.getGalleries(userId, pagingData: pagingData, sort: sort, completion: completion)
     }
     
-    public func getGalleries(userId: String?, sort: SortOrder?, completion: GalleriesBatchClousure?)
+    public func getGalleries(userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?)
     {
         galleryDAO.getGalleries(userId, sort: sort, completion: completion)
     }
     
-    public func newGallery(galleryData: NewGalleryData, completion: GalleryClousure?)
+    public func newGallery(galleryData: NewGalleryData, completion: GalleryClosure?)
     {
         galleryDAO.newGallery(galleryData, completion: completion)
     }
     
     //MARK: - Creation managment
-    public func getCreation(creationId: String, completion: CreationClousure?)
+    public func getCreation(creationId: String, completion: CreationClosure?)
     {
         creationsDAO.getCreation(creationId, completion: completion)
     }
     
-    public func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, completion: CreationsClousure?)
+    public func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, completion: CreationsClosure?)
     {
         creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, completion: completion)
     }
     
-    public func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, completion: CreationsBatchClousure?)
+    public func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, completion: CreationsBatchClosure?)
     {
         creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, completion: completion)
     }
@@ -216,13 +216,13 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return databaseDAO.getAllFinishedUploadSessionsPublicData(requestSender)
     }
     
-    public func startAllNotFinishedUploadSessions(completion: CreationClousure?)
+    public func startAllNotFinishedUploadSessions(completion: CreationClosure?)
     {
         creationUploadService.startAllNotFinishedUploadSessions(completion)
     }
     
     //MARK: - Creation flow
-    public func newCreation(creationData: NewCreationData, completion: CreationClousure?)
+    public func newCreation(creationData: NewCreationData, completion: CreationClosure?)
     {
         creationUploadService.uploadCreation(creationData, completion: completion)
     }

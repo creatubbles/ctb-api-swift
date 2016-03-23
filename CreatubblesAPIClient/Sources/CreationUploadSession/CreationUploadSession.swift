@@ -95,7 +95,7 @@ class CreationUploadSession: ResponseHandler
         }
     }
     
-    func start(completion: CreationClousure?)
+    func start(completion: CreationClosure?)
     {
         if isAlreadyFinished
         {

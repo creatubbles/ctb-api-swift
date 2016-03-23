@@ -26,8 +26,8 @@ import UIKit
 
 class GallerySubmissionResponseHandler: ResponseHandler
 {
-    private let completion: ErrorClousure?
-    init(completion: ErrorClousure?)
+    private let completion: ErrorClosure?
+    init(completion: ErrorClosure?)
     {
         self.completion = completion
     }
