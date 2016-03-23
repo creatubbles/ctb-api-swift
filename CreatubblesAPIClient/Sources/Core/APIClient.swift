@@ -67,7 +67,7 @@ public typealias LandingURLClosure = (Array<LandingURL>?, APIClientError?) -> (V
 }
 
 @objc
-public protocol APIClientSettingsDelegate
+public protocol APIClientDelegate
 {
     func creatubblesAPIClientImageUploadFinished(apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData)
     func creatubblesAPIClientImageUploadFailed(apiClient: APIClient,  uploadSessionData: CreationUploadSessionPublicData, error: NSError)
@@ -85,7 +85,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     private let galleryDAO: GalleryDAO
     private let creationUploadService: CreationUploadService
     private let databaseDAO: DatabaseDAO
-    public weak var delegate: APIClientSettingsDelegate?
+    public weak var delegate: APIClientDelegate?
     
     public init(settings: APIClientSettings)
     {
