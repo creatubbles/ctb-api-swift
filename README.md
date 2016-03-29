@@ -36,8 +36,8 @@ pod 'CreatubblesAPIClient'
 ```Swift
 import CreatubblesAPIClient
 
-let settings = CreatubblesAPIClientSettings(appId: "YOUR_APP_ID", appSecret: "YOUR_APP_SECRET")
-let client = CreatubblesAPIClient(settings: settings)
+let settings = APIClientSettings(appId: "YOUR_APP_ID", appSecret: "YOUR_APP_SECRET")
+let client = APIClient(settings: settings)
 
 client.login("username", password: "password")
 {
@@ -54,8 +54,8 @@ Use methods with _ prefix to communicate using Objective-C
 ```ObjectiveC
 import CreatubblesAPIClient;
 
-CreatubblesAPIClientSettings *settings = [[CreatubblesAPIClientSettings alloc] initWithAppId:@"YOUR_APP_ID" appSecret:@"YOUR_APP_SECRET"];
-CreatubblesAPIClient *client = [[CreatubblesAPIClient alloc] initWithSettings:settings];
+APIClientSettings *settings = [[APIClientSettings alloc] initWithAppId:@"YOUR_APP_ID" appSecret:@"YOUR_APP_SECRET"];
+APIClient *client = [[APIClient alloc] initWithSettings:settings];
 [client _login:@"username" password:@"password" completion:
 ^(NSError* error)
 {
