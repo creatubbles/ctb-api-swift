@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 
 import UIKit
-extension CreatubblesAPIClient
+extension APIClient
 {
     //MARK: - Session
     public func _login(username: String, password: String, completion: ((NSError?) -> (Void))?)
@@ -31,7 +31,7 @@ extension CreatubblesAPIClient
         login(username, password: password)
         {
             (error) -> (Void) in
-            completion?(CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -55,7 +55,7 @@ extension CreatubblesAPIClient
         getLandingURL(type)
         {
             (landingUrls, error) -> (Void) in
-            completion?(landingUrls, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(landingUrls, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -64,7 +64,7 @@ extension CreatubblesAPIClient
         getLandingURL(creationId)
         {
             (landingUrls, error) -> (Void) in
-            completion?(landingUrls, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(landingUrls, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -76,7 +76,7 @@ extension CreatubblesAPIClient
         getUser(userId)
         {
             (user, error) -> (Void) in
-            completion?(user, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(user, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -85,7 +85,7 @@ extension CreatubblesAPIClient
         getCurrentUser()
         {
             (user, error) -> (Void) in
-            completion?(user, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(user, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -94,7 +94,7 @@ extension CreatubblesAPIClient
         getCreators(userId, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
-            completion?(users, pInfo,CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(users, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -103,7 +103,7 @@ extension CreatubblesAPIClient
         getManagers(userId, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
-            completion?(users, pInfo,CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(users, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -112,7 +112,7 @@ extension CreatubblesAPIClient
         newCreator(creatorData)
         {
             (user, error) -> (Void) in
-            completion?(user, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(user, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -122,7 +122,7 @@ extension CreatubblesAPIClient
         getGallery(galleryId)
         {
             (gallery, error) -> (Void) in
-            completion?(gallery, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(gallery, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -131,7 +131,7 @@ extension CreatubblesAPIClient
         newGallery(galleryData)
         {
             (gallery, error) -> (Void) in
-            completion?(gallery, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(gallery, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -140,7 +140,7 @@ extension CreatubblesAPIClient
         getGalleries(userId, pagingData: pagingData, sort: sort)
         {
             (galleries, pInfo, error) -> (Void) in
-            completion?(galleries, pInfo, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(galleries, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -150,7 +150,7 @@ extension CreatubblesAPIClient
         getCreation(creationId)
         {
             (creation, error) -> (Void) in
-            completion?(creation, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(creation, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -159,7 +159,7 @@ extension CreatubblesAPIClient
         getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder)
         {
             (creations, pInfo, error) -> (Void) in
-            completion?(creations, pInfo, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(creations, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -168,7 +168,7 @@ extension CreatubblesAPIClient
         newCreation(creationData)
         {
             (creation, error) -> (Void) in
-            completion?(creation, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(creation, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -178,7 +178,7 @@ extension CreatubblesAPIClient
         getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder)
         {
             (creations, error) -> (Void) in
-            completion?(creations, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(creations, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -187,7 +187,7 @@ extension CreatubblesAPIClient
         getGalleries(userId, sort: sort)
         {
             (galleries, error) -> (Void) in
-            completion?(galleries, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(galleries, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -196,7 +196,7 @@ extension CreatubblesAPIClient
         getCreators(userId)
         {
             (users, error) -> (Void) in
-            completion?(users, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(users, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -205,7 +205,7 @@ extension CreatubblesAPIClient
         getManagers(userId)
         {
             (users, error) -> (Void) in
-            completion?(users, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(users, APIClient.errorTypeToNSError(error))
         }
     }
     
@@ -224,14 +224,14 @@ extension CreatubblesAPIClient
     {
         startAllNotFinishedUploadSessions {
             (creation, error) -> (Void) in
-            completion?(creation, CreatubblesAPIClient.errorTypeToNSError(error))
+            completion?(creation, APIClient.errorTypeToNSError(error))
         }
     }
 
     //MARK: - Utils
     static func errorTypeToNSError(error: ErrorType?) -> NSError?
     {
-        if let error = error as? CreatubblesAPIClientError
+        if let error = error as? APIClientError
         {
             let userInfo = [NSLocalizedDescriptionKey : error.errorDescription]
             return NSError(domain: "com.creatubbles.errordomain", code: 1, userInfo: userInfo)

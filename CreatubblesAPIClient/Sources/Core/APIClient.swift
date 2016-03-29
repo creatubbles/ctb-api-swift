@@ -25,21 +25,21 @@
 import UIKit
 
 //MARK: - Typealiases
-public typealias ErrorClosure = (CreatubblesAPIClientError?) -> (Void)
+public typealias ErrorClosure = (APIClientError?) -> (Void)
 
-public typealias UserClosure = (User?, CreatubblesAPIClientError?) -> (Void)
-public typealias UsersClosure = (Array<User>?,PagingInfo? ,CreatubblesAPIClientError?) -> (Void)
-public typealias UsersBatchClosure = (Array<User>? ,CreatubblesAPIClientError?) -> (Void)
+public typealias UserClosure = (User?, APIClientError?) -> (Void)
+public typealias UsersClosure = (Array<User>?,PagingInfo? ,APIClientError?) -> (Void)
+public typealias UsersBatchClosure = (Array<User>? ,APIClientError?) -> (Void)
 
-public typealias CreationClosure = (Creation?, CreatubblesAPIClientError?) -> (Void)
-public typealias CreationsClosure = (Array<Creation>?, PagingInfo?, CreatubblesAPIClientError?) -> (Void)
-public typealias CreationsBatchClosure = (Array<Creation>?, CreatubblesAPIClientError?) -> (Void)
+public typealias CreationClosure = (Creation?, APIClientError?) -> (Void)
+public typealias CreationsClosure = (Array<Creation>?, PagingInfo?, APIClientError?) -> (Void)
+public typealias CreationsBatchClosure = (Array<Creation>?, APIClientError?) -> (Void)
 
-public typealias GalleryClosure = (Gallery?, CreatubblesAPIClientError?) -> (Void)
-public typealias GalleriesClosure = (Array<Gallery>?, PagingInfo?, CreatubblesAPIClientError?) -> (Void)
-public typealias GalleriesBatchClosure = (Array<Gallery>?, CreatubblesAPIClientError?) -> (Void)
+public typealias GalleryClosure = (Gallery?, APIClientError?) -> (Void)
+public typealias GalleriesClosure = (Array<Gallery>?, PagingInfo?, APIClientError?) -> (Void)
+public typealias GalleriesBatchClosure = (Array<Gallery>?, APIClientError?) -> (Void)
 
-public typealias LandingURLClosure = (Array<LandingURL>?, CreatubblesAPIClientError?) -> (Void)
+public typealias LandingURLClosure = (Array<LandingURL>?, APIClientError?) -> (Void)
 
 //MARK: - Enums
 @objc public enum Gender: Int
@@ -67,27 +67,27 @@ public typealias LandingURLClosure = (Array<LandingURL>?, CreatubblesAPIClientEr
 }
 
 @objc
-public protocol CreatubblesAPIClientDelegate
+public protocol APIClientDelegate
 {
-    func creatubblesAPIClientImageUploadFinished(apiClient: CreatubblesAPIClient, uploadSessionData: CreationUploadSessionPublicData)
-    func creatubblesAPIClientImageUploadFailed(apiClient: CreatubblesAPIClient,  uploadSessionData: CreationUploadSessionPublicData, error: NSError)
-    func creatubblesAPIClientImageUploadProcessChanged(apiClient: CreatubblesAPIClient, uploadSessionData: CreationUploadSessionPublicData, bytesUploaded: Int, bytesExpectedToUpload: Int)
+    func creatubblesAPIClientImageUploadFinished(apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData)
+    func creatubblesAPIClientImageUploadFailed(apiClient: APIClient,  uploadSessionData: CreationUploadSessionPublicData, error: NSError)
+    func creatubblesAPIClientImageUploadProcessChanged(apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData, bytesUploaded: Int, bytesExpectedToUpload: Int)
 }
 
 @objc
-public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
+public class APIClient: NSObject, CreationUploadServiceDelegate
 {
     //MARK: - Internal
-    private let settings: CreatubblesAPIClientSettings
+    private let settings: APIClientSettings
     private let requestSender: RequestSender
     private let creationsDAO: CreationsDAO
     private let userDAO: UserDAO
     private let galleryDAO: GalleryDAO
     private let creationUploadService: CreationUploadService
     private let databaseDAO: DatabaseDAO
-    public weak var delegate: CreatubblesAPIClientDelegate?
+    public weak var delegate: APIClientDelegate?
     
-    public init(settings: CreatubblesAPIClientSettings)
+    public init(settings: APIClientSettings)
     {
         self.settings = settings
         self.requestSender = RequestSender(settings: settings)
@@ -256,7 +256,7 @@ public class CreatubblesAPIClient: NSObject, CreationUploadServiceDelegate
     func creationUploadServiceUploadFailed(service: CreationUploadService, session: CreationUploadSession, error: ErrorType)
     {
         let data = CreationUploadSessionPublicData(creationUploadSession: session)
-        delegate?.creatubblesAPIClientImageUploadFailed(self, uploadSessionData: data, error: CreatubblesAPIClient.errorTypeToNSError(error)!)
+        delegate?.creatubblesAPIClientImageUploadFailed(self, uploadSessionData: data, error: APIClient.errorTypeToNSError(error)!)
     }
 
 }

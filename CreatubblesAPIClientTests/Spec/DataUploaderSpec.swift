@@ -144,7 +144,7 @@ class DataUploaderSpec: QuickSpec
             {
                 let path = NSBundle(forClass: self.dynamicType).URLForResource("creatubbles_logo", withExtension: "jpg")
                 let image = UIImage(contentsOfFile: path!.path!)!
-                let apiClient = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let apiClient = APIClient(settings: TestConfiguration.settings)
                 
                 waitUntil(timeout: 20)
                 {

@@ -27,7 +27,7 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class CreatubblesAPIClientSpec: QuickSpec
+class APIClientSpec: QuickSpec
 {
     override func spec()
     {
@@ -42,7 +42,7 @@ class CreatubblesAPIClientSpec: QuickSpec
                 let baseUrl = "TestBaseUrl"
                 let apiVersion = "TestApiVersion"
                 
-                let settings = CreatubblesAPIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion)
+                let settings = APIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion)
                 
                 expect(settings.appId).to(equal(appId))
                 expect(settings.appSecret).to(equal(appSecret))
@@ -58,7 +58,7 @@ class CreatubblesAPIClientSpec: QuickSpec
             //MARK: - Authentication
             it("Should login and logout")
             {
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 client.logout()
                 waitUntil(timeout: 10)
                 {
@@ -78,7 +78,7 @@ class CreatubblesAPIClientSpec: QuickSpec
             //MARK: - Authentication
             it("Should return error on failed login attempt")
             {
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 client.logout()
                 waitUntil(timeout: 10)
                 {
@@ -98,7 +98,7 @@ class CreatubblesAPIClientSpec: QuickSpec
             //MARK: - Profile
             it("Should fetch current user")
             {
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -123,7 +123,7 @@ class CreatubblesAPIClientSpec: QuickSpec
                 guard TestConfiguration.testUserIdentifier != nil else { return }
                 
                 let identifier = TestConfiguration.testUserIdentifier!
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -149,7 +149,7 @@ class CreatubblesAPIClientSpec: QuickSpec
                 guard TestConfiguration.testUserIdentifier != nil else { return }
                 
                 let identifier = TestConfiguration.testUserIdentifier!
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -175,7 +175,7 @@ class CreatubblesAPIClientSpec: QuickSpec
                 guard TestConfiguration.testUserIdentifier != nil else { return }
                 
                 let identifier = TestConfiguration.testUserIdentifier!
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -234,7 +234,7 @@ class CreatubblesAPIClientSpec: QuickSpec
                 guard TestConfiguration.testGalleryIdentifier != nil else { return }
                 
                 let identifier = TestConfiguration.testGalleryIdentifier!
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -260,7 +260,7 @@ class CreatubblesAPIClientSpec: QuickSpec
                 guard TestConfiguration.testUserIdentifier != nil else { return }
                 
                 let identifier = TestConfiguration.testUserIdentifier!
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -284,7 +284,7 @@ class CreatubblesAPIClientSpec: QuickSpec
             
             it("Should fetch some public popular galleries")
             {
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -310,7 +310,7 @@ class CreatubblesAPIClientSpec: QuickSpec
             {
                 let timestamp = String(Int(round(NSDate().timeIntervalSince1970 % 1000)))
                 let data = NewGalleryData(name: "TestGallery_\(timestamp)", galleryDescription: "TestDescription_\(timestamp)", openForAll: false, ownerId: nil)
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -338,7 +338,7 @@ class CreatubblesAPIClientSpec: QuickSpec
                 guard TestConfiguration.testCreationIdentifier != nil else { return }
                 
                 let identifier = TestConfiguration.testCreationIdentifier!
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -363,7 +363,7 @@ class CreatubblesAPIClientSpec: QuickSpec
             //MARK: - Batch fetching
             it("Should batch fetch galleries")
             {
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 200)
                 {
                     done in
@@ -390,7 +390,7 @@ class CreatubblesAPIClientSpec: QuickSpec
                 
                 let identifier = TestConfiguration.testUserIdentifier!
                 
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 200)
                 {
                     done in
@@ -414,7 +414,7 @@ class CreatubblesAPIClientSpec: QuickSpec
             
             it("Should batch fetch creators")
             {
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 200)
                 {
                     done in
@@ -437,7 +437,7 @@ class CreatubblesAPIClientSpec: QuickSpec
             }
             it("Should fetch all finished UploadSessions")
             {
-                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
+                let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 20)
                 {
                     done in

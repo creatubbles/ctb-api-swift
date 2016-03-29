@@ -1,6 +1,6 @@
 
 //
-//  CreatubblesAPIClientError.swift
+//  APIClientError.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -26,7 +26,7 @@
 import UIKit
 import ObjectMapper
 
-public enum CreatubblesAPIClientError: ErrorType
+public enum APIClientError: ErrorType
 {
     case Generic(String)
     case NetworkError
@@ -45,9 +45,9 @@ public enum CreatubblesAPIClientError: ErrorType
 
 class ErrorTransformer
 {
-    class func errorFromResponse(response: Dictionary<String, AnyObject>?,error: ErrorType?) -> CreatubblesAPIClientError?
+    class func errorFromResponse(response: Dictionary<String, AnyObject>?,error: ErrorType?) -> APIClientError?
     {
-        if let err = error as? CreatubblesAPIClientError
+        if let err = error as? APIClientError
         {
             return err
         }
@@ -58,31 +58,31 @@ class ErrorTransformer
         return errorFromErrorType(error)
     }
     
-    private class func errorsFromResponse(response: Dictionary<String, AnyObject>?) -> Array<CreatubblesAPIClientError>
+    private class func errorsFromResponse(response: Dictionary<String, AnyObject>?) -> Array<APIClientError>
     {
         if  let response = response,
             let mappers = Mapper<ErrorMapper>().mapArray(response["errors"])
         {
-            var errors = Array<CreatubblesAPIClientError>()
+            var errors = Array<APIClientError>()
             for mapper in mappers
             {
                 if let detail = mapper.detail
                 {
-                    errors.append(CreatubblesAPIClientError.Generic(detail))
+                    errors.append(APIClientError.Generic(detail))
                 }
             }
             return errors
         }
-        return Array<CreatubblesAPIClientError>()
+        return Array<APIClientError>()
     }
     
     
-    private class func errorFromErrorType(error: ErrorType?) -> CreatubblesAPIClientError?
+    private class func errorFromErrorType(error: ErrorType?) -> APIClientError?
     {
         //TODO: Handle it properly.
         if let _ = error
         {
-            return CreatubblesAPIClientError.Unknown;
+            return APIClientError.Unknown;
         }
         
         return nil
