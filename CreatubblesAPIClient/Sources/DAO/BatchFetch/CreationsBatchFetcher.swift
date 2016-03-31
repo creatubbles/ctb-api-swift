@@ -70,12 +70,12 @@ class CreationsBatchFetcher: BatchFetcher
         }
     }
     
-    func fetch(userId: String?, galleryId: String?,keyword: String? ,sort:SortOrder?, completion: CreationsBatchClosure?)
+    func fetch(userId: String?, galleryId: String?,keyword: String? ,sort:SortOrder?, completion: CreationsBatchClosure?) -> RequestHandler
     {
         self.userId = userId
         self.sort = sort
         self.keyword = keyword
         self.galleryId = galleryId
-        requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
+        return requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
     }
 }

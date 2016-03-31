@@ -78,6 +78,8 @@
 		18EFFF721C772A4E00BE0B70 /* RequestSenderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF6D1C772A4E00BE0B70 /* RequestSenderSpec.swift */; };
 		18EFFF731C772A4E00BE0B70 /* RequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF6E1C772A4E00BE0B70 /* RequestSpec.swift */; };
 		18EFFF741C772A4E00BE0B70 /* ResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFFF6F1C772A4E00BE0B70 /* ResponseHandlerSpec.swift */; };
+		18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9EDAE1CAD008600B85DD6 /* RequestHandler.swift */; };
+		18F9EDB11CAD051400B85DD6 /* TestRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9EDB01CAD051400B85DD6 /* TestRequestHandler.swift */; };
 		18FD15311C84315200A353C1 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD15301C84315200A353C1 /* APIClientError.swift */; };
 		216843981C7345690052B835 /* FetchCreationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843971C7345690052B835 /* FetchCreationsRequest.swift */; };
 		2168439A1C734A880052B835 /* FetchCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */; };
@@ -179,6 +181,8 @@
 		18EFFF6D1C772A4E00BE0B70 /* RequestSenderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSenderSpec.swift; sourceTree = "<group>"; };
 		18EFFF6E1C772A4E00BE0B70 /* RequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSpec.swift; sourceTree = "<group>"; };
 		18EFFF6F1C772A4E00BE0B70 /* ResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		18F9EDAE1CAD008600B85DD6 /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
+		18F9EDB01CAD051400B85DD6 /* TestRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRequestHandler.swift; sourceTree = "<group>"; };
 		18FD15301C84315200A353C1 /* APIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
 		216843971C7345690052B835 /* FetchCreationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchCreationsRequest.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsRequest.swift; sourceTree = SOURCE_ROOT; };
 		216843991C734A880052B835 /* FetchCreationsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FetchCreationsResponseHandler.swift; path = CreatubblesAPIClient/Sources/Requests/FetchCreations/FetchCreationsResponseHandler.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -312,6 +316,7 @@
 				180C97B01C6DEA4100BC682D /* Creation.swift */,
 				188ECF5D1C71E91B00AFEE4F /* CreationUpload.swift */,
 				18E30BE91C8DA7DD000794B6 /* LandingURL.swift */,
+				18F9EDAE1CAD008600B85DD6 /* RequestHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 				187901F11C6B43E1008F5302 /* TestRequestSender.swift */,
 				187901F31C6B43FA008F5302 /* TestComponentsFactory.swift */,
 				187901FD1C6C793F008F5302 /* TestResponses.swift */,
+				18F9EDB01CAD051400B85DD6 /* TestRequestHandler.swift */,
 			);
 			path = TestUtils;
 			sourceTree = "<group>";
@@ -827,6 +833,7 @@
 				21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */,
 				187047E01C71DCD600B202FD /* NewCreationUploadRequest.swift in Sources */,
 				21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */,
+				18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */,
 				1815D5651C638BD200EF4C38 /* User.swift in Sources */,
 				180C97AD1C6DD40100BC682D /* NewCreationRequest.swift in Sources */,
 				18779E0F1C6A2592000BFB57 /* CreatorsAndManagersResponseHandler.swift in Sources */,
@@ -853,6 +860,7 @@
 			files = (
 				187901F41C6B43FA008F5302 /* TestComponentsFactory.swift in Sources */,
 				187901F21C6B43E1008F5302 /* TestRequestSender.swift in Sources */,
+				18F9EDB11CAD051400B85DD6 /* TestRequestHandler.swift in Sources */,
 				18EFFF731C772A4E00BE0B70 /* RequestSpec.swift in Sources */,
 				18EFFF711C772A4E00BE0B70 /* DataUploaderSpec.swift in Sources */,
 				21F740941C735C9600E7F4D1 /* TestConfiguration.swift in Sources */,

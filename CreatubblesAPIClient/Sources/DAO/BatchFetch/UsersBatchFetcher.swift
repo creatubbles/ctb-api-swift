@@ -66,10 +66,10 @@ class UsersBatchFetcher: BatchFetcher
         }
     }
     
-    func fetch(userId: String?, scope:CreatorsAndManagersScopeElement?, completion: UsersBatchClosure?)
+    func fetch(userId: String?, scope:CreatorsAndManagersScopeElement?, completion: UsersBatchClosure?) -> RequestHandler
     {
         self.userId = userId
         self.scope = scope
-        requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
+        return requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
     }
 }

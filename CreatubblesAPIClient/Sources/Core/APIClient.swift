@@ -122,87 +122,87 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return requestSender.isLoggedIn()
     }
     
-    public func getLandingURL(type: LandingURLType?, completion: LandingURLClosure?)
+    public func getLandingURL(type: LandingURLType?, completion: LandingURLClosure?) -> RequestHandler
     {
-        userDAO.getLandingURL(type, completion: completion)
+        return userDAO.getLandingURL(type, completion: completion)
     }
 
-    public func getLandingURL(creationId: String, completion: LandingURLClosure?)
+    public func getLandingURL(creationId: String, completion: LandingURLClosure?) -> RequestHandler
     {
-        userDAO.getLandingURL(creationId, completion: completion)
+        return userDAO.getLandingURL(creationId, completion: completion)
     }
     
     //MARK: - Creators managment
-    public func getUser(userId: String, completion: UserClosure?)
+    public func getUser(userId: String, completion: UserClosure?) -> RequestHandler
     {
-        userDAO.getUser(userId, completion: completion)
+        return userDAO.getUser(userId, completion: completion)
     }
     
-    public func getCurrentUser(completion: UserClosure?)
+    public func getCurrentUser(completion: UserClosure?) -> RequestHandler
     {
-        userDAO.getCurrentUser(completion)
+        return userDAO.getCurrentUser(completion)
     }
     
-    public func getCreators(userId: String?, pagingData: PagingData?, completion: UsersClosure?)
+    public func getCreators(userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
-        userDAO.getCreators(userId, pagingData: pagingData, completion: completion)
+        return userDAO.getCreators(userId, pagingData: pagingData, completion: completion)
     }
     
-    public func getManagers(userId: String?, pagingData: PagingData?, completion: UsersClosure?)
+    public func getManagers(userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
-        userDAO.getManagers(userId, pagingData: pagingData, completion: completion)
+        return userDAO.getManagers(userId, pagingData: pagingData, completion: completion)
     }
 
-    public func getCreators(userId: String?, completion: UsersBatchClosure?)
+    public func getCreators(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
-        userDAO.getCreators(userId, completion: completion)
+        return userDAO.getCreators(userId, completion: completion)
     }
     
-    public func getManagers(userId: String?, completion: UsersBatchClosure?)
+    public func getManagers(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
-        userDAO.getManagers(userId, completion: completion)
+        return userDAO.getManagers(userId, completion: completion)
     }
     
-    public func newCreator(creatorData: NewCreatorData,completion: UserClosure?)
+    public func newCreator(creatorData: NewCreatorData,completion: UserClosure?) -> RequestHandler
     {
-        userDAO.newCreator(creatorData, completion: completion)
+        return userDAO.newCreator(creatorData, completion: completion)
     }
     
     //MARK: - Gallery managment
-    public func getGallery(galleryId: String, completion: GalleryClosure?)
+    public func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler
     {
-        galleryDAO.getGallery(galleryId, completion: completion)
+        return galleryDAO.getGallery(galleryId, completion: completion)
     }
     
-    public func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?)
+    public func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
     {
-        galleryDAO.getGalleries(userId, pagingData: pagingData, sort: sort, completion: completion)
+        return galleryDAO.getGalleries(userId, pagingData: pagingData, sort: sort, completion: completion)
     }
     
-    public func getGalleries(userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?)
+    public func getGalleries(userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        galleryDAO.getGalleries(userId, sort: sort, completion: completion)
+        return galleryDAO.getGalleries(userId, sort: sort, completion: completion)
     }
     
-    public func newGallery(galleryData: NewGalleryData, completion: GalleryClosure?)
+    public func newGallery(galleryData: NewGalleryData, completion: GalleryClosure?) -> RequestHandler
     {
-        galleryDAO.newGallery(galleryData, completion: completion)
+        return galleryDAO.newGallery(galleryData, completion: completion)
     }
     
     //MARK: - Creation managment
-    public func getCreation(creationId: String, completion: CreationClosure?)
+    public func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler
     {
-        creationsDAO.getCreation(creationId, completion: completion)
+        return creationsDAO.getCreation(creationId, completion: completion)
     }
     
-    public func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, completion: CreationsClosure?)
+    public func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, completion: CreationsClosure?) -> RequestHandler
     {
-        creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, completion: completion)
+        return creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, completion: completion)
     }
     
-    public func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, completion: CreationsBatchClosure?)
+    public func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, completion: CreationsBatchClosure?) -> RequestHandler
     {
-        creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, completion: completion)
+        return creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, completion: completion)
     }
     
     //MARK: - Upload Sessions

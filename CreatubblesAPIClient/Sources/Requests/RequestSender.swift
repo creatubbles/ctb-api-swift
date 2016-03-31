@@ -134,10 +134,10 @@ class RequestSender: NSObject
     }
     
     //MARK: - Request sending
-    func send(request: Request, withResponseHandler handler: ResponseHandler)
+    func send(request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
     {
-        Logger.log.debug("Sending request: \(request.dynamicType)")
-        oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
+        Logger.log.debug("Sending request: \(request.dynamicType)")        
+        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
         .responseString
         {
             (response) -> Void in
@@ -149,8 +149,9 @@ class RequestSender: NSObject
         .responseJSON
         {
             response -> Void in
-            handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)
+            handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)            
         }
+        return RequestHandler(request: request)
     }
     
     //MARK: - Creation sending
