@@ -52,7 +52,7 @@ class TestRequestSender: RequestSender
         isLoggedIn = false
     }
     
-    override func send(request: Request, withResponseHandler handler: ResponseHandler)
+    override func send(request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
     {
         Logger.log.debug("Sending request: \(request.dynamicType)")
         if(isLoggedIn)
@@ -64,6 +64,7 @@ class TestRequestSender: RequestSender
             let error = APIClientError.Generic("CreatubblesTest - Not Logged In")
             handler.handleResponse(nil, error: error)
         }
+        return TestRequestHandler()
     }
     
     private func responseForRequest(request: Request) -> Dictionary<String, AnyObject>

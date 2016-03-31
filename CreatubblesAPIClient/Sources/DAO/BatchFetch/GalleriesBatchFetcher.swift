@@ -66,10 +66,10 @@ class GalleriesBatchFetcher: BatchFetcher
         }
     }
     
-    func fetch(userId: String?, sort:SortOrder?, completion: GalleriesBatchClosure?)
+    func fetch(userId: String?, sort:SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
     {
         self.userId = userId
         self.sort = sort
-        requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
+        return requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
     }
 }

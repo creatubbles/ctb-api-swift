@@ -33,64 +33,64 @@ class UserDAO
         self.requestSender = requestSender
     }
     
-    func getUser(userId: String, completion: UserClosure?)
+    func getUser(userId: String, completion: UserClosure?) -> RequestHandler
     {
         let request = ProfileRequest(userId: userId)
         let handler = ProfileResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCurrentUser(completion: UserClosure?)
+    func getCurrentUser(completion: UserClosure?) -> RequestHandler
     {
         let request = ProfileRequest()
         let handler = ProfileResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCreators(userId: String?, pagingData: PagingData?,completion: UsersClosure?)
+    func getCreators(userId: String?, pagingData: PagingData?,completion: UsersClosure?) -> RequestHandler
     {
         let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Creators)
         let handler = CreatorsAndManagersResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getLandingURL(creationId: String, completion: LandingURLClosure?)
+    func getLandingURL(creationId: String, completion: LandingURLClosure?) -> RequestHandler
     {
         let request = LandingURLRequest(creationId: creationId)
         let handler = LandingURLResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getLandingURL(type: LandingURLType?, completion: LandingURLClosure?)
+    func getLandingURL(type: LandingURLType?, completion: LandingURLClosure?) -> RequestHandler
     {
         let request = LandingURLRequest(type: type)
         let handler = LandingURLResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getManagers(userId: String?, pagingData: PagingData?,completion: UsersClosure?)
+    func getManagers(userId: String?, pagingData: PagingData?,completion: UsersClosure?) -> RequestHandler
     {
         let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Managers)
         let handler = CreatorsAndManagersResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCreators(userId: String?, completion: UsersBatchClosure?)
+    func getCreators(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
         let batchFetcher = UsersBatchFetcher(requestSender: requestSender)
-        batchFetcher.fetch(userId, scope: .Creators, completion: completion)
+        return batchFetcher.fetch(userId, scope: .Creators, completion: completion)
     }
     
-    func getManagers(userId: String?, completion: UsersBatchClosure?)
+    func getManagers(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
         let batchFetcher = UsersBatchFetcher(requestSender: requestSender)
-        batchFetcher.fetch(userId, scope: .Managers, completion: completion)
+        return batchFetcher.fetch(userId, scope: .Managers, completion: completion)
     }
     
-    func newCreator(data: NewCreatorData, completion: UserClosure?)
+    func newCreator(data: NewCreatorData, completion: UserClosure?) -> RequestHandler
     {
         let request = NewCreatorRequest(name: data.name, displayName: data.displayName, birthYear: data.birthYear, birthMonth: data.birthMonth, countryCode: data.countryCode, gender: data.gender)
         let handler = NewCreatorResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
 }
