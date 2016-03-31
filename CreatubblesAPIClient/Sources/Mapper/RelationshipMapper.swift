@@ -4,6 +4,21 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class RelationshipMapper {
+class RelationshipMapper: Mappable
+{
+    var type: String?
+    var identifier: String?
+
+    required init?(_ map: Map)
+    {
+
+    }
+
+    func mapping(map: Map)
+    {
+        type <- map["type"]
+        identifier <- map["id"]
+    }
 }

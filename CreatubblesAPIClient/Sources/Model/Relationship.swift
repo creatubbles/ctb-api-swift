@@ -5,5 +5,14 @@
 
 import Foundation
 
-class Relationship {
+class Relationship
+{
+    let type: String
+    let identifier: String
+
+    init(mapper: RelationshipMapper)
+    {
+        type = mapper.type!
+        identifier = mapper.identifier!
+    }
 }

@@ -55,6 +55,9 @@ public class Creation: NSObject
     public let approved: Bool
     public let shortUrl: String
     public let createdAtAge: String?
+
+    var userRelationship: Relationship?
+    var creatorRelationships: Array<Relationship>?
  
     init(mapper: CreationMapper)
     {
@@ -82,6 +85,9 @@ public class Creation: NSObject
         imageGalleryMobileUrl = mapper.imageGalleryMobileUrl
         imageExploreMobileUrl = mapper.imageExploreMobileUrl
         imageShareUrl = mapper.imageShareUrl
+
+        userRelationship = mapper.parseUserRelationship()
+        creatorRelationships = mapper.parseCreatorRelationships()
     }
     
     init(creationEntity: CreationEntity)

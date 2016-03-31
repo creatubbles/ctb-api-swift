@@ -54,7 +54,10 @@ class CreationMapper: Mappable
     var approved: Bool?
     var shortUrl: String?
     var createdAtAge: String?
-    
+
+    var userRelationship: RelationshipMapper?
+    var creatorRelationships: Array<RelationshipMapper>?
+
     required init?(_ map: Map)
     {
         
@@ -90,5 +93,23 @@ class CreationMapper: Mappable
         approved <- map["attributes.approved"]
         shortUrl <- map["attributes.short_url"]
         createdAtAge <- map["attributes.created_at_age"]
+
+        userRelationship <- map["relationships.user.data"]
+        creatorRelationships <- map["relationships.creators.data"]
     }
+    //MARK: Parsing
+    func parseCreatorRelationships() -> Array<Relationship>?
+    {
+        if let relationships = creatorRelationships
+        {
+            return relationships.map({ Relationship(mapper: $0 )})
+        }
+        return nil
+    }
+
+    func parseUserRelationship() -> Relationship?
+    {
+        return userRelationship == nil ? nil : Relationship(mapper: userRelationship!)
+    }
+
 }
