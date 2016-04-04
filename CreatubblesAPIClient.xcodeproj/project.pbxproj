@@ -92,7 +92,10 @@
 		21C349931C904B38002972EC /* NewCreationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C349921C904B38002972EC /* NewCreationData.swift */; };
 		21F740941C735C9600E7F4D1 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F740931C735C9600E7F4D1 /* TestConfiguration.swift */; };
 		98DF504F0CA2CD6D6F1F2A49 /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DD481C10B284573D8EE5B2 /* Pods_CreatubblesAPIClient.framework */; };
+		C07EE2A923A799BA4F335C98 /* DataInclude.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07EEEE3C6FBA6DBF0AFE54D /* DataInclude.swift */; };
 		C07EE665EE6E538649753DC7 /* RelationshipMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07EEE25A00F4A34AF1344F5 /* RelationshipMapper.swift */; };
+		C07EE6EDB68B4BD2C1DA7D9B /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07EE9061197B45A99B327B6 /* Identifiable.swift */; };
+		C07EE7FB2B7C41ECB76AAF81 /* DataIncludeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07EE5D164813ABA2ED51CD8 /* DataIncludeMapper.swift */; };
 		C07EEAA7F46DBB9B39D42C1F /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07EEC050E8E0E91FA0A5B68 /* Relationship.swift */; };
 /* End PBXBuildFile section */
 
@@ -198,8 +201,11 @@
 		3E803C6AEDB17DBB1444CCCF /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		9ACD356266D7B69D18002F81 /* Pods-CreatubblesAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.release.xcconfig"; sourceTree = "<group>"; };
 		AB74205CC51A73FB798D192F /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C07EE5D164813ABA2ED51CD8 /* DataIncludeMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataIncludeMapper.swift; sourceTree = "<group>"; };
+		C07EE9061197B45A99B327B6 /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		C07EEC050E8E0E91FA0A5B68 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
 		C07EEE25A00F4A34AF1344F5 /* RelationshipMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipMapper.swift; sourceTree = "<group>"; };
+		C07EEEE3C6FBA6DBF0AFE54D /* DataInclude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataInclude.swift; sourceTree = "<group>"; };
 		D9DD481C10B284573D8EE5B2 /* Pods_CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -317,6 +323,8 @@
 				188ECF5D1C71E91B00AFEE4F /* CreationUpload.swift */,
 				18E30BE91C8DA7DD000794B6 /* LandingURL.swift */,
 				C07EEC050E8E0E91FA0A5B68 /* Relationship.swift */,
+				C07EEEE3C6FBA6DBF0AFE54D /* DataInclude.swift */,
+				C07EE9061197B45A99B327B6 /* Identifiable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -494,6 +502,7 @@
 				189D9F5B1C84B36100857CC6 /* UserMapper.swift */,
 				18E30BEB1C8DAAE0000794B6 /* LandingURLMapper.swift */,
 				C07EEE25A00F4A34AF1344F5 /* RelationshipMapper.swift */,
+				C07EE5D164813ABA2ED51CD8 /* DataIncludeMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -852,6 +861,9 @@
 				188BCEAF1C64E19D00EA4F11 /* APIClient.swift in Sources */,
 				C07EE665EE6E538649753DC7 /* RelationshipMapper.swift in Sources */,
 				C07EEAA7F46DBB9B39D42C1F /* Relationship.swift in Sources */,
+				C07EE2A923A799BA4F335C98 /* DataInclude.swift in Sources */,
+				C07EE7FB2B7C41ECB76AAF81 /* DataIncludeMapper.swift in Sources */,
+				C07EE6EDB68B4BD2C1DA7D9B /* Identifiable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

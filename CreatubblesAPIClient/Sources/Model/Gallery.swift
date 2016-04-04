@@ -25,7 +25,7 @@
 import UIKit
 
 @objc
-public class Gallery: NSObject
+public class Gallery: NSObject, Identifiable
 {
     public let identifier: String
     public let name: String
