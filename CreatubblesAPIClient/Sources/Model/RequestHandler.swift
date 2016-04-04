@@ -10,17 +10,17 @@ import UIKit
 import Alamofire
 
 @objc
-public class RequestHandler: NSObject
+public class RequestHandler: NSObject, Cancelable
 {
-    private let request: Alamofire.Request
+    private let object: Cancelable
     
-    init(request: Alamofire.Request)
+    init(object: Cancelable)
     {
-        self.request = request
+        self.object = object
     }
     
     public func cancel()
     {
-        request.cancel()
+        object.cancel()
     }
 }

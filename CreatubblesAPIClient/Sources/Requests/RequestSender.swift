@@ -94,7 +94,8 @@ class RequestSender: NSObject
     //MARK: - Authentication
     
     var authenticationToken: String? { return oauth2PrivateClient.accessToken }
-    func login(username: String, password: String, completion: ErrorClosure?)
+    
+    func login(username: String, password: String, completion: ErrorClosure?) -> RequestHandler
     {
         oauth2PrivateClient.username = username
         oauth2PrivateClient.password = password
@@ -121,6 +122,7 @@ class RequestSender: NSObject
             completion?(APIClientError.Generic(err.description))
         }
         oauth2PrivateClient.authorize()
+        return RequestHandler(object: oauth2PrivateClient)
     }
     
     func logout()
@@ -151,7 +153,7 @@ class RequestSender: NSObject
             response -> Void in
             handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)            
         }
-        return RequestHandler(request: request)
+        return RequestHandler(object: request)
     }
     
     //MARK: - Creation sending

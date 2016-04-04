@@ -67,6 +67,8 @@
 		18C744FC1C84611600A07E4C /* CreationUploadEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F71C84611600A07E4C /* CreationUploadEntity.swift */; };
 		18C744FD1C84611600A07E4C /* CreationUploadSessionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F81C84611600A07E4C /* CreationUploadSessionEntity.swift */; };
 		18C744FE1C84611600A07E4C /* NewCreationDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F91C84611600A07E4C /* NewCreationDataEntity.swift */; };
+		18CC309E1CB28A9D00EA4A00 /* AlamofireRequest+Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC309D1CB28A9D00EA4A00 /* AlamofireRequest+Cancelable.swift */; };
+		18CC30A01CB28B1600EA4A00 /* OAuth2+Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC309F1CB28B1600EA4A00 /* OAuth2+Cancelable.swift */; };
 		18E30BE61C8DA307000794B6 /* LandingURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E30BE51C8DA307000794B6 /* LandingURLRequest.swift */; };
 		18E30BE81C8DA318000794B6 /* LandingURLResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E30BE71C8DA318000794B6 /* LandingURLResponseHandler.swift */; };
 		18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E30BE91C8DA7DD000794B6 /* LandingURL.swift */; };
@@ -170,6 +172,8 @@
 		18C744F71C84611600A07E4C /* CreationUploadEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadEntity.swift; sourceTree = "<group>"; };
 		18C744F81C84611600A07E4C /* CreationUploadSessionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadSessionEntity.swift; sourceTree = "<group>"; };
 		18C744F91C84611600A07E4C /* NewCreationDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationDataEntity.swift; sourceTree = "<group>"; };
+		18CC309D1CB28A9D00EA4A00 /* AlamofireRequest+Cancelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlamofireRequest+Cancelable.swift"; sourceTree = "<group>"; };
+		18CC309F1CB28B1600EA4A00 /* OAuth2+Cancelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuth2+Cancelable.swift"; sourceTree = "<group>"; };
 		18E30BE51C8DA307000794B6 /* LandingURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingURLRequest.swift; sourceTree = "<group>"; };
 		18E30BE71C8DA318000794B6 /* LandingURLResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingURLResponseHandler.swift; sourceTree = "<group>"; };
 		18E30BE91C8DA7DD000794B6 /* LandingURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingURL.swift; sourceTree = "<group>"; };
@@ -479,6 +483,8 @@
 			children = (
 				188ECF721C747FDE00AFEE4F /* String+Path.swift */,
 				1847FBEF1C76024300FE5FF3 /* Logger.swift */,
+				18CC309D1CB28A9D00EA4A00 /* AlamofireRequest+Cancelable.swift */,
+				18CC309F1CB28B1600EA4A00 /* OAuth2+Cancelable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -784,10 +790,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				189D9F621C84B36100857CC6 /* UserMapper.swift in Sources */,
+				18CC309E1CB28A9D00EA4A00 /* AlamofireRequest+Cancelable.swift in Sources */,
 				18779DB61C68D424000BFB57 /* Request.swift in Sources */,
 				187901F01C6B37F4008F5302 /* NewCreatorResponseHandler.swift in Sources */,
 				18779DB71C68D424000BFB57 /* ResponseHandler.swift in Sources */,
 				18C744FD1C84611600A07E4C /* CreationUploadSessionEntity.swift in Sources */,
+				18CC30A01CB28B1600EA4A00 /* OAuth2+Cancelable.swift in Sources */,
 				21A79F721C81E6C5009E95D1 /* UsersBatchFetcher.swift in Sources */,
 				18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */,
 				1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */,

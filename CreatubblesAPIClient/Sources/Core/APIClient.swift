@@ -74,6 +74,11 @@ public protocol APIClientDelegate
     func creatubblesAPIClientImageUploadProcessChanged(apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData, bytesUploaded: Int, bytesExpectedToUpload: Int)
 }
 
+public protocol Cancelable
+{
+    func cancel()
+}
+
 @objc
 public class APIClient: NSObject, CreationUploadServiceDelegate
 {
@@ -107,9 +112,9 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return requestSender.authenticationToken;
     }
     
-    public func login(username: String, password: String, completion:ErrorClosure?)
+    public func login(username: String, password: String, completion:ErrorClosure?) -> RequestHandler
     {
-        requestSender.login(username, password: password, completion: completion)
+        return requestSender.login(username, password: password, completion: completion)
     }
     
     public func logout()
