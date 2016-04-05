@@ -52,8 +52,8 @@ class UserMapper: Mappable
     
     var homeSchooling: Bool?
     var signedUpAsInstructor: Bool?
-
-    var isMale: Bool?
+    
+    var gender: String?
     
     //MARK: - Mappable
     required init?(_ map: Map)
@@ -77,20 +77,20 @@ class UserMapper: Mappable
         countryName <- map["attributes.country_name"]
         age <- map["attributes.age"]
         shortUrl <- map["attributes.short_url"]
-
+        
         
         addedBubblesCount <- map["attributes.added_bubbles_count"]
         activitiesCount <- map["attributes.activities_count"]
         commentsCount <- map["attributes.comments_count"]
         creationsCount <- map["attributes.creations_count"]
-
+        
         galleriesCount <- map["attributes.galleries_count"]
         creatorsCount <- map["attributes.creators_count"]
         managersCount <- map["attributes.managers_count"]
         
         homeSchooling <- map["attributes.home_schooling"]
         signedUpAsInstructor <- map["attributes.signed_up_as_instructor"]
-        isMale <- map["attributes.is_male"]
+        gender <- map["attributes.gender"]
     }
     
     //MARK: - Parsing
@@ -98,15 +98,17 @@ class UserMapper: Mappable
     {
         switch self.role!
         {
-            case "parent":  return Role.Parent
-            case "teacher": return Role.Teacher
-            case "creator": return Role.Creator
-            default:        return Role.Creator
+        case "parent":  return Role.Parent
+        case "teacher": return Role.Teacher
+        case "creator": return Role.Creator
+        default:        return Role.Creator
         }
     }
     
     func parseGender() -> Gender
     {
-        return isMale! ? .Male : .Female
+        if gender == "male"   { return .Male }
+        if gender == "female" { return .Female }
+        return .Unknown
     }
 }

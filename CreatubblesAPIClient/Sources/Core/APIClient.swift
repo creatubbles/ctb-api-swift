@@ -44,8 +44,9 @@ public typealias LandingURLClosure = (Array<LandingURL>?, APIClientError?) -> (V
 //MARK: - Enums
 @objc public enum Gender: Int
 {
-    case Male = 0
-    case Female = 1
+    case Unknown = 0
+    case Male = 1
+    case Female = 2
 }
 
 @objc public enum SortOrder: Int
