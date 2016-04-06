@@ -25,7 +25,7 @@
 import UIKit
 
 @objc
-public class Creation: NSObject
+public class Creation: NSObject, Identifiable
 {
     public let identifier: String
     public let name: String
@@ -55,8 +55,15 @@ public class Creation: NSObject
     public let approved: Bool
     public let shortUrl: String
     public let createdAtAge: String?
- 
-    init(mapper: CreationMapper)
+
+    //MARK: - Relationships
+    public let owner: User?
+    public let creators: Array<User>?
+
+    public let userRelationship: Relationship?
+    public let creatorRelationships: Array<Relationship>?
+
+    init(mapper: CreationMapper, dataMapper: DataIncludeMapper? = nil)
     {
         identifier = mapper.identifier!
         name = mapper.name!
@@ -82,6 +89,36 @@ public class Creation: NSObject
         imageGalleryMobileUrl = mapper.imageGalleryMobileUrl
         imageExploreMobileUrl = mapper.imageExploreMobileUrl
         imageShareUrl = mapper.imageShareUrl
+
+
+        userRelationship = mapper.parseUserRelationship()
+        creatorRelationships = mapper.parseCreatorRelationships()
+
+        if let dataMapper = dataMapper
+        {
+            if let relationship = userRelationship
+            {
+                owner = dataMapper.objectWithIdentifier(relationship.identifier, type: User.self)
+            }
+            else
+            {
+                owner = nil
+            }
+            if let relationships = creatorRelationships
+            {
+                let creators = relationships.map( { dataMapper.objectWithIdentifier($0.identifier, type: User.self) })
+                self.creators = creators.filter { $0 != nil } as? Array<User>
+            }
+            else
+            {
+                creators = nil
+            }
+        }
+        else
+        {
+            owner = nil
+            creators = nil
+        }
     }
     
     init(creationEntity: CreationEntity)
@@ -110,5 +147,11 @@ public class Creation: NSObject
         imageGalleryMobileUrl = creationEntity.imageGalleryMobileUrl
         imageExploreMobileUrl = creationEntity.imageExploreMobileUrl
         imageShareUrl = creationEntity.imageShareUrl
+
+        //TODO: Do we need relationships here?
+        owner = nil
+        creators = nil
+        userRelationship = nil
+        creatorRelationships = nil
     }
 }

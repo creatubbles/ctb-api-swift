@@ -25,7 +25,7 @@
 import UIKit
 
 @objc
-class CreationUpload: NSObject
+class CreationUpload: NSObject, Identifiable
 {
     let identifier: String
     let uploadUrl: String

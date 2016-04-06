@@ -35,16 +35,13 @@ class FetchCreationsResponseHandler: ResponseHandler
     }
 
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
-    {        
+    {
         if  let response = response,
             let mappers = Mapper<CreationMapper>().mapArray(response["data"])
         {
-            var creations = Array<Creation>()
-            for mapper in mappers
-            {
-                creations.append(Creation(mapper: mapper))
-            }
-            
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!)
+            let creations = mappers.map({ Creation(mapper: $0, dataMapper: dataMapper)})
             let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
             let pageInfo = PagingInfo(mapper: pageInfoMapper)
             
@@ -53,7 +50,10 @@ class FetchCreationsResponseHandler: ResponseHandler
         else if let response = response,
                 let mapper = Mapper<CreationMapper>().map(response["data"])
         {
-            let creation = Creation(mapper: mapper)
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!)
+            
+            let creation = Creation(mapper: mapper, dataMapper: dataMapper)
             completion?([creation], nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else

@@ -27,7 +27,7 @@ import ObjectMapper
 
 class GroupMapper: Mappable
 {
-    var identifier: Int?
+    var identifier: String?
     var name: String?
     var taggingsCount: Int?
     

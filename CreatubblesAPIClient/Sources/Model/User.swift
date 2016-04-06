@@ -42,7 +42,7 @@ import UIKit
 }
 
 @objc
-public class User: NSObject
+public class User: NSObject, Identifiable
 {
     public let identifier: String
     public let username: String
