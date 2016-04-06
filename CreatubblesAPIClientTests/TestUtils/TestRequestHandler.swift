@@ -7,16 +7,21 @@
 //
 
 import UIKit
-import Alamofire
 
 @testable import CreatubblesAPIClient
+
+class TestCancelable: Cancelable
+{
+    func cancel()
+    {
+        //Ignore
+    }
+}
 
 class TestRequestHandler: RequestHandler
 {
     init()
     {
-        let request = Alamofire.request(.GET, "dummy.com")
-        request.cancel()
-        super.init(object: request)
+        super.init(object: TestCancelable())
     }
 }
