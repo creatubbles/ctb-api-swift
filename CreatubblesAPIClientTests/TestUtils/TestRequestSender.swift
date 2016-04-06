@@ -37,7 +37,7 @@ class TestRequestSender: RequestSender
     }
     
     //MARK: - Interface
-    override func login(username: String, password: String, completion: ErrorClosure?)
+    override func login(username: String, password: String, completion: ErrorClosure?) -> RequestHandler
     {
         let authorized = username == TestConfiguration.username &&
                          password == TestConfiguration.password
@@ -45,6 +45,7 @@ class TestRequestSender: RequestSender
         let error: APIClientError? = authorized ? nil : APIClientError.Generic("CreatubblesTest - Not Logged In")
         isLoggedIn = authorized
         completion?(error)
+        return TestRequestHandler()
     }
     
     override func logout()

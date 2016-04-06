@@ -17,6 +17,6 @@ class TestRequestHandler: RequestHandler
     {
         let request = Alamofire.request(.GET, "dummy.com")
         request.cancel()
-        super.init(request: request)
+        super.init(object: request)
     }
 }
