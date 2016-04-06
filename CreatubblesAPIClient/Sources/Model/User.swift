@@ -30,7 +30,7 @@ import UIKit
     case Teacher
     case Creator        
     
-    var stringValue: String
+    public var stringValue: String
     {
         switch self
         {
