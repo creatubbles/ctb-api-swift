@@ -73,6 +73,7 @@ public protocol APIClientDelegate
     func creatubblesAPIClientImageUploadFinished(apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData)
     func creatubblesAPIClientImageUploadFailed(apiClient: APIClient,  uploadSessionData: CreationUploadSessionPublicData, error: NSError)
     func creatubblesAPIClientImageUploadProcessChanged(apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData, bytesUploaded: Int, bytesExpectedToUpload: Int)
+    func creatubblesAPIClientUserChanged(apiClient: APIClient)
 }
 
 public protocol Cancelable
@@ -115,12 +116,22 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     
     public func login(username: String, password: String, completion:ErrorClosure?) -> RequestHandler
     {
-        return requestSender.login(username, password: password, completion: completion)
+        return requestSender.login(username, password: password)
+        {
+            [weak self](error) -> (Void) in
+            completion?(error)
+            if let _ = error,
+               let weakSelf = self
+            {
+                weakSelf.delegate?.creatubblesAPIClientUserChanged(weakSelf)
+            }
+        }
     }
     
     public func logout()
     {
         requestSender.logout()
+        delegate?.creatubblesAPIClientUserChanged(self)
     }
     
     public func isLoggedIn() -> Bool
