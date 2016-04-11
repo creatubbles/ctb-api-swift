@@ -90,7 +90,6 @@ public class Creation: NSObject, Identifiable
         imageExploreMobileUrl = mapper.imageExploreMobileUrl
         imageShareUrl = mapper.imageShareUrl
 
-
         userRelationship = mapper.parseUserRelationship()
         creatorRelationships = mapper.parseCreatorRelationships()
 

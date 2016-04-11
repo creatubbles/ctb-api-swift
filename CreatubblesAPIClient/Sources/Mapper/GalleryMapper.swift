@@ -38,6 +38,7 @@ class GalleryMapper: Mappable
     var commentsCount: Int?
     var shortUrl: String?
     var previewImageUrls: Array<String>?
+    var ownerRelationship: RelationshipMapper?
     
     required init?(_ map: Map)
     {
@@ -58,5 +59,13 @@ class GalleryMapper: Mappable
         bubblesCount <- map["attributes.bubbles_count"]
         shortUrl <- map["attributes.short_url"]
         previewImageUrls <- map["attributes.preview_image_urls"]
+        
+        ownerRelationship <- map["relationships.user.data"]
+    }
+    
+    //MARK: Parsing
+    func parseOwnerRelationship() -> Relationship?
+    {
+        return ownerRelationship == nil ? nil : Relationship(mapper: ownerRelationship!)
     }
 }

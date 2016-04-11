@@ -34,15 +34,14 @@ class GalleriesResponseHandler: ResponseHandler
     }
     
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
-    {
+    {        
         if  let response = response,
             let mappers = Mapper<GalleryMapper>().mapArray(response["data"])
         {
-            var galleries = Array<Gallery>()
-            for mapper in mappers
-            {
-                galleries.append(Gallery(mapper: mapper))
-            }
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!)
+            let galleries = mappers.map({Gallery(mapper: $0, dataMapper: dataMapper)})
+            
             
             let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
             let pageInfo = PagingInfo(mapper: pageInfoMapper)
@@ -52,7 +51,9 @@ class GalleriesResponseHandler: ResponseHandler
         else if let response = response,
                 let mapper = Mapper<GalleryMapper>().map(response["data"])
         {
-            let gallery = Gallery(mapper: mapper)
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!)
+            let gallery = Gallery(mapper: mapper, dataMapper: dataMapper)
             completion?([gallery], nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else

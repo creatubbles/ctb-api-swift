@@ -41,7 +41,11 @@ public class Gallery: NSObject, Identifiable
     public let lastCommentedAt: NSDate?
     public let galleryDescription: String?
     
-    init(mapper: GalleryMapper)
+    //MARK: - Relationships
+    public let owner: User?
+    public let ownerRelationship: Relationship?
+    
+    init(mapper: GalleryMapper, dataMapper: DataIncludeMapper? = nil)
     {
         identifier = mapper.identifier!
         name = mapper.name!
@@ -56,5 +60,17 @@ public class Gallery: NSObject, Identifiable
         lastBubbledAt = mapper.lastBubbledAt
         lastCommentedAt = mapper.lastCommentedAt
         galleryDescription = mapper.galleryDescription
+        
+        ownerRelationship = mapper.parseOwnerRelationship()
+        
+        if let dataMapper = dataMapper,
+           let relationship = ownerRelationship
+        {
+            owner = dataMapper.objectWithIdentifier(relationship.identifier, type: User.self)
+        }
+        else
+        {
+            owner = nil
+        }
     }
 }

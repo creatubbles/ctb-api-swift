@@ -97,6 +97,7 @@ class CreationMapper: Mappable
         userRelationship <- map["relationships.user.data"]
         creatorRelationships <- map["relationships.creators.data"]
     }
+    
     //MARK: Parsing
     func parseCreatorRelationships() -> Array<Relationship>?
     {
