@@ -60,7 +60,7 @@ class GalleryMapper: Mappable
         shortUrl <- map["attributes.short_url"]
         previewImageUrls <- map["attributes.preview_image_urls"]
         
-        ownerRelationship <- map["relationships.user.data"]
+        ownerRelationship <- map["relationships.owner.data"]
     }
     
     //MARK: Parsing
