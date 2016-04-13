@@ -127,7 +127,8 @@ class RequestSender: NSObject
     
     func logout()
     {        
-        oauth2PrivateClient.forgetTokens()
+        oauth2PrivateClient.forgetClient()
+        oauth2PrivateClient.forgetTokens()        
     }
     
     func isLoggedIn() -> Bool
