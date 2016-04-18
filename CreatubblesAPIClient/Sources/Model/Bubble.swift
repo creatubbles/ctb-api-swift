@@ -32,7 +32,7 @@ public class Bubble: NSObject
         colorName = mapper.colorName
         createdAt = mapper.createdAt!
         bubblerId = mapper.bubblerId!
-        isPositionRandom = mapper.isPositionRandom!
+        isPositionRandom = mapper.isPositionRandom ?? false
         colorHex = mapper.colorHex
         
         bubbledUserId = mapper.bubbledUserId

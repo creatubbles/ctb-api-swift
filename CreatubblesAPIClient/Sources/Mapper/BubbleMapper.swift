@@ -35,7 +35,7 @@ class BubbleMapper: Mappable
         yPosition  <- map["attributes.y_pos"]
         colorName  <- map["attributes.color"]
         colorHex   <- map["attributes.color_hex"]
-        createdAt  <- map["attributes.created_at"]
+        createdAt  <- (map["attributes.created_at"], DateTransform())
         bubblerId  <- map["relationships.bubbler.data.id"]
         isPositionRandom <- map["data.attributes.random_pos"]
         

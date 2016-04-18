@@ -505,7 +505,8 @@ class ResponseHandlerSpec: QuickSpec
             {
                 guard TestConfiguration.testUserIdentifier != nil else { return }
                 
-                let sender = TestComponentsFactory.requestSender
+//                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -554,7 +555,8 @@ class ResponseHandlerSpec: QuickSpec
                 let data = NewBubbleData(userId: TestConfiguration.testUserIdentifier!)
                 let request = NewBubbleRequest(data: data)
                 
-                let sender = TestComponentsFactory.requestSender
+//                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -581,7 +583,7 @@ class ResponseHandlerSpec: QuickSpec
                 let data = UpdateBubbleData(bubbleId: "Identifier", colorName: "blue")
                 let request = UpdateBubbleRequest(data:data)
                 
-                let requestSender = TestComponentsFactory.requestSender
+                let requestSender = TestComponentsFactory.requestSender                
                 requestSender.logout()
                 waitUntil(timeout: 10)
                 {

@@ -653,7 +653,7 @@ class RequestSpec: QuickSpec
                 let id = "identifier"
                 let data = NewBubbleData(creationId: id, colorName: nil, xPosition: nil, yPosition: nil)
                 let request = NewBubbleRequest(data: data)
-                expect(request.endpoint).to(equal("galleries/\(id)/bubbles"))
+                expect(request.endpoint).to(equal("creations/\(id)/bubbles"))
             }
             
             it("Should have proper endpoint for bubbling user")

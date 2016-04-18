@@ -15,8 +15,8 @@ class NewBubbleRequest: Request
     {
         switch data.type
         {
-            case .Creation: return "galleries/\(data.bubbledObjectIdentifier)/bubbles"
-            case .Gallery:  return "creations/\(data.bubbledObjectIdentifier)/bubbles"
+            case .Creation: return "creations/\(data.bubbledObjectIdentifier)/bubbles"
+            case .Gallery:  return "galleries/\(data.bubbledObjectIdentifier)/bubbles"
             case .User:     return "users/\(data.bubbledObjectIdentifier)/bubbles"
         }
     }
