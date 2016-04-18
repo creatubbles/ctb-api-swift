@@ -595,31 +595,31 @@ class ResponseHandlerSpec: QuickSpec
                 }
             }
             
-            it("Shouldn't return error when logged in")
-            {
-                guard TestConfiguration.testBubbleIdentifier != nil else { return }
-                
-                let data = UpdateBubbleData(bubbleId: TestConfiguration.testBubbleIdentifier!, colorName: "blue")
-                let request = UpdateBubbleRequest(data:data)
-            
-                let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
-                {
-                    done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
-                        (error: ErrorType?) -> Void in
-                        expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:UpdateBubbleResponseHandler()
-                        {
-                            (error) -> (Void) in
-                            expect(error).to(beNil())
-                            sender.logout()
-                            done()
-                        })
-                    }
-                }
-            }
+//            it("Shouldn't return error when logged in")
+//            {
+//                guard TestConfiguration.testBubbleIdentifier != nil else { return }
+//                
+//                let data = UpdateBubbleData(bubbleId: TestConfiguration.testBubbleIdentifier!, colorName: "blue")
+//                let request = UpdateBubbleRequest(data:data)
+//            
+//                let sender = TestComponentsFactory.requestSender
+//                waitUntil(timeout: 10)
+//                {
+//                    done in
+//                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+//                    {
+//                        (error: ErrorType?) -> Void in
+//                        expect(error).to(beNil())
+//                        sender.send(request, withResponseHandler:UpdateBubbleResponseHandler()
+//                        {
+//                            (error) -> (Void) in
+//                            expect(error).to(beNil())
+//                            sender.logout()
+//                            done()
+//                        })
+//                    }
+//                }
+//            }
         }
     }
 }

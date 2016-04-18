@@ -42,6 +42,8 @@ public typealias GalleriesBatchClosure = (Array<Gallery>?, APIClientError?) -> (
 public typealias LandingURLClosure = (Array<LandingURL>?, APIClientError?) -> (Void)
 public typealias BubblesClousure = (Array<Bubble>?, APIClientError?) -> (Void)
 
+public typealias CommentsClosure = (Array<Comment>?, APIClientError?) -> (Void)
+
 //MARK: - Enums
 @objc public enum Gender: Int
 {
@@ -94,6 +96,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     private let creationUploadService: CreationUploadService
     private let databaseDAO: DatabaseDAO
     private let bubbleDAO: BubbleDAO
+    private let commentsDAO: CommentsDAO
     
     public weak var delegate: APIClientDelegate?
     
@@ -106,6 +109,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         self.galleryDAO = GalleryDAO(requestSender: requestSender)
         self.creationUploadService = CreationUploadService(requestSender: requestSender)
         self.bubbleDAO = BubbleDAO(requestSender: requestSender)
+        self.commentsDAO = CommentsDAO(requestSender: requestSender)
         self.databaseDAO = DatabaseDAO()
         Logger.setup()
         super.init()
@@ -290,6 +294,20 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     func deleteBubble(bubbleId: String, completion: ErrorClosure?)
     {
         bubbleDAO.deleteBubble(bubbleId, completion: completion)
+    }
+
+    //MARK: - Comments
+    func getCommentsForCreationWithIdentifier(identifier: String, completion: CommentsClosure?)
+    {
+        commentsDAO.getCommentsForCreationWithIdentifier(identifier, completion: completion)
+    }
+    func getCommentsForUserWithIdentifier(identifier: String, completion: CommentsClosure?)
+    {
+        commentsDAO.getCommentsForUserWithIdentifier(identifier, completion: completion)
+    }
+    func getCommentsForGalleryWithIdentifier(identifier: String, completion: CommentsClosure?)
+    {
+        commentsDAO.getCommentsForGalleryWithIdentifier(identifier, completion: completion)
     }
     
     //MARK: - Delegate
