@@ -505,8 +505,7 @@ class ResponseHandlerSpec: QuickSpec
             {
                 guard TestConfiguration.testUserIdentifier != nil else { return }
                 
-//                let sender = TestComponentsFactory.requestSender
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -555,8 +554,7 @@ class ResponseHandlerSpec: QuickSpec
                 let data = NewBubbleData(userId: TestConfiguration.testUserIdentifier!)
                 let request = NewBubbleRequest(data: data)
                 
-//                let sender = TestComponentsFactory.requestSender
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender                
                 waitUntil(timeout: 10)
                 {
                     done in

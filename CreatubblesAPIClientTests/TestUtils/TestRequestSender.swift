@@ -110,6 +110,14 @@ class TestRequestSender: RequestSender
         {
             return TestResponses.gallerySubmissionTestResponse
         }
+        if request is BubblesFetchReqest
+        {
+            return TestResponses.bubblesFetchTestResponse
+        }
+        if request is NewBubbleRequest
+        {
+            return TestResponses.newBubbleTestResponse
+        }
                 
         return Dictionary<String, AnyObject>()
     }
