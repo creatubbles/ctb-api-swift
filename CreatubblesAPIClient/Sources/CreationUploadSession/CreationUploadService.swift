@@ -53,7 +53,6 @@ class CreationUploadService: CreationUploadSessionDelegate
             session.delegate = self
             session.start(completion)
         }
-
     }
     
     func uploadCreation(data: NewCreationData, completion: CreationClosure?)

@@ -40,6 +40,7 @@ public typealias GalleriesClosure = (Array<Gallery>?, PagingInfo?, APIClientErro
 public typealias GalleriesBatchClosure = (Array<Gallery>?, APIClientError?) -> (Void)
 
 public typealias LandingURLClosure = (Array<LandingURL>?, APIClientError?) -> (Void)
+public typealias BubblesClousure = (Array<Bubble>?, APIClientError?) -> (Void)
 
 //MARK: - Enums
 @objc public enum Gender: Int
@@ -92,6 +93,8 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     private let galleryDAO: GalleryDAO
     private let creationUploadService: CreationUploadService
     private let databaseDAO: DatabaseDAO
+    private let bubbleDAO: BubbleDAO
+    
     public weak var delegate: APIClientDelegate?
     
     public init(settings: APIClientSettings)
@@ -102,6 +105,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         self.userDAO = UserDAO(requestSender: requestSender)
         self.galleryDAO = GalleryDAO(requestSender: requestSender)
         self.creationUploadService = CreationUploadService(requestSender: requestSender)
+        self.bubbleDAO = BubbleDAO(requestSender: requestSender)
         self.databaseDAO = DatabaseDAO()
         Logger.setup()
         super.init()
@@ -255,6 +259,37 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         {
             requestSender.backgroundCompletionHandler = newValue
         }
+    }
+    
+    //MARK: - Bubbles
+    func getBubblesForCreationWithIdentifier(identifier: String, completion: BubblesClousure?)
+    {
+        bubbleDAO.getBubblesForCreationWithIdentifier(identifier, completion: completion)
+    }
+    
+    func getBubblesForUserWithIdentifier(identifier: String, completion: BubblesClousure)
+    {
+        bubbleDAO.getBubblesForUserWithIdentifier(identifier, completion: completion)
+    }
+    
+    func getBubblesForGalleryWithIdentifier(identifier: String, completion: BubblesClousure)
+    {
+        bubbleDAO.getBubblesForGalleryWithIdentifier(identifier, completion: completion)
+    }
+    
+    func newBubble(data: NewBubbleData, completion: ErrorClosure?)
+    {
+        bubbleDAO.newBubble(data, completion: completion)
+    }
+    
+    func updateBubble(data: UpdateBubbleData, completion: ErrorClosure?)
+    {
+        bubbleDAO.updateBubble(data, completion: completion)
+    }
+    
+    func deleteBubble(bubbleId: String, completion: ErrorClosure?)
+    {
+        bubbleDAO.deleteBubble(bubbleId, completion: completion)
     }
     
     //MARK: - Delegate

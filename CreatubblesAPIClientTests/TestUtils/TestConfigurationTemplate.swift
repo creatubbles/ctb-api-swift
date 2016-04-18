@@ -40,6 +40,7 @@ class TestConfigurationTemplate: NSObject
     static let testCreationIdentifier: String? = nil
     static let testUserIdentifier: String? = nil
     static let testGalleryIdentifier: String? = nil
+    static let testBubbleIdentifier: String? = nil
     
     static var settings: APIClientSettings
     {

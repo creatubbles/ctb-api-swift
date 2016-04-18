@@ -227,6 +227,52 @@ extension APIClient
             completion?(creation, APIClient.errorTypeToNSError(error))
         }
     }
+    
+    //MARK: - Bubbles
+    func _getBubblesForCreationWithIdentifier(identifier: String, completion: ((Array<Bubble>?,NSError?) -> (Void))?)
+    {
+        getBubblesForCreationWithIdentifier(identifier)
+        {
+            (bubbles, error) -> (Void) in
+            completion?(bubbles, APIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    func _getBubblesForUserWithIdentifier(identifier: String, completion: ((Array<Bubble>?,NSError?) -> (Void))?)
+    {
+        getBubblesForUserWithIdentifier(identifier)
+        {
+            (bubbles, error) -> (Void) in
+            completion?(bubbles, APIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    func _getBubblesForGalleryWithIdentifier(identifier: String, completion: ((Array<Bubble>?,NSError?) -> (Void))?)
+    {
+        getBubblesForGalleryWithIdentifier(identifier)
+        {
+            (bubbles, error) -> (Void) in
+            completion?(bubbles, APIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    func _newBubble(data: NewBubbleData, completion: ((NSError?) -> (Void))?)
+    {
+        newBubble(data)
+        {
+            (error) -> (Void) in
+            completion?(APIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    func _updateBubble(data: UpdateBubbleData, completion: ((NSError?) -> (Void))?)
+    {
+        updateBubble(data)
+            {
+                (error) -> (Void) in
+                completion?(APIClient.errorTypeToNSError(error))
+        }
+    }
 
     //MARK: - Utils
     static func errorTypeToNSError(error: ErrorType?) -> NSError?
