@@ -272,6 +272,13 @@ class RequestSpec: QuickSpec
                 expect(request.endpoint).to(equal("galleries"))
             }
             
+            it("Should have proper endpoint for list of user galleries")
+            {
+                let userId = "TestUserId"
+                let request = GalleriesRequest(page: 1, perPage: 20, sort: .Recent, userId: userId)
+                expect(request.endpoint).to(equal("users/\(userId)/galleries"))
+            }
+            
             it("Should return correct value for single gallery after login")
             {
                 let sender = TestComponentsFactory.requestSender
