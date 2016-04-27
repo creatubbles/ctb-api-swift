@@ -746,7 +746,6 @@ class RequestSpec: QuickSpec
                 
                 let newCommentRequest = NewCommentData(creationId: identifier, text: text)
                 let request = NewCommentRequest(data: newCommentRequest)
-                expect(request.parameters["creation_id"] as? String).to(equal(identifier))
                 expect(request.parameters["text"] as? String).to(equal(text))
             }
         }
