@@ -17,46 +17,46 @@ class BubbleDAO: NSObject
         self.requestSender = requestSender
     }
     
-    func getBubblesForCreationWithIdentifier(identifier: String, completion: BubblesClousure?)
+    func getBubblesForCreationWithIdentifier(identifier: String, completion: BubblesClousure?) -> RequestHandler
     {
         let request = BubblesFetchReqest(creationId: identifier)
         let handler = BubblesFetchResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getBubblesForUserWithIdentifier(identifier: String, completion: BubblesClousure)
+    func getBubblesForUserWithIdentifier(identifier: String, completion: BubblesClousure) -> RequestHandler
     {
         let request = BubblesFetchReqest(userId: identifier)
         let handler = BubblesFetchResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getBubblesForGalleryWithIdentifier(identifier: String, completion: BubblesClousure)
+    func getBubblesForGalleryWithIdentifier(identifier: String, completion: BubblesClousure) -> RequestHandler
     {
         let request = BubblesFetchReqest(galleryId: identifier)
         let handler = BubblesFetchResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func newBubble(data: NewBubbleData, completion: ErrorClosure?)
+    func newBubble(data: NewBubbleData, completion: ErrorClosure?) -> RequestHandler
     {
         let request = NewBubbleRequest(data: data)
         let handler = NewBubbleResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func updateBubble(data: UpdateBubbleData, completion: ErrorClosure?)
+    func updateBubble(data: UpdateBubbleData, completion: ErrorClosure?) -> RequestHandler
     {
         let request = UpdateBubbleRequest(data: data)
         let handler = UpdateBubbleResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func deleteBubble(bubbleId: String, completion: ErrorClosure?)
+    func deleteBubble(bubbleId: String, completion: ErrorClosure?) -> RequestHandler
     {
         let request = DeleteBubbleRequest(bubbleId: bubbleId)
         let handler = DeleteBubbleResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
 
 }

@@ -266,48 +266,48 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     }
     
     //MARK: - Bubbles
-    public func getBubblesForCreationWithIdentifier(identifier: String, completion: BubblesClousure?)
+    public func getBubblesForCreationWithIdentifier(identifier: String, completion: BubblesClousure?) -> RequestHandler
     {
-        bubbleDAO.getBubblesForCreationWithIdentifier(identifier, completion: completion)
+        return bubbleDAO.getBubblesForCreationWithIdentifier(identifier, completion: completion)
     }
     
-    public func getBubblesForUserWithIdentifier(identifier: String, completion: BubblesClousure)
+    public func getBubblesForUserWithIdentifier(identifier: String, completion: BubblesClousure) -> RequestHandler
     {
-        bubbleDAO.getBubblesForUserWithIdentifier(identifier, completion: completion)
+        return bubbleDAO.getBubblesForUserWithIdentifier(identifier, completion: completion)
     }
     
-    public func getBubblesForGalleryWithIdentifier(identifier: String, completion: BubblesClousure)
+    public func getBubblesForGalleryWithIdentifier(identifier: String, completion: BubblesClousure) -> RequestHandler
     {
-        bubbleDAO.getBubblesForGalleryWithIdentifier(identifier, completion: completion)
+        return bubbleDAO.getBubblesForGalleryWithIdentifier(identifier, completion: completion)
     }
     
-    public func newBubble(data: NewBubbleData, completion: ErrorClosure?)
+    public func newBubble(data: NewBubbleData, completion: ErrorClosure?) -> RequestHandler
     {
-        bubbleDAO.newBubble(data, completion: completion)
+        return bubbleDAO.newBubble(data, completion: completion)
     }
     
-    public func updateBubble(data: UpdateBubbleData, completion: ErrorClosure?)
+    public func updateBubble(data: UpdateBubbleData, completion: ErrorClosure?) -> RequestHandler
     {
-        bubbleDAO.updateBubble(data, completion: completion)
+        return bubbleDAO.updateBubble(data, completion: completion)
     }
     
-    public func deleteBubble(bubbleId: String, completion: ErrorClosure?)
+    public func deleteBubble(bubbleId: String, completion: ErrorClosure?) -> RequestHandler
     {
-        bubbleDAO.deleteBubble(bubbleId, completion: completion)
+        return bubbleDAO.deleteBubble(bubbleId, completion: completion)
     }
 
     //MARK: - Comments
-    public func getCommentsForCreationWithIdentifier(identifier: String, completion: CommentsClosure?)
+    public func getCommentsForCreationWithIdentifier(identifier: String, completion: CommentsClosure?) -> RequestHandler
     {
-        commentsDAO.getCommentsForCreationWithIdentifier(identifier, completion: completion)
+        return commentsDAO.getCommentsForCreationWithIdentifier(identifier, completion: completion)
     }
-    public func getCommentsForUserWithIdentifier(identifier: String, completion: CommentsClosure?)
+    public func getCommentsForUserWithIdentifier(identifier: String, completion: CommentsClosure?) -> RequestHandler
     {
-        commentsDAO.getCommentsForUserWithIdentifier(identifier, completion: completion)
+        return commentsDAO.getCommentsForUserWithIdentifier(identifier, completion: completion)
     }
-    public func getCommentsForGalleryWithIdentifier(identifier: String, completion: CommentsClosure?)
+    public func getCommentsForGalleryWithIdentifier(identifier: String, completion: CommentsClosure?) -> RequestHandler
     {
-        commentsDAO.getCommentsForGalleryWithIdentifier(identifier, completion: completion)
+        return commentsDAO.getCommentsForGalleryWithIdentifier(identifier, completion: completion)
     }
     
     //MARK: - Delegate

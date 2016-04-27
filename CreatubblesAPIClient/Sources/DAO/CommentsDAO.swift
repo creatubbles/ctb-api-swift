@@ -17,22 +17,24 @@ class CommentsDAO: NSObject
         self.requestSender = requestSender
     }
     
-    func getCommentsForCreationWithIdentifier(identifier: String, completion: CommentsClosure?)
+    func getCommentsForCreationWithIdentifier(identifier: String, completion: CommentsClosure?) -> RequestHandler
     {
         let request = CommentsRequest(creationId: identifier)
         let handler = CommentsResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
-    func getCommentsForUserWithIdentifier(identifier: String, completion: CommentsClosure?)
+    
+    func getCommentsForUserWithIdentifier(identifier: String, completion: CommentsClosure?) -> RequestHandler
     {
         let request = CommentsRequest(userId: identifier)
         let handler = CommentsResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
-    func getCommentsForGalleryWithIdentifier(identifier: String, completion: CommentsClosure?)
+    
+    func getCommentsForGalleryWithIdentifier(identifier: String, completion: CommentsClosure?) -> RequestHandler
     {
         let request = CommentsRequest(galleryId: identifier)
         let handler = CommentsResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
 }
