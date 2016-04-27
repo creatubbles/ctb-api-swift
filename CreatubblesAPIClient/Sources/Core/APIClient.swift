@@ -266,46 +266,46 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     }
     
     //MARK: - Bubbles
-    func getBubblesForCreationWithIdentifier(identifier: String, completion: BubblesClousure?)
+    public func getBubblesForCreationWithIdentifier(identifier: String, completion: BubblesClousure?)
     {
         bubbleDAO.getBubblesForCreationWithIdentifier(identifier, completion: completion)
     }
     
-    func getBubblesForUserWithIdentifier(identifier: String, completion: BubblesClousure)
+    public func getBubblesForUserWithIdentifier(identifier: String, completion: BubblesClousure)
     {
         bubbleDAO.getBubblesForUserWithIdentifier(identifier, completion: completion)
     }
     
-    func getBubblesForGalleryWithIdentifier(identifier: String, completion: BubblesClousure)
+    public func getBubblesForGalleryWithIdentifier(identifier: String, completion: BubblesClousure)
     {
         bubbleDAO.getBubblesForGalleryWithIdentifier(identifier, completion: completion)
     }
     
-    func newBubble(data: NewBubbleData, completion: ErrorClosure?)
+    public func newBubble(data: NewBubbleData, completion: ErrorClosure?)
     {
         bubbleDAO.newBubble(data, completion: completion)
     }
     
-    func updateBubble(data: UpdateBubbleData, completion: ErrorClosure?)
+    public func updateBubble(data: UpdateBubbleData, completion: ErrorClosure?)
     {
         bubbleDAO.updateBubble(data, completion: completion)
     }
     
-    func deleteBubble(bubbleId: String, completion: ErrorClosure?)
+    public func deleteBubble(bubbleId: String, completion: ErrorClosure?)
     {
         bubbleDAO.deleteBubble(bubbleId, completion: completion)
     }
 
     //MARK: - Comments
-    func getCommentsForCreationWithIdentifier(identifier: String, completion: CommentsClosure?)
+    public func getCommentsForCreationWithIdentifier(identifier: String, completion: CommentsClosure?)
     {
         commentsDAO.getCommentsForCreationWithIdentifier(identifier, completion: completion)
     }
-    func getCommentsForUserWithIdentifier(identifier: String, completion: CommentsClosure?)
+    public func getCommentsForUserWithIdentifier(identifier: String, completion: CommentsClosure?)
     {
         commentsDAO.getCommentsForUserWithIdentifier(identifier, completion: completion)
     }
-    func getCommentsForGalleryWithIdentifier(identifier: String, completion: CommentsClosure?)
+    public func getCommentsForGalleryWithIdentifier(identifier: String, completion: CommentsClosure?)
     {
         commentsDAO.getCommentsForGalleryWithIdentifier(identifier, completion: completion)
     }
