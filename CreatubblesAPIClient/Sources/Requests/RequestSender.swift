@@ -32,7 +32,7 @@ class RequestSender: NSObject
     private let uploadManager: Alamofire.Manager
     private let settings: APIClientSettings
     private let oauth2PrivateClient: OAuth2PasswordGrant
-    private let oauth2PublicClient: OAuth2ImplicitGrant
+    private let oauth2PublicClient: OAuth2ClientCredentials
     private var oauth2: OAuth2
     {
         return oauth2PrivateClient.hasUnexpiredAccessToken() ? oauth2PrivateClient : oauth2PublicClient
@@ -76,7 +76,7 @@ class RequestSender: NSObject
         return client
     }
     
-    private static func prepareOauthPublicClient(settings: APIClientSettings) -> OAuth2ImplicitGrant
+    private static func prepareOauthPublicClient(settings: APIClientSettings) -> OAuth2ClientCredentials
     {
         let oauthSettings =
         [
@@ -84,10 +84,13 @@ class RequestSender: NSObject
             "client_secret": settings.appSecret,
             "authorize_uri": settings.authorizeUri,
             "token_uri":     settings.tokenUri,
-            ] as OAuth2JSON
+            "keychain": false
+        ]
+        as OAuth2JSON
         
-        let client = OAuth2ImplicitGrant(settings: oauthSettings)
+        let client = OAuth2ClientCredentials(settings: oauthSettings)
         client.verbose = false
+        client.authorize()
         return client
     }
     
