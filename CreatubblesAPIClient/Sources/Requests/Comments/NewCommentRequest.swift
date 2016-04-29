@@ -16,9 +16,9 @@ class NewCommentRequest: Request {
     {
         switch data.type
         {
-        case .Creation: return "galleries/\(data.commentedObjectIdentifier)/comments"
-        case .Gallery:  return "creations/\(data.commentedObjectIdentifier)/comments"
-        case .User:     return "users/\(data.commentedObjectIdentifier)/comments"
+            case .Creation: return "creations/\(data.commentedObjectIdentifier)/comments"
+            case .Gallery:  return "galleries/\(data.commentedObjectIdentifier)/comments"
+            case .User:     return "users/\(data.commentedObjectIdentifier)/comments"
         }
     }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
@@ -32,13 +32,7 @@ class NewCommentRequest: Request {
     
     private func prepareParameters() -> Dictionary<String,AnyObject>
     {
-        var params = Dictionary<String,AnyObject>()
-        switch data.type
-        {
-        case .Creation: params["creation_id"] = data.commentedObjectIdentifier
-        case .Gallery:  params["gallery_id"] = data.commentedObjectIdentifier
-        case .User:     params["user_id"] = data.commentedObjectIdentifier
-        }
+        var params = Dictionary<String,AnyObject>()        
         if let text = data.text
         {
             params["text"] = text

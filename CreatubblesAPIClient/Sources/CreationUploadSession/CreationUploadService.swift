@@ -55,12 +55,25 @@ class CreationUploadService: CreationUploadSessionDelegate
         }
     }
     
-    func uploadCreation(data: NewCreationData, completion: CreationClosure?)
+    func removeUploadSession(sessionId: String)
+    {
+        databaseDAO.removeUploadSession(withIdentifier: sessionId)
+    }
+    
+    
+    func removeAllUploadSessions()
+    {
+        databaseDAO.removeAllUploadSessions()
+    }
+
+    
+    func uploadCreation(data: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData
     {
         let session = CreationUploadSession(data: data, requestSender: requestSender)
         databaseDAO.saveCreationUploadSessionToDatabase(session)
         session.delegate = self
         session.start(completion)
+        return CreationUploadSessionPublicData(creationUploadSession: session)        
     }
     
     func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)

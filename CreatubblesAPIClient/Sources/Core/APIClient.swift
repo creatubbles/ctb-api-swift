@@ -246,10 +246,20 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         creationUploadService.startAllNotFinishedUploadSessions(completion)
     }
     
-    //MARK: - Creation flow
-    public func newCreation(creationData: NewCreationData, completion: CreationClosure?)
+    public func cancelUploadSession(sessionId: String)
     {
-        creationUploadService.uploadCreation(creationData, completion: completion)
+        creationUploadService.removeUploadSession(sessionId)
+    }
+    
+    public func removeAllUploadSessions()
+    {
+        creationUploadService.removeAllUploadSessions()
+    }
+    
+    //MARK: - Creation flow
+    public func newCreation(creationData: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData
+    {
+        return creationUploadService.uploadCreation(creationData, completion: completion)
     }
     
     //MARK: - Background session

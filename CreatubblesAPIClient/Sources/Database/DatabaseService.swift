@@ -185,6 +185,29 @@ class DatabaseService: NSObject
         return finishedUploadsPublicData
     }
     
+    func removeUploadSession(withIdentifier identifier: String)
+    {
+        if let entity = realm.objectForPrimaryKey(CreationUploadSessionEntity.self, key: identifier)
+        {
+            realm.delete(entity)
+        }
+    }
+    
+    func removeAllUploadSessions()
+    {
+        do
+        {
+            try realm.write
+            {
+                realm.deleteAll()
+            }
+        }
+        catch let error
+        {
+            Logger.log.error("Error duting database clear: \(error)")
+        }
+    }
+    
     //MARK: - Transforms
     private func getUploadSessionEntityFromCreationUploadSession(creationUploadSession: CreationUploadSession) -> CreationUploadSessionEntity
     {

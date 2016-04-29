@@ -57,8 +57,19 @@ class DatabaseDAO: NSObject
     {
         return databaseService.getAllActiveUploadSessionsPublicData(requestSender)
     }
+    
     func getAllFinishedUploadSessionsPublicData(requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
     {
         return databaseService.getAllFinishedUploadSessionPublicData(requestSender)
+    }
+    
+    func removeUploadSession(withIdentifier identifier: String)
+    {
+        databaseService.removeUploadSession(withIdentifier: identifier)
+    }
+    
+    func removeAllUploadSessions()
+    {
+        databaseService.removeAllUploadSessions()
     }
 }
