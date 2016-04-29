@@ -54,11 +54,11 @@ class GalleriesResponseHandler: ResponseHandler
             let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
             let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!)
             let gallery = Gallery(mapper: mapper, dataMapper: dataMapper)
-            completion?([gallery], nil, ErrorTransformer.errorFromResponse(response, error: error))
+            completion?([gallery], nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
         }
         else
         {
-            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error))
+            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
         }
     }
 }

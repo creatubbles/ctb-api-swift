@@ -43,7 +43,7 @@ class NewCreationUploadResponseHandler: ResponseHandler
         }
         else
         {
-            completion(creationUpload: nil, error: error)
+            completion(creationUpload: nil, error: ErrorTransformer.errorFromResponse(response, error: error))
         }
     }
 }

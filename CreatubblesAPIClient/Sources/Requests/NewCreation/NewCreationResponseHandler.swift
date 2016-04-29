@@ -46,7 +46,7 @@ class NewCreationResponseHandler: ResponseHandler
         }
         else
         {
-            completion(creation: nil, error: error)
+            completion(creation: nil, error: ErrorTransformer.errorFromResponse(response, error: error))
         }
     }
 }

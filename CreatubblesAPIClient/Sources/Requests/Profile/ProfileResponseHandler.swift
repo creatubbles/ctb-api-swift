@@ -40,11 +40,11 @@ class ProfileResponseHandler: ResponseHandler
             let userMapper = Mapper<UserMapper>().map(response["data"])
         {
             let user = User(mapper: userMapper)
-            completion?(user, ErrorTransformer.errorFromResponse(response, error: error))
+            completion?(user, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
         }
         else
         {
-            completion?(nil, ErrorTransformer.errorFromResponse(response, error: error))
+            completion?(nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
         }
     }
 }

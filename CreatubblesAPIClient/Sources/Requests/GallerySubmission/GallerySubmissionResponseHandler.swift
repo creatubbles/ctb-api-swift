@@ -24,16 +24,7 @@
 
 import UIKit
 
-class GallerySubmissionResponseHandler: ResponseHandler
+class GallerySubmissionResponseHandler: ErrorResponseHandler
 {
-    private let completion: ErrorClosure?
-    init(completion: ErrorClosure?)
-    {
-        self.completion = completion
-    }
-    
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
-    {
-        completion?( APIClientError.Generic(error.debugDescription) )
-    }    
+
 }

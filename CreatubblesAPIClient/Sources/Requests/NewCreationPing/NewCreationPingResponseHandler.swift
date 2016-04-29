@@ -35,6 +35,6 @@ class NewCreationPingResponseHandler: ResponseHandler
     
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
-        completion(error: error)
+        completion(error: ErrorTransformer.errorFromResponse(response, error: error))
     }
 }
