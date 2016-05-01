@@ -35,16 +35,25 @@ protocol CreationUploadServiceDelegate: class
 class CreationUploadService: CreationUploadSessionDelegate
 {
     weak var delegate: CreationUploadServiceDelegate?
-    let databaseDAO: DatabaseDAO
-    
-    let requestSender: RequestSender
+    private let databaseDAO: DatabaseDAO
+    private let requestSender: RequestSender
     
     init(requestSender: RequestSender)
     {
         self.requestSender = requestSender
         self.databaseDAO = DatabaseDAO()
     }
-        
+    
+    func getAllActiveUploadSessionsPublicData() -> Array<CreationUploadSessionPublicData>
+    {
+        return databaseDAO.getAllActiveUploadSessionsPublicData(requestSender)
+    }
+    
+    func getAllFinishedUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
+    {
+        return databaseDAO.getAllFinishedUploadSessionsPublicData(requestSender)
+    }
+    
     func startAllNotFinishedUploadSessions(completion: CreationClosure?)
     {
         let sessions = databaseDAO.fetchAllActiveUploadSessions(requestSender)
