@@ -94,7 +94,6 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     private let userDAO: UserDAO
     private let galleryDAO: GalleryDAO
     private let creationUploadService: CreationUploadService
-    private let databaseDAO: DatabaseDAO
     private let bubbleDAO: BubbleDAO
     private let commentsDAO: CommentsDAO
     
@@ -110,7 +109,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         self.creationUploadService = CreationUploadService(requestSender: requestSender)
         self.bubbleDAO = BubbleDAO(requestSender: requestSender)
         self.commentsDAO = CommentsDAO(requestSender: requestSender)
-        self.databaseDAO = DatabaseDAO()
+        
         Logger.setup()
         super.init()
         self.creationUploadService.delegate = self
@@ -124,6 +123,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     
     public func login(username: String, password: String, completion:ErrorClosure?) -> RequestHandler
     {
+        
         return requestSender.login(username, password: password)
         {
             [weak self](error) -> (Void) in
@@ -233,12 +233,12 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     //MARK: - Upload Sessions
     public func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
-        return databaseDAO.getAllActiveUploadSessionsPublicData(requestSender)
+        return creationUploadService.getAllActiveUploadSessionsPublicData()
     }
     
     public func getAllFinishedUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
-        return databaseDAO.getAllFinishedUploadSessionsPublicData(requestSender)
+        return creationUploadService.getAllFinishedUploadSessionPublicData()
     }
     
     public func startAllNotFinishedUploadSessions(completion: CreationClosure?)
