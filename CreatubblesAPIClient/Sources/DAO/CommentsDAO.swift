@@ -17,6 +17,13 @@ class CommentsDAO: NSObject
         self.requestSender = requestSender
     }
     
+    func addComment(data: NewCommentData, completion: ErrorClosure?) -> RequestHandler
+    {
+        let request = NewCommentRequest(data: data)
+        let handler = NewCommentResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getCommentsForCreationWithIdentifier(identifier: String, completion: CommentsClosure?) -> RequestHandler
     {
         let request = CommentsRequest(creationId: identifier)

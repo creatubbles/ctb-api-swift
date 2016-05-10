@@ -307,6 +307,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     }
 
     //MARK: - Comments
+    public func addComment(data: NewCommentData, completion: ErrorClosure?) -> RequestHandler
+    {
+        return commentsDAO.addComment(data, completion: completion)
+    }
+    
     public func getCommentsForCreationWithIdentifier(identifier: String, completion: CommentsClosure?) -> RequestHandler
     {
         return commentsDAO.getCommentsForCreationWithIdentifier(identifier, completion: completion)
