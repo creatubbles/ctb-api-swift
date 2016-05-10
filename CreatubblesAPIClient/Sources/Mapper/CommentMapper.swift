@@ -30,10 +30,10 @@ class CommentMapper: Mappable
     func mapping(map: Map)
     {
         identifier <- map["id"]
-        text <- map["text"]
-        approved <- map["approved"]
-        createdAt <- map["created_at"]
-        commentableType <- map["commentable_type"]
+        text <- map["attributes.text"]
+        approved <- map["attributes.approved"]
+        createdAt <- (map["attributes.created_at"], DateTransform())
+        commentableType <- map["attributes.commentable_type"]
         commenterId <- map["relationships.commenter.data.id"]
         
         commentedUserId <- map["relationships.user.data.id"]

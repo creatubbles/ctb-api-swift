@@ -621,6 +621,197 @@ class ResponseHandlerSpec: QuickSpec
 //                }
 //            }
         }
+        
+        describe("Comment response handler")
+        {
+            it("Should return comments for Creation")
+            {
+                guard let creationId = TestConfiguration.testCreationIdentifier
+                else { return }
+                
+                let request = CommentsRequest(creationId: creationId)
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:CommentsResponseHandler()
+                        {
+                            (comments, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(comments).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+            
+            it("Should return comments for Gallery")
+            {
+                guard let galleryId = TestConfiguration.testGalleryIdentifier
+                else { return }
+                
+                let request = CommentsRequest(galleryId: galleryId)
+//                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:CommentsResponseHandler()
+                            {
+                                (comments, error) -> (Void) in
+                                expect(error).to(beNil())
+                                expect(comments).notTo(beNil())
+                                sender.logout()
+                                done()
+                            })
+                    }
+                }
+            }
+            
+            it("Should return comments for Profile")
+            {
+                guard let userId = TestConfiguration.testUserIdentifier
+                    else { return }
+                
+                let request = CommentsRequest(userId: userId)
+                //                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:CommentsResponseHandler()
+                            {
+                                (comments, error) -> (Void) in
+                                expect(error).to(beNil())
+                                expect(comments).notTo(beNil())
+                                sender.logout()
+                                done()
+                            })
+                    }
+                }
+            }
+        }
+        
+        describe("NewComment response handler")
+        {
+            it("Should return error when not logged in")
+            {
+                let data = NewCommentData(userId: "TestUserId", text: "Test")
+                let request = NewCommentRequest(data: data)
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.logout()
+                    sender.send(request, withResponseHandler:NewCommentResponseHandler()
+                        {
+                            (error) -> (Void) in
+                            expect(error).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                }
+            }
+            
+            it("Should comment gallery when logged in")
+            {
+                guard let galleryId = TestConfiguration.testGalleryIdentifier
+                    else { return }
+                
+                let data = NewCommentData(galleryId: galleryId, text: "TestGalleryComment")
+                let request = NewCommentRequest(data: data)
+                //                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:NewCommentResponseHandler()
+                            {
+                                (error) -> (Void) in
+                                expect(error).to(beNil())
+                                sender.logout()
+                                done()
+                            })
+                    }
+                }
+            }
+            
+            it("Should comment profile when logged in")
+            {
+                guard let userId = TestConfiguration.testUserIdentifier
+                    else { return }
+                
+                let data = NewCommentData(userId: userId, text: "TestProfileComment")
+                let request = NewCommentRequest(data: data)
+                //                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:NewCommentResponseHandler()
+                            {
+                                (error) -> (Void) in
+                                expect(error).to(beNil())
+                                sender.logout()
+                                done()
+                            })
+                    }
+                }
+            }
+            
+            it("Should comment creation when logged in")
+            {
+                guard let creationId = TestConfiguration.testCreationIdentifier
+                    else { return }
+                
+                let data = NewCommentData(creationId: creationId, text: "TestCreationComment")
+                let request = NewCommentRequest(data: data)
+                //                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:NewCommentResponseHandler()
+                            {
+                                (error) -> (Void) in
+                                expect(error).to(beNil())
+                                sender.logout()
+                                done()
+                            })
+                    }
+                }
+            }
+
+        }
+        
     }
 }
 
