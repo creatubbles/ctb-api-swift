@@ -22,21 +22,21 @@ public class NewCommentData: NSObject
     
     public let text: String?
     
-    init(userId: String, text: String)
+    public init(userId: String, text: String)
     {
         self.commentedObjectIdentifier = userId
         self.type = .User
         self.text = text
     }
     
-    init(galleryId: String, text: String)
+    public init(galleryId: String, text: String)
     {
         self.commentedObjectIdentifier = galleryId
         self.type = .Gallery
         self.text = text
     }
     
-    init(creationId: String, text: String)
+    public init(creationId: String, text: String)
     {
         self.commentedObjectIdentifier = creationId
         self.type = .Creation
