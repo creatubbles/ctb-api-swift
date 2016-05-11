@@ -24,11 +24,9 @@ class CommentsResponseHandler: ResponseHandler
         if  let response = response,
             let mappers = Mapper<CommentMapper>().mapArray(response["data"])
         {
-            var comments = Array<Comment>()
-            for mapper in mappers
-            {
-                comments.append(Comment(mapper: mapper))
-            }
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!)
+            let comments = mappers.map({ Comment(mapper: $0, dataMapper: dataMapper) })
             
             completion?(comments, ErrorTransformer.errorFromResponse(response, error: error))
         }
