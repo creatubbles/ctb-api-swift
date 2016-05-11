@@ -50,10 +50,10 @@ class GalleryMapper: Mappable
         identifier  <- map["id"]
         name <- map["attributes.name"]
         galleryDescription <- map["attributes.description"]
-        createdAt <- (map["attributes.created_at"], DateTransform())
-        updatedAt <- (map["attributes.updated_at"], DateTransform())
-        lastBubbledAt <- (map["attributes.last_bubbled_at"], DateTransform())
-        lastCommentedAt <- (map["attributes.last_commented_at"], DateTransform())
+        createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
+        updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
+        lastBubbledAt <- (map["attributes.last_bubbled_at"], APIClientDateTransform.sharedTransform)
+        lastCommentedAt <- (map["attributes.last_commented_at"], APIClientDateTransform.sharedTransform)
         commentsCount <- map["attributes.comments_count"]
         creationsCount <- map["attributes.creations_count"]
         bubblesCount <- map["attributes.bubbles_count"]

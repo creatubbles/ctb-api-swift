@@ -96,6 +96,7 @@
 		18C744FE1C84611600A07E4C /* NewCreationDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C744F91C84611600A07E4C /* NewCreationDataEntity.swift */; };
 		18CC309E1CB28A9D00EA4A00 /* AlamofireRequest+Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC309D1CB28A9D00EA4A00 /* AlamofireRequest+Cancelable.swift */; };
 		18CC30A01CB28B1600EA4A00 /* OAuth2+Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC309F1CB28B1600EA4A00 /* OAuth2+Cancelable.swift */; };
+		18DB8EB61CE3EF29008B5F52 /* APIClientDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8EB51CE3EF29008B5F52 /* APIClientDateFormatter.swift */; };
 		18E30BE61C8DA307000794B6 /* LandingURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E30BE51C8DA307000794B6 /* LandingURLRequest.swift */; };
 		18E30BE81C8DA318000794B6 /* LandingURLResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E30BE71C8DA318000794B6 /* LandingURLResponseHandler.swift */; };
 		18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E30BE91C8DA7DD000794B6 /* LandingURL.swift */; };
@@ -228,6 +229,7 @@
 		18C744F91C84611600A07E4C /* NewCreationDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationDataEntity.swift; sourceTree = "<group>"; };
 		18CC309D1CB28A9D00EA4A00 /* AlamofireRequest+Cancelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlamofireRequest+Cancelable.swift"; sourceTree = "<group>"; };
 		18CC309F1CB28B1600EA4A00 /* OAuth2+Cancelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuth2+Cancelable.swift"; sourceTree = "<group>"; };
+		18DB8EB51CE3EF29008B5F52 /* APIClientDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientDateFormatter.swift; sourceTree = "<group>"; };
 		18E30BE51C8DA307000794B6 /* LandingURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingURLRequest.swift; sourceTree = "<group>"; };
 		18E30BE71C8DA318000794B6 /* LandingURLResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingURLResponseHandler.swift; sourceTree = "<group>"; };
 		18E30BE91C8DA7DD000794B6 /* LandingURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingURL.swift; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 				1847FBEF1C76024300FE5FF3 /* Logger.swift */,
 				18CC309D1CB28A9D00EA4A00 /* AlamofireRequest+Cancelable.swift */,
 				18CC309F1CB28B1600EA4A00 /* OAuth2+Cancelable.swift */,
+				18DB8EB51CE3EF29008B5F52 /* APIClientDateFormatter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -934,6 +937,7 @@
 				189D9F5F1C84B36100857CC6 /* GalleryMapper.swift in Sources */,
 				187901FF1C6C80AA008F5302 /* GalleriesRequest.swift in Sources */,
 				18779DF01C69C9E3000BFB57 /* OAuth2+Alamofire.swift in Sources */,
+				18DB8EB61CE3EF29008B5F52 /* APIClientDateFormatter.swift in Sources */,
 				181E76DF1CC5352800A1546A /* NewBubbleRequest.swift in Sources */,
 				181E76E01CC5352800A1546A /* NewBubbleResponseHandler.swift in Sources */,
 				18EFFF661C770F8700BE0B70 /* GallerySubmissionRequest.swift in Sources */,

@@ -37,7 +37,7 @@ class CommentMapper: Mappable
         identifier <- map["id"]
         text <- map["attributes.text"]
         approved <- map["attributes.approved"]
-        createdAt <- (map["attributes.created_at"], DateTransform())
+        createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
         commentableType <- map["attributes.commentable_type"]
         commenterId <- map["relationships.commenter.data.id"]
         

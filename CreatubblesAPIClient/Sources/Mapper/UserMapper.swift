@@ -68,10 +68,10 @@ class UserMapper: Mappable
         displayName  <- map["attributes.display_name"]
         name <- map["attributes.name"]
         role <- map["attributes.role"]
-        lastBubbledAt <- (map["attributes.last_bubbled_at"], DateTransform())
-        lastCommentedAt <- (map["attributes.last_commented_at"], DateTransform())
-        createdAt <- (map["attributes.created_at"], DateTransform())
-        updatedAt <- (map["attributes.updated_at"], DateTransform())
+        lastBubbledAt <- (map["attributes.last_bubbled_at"], APIClientDateTransform.sharedTransform)
+        lastCommentedAt <- (map["attributes.last_commented_at"], APIClientDateTransform.sharedTransform)
+        createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
+        updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
         avatarUrl <- map["attributes.avatar_url"]
         countryCode <- map["attributes.country_code"]
         countryName <- map["attributes.country_name"]
