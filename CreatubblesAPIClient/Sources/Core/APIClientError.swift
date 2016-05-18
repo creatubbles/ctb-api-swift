@@ -30,6 +30,7 @@ public enum APIClientError: ErrorType
 {
     case Generic(String)
     case NetworkError
+    case LoginError
     case Unknown
     
     public var errorDescription: String
@@ -39,6 +40,7 @@ public enum APIClientError: ErrorType
             case .Generic(let desc): return desc
             case .NetworkError:  return "Network error"
             case .Unknown: return "Unknown"
+            case .LoginError: return "Error during login"
         }
     }
 }

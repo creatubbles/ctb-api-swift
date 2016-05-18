@@ -120,12 +120,22 @@ class RequestSender: NSObject
                 weakSelf.oauth2PrivateClient.onFailure = nil
             }
             Logger.log.error("Error while login:\(error)")
-            
-            let err = error as! OAuth2Error
-            completion?(APIClientError.Generic(err.description))
+            completion?(RequestSender.errorFromLoginError(error))
         }
         oauth2PrivateClient.authorize()
         return RequestHandler(object: oauth2PrivateClient)
+    }
+    
+    private class func errorFromLoginError(error: ErrorType?) -> APIClientError
+    {
+        if let err = error as? OAuth2Error {
+            return APIClientError.Generic(err.description)
+        }
+        if let err = error as? NSError {
+            return APIClientError.Generic(err.localizedDescription)
+        }
+        
+        return APIClientError.LoginError
     }
     
     func logout()
