@@ -50,9 +50,7 @@ public class Comment: NSObject
         commentedGalleryRelationship = mapper.parseCommentedGalleryRelationship()
         commentedUserRelationship = mapper.parseCommentedUserRelationship()
         
-        
         commenter = Comment.prepareObjectFromMapper(dataMapper, relationship: commenterRelationship, type: User.self)
-        
         commentedCreation = Comment.prepareObjectFromMapper(dataMapper, relationship: commentedCreationRelationship, type: Creation.self)
         commentedGallery = Comment.prepareObjectFromMapper(dataMapper, relationship: commentedGalleryRelationship, type: Gallery.self)
         commentedUser = Comment.prepareObjectFromMapper(dataMapper, relationship: commentedUserRelationship, type: User.self)
