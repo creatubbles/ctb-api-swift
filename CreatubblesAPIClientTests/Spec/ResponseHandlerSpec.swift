@@ -626,7 +626,7 @@ class ResponseHandlerSpec: QuickSpec
         {
             it("Should return recent content after login")
             {
-                let request = ContentRequest(type: .Recent, page: nil, perPage: nil)
+                let request = ContentRequest(type: .Recent, page: 1, perPage: 20)
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 
                 waitUntil(timeout: 10)
@@ -638,9 +638,10 @@ class ResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:ContentResponseHandler()
                         {
-                            (entries, error) -> (Void) in
+                            (entries, pageInfo, error) -> (Void) in
                             expect(error).to(beNil())
                             expect(entries).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
                             sender.logout()
                             done()
                         })
@@ -650,7 +651,7 @@ class ResponseHandlerSpec: QuickSpec
             
             it("Should return trending content after login")
             {
-                let request = ContentRequest(type: .Trending, page: nil, perPage: nil)
+                let request = ContentRequest(type: .Trending, page: 1, perPage: 20)
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 
                 waitUntil(timeout: 10)
@@ -662,9 +663,10 @@ class ResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:ContentResponseHandler()
                         {
-                            (entries, error) -> (Void) in
+                            (entries, pageInfo,  error) -> (Void) in
                             expect(error).to(beNil())
                             expect(entries).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
                             sender.logout()
                             done()
                         })

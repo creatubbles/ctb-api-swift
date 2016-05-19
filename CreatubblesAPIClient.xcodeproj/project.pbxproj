@@ -47,6 +47,7 @@
 		183728E81CEDB8C2008784C7 /* ContentResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183728E71CEDB8C2008784C7 /* ContentResponseHandler.swift */; };
 		183728EA1CEDC835008784C7 /* ContentEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183728E91CEDC835008784C7 /* ContentEntry.swift */; };
 		183728EC1CEDC93D008784C7 /* ContentEntryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183728EB1CEDC93D008784C7 /* ContentEntryMapper.swift */; };
+		183728EE1CEDD1AC008784C7 /* ContentDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183728ED1CEDD1AC008784C7 /* ContentDAO.swift */; };
 		1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847FBED1C75EAF900FE5FF3 /* CreationUploadService.swift */; };
 		1847FBF01C76024300FE5FF3 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847FBEF1C76024300FE5FF3 /* Logger.swift */; };
 		187047E01C71DCD600B202FD /* NewCreationUploadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187047DF1C71DCD600B202FD /* NewCreationUploadRequest.swift */; };
@@ -184,6 +185,7 @@
 		183728E71CEDB8C2008784C7 /* ContentResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentResponseHandler.swift; sourceTree = "<group>"; };
 		183728E91CEDC835008784C7 /* ContentEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentEntry.swift; sourceTree = "<group>"; };
 		183728EB1CEDC93D008784C7 /* ContentEntryMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentEntryMapper.swift; sourceTree = "<group>"; };
+		183728ED1CEDD1AC008784C7 /* ContentDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentDAO.swift; sourceTree = "<group>"; };
 		1847FBED1C75EAF900FE5FF3 /* CreationUploadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadService.swift; sourceTree = "<group>"; };
 		1847FBEF1C76024300FE5FF3 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		187047DF1C71DCD600B202FD /* NewCreationUploadRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationUploadRequest.swift; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 				18C744F11C84610800A07E4C /* DatabaseDAO.swift */,
 				18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */,
 				18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */,
+				183728ED1CEDD1AC008784C7 /* ContentDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -1006,6 +1009,7 @@
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,
 				18C744FC1C84611600A07E4C /* CreationUploadEntity.swift in Sources */,
 				180C97AA1C6CC0F100BC682D /* NewGalleryResponseHandler.swift in Sources */,
+				183728EE1CEDD1AC008784C7 /* ContentDAO.swift in Sources */,
 				188ECF6B1C74613700AFEE4F /* NewCreationPingRequest.swift in Sources */,
 				187901EE1C6B37E7008F5302 /* NewCreatorRequest.swift in Sources */,
 				21A79F6F1C81E6C5009E95D1 /* BatchFetcher.swift in Sources */,

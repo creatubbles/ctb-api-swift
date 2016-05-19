@@ -27,11 +27,14 @@ class ContentResponseHandler: ResponseHandler
             let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!)
             let entries = mappers.map({ ContentEntry(mapper: $0, dataMapper: dataMapper) }).filter({ $0.type != .None })
             
-            completion?(entries, ErrorTransformer.errorFromResponse(response, error: error))
+            let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
+            let pageInfo = PagingInfo(mapper: pageInfoMapper)
+            
+            completion?(entries, pageInfo, ErrorTransformer.errorFromResponse(response ,error: error))
         }
         else
         {
-            completion?(nil, ErrorTransformer.errorFromResponse(response, error: error))
+            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
     }
 }
