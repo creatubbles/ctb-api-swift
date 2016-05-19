@@ -513,10 +513,11 @@ class ResponseHandlerSpec: QuickSpec
                     {
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(BubblesFetchReqest(userId: TestConfiguration.testUserIdentifier!), withResponseHandler:BubblesFetchResponseHandler()
+                        sender.send(BubblesFetchReqest(userId: TestConfiguration.testUserIdentifier!, page: nil, perPage: nil), withResponseHandler:BubblesFetchResponseHandler()
                         {
-                            (bubbles, error) -> (Void) in
+                            (bubbles, pInfo, error) -> (Void) in
                             expect(error).to(beNil())
+                            expect(pInfo).notTo(beNil())
                             expect(bubbles).notTo(beNil())
                             sender.logout()
                             done()
@@ -682,7 +683,7 @@ class ResponseHandlerSpec: QuickSpec
                 guard let creationId = TestConfiguration.testCreationIdentifier
                 else { return }
                 
-                let request = CommentsRequest(creationId: creationId)
+                let request = CommentsRequest(creationId: creationId, page: nil, perPage: nil)
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 
                 waitUntil(timeout: 10)
@@ -694,9 +695,10 @@ class ResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:CommentsResponseHandler()
                         {
-                            (comments, error) -> (Void) in
+                            (comments, pageInfo, error) -> (Void) in
                             expect(error).to(beNil())
                             expect(comments).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
                             sender.logout()
                             done()
                         })
@@ -709,7 +711,7 @@ class ResponseHandlerSpec: QuickSpec
                 guard let galleryId = TestConfiguration.testGalleryIdentifier
                 else { return }
                 
-                let request = CommentsRequest(galleryId: galleryId)
+                let request = CommentsRequest(galleryId: galleryId, page: nil, perPage: nil)
 //                let sender = TestComponentsFactory.requestSender
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 
@@ -721,13 +723,14 @@ class ResponseHandlerSpec: QuickSpec
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:CommentsResponseHandler()
-                            {
-                                (comments, error) -> (Void) in
-                                expect(error).to(beNil())
-                                expect(comments).notTo(beNil())
-                                sender.logout()
-                                done()
-                            })
+                        {
+                            (comments, pageInfo, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(comments).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
                     }
                 }
             }
@@ -737,7 +740,7 @@ class ResponseHandlerSpec: QuickSpec
                 guard let userId = TestConfiguration.testUserIdentifier
                     else { return }
                 
-                let request = CommentsRequest(userId: userId)
+                let request = CommentsRequest(userId: userId, page: nil, perPage: nil)
                 //                let sender = TestComponentsFactory.requestSender
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 
@@ -750,9 +753,10 @@ class ResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:CommentsResponseHandler()
                             {
-                                (comments, error) -> (Void) in
+                                (comments, pData, error) -> (Void) in
                                 expect(error).to(beNil())
                                 expect(comments).notTo(beNil())
+                                expect(pData).notTo(beNil())
                                 sender.logout()
                                 done()
                             })

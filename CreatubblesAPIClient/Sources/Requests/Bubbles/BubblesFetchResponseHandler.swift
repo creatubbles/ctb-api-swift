@@ -29,11 +29,14 @@ class BubblesFetchResponseHandler: ResponseHandler
                 bubbles.append(Bubble(mapper: mapper))
             }
             
-            completion?(bubbles, ErrorTransformer.errorFromResponse(response, error: error))
+            let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
+            let pageInfo = PagingInfo(mapper: pageInfoMapper)
+            
+            completion?(bubbles, pageInfo, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else
         {
-            completion?(nil, ErrorTransformer.errorFromResponse(response, error: error))
+            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
     }
 }

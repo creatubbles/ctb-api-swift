@@ -110,7 +110,7 @@ class CreationMapper: Mappable
 
     func parseUserRelationship() -> Relationship?
     {
-        return userRelationship == nil ? nil : Relationship(mapper: userRelationship!)
+        return MappingUtils.relationshipFromMapper(userRelationship)        
     }
 
 }
