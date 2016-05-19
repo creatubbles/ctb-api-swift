@@ -90,6 +90,7 @@
 		189D9F601C84B36100857CC6 /* GroupMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F591C84B36100857CC6 /* GroupMapper.swift */; };
 		189D9F611C84B36100857CC6 /* PagingInfoMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F5A1C84B36100857CC6 /* PagingInfoMapper.swift */; };
 		189D9F621C84B36100857CC6 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F5B1C84B36100857CC6 /* UserMapper.swift */; };
+		18A7DCE61CEE33CC008EBDDF /* MappingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A7DCE51CEE33CC008EBDDF /* MappingUtils.swift */; };
 		18C1CFF51C75C40A00A02DE3 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */; };
 		18C1CFF71C75C46C00A02DE3 /* CreationsDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF61C75C46C00A02DE3 /* CreationsDAO.swift */; };
 		18C1CFF91C75C4B000A02DE3 /* GalleryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */; };
@@ -228,6 +229,7 @@
 		189D9F591C84B36100857CC6 /* GroupMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMapper.swift; sourceTree = "<group>"; };
 		189D9F5A1C84B36100857CC6 /* PagingInfoMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfoMapper.swift; sourceTree = "<group>"; };
 		189D9F5B1C84B36100857CC6 /* UserMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
+		18A7DCE51CEE33CC008EBDDF /* MappingUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingUtils.swift; sourceTree = "<group>"; };
 		18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		18C1CFF61C75C46C00A02DE3 /* CreationsDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsDAO.swift; sourceTree = "<group>"; };
 		18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDAO.swift; sourceTree = "<group>"; };
@@ -603,6 +605,7 @@
 				18CC309D1CB28A9D00EA4A00 /* AlamofireRequest+Cancelable.swift */,
 				18CC309F1CB28B1600EA4A00 /* OAuth2+Cancelable.swift */,
 				18DB8EB51CE3EF29008B5F52 /* APIClientDateFormatter.swift */,
+				18A7DCE51CEE33CC008EBDDF /* MappingUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -954,6 +957,7 @@
 				181E76E21CC5352800A1546A /* UpdateBubbleResponseHandler.swift in Sources */,
 				18779DF51C69E80F000BFB57 /* ProfileResponseHandler.swift in Sources */,
 				18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */,
+				18A7DCE61CEE33CC008EBDDF /* MappingUtils.swift in Sources */,
 				183728E61CEDB8B2008784C7 /* ContentRequest.swift in Sources */,
 				188ECF731C747FDE00AFEE4F /* String+Path.swift in Sources */,
 				180C97B11C6DEA4100BC682D /* Creation.swift in Sources */,

@@ -17,23 +17,23 @@ class BubbleDAO: NSObject
         self.requestSender = requestSender
     }
     
-    func getBubblesForCreationWithIdentifier(identifier: String, completion: BubblesClousure?) -> RequestHandler
+    func getBubblesForCreationWithIdentifier(identifier: String, pagingData: PagingData?, completion: BubblesClousure?) -> RequestHandler
     {
-        let request = BubblesFetchReqest(creationId: identifier)
+        let request = BubblesFetchReqest(creationId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = BubblesFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getBubblesForUserWithIdentifier(identifier: String, completion: BubblesClousure) -> RequestHandler
+    func getBubblesForUserWithIdentifier(identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
     {
-        let request = BubblesFetchReqest(userId: identifier)
+        let request = BubblesFetchReqest(userId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = BubblesFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getBubblesForGalleryWithIdentifier(identifier: String, completion: BubblesClousure) -> RequestHandler
+    func getBubblesForGalleryWithIdentifier(identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
     {
-        let request = BubblesFetchReqest(galleryId: identifier)
+        let request = BubblesFetchReqest(galleryId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = BubblesFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
