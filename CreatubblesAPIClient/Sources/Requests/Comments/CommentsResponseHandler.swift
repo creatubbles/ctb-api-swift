@@ -11,7 +11,6 @@ import ObjectMapper
 
 class CommentsResponseHandler: ResponseHandler
 {
-
     private let completion: CommentsClosure?
     
     init(completion: CommentsClosure?)

@@ -43,6 +43,7 @@ public typealias LandingURLClosure = (Array<LandingURL>?, APIClientError?) -> (V
 public typealias BubblesClousure = (Array<Bubble>?, APIClientError?) -> (Void)
 
 public typealias CommentsClosure = (Array<Comment>?, APIClientError?) -> (Void)
+public typealias ContentEntryClosure = (Array<ContentEntry>?, PagingInfo?, APIClientError?) -> (Void)
 
 //MARK: - Enums
 @objc public enum Gender: Int
@@ -96,6 +97,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     private let creationUploadService: CreationUploadService
     private let bubbleDAO: BubbleDAO
     private let commentsDAO: CommentsDAO
+    private let contentDAO: ContentDAO
     
     public weak var delegate: APIClientDelegate?
     
@@ -109,6 +111,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         self.creationUploadService = CreationUploadService(requestSender: requestSender)
         self.bubbleDAO = BubbleDAO(requestSender: requestSender)
         self.commentsDAO = CommentsDAO(requestSender: requestSender)
+        self.contentDAO = ContentDAO(requestSender: requestSender)
         
         Logger.setup()
         super.init()
@@ -322,6 +325,17 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func getCommentsForGalleryWithIdentifier(identifier: String, completion: CommentsClosure?) -> RequestHandler
     {
         return commentsDAO.getCommentsForGalleryWithIdentifier(identifier, completion: completion)
+    }
+    
+    //MARK: - Content
+    public func getTrendingContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    {
+        return contentDAO.getTrendingContent(pagingData, completion: completion)
+    }
+    
+    public func getRecentContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    {
+        return contentDAO.getRecentContent(pagingData, completion: completion)
     }
     
     //MARK: - Delegate
