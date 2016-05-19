@@ -35,15 +35,15 @@ class ContentEntryMapper: Mappable
     
     func parseCreationRelationship() -> Relationship?
     {
-        return relationshipFromMapper(creationRelationship)
+        return MappingUtils.relationshipFromMapper(creationRelationship)
     }
     func parseGalleryRelationship() -> Relationship?
     {
-        return relationshipFromMapper(galleryRelationship)
+        return MappingUtils.relationshipFromMapper(galleryRelationship)
     }
     func parseUserRelationship() -> Relationship?
     {
-        return relationshipFromMapper(userRelationship)
+        return MappingUtils.relationshipFromMapper(userRelationship)
     }
     
     func parseType() -> ContentEntryType
@@ -53,10 +53,4 @@ class ContentEntryMapper: Mappable
         if type == "user"       { return .User     }
         return .None
     }
-    
-    private func relationshipFromMapper(mapper: RelationshipMapper?) -> Relationship?
-    {
-        return mapper == nil ? nil : Relationship(mapper: mapper!)
-    }
-    
 }

@@ -53,24 +53,18 @@ class CommentMapper: Mappable
     
     func parseCommenterRelationship() -> Relationship?
     {
-        return relationshipFromMapper(commenterRelationship)
+        return MappingUtils.relationshipFromMapper(commenterRelationship)
     }
     func parseCommentedCreationRelationship() -> Relationship?
     {
-        return relationshipFromMapper(commentedCreationRelationship)
+        return MappingUtils.relationshipFromMapper(commentedCreationRelationship)
     }
     func parseCommentedGalleryRelationship() -> Relationship?
     {
-        return relationshipFromMapper(commentedGalleryRelationship)
+        return MappingUtils.relationshipFromMapper(commentedGalleryRelationship)
     }
     func parseCommentedUserRelationship() -> Relationship?
     {
-        return relationshipFromMapper(commentedUserRelationship)
+        return MappingUtils.relationshipFromMapper(commentedUserRelationship)
     }
-    
-    private func relationshipFromMapper(mapper: RelationshipMapper?) -> Relationship?
-    {
-        return mapper == nil ? nil : Relationship(mapper: mapper!)
-    }
-    
 }

@@ -93,30 +93,17 @@ public class Creation: NSObject, Identifiable
         userRelationship = mapper.parseUserRelationship()
         creatorRelationships = mapper.parseCreatorRelationships()
 
-        if let dataMapper = dataMapper
+        owner = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)
+        
+        if  let dataMapper = dataMapper,
+            let relationships = creatorRelationships
         {
-            if let relationship = userRelationship
-            {
-                owner = dataMapper.objectWithIdentifier(relationship.identifier, type: User.self)
-            }
-            else
-            {
-                owner = nil
-            }
-            if let relationships = creatorRelationships
-            {
-                let creators = relationships.map( { dataMapper.objectWithIdentifier($0.identifier, type: User.self) })
-                self.creators = creators.filter { $0 != nil } as? Array<User>
-            }
-            else
-            {
-                creators = nil
-            }
+            let creators = relationships.map( { dataMapper.objectWithIdentifier($0.identifier, type: User.self) })
+            self.creators = creators.filter { $0 != nil } as? Array<User>
         }
         else
         {
-            owner = nil
-            creators = nil
+            self.creators = nil
         }
     }
     

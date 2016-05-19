@@ -54,18 +54,9 @@ public class Bubble: NSObject
         bubbledGalleryRelationship = mapper.parseBubbledGalleryRelationship()
         bubbledUserRelationship = mapper.parseBubbledUserRelationship()
         
-        bubbler = Bubble.prepareObjectFromMapper(dataMapper, relationship: bubblerRelationship, type: User.self)
-        bubbledCreation = Bubble.prepareObjectFromMapper(dataMapper, relationship: bubbledCreationRelationship, type: Creation.self)
-        bubbledGallery = Bubble.prepareObjectFromMapper(dataMapper, relationship: bubbledGalleryRelationship, type: Gallery.self)
-        bubbledUser = Bubble.prepareObjectFromMapper(dataMapper, relationship: bubbledUserRelationship, type: User.self)
+        bubbler = MappingUtils.objectFromMapper(dataMapper, relationship: bubblerRelationship, type: User.self)
+        bubbledCreation = MappingUtils.objectFromMapper(dataMapper, relationship: bubbledCreationRelationship, type: Creation.self)
+        bubbledGallery = MappingUtils.objectFromMapper(dataMapper, relationship: bubbledGalleryRelationship, type: Gallery.self)
+        bubbledUser = MappingUtils.objectFromMapper(dataMapper, relationship: bubbledUserRelationship, type: User.self)
     }
-    
-    private class func prepareObjectFromMapper<T: Identifiable>(mapper: DataIncludeMapper?, relationship: Relationship?, type: T.Type) -> T?
-    {
-        guard   let mapper = mapper,
-            let relationship = relationship
-            else { return nil }
-        return mapper.objectWithIdentifier(relationship.identifier, type: T.self)
-    }
-
 }
