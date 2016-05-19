@@ -40,9 +40,9 @@ public typealias GalleriesClosure = (Array<Gallery>?, PagingInfo?, APIClientErro
 public typealias GalleriesBatchClosure = (Array<Gallery>?, APIClientError?) -> (Void)
 
 public typealias LandingURLClosure = (Array<LandingURL>?, APIClientError?) -> (Void)
-public typealias BubblesClousure = (Array<Bubble>?, APIClientError?) -> (Void)
+public typealias CommentsClosure = (Array<Comment>?, PagingInfo?, APIClientError?) -> (Void)
+public typealias BubblesClousure = (Array<Bubble>?, PagingInfo?, APIClientError?) -> (Void)
 
-public typealias CommentsClosure = (Array<Comment>?, APIClientError?) -> (Void)
 public typealias ContentEntryClosure = (Array<ContentEntry>?, PagingInfo?, APIClientError?) -> (Void)
 
 //MARK: - Enums
@@ -278,19 +278,19 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     }
     
     //MARK: - Bubbles
-    public func getBubblesForCreationWithIdentifier(identifier: String, completion: BubblesClousure?) -> RequestHandler
+    public func getBubblesForCreationWithIdentifier(identifier: String, pagingData: PagingData?, completion: BubblesClousure?) -> RequestHandler
     {
-        return bubbleDAO.getBubblesForCreationWithIdentifier(identifier, completion: completion)
+        return bubbleDAO.getBubblesForCreationWithIdentifier(identifier, pagingData: pagingData, completion: completion)
     }
     
-    public func getBubblesForUserWithIdentifier(identifier: String, completion: BubblesClousure) -> RequestHandler
+    public func getBubblesForUserWithIdentifier(identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
     {
-        return bubbleDAO.getBubblesForUserWithIdentifier(identifier, completion: completion)
+        return bubbleDAO.getBubblesForUserWithIdentifier(identifier, pagingData: pagingData, completion: completion)
     }
     
-    public func getBubblesForGalleryWithIdentifier(identifier: String, completion: BubblesClousure) -> RequestHandler
+    public func getBubblesForGalleryWithIdentifier(identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
     {
-        return bubbleDAO.getBubblesForGalleryWithIdentifier(identifier, completion: completion)
+        return bubbleDAO.getBubblesForGalleryWithIdentifier(identifier, pagingData: pagingData, completion: completion)
     }
     
     public func newBubble(data: NewBubbleData, completion: ErrorClosure?) -> RequestHandler
@@ -314,17 +314,19 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return commentsDAO.addComment(data, completion: completion)
     }
     
-    public func getCommentsForCreationWithIdentifier(identifier: String, completion: CommentsClosure?) -> RequestHandler
+    public func getCommentsForCreationWithIdentifier(identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
     {
-        return commentsDAO.getCommentsForCreationWithIdentifier(identifier, completion: completion)
+        return commentsDAO.getCommentsForCreationWithIdentifier(identifier, pagingData: pagingData, completion: completion)
     }
-    public func getCommentsForUserWithIdentifier(identifier: String, completion: CommentsClosure?) -> RequestHandler
+    
+    public func getCommentsForUserWithIdentifier(identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
     {
-        return commentsDAO.getCommentsForUserWithIdentifier(identifier, completion: completion)
+        return commentsDAO.getCommentsForUserWithIdentifier(identifier, pagingData: pagingData, completion: completion)
     }
-    public func getCommentsForGalleryWithIdentifier(identifier: String, completion: CommentsClosure?) -> RequestHandler
+    
+    public func getCommentsForGalleryWithIdentifier(identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
     {
-        return commentsDAO.getCommentsForGalleryWithIdentifier(identifier, completion: completion)
+        return commentsDAO.getCommentsForGalleryWithIdentifier(identifier, pagingData: pagingData, completion: completion)
     }
     
     //MARK: - Content
