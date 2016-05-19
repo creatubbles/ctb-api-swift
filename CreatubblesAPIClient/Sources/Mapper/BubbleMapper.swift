@@ -56,23 +56,18 @@ class BubbleMapper: Mappable
     
     func parseBubblerRelationship() -> Relationship?
     {
-        return relationshipFromMapper(bubblerRelationship)
+        return MappingUtils.relationshipFromMapper(bubblerRelationship)
     }
     func parseBubbledCreationRelationship() -> Relationship?
     {
-        return relationshipFromMapper(bubbledCreationRelationship)
+        return MappingUtils.relationshipFromMapper(bubbledCreationRelationship)
     }
     func parseBubbledGalleryRelationship() -> Relationship?
     {
-        return relationshipFromMapper(bubbledGalleryRelationship)
+        return MappingUtils.relationshipFromMapper(bubbledGalleryRelationship)
     }
     func parseBubbledUserRelationship() -> Relationship?
     {
-        return relationshipFromMapper(bubbledUserRelationship)
-    }
-    
-    private func relationshipFromMapper(mapper: RelationshipMapper?) -> Relationship?
-    {
-        return mapper == nil ? nil : Relationship(mapper: mapper!)
-    }
+        return MappingUtils.relationshipFromMapper(bubbledUserRelationship)
+    }        
 }

@@ -62,15 +62,6 @@ public class Gallery: NSObject, Identifiable
         galleryDescription = mapper.galleryDescription
         
         ownerRelationship = mapper.parseOwnerRelationship()
-        
-        if let dataMapper = dataMapper,
-           let relationship = ownerRelationship
-        {
-            owner = dataMapper.objectWithIdentifier(relationship.identifier, type: User.self)
-        }
-        else
-        {
-            owner = nil
-        }
+        owner = MappingUtils.objectFromMapper(dataMapper, relationship: ownerRelationship, type: User.self)                
     }
 }

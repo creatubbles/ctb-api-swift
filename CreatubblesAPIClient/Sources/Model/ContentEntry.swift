@@ -40,16 +40,8 @@ public class ContentEntry: NSObject
         creationRelationship = mapper.parseCreationRelationship()
         galleryRelationship = mapper.parseGalleryRelationship()
         
-        user = ContentEntry.prepareObjectFromMapper(dataMapper, relationship: userRelationship, type: User.self)
-        creation = ContentEntry.prepareObjectFromMapper(dataMapper, relationship: creationRelationship, type: Creation.self)
-        gallery = ContentEntry.prepareObjectFromMapper(dataMapper, relationship: galleryRelationship, type: Gallery.self)
-    }
-    
-    private class func prepareObjectFromMapper<T: Identifiable>(mapper: DataIncludeMapper?, relationship: Relationship?, type: T.Type) -> T?
-    {
-        guard   let mapper = mapper,
-                let relationship = relationship
-        else { return nil }
-        return mapper.objectWithIdentifier(relationship.identifier, type: T.self)
-    }
+        user = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)
+        creation = MappingUtils.objectFromMapper(dataMapper, relationship: creationRelationship, type: Creation.self)
+        gallery = MappingUtils.objectFromMapper(dataMapper, relationship: galleryRelationship, type: Gallery.self)
+    }        
 }

@@ -50,17 +50,9 @@ public class Comment: NSObject
         commentedGalleryRelationship = mapper.parseCommentedGalleryRelationship()
         commentedUserRelationship = mapper.parseCommentedUserRelationship()
         
-        commenter = Comment.prepareObjectFromMapper(dataMapper, relationship: commenterRelationship, type: User.self)
-        commentedCreation = Comment.prepareObjectFromMapper(dataMapper, relationship: commentedCreationRelationship, type: Creation.self)
-        commentedGallery = Comment.prepareObjectFromMapper(dataMapper, relationship: commentedGalleryRelationship, type: Gallery.self)
-        commentedUser = Comment.prepareObjectFromMapper(dataMapper, relationship: commentedUserRelationship, type: User.self)
-    }
-    
-    private class func prepareObjectFromMapper<T: Identifiable>(mapper: DataIncludeMapper?, relationship: Relationship?, type: T.Type) -> T?
-    {
-        guard   let mapper = mapper,
-                let relationship = relationship
-        else { return nil }
-        return mapper.objectWithIdentifier(relationship.identifier, type: T.self)
+        commenter = MappingUtils.objectFromMapper(dataMapper, relationship: commenterRelationship, type: User.self)
+        commentedCreation = MappingUtils.objectFromMapper(dataMapper, relationship: commentedCreationRelationship, type: Creation.self)
+        commentedGallery = MappingUtils.objectFromMapper(dataMapper, relationship: commentedGalleryRelationship, type: Gallery.self)
+        commentedUser = MappingUtils.objectFromMapper(dataMapper, relationship: commentedUserRelationship, type: User.self)
     }
 }

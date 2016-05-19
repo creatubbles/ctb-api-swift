@@ -66,6 +66,6 @@ class GalleryMapper: Mappable
     //MARK: Parsing
     func parseOwnerRelationship() -> Relationship?
     {
-        return ownerRelationship == nil ? nil : Relationship(mapper: ownerRelationship!)
+        return MappingUtils.relationshipFromMapper(ownerRelationship)
     }
 }
