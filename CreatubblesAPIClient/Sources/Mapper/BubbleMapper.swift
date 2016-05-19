@@ -23,6 +23,11 @@ class BubbleMapper: Mappable
     var bubbledCreationId: String?
     var bubbledGalleryId: String?
     
+    var bubblerRelationship: RelationshipMapper?
+    var bubbledCreationRelationship: RelationshipMapper?
+    var bubbledGalleryRelationship: RelationshipMapper?
+    var bubbledUserRelationship: RelationshipMapper?
+    
     required init?(_ map: Map)
     {
         
@@ -38,10 +43,36 @@ class BubbleMapper: Mappable
         createdAt  <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
         bubblerId  <- map["relationships.bubbler.data.id"]
         isPositionRandom <- map["data.attributes.random_pos"]
-        
-        
+                
         bubbledUserId     <- map["relationships.user.data.id"]
         bubbledCreationId <- map["relationships.creation.data.id"]
         bubbledGalleryId  <- map["relationships.gallery.data.id"]
+        
+        bubblerRelationship <- map["relationships.bubbler.data"]
+        bubbledCreationRelationship <- map["relationships.creation.data"]
+        bubbledGalleryRelationship <- map["relationships.gallery.data"]
+        bubbledUserRelationship <- map["relationships.user.data"]
+    }
+    
+    func parseBubblerRelationship() -> Relationship?
+    {
+        return relationshipFromMapper(bubblerRelationship)
+    }
+    func parseBubbledCreationRelationship() -> Relationship?
+    {
+        return relationshipFromMapper(bubbledCreationRelationship)
+    }
+    func parseBubbledGalleryRelationship() -> Relationship?
+    {
+        return relationshipFromMapper(bubbledGalleryRelationship)
+    }
+    func parseBubbledUserRelationship() -> Relationship?
+    {
+        return relationshipFromMapper(bubbledUserRelationship)
+    }
+    
+    private func relationshipFromMapper(mapper: RelationshipMapper?) -> Relationship?
+    {
+        return mapper == nil ? nil : Relationship(mapper: mapper!)
     }
 }

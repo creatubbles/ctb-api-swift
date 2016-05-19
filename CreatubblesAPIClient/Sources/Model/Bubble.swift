@@ -24,7 +24,17 @@ public class Bubble: NSObject
     public let bubbledCreationId: String?
     public let bubbledGalleryId: String?
     
-    init(mapper: BubbleMapper)
+    public let bubbler: User?
+    public let bubbledCreation: Creation?
+    public let bubbledGallery: Gallery?
+    public let bubbledUser: User?
+    
+    public let bubblerRelationship: Relationship?
+    public let bubbledCreationRelationship: Relationship?
+    public let bubbledGalleryRelationship: Relationship?
+    public let bubbledUserRelationship: Relationship?
+    
+    init(mapper: BubbleMapper, dataMapper: DataIncludeMapper? = nil)
     {
         identifier = mapper.identifier!
         xPosition = mapper.xPosition
@@ -38,5 +48,24 @@ public class Bubble: NSObject
         bubbledUserId = mapper.bubbledUserId
         bubbledCreationId = mapper.bubbledCreationId
         bubbledGalleryId = mapper.bubbledGalleryId
+        
+        bubblerRelationship = mapper.parseBubblerRelationship()
+        bubbledCreationRelationship = mapper.parseBubbledCreationRelationship()
+        bubbledGalleryRelationship = mapper.parseBubbledGalleryRelationship()
+        bubbledUserRelationship = mapper.parseBubbledUserRelationship()
+        
+        bubbler = Bubble.prepareObjectFromMapper(dataMapper, relationship: bubblerRelationship, type: User.self)
+        bubbledCreation = Bubble.prepareObjectFromMapper(dataMapper, relationship: bubbledCreationRelationship, type: Creation.self)
+        bubbledGallery = Bubble.prepareObjectFromMapper(dataMapper, relationship: bubbledGalleryRelationship, type: Gallery.self)
+        bubbledUser = Bubble.prepareObjectFromMapper(dataMapper, relationship: bubbledUserRelationship, type: User.self)
     }
+    
+    private class func prepareObjectFromMapper<T: Identifiable>(mapper: DataIncludeMapper?, relationship: Relationship?, type: T.Type) -> T?
+    {
+        guard   let mapper = mapper,
+            let relationship = relationship
+            else { return nil }
+        return mapper.objectWithIdentifier(relationship.identifier, type: T.self)
+    }
+
 }
