@@ -229,30 +229,30 @@ extension APIClient
     }
     
     //MARK: - Bubbles
-    func _getBubblesForCreationWithIdentifier(identifier: String, completion: ((Array<Bubble>?,NSError?) -> (Void))?)
+    func _getBubblesForCreationWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
     {
-        getBubblesForCreationWithIdentifier(identifier)
+        getBubblesForCreationWithIdentifier(identifier, pagingData: pagingData)
         {
-            (bubbles, error) -> (Void) in
-            completion?(bubbles, APIClient.errorTypeToNSError(error))
+            (bubbles, pInfo, error) -> (Void) in
+            completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
-    func _getBubblesForUserWithIdentifier(identifier: String, completion: ((Array<Bubble>?,NSError?) -> (Void))?)
+    func _getBubblesForUserWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?,PagingInfo?, NSError?) -> (Void))?)
     {
-        getBubblesForUserWithIdentifier(identifier)
+        getBubblesForUserWithIdentifier(identifier, pagingData: pagingData)
         {
-            (bubbles, error) -> (Void) in
-            completion?(bubbles, APIClient.errorTypeToNSError(error))
+            (bubbles, pInfo, error) -> (Void) in
+            completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
-    func _getBubblesForGalleryWithIdentifier(identifier: String, completion: ((Array<Bubble>?,NSError?) -> (Void))?)
+    func _getBubblesForGalleryWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
     {
-        getBubblesForGalleryWithIdentifier(identifier)
+        getBubblesForGalleryWithIdentifier(identifier, pagingData: pagingData)
         {
-            (bubbles, error) -> (Void) in
-            completion?(bubbles, APIClient.errorTypeToNSError(error))
+            (bubbles, pInfo, error) -> (Void) in
+            completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     

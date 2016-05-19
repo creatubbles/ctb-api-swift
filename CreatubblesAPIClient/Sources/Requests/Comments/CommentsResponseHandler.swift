@@ -27,11 +27,14 @@ class CommentsResponseHandler: ResponseHandler
             let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!)
             let comments = mappers.map({ Comment(mapper: $0, dataMapper: dataMapper) })
             
-            completion?(comments, ErrorTransformer.errorFromResponse(response, error: error))
+            let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
+            let pageInfo = PagingInfo(mapper: pageInfoMapper)
+            
+            completion?(comments, pageInfo, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else
         {
-            completion?(nil, ErrorTransformer.errorFromResponse(response, error: error))
+            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
     }
 }

@@ -588,16 +588,16 @@ class RequestSpec: QuickSpec
         {
             it("Should have proper method")
             {
-                let request = BubblesFetchReqest(creationId: "")
+                let request = BubblesFetchReqest(creationId: "", page: nil, perPage: nil)
                 expect(request.method).to(equal(RequestMethod.GET))
             }
             
             it("Should have proper endpoint for bubbles source")
             {
                 let identifier = "ObjectId"
-                expect(BubblesFetchReqest(creationId: identifier).endpoint).to(equal("creations/\(identifier)/bubbles"))
-                expect(BubblesFetchReqest(galleryId: identifier).endpoint).to(equal("galleries/\(identifier)/bubbles"))
-                expect(BubblesFetchReqest(userId: identifier).endpoint).to(equal("users/\(identifier)/bubbles"))
+                expect(BubblesFetchReqest(creationId: identifier, page: nil, perPage: nil).endpoint).to(equal("creations/\(identifier)/bubbles"))
+                expect(BubblesFetchReqest(galleryId: identifier, page: nil, perPage: nil).endpoint).to(equal("galleries/\(identifier)/bubbles"))
+                expect(BubblesFetchReqest(userId: identifier, page: nil, perPage: nil).endpoint).to(equal("users/\(identifier)/bubbles"))
             }
         }
         
@@ -698,16 +698,16 @@ class RequestSpec: QuickSpec
         {
             it("Should have a proper method")
             {
-                let request = CommentsRequest(creationId: "")
+                let request = CommentsRequest(creationId: "", page: nil, perPage: nil)
                 expect(request.method).to(equal(RequestMethod.GET))
             }
             
             it("Should have a proper endpoint for comments source")
             {
                 let identifier = "ObjectId"
-                expect(CommentsRequest(creationId: identifier).endpoint).to(equal("creations/\(identifier)/comments"))
-                expect(CommentsRequest(galleryId: identifier).endpoint).to(equal("galleries/\(identifier)/comments"))
-                expect(CommentsRequest(userId: identifier).endpoint).to(equal("users/\(identifier)/comments"))
+                expect(CommentsRequest(creationId: identifier, page: nil, perPage: nil).endpoint).to(equal("creations/\(identifier)/comments"))
+                expect(CommentsRequest(galleryId: identifier, page: nil, perPage: nil).endpoint).to(equal("galleries/\(identifier)/comments"))
+                expect(CommentsRequest(userId: identifier, page: nil, perPage: nil).endpoint).to(equal("users/\(identifier)/comments"))
             }
         }
         
