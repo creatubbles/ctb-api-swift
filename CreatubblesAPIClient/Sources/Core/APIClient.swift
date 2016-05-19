@@ -43,6 +43,7 @@ public typealias LandingURLClosure = (Array<LandingURL>?, APIClientError?) -> (V
 public typealias BubblesClousure = (Array<Bubble>?, APIClientError?) -> (Void)
 
 public typealias CommentsClosure = (Array<Comment>?, APIClientError?) -> (Void)
+public typealias ContentEntryClosure = (Array<ContentEntry>?, APIClientError?) -> (Void)
 
 //MARK: - Enums
 @objc public enum Gender: Int
