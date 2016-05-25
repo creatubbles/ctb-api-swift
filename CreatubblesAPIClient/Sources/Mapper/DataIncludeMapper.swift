@@ -43,6 +43,7 @@ class DataIncludeMapper
         {
             case "users": return userModelFromObject(obj)
             case "creations": return creationModelFromObject(obj)
+            case "galleries": return galleryModelFromObject(obj)
             default: return nil
         }
     }
@@ -64,4 +65,14 @@ class DataIncludeMapper
         }
         return nil
     }
+    
+    private func galleryModelFromObject(object: Dictionary<String, AnyObject>) -> Gallery?
+    {
+        if let mapper = Mapper<GalleryMapper>().map(object)
+        {
+            return Gallery(mapper: mapper)
+        }
+        return nil
+    }
+
 }
