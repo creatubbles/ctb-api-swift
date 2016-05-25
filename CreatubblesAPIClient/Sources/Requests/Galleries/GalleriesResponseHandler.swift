@@ -42,7 +42,6 @@ class GalleriesResponseHandler: ResponseHandler
             let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!)
             let galleries = mappers.map({Gallery(mapper: $0, dataMapper: dataMapper)})
             
-            
             let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
             let pageInfo = PagingInfo(mapper: pageInfoMapper)
             

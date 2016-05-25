@@ -23,11 +23,9 @@ class BubblesFetchResponseHandler: ResponseHandler
         if  let response = response,
             let mappers = Mapper<BubbleMapper>().mapArray(response["data"])
         {
-            var bubbles = Array<Bubble>()
-            for mapper in mappers
-            {
-                bubbles.append(Bubble(mapper: mapper))
-            }
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!)
+            let bubbles = mappers.map({Bubble(mapper: $0, dataMapper: dataMapper)})                        
             
             let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
             let pageInfo = PagingInfo(mapper: pageInfoMapper)
