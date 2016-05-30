@@ -52,7 +52,7 @@ public class Gallery: NSObject, Identifiable
         createdAt = mapper.createdAt!
         updatedAt = mapper.updatedAt!
         creationsCount = mapper.creationsCount!
-        bubblesCount = mapper.creationsCount!
+        bubblesCount = mapper.bubblesCount!
         commentsCount = mapper.commentsCount!
         shortUrl = mapper.shortUrl!
         previewImageUrls = mapper.previewImageUrls!
