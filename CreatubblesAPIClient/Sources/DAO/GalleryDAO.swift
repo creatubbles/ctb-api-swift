@@ -33,6 +33,13 @@ class GalleryDAO
         self.requestSender = requestSender
     }
     
+    func submitCreationToGallery(galleryId: String, creationId: String, completion: ErrorClosure) -> RequestHandler
+    {
+        let request = GallerySubmissionRequest(galleryId: galleryId, creationId: creationId)
+        let handler = GallerySubmissionResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler
     {
         let request = GalleriesRequest(galleryId: galleryId)
