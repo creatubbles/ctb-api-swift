@@ -9,70 +9,60 @@ import ObjectMapper
 class DataIncludeMapper
 {
     private let includeResponse: Array<Dictionary<String, AnyObject>>
-    private lazy var objects: Dictionary<String, Identifiable> =  self.parseObjects()
+    private lazy var mappers: Dictionary<String, Mappable> = self.parseMappers()
     
-    init(includeResponse: Array<Dictionary<String, AnyObject>>) {
+    init(includeResponse: Array<Dictionary<String, AnyObject>>)
+    {
         self.includeResponse = includeResponse
     }
-
-    private func parseObjects() -> Dictionary<String, Identifiable>
+    
+    private func parseMappers() -> Dictionary<String, Mappable>
     {
-        var models = Dictionary<String, Identifiable>()
+        var mappers = Dictionary<String, Mappable>()
         for object in includeResponse
         {
-            if let model = modelForObject(object)
+            if let mappedObject = mapperForObject(object)
             {
-                models[model.identifier] = model
+                mappers[mappedObject.identifier] = mappedObject.mapper
             }
         }
-        return models
+        
+        return mappers
     }
-
+    
     func objectWithIdentifier<T: Identifiable>(identifier: String, type: T.Type) -> T?
     {
-        return objects[identifier] as? T
-    }
-
-    //MARK: - Included response parse
-    private func modelForObject(obj: Dictionary<String, AnyObject>) -> Identifiable?
-    {
-        guard let typeString = obj["type"] as? String
+        guard let mapper = mappers[identifier]
         else { return nil }
-
-        switch typeString
-        {
-            case "users": return userModelFromObject(obj)
-            case "creations": return creationModelFromObject(obj)
-            case "galleries": return galleryModelFromObject(obj)
-            default: return nil
-        }
-    }
-
-    private func userModelFromObject(object: Dictionary<String, AnyObject>) -> User?
-    {
-        if let mapper = Mapper<UserMapper>().map(object)
-        {
-            return User(mapper: mapper)
-        }
-        return nil
-    }
-
-    private func creationModelFromObject(object: Dictionary<String, AnyObject>) -> Creation?
-    {
-        if let mapper = Mapper<CreationMapper>().map(object)
-        {
-            return Creation(mapper: mapper)
-        }
+        
+        if let mapper = mapper as? UserMapper     { return User(mapper: mapper) as? T }
+        if let mapper = mapper as? CreationMapper { return Creation(mapper: mapper, dataMapper: self) as? T }
+        if let mapper = mapper as? GalleryMapper  { return Gallery(mapper:  mapper, dataMapper: self) as? T }
+        
         return nil
     }
     
-    private func galleryModelFromObject(object: Dictionary<String, AnyObject>) -> Gallery?
+    //MARK: - Included response parse
+    private func mapperForObject(obj: Dictionary<String, AnyObject>) -> (identifier: String, mapper: Mappable)?
     {
-        if let mapper = Mapper<GalleryMapper>().map(object)
+        guard   let typeString = obj["type"] as? String,
+                let identifierString = obj["id"] as? String
+        else { return nil }
+        
+        var mapper: Mappable? = nil
+        
+        switch typeString
         {
-            return Gallery(mapper: mapper)
+            case "users":     mapper = Mapper<UserMapper>().map(obj)
+            case "creations": mapper = Mapper<CreationMapper>().map(obj)
+            case "galleries": mapper = Mapper<GalleryMapper>().map(obj)
+            default: mapper = nil
         }
+        if let mapper = mapper
+        {
+            return (identifierString, mapper)
+        }
+        
         return nil
     }
-
 }
