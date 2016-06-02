@@ -71,6 +71,14 @@ public typealias ContentEntryClosure = (Array<ContentEntry>?, PagingInfo?, APICl
     case ForgotPassword
 }
 
+@objc public enum ApprovalStatus: Int
+{
+    case Unknown
+    case Approved
+    case Unapproved
+    case Rejected
+}
+
 @objc
 public protocol APIClientDelegate
 {

@@ -52,6 +52,7 @@ public class Creation: NSObject, Identifiable
     public let lastCommentedAt: NSDate?
     public let lastSubmittedAt: NSDate?
 
+    public let approvalStatus: ApprovalStatus
     public let approved: Bool
     public let shortUrl: String
     public let createdAtAge: String?
@@ -95,6 +96,7 @@ public class Creation: NSObject, Identifiable
         imageExploreMobileUrl = mapper.imageExploreMobileUrl
         imageShareUrl = mapper.imageShareUrl
 
+        approvalStatus = mapper.parseApprovalStatus()
         userRelationship = mapper.parseUserRelationship()
         creatorRelationships = mapper.parseCreatorRelationships()
 
@@ -149,5 +151,6 @@ public class Creation: NSObject, Identifiable
         creatorRelationships = nil
         isBubbled = false
         abilities = []
+        approvalStatus = .Unknown
     }
 }
