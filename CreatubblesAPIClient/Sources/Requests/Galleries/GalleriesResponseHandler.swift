@@ -38,9 +38,13 @@ class GalleriesResponseHandler: ResponseHandler
         if  let response = response,
             let mappers = Mapper<GalleryMapper>().mapArray(response["data"])
         {
+            let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
+            let metadata: Metadata? = metadataMapper != nil ? Metadata(mapper: metadataMapper!) : nil
+            
             let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
-            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!)
-            let galleries = mappers.map({Gallery(mapper: $0, dataMapper: dataMapper)})
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
+            
+            let galleries = mappers.map({Gallery(mapper: $0, dataMapper: dataMapper, metadata: metadata)})
             
             let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
             let pageInfo = PagingInfo(mapper: pageInfoMapper)
@@ -50,9 +54,13 @@ class GalleriesResponseHandler: ResponseHandler
         else if let response = response,
                 let mapper = Mapper<GalleryMapper>().map(response["data"])
         {
+            let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
+            let metadata: Metadata? = metadataMapper != nil ? Metadata(mapper: metadataMapper!) : nil
+            
             let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
-            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!)
-            let gallery = Gallery(mapper: mapper, dataMapper: dataMapper)
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
+            
+            let gallery = Gallery(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
             completion?([gallery], nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
         }
         else

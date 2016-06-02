@@ -23,8 +23,13 @@ class ContentResponseHandler: ResponseHandler
         if  let response = response,
             let mappers = Mapper<ContentEntryMapper>().mapArray(response["data"])
         {
+            let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
+            let metadata: Metadata? = metadataMapper != nil ? Metadata(mapper: metadataMapper!) : nil
+            
             let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
-            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!)
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
+         
+            
             let entries = mappers.map({ ContentEntry(mapper: $0, dataMapper: dataMapper) }).filter({ $0.type != .None })
             
             let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!

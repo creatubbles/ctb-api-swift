@@ -71,7 +71,11 @@ public class User: NSObject, Identifiable
     public let homeSchooling: Bool
     public let signedUpAsInstructor: Bool
     
-    init(mapper: UserMapper)
+    //MARK: - Metadata
+    public let isBubbled: Bool
+    public let abilities: Array<Ability>
+    
+    init(mapper: UserMapper, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         username = mapper.username!
@@ -99,5 +103,8 @@ public class User: NSObject, Identifiable
 
         homeSchooling = mapper.homeSchooling!
         signedUpAsInstructor = mapper.signedUpAsInstructor!
+        
+        isBubbled = metadata?.bubbledUserIdentifiers.contains(mapper.identifier!) ?? false
+        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
     }
 }
