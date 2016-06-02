@@ -45,7 +45,11 @@ public class Gallery: NSObject, Identifiable
     public let owner: User?
     public let ownerRelationship: Relationship?
     
-    init(mapper: GalleryMapper, dataMapper: DataIncludeMapper? = nil)
+    //MARK: - Metadata
+    public let isBubbled: Bool
+    public let abilities: Array<Ability>
+    
+    init(mapper: GalleryMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         name = mapper.name!
@@ -60,6 +64,9 @@ public class Gallery: NSObject, Identifiable
         lastBubbledAt = mapper.lastBubbledAt
         lastCommentedAt = mapper.lastCommentedAt
         galleryDescription = mapper.galleryDescription
+        
+        isBubbled = metadata?.bubbledGalleryIdentifiers.contains(mapper.identifier!) ?? false
+        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
         
         ownerRelationship = mapper.parseOwnerRelationship()
         owner = MappingUtils.objectFromMapper(dataMapper, relationship: ownerRelationship, type: User.self)                
