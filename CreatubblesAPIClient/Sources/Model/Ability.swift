@@ -25,6 +25,7 @@ public enum AbilityOperation: Int
     case Decline
     case Approve
     case Delete
+    case SubmitTo
 }
 
 @objc
@@ -62,6 +63,7 @@ public class Ability: NSObject
             case "decline":                 return .Decline
             case "approve":                 return .Approve
             case "delete":                  return .Delete
+            case "submit_to":               return .SubmitTo
             
             default:
                 Logger.log.error("Unknown operation type: \(operationString)")
