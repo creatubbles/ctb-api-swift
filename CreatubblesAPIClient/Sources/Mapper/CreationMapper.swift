@@ -52,6 +52,7 @@ class CreationMapper: Mappable
     var lastSubmittedAt: NSDate?
     
     var approved: Bool?
+    var approvalStatus: String?
     var shortUrl: String?
     var createdAtAge: String?
 
@@ -91,6 +92,7 @@ class CreationMapper: Mappable
         lastSubmittedAt <- (map["attributes.last_submitted_at"], APIClientDateTransform.sharedTransform)
         
         approved <- map["attributes.approved"]
+        approvalStatus <- map["attributes.approval_status"]
         shortUrl <- map["attributes.short_url"]
         createdAtAge <- map["attributes.created_at_age"]
 
@@ -111,6 +113,20 @@ class CreationMapper: Mappable
     func parseUserRelationship() -> Relationship?
     {
         return MappingUtils.relationshipFromMapper(userRelationship)        
+    }
+    
+    func parseApprovalStatus() -> ApprovalStatus
+    {
+        guard let approvalStatus = approvalStatus
+        else { return .Unknown }
+        
+        switch approvalStatus
+        {
+            case "approved": return .Approved
+            case "unapproved": return .Unapproved
+            case "rejected" :return .Rejected
+            default: return .Unknown
+        }
     }
 
 }
