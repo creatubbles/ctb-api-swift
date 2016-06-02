@@ -38,11 +38,10 @@ class CreatorsAndManagersResponseHandler: ResponseHandler
         if  let response = response,
             let usersMapper = Mapper<UserMapper>().mapArray(response["data"])
         {
-            var users = Array<User>()
-            for mapper in usersMapper
-            {
-                users.append(User(mapper: mapper))
-            }
+            let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
+            let metadata: Metadata? = metadataMapper != nil ? Metadata(mapper: metadataMapper!) : nil
+            
+            let users = usersMapper.map({ User(mapper: $0, metadata: metadata)})
             
             let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
             let pageInfo = PagingInfo(mapper: pageInfoMapper)

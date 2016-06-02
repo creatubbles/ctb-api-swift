@@ -177,7 +177,9 @@ class ResponseHandlerSpec: QuickSpec
             it("Should return correct value for creations after login")
             {
                 let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, keyword: nil)
-                let sender =  TestComponentsFactory.requestSender
+//                let sender =  TestComponentsFactory.requestSender
+                
+                let sender = RequestSender(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
