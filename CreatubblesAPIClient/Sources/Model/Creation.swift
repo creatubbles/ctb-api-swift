@@ -62,8 +62,13 @@ public class Creation: NSObject, Identifiable
 
     public let userRelationship: Relationship?
     public let creatorRelationships: Array<Relationship>?
-
-    init(mapper: CreationMapper, dataMapper: DataIncludeMapper? = nil)
+    
+    //MARK: - Metadata
+    public let isBubbled: Bool
+    public let abilities: Array<Ability>
+    
+    
+    init(mapper: CreationMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         name = mapper.name!
@@ -94,6 +99,9 @@ public class Creation: NSObject, Identifiable
         creatorRelationships = mapper.parseCreatorRelationships()
 
         owner = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)
+        
+        isBubbled = metadata?.bubbledCreationIdentifiers.contains(mapper.identifier!) ?? false
+        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
         
         if  let dataMapper = dataMapper,
             let relationships = creatorRelationships
@@ -139,5 +147,7 @@ public class Creation: NSObject, Identifiable
         creators = nil
         userRelationship = nil
         creatorRelationships = nil
+        isBubbled = false
+        abilities = []
     }
 }

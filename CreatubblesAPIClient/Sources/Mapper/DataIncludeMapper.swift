@@ -8,11 +8,13 @@ import ObjectMapper
 
 class DataIncludeMapper
 {
+    private let metadata: Metadata?
     private let includeResponse: Array<Dictionary<String, AnyObject>>
     private lazy var mappers: Dictionary<String, Mappable> = self.parseMappers()
     
-    init(includeResponse: Array<Dictionary<String, AnyObject>>)
+    init(includeResponse: Array<Dictionary<String, AnyObject>>, metadata: Metadata?)
     {
+        self.metadata = metadata
         self.includeResponse = includeResponse
     }
     
@@ -35,9 +37,9 @@ class DataIncludeMapper
         guard let mapper = mappers[identifier]
         else { return nil }
         
-        if let mapper = mapper as? UserMapper     { return User(mapper: mapper) as? T }
-        if let mapper = mapper as? CreationMapper { return Creation(mapper: mapper, dataMapper: self) as? T }
-        if let mapper = mapper as? GalleryMapper  { return Gallery(mapper:  mapper, dataMapper: self) as? T }
+        if let mapper = mapper as? UserMapper     { return User(mapper: mapper, metadata: metadata) as? T }
+        if let mapper = mapper as? CreationMapper { return Creation(mapper: mapper, dataMapper: self, metadata: metadata) as? T }
+        if let mapper = mapper as? GalleryMapper  { return Gallery(mapper:  mapper, dataMapper: self, metadata: metadata) as? T }
         
         return nil
     }
