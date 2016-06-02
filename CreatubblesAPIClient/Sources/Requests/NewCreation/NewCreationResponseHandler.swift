@@ -38,12 +38,18 @@ class NewCreationResponseHandler: ResponseHandler
         if  let response = response,
             let mapper = Mapper<CreationMapper>().map(response["data"])
         {
-            let creation = Creation(mapper: mapper)
+            let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
+            let metadata: Metadata? = metadataMapper != nil ? Metadata(mapper: metadataMapper!) : nil
+            
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
+            
+            let creation = Creation(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
             completion(creation: creation, error: error)
         }
         else
         {
-            completion(creation: nil, error: error)
+            completion(creation: nil, error: ErrorTransformer.errorFromResponse(response, error: error))
         }
     }
 }

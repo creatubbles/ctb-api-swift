@@ -52,8 +52,8 @@ class UserMapper: Mappable
     
     var homeSchooling: Bool?
     var signedUpAsInstructor: Bool?
-
-    var isMale: Bool?
+    
+    var gender: String?
     
     //MARK: - Mappable
     required init?(_ map: Map)
@@ -68,29 +68,29 @@ class UserMapper: Mappable
         displayName  <- map["attributes.display_name"]
         name <- map["attributes.name"]
         role <- map["attributes.role"]
-        lastBubbledAt <- (map["attributes.last_bubbled_at"], DateTransform())
-        lastCommentedAt <- (map["attributes.last_commented_at"], DateTransform())
-        createdAt <- (map["attributes.created_at"], DateTransform())
-        updatedAt <- (map["attributes.updated_at"], DateTransform())
+        lastBubbledAt <- (map["attributes.last_bubbled_at"], APIClientDateTransform.sharedTransform)
+        lastCommentedAt <- (map["attributes.last_commented_at"], APIClientDateTransform.sharedTransform)
+        createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
+        updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
         avatarUrl <- map["attributes.avatar_url"]
         countryCode <- map["attributes.country_code"]
         countryName <- map["attributes.country_name"]
         age <- map["attributes.age"]
         shortUrl <- map["attributes.short_url"]
-
+        
         
         addedBubblesCount <- map["attributes.added_bubbles_count"]
         activitiesCount <- map["attributes.activities_count"]
         commentsCount <- map["attributes.comments_count"]
         creationsCount <- map["attributes.creations_count"]
-
+        
         galleriesCount <- map["attributes.galleries_count"]
         creatorsCount <- map["attributes.creators_count"]
         managersCount <- map["attributes.managers_count"]
         
         homeSchooling <- map["attributes.home_schooling"]
         signedUpAsInstructor <- map["attributes.signed_up_as_instructor"]
-        isMale <- map["attributes.is_male"]
+        gender <- map["attributes.gender"]
     }
     
     //MARK: - Parsing
@@ -107,6 +107,8 @@ class UserMapper: Mappable
     
     func parseGender() -> Gender
     {
-        return isMale! ? .Male : .Female
+        if gender == "male"   { return .Male }
+        if gender == "female" { return .Female }
+        return .Unknown
     }
 }

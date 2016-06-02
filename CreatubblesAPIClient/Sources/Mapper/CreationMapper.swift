@@ -54,7 +54,10 @@ class CreationMapper: Mappable
     var approved: Bool?
     var shortUrl: String?
     var createdAtAge: String?
-    
+
+    var userRelationship: RelationshipMapper?
+    var creatorRelationships: Array<RelationshipMapper>?
+
     required init?(_ map: Map)
     {
         
@@ -64,8 +67,8 @@ class CreationMapper: Mappable
     {
         identifier  <- map["id"]
         name <- map["attributes.name"]
-        createdAt <- (map["attributes.created_at"], DateTransform())
-        updatedAt <- (map["attributes.updated_at"], DateTransform())
+        createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
+        updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
         
         imageStatus <- map["attributes.image_status"]
         
@@ -83,12 +86,31 @@ class CreationMapper: Mappable
         commentsCount <- map["attributes.comments_count"]
         viewsCount <- map["attributes.views_count"]
         
-        lastBubbledAt <- (map["attributes.last_bubbled_at"], DateTransform())
-        lastCommentedAt <- (map["attributes.last_commented_at"], DateTransform())
-        lastSubmittedAt <- (map["attributes.last_submitted_at"], DateTransform())
+        lastBubbledAt <- (map["attributes.last_bubbled_at"], APIClientDateTransform.sharedTransform)
+        lastCommentedAt <- (map["attributes.last_commented_at"], APIClientDateTransform.sharedTransform)
+        lastSubmittedAt <- (map["attributes.last_submitted_at"], APIClientDateTransform.sharedTransform)
         
         approved <- map["attributes.approved"]
         shortUrl <- map["attributes.short_url"]
         createdAtAge <- map["attributes.created_at_age"]
+
+        userRelationship <- map["relationships.user.data"]
+        creatorRelationships <- map["relationships.creators.data"]
     }
+    
+    //MARK: Parsing
+    func parseCreatorRelationships() -> Array<Relationship>?
+    {
+        if let relationships = creatorRelationships
+        {
+            return relationships.map({ Relationship(mapper: $0 )})
+        }
+        return nil
+    }
+
+    func parseUserRelationship() -> Relationship?
+    {
+        return MappingUtils.relationshipFromMapper(userRelationship)        
+    }
+
 }

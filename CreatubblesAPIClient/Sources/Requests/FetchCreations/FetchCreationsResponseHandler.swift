@@ -27,33 +27,41 @@ import ObjectMapper
 
 class FetchCreationsResponseHandler: ResponseHandler
 {
-    private let completion: CreationsClousure?
+    private let completion: CreationsClosure?
     
-    init(completion: CreationsClousure?)
+    init(completion: CreationsClosure?)
     {
         self.completion = completion
     }
 
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
-    {        
+    {
         if  let response = response,
             let mappers = Mapper<CreationMapper>().mapArray(response["data"])
         {
-            var creations = Array<Creation>()
-            for mapper in mappers
-            {
-                creations.append(Creation(mapper: mapper))
-            }
+            let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
+            let metadata: Metadata? = metadataMapper != nil ? Metadata(mapper: metadataMapper!) : nil
+            
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)                        
+            
+            let creations = mappers.map({ Creation(mapper: $0, dataMapper: dataMapper, metadata: metadata)})
             
             let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
             let pageInfo = PagingInfo(mapper: pageInfoMapper)
-            
+                                    
             completion?(creations,pageInfo, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else if let response = response,
                 let mapper = Mapper<CreationMapper>().map(response["data"])
         {
-            let creation = Creation(mapper: mapper)
+            let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
+            let metadata: Metadata? = metadataMapper != nil ? Metadata(mapper: metadataMapper!) : nil
+            
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
+            
+            let creation = Creation(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
             completion?([creation], nil, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else

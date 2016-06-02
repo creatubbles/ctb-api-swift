@@ -30,24 +30,18 @@ class NewCreatorRequest: Request
     override var endpoint: String       { return "creators" }
     override var parameters: Dictionary<String, AnyObject>
     {
-        return [
-            "name": name,
-            "display_name": displayName,
-            "birth_year": birthYear,
-            "birth_month": birthMonth,
-            "country": countryCode,
-            "gender": gender.rawValue
-         ]
+        return prepareParams()
+        
     }
     
     private let name: String
-    private let displayName: String
-    private let birthYear: Int
-    private let birthMonth: Int
-    private let countryCode: String
-    private let gender: Gender
+    private let displayName: String?
+    private let birthYear: Int?
+    private let birthMonth: Int?
+    private let countryCode: String?
+    private let gender: Gender?
     
-    init(name: String, displayName: String, birthYear: Int, birthMonth: Int, countryCode: String, gender: Gender)
+    init(name: String, displayName: String?, birthYear: Int?, birthMonth: Int?, countryCode: String?, gender: Gender?)
     {
         self.name = name
         self.displayName = displayName
@@ -55,5 +49,34 @@ class NewCreatorRequest: Request
         self.birthMonth = birthMonth
         self.countryCode = countryCode
         self.gender = gender
+    }
+    
+    private func prepareParams() -> Dictionary<String, AnyObject>
+    {
+        var params = Dictionary<String, AnyObject>()
+        params["name"] = name
+        
+        if let displayName = displayName
+        {
+            params["display_name"] = displayName
+        }
+        if let birthYear = birthYear
+        {
+            params["birth_year"] = birthYear
+        }
+        if let birthMonth = birthMonth
+        {
+            params["birth_month"] = birthMonth
+        }
+        if let countryCode = countryCode
+        {
+            params["country"] = countryCode
+        }
+        if let gender = gender
+        {
+            params["gender"] = gender.rawValue
+        }
+        
+        return params
     }
 }

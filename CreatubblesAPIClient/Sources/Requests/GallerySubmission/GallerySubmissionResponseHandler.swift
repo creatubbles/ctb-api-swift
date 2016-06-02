@@ -24,16 +24,7 @@
 
 import UIKit
 
-class GallerySubmissionResponseHandler: ResponseHandler
+class GallerySubmissionResponseHandler: ErrorResponseHandler
 {
-    private let completion: ErrorClousure?
-    init(completion: ErrorClousure?)
-    {
-        self.completion = completion
-    }
-    
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
-    {
-        completion?( CreatubblesAPIClientError.Generic(error.debugDescription) )
-    }    
+
 }

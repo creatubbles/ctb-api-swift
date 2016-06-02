@@ -35,7 +35,7 @@ class GalleriesBatchFetcher: BatchFetcher
         return GalleriesRequest(page: page, perPage: perPage, sort: sort, userId: userId)
     }
     
-    private func responseHandler(completion: GalleriesBatchClousure?) -> GalleriesResponseHandler
+    private func responseHandler(completion: GalleriesBatchClosure?) -> GalleriesResponseHandler
     {
         return GalleriesResponseHandler()
         {
@@ -66,10 +66,10 @@ class GalleriesBatchFetcher: BatchFetcher
         }
     }
     
-    func fetch(userId: String?, sort:SortOrder?, completion: GalleriesBatchClousure?)
+    func fetch(userId: String?, sort:SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
     {
         self.userId = userId
         self.sort = sort
-        requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
+        return requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
     }
 }

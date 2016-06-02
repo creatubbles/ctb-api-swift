@@ -29,23 +29,39 @@ import p2_OAuth2
 
 class RequestSender: NSObject
 {
-    private let settings: CreatubblesAPIClientSettings
+    private let uploadManager: Alamofire.Manager
+    private let settings: APIClientSettings
     private let oauth2PrivateClient: OAuth2PasswordGrant
-    private let oauth2PublicClient: OAuth2ImplicitGrant
+    private let oauth2PublicClient: OAuth2ClientCredentials
     private var oauth2: OAuth2
     {
         return oauth2PrivateClient.hasUnexpiredAccessToken() ? oauth2PrivateClient : oauth2PublicClient
     }
     
-    init(settings: CreatubblesAPIClientSettings)
+    init(settings: APIClientSettings)
     {
         self.settings = settings
         self.oauth2PrivateClient = RequestSender.prepareOauthPrivateClient(settings)
-        self.oauth2PublicClient = RequestSender.prepareOauthPublicClient(settings)
+        self.oauth2PublicClient  = RequestSender.prepareOauthPublicClient(settings)
+        self.uploadManager       = RequestSender.prepareUploadManager(settings)
         super.init()
     }
     
-    private static func prepareOauthPrivateClient(settings: CreatubblesAPIClientSettings) -> OAuth2PasswordGrant
+    private static func prepareUploadManager(settings: APIClientSettings) -> Alamofire.Manager
+    {
+        if let identifier = settings.backgroundSessionConfigurationIdentifier
+        {
+            let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier(identifier)
+            return Alamofire.Manager(configuration: configuration)
+        }
+        else
+        {
+            let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            return Alamofire.Manager(configuration: configuration)
+        }
+    }
+    
+    private static func prepareOauthPrivateClient(settings: APIClientSettings) -> OAuth2PasswordGrant
     {
         let oauthSettings =
         [
@@ -60,7 +76,7 @@ class RequestSender: NSObject
         return client
     }
     
-    private static func prepareOauthPublicClient(settings: CreatubblesAPIClientSettings) -> OAuth2ImplicitGrant
+    private static func prepareOauthPublicClient(settings: APIClientSettings) -> OAuth2ClientCredentials
     {
         let oauthSettings =
         [
@@ -68,19 +84,22 @@ class RequestSender: NSObject
             "client_secret": settings.appSecret,
             "authorize_uri": settings.authorizeUri,
             "token_uri":     settings.tokenUri,
-            ] as OAuth2JSON
+            "keychain": false
+        ]
+        as OAuth2JSON
         
-        let client = OAuth2ImplicitGrant(settings: oauthSettings)
+        let client = OAuth2ClientCredentials(settings: oauthSettings)
         client.verbose = false
+        client.authorize()
         return client
     }
     
     //MARK: - Authentication
     
     var authenticationToken: String? { return oauth2PrivateClient.accessToken }
-    func login(username: String, password: String, completion: ErrorClousure?)
+    
+    func login(username: String, password: String, completion: ErrorClosure?) -> RequestHandler
     {
-
         oauth2PrivateClient.username = username
         oauth2PrivateClient.password = password
         oauth2PrivateClient.onAuthorize =
@@ -101,16 +120,27 @@ class RequestSender: NSObject
                 weakSelf.oauth2PrivateClient.onFailure = nil
             }
             Logger.log.error("Error while login:\(error)")
-            
-            let err = error as! OAuth2Error
-            completion?(CreatubblesAPIClientError.Generic(err.description))
+            completion?(RequestSender.errorFromLoginError(error))
         }
         oauth2PrivateClient.authorize()
+        return RequestHandler(object: oauth2PrivateClient)
+    }
+    
+    private class func errorFromLoginError(error: ErrorType?) -> APIClientError
+    {
+        if let err = error as? OAuth2Error {
+            return APIClientError.Generic(err.description)
+        }
+        if let err = error as? NSError {
+            return APIClientError.Generic(err.localizedDescription)
+        }
+        
+        return APIClientError.LoginError
     }
     
     func logout()
-    {        
-        oauth2PrivateClient.forgetTokens()
+    {                
+        oauth2PrivateClient.forgetTokens()        
     }
     
     func isLoggedIn() -> Bool
@@ -119,10 +149,10 @@ class RequestSender: NSObject
     }
     
     //MARK: - Request sending
-    func send(request: Request, withResponseHandler handler: ResponseHandler)
+    func send(request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
     {
-        Logger.log.debug("Sending request: \(request.dynamicType)")
-        oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
+        Logger.log.debug("Sending request: \(request.dynamicType)")        
+        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
         .responseString
         {
             (response) -> Void in
@@ -134,8 +164,9 @@ class RequestSender: NSObject
         .responseJSON
         {
             response -> Void in
-            handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)
+            handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)            
         }
+        return RequestHandler(object: request)
     }
     
     //MARK: - Creation sending
@@ -196,7 +227,7 @@ class RequestSender: NSObject
     func send(data: NSData, uploadData: CreationUpload, progressChanged: (bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int) -> Void, completion: (error: ErrorType?) -> Void)
     {
         Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
-        Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], data: data)
+        uploadManager.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], data: data)
         .progress(
         {
             (written, totalWritten, totalExpected) -> Void in
@@ -208,6 +239,18 @@ class RequestSender: NSObject
             Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
             completion(error: response.result.error)
         })
+    }
+    //MARK: - Background session
+    var backgroundCompletionHandler: (() -> Void)?
+    {
+        get
+        {
+            return uploadManager.backgroundCompletionHandler
+        }
+        set
+        {
+            uploadManager.backgroundCompletionHandler = newValue
+        }
     }
     
     //MARK: - Utils

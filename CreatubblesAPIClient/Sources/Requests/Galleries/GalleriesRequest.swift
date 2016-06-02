@@ -34,6 +34,10 @@ class GalleriesRequest: Request
         {
             return "galleries/"+galleryId
         }
+        if let userId = userId
+        {
+            return "users/\(userId)/galleries"
+        }
         return "galleries"
     }
     
@@ -82,10 +86,7 @@ class GalleriesRequest: Request
             {
                 dict["sort"] = Request.sortOrderStringValue(sort)
             }
-            if let userId = userId
-            {
-                dict["user_id"] = userId
-            }
+            
             return dict
         }
     }

@@ -49,6 +49,6 @@ class CreationUploadMapper: NSObject, Mappable
         uploadUrl <- map["attributes.url"]
         pingUrl <- map["attributes.ping_url"]
         contentType <- map["attributes.content_type"]
-        completedAt <- (map["attributes.completed_at"], DateTransform())
+        completedAt <- (map["attributes.completed_at"], APIClientDateTransform.sharedTransform)
     }
 }

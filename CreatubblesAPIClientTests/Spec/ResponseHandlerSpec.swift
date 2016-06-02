@@ -177,7 +177,9 @@ class ResponseHandlerSpec: QuickSpec
             it("Should return correct value for creations after login")
             {
                 let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, keyword: nil)
-                let sender =  TestComponentsFactory.requestSender
+//                let sender =  TestComponentsFactory.requestSender
+                
+                let sender = RequestSender(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -443,6 +445,7 @@ class ResponseHandlerSpec: QuickSpec
                             expect(error).to(beNil())
                             expect(landingUrls).notTo(beNil())
                             expect(landingUrls).notTo(beEmpty())
+                            sender.logout()
                             done()
                         })
                     }
@@ -466,6 +469,7 @@ class ResponseHandlerSpec: QuickSpec
                             expect(landingUrls).notTo(beNil())
                             expect(landingUrls).notTo(beEmpty())
                             expect(landingUrls?.count).to(equal(1))
+                            sender.logout()
                             done()
                         })
                     }
@@ -489,11 +493,399 @@ class ResponseHandlerSpec: QuickSpec
                             expect(landingUrls).notTo(beNil())
                             expect(landingUrls).notTo(beEmpty())
                             expect(landingUrls?.count).to(equal(1))
+                            sender.logout()
                             done()
                         })
                     }
                 }
             }
         }
+        
+        describe("BubblesFetch Response Handler")
+        {
+            it("Should return bubbles")
+            {
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(BubblesFetchReqest(userId: TestConfiguration.testUserIdentifier!, page: nil, perPage: nil), withResponseHandler:BubblesFetchResponseHandler()
+                        {
+                            (bubbles, pInfo, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(pInfo).notTo(beNil())
+                            expect(bubbles).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
+        
+        describe("NewBubble response handler")
+        {
+            it("Should return error when not logged in")
+            {
+                let data = NewBubbleData(userId: "TestId")
+                let request = NewBubbleRequest(data: data)
+                
+                let requestSender = TestComponentsFactory.requestSender
+                requestSender.logout()
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    requestSender.send(request, withResponseHandler: NewBubbleResponseHandler()
+                    {
+                        (error) -> (Void) in
+                        expect(error).notTo(beNil())
+                        done()
+                    })
+                }
+            }
+            
+            it("Shouldn't return error when logged in")
+            {
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+                
+                let data = NewBubbleData(userId: TestConfiguration.testUserIdentifier!)
+                let request = NewBubbleRequest(data: data)
+                
+                let sender = TestComponentsFactory.requestSender                
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:NewBubbleResponseHandler()
+                        {
+                            (error) -> (Void) in
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
+        
+        describe("UpdateBubble response handler")
+        {
+            it("Should return error when not logged in")
+            {
+                let data = UpdateBubbleData(bubbleId: "Identifier", colorName: "blue")
+                let request = UpdateBubbleRequest(data:data)
+                
+                let requestSender = TestComponentsFactory.requestSender                
+                requestSender.logout()
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    requestSender.send(request, withResponseHandler: UpdateBubbleResponseHandler()
+                    {
+                        (error) -> (Void) in
+                        expect(error).notTo(beNil())
+                        done()
+                    })
+                }
+            }
+            
+//            it("Shouldn't return error when logged in")
+//            {
+//                guard TestConfiguration.testBubbleIdentifier != nil else { return }
+//                
+//                let data = UpdateBubbleData(bubbleId: TestConfiguration.testBubbleIdentifier!, colorName: "blue")
+//                let request = UpdateBubbleRequest(data:data)
+//            
+//                let sender = TestComponentsFactory.requestSender
+//                waitUntil(timeout: 10)
+//                {
+//                    done in
+//                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+//                    {
+//                        (error: ErrorType?) -> Void in
+//                        expect(error).to(beNil())
+//                        sender.send(request, withResponseHandler:UpdateBubbleResponseHandler()
+//                        {
+//                            (error) -> (Void) in
+//                            expect(error).to(beNil())
+//                            sender.logout()
+//                            done()
+//                        })
+//                    }
+//                }
+//            }
+        }
+        
+        describe("Content response handler")
+        {
+            it("Should return recent content after login")
+            {
+                let request = ContentRequest(type: .Recent, page: 1, perPage: 20)
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:ContentResponseHandler()
+                        {
+                            (entries, pageInfo, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(entries).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+            
+            it("Should return trending content after login")
+            {
+                let request = ContentRequest(type: .Trending, page: 1, perPage: 20)
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:ContentResponseHandler()
+                        {
+                            (entries, pageInfo,  error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(entries).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+        }
+        
+        describe("Comment response handler")
+        {
+            it("Should return comments for Creation")
+            {
+                guard let creationId = TestConfiguration.testCreationIdentifier
+                else { return }
+                
+                let request = CommentsRequest(creationId: creationId, page: nil, perPage: nil)
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:CommentsResponseHandler()
+                        {
+                            (comments, pageInfo, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(comments).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+            
+            it("Should return comments for Gallery")
+            {
+                guard let galleryId = TestConfiguration.testGalleryIdentifier
+                else { return }
+                
+                let request = CommentsRequest(galleryId: galleryId, page: nil, perPage: nil)
+//                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:CommentsResponseHandler()
+                        {
+                            (comments, pageInfo, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(comments).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+            
+            it("Should return comments for Profile")
+            {
+                guard let userId = TestConfiguration.testUserIdentifier
+                    else { return }
+                
+                let request = CommentsRequest(userId: userId, page: nil, perPage: nil)
+                //                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:CommentsResponseHandler()
+                            {
+                                (comments, pData, error) -> (Void) in
+                                expect(error).to(beNil())
+                                expect(comments).notTo(beNil())
+                                expect(pData).notTo(beNil())
+                                sender.logout()
+                                done()
+                            })
+                    }
+                }
+            }
+        }
+        
+        describe("NewComment response handler")
+        {
+            it("Should return error when not logged in")
+            {
+                let data = NewCommentData(userId: "TestUserId", text: "Test")
+                let request = NewCommentRequest(data: data)
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.logout()
+                    sender.send(request, withResponseHandler:NewCommentResponseHandler()
+                        {
+                            (error) -> (Void) in
+                            expect(error).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                }
+            }
+            
+            it("Should comment gallery when logged in")
+            {
+                guard let galleryId = TestConfiguration.testGalleryIdentifier
+                    else { return }
+                
+                let data = NewCommentData(galleryId: galleryId, text: "TestGalleryComment")
+                let request = NewCommentRequest(data: data)
+                //                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:NewCommentResponseHandler()
+                            {
+                                (error) -> (Void) in
+                                expect(error).to(beNil())
+                                sender.logout()
+                                done()
+                            })
+                    }
+                }
+            }
+            
+            it("Should comment profile when logged in")
+            {
+                guard let userId = TestConfiguration.testUserIdentifier
+                    else { return }
+                
+                let data = NewCommentData(userId: userId, text: "TestProfileComment")
+                let request = NewCommentRequest(data: data)
+                //                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:NewCommentResponseHandler()
+                            {
+                                (error) -> (Void) in
+                                expect(error).to(beNil())
+                                sender.logout()
+                                done()
+                            })
+                    }
+                }
+            }
+            
+            it("Should comment creation when logged in")
+            {
+                guard let creationId = TestConfiguration.testCreationIdentifier
+                    else { return }
+                
+                let data = NewCommentData(creationId: creationId, text: "TestCreationComment")
+                let request = NewCommentRequest(data: data)
+                //                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:NewCommentResponseHandler()
+                            {
+                                (error) -> (Void) in
+                                expect(error).to(beNil())
+                                sender.logout()
+                                done()
+                            })
+                    }
+                }
+            }
+
+        }
+        
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

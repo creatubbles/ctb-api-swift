@@ -95,7 +95,7 @@ class CreationUploadSession: ResponseHandler
         }
     }
     
-    func start(completion: CreationClousure?)
+    func start(completion: CreationClosure?)
     {
         if isAlreadyFinished
         {
@@ -132,8 +132,7 @@ class CreationUploadSession: ResponseHandler
                     })
                 })
             }
-        }
-        
+        }        
     }
     
     //MARK: Upload Flow
@@ -246,6 +245,11 @@ class CreationUploadSession: ResponseHandler
                 if error == nil
                 {
                     weakSelf.state = .ImageUploaded
+                }
+                else
+                {
+                    //MM: Failure can be related to expired AWS token. Will update token for safety.
+                    weakSelf.state = .CreationAllocated
                 }
                 completion(error)
             }

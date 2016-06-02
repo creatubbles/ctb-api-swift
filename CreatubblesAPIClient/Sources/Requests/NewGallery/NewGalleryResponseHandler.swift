@@ -27,8 +27,8 @@ import ObjectMapper
 
 class NewGalleryResponseHandler: ResponseHandler
 {
-    private let completion: GalleryClousure?
-    init(completion: GalleryClousure?)
+    private let completion: GalleryClosure?
+    init(completion: GalleryClosure?)
     {
         self.completion = completion
     }
@@ -38,12 +38,18 @@ class NewGalleryResponseHandler: ResponseHandler
         if let response = response,
            let mapper = Mapper<GalleryMapper>().map(response["data"])
         {
-            let gallery = Gallery(mapper: mapper)
-            completion?(gallery, ErrorTransformer.errorFromResponse(response, error: error))
+            let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
+            let metadata: Metadata? = metadataMapper != nil ? Metadata(mapper: metadataMapper!) : nil
+            
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
+            
+            let gallery = Gallery(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
+            completion?(gallery, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
         }
         else
         {
-            completion?(nil, ErrorTransformer.errorFromResponse(response, error: error))
+            completion?(nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
         }
     }
 }

@@ -27,22 +27,24 @@ import ObjectMapper
 
 class GalleriesResponseHandler: ResponseHandler
 {
-    private let completion: GalleriesClousure?
-    init(completion: GalleriesClousure?)
+    private let completion: GalleriesClosure?
+    init(completion: GalleriesClosure?)
     {
         self.completion = completion
     }
     
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
-    {
+    {        
         if  let response = response,
             let mappers = Mapper<GalleryMapper>().mapArray(response["data"])
         {
-            var galleries = Array<Gallery>()
-            for mapper in mappers
-            {
-                galleries.append(Gallery(mapper: mapper))
-            }
+            let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
+            let metadata: Metadata? = metadataMapper != nil ? Metadata(mapper: metadataMapper!) : nil
+            
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
+            
+            let galleries = mappers.map({Gallery(mapper: $0, dataMapper: dataMapper, metadata: metadata)})
             
             let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
             let pageInfo = PagingInfo(mapper: pageInfoMapper)
@@ -52,12 +54,18 @@ class GalleriesResponseHandler: ResponseHandler
         else if let response = response,
                 let mapper = Mapper<GalleryMapper>().map(response["data"])
         {
-            let gallery = Gallery(mapper: mapper)
-            completion?([gallery], nil, ErrorTransformer.errorFromResponse(response, error: error))
+            let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
+            let metadata: Metadata? = metadataMapper != nil ? Metadata(mapper: metadataMapper!) : nil
+            
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
+            
+            let gallery = Gallery(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
+            completion?([gallery], nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
         }
         else
         {
-            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error))
+            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
         }
     }
 }
