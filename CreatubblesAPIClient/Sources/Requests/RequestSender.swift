@@ -35,6 +35,8 @@ class RequestSender: NSObject
     private let oauth2PublicClient: OAuth2ClientCredentials
     private var oauth2: OAuth2
     {
+        let clientType = oauth2PrivateClient.hasUnexpiredAccessToken() ? "private" : "public"
+        Logger.log.debug("Using \(clientType) OAuth client")
         return oauth2PrivateClient.hasUnexpiredAccessToken() ? oauth2PrivateClient : oauth2PublicClient
     }
     
@@ -91,6 +93,11 @@ class RequestSender: NSObject
         let client = OAuth2ClientCredentials(settings: oauthSettings)
         client.verbose = false
         client.authorize()
+        client.onFailure =
+        {
+            (error: ErrorType?) -> Void in
+            Logger.log.error("Cannot login as Public Client! Error: \(error)")
+        }
         return client
     }
     
