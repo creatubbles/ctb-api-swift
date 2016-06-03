@@ -39,7 +39,13 @@ class ProfileResponseHandler: ResponseHandler
         if  let response = response,
             let userMapper = Mapper<UserMapper>().map(response["data"])
         {
-            let user = User(mapper: userMapper)
+            let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
+            let metadata: Metadata? = metadataMapper != nil ? Metadata(mapper: metadataMapper!) : nil
+            
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
+            
+            let user = User(mapper: userMapper, dataMapper: dataMapper, metadata: metadata)
             completion?(user, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
         }
         else
