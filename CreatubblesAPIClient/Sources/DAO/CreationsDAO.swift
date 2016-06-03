@@ -44,6 +44,20 @@ class CreationsDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getRecomendedCreationsByUser(userId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
+    {
+        let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, recommendedUserId: userId)
+        let handler = FetchCreationsResponseHandler(completion: completon)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func getRecomendedCreationsByCreation(creationId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
+    {
+        let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, recommendedCreationId: creationId)
+        let handler = FetchCreationsResponseHandler(completion: completon)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getCreations(galleryId: String?, userId: String?, keyword: String? ,pagingData: PagingData?, sortOrder: SortOrder?,completion: CreationsClosure?) -> RequestHandler
     {
         let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, galleryId: galleryId, userId: userId, sort: sortOrder, keyword: keyword)
