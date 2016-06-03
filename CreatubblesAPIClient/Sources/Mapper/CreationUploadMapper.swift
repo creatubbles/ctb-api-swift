@@ -32,12 +32,7 @@ class CreationUploadMapper: NSObject, Mappable
     var contentType: String?
     var pingUrl: String?
     var completedAt: NSDate?
-    
-    override init()
-    {
-        //Ignore
-    }
-    
+        
     required init?(_ map: Map)
     {
         //Ignore
