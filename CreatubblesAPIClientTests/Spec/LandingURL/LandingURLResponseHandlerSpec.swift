@@ -86,6 +86,32 @@ class LandingURLResponseHandlerSpec: QuickSpec
                     }
                 }
             }
+            
+            it("Should return landing url for forgotten password when not logged in")
+            {
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                sender.logout()
+                
+                waitUntil(timeout: 15)
+                {
+                    done in                    
+                    //Have to wait for sender to login with Public Grant
+                    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
+                    dispatch_after(time, dispatch_get_main_queue(),
+                    {
+                        sender.send(LandingURLRequest(type: .ForgotPassword), withResponseHandler:LandingURLResponseHandler()
+                        {
+                            (landingUrls, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(landingUrls).notTo(beNil())
+                            expect(landingUrls).notTo(beEmpty())
+                            expect(landingUrls?.count).to(equal(1))
+                            sender.logout()
+                            done()
+                        })
+                    })
+                }
+            }
         }
     }
 }
