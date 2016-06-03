@@ -148,6 +148,8 @@
 		18F6E8A81D021B6500AAC5FB /* NewCreatorResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F6E87F1D021B6500AAC5FB /* NewCreatorResponseHandler.swift */; };
 		18F6E8A91D021B6500AAC5FB /* ProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F6E8801D021B6500AAC5FB /* ProfileRequest.swift */; };
 		18F6E8AA1D021B6500AAC5FB /* ProfileResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F6E8811D021B6500AAC5FB /* ProfileResponseHandler.swift */; };
+		18F6E8AC1D021C2900AAC5FB /* CustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F6E8AB1D021C2900AAC5FB /* CustomStyle.swift */; };
+		18F6E8AE1D021C3400AAC5FB /* CustomStyleMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F6E8AD1D021C3400AAC5FB /* CustomStyleMapper.swift */; };
 		18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9EDAE1CAD008600B85DD6 /* RequestHandler.swift */; };
 		18F9EDB11CAD051400B85DD6 /* TestRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9EDB01CAD051400B85DD6 /* TestRequestHandler.swift */; };
 		18FD15311C84315200A353C1 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD15301C84315200A353C1 /* APIClientError.swift */; };
@@ -319,6 +321,8 @@
 		18F6E87F1D021B6500AAC5FB /* NewCreatorResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreatorResponseHandler.swift; sourceTree = "<group>"; };
 		18F6E8801D021B6500AAC5FB /* ProfileRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRequest.swift; sourceTree = "<group>"; };
 		18F6E8811D021B6500AAC5FB /* ProfileResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileResponseHandler.swift; sourceTree = "<group>"; };
+		18F6E8AB1D021C2900AAC5FB /* CustomStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyle.swift; sourceTree = "<group>"; };
+		18F6E8AD1D021C3400AAC5FB /* CustomStyleMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleMapper.swift; sourceTree = "<group>"; };
 		18F9EDAE1CAD008600B85DD6 /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		18F9EDB01CAD051400B85DD6 /* TestRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRequestHandler.swift; sourceTree = "<group>"; };
 		18FD15301C84315200A353C1 /* APIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
@@ -443,6 +447,7 @@
 				18F9EDAE1CAD008600B85DD6 /* RequestHandler.swift */,
 				18E6E8701CFF2F24008D7B89 /* Metadata.swift */,
 				18E6E8721CFF2F39008D7B89 /* Ability.swift */,
+				18F6E8AB1D021C2900AAC5FB /* CustomStyle.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -570,6 +575,7 @@
 				189D9F5B1C84B36100857CC6 /* UserMapper.swift */,
 				18E30BEB1C8DAAE0000794B6 /* LandingURLMapper.swift */,
 				18E6E86C1CFF2D74008D7B89 /* MetadataMapper.swift */,
+				18F6E8AD1D021C3400AAC5FB /* CustomStyleMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -1013,6 +1019,7 @@
 				18F6E8861D021B6500AAC5FB /* NewBubbleRequest.swift in Sources */,
 				189D9F621C84B36100857CC6 /* UserMapper.swift in Sources */,
 				18CC309E1CB28A9D00EA4A00 /* AlamofireRequest+Cancelable.swift in Sources */,
+				18F6E8AC1D021C2900AAC5FB /* CustomStyle.swift in Sources */,
 				18F6E88E1D021B6500AAC5FB /* ContentRequest.swift in Sources */,
 				181E76E81CC5358E00A1546A /* UpdateBubbleData.swift in Sources */,
 				18F6E8871D021B6500AAC5FB /* NewBubbleResponseHandler.swift in Sources */,
@@ -1022,6 +1029,7 @@
 				21A79F721C81E6C5009E95D1 /* UsersBatchFetcher.swift in Sources */,
 				18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */,
 				18F6E88D1D021B6500AAC5FB /* NewCommentResponseHandler.swift in Sources */,
+				18F6E8AE1D021C3400AAC5FB /* CustomStyleMapper.swift in Sources */,
 				1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */,
 				18F6E8A71D021B6500AAC5FB /* NewCreatorRequest.swift in Sources */,
 				183635431CB5013900ED778A /* Identifiable.swift in Sources */,
