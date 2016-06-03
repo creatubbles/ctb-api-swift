@@ -245,6 +245,16 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, completion: completion)
     }
     
+    public func getRecomendedCreationsByUser(userId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
+    {
+        return creationsDAO.getRecomendedCreationsByUser(userId, pagingData: pagingData, completon: completon)
+    }
+    
+    public func getRecomendedCreationsByCreation(creationId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
+    {
+        return creationsDAO.getRecomendedCreationsByCreation(creationId, pagingData: pagingData, completon: completon)
+    }
+    
     //MARK: - Upload Sessions
     public func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {

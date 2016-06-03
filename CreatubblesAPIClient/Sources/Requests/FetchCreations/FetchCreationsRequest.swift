@@ -33,6 +33,14 @@ class FetchCreationsRequest: Request
         {
             return "creations/"+creationId
         }
+        if let recommendedUserId = recommendedUserId
+        {
+            return "users/\(recommendedUserId)/recommended_creations"
+        }
+        if let recommendedCreationId = recommendedCreationId
+        {
+            return "creations/\(recommendedCreationId)/recommended_creations"
+        }
         return "creations"
     }
     
@@ -44,7 +52,10 @@ class FetchCreationsRequest: Request
     private let userId: String?
     private let sort: SortOrder?
     private let keyword: String?
+    
     private let creationId: String?
+    private let recommendedCreationId: String?
+    private let recommendedUserId: String?
     
     init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: SortOrder?, keyword: String?)
     {
@@ -55,6 +66,8 @@ class FetchCreationsRequest: Request
         self.sort = sort
         self.keyword = keyword
         self.creationId = nil
+        self.recommendedUserId = nil
+        self.recommendedCreationId = nil
     }
     
     init(creationId: String)
@@ -66,6 +79,34 @@ class FetchCreationsRequest: Request
         self.sort = nil
         self.keyword = nil
         self.creationId = creationId
+        self.recommendedUserId = nil
+        self.recommendedCreationId = nil
+    }
+    
+    init(page: Int?, perPage: Int?, recommendedCreationId: String)
+    {
+        self.page = page
+        self.perPage = perPage
+        self.galleryId = nil
+        self.userId = nil
+        self.sort = nil
+        self.keyword = nil
+        self.creationId = nil
+        self.recommendedUserId = nil
+        self.recommendedCreationId = recommendedCreationId
+    }
+    
+    init(page: Int?, perPage: Int?, recommendedUserId: String)
+    {
+        self.page = page
+        self.perPage = perPage
+        self.galleryId = nil
+        self.userId = nil
+        self.sort = nil
+        self.keyword = nil
+        self.creationId = nil
+        self.recommendedUserId = recommendedUserId
+        self.recommendedCreationId = nil
     }
     
     func prepareParametersDictionary() -> Dictionary<String, AnyObject>
