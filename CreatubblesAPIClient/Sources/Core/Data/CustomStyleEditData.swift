@@ -12,18 +12,19 @@ public class CustomStyleEditData: NSObject
 {
     public var headerBackgroundIndex: Int?
     public var bodyBackgroundIndex: Int?
+    public var fontName: String?
+    public var bio: String?
+    public var bodyColors: Array<UIColor>?
+    public var headerColors: Array<UIColor>?
     
-    public var headerBackgroundIdentifier: String?
+    //Computed properties
+    var headerBackgroundIdentifier: String?
     {
         return headerBackgroundIndex == nil ? nil : "pattern\(String(headerBackgroundIndex!))"
     }
     
-    public var bodyBackgroundIdentifier: String?
+    var bodyBackgroundIdentifier: String?
     {
         return bodyBackgroundIndex == nil ? nil : "pattern\(String(bodyBackgroundIndex!))"
     }
-    public var fontName: String?
-    public var bio: String?
-    public var bodyColors: Array<UIColor>?
-    public var headerColors: Array<UIColor>?        
 }
