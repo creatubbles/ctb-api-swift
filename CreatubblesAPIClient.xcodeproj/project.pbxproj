@@ -36,6 +36,7 @@
 		18467F661D02EA59005CE5DD /* UIColorHexSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F651D02EA59005CE5DD /* UIColorHexSpec.swift */; };
 		18467F681D02ED98005CE5DD /* CustomStyleEditResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F671D02ED98005CE5DD /* CustomStyleEditResponseHandlerSpec.swift */; };
 		18467F6A1D02EDE9005CE5DD /* CustomStyleEditResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F691D02EDE9005CE5DD /* CustomStyleEditResponseHandler.swift */; };
+		18467F6C1D02F2DA005CE5DD /* CustomStyleDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F6B1D02F2DA005CE5DD /* CustomStyleDAO.swift */; };
 		1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847FBED1C75EAF900FE5FF3 /* CreationUploadService.swift */; };
 		1847FBF01C76024300FE5FF3 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847FBEF1C76024300FE5FF3 /* Logger.swift */; };
 		187671401C7CA00500733E9E /* APIClient_ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876713F1C7CA00500733E9E /* APIClient_ObjC.swift */; };
@@ -220,6 +221,7 @@
 		18467F651D02EA59005CE5DD /* UIColorHexSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHexSpec.swift; sourceTree = "<group>"; };
 		18467F671D02ED98005CE5DD /* CustomStyleEditResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleEditResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		18467F691D02EDE9005CE5DD /* CustomStyleEditResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleEditResponseHandler.swift; sourceTree = "<group>"; };
+		18467F6B1D02F2DA005CE5DD /* CustomStyleDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleDAO.swift; sourceTree = "<group>"; };
 		1847FBED1C75EAF900FE5FF3 /* CreationUploadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadService.swift; sourceTree = "<group>"; };
 		1847FBEF1C76024300FE5FF3 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		1876713F1C7CA00500733E9E /* APIClient_ObjC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient_ObjC.swift; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 				181E76E31CC5353600A1546A /* BubbleDAO.swift */,
 				181E76EB1CC547C000A1546A /* CommentsDAO.swift */,
 				18C1CFF61C75C46C00A02DE3 /* CreationsDAO.swift */,
+				18467F6B1D02F2DA005CE5DD /* CustomStyleDAO.swift */,
 				18C744F11C84610800A07E4C /* DatabaseDAO.swift */,
 				18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */,
 				18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */,
@@ -1091,6 +1094,7 @@
 				18F6E8AE1D021C3400AAC5FB /* CustomStyleMapper.swift in Sources */,
 				1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */,
 				18F6E8A71D021B6500AAC5FB /* NewCreatorRequest.swift in Sources */,
+				18467F6C1D02F2DA005CE5DD /* CustomStyleDAO.swift in Sources */,
 				18467F6A1D02EDE9005CE5DD /* CustomStyleEditResponseHandler.swift in Sources */,
 				183635431CB5013900ED778A /* Identifiable.swift in Sources */,
 				18F6E88A1D021B6500AAC5FB /* CommentsRequest.swift in Sources */,

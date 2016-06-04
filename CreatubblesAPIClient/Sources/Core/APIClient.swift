@@ -107,6 +107,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     private let bubbleDAO: BubbleDAO
     private let commentsDAO: CommentsDAO
     private let contentDAO: ContentDAO
+    private let customStyleDAO: CustomStyleDAO
     
     public weak var delegate: APIClientDelegate?
     
@@ -121,6 +122,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         self.bubbleDAO = BubbleDAO(requestSender: requestSender)
         self.commentsDAO = CommentsDAO(requestSender: requestSender)
         self.contentDAO = ContentDAO(requestSender: requestSender)
+        self.customStyleDAO = CustomStyleDAO(requestSender: requestSender)
         
         Logger.setup()
         super.init()
@@ -364,7 +366,19 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return contentDAO.getRecentContent(pagingData, completion: completion)
     }
     
+    //MARK: - CustomStyle
+    public func fetchCustomStyleForUserWithIdentifier(identifier: String, completion: CustomStyleClosure?) -> RequestHandler
+    {
+        return customStyleDAO.fetchCustomStyleForUserWithIdentifier(identifier, completion: completion)
+    }
+    
+    public func editCustomStyleForUserWithIdentifier(identifier: String, withData data: CustomStyleEditData, completion: CustomStyleClosure) -> RequestHandler
+    {
+        return customStyleDAO.editCustomStyleForUserWithIdentifier(identifier, withData: data, completion: completion)        
+    }
+    
     //MARK: - Delegate
+    
     func creationUploadServiceUploadFinished(service: CreationUploadService, session: CreationUploadSession)
     {
         let data = CreationUploadSessionPublicData(creationUploadSession: session)
