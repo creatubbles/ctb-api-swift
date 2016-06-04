@@ -45,6 +45,7 @@ class CustomStyleMapper: Mappable
         headerColorsHex <- map["attributes.header_colors"]
         bodyCreationURL <- map["attributes.body_creation_url"]
         headerCreationURL <- map["attributes.header_creation_url"]
+        
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
         updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
         

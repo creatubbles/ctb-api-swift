@@ -117,7 +117,8 @@ class BubbleResponseHandlerSpec: QuickSpec
             {
                 guard TestConfiguration.testUserIdentifier != nil else { return }
                 
-                let sender = TestComponentsFactory.requestSender
+//                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
