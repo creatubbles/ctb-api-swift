@@ -54,6 +54,7 @@ class UserMapper: Mappable
     var signedUpAsInstructor: Bool?
     
     var gender: String?
+    var customStyleRelationship: RelationshipMapper?
     
     //MARK: - Mappable
     required init?(_ map: Map)
@@ -91,6 +92,8 @@ class UserMapper: Mappable
         homeSchooling <- map["attributes.home_schooling"]
         signedUpAsInstructor <- map["attributes.signed_up_as_instructor"]
         gender <- map["attributes.gender"]
+        
+        customStyleRelationship <- map["relationships.custom_style.data"]
     }
     
     //MARK: - Parsing

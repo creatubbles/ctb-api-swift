@@ -1,5 +1,5 @@
 //
-//  CreatorsAndManagersResponseHandler.swift
+//  ProfileResponseHandler.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -25,10 +25,11 @@
 import UIKit
 import ObjectMapper
 
-class CreatorsAndManagersResponseHandler: ResponseHandler
+class ProfileResponseHandler: ResponseHandler
 {
-    private let completion: UsersClosure?
-    init(completion: UsersClosure?)
+    private let completion: UserClosure?
+    
+    init(completion: UserClosure?)
     {
         self.completion = completion
     }
@@ -36,21 +37,20 @@ class CreatorsAndManagersResponseHandler: ResponseHandler
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         if  let response = response,
-            let usersMapper = Mapper<UserMapper>().mapArray(response["data"])
+            let userMapper = Mapper<UserMapper>().map(response["data"])
         {
             let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
             let metadata: Metadata? = metadataMapper != nil ? Metadata(mapper: metadataMapper!) : nil
             
-            let users = usersMapper.map({ User(mapper: $0, metadata: metadata)})
+            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
             
-            let pageInfoMapper = Mapper<PagingInfoMapper>().map(response["meta"])!
-            let pageInfo = PagingInfo(mapper: pageInfoMapper)
-
-            completion?(users, pageInfo, ErrorTransformer.errorFromResponse(response, error: error))
+            let user = User(mapper: userMapper, dataMapper: dataMapper, metadata: metadata)
+            completion?(user, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
         }
         else
         {
-            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error))
+            completion?(nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
         }
     }
 }

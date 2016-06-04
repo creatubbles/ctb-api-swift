@@ -75,7 +75,10 @@ public class User: NSObject, Identifiable
     public let isBubbled: Bool
     public let abilities: Array<Ability>
     
-    init(mapper: UserMapper, metadata: Metadata? = nil)
+    public let customStyleRelationship: Relationship?
+    public let customStyle: CustomStyle?
+    
+    init(mapper: UserMapper, dataMapper: DataIncludeMapper?, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         username = mapper.username!
@@ -106,5 +109,8 @@ public class User: NSObject, Identifiable
         
         isBubbled = metadata?.bubbledUserIdentifiers.contains(mapper.identifier!) ?? false
         abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
+        
+        customStyleRelationship = MappingUtils.relationshipFromMapper(mapper.customStyleRelationship)
+        customStyle = MappingUtils.objectFromMapper(dataMapper, relationship: customStyleRelationship, type: CustomStyle.self)
     }
 }
