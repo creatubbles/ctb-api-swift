@@ -40,7 +40,9 @@ class DataIncludeMapper
         if let mapper = mapper as? UserMapper     { return User(mapper: mapper, dataMapper: self, metadata: metadata) as? T }
         if let mapper = mapper as? CreationMapper { return Creation(mapper: mapper, dataMapper: self, metadata: metadata) as? T }
         if let mapper = mapper as? GalleryMapper  { return Gallery(mapper:  mapper, dataMapper: self, metadata: metadata) as? T }
-        if let mapper = mapper as? CustomStyleMapper { return CustomStyle(mapper: mapper, dataMapper: self) as? T }
+        
+        //DataIncludeMapper isn't passed here intentionally to get rid of infinite recurrence User -> CustomStyle -> User -> ...
+        if let mapper = mapper as? CustomStyleMapper { return CustomStyle(mapper: mapper) as? T }
         
         return nil
     }
