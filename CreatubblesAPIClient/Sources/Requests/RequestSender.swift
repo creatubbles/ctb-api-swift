@@ -36,7 +36,7 @@ class RequestSender: NSObject
     private var oauth2: OAuth2
     {
         let clientType = oauth2PrivateClient.hasUnexpiredAccessToken() ? "private" : "public"
-        Logger.log.debug("Using \(clientType) OAuth client")
+        Logger.log.verbose("Using \(clientType) OAuth client")
         return oauth2PrivateClient.hasUnexpiredAccessToken() ? oauth2PrivateClient : oauth2PublicClient
     }
     
