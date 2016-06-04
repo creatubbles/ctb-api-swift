@@ -372,7 +372,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return customStyleDAO.fetchCustomStyleForUserWithIdentifier(identifier, completion: completion)
     }
     
-    public func editCustomStyleForUserWithIdentifier(identifier: String, withData data: CustomStyleEditData, completion: CustomStyleClosure) -> RequestHandler
+    public func editCustomStyleForUserWithIdentifier(identifier: String, withData data: CustomStyleEditData, completion: CustomStyleClosure?) -> RequestHandler
     {
         return customStyleDAO.editCustomStyleForUserWithIdentifier(identifier, withData: data, completion: completion)        
     }
