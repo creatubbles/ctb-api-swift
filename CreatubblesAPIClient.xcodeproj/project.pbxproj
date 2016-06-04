@@ -29,6 +29,13 @@
 		183728EA1CEDC835008784C7 /* ContentEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183728E91CEDC835008784C7 /* ContentEntry.swift */; };
 		183728EC1CEDC93D008784C7 /* ContentEntryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183728EB1CEDC93D008784C7 /* ContentEntryMapper.swift */; };
 		183728EE1CEDD1AC008784C7 /* ContentDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183728ED1CEDD1AC008784C7 /* ContentDAO.swift */; };
+		18467F5D1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F5C1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift */; };
+		18467F5F1D02E356005CE5DD /* CustomStyleEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F5E1D02E356005CE5DD /* CustomStyleEditRequest.swift */; };
+		18467F611D02E486005CE5DD /* CustomStyleEditData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F601D02E486005CE5DD /* CustomStyleEditData.swift */; };
+		18467F631D02E9E1005CE5DD /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F621D02E9E1005CE5DD /* UIColor+Hex.swift */; };
+		18467F661D02EA59005CE5DD /* UIColorHexSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F651D02EA59005CE5DD /* UIColorHexSpec.swift */; };
+		18467F681D02ED98005CE5DD /* CustomStyleEditResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F671D02ED98005CE5DD /* CustomStyleEditResponseHandlerSpec.swift */; };
+		18467F6A1D02EDE9005CE5DD /* CustomStyleEditResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F691D02EDE9005CE5DD /* CustomStyleEditResponseHandler.swift */; };
 		1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847FBED1C75EAF900FE5FF3 /* CreationUploadService.swift */; };
 		1847FBF01C76024300FE5FF3 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847FBEF1C76024300FE5FF3 /* Logger.swift */; };
 		187671401C7CA00500733E9E /* APIClient_ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876713F1C7CA00500733E9E /* APIClient_ObjC.swift */; };
@@ -206,6 +213,13 @@
 		183728E91CEDC835008784C7 /* ContentEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentEntry.swift; sourceTree = "<group>"; };
 		183728EB1CEDC93D008784C7 /* ContentEntryMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentEntryMapper.swift; sourceTree = "<group>"; };
 		183728ED1CEDD1AC008784C7 /* ContentDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentDAO.swift; sourceTree = "<group>"; };
+		18467F5C1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleEditRequestSpec.swift; sourceTree = "<group>"; };
+		18467F5E1D02E356005CE5DD /* CustomStyleEditRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleEditRequest.swift; sourceTree = "<group>"; };
+		18467F601D02E486005CE5DD /* CustomStyleEditData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleEditData.swift; sourceTree = "<group>"; };
+		18467F621D02E9E1005CE5DD /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		18467F651D02EA59005CE5DD /* UIColorHexSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHexSpec.swift; sourceTree = "<group>"; };
+		18467F671D02ED98005CE5DD /* CustomStyleEditResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleEditResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		18467F691D02EDE9005CE5DD /* CustomStyleEditResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleEditResponseHandler.swift; sourceTree = "<group>"; };
 		1847FBED1C75EAF900FE5FF3 /* CreationUploadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadService.swift; sourceTree = "<group>"; };
 		1847FBEF1C76024300FE5FF3 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		1876713F1C7CA00500733E9E /* APIClient_ObjC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient_ObjC.swift; sourceTree = "<group>"; };
@@ -478,6 +492,14 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
+		18467F641D02EA47005CE5DD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				18467F651D02EA59005CE5DD /* UIColorHexSpec.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		187671411C7CA0DD00733E9E /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +510,7 @@
 				187671441C7CA23900733E9E /* NewCreatorData.swift */,
 				187671481C7CA31600733E9E /* NewGalleryData.swift */,
 				21C349921C904B38002972EC /* NewCreationData.swift */,
+				18467F601D02E486005CE5DD /* CustomStyleEditData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -562,6 +585,7 @@
 				18CC309F1CB28B1600EA4A00 /* OAuth2+Cancelable.swift */,
 				18DB8EB51CE3EF29008B5F52 /* APIClientDateFormatter.swift */,
 				18A7DCE51CEE33CC008EBDDF /* MappingUtils.swift */,
+				18467F621D02E9E1005CE5DD /* UIColor+Hex.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -620,6 +644,7 @@
 				18F6E80E1D020F0A00AAC5FB /* Gallery */,
 				18F6E83E1D02180A00AAC5FB /* LandingURL */,
 				18F6E8111D020F0B00AAC5FB /* User */,
+				18467F641D02EA47005CE5DD /* Utils */,
 				18EFFF6B1C772A4E00BE0B70 /* APIClientSpec.swift */,
 				18EFFF6C1C772A4E00BE0B70 /* DataUploaderSpec.swift */,
 				18EFFF6D1C772A4E00BE0B70 /* RequestSenderSpec.swift */,
@@ -806,6 +831,8 @@
 			children = (
 				18F6E8B01D0222AD00AAC5FB /* CustomStyleFetchRequest.swift */,
 				18F6E8B51D0224EE00AAC5FB /* CustomStyleFetchResponseHandler.swift */,
+				18467F5E1D02E356005CE5DD /* CustomStyleEditRequest.swift */,
+				18467F691D02EDE9005CE5DD /* CustomStyleEditResponseHandler.swift */,
 			);
 			path = CustomStyle;
 			sourceTree = "<group>";
@@ -815,6 +842,8 @@
 			children = (
 				18F6E8B31D0222DF00AAC5FB /* CustomStyleFetchRequestSpec.swift */,
 				18F6E8B71D0225F500AAC5FB /* CustomStyleFetchResponseHandlerSpec.swift */,
+				18467F5C1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift */,
+				18467F671D02ED98005CE5DD /* CustomStyleEditResponseHandlerSpec.swift */,
 			);
 			path = CustomStyle;
 			sourceTree = "<group>";
@@ -1050,6 +1079,7 @@
 				18F6E8B61D0224EE00AAC5FB /* CustomStyleFetchResponseHandler.swift in Sources */,
 				18F6E8AC1D021C2900AAC5FB /* CustomStyle.swift in Sources */,
 				18F6E88E1D021B6500AAC5FB /* ContentRequest.swift in Sources */,
+				18467F611D02E486005CE5DD /* CustomStyleEditData.swift in Sources */,
 				181E76E81CC5358E00A1546A /* UpdateBubbleData.swift in Sources */,
 				18F6E8871D021B6500AAC5FB /* NewBubbleResponseHandler.swift in Sources */,
 				18F6E88F1D021B6500AAC5FB /* ContentResponseHandler.swift in Sources */,
@@ -1061,6 +1091,7 @@
 				18F6E8AE1D021C3400AAC5FB /* CustomStyleMapper.swift in Sources */,
 				1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */,
 				18F6E8A71D021B6500AAC5FB /* NewCreatorRequest.swift in Sources */,
+				18467F6A1D02EDE9005CE5DD /* CustomStyleEditResponseHandler.swift in Sources */,
 				183635431CB5013900ED778A /* Identifiable.swift in Sources */,
 				18F6E88A1D021B6500AAC5FB /* CommentsRequest.swift in Sources */,
 				18F6E8941D021B6500AAC5FB /* FetchCreationsResponseHandler.swift in Sources */,
@@ -1087,6 +1118,7 @@
 				18A7DCE61CEE33CC008EBDDF /* MappingUtils.swift in Sources */,
 				18F6E8961D021B6500AAC5FB /* NewCreationPingResponseHandler.swift in Sources */,
 				188ECF731C747FDE00AFEE4F /* String+Path.swift in Sources */,
+				18467F5F1D02E356005CE5DD /* CustomStyleEditRequest.swift in Sources */,
 				18F6E8A41D021B6500AAC5FB /* RequestSender.swift in Sources */,
 				18F6E8AA1D021B6500AAC5FB /* ProfileResponseHandler.swift in Sources */,
 				18F6E8831D021B6500AAC5FB /* BubblesFetchResponseHandler.swift in Sources */,
@@ -1136,6 +1168,7 @@
 				18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */,
 				183635441CB5013900ED778A /* Relationship.swift in Sources */,
 				18F6E8B11D0222AD00AAC5FB /* CustomStyleFetchRequest.swift in Sources */,
+				18467F631D02E9E1005CE5DD /* UIColor+Hex.swift in Sources */,
 				1815D5651C638BD200EF4C38 /* User.swift in Sources */,
 				18E6E8731CFF2F39008D7B89 /* Ability.swift in Sources */,
 				183728EA1CEDC835008784C7 /* ContentEntry.swift in Sources */,
@@ -1170,6 +1203,7 @@
 				18F6E83D1D02172600AAC5FB /* NewCreatorResponseHandlerSpec.swift in Sources */,
 				18F6E84E1D0219EA00AAC5FB /* NewCommentResponseHandlerSpec.swift in Sources */,
 				18F6E8421D02182A00AAC5FB /* LandingURLResponseHandlerSpec.swift in Sources */,
+				18467F681D02ED98005CE5DD /* CustomStyleEditResponseHandlerSpec.swift in Sources */,
 				18F6E81D1D02132F00AAC5FB /* NewCreationResponseHandlerSpec.swift in Sources */,
 				18F6E8251D02146100AAC5FB /* CreationPingResponseHandlerSpec.swift in Sources */,
 				18F6E8291D02158F00AAC5FB /* GalleriesResponseHandlerSpec.swift in Sources */,
@@ -1191,10 +1225,12 @@
 				18F6E8211D02141200AAC5FB /* NewCreationUploadResponseHandlerSpec.swift in Sources */,
 				18EFFF701C772A4E00BE0B70 /* APIClientSpec.swift in Sources */,
 				187901FE1C6C793F008F5302 /* TestResponses.swift in Sources */,
+				18467F661D02EA59005CE5DD /* UIColorHexSpec.swift in Sources */,
 				18F6E8191D02114400AAC5FB /* CreationResponseHandlerSpec.swift in Sources */,
 				18F6E8371D02170500AAC5FB /* CreatorsAndManagersRequestSpec.swift in Sources */,
 				18F6E81F1D0213B000AAC5FB /* NewCreationUploadRequestSpec.swift in Sources */,
 				18F6E82B1D02159800AAC5FB /* NewGalleryRequestSpec.swift in Sources */,
+				18467F5D1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift in Sources */,
 				18F6E8401D02182000AAC5FB /* LandingURLRequestSpec.swift in Sources */,
 				18F6E8B41D0222DF00AAC5FB /* CustomStyleFetchRequestSpec.swift in Sources */,
 				18EFFF721C772A4E00BE0B70 /* RequestSenderSpec.swift in Sources */,
