@@ -78,6 +78,8 @@
 		18DB8EB61CE3EF29008B5F52 /* APIClientDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DB8EB51CE3EF29008B5F52 /* APIClientDateFormatter.swift */; };
 		18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E30BE91C8DA7DD000794B6 /* LandingURL.swift */; };
 		18E30BEC1C8DAAE0000794B6 /* LandingURLMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E30BEB1C8DAAE0000794B6 /* LandingURLMapper.swift */; };
+		18E435471D04254800B728C6 /* NotificationsFetchRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E435461D04254800B728C6 /* NotificationsFetchRequestSpec.swift */; };
+		18E4354A1D0425FA00B728C6 /* NotificationsFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E435491D0425FA00B728C6 /* NotificationsFetchRequest.swift */; };
 		18E6E86D1CFF2D74008D7B89 /* MetadataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6E86C1CFF2D74008D7B89 /* MetadataMapper.swift */; };
 		18E6E86F1CFF2E1D008D7B89 /* AbilityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6E86E1CFF2E1D008D7B89 /* AbilityMapper.swift */; };
 		18E6E8711CFF2F24008D7B89 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6E8701CFF2F24008D7B89 /* Metadata.swift */; };
@@ -263,6 +265,8 @@
 		18DB8EB51CE3EF29008B5F52 /* APIClientDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientDateFormatter.swift; sourceTree = "<group>"; };
 		18E30BE91C8DA7DD000794B6 /* LandingURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingURL.swift; sourceTree = "<group>"; };
 		18E30BEB1C8DAAE0000794B6 /* LandingURLMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingURLMapper.swift; sourceTree = "<group>"; };
+		18E435461D04254800B728C6 /* NotificationsFetchRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsFetchRequestSpec.swift; sourceTree = "<group>"; };
+		18E435491D0425FA00B728C6 /* NotificationsFetchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsFetchRequest.swift; sourceTree = "<group>"; };
 		18E6E86C1CFF2D74008D7B89 /* MetadataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataMapper.swift; sourceTree = "<group>"; };
 		18E6E86E1CFF2E1D008D7B89 /* AbilityMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityMapper.swift; sourceTree = "<group>"; };
 		18E6E8701CFF2F24008D7B89 /* Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
@@ -489,6 +493,7 @@
 				18F6E8AF1D02229C00AAC5FB /* CustomStyle */,
 				18F6E86F1D021B6500AAC5FB /* Gallery */,
 				18F6E8761D021B6500AAC5FB /* LandingURL */,
+				18E435481D0425CE00B728C6 /* Notification */,
 				18F6E87B1D021B6500AAC5FB /* User */,
 			);
 			path = Requests;
@@ -636,6 +641,22 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		18E435431D0424EB00B728C6 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				18E435461D04254800B728C6 /* NotificationsFetchRequestSpec.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		18E435481D0425CE00B728C6 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				18E435491D0425FA00B728C6 /* NotificationsFetchRequest.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		18EFFF6A1C772A4E00BE0B70 /* Spec */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,6 +667,7 @@
 				18F6E8B21D0222D100AAC5FB /* CustomStyle */,
 				18F6E80E1D020F0A00AAC5FB /* Gallery */,
 				18F6E83E1D02180A00AAC5FB /* LandingURL */,
+				18E435431D0424EB00B728C6 /* Notification */,
 				18F6E8111D020F0B00AAC5FB /* User */,
 				18467F641D02EA47005CE5DD /* Utils */,
 				18EFFF6B1C772A4E00BE0B70 /* APIClientSpec.swift */,
@@ -1117,6 +1139,7 @@
 				18F6E88C1D021B6500AAC5FB /* NewCommentRequest.swift in Sources */,
 				21C349931C904B38002972EC /* NewCreationData.swift in Sources */,
 				183635421CB5013900ED778A /* DataInclude.swift in Sources */,
+				18E4354A1D0425FA00B728C6 /* NotificationsFetchRequest.swift in Sources */,
 				18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */,
 				18E6E86D1CFF2D74008D7B89 /* MetadataMapper.swift in Sources */,
 				18A7DCE61CEE33CC008EBDDF /* MappingUtils.swift in Sources */,
@@ -1215,6 +1238,7 @@
 				18EFFF711C772A4E00BE0B70 /* DataUploaderSpec.swift in Sources */,
 				18F6E8331D0216E300AAC5FB /* ProfileRequestSpec.swift in Sources */,
 				18F6E8171D02113800AAC5FB /* CreationRequestSpec.swift in Sources */,
+				18E435471D04254800B728C6 /* NotificationsFetchRequestSpec.swift in Sources */,
 				21F740941C735C9600E7F4D1 /* TestConfiguration.swift in Sources */,
 				18F6E8501D0219FB00AAC5FB /* CommentsResponseHandlerSpec.swift in Sources */,
 				18F6E84C1D0219D500AAC5FB /* NewCommentRequestSpec.swift in Sources */,
