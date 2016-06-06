@@ -28,10 +28,17 @@ class NotificationsFetchRequestSpec: QuickSpec
                 expect(request.endpoint).to(equal("notifications"))
             }
             
-            it("Shouldn return empty parameters list")
+            it("Should return empty parameters list when not pagable")
             {
                 let request = NotificationsFetchRequest()
                 expect(request.parameters).to(beEmpty())
+            }
+            
+            it("Should be pageable")
+            {
+                let request = NotificationsFetchRequest(page: 1, perPage: 10)
+                expect(request.parameters["page"] as? Int).to(equal(1))
+                expect(request.parameters["per_page"] as? Int).to(equal(10))
             }
             
         }
