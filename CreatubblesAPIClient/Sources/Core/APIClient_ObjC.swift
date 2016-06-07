@@ -256,21 +256,21 @@ extension APIClient
         }
     }
     
-    func _newBubble(data: NewBubbleData, completion: ((NSError?) -> (Void))?)
+    func _newBubble(data: NewBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
     {
         newBubble(data)
         {
-            (error) -> (Void) in
-            completion?(APIClient.errorTypeToNSError(error))
+            (bubble, error) -> (Void) in
+            completion?(bubble, APIClient.errorTypeToNSError(error))
         }
     }
     
-    func _updateBubble(data: UpdateBubbleData, completion: ((NSError?) -> (Void))?)
+    func _updateBubble(data: UpdateBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
     {
         updateBubble(data)
             {
-                (error) -> (Void) in
-                completion?(APIClient.errorTypeToNSError(error))
+                (bubble, error) -> (Void) in
+                completion?(bubble, APIClient.errorTypeToNSError(error))
         }
     }
 

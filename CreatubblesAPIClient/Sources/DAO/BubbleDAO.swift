@@ -38,14 +38,14 @@ class BubbleDAO: NSObject
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func newBubble(data: NewBubbleData, completion: ErrorClosure?) -> RequestHandler
+    func newBubble(data: NewBubbleData, completion: BubbleClousure?) -> RequestHandler
     {
         let request = NewBubbleRequest(data: data)
         let handler = NewBubbleResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func updateBubble(data: UpdateBubbleData, completion: ErrorClosure?) -> RequestHandler
+    func updateBubble(data: UpdateBubbleData, completion: BubbleClousure?) -> RequestHandler
     {
         let request = UpdateBubbleRequest(data: data)
         let handler = UpdateBubbleResponseHandler(completion: completion)
