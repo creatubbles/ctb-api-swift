@@ -59,10 +59,7 @@ class CreationMapper: Mappable
     var userRelationship: RelationshipMapper?
     var creatorRelationships: Array<RelationshipMapper>?
 
-    required init?(_ map: Map)
-    {
-        
-    }
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

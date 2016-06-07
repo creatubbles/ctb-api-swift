@@ -30,10 +30,7 @@ class PagingInfoMapper: Mappable
     var totalPages: Int?
     var totalCount: Int?
     
-    required init?(_ map: Map)
-    {
-        
-    }
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

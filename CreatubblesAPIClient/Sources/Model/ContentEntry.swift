@@ -11,7 +11,7 @@ import UIKit
 @objc
 public enum ContentEntryType: Int
 {
-    case None       //Error type, shouldn't ever happened
+    case Unknown       //Error type, shouldn't ever happened
     case Creation
     case Gallery
     case User

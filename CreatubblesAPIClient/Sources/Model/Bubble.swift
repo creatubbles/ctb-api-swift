@@ -9,7 +9,7 @@
 import UIKit
 
 @objc
-public class Bubble: NSObject
+public class Bubble: NSObject, Identifiable
 {
     public let identifier: String
     public let xPosition: Float?

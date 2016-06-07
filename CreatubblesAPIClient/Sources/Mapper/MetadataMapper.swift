@@ -16,10 +16,7 @@ class MetadataMapper: Mappable
     var bubbledGalleryIdentifiers: Array<String>?
     var abilityMappers: Array<AbilityMapper>?
     
-    required init?(_ map: Map)
-    {
-        
-    }
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

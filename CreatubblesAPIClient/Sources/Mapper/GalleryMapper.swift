@@ -40,10 +40,7 @@ class GalleryMapper: Mappable
     var previewImageUrls: Array<String>?
     var ownerRelationship: RelationshipMapper?
     
-    required init?(_ map: Map)
-    {
-        
-    }
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
