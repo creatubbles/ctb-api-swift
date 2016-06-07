@@ -18,10 +18,7 @@ class ContentEntryMapper: Mappable
     var creationRelationship: RelationshipMapper?
     var galleryRelationship: RelationshipMapper?
     
-    required init?(_ map: Map)
-    {
-        
-    }
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
@@ -51,6 +48,6 @@ class ContentEntryMapper: Mappable
         if type == "creation"   { return .Creation }
         if type == "gallery"    { return .Gallery  }
         if type == "user"       { return .User     }
-        return .None
+        return .Unknown
     }
 }

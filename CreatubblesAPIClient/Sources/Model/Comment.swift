@@ -9,7 +9,7 @@
 import UIKit
 
 @objc
-public class Comment: NSObject
+public class Comment: NSObject, Identifiable
 {
     public var identifier: String
     public var text: String

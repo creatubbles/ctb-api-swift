@@ -1,19 +1,19 @@
 //
-//  ContentResponseHandler.swift
+//  NotificationsFetchResponseHandler.swift
 //  CreatubblesAPIClient
 //
-//  Created by Michal Miedlarz on 19.05.2016.
+//  Created by Michal Miedlarz on 07.06.2016.
 //  Copyright © 2016 Nomtek. All rights reserved.
 //
 
 import UIKit
 import ObjectMapper
 
-class ContentResponseHandler: ResponseHandler
+class NotificationsFetchResponseHandler: ResponseHandler
 {
-    private let completion: ContentEntryClosure?
+    private let completion: NotificationsClosure?
     
-    init(completion: ContentEntryClosure?)
+    init(completion: NotificationsClosure?)
     {
         self.completion = completion
     }
@@ -21,14 +21,14 @@ class ContentResponseHandler: ResponseHandler
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         if  let response = response,
-            let mappers = Mapper<ContentEntryMapper>().mapArray(response["data"])
+            let mappers = Mapper<NotificationMapper>().mapArray(response["data"])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let entries = mappers.map({ ContentEntry(mapper: $0, dataMapper: dataMapper) }).filter({ $0.type != .None })            
+            let objects    = mappers.map({ Notification(mapper: $0, dataMapper: dataMapper) }).filter({ $0.type != .Unknown })
             
-            completion?(entries, pageInfo, ErrorTransformer.errorFromResponse(response ,error: error))
+            completion?(objects, pageInfo, ErrorTransformer.errorFromResponse(response ,error: error))
         }
         else
         {

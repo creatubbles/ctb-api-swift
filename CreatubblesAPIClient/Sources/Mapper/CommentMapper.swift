@@ -27,10 +27,7 @@ class CommentMapper: Mappable
     var commentedGalleryRelationship: RelationshipMapper?
     var commentedUserRelationship: RelationshipMapper?
     
-    required init?(_ map: Map)
-    {
-        
-    }
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

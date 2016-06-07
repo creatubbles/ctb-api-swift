@@ -40,6 +40,7 @@ class DataIncludeMapper
         if let mapper = mapper as? UserMapper     { return User(mapper: mapper, dataMapper: self, metadata: metadata) as? T }
         if let mapper = mapper as? CreationMapper { return Creation(mapper: mapper, dataMapper: self, metadata: metadata) as? T }
         if let mapper = mapper as? GalleryMapper  { return Gallery(mapper:  mapper, dataMapper: self, metadata: metadata) as? T }
+        if let mapper = mapper as? GallerySubmissionMapper { return GallerySubmission(mapper: mapper, dataMapper: self) as? T }
         
         //DataIncludeMapper isn't passed here intentionally to get rid of infinite recurrence User -> CustomStyle -> User -> ...
         if let mapper = mapper as? CustomStyleMapper { return CustomStyle(mapper: mapper) as? T }
@@ -62,14 +63,14 @@ class DataIncludeMapper
             case "creations": mapper = Mapper<CreationMapper>().map(obj)
             case "galleries": mapper = Mapper<GalleryMapper>().map(obj)
             case "custom_styles": mapper = Mapper<CustomStyleMapper>().map(obj)
+            case "gallery_submissions": mapper = Mapper<GallerySubmissionMapper>().map(obj)
+            case "user_entities": mapper = Mapper<NotificationTextEntityMapper>().map(obj)
+            case "creation_entities": mapper = Mapper<NotificationTextEntityMapper>().map(obj)
+            case "comments": mapper = Mapper<CommentMapper>().map(obj)
             
             default: mapper = nil
         }
-        if let mapper = mapper
-        {
-            return (identifierString, mapper)
-        }
-        
-        return nil
+        if (mapper == nil) { Logger.log.warning("Unknown typeString: \(typeString)") }
+        return mapper == nil ? nil : (identifierString, mapper!)                
     }
 }

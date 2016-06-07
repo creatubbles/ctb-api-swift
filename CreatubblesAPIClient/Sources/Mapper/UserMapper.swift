@@ -57,10 +57,7 @@ class UserMapper: Mappable
     var customStyleRelationship: RelationshipMapper?
     
     //MARK: - Mappable
-    required init?(_ map: Map)
-    {
-        
-    }
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

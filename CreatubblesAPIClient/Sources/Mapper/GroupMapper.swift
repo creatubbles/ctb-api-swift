@@ -31,10 +31,7 @@ class GroupMapper: Mappable
     var name: String?
     var taggingsCount: Int?
     
-    required init?(_ map: Map)
-    {
-        
-    }
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

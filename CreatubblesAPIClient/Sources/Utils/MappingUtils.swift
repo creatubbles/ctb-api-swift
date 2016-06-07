@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ObjectMapper
 
 class MappingUtils
 {
@@ -21,5 +22,23 @@ class MappingUtils
         let relationship = relationship
         else { return nil }
         return mapper.objectWithIdentifier(relationship.identifier, type: T.self)
+    }
+    
+    class func pagingInfoFromResponse(response: Dictionary<String, AnyObject>) -> PagingInfo
+    {
+        let mapper = Mapper<PagingInfoMapper>().map(response["meta"])!
+        return PagingInfo(mapper: mapper)
+    }
+    
+    class func metadataFromResponse(response: Dictionary<String, AnyObject>) -> Metadata?
+    {
+        let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
+        return ( metadataMapper != nil ) ? Metadata(mapper: metadataMapper!) : nil
+    }
+    
+    class func dataIncludeMapperFromResponse(response: Dictionary<String, AnyObject>, metadata: Metadata?) -> DataIncludeMapper?
+    {
+        let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
+        return ( includedResponse == nil ) ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
     }
 }
