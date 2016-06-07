@@ -31,7 +31,7 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec
                         {
                             (notifications, pInfo, error) -> (Void) in
                             expect(notifications).notTo(beNil())
-                            expect(notifications).notTo(beEmpty())
+                            expect(notifications).notTo(beEmpty())                            
                             expect(pInfo).notTo(beNil())
                             expect(error).to(beNil())
                             done()

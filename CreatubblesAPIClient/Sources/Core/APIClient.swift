@@ -89,6 +89,8 @@ public typealias NotificationsClosure = (Array<Notification>?, PagingInfo?, APIC
     case NewGallerySubmission
     case BubbledCreation
     case FollowedCreator
+    case AnotherComment
+    case NewCommentForCreationUsers
 }
 
 @objc

@@ -64,6 +64,9 @@ class DataIncludeMapper
             case "galleries": mapper = Mapper<GalleryMapper>().map(obj)
             case "custom_styles": mapper = Mapper<CustomStyleMapper>().map(obj)
             case "gallery_submissions": mapper = Mapper<GallerySubmissionMapper>().map(obj)
+            case "user_entities": mapper = Mapper<NotificationTextEntityMapper>().map(obj)
+            case "creation_entities": mapper = Mapper<NotificationTextEntityMapper>().map(obj)
+            case "comments": mapper = Mapper<CommentMapper>().map(obj)
             
             default: mapper = nil
         }
