@@ -80,6 +80,16 @@ public typealias CustomStyleClosure = (CustomStyle?, APIClientError?) -> (Void)
     case Rejected
 }
 
+@objc public enum NotificationType: Int
+{
+    case Unknown
+    case NewComment
+    case NewCreation
+    case NewGallerySubmission
+    case BubbledCreation
+    case FollowedCreator
+}
+
 @objc
 public protocol APIClientDelegate
 {
