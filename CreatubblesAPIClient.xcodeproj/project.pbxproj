@@ -29,6 +29,8 @@
 		18290AEF1D06E45A000EA216 /* NotificationTextEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AEE1D06E45A000EA216 /* NotificationTextEntityMapper.swift */; };
 		18290AF11D0704F0000EA216 /* NotificationReadRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AF01D0704F0000EA216 /* NotificationReadRequestSpec.swift */; };
 		18290AF31D070551000EA216 /* NotificationReadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AF21D070551000EA216 /* NotificationReadRequest.swift */; };
+		18290AF51D07071C000EA216 /* NotificationReadResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AF41D07071C000EA216 /* NotificationReadResponseHandler.swift */; };
+		18290AF71D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AF61D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift */; };
 		183635421CB5013900ED778A /* DataInclude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836353F1CB5013900ED778A /* DataInclude.swift */; };
 		183635431CB5013900ED778A /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183635401CB5013900ED778A /* Identifiable.swift */; };
 		183635441CB5013900ED778A /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183635411CB5013900ED778A /* Relationship.swift */; };
@@ -226,6 +228,8 @@
 		18290AEE1D06E45A000EA216 /* NotificationTextEntityMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTextEntityMapper.swift; sourceTree = "<group>"; };
 		18290AF01D0704F0000EA216 /* NotificationReadRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationReadRequestSpec.swift; sourceTree = "<group>"; };
 		18290AF21D070551000EA216 /* NotificationReadRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationReadRequest.swift; sourceTree = "<group>"; };
+		18290AF41D07071C000EA216 /* NotificationReadResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationReadResponseHandler.swift; sourceTree = "<group>"; };
+		18290AF61D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationReadResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		1836353F1CB5013900ED778A /* DataInclude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataInclude.swift; sourceTree = "<group>"; };
 		183635401CB5013900ED778A /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		183635411CB5013900ED778A /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
@@ -673,6 +677,7 @@
 				18E435461D04254800B728C6 /* NotificationsFetchRequestSpec.swift */,
 				18290AE81D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift */,
 				18290AF01D0704F0000EA216 /* NotificationReadRequestSpec.swift */,
+				18290AF61D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -683,6 +688,7 @@
 				18E435491D0425FA00B728C6 /* NotificationsFetchRequest.swift */,
 				18290AEA1D06D410000EA216 /* NotificationsFetchResponseHandler.swift */,
 				18290AF21D070551000EA216 /* NotificationReadRequest.swift */,
+				18290AF41D07071C000EA216 /* NotificationReadResponseHandler.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -1212,6 +1218,7 @@
 				187671431C7CA0F700733E9E /* PagingData.swift in Sources */,
 				18290AF31D070551000EA216 /* NotificationReadRequest.swift in Sources */,
 				18C744FE1C84611600A07E4C /* NewCreationDataEntity.swift in Sources */,
+				18290AF51D07071C000EA216 /* NotificationReadResponseHandler.swift in Sources */,
 				18C1CFF71C75C46C00A02DE3 /* CreationsDAO.swift in Sources */,
 				18F6E89D1D021B6500AAC5FB /* GallerySubmissionRequest.swift in Sources */,
 				18F6E8891D021B6500AAC5FB /* UpdateBubbleResponseHandler.swift in Sources */,
@@ -1285,6 +1292,7 @@
 				18F6E84A1D0219C800AAC5FB /* CommentsRequestSpec.swift in Sources */,
 				18F6E8481D0218A100AAC5FB /* ContentResponseHandlerSpec.swift in Sources */,
 				18F6E8151D020F3D00AAC5FB /* BubbleResponseHandlerSpec.swift in Sources */,
+				18290AF71D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift in Sources */,
 				18F6E82D1D0215A400AAC5FB /* NewGalleryResponseHandlerSpec.swift in Sources */,
 				18290AF11D0704F0000EA216 /* NotificationReadRequestSpec.swift in Sources */,
 				18F6E8B81D0225F500AAC5FB /* CustomStyleFetchResponseHandlerSpec.swift in Sources */,
