@@ -25,9 +25,10 @@ class NotificationMapper: Mappable
     var galleryRelationship: RelationshipMapper?
     var commentRelationship: RelationshipMapper?
     var gallerySubmissionRelationship: RelationshipMapper?
-    var userEntitiesRelationship: RelationshipMapper?
-    var creationEntitiesRelationship: RelationshipMapper?
-    var galleryEntitiesRelationship: RelationshipMapper?
+    
+    var userEntitiesRelationships:      Array<RelationshipMapper>?
+    var creationEntitiesRelationships:  Array<RelationshipMapper>?
+    var galleryEntitiesRelationships:   Array<RelationshipMapper>?
     
     var bubbleRelationship: RelationshipMapper?
     
@@ -51,9 +52,9 @@ class NotificationMapper: Mappable
         commentRelationship  <- map["relationships.comment.data"]
         gallerySubmissionRelationship <- map["relationships.gallery_submission.data"]
         
-        userEntitiesRelationship <- map["relationships.user_entities.data"]
-        creationEntitiesRelationship <- map["relationships.creation_entities.data"]
-        galleryEntitiesRelationship <- map["relationships.gallery_entities.data"]
+        userEntitiesRelationships <- map["relationships.user_entities.data"]
+        creationEntitiesRelationships <- map["relationships.creation_entities.data"]
+        galleryEntitiesRelationships <- map["relationships.gallery_entities.data"]
         
         bubbleRelationship <- map["relationships.bubble.data"]
     }
