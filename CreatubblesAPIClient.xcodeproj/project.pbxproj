@@ -31,6 +31,7 @@
 		18290AF31D070551000EA216 /* NotificationReadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AF21D070551000EA216 /* NotificationReadRequest.swift */; };
 		18290AF51D07071C000EA216 /* NotificationReadResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AF41D07071C000EA216 /* NotificationReadResponseHandler.swift */; };
 		18290AF71D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AF61D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift */; };
+		18290AF91D070A17000EA216 /* NotificationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AF81D070A17000EA216 /* NotificationDAO.swift */; };
 		183635421CB5013900ED778A /* DataInclude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836353F1CB5013900ED778A /* DataInclude.swift */; };
 		183635431CB5013900ED778A /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183635401CB5013900ED778A /* Identifiable.swift */; };
 		183635441CB5013900ED778A /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183635411CB5013900ED778A /* Relationship.swift */; };
@@ -230,6 +231,7 @@
 		18290AF21D070551000EA216 /* NotificationReadRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationReadRequest.swift; sourceTree = "<group>"; };
 		18290AF41D07071C000EA216 /* NotificationReadResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationReadResponseHandler.swift; sourceTree = "<group>"; };
 		18290AF61D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationReadResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		18290AF81D070A17000EA216 /* NotificationDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDAO.swift; sourceTree = "<group>"; };
 		1836353F1CB5013900ED778A /* DataInclude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataInclude.swift; sourceTree = "<group>"; };
 		183635401CB5013900ED778A /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		183635411CB5013900ED778A /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
@@ -575,6 +577,7 @@
 				18C1CFF81C75C4B000A02DE3 /* GalleryDAO.swift */,
 				18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */,
 				183728ED1CEDD1AC008784C7 /* ContentDAO.swift */,
+				18290AF81D070A17000EA216 /* NotificationDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -1177,6 +1180,7 @@
 				18F6E88C1D021B6500AAC5FB /* NewCommentRequest.swift in Sources */,
 				21C349931C904B38002972EC /* NewCreationData.swift in Sources */,
 				183635421CB5013900ED778A /* DataInclude.swift in Sources */,
+				18290AF91D070A17000EA216 /* NotificationDAO.swift in Sources */,
 				18E4354A1D0425FA00B728C6 /* NotificationsFetchRequest.swift in Sources */,
 				18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */,
 				18E6E86D1CFF2D74008D7B89 /* MetadataMapper.swift in Sources */,
