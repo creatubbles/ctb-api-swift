@@ -121,6 +121,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     private let commentsDAO: CommentsDAO
     private let contentDAO: ContentDAO
     private let customStyleDAO: CustomStyleDAO
+    private let notificationDAO: NotificationDAO
     
     public weak var delegate: APIClientDelegate?
     
@@ -136,6 +137,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         self.commentsDAO = CommentsDAO(requestSender: requestSender)
         self.contentDAO = ContentDAO(requestSender: requestSender)
         self.customStyleDAO = CustomStyleDAO(requestSender: requestSender)
+        self.notificationDAO = NotificationDAO(requestSender: requestSender)
         
         Logger.setup()
         super.init()
@@ -388,6 +390,18 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func editCustomStyleForUserWithIdentifier(identifier: String, withData data: CustomStyleEditData, completion: CustomStyleClosure?) -> RequestHandler
     {
         return customStyleDAO.editCustomStyleForUserWithIdentifier(identifier, withData: data, completion: completion)        
+    }
+    
+    //MARK: - Notifications
+    
+    public func getNotifications(pagingData: PagingData?, completion: NotificationsClosure?) -> RequestHandler
+    {        
+        return notificationDAO.getNotifications(pagingData, completion: completion)
+    }
+    
+    public func markNotificationAsRead(identifier: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        return notificationDAO.markNotificationAsRead(identifier, completion: completion)
     }
     
     //MARK: - Delegate
