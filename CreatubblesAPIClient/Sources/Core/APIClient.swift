@@ -41,6 +41,8 @@ public typealias GalleriesBatchClosure = (Array<Gallery>?, APIClientError?) -> (
 
 public typealias LandingURLClosure = (Array<LandingURL>?, APIClientError?) -> (Void)
 public typealias CommentsClosure = (Array<Comment>?, PagingInfo?, APIClientError?) -> (Void)
+
+public typealias BubbleClousure = (Bubble?, APIClientError?) -> (Void)
 public typealias BubblesClousure = (Array<Bubble>?, PagingInfo?, APIClientError?) -> (Void)
 
 public typealias ContentEntryClosure = (Array<ContentEntry>?, PagingInfo?, APIClientError?) -> (Void)
@@ -319,12 +321,12 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return bubbleDAO.getBubblesForGalleryWithIdentifier(identifier, pagingData: pagingData, completion: completion)
     }
     
-    public func newBubble(data: NewBubbleData, completion: ErrorClosure?) -> RequestHandler
+    public func newBubble(data: NewBubbleData, completion: BubbleClousure?) -> RequestHandler
     {
         return bubbleDAO.newBubble(data, completion: completion)
     }
     
-    public func updateBubble(data: UpdateBubbleData, completion: ErrorClosure?) -> RequestHandler
+    public func updateBubble(data: UpdateBubbleData, completion: BubbleClousure?) -> RequestHandler
     {
         return bubbleDAO.updateBubble(data, completion: completion)
     }
