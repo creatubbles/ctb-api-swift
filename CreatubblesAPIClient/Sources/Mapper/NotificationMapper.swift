@@ -13,12 +13,24 @@ class NotificationMapper: Mappable
 {
     var identifier: String?
     var type: String?
+    
+    var text: String?
+    var shortText: String?
+    var isNew: Bool?
+    
     var createdAt: NSDate?
     
-    var bubbleRelationship: RelationshipMapper?
-    var commentRelationship: RelationshipMapper?
     var creationRelationship: RelationshipMapper?
+    var userRelationship: RelationshipMapper?
+    var galleryRelationship: RelationshipMapper?
+    var commentRelationship: RelationshipMapper?
     var gallerySubmissionRelationship: RelationshipMapper?
+    var userEntitiesRelationship: RelationshipMapper?
+    var creationEntitiesRelationship: RelationshipMapper?
+    var galleryEntitiesRelationship: RelationshipMapper?
+    
+    var bubbleRelationship: RelationshipMapper?
+    
     
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
@@ -26,12 +38,24 @@ class NotificationMapper: Mappable
     {
         identifier <- map["id"]
         type <- map["attributes.type"]
+        
+        text <- map["attributes.text"]
+        shortText <- map["attributes.short_text"]
+        isNew <- map["attributes.is_new"]
+        
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
         
-        bubbleRelationship <- map["relationships.bubble.data"]
-        commentRelationship <- map["relationships.comment.data"]
         creationRelationship <- map["relationships.creation.data"]
+        userRelationship     <- map["relationships.user.data"]
+        galleryRelationship  <- map["relationships.gallery.data"]
+        commentRelationship  <- map["relationships.comment.data"]
         gallerySubmissionRelationship <- map["relationships.gallery_submission.data"]
+        
+        userEntitiesRelationship <- map["relationships.user_entities.data"]
+        creationEntitiesRelationship <- map["relationships.creation_entities.data"]
+        galleryEntitiesRelationship <- map["relationships.gallery_entities.data"]
+        
+        bubbleRelationship <- map["relationships.bubble.data"]
     }
     
     func parseType() -> NotificationType
