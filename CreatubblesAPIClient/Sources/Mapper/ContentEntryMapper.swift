@@ -48,6 +48,6 @@ class ContentEntryMapper: Mappable
         if type == "creation"   { return .Creation }
         if type == "gallery"    { return .Gallery  }
         if type == "user"       { return .User     }
-        return .None
+        return .Unknown
     }
 }
