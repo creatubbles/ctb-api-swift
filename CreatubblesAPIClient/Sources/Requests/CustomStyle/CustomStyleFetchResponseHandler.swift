@@ -23,11 +23,8 @@ class CustomStyleFetchResponseHandler: ResponseHandler
         if  let response = response,
             let mapper = Mapper<CustomStyleMapper>().map(response["data"])
         {
-            let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
-            let metadata: Metadata? = metadataMapper != nil ? Metadata(mapper: metadataMapper!) : nil
-            
-            let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
-            let dataMapper: DataIncludeMapper? = includedResponse == nil ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
+            let metadata = MappingUtils.metadataFromResponse(response)
+            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)                        
             
             let style = CustomStyle(mapper: mapper, dataMapper: dataMapper)
             completion?(style, ErrorTransformer.errorFromResponse(response, error: error))
