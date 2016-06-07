@@ -32,7 +32,7 @@ public class NotificationTextEntity: NSObject, Identifiable
     public let userRelationship: Relationship?
     public let creationRelationship: Relationship?
     public let galleryRelationship: Relationship?        
-    
+        
     init(mapper: NotificationTextEntityMapper, dataMapper: DataIncludeMapper? = nil)
     {
         identifier = mapper.identifier!
