@@ -29,7 +29,8 @@ class BubbleResponseHandlerSpec: QuickSpec
                     done in
                     requestSender.send(request, withResponseHandler: NewBubbleResponseHandler()
                     {
-                        (error) -> (Void) in
+                        (bubble, error) -> (Void) in
+                        expect(bubble).to(beNil())
                         expect(error).notTo(beNil())
                         done()
                     })
@@ -38,12 +39,13 @@ class BubbleResponseHandlerSpec: QuickSpec
             
             it("Shouldn't return error when logged in")
             {
-                guard TestConfiguration.testUserIdentifier != nil else { return }
-                
-                let data = NewBubbleData(userId: TestConfiguration.testUserIdentifier!)
+                guard let identifier = TestConfiguration.testCreationIdentifier
+                else { return }
+                                
+                let data = NewBubbleData(creationId: identifier, colorName: nil, xPosition: nil, yPosition: nil)
                 let request = NewBubbleRequest(data: data)
                 
-                let sender = TestComponentsFactory.requestSender
+                let sender = RequestSender(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -53,7 +55,8 @@ class BubbleResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:NewBubbleResponseHandler()
                         {
-                            (error) -> (Void) in
+                            (bubble, error) -> (Void) in
+                            expect(bubble).notTo(beNil())
                             expect(error).to(beNil())
                             sender.logout()
                             done()
@@ -77,7 +80,8 @@ class BubbleResponseHandlerSpec: QuickSpec
                     done in
                     requestSender.send(request, withResponseHandler: UpdateBubbleResponseHandler()
                         {
-                            (error) -> (Void) in
+                            (bubble, error) -> (Void) in
+                            expect(bubble).to(beNil())
                             expect(error).notTo(beNil())
                             done()
                         })
@@ -101,7 +105,8 @@ class BubbleResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:UpdateBubbleResponseHandler()
                         {
-                            (error) -> (Void) in
+                            (bubble, error) -> (Void) in
+                            expect(bubble).notTo(beNil())
                             expect(error).to(beNil())
                             sender.logout()
                             done()
