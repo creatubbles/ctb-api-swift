@@ -21,7 +21,6 @@ public class GallerySubmission: NSObject, Identifiable
     public let creationRelationship: Relationship?
     public let galleryRelationship:  Relationship?
     
-    
     init(mapper: GallerySubmissionMapper, dataMapper: DataIncludeMapper? = nil)
     {
         identifier = mapper.identifier!
