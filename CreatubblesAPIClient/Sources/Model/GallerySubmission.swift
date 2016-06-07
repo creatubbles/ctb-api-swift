@@ -34,5 +34,4 @@ public class GallerySubmission: NSObject, Identifiable
         creation = MappingUtils.objectFromMapper(dataMapper, relationship: creationRelationship, type: Creation.self)
         gallery = MappingUtils.objectFromMapper(dataMapper, relationship: galleryRelationship, type: Gallery.self)
     }
-
 }

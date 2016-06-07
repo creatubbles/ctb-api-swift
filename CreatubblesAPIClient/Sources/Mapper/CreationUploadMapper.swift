@@ -33,10 +33,7 @@ class CreationUploadMapper: NSObject, Mappable
     var pingUrl: String?
     var completedAt: NSDate?
         
-    required init?(_ map: Map)
-    {
-        //Ignore
-    }
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
