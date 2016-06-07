@@ -23,6 +23,8 @@
 		181E76FB1CC5485100A1546A /* NewCommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181E76FA1CC5485100A1546A /* NewCommentData.swift */; };
 		18290AE51D06B09E000EA216 /* GallerySubmissionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AE41D06B09E000EA216 /* GallerySubmissionMapper.swift */; };
 		18290AE71D06B24B000EA216 /* GallerySubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AE61D06B24B000EA216 /* GallerySubmission.swift */; };
+		18290AE91D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AE81D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift */; };
+		18290AEB1D06D410000EA216 /* NotificationsFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AEA1D06D410000EA216 /* NotificationsFetchResponseHandler.swift */; };
 		183635421CB5013900ED778A /* DataInclude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836353F1CB5013900ED778A /* DataInclude.swift */; };
 		183635431CB5013900ED778A /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183635401CB5013900ED778A /* Identifiable.swift */; };
 		183635441CB5013900ED778A /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183635411CB5013900ED778A /* Relationship.swift */; };
@@ -214,6 +216,8 @@
 		181E76FA1CC5485100A1546A /* NewCommentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCommentData.swift; sourceTree = "<group>"; };
 		18290AE41D06B09E000EA216 /* GallerySubmissionMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GallerySubmissionMapper.swift; sourceTree = "<group>"; };
 		18290AE61D06B24B000EA216 /* GallerySubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GallerySubmission.swift; sourceTree = "<group>"; };
+		18290AE81D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsFetchResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		18290AEA1D06D410000EA216 /* NotificationsFetchResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsFetchResponseHandler.swift; sourceTree = "<group>"; };
 		1836353F1CB5013900ED778A /* DataInclude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataInclude.swift; sourceTree = "<group>"; };
 		183635401CB5013900ED778A /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		183635411CB5013900ED778A /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
@@ -657,6 +661,7 @@
 			isa = PBXGroup;
 			children = (
 				18E435461D04254800B728C6 /* NotificationsFetchRequestSpec.swift */,
+				18290AE81D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -665,6 +670,7 @@
 			isa = PBXGroup;
 			children = (
 				18E435491D0425FA00B728C6 /* NotificationsFetchRequest.swift */,
+				18290AEA1D06D410000EA216 /* NotificationsFetchResponseHandler.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -1198,6 +1204,7 @@
 				18F6E8851D021B6500AAC5FB /* DeleteBubbleResponseHandler.swift in Sources */,
 				18F6E8931D021B6500AAC5FB /* FetchCreationsRequest.swift in Sources */,
 				18F6E8A21D021B6500AAC5FB /* LandingURLResponseHandler.swift in Sources */,
+				18290AEB1D06D410000EA216 /* NotificationsFetchResponseHandler.swift in Sources */,
 				188ECF701C74703200AFEE4F /* CreationUploadSession.swift in Sources */,
 				18F6E8A11D021B6500AAC5FB /* LandingURLRequest.swift in Sources */,
 				18F6E8A31D021B6500AAC5FB /* OAuth2+Alamofire.swift in Sources */,
@@ -1245,6 +1252,7 @@
 				18F6E8391D02170F00AAC5FB /* CreatorsAndManagersResponseHandlerSpec.swift in Sources */,
 				18F6E83D1D02172600AAC5FB /* NewCreatorResponseHandlerSpec.swift in Sources */,
 				18F6E84E1D0219EA00AAC5FB /* NewCommentResponseHandlerSpec.swift in Sources */,
+				18290AE91D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift in Sources */,
 				18F6E8421D02182A00AAC5FB /* LandingURLResponseHandlerSpec.swift in Sources */,
 				18467F681D02ED98005CE5DD /* CustomStyleEditResponseHandlerSpec.swift in Sources */,
 				18F6E81D1D02132F00AAC5FB /* NewCreationResponseHandlerSpec.swift in Sources */,

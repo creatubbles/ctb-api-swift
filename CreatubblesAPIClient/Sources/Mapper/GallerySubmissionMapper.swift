@@ -19,10 +19,7 @@ class GallerySubmissionMapper: Mappable
     var creationRelationship: RelationshipMapper?
     var galleryRelationship:  RelationshipMapper?
     
-    required init?(_ map: Map)
-    {
-        
-    }
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

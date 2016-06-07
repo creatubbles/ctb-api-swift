@@ -30,10 +30,7 @@ class LandingURLMapper: Mappable
     var destination: String?
     private var typeString: String?
     
-    required init?(_ map: Map)
-    {
-        
-    }
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

@@ -20,10 +20,7 @@ class NotificationMapper: Mappable
     var creationRelationship: RelationshipMapper?
     var gallerySubmissionRelationship: RelationshipMapper?
     
-    required init?(_ map: Map)
-    {
-        
-    }
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
