@@ -1,5 +1,5 @@
 //
-//  NotificationsFetchResponseHandlerSpec.swift
+//  NotificationReadResponseHandlerSpec.swift
 //  CreatubblesAPIClient
 //
 //  Created by Michal Miedlarz on 07.06.2016.
@@ -10,36 +10,35 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NotificationsFetchResponseHandlerSpec: QuickSpec
+class NotificationReadResponseHandlerSpec: QuickSpec
 {
     override func spec()
     {
-        describe("NotificationsFetchResponseHandler")
+        describe("NotificationReadResponseHandler")
         {
-            it("Should return error when user is not logged in")
+            it("Should return error when not logged in")
             {
-                let request = NotificationsFetchRequest()
+                let request = NotificationReadRequest(notificationIdentifier: "384580")
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 sender.logout()
                 
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.send(request, withResponseHandler:NotificationsFetchResponseHandler()
+                    sender.send(request, withResponseHandler:NotificationReadResponseHandler()
                     {
-                        (notifications, pInfo, error) -> (Void) in
-                        expect(notifications).to(beNil())
-                        expect(pInfo).to(beNil())
-                        expect(error).notTo(beNil())
+                        (error) -> (Void) in
+                        expect(error).to(beNil())
                         done()
                     })
                 }
             }
             
-            it("Should fetch notificaions when user is logged in")
+            it("Should not return error when logged in")
             {
-                let request = NotificationsFetchRequest()
+                let request = NotificationReadRequest(notificationIdentifier: "384580")
                 let sender = RequestSender(settings: TestConfiguration.settings)
+                
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -47,12 +46,9 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec
                     {
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:NotificationsFetchResponseHandler()
+                        sender.send(request, withResponseHandler:NotificationReadResponseHandler()
                         {
-                            (notifications, pInfo, error) -> (Void) in
-                            expect(notifications).notTo(beNil())
-                            expect(notifications).notTo(beEmpty())                            
-                            expect(pInfo).notTo(beNil())
+                            (error) -> (Void) in
                             expect(error).to(beNil())
                             done()
                         })
