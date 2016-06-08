@@ -38,8 +38,8 @@ public class CustomStyle: NSObject, Identifiable
         bodyBackgroundIdentifier = mapper.bodyBackgroundIdentifier
         fontName = mapper.fontName
         bio = mapper.bio
-        bodyColorsHex = mapper.bodyColorStrings?.map({ $0.RGBtoHexString() }).filter({ $0 != nil}) as? Array<String>
-        headerColorsHex = mapper.headerColorStrings?.map({ $0.RGBtoHexString() }).filter({ $0 != nil}) as? Array<String>
+        bodyColorsHex = mapper.bodyColorStrings?.map({ $0.isHexColorString() ? $0 : $0.RGBtoHexString() }).filter({ $0 != nil}) as? Array<String>
+        headerColorsHex = mapper.headerColorStrings?.map({ $0.isHexColorString() ? $0 : $0.RGBtoHexString() }).filter({ $0 != nil}) as? Array<String>
         bodyCreationURL = mapper.bodyCreationURL
         headerCreationURL = mapper.headerCreationURL
         

@@ -63,8 +63,7 @@ class UIColorHexSpec: QuickSpec
             it("Should return nil, when cannot convert RGB to Hex")
             {
                 expect("RandomString".RGBtoHexString()).to(beNil())
-            }
-            
+            }            
         }
     }
 }
