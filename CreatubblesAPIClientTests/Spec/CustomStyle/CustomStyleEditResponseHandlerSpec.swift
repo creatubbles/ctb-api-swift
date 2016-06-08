@@ -22,8 +22,8 @@ class CustomStyleEditResponseHandlerSpec: QuickSpec
                 else { return }
                 
                 let data = CustomStyleEditData()
-                data.headerBackgroundIndex = 2
-                data.headerColors = [UIColor.redColor(), UIColor.greenColor()]
+                data.headerBackgroundIndex = 3
+                data.headerColors = [UIColor.redColor(), UIColor.greenColor(), UIColor.blueColor(), UIColor.yellowColor(), UIColor.cyanColor(), UIColor.darkGrayColor()]
                 data.bodyCreationIdentifier = "FPniov2W"
                 
                 let request = CustomStyleEditRequest(userIdentifier: identifier, data: data)

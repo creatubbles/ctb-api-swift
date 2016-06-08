@@ -25,22 +25,23 @@ class CustomStyleEditRequest: Request
     
     private func prepareParameters() -> Dictionary<String, AnyObject>
     {
-        var params = Dictionary<String, AnyObject>()
-        if let value = data.headerBackgroundIdentifier { params["header_background_id"] = value }
-        if let value = data.bodyBackgroundIdentifier { params["body_background_id"] = value }
-        if let value = data.fontName { params["font"] = value }
-        if let value = data.bio { params["bio"] = value }
-        if let value = data.bodyColors { params["body_colors"] = value.map({ $0.hexValue() }) }
-        if let value = data.headerColors { params["header_colors"] = value.map({ $0.hexValue() }) }
+        var dataDict = Dictionary<String, AnyObject>()
+        var attributesDict = Dictionary<String, AnyObject>()
+        var relationshipsDict = Dictionary<String, AnyObject>()
         
-        if data.headerCreationIdentifier != nil || data.bodyCreationIdentifier != nil
-        {
-            var relationshipDict = Dictionary<String, AnyObject>()
-            if let value = data.headerCreationIdentifier { relationshipDict["header_creation"] = ["data" : ["id" : value]] }
-            if let value = data.bodyCreationIdentifier   { relationshipDict["body_creation"]   = ["data" : ["id" : value]] }
-            params["relationships"] = relationshipDict
-        }
+        if let value = data.headerBackgroundIdentifier { attributesDict["header_background_id"] = value }
+        if let value = data.bodyBackgroundIdentifier   { attributesDict["body_background_id"] = value }
+        if let value = data.fontName                   { attributesDict["font"] = value }
+        if let value = data.bio                        { attributesDict["bio"] = value }
+        if let value = data.bodyColors                 { attributesDict["body_colors"] = value.map({ $0.hexValue() }) }
+        if let value = data.headerColors               { attributesDict["header_colors"] = value.map({ $0.hexValue() }) }
         
-        return params
+        if let value = data.headerCreationIdentifier   { relationshipsDict["header_creation"] = ["data" : ["id" : value]] }
+        if let value = data.bodyCreationIdentifier     { relationshipsDict["body_creation"]   = ["data" : ["id" : value]] }
+            
+        dataDict["attributes"] = attributesDict
+        dataDict["relationships"] = relationshipsDict
+        
+        return ["data" : dataDict]
     }
 }
