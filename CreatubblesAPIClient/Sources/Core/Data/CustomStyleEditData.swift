@@ -16,6 +16,8 @@ public class CustomStyleEditData: NSObject
     public var bio: String?
     public var bodyColors: Array<UIColor>?
     public var headerColors: Array<UIColor>?
+    public var headerCreationIdentifier: String?
+    public var bodyCreationIdentifier: String?    
     
     //Computed properties
     var headerBackgroundIdentifier: String?
