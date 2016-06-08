@@ -16,8 +16,8 @@ class CustomStyleMapper: Mappable
     var bodyBackgroundIdentifier: String?
     var fontName: String?
     var bio: String?
-    var bodyColorsHex: Array<String>?
-    var headerColorsHex: Array<String>?
+    var bodyColorStrings: Array<String>?
+    var headerColorStrings: Array<String>?
     var bodyCreationURL: String?
     var headerCreationURL: String?
     
@@ -38,8 +38,8 @@ class CustomStyleMapper: Mappable
         bodyBackgroundIdentifier <- map["attributes.body_background_id"]
         fontName <- map["attributes.font"]
         bio <- map["attributes.bio"]        
-        bodyColorsHex <- map["attributes.body_colors"]
-        headerColorsHex <- map["attributes.header_colors"]
+        bodyColorStrings <- map["attributes.body_colors"]
+        bodyColorStrings <- map["attributes.header_colors"]
         bodyCreationURL <- map["attributes.body_creation_url"]
         headerCreationURL <- map["attributes.header_creation_url"]
         
