@@ -109,7 +109,7 @@ public class Creation: NSObject, Identifiable
             let relationships = creatorRelationships
         {
             let creators = relationships.map( { dataMapper.objectWithIdentifier($0.identifier, type: User.self) })
-            self.creators = creators.filter { $0 != nil } as? Array<User>
+            self.creators = creators.flatMap({ $0 })
         }
         else
         {

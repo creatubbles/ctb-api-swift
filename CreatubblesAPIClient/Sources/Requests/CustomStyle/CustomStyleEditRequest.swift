@@ -33,6 +33,14 @@ class CustomStyleEditRequest: Request
         if let value = data.bodyColors { params["body_colors"] = value.map({ $0.hexValue() }) }
         if let value = data.headerColors { params["header_colors"] = value.map({ $0.hexValue() }) }
         
+        if data.headerCreationIdentifier != nil || data.bodyCreationIdentifier != nil
+        {
+            var relationshipDict = Dictionary<String, AnyObject>()
+            if let value = data.headerCreationIdentifier { relationshipDict["header_creation"] = ["data" : ["id" : value]] }
+            if let value = data.bodyCreationIdentifier   { relationshipDict["body_creation"]   = ["data" : ["id" : value]] }
+            params["relationships"] = relationshipDict
+        }
+        
         return params
     }
 }

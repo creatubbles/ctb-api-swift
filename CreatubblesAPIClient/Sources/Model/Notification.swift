@@ -55,12 +55,9 @@ public class Notification: NSObject, Identifiable
         commentRelationship = MappingUtils.relationshipFromMapper(mapper.commentRelationship)
         gallerySubmissionRelationship = MappingUtils.relationshipFromMapper(mapper.gallerySubmissionRelationship)
         
-        userEntitiesRelationships     = mapper.userEntitiesRelationships?.map({ MappingUtils.relationshipFromMapper($0) })
-                                        .filter({ $0 != nil}) as? Array<Relationship>
-        creationEntitiesRelationships = mapper.creationEntitiesRelationships?.map({ MappingUtils.relationshipFromMapper($0) })
-                                        .filter({ $0 != nil}) as? Array<Relationship>
-        galleryEntitiesRelationships  = mapper.galleryEntitiesRelationships?.map({ MappingUtils.relationshipFromMapper($0) })
-                                       .filter({ $0 != nil}) as? Array<Relationship>
+        userEntitiesRelationships     = mapper.userEntitiesRelationships?.flatMap({ MappingUtils.relationshipFromMapper($0) })
+        creationEntitiesRelationships = mapper.creationEntitiesRelationships?.flatMap({ MappingUtils.relationshipFromMapper($0) })
+        galleryEntitiesRelationships  = mapper.galleryEntitiesRelationships?.flatMap({ MappingUtils.relationshipFromMapper($0) })
         
         creation = MappingUtils.objectFromMapper(dataMapper, relationship: creationRelationship, type: Creation.self)
         user = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)
@@ -68,12 +65,9 @@ public class Notification: NSObject, Identifiable
         comment = MappingUtils.objectFromMapper(dataMapper, relationship: commentRelationship, type: Comment.self)
         gallerySubmission = MappingUtils.objectFromMapper(dataMapper, relationship: gallerySubmissionRelationship, type: GallerySubmission.self)
         
-        userEntities = userEntitiesRelationships?.map({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: NotificationTextEntity.self) })
-                        .filter({ $0 != nil && $0?.type != .Unknown }) as? Array<NotificationTextEntity>
-        creationEntities = creationEntitiesRelationships?.map({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: NotificationTextEntity.self) })
-                           .filter({ $0 != nil && $0?.type != .Unknown }) as? Array<NotificationTextEntity>
-        galleryEntities = galleryEntitiesRelationships?.map({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: NotificationTextEntity.self) })
-                          .filter({ $0 != nil && $0?.type != .Unknown }) as? Array<NotificationTextEntity>
+        userEntities = userEntitiesRelationships?.flatMap({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: NotificationTextEntity.self) }).filter({ $0.type != .Unknown })
+        creationEntities = creationEntitiesRelationships?.flatMap({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: NotificationTextEntity.self) }).filter({ $0.type != .Unknown })
+        galleryEntities = galleryEntitiesRelationships?.flatMap({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: NotificationTextEntity.self) }).filter({ $0.type != .Unknown })
         
         //Not sure if we still need this?
         bubbleRelationship = MappingUtils.relationshipFromMapper(mapper.bubbleRelationship)
