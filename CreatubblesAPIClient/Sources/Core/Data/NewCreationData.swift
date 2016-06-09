@@ -34,10 +34,12 @@ enum CreationDataType: Int
 @objc
 public class NewCreationData: NSObject
 {
+    public let uploadExtension: UploadExtension
+    
     public var data: NSData?
     public var image: UIImage?
     public var url: NSURL?
-    public var uploadExtension: UploadExtension?
+    
     
     public var name: String? = nil
     public var reflectionText: String? = nil
@@ -67,6 +69,7 @@ public class NewCreationData: NSObject
         self.dataType = .Url
         self.uploadExtension = uploadExtension
     }
+    
     init(creationDataEntity: NewCreationDataEntity, url: NSURL)
     {
         self.name = creationDataEntity.name
@@ -74,6 +77,7 @@ public class NewCreationData: NSObject
         self.reflectionVideoUrl = creationDataEntity.reflectionVideoUrl
         self.galleryId = creationDataEntity.galleryId
         self.creatorIds = Array<String>()
+        self.uploadExtension = creationDataEntity.uploadExtension
         
         for creatorId in creationDataEntity.creatorIds
         {
