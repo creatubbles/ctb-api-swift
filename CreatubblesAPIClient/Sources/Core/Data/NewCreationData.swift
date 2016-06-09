@@ -37,6 +37,7 @@ public class NewCreationData: NSObject
     public var data: NSData?
     public var image: UIImage?
     public var url: NSURL?
+    public var uploadExtension: UploadExtension?
     
     public var name: String? = nil
     public var reflectionText: String? = nil
@@ -48,20 +49,23 @@ public class NewCreationData: NSObject
     
     let dataType: CreationDataType
     
-    public init(data: NSData)
+    public init(data: NSData, uploadExtension: UploadExtension)
     {
         self.data = data
         self.dataType = .Data
+        self.uploadExtension = uploadExtension
     }
-    public init(image: UIImage)
+    public init(image: UIImage, uploadExtension: UploadExtension)
     {
         self.image = image
         self.dataType = .Image
+        self.uploadExtension = uploadExtension
     }
-    public init(url: NSURL)
+    public init(url: NSURL, uploadExtension: UploadExtension)
     {
         self.url = url
         self.dataType = .Url
+        self.uploadExtension = uploadExtension
     }
     init(creationDataEntity: NewCreationDataEntity, url: NSURL)
     {
