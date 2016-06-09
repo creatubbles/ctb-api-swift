@@ -240,6 +240,7 @@ class DatabaseService: NSObject
         newCreationDataEntity.reflectionVideoUrl = newCreationData.reflectionVideoUrl
         newCreationDataEntity.galleryId = newCreationData.galleryId
         newCreationDataEntity.dataTypeRaw.value = newCreationData.dataType.rawValue
+        newCreationDataEntity.uploadExtensionRaw = newCreationData.uploadExtension.rawValue
         
         if let _ = newCreationData.creatorIds
         {
