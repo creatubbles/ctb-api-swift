@@ -27,7 +27,7 @@ class NewCreationResponseHandlerSpec: QuickSpec
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
                         
-                        sender.send(NewCreationRequest(creationData: NewCreationData(image: UIImage())), withResponseHandler:NewCreationResponseHandler()
+                        sender.send(NewCreationRequest(creationData: NewCreationData(image: UIImage(), uploadExtension: .JPEG)), withResponseHandler:NewCreationResponseHandler()
                             {
                                 (creation: Creation?, error:ErrorType?) -> Void in
                                 expect(error).to(beNil())
@@ -45,7 +45,7 @@ class NewCreationResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.send(NewCreationRequest(creationData: NewCreationData(image:UIImage())), withResponseHandler:NewCreationResponseHandler()
+                    sender.send(NewCreationRequest(creationData: NewCreationData(image:UIImage(), uploadExtension: .JPEG)), withResponseHandler:NewCreationResponseHandler()
                         {
                             (creation: Creation?, error:ErrorType?) -> Void in
                             expect(error).notTo(beNil())
