@@ -35,7 +35,7 @@ class NewCreationRequest: Request
     
     override init()
     {
-        self.creationData = NewCreationData(image: UIImage())
+        self.creationData = NewCreationData(image: UIImage(), uploadExtension: .JPEG)
     }
     
     init(creationData: NewCreationData)

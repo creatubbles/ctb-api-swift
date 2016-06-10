@@ -203,7 +203,7 @@ class CreationUploadSession: ResponseHandler
             completion(nil)
             return
         }
-        let request = NewCreationUploadRequest(creationId: self.creation!.identifier, creationExtension: .JPEG)
+        let request = NewCreationUploadRequest(creationId: self.creation!.identifier, creationExtension: self.creationData.uploadExtension)
         let handler = NewCreationUploadResponseHandler
             {
                 [weak self](creationUpload, error) -> Void in
