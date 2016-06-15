@@ -13,9 +13,6 @@ class GallerySubmissionMapper: Mappable
 {
     var identifier: String?
     
-    var galleryIdentifier: String?
-    var creationIdentifier: String?
-    
     var creationRelationship: RelationshipMapper?
     var galleryRelationship:  RelationshipMapper?
     
@@ -24,9 +21,6 @@ class GallerySubmissionMapper: Mappable
     func mapping(map: Map)
     {
         identifier  <- map["id"]
-        galleryIdentifier  <- map["attributes.gallery_id"]
-        creationIdentifier <- map["attributes.creation_id"]
-
         creationRelationship <- map["relationships.creation.data"]
         galleryRelationship <- map["relationships.gallery.data"]
     }
