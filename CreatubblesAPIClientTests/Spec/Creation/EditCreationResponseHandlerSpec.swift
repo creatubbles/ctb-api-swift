@@ -40,7 +40,7 @@ class EditCreationResponseHandlerSpec: QuickSpec
                         sender.send(request, withResponseHandler:EditCreationResponseHandler()
                         {
                             (error: ErrorType?) -> Void in
-                            expect(error).to(beNil())                            
+                            expect(error).to(beNil())
                             done()
                         })
                     }
