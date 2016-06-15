@@ -24,7 +24,7 @@
 
 import UIKit
 
-enum UploadExtension: String
+public enum UploadExtension: String
 {
     case PNG = "png"
     case JPG = "jpg"

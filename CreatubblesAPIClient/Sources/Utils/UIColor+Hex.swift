@@ -32,6 +32,7 @@ extension String
         else { return nil }
                 
         let valueString = stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "rgbaRGBA() "))
+                         .stringByReplacingOccurrencesOfString(" ", withString: "")
         var values: Array<Float> = valueString.componentsSeparatedByString(",").map({ Float($0)! })
         if values.count == 4 //RGBA
         {

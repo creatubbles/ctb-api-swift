@@ -39,7 +39,7 @@ class CustomStyleMapper: Mappable
         fontName <- map["attributes.font"]
         bio <- map["attributes.bio"]        
         bodyColorStrings <- map["attributes.body_colors"]
-        bodyColorStrings <- map["attributes.header_colors"]
+        headerColorStrings <- map["attributes.header_colors"]
         bodyCreationURL <- map["attributes.body_creation_url"]
         headerCreationURL <- map["attributes.header_creation_url"]
         
