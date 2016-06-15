@@ -56,6 +56,8 @@ class UserMapper: Mappable
     var gender: String?
     var customStyleRelationship: RelationshipMapper?
     
+    var interests : String?
+    
     //MARK: - Mappable
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
@@ -91,6 +93,8 @@ class UserMapper: Mappable
         gender <- map["attributes.gender"]
         
         customStyleRelationship <- map["relationships.custom_style.data"]
+        
+        interests <- map["attributes.interests"]
     }
     
     //MARK: - Parsing
