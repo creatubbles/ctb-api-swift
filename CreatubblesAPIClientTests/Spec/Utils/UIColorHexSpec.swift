@@ -51,12 +51,12 @@ class UIColorHexSpec: QuickSpec
             it("Should convert RGB to Hex")
             {
                 expect("rgb(255,255,255)".RGBtoHexString()).to(equal("#FFFFFF"))
-                expect("rgb(128,0,128)".RGBtoHexString()).to(equal("#800080"))
+                expect("rgb(128, 0 ,128)".RGBtoHexString()).to(equal("#800080"))
             }
             
             it("Should convert RGBA to Hex")
             {            
-                expect("rgba(121,115,88,1)".RGBtoHexString()).to(equal("#797358FF"))
+                expect("rgba(121, 115 , 88,1)".RGBtoHexString()).to(equal("#797358FF"))
                 expect("rgba(121,115,88,0.5)".RGBtoHexString()).to(equal("#7973587F"))
             }
             
