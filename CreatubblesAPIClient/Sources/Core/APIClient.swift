@@ -275,6 +275,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return creationsDAO.getRecomendedCreationsByCreation(creationId, pagingData: pagingData, completon: completon)
     }
     
+    public func editCreation(creationId: String, data: EditCreationData, completion: ErrorClosure?) -> RequestHandler
+    {
+        return creationsDAO.editCreation(creationId, data: data, completion: completion)
+    }
+    
     //MARK: - Upload Sessions
     public func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {

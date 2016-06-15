@@ -70,5 +70,12 @@ class CreationsDAO
         let fetcher = CreationsBatchFetcher(requestSender: requestSender)
         return fetcher.fetch(userId, galleryId: galleryId, keyword: keyword, sort: sortOrder, completion: completion)
     }
+    
+    func editCreation(creationId: String, data: EditCreationData, completion: ErrorClosure?) -> RequestHandler
+    {
+        let request = EditCreationRequest(identifier: creationId, data: data)
+        let handler = EditCreationResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 
 }
