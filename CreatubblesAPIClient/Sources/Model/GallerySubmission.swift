@@ -12,8 +12,6 @@ import UIKit
 public class GallerySubmission: NSObject, Identifiable
 {
     public let identifier: String
-    public let galleryIdentifier: String
-    public let creationIdentifier: String
     
     public let creation: Creation?
     public let gallery: Gallery?
@@ -23,9 +21,7 @@ public class GallerySubmission: NSObject, Identifiable
     
     init(mapper: GallerySubmissionMapper, dataMapper: DataIncludeMapper? = nil)
     {
-        identifier = mapper.identifier!
-        galleryIdentifier = mapper.galleryIdentifier!
-        creationIdentifier = mapper.creationIdentifier!
+        identifier = mapper.identifier!    
         
         creationRelationship = MappingUtils.relationshipFromMapper(mapper.creationRelationship)
         galleryRelationship = MappingUtils.relationshipFromMapper(mapper.galleryRelationship)
