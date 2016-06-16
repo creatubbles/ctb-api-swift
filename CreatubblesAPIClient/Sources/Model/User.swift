@@ -30,7 +30,7 @@ import UIKit
     case Teacher
     case Creator        
     
-    var stringValue: String
+    public var stringValue: String
     {
         switch self
         {
@@ -42,7 +42,7 @@ import UIKit
 }
 
 @objc
-public class User: NSObject
+public class User: NSObject, Identifiable
 {
     public let identifier: String
     public let username: String
@@ -71,7 +71,16 @@ public class User: NSObject
     public let homeSchooling: Bool
     public let signedUpAsInstructor: Bool
     
-    init(mapper: UserMapper)
+    //MARK: - Metadata
+    public let isBubbled: Bool
+    public let abilities: Array<Ability>
+    
+    public let customStyleRelationship: Relationship?
+    public let customStyle: CustomStyle?
+    
+    public let interests : String?
+    
+    init(mapper: UserMapper, dataMapper: DataIncludeMapper?, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         username = mapper.username!
@@ -99,5 +108,13 @@ public class User: NSObject
 
         homeSchooling = mapper.homeSchooling!
         signedUpAsInstructor = mapper.signedUpAsInstructor!
+        
+        isBubbled = metadata?.bubbledUserIdentifiers.contains(mapper.identifier!) ?? false
+        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
+        
+        customStyleRelationship = MappingUtils.relationshipFromMapper(mapper.customStyleRelationship)
+        customStyle = MappingUtils.objectFromMapper(dataMapper, relationship: customStyleRelationship, type: CustomStyle.self)
+        
+        interests = mapper.interests
     }
 }

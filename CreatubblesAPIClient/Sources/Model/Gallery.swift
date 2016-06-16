@@ -25,7 +25,7 @@
 import UIKit
 
 @objc
-public class Gallery: NSObject
+public class Gallery: NSObject, Identifiable
 {
     public let identifier: String
     public let name: String
@@ -41,14 +41,22 @@ public class Gallery: NSObject
     public let lastCommentedAt: NSDate?
     public let galleryDescription: String?
     
-    init(mapper: GalleryMapper)
+    //MARK: - Relationships
+    public let owner: User?
+    public let ownerRelationship: Relationship?
+    
+    //MARK: - Metadata
+    public let isBubbled: Bool
+    public let abilities: Array<Ability>
+    
+    init(mapper: GalleryMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         name = mapper.name!
         createdAt = mapper.createdAt!
         updatedAt = mapper.updatedAt!
         creationsCount = mapper.creationsCount!
-        bubblesCount = mapper.creationsCount!
+        bubblesCount = mapper.bubblesCount!
         commentsCount = mapper.commentsCount!
         shortUrl = mapper.shortUrl!
         previewImageUrls = mapper.previewImageUrls!
@@ -56,5 +64,11 @@ public class Gallery: NSObject
         lastBubbledAt = mapper.lastBubbledAt
         lastCommentedAt = mapper.lastCommentedAt
         galleryDescription = mapper.galleryDescription
+        
+        isBubbled = metadata?.bubbledGalleryIdentifiers.contains(mapper.identifier!) ?? false
+        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
+        
+        ownerRelationship = mapper.parseOwnerRelationship()
+        owner = MappingUtils.objectFromMapper(dataMapper, relationship: ownerRelationship, type: User.self)                
     }
 }

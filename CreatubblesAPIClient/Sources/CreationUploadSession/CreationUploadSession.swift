@@ -95,7 +95,7 @@ class CreationUploadSession: ResponseHandler
         }
     }
     
-    func start(completion: CreationClousure?)
+    func start(completion: CreationClosure?)
     {
         if isAlreadyFinished
         {
@@ -132,8 +132,7 @@ class CreationUploadSession: ResponseHandler
                     })
                 })
             }
-        }
-        
+        }        
     }
     
     //MARK: Upload Flow
@@ -204,7 +203,7 @@ class CreationUploadSession: ResponseHandler
             completion(nil)
             return
         }
-        let request = NewCreationUploadRequest(creationId: self.creation!.identifier, creationExtension: .JPEG)
+        let request = NewCreationUploadRequest(creationId: self.creation!.identifier, creationExtension: self.creationData.uploadExtension)
         let handler = NewCreationUploadResponseHandler
             {
                 [weak self](creationUpload, error) -> Void in
@@ -246,6 +245,11 @@ class CreationUploadSession: ResponseHandler
                 if error == nil
                 {
                     weakSelf.state = .ImageUploaded
+                }
+                else
+                {
+                    //MM: Failure can be related to expired AWS token. Will update token for safety.
+                    weakSelf.state = .CreationAllocated
                 }
                 completion(error)
             }

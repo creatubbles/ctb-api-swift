@@ -27,24 +27,25 @@ import UIKit
 
 class TestRequestSender: RequestSender
 {
-    private let settings: CreatubblesAPIClientSettings
+    private let settings: APIClientSettings
     private var isLoggedIn = false
     
-    override init(settings: CreatubblesAPIClientSettings)
+    override init(settings: APIClientSettings)
     {
         self.settings = settings
         super.init(settings: settings)
     }
     
     //MARK: - Interface
-    override func login(username: String, password: String, completion: ErrorClousure?)
+    override func login(username: String, password: String, completion: ErrorClosure?) -> RequestHandler
     {
         let authorized = username == TestConfiguration.username &&
                          password == TestConfiguration.password
 
-        let error: CreatubblesAPIClientError? = authorized ? nil : CreatubblesAPIClientError.Generic("CreatubblesTest - Not Logged In")
+        let error: APIClientError? = authorized ? nil : APIClientError.Generic("CreatubblesTest - Not Logged In")
         isLoggedIn = authorized
         completion?(error)
+        return TestRequestHandler()
     }
     
     override func logout()
@@ -52,7 +53,7 @@ class TestRequestSender: RequestSender
         isLoggedIn = false
     }
     
-    override func send(request: Request, withResponseHandler handler: ResponseHandler)
+    override func send(request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
     {
         Logger.log.debug("Sending request: \(request.dynamicType)")
         if(isLoggedIn)
@@ -61,9 +62,10 @@ class TestRequestSender: RequestSender
         }
         else
         {
-            let error = CreatubblesAPIClientError.Generic("CreatubblesTest - Not Logged In")
+            let error = APIClientError.Generic("CreatubblesTest - Not Logged In")
             handler.handleResponse(nil, error: error)
         }
+        return TestRequestHandler()
     }
     
     private func responseForRequest(request: Request) -> Dictionary<String, AnyObject>
@@ -107,6 +109,14 @@ class TestRequestSender: RequestSender
         if request is GallerySubmissionRequest
         {
             return TestResponses.gallerySubmissionTestResponse
+        }
+        if request is BubblesFetchReqest
+        {
+            return TestResponses.bubblesFetchTestResponse
+        }
+        if request is NewBubbleRequest
+        {
+            return TestResponses.newBubbleTestResponse
         }
                 
         return Dictionary<String, AnyObject>()

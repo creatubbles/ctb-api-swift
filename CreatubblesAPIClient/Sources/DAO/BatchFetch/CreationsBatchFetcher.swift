@@ -39,7 +39,7 @@ class CreationsBatchFetcher: BatchFetcher
         return FetchCreationsRequest(page: page, perPage: perPage, galleryId: galleryId, userId: userId, sort: sort, keyword: keyword)
     }
     
-    private func responseHandler(completion: CreationsBatchClousure?) -> FetchCreationsResponseHandler
+    private func responseHandler(completion: CreationsBatchClosure?) -> FetchCreationsResponseHandler
     {
         return FetchCreationsResponseHandler()
         {
@@ -70,12 +70,12 @@ class CreationsBatchFetcher: BatchFetcher
         }
     }
     
-    func fetch(userId: String?, galleryId: String?,keyword: String? ,sort:SortOrder?, completion: CreationsBatchClousure?)
+    func fetch(userId: String?, galleryId: String?,keyword: String? ,sort:SortOrder?, completion: CreationsBatchClosure?) -> RequestHandler
     {
         self.userId = userId
         self.sort = sort
         self.keyword = keyword
         self.galleryId = galleryId
-        requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
+        return requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
     }
 }

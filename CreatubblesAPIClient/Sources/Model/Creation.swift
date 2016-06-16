@@ -25,7 +25,7 @@
 import UIKit
 
 @objc
-public class Creation: NSObject
+public class Creation: NSObject, Identifiable
 {
     public let identifier: String
     public let name: String
@@ -52,11 +52,24 @@ public class Creation: NSObject
     public let lastCommentedAt: NSDate?
     public let lastSubmittedAt: NSDate?
 
+    public let approvalStatus: ApprovalStatus
     public let approved: Bool
     public let shortUrl: String
     public let createdAtAge: String?
- 
-    init(mapper: CreationMapper)
+
+    //MARK: - Relationships
+    public let owner: User?
+    public let creators: Array<User>?
+
+    public let userRelationship: Relationship?
+    public let creatorRelationships: Array<Relationship>?
+    
+    //MARK: - Metadata
+    public let isBubbled: Bool
+    public let abilities: Array<Ability>
+    
+    
+    init(mapper: CreationMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         name = mapper.name!
@@ -82,6 +95,26 @@ public class Creation: NSObject
         imageGalleryMobileUrl = mapper.imageGalleryMobileUrl
         imageExploreMobileUrl = mapper.imageExploreMobileUrl
         imageShareUrl = mapper.imageShareUrl
+
+        approvalStatus = mapper.parseApprovalStatus()
+        userRelationship = mapper.parseUserRelationship()
+        creatorRelationships = mapper.parseCreatorRelationships()
+
+        owner = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)
+        
+        isBubbled = metadata?.bubbledCreationIdentifiers.contains(mapper.identifier!) ?? false
+        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
+        
+        if  let dataMapper = dataMapper,
+            let relationships = creatorRelationships
+        {
+            let creators = relationships.map( { dataMapper.objectWithIdentifier($0.identifier, type: User.self) })
+            self.creators = creators.flatMap({ $0 })
+        }
+        else
+        {
+            self.creators = nil
+        }
     }
     
     init(creationEntity: CreationEntity)
@@ -110,5 +143,14 @@ public class Creation: NSObject
         imageGalleryMobileUrl = creationEntity.imageGalleryMobileUrl
         imageExploreMobileUrl = creationEntity.imageExploreMobileUrl
         imageShareUrl = creationEntity.imageShareUrl
+
+        //TODO: Do we need relationships here?
+        owner = nil
+        creators = nil
+        userRelationship = nil
+        creatorRelationships = nil
+        isBubbled = false
+        abilities = []
+        approvalStatus = .Unknown
     }
 }

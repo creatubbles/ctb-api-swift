@@ -27,8 +27,8 @@ import ObjectMapper
 
 class LandingURLResponseHandler: ResponseHandler
 {
-    private let completion: LandingURLClousure?
-    init(completion: LandingURLClousure?)
+    private let completion: LandingURLClosure?
+    init(completion: LandingURLClosure?)
     {
         self.completion = completion
     }
@@ -38,11 +38,7 @@ class LandingURLResponseHandler: ResponseHandler
         if  let response = response,
             let mappers = Mapper<LandingURLMapper>().mapArray(response["data"])
         {
-            var landingUrls = Array<LandingURL>()
-            for mapper in mappers
-            {
-                landingUrls.append(LandingURL(mapper: mapper))
-            }
+            let landingUrls = mappers.map({ LandingURL(mapper: $0) })                        
             completion?(landingUrls, ErrorTransformer.errorFromResponse(response, error: error))
         }
         else if let response = response,

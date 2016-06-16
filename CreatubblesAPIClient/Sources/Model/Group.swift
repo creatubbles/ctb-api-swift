@@ -25,9 +25,9 @@
 import UIKit
 
 @objc
-public class Group: NSObject
+public class Group: NSObject, Identifiable
 {
-    public let identifier: Int
+    public let identifier: String
     public let name: String
     public let taggingsCount: Int
     
