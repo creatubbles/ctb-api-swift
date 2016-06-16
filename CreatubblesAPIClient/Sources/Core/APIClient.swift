@@ -223,6 +223,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.newCreator(creatorData, completion: completion)
     }
     
+    public func editProfile(identifier: String, data: EditProfileData, completion: ErrorClosure?) -> RequestHandler
+    {
+        return userDAO.editProfile(identifier, data: data, completion: completion)
+    }
+    
     //MARK: - Gallery managment
     public func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler
     {

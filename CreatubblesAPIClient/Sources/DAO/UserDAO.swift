@@ -93,4 +93,11 @@ class UserDAO
         let handler = NewCreatorResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func editProfile(identifier: String, data: EditProfileData, completion: ErrorClosure?) -> RequestHandler
+    {
+        let request = EditProfileRequest(identifier: identifier, data: data)
+        let handler = EditProfileResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 }
