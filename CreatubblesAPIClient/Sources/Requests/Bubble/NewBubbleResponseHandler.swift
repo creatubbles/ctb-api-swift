@@ -27,11 +27,11 @@ class NewBubbleResponseHandler: ResponseHandler
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
             
             let bubble = Bubble(mapper: mapper, dataMapper: dataMapper)
-            completion?(bubble, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(bubble, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
         else
         {
-            completion?(nil, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
 }

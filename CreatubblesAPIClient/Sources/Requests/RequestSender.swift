@@ -171,7 +171,10 @@ class RequestSender: NSObject
         .responseJSON
         {
             response -> Void in
-            handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)            
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)
+            }
         }
         return RequestHandler(object: request)
     }
