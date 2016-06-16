@@ -27,11 +27,11 @@ class CustomStyleFetchResponseHandler: ResponseHandler
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)                        
             
             let style = CustomStyle(mapper: mapper, dataMapper: dataMapper)
-            completion?(style, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(style, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
         else
         {
-            completion?(nil, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
 }

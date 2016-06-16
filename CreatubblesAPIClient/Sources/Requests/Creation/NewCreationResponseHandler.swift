@@ -41,11 +41,11 @@ class NewCreationResponseHandler: ResponseHandler
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)            
             let creation = Creation(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
-            completion(creation: creation, error: error)
+            executeOnMainQueue { self.completion(creation: creation, error: error) }
         }
         else
         {
-            completion(creation: nil, error: ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion(creation: nil, error: ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
 }

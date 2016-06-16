@@ -28,11 +28,11 @@ class CommentsResponseHandler: ResponseHandler
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
             let comments = mappers.map({ Comment(mapper: $0, dataMapper: dataMapper) })
                     
-            completion?(comments, pageInfo, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(comments, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
         else
         {
-            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
 }

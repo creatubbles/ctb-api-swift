@@ -42,11 +42,11 @@ class NewGalleryResponseHandler: ResponseHandler
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)                       
             
             let gallery = Gallery(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
-            completion?(gallery, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
+            executeOnMainQueue { self.completion?(gallery, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
         }
         else
         {
-            completion?(nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
+            executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
         }
     }
 }
