@@ -43,11 +43,11 @@ class ProfileResponseHandler: ResponseHandler
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
                             
             let user = User(mapper: userMapper, dataMapper: dataMapper, metadata: metadata)
-            completion?(user, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
+            executeOnMainQueue { self.completion?(user, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
         }
         else
         {
-            completion?(nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
+            executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
         }
     }
 }

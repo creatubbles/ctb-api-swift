@@ -43,11 +43,11 @@ class CreatorsAndManagersResponseHandler: ResponseHandler
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
             let users = usersMapper.map({ User(mapper: $0, dataMapper: dataMapper, metadata: metadata)})
             
-            completion?(users, pageInfo, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(users, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
         else
         {
-            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
 }

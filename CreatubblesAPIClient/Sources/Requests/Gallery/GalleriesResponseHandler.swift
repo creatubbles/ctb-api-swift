@@ -43,7 +43,7 @@ class GalleriesResponseHandler: ResponseHandler
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
             let galleries = mappers.map({Gallery(mapper: $0, dataMapper: dataMapper, metadata: metadata)})
             
-            completion?(galleries, pageInfo, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(galleries, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
         else if let response = response,
                 let mapper = Mapper<GalleryMapper>().map(response["data"])
@@ -52,11 +52,11 @@ class GalleriesResponseHandler: ResponseHandler
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)                        
             
             let gallery = Gallery(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
-            completion?([gallery], nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
+            executeOnMainQueue { self.completion?([gallery], nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
         }
         else
         {
-            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error)))
+            executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
         }
     }
 }

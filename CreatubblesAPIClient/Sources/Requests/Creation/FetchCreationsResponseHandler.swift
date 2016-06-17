@@ -44,7 +44,7 @@ class FetchCreationsResponseHandler: ResponseHandler
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
             let creations = mappers.map({ Creation(mapper: $0, dataMapper: dataMapper, metadata: metadata)})
             
-            completion?(creations,pageInfo, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(creations,pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
         else if let response = response,
                 let mapper = Mapper<CreationMapper>().map(response["data"])
@@ -53,11 +53,11 @@ class FetchCreationsResponseHandler: ResponseHandler
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
             let creation = Creation(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
             
-            completion?([creation], nil, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?([creation], nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
         else
         {
-            completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
 

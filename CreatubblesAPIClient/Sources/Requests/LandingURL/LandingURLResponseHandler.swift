@@ -39,17 +39,17 @@ class LandingURLResponseHandler: ResponseHandler
             let mappers = Mapper<LandingURLMapper>().mapArray(response["data"])
         {
             let landingUrls = mappers.map({ LandingURL(mapper: $0) })                        
-            completion?(landingUrls, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(landingUrls, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
         else if let response = response,
                 let mapper = Mapper<LandingURLMapper>().map(response["data"])
         {
             let landingURL = LandingURL(mapper: mapper)
-            completion?([landingURL], ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?([landingURL], ErrorTransformer.errorFromResponse(response, error: error)) }
         }
         else
         {
-            completion?(nil, ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
 }
