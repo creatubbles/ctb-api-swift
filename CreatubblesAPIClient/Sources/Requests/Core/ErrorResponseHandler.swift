@@ -19,6 +19,6 @@ class ErrorResponseHandler: ResponseHandler
     
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
-        completion?( ErrorTransformer.errorFromResponse(response, error: error))
+        executeOnMainQueue { self.completion?( ErrorTransformer.errorFromResponse(response, error: error)) }
     }
 }

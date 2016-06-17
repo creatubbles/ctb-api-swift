@@ -39,11 +39,11 @@ class NewCreationUploadResponseHandler: ResponseHandler
             let mapper = Mapper<CreationUploadMapper>().map(response["data"])
         {
             let creationUpload = CreationUpload(mapper: mapper)
-            completion(creationUpload: creationUpload, error: error)
+            executeOnMainQueue { self.completion(creationUpload: creationUpload, error: error) }
         }
         else
         {
-            completion(creationUpload: nil, error: ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion(creationUpload: nil, error: ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
 }
