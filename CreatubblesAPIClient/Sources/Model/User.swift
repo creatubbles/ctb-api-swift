@@ -60,6 +60,7 @@ public class User: NSObject, Identifiable
     public let gender: Gender
     public let shortUrl: String
     
+    public let bubblesCount: Int
     public let addedBubblesCount: Int
     public let activitiesCount: Int
     public let commentsCount: Int
@@ -97,7 +98,8 @@ public class User: NSObject, Identifiable
         age = mapper.age
         gender = mapper.parseGender()
         shortUrl = mapper.shortUrl!
-                        
+        
+        bubblesCount = mapper.bubblesCount!
         addedBubblesCount = mapper.addedBubblesCount!
         activitiesCount = mapper.activitiesCount!
         commentsCount = mapper.commentsCount!

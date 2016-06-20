@@ -42,6 +42,7 @@ class UserMapper: Mappable
     var age: String?
     var shortUrl: String?
     
+    var bubblesCount: Int?
     var addedBubblesCount: Int?
     var activitiesCount: Int?
     var commentsCount: Int?
@@ -78,7 +79,7 @@ class UserMapper: Mappable
         age <- map["attributes.age"]
         shortUrl <- map["attributes.short_url"]
         
-        
+        bubblesCount <- map["attributes.bubbles_count"]
         addedBubblesCount <- map["attributes.added_bubbles_count"]
         activitiesCount <- map["attributes.activities_count"]
         commentsCount <- map["attributes.comments_count"]
