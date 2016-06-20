@@ -18,7 +18,7 @@ class ContentResponseHandlerSpec: QuickSpec
         {
             it("Should return recent content after login")
             {
-                let request = ContentRequest(type: .Recent, page: 1, perPage: 20)
+                let request = ContentRequest(type: .Recent, page: 1, perPage: 20, userId: nil)
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 
                 waitUntil(timeout: 10)
@@ -43,7 +43,7 @@ class ContentResponseHandlerSpec: QuickSpec
             
             it("Should return trending content after login")
             {
-                let request = ContentRequest(type: .Trending, page: 1, perPage: 20)
+                let request = ContentRequest(type: .Trending, page: 1, perPage: 20, userId: nil)
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 
                 waitUntil(timeout: 10)
@@ -54,15 +54,39 @@ class ContentResponseHandlerSpec: QuickSpec
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:ContentResponseHandler()
-                            {
-                                (entries, pageInfo,  error) -> (Void) in
-                                expect(error).to(beNil())
-                                expect(entries).notTo(beNil())
-                                expect(pageInfo).notTo(beNil())
-                                sender.logout()
-                                done()
-                            })
+                        {
+                            (entries, pageInfo,  error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(entries).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
                     }
+                }
+            }
+        }
+        it("Should return User Bubbled Contents after login")
+        {
+            let request = ContentRequest(type: .BubbledContents, page: 1, perPage: 20, userId: TestConfiguration.testUserIdentifier)
+            let sender = RequestSender(settings: TestConfiguration.settings)
+            
+            waitUntil(timeout: 20)
+            {
+                done in
+                sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                {
+                    (error: ErrorType?) -> Void in
+                    expect(error).to(beNil())
+                    sender.send(request, withResponseHandler: ContentResponseHandler()
+                    {
+                        (entries, pageInfo,  error) -> (Void) in
+                        expect(error).to(beNil())
+                        expect(entries).notTo(beNil())
+                        expect(pageInfo).notTo(beNil())
+                        sender.logout()
+                        done()
+                    })
                 }
             }
         }
