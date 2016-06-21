@@ -30,4 +30,11 @@ class ContentDAO: NSObject
         let handler = ContentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func getUserBubbledContent(pagingData: PagingData?, completion: ContentEntryClosure?, userId: String) -> RequestHandler
+    {
+        let request = ContentRequest(type: .BubbledContents, page: pagingData?.page, perPage: pagingData?.pageSize, userId: userId)
+        let handler = ContentResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 }
