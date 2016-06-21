@@ -37,7 +37,7 @@ class ContentRequest: Request
     
     init(type: ContentType, page: Int?, perPage: Int?, userId: String? = nil)
     {
-        assert( (type == .BubbledContents && userId == nil) == false, "Cannot ...")
+        assert( (type == .BubbledContents && userId == nil) == false, "userId cannot be nil for BubbledContents")
         self.type = type
         self.page = page
         self.perPage = perPage
