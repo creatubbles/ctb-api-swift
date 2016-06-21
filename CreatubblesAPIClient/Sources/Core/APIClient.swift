@@ -393,6 +393,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return contentDAO.getRecentContent(pagingData, completion: completion)
     }
     
+    public func getBubbledContent(userId: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    {
+        return contentDAO.getUserBubbledContent(pagingData, completion: completion, userId: userId)
+    }
+    
     //MARK: - CustomStyle
     public func fetchCustomStyleForUserWithIdentifier(identifier: String, completion: CustomStyleClosure?) -> RequestHandler
     {
