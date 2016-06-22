@@ -35,6 +35,13 @@ class GalleriesRequestSpec: QuickSpec
                 expect(request.endpoint).to(equal("galleries"))
             }
             
+            it("Should have proper endpoint for list of creation galleries")
+            {
+                let id = "TestCreationId"
+                let request = GalleriesRequest(creationId: id, page: 1, perPage: 20, sort: .Recent)
+                expect(request.endpoint).to(equal("creations/\(id)/galleries"))
+            }
+            
             it("Should have proper endpoint for list of user galleries")
             {
                 let userId = "TestUserId"

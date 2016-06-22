@@ -234,6 +234,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return galleryDAO.getGallery(galleryId, completion: completion)
     }
     
+    public func getGalleries(creationId: String, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
+    {
+        return galleryDAO.getGalleries(creationId, pagingData: pagingData, sort: sort, completion: completion)
+    }
+
     public func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
     {
         return galleryDAO.getGalleries(userId, pagingData: pagingData, sort: sort, completion: completion)
