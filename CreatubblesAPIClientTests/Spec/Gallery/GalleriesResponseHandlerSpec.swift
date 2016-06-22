@@ -64,6 +64,34 @@ class GalleriesResponseHandlerSpec: QuickSpec
                 }
             }
             
+            it("Should list creation galleries when logged in")
+            {
+                guard let identifier = TestConfiguration.testCreationIdentifier
+                else { return }
+                
+                let request = GalleriesRequest(creationId: identifier, page: nil, perPage: nil, sort: nil)
+                let sender =  RequestSender(settings: TestConfiguration.settings)
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:GalleriesResponseHandler()
+                            {
+                                (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: ErrorType?) -> Void in
+                                expect(galleries).notTo(beNil())
+                                expect(error).to(beNil())
+                                expect(pageInfo).notTo(beNil())
+                                sender.logout()
+                                done()
+                            })
+                    }
+                }
+
+            }
+            
             it("Should return error when not logged in")
             {
                 let request = GalleriesRequest(page: 0, perPage: 20, sort: .Recent, userId: nil)

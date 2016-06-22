@@ -30,22 +30,20 @@ class GalleriesRequest: Request
     override var parameters: Dictionary<String, AnyObject> { return prepareParametersDict() }
     override var endpoint: String
     {
-        if let galleryId = galleryId
-        {
-            return "galleries/"+galleryId
-        }
-        if let userId = userId
-        {
-            return "users/\(userId)/galleries"
-        }
+        if let id = galleryId  { return "galleries/"+id }
+        if let id = userId     { return "users/\(id)/galleries" }
+        if let id = creationId { return "creations/\(id)/galleries" }
         return "galleries"
     }
     
     private let galleryId: String?
+    private let userId: String?
+    private let creationId: String?
+    
     private let page: Int?
     private let perPage: Int?
     private let sort: SortOrder?
-    private let userId: String?
+    
     
     init(galleryId: String)
     {
@@ -53,6 +51,7 @@ class GalleriesRequest: Request
         self.page = nil
         self.perPage = nil
         self.sort = nil
+        self.creationId = nil
         self.userId = nil
     }
     
@@ -62,7 +61,18 @@ class GalleriesRequest: Request
         self.page = page
         self.perPage = perPage
         self.sort = sort
+        self.creationId = nil
         self.userId = userId
+    }
+    
+    init(creationId: String, page: Int?, perPage: Int?, sort: SortOrder?)
+    {
+        self.galleryId = nil
+        self.page = page
+        self.perPage = perPage
+        self.sort = sort
+        self.creationId = creationId
+        self.userId = nil
     }
     
     private func prepareParametersDict() -> Dictionary<String, AnyObject>
