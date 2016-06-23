@@ -41,6 +41,9 @@ class CreationEntity: Object
     dynamic var imageGalleryMobileUrl: String?
     dynamic var imageExploreMobileUrl: String?
     dynamic var imageShareUrl: String?
+    
+    dynamic var video480Url: String?
+    dynamic var video720Url: String?
         
     var imageStatus = RealmOptional<Int>()
     

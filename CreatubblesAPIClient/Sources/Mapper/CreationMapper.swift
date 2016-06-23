@@ -42,6 +42,9 @@ class CreationMapper: Mappable
     var imageGalleryMobileUrl: String?
     var imageExploreMobileUrl: String?
     var imageShareUrl: String?
+    
+    var video480Url: String?
+    var video720Url: String?
 
     var bubblesCount: Int?
     var commentsCount: Int?
@@ -79,6 +82,9 @@ class CreationMapper: Mappable
         imageGalleryMobileUrl <- map["attributes.image.links.gallery_mobile"]
         imageExploreMobileUrl <- map["attributes.image.links.explore_mobile"]
         imageShareUrl <- map["attributes.image.links.share"]
+        
+        video480Url <- map["attributes.video_480_url"]
+        video720Url <- map["attributes.video_720_url"]
         
         bubblesCount <- map["attributes.bubbles_count"]
         commentsCount <- map["attributes.comments_count"]
