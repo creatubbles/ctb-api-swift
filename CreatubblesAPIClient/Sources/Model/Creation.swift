@@ -44,6 +44,9 @@ public class Creation: NSObject, Identifiable
     public let imageExploreMobileUrl: String?
     public let imageShareUrl: String?
     
+    public let video480Url: String?
+    public let video720Url: String?
+    
     public let bubblesCount: Int
     public let commentsCount: Int
     public let viewsCount: Int
@@ -95,6 +98,9 @@ public class Creation: NSObject, Identifiable
         imageGalleryMobileUrl = mapper.imageGalleryMobileUrl
         imageExploreMobileUrl = mapper.imageExploreMobileUrl
         imageShareUrl = mapper.imageShareUrl
+        
+        video480Url = mapper.video480Url
+        video720Url = mapper.video720Url
 
         approvalStatus = mapper.parseApprovalStatus()
         userRelationship = mapper.parseUserRelationship()
@@ -143,6 +149,9 @@ public class Creation: NSObject, Identifiable
         imageGalleryMobileUrl = creationEntity.imageGalleryMobileUrl
         imageExploreMobileUrl = creationEntity.imageExploreMobileUrl
         imageShareUrl = creationEntity.imageShareUrl
+        
+        video480Url = creationEntity.video480Url
+        video720Url = creationEntity.video720Url
 
         //TODO: Do we need relationships here?
         owner = nil
