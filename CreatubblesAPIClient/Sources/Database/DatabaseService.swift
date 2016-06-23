@@ -288,6 +288,9 @@ class DatabaseService: NSObject
         creationEntity.imageExploreMobileUrl = creation.imageExploreMobileUrl
         creationEntity.imageShareUrl = creation.imageShareUrl
         
+        creationEntity.video480Url = creation.video480Url
+        creationEntity.video720Url = creation.video720Url
+        
         return creationEntity
     }
     
