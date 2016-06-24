@@ -277,6 +277,9 @@ class DatabaseService: NSObject
         creationEntity.approved.value = creation.approved
         creationEntity.shortUrl = creation.shortUrl
         creationEntity.createdAtAge = creation.createdAtAge
+        creationEntity.createdAtAgePerCreator = creation.createdAtAgePerCreator
+        creationEntity.reflectionText = creation.reflectionText
+        creationEntity.reflectionVideoUrl = creation.reflectionVideoUrl
 
         creationEntity.imageOriginalUrl = creation.imageOriginalUrl
         creationEntity.imageFullViewUrl = creation.imageFullViewUrl

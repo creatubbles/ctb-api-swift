@@ -58,4 +58,8 @@ class CreationEntity: Object
     var approved = RealmOptional<Bool>()
     dynamic var shortUrl: String?
     dynamic var createdAtAge: String?
+    dynamic var createdAtAgePerCreator: String?
+    
+    dynamic var reflectionText: String?
+    dynamic var reflectionVideoUrl: String?
 }

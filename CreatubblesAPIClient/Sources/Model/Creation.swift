@@ -149,6 +149,10 @@ public class Creation: NSObject, Identifiable
         approved = creationEntity.approved.value!
         shortUrl = creationEntity.shortUrl!
         createdAtAge = creationEntity.createdAtAge
+        createdAtAgePerCreator = creationEntity.createdAtAgePerCreator!
+        
+        reflectionText = creationEntity.reflectionText
+        reflectionVideoUrl = creationEntity.reflectionVideoUrl
         
         imageOriginalUrl = creationEntity.imageOriginalUrl
         imageFullViewUrl = creationEntity.imageFullViewUrl
