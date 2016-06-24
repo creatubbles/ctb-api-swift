@@ -41,6 +41,16 @@ public class Gallery: NSObject, Identifiable
     public let lastCommentedAt: NSDate?
     public let galleryDescription: String?
     
+    public let openForAll: Bool
+    
+    public let bannerOriginalUrl: String?
+    public let bannerListViewUrl: String?
+    public let bannerListViewRetinaUrl: String?
+    public let bannerMatrixViewUrl: String?
+    public let bannerMatrixViewRetinaUrl: String?
+    public let bannerExploreMobileUrl: String?
+    
+    
     //MARK: - Relationships
     public let owner: User?
     public let ownerRelationship: Relationship?

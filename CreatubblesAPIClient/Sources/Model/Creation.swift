@@ -59,6 +59,12 @@ public class Creation: NSObject, Identifiable
     public let approved: Bool
     public let shortUrl: String
     public let createdAtAge: String?
+    public let createdAtAgePerCreator: String
+    
+    public let reflectionText: String?
+    public let reflectionVideoUrl: String?
+    
+    
 
     //MARK: - Relationships
     public let owner: User?
