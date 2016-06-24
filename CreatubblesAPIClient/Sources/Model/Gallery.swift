@@ -75,6 +75,16 @@ public class Gallery: NSObject, Identifiable
         lastCommentedAt = mapper.lastCommentedAt
         galleryDescription = mapper.galleryDescription
         
+        openForAll = mapper.openForAll!
+        
+        bannerOriginalUrl = mapper.bannerOriginalUrl
+        bannerListViewUrl = mapper.bannerListViewUrl
+        bannerListViewRetinaUrl = mapper.bannerListViewRetinaUrl
+        bannerMatrixViewUrl = mapper.bannerMatrixViewUrl
+        bannerMatrixViewRetinaUrl = mapper.bannerMatrixViewRetinaUrl
+        bannerExploreMobileUrl = mapper.bannerExploreMobileUrl
+        
+        
         isBubbled = metadata?.bubbledGalleryIdentifiers.contains(mapper.identifier!) ?? false
         abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
         
