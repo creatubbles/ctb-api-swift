@@ -47,6 +47,7 @@ public class User: NSObject, Identifiable
     public let identifier: String
     public let username: String
     public let displayName: String
+    public let listName: String
     public let name: String
     public let role: Role
     public let lastBubbledAt: NSDate?
@@ -71,6 +72,8 @@ public class User: NSObject, Identifiable
     
     public let homeSchooling: Bool
     public let signedUpAsInstructor: Bool
+    public let whatDoYouTeach: String?
+    public let interests: String?
     
     //MARK: - Metadata
     public let isBubbled: Bool
