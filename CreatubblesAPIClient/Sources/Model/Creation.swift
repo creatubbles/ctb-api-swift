@@ -94,6 +94,10 @@ public class Creation: NSObject, Identifiable
         approved = mapper.approved!
         shortUrl = mapper.shortUrl!
         createdAtAge = mapper.createdAtAge
+        createdAtAgePerCreator = mapper.createdAtAgePerCreator!
+        
+        reflectionText = mapper.reflectionText
+        reflectionVideoUrl = mapper.reflectionVideoUrl
         
         imageOriginalUrl = mapper.imageOriginalUrl
         imageFullViewUrl = mapper.imageFullViewUrl

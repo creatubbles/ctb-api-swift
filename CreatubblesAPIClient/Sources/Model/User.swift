@@ -82,13 +82,12 @@ public class User: NSObject, Identifiable
     public let customStyleRelationship: Relationship?
     public let customStyle: CustomStyle?
     
-    public let interests : String?
-    
     init(mapper: UserMapper, dataMapper: DataIncludeMapper?, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         username = mapper.username!
         displayName = mapper.displayName!
+        listName = mapper.listName!
         name = mapper.name!
         role = mapper.parseRole()
         lastBubbledAt = mapper.lastBubbledAt
@@ -120,6 +119,7 @@ public class User: NSObject, Identifiable
         customStyleRelationship = MappingUtils.relationshipFromMapper(mapper.customStyleRelationship)
         customStyle = MappingUtils.objectFromMapper(dataMapper, relationship: customStyleRelationship, type: CustomStyle.self)
         
+        whatDoYouTeach = mapper.whatDoYouTeach
         interests = mapper.interests
     }
 }
