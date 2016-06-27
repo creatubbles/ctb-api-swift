@@ -41,6 +41,16 @@ public class Gallery: NSObject, Identifiable
     public let lastCommentedAt: NSDate?
     public let galleryDescription: String?
     
+    public let openForAll: Bool
+    
+    public let bannerOriginalUrl: String?
+    public let bannerListViewUrl: String?
+    public let bannerListViewRetinaUrl: String?
+    public let bannerMatrixViewUrl: String?
+    public let bannerMatrixViewRetinaUrl: String?
+    public let bannerExploreMobileUrl: String?
+    
+    
     //MARK: - Relationships
     public let owner: User?
     public let ownerRelationship: Relationship?
@@ -64,6 +74,16 @@ public class Gallery: NSObject, Identifiable
         lastBubbledAt = mapper.lastBubbledAt
         lastCommentedAt = mapper.lastCommentedAt
         galleryDescription = mapper.galleryDescription
+        
+        openForAll = mapper.openForAll!
+        
+        bannerOriginalUrl = mapper.bannerOriginalUrl
+        bannerListViewUrl = mapper.bannerListViewUrl
+        bannerListViewRetinaUrl = mapper.bannerListViewRetinaUrl
+        bannerMatrixViewUrl = mapper.bannerMatrixViewUrl
+        bannerMatrixViewRetinaUrl = mapper.bannerMatrixViewRetinaUrl
+        bannerExploreMobileUrl = mapper.bannerExploreMobileUrl
+        
         
         isBubbled = metadata?.bubbledGalleryIdentifiers.contains(mapper.identifier!) ?? false
         abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []

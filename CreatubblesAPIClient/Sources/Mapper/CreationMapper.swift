@@ -58,9 +58,13 @@ class CreationMapper: Mappable
     var approvalStatus: String?
     var shortUrl: String?
     var createdAtAge: String?
+    var createdAtAgePerCreator: [String:String] = [:]
 
     var userRelationship: RelationshipMapper?
     var creatorRelationships: Array<RelationshipMapper>?
+    
+    var reflectionText: String?
+    var reflectionVideoUrl: String?
 
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
@@ -98,9 +102,13 @@ class CreationMapper: Mappable
         approvalStatus <- map["attributes.approval_status"]
         shortUrl <- map["attributes.short_url"]
         createdAtAge <- map["attributes.created_at_age"]
+        createdAtAgePerCreator <- map["attributes.created_at_age_per_creator"]
 
         userRelationship <- map["relationships.user.data"]
         creatorRelationships <- map["relationships.creators.data"]
+        
+        reflectionText <- map["attributes.reflection_text"]
+        reflectionVideoUrl <- map["attributes.reflection_video_url"]
     }
     
     //MARK: Parsing

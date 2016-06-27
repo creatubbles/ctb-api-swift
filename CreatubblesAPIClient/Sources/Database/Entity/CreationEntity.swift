@@ -25,6 +25,12 @@
 import Foundation
 import RealmSwift
 
+class CreatedAtAgePerCreatorDict: Object
+{
+    dynamic var key: String?
+    dynamic var value: String?
+}
+
 class CreationEntity: Object
 {
     dynamic var identifier: String?
@@ -50,6 +56,7 @@ class CreationEntity: Object
     var bubblesCount = RealmOptional<Int>()
     var commentsCount = RealmOptional<Int>()
     var viewsCount = RealmOptional<Int>()
+    var createdAtAgePerCreatorDict: List<CreatedAtAgePerCreatorDict>?
     
     dynamic var lastBubbledAt: NSDate?
     dynamic var lastCommentedAt: NSDate?
@@ -58,4 +65,7 @@ class CreationEntity: Object
     var approved = RealmOptional<Bool>()
     dynamic var shortUrl: String?
     dynamic var createdAtAge: String?
+    
+    dynamic var reflectionText: String?
+    dynamic var reflectionVideoUrl: String?
 }
