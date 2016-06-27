@@ -45,6 +45,7 @@ class CreationUploadService: CreationUploadSessionDelegate
         self.requestSender = requestSender
         self.databaseDAO = DatabaseDAO()
         self.uploadSessions = Array<CreationUploadSession>()
+        setupSessions()
     }
     
     private func setupSessions()
