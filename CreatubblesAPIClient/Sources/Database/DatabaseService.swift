@@ -277,7 +277,15 @@ class DatabaseService: NSObject
         creationEntity.approved.value = creation.approved
         creationEntity.shortUrl = creation.shortUrl
         creationEntity.createdAtAge = creation.createdAtAge
-        creationEntity.createdAtAgePerCreator = creation.createdAtAgePerCreator
+        
+        for (key, value) in creation.createdAtAgePerCreator
+        {
+            let createdAtAgePerCreatorDict = CreatedAtAgePerCreatorDict()
+            createdAtAgePerCreatorDict.key = key
+            createdAtAgePerCreatorDict.value = value
+            creationEntity.createdAtAgePerCreatorDict?.append(createdAtAgePerCreatorDict)
+        }
+        
         creationEntity.reflectionText = creation.reflectionText
         creationEntity.reflectionVideoUrl = creation.reflectionVideoUrl
 

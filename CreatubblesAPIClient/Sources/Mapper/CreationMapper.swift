@@ -58,7 +58,7 @@ class CreationMapper: Mappable
     var approvalStatus: String?
     var shortUrl: String?
     var createdAtAge: String?
-    var createdAtAgePerCreator: String?
+    var createdAtAgePerCreator: [String:String] = [:]
 
     var userRelationship: RelationshipMapper?
     var creatorRelationships: Array<RelationshipMapper>?
