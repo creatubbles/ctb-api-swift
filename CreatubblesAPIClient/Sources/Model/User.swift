@@ -47,6 +47,7 @@ public class User: NSObject, Identifiable
     public let identifier: String
     public let username: String
     public let displayName: String
+    public let listName: String
     public let name: String
     public let role: Role
     public let lastBubbledAt: NSDate?
@@ -71,6 +72,8 @@ public class User: NSObject, Identifiable
     
     public let homeSchooling: Bool
     public let signedUpAsInstructor: Bool
+    public let whatDoYouTeach: String?
+    public let interests: String?
     
     //MARK: - Metadata
     public let isBubbled: Bool
@@ -79,13 +82,12 @@ public class User: NSObject, Identifiable
     public let customStyleRelationship: Relationship?
     public let customStyle: CustomStyle?
     
-    public let interests : String?
-    
     init(mapper: UserMapper, dataMapper: DataIncludeMapper?, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         username = mapper.username!
         displayName = mapper.displayName!
+        listName = mapper.listName!
         name = mapper.name!
         role = mapper.parseRole()
         lastBubbledAt = mapper.lastBubbledAt
@@ -117,6 +119,7 @@ public class User: NSObject, Identifiable
         customStyleRelationship = MappingUtils.relationshipFromMapper(mapper.customStyleRelationship)
         customStyle = MappingUtils.objectFromMapper(dataMapper, relationship: customStyleRelationship, type: CustomStyle.self)
         
+        whatDoYouTeach = mapper.whatDoYouTeach
         interests = mapper.interests
     }
 }

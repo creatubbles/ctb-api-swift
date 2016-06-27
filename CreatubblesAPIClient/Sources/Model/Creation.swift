@@ -59,6 +59,12 @@ public class Creation: NSObject, Identifiable
     public let approved: Bool
     public let shortUrl: String
     public let createdAtAge: String?
+    public let createdAtAgePerCreator: [String:String]
+    
+    public let reflectionText: String?
+    public let reflectionVideoUrl: String?
+    
+    
 
     //MARK: - Relationships
     public let owner: User?
@@ -88,6 +94,10 @@ public class Creation: NSObject, Identifiable
         approved = mapper.approved!
         shortUrl = mapper.shortUrl!
         createdAtAge = mapper.createdAtAge
+        createdAtAgePerCreator = mapper.createdAtAgePerCreator
+        
+        reflectionText = mapper.reflectionText
+        reflectionVideoUrl = mapper.reflectionVideoUrl
         
         imageOriginalUrl = mapper.imageOriginalUrl
         imageFullViewUrl = mapper.imageFullViewUrl
@@ -139,6 +149,16 @@ public class Creation: NSObject, Identifiable
         approved = creationEntity.approved.value!
         shortUrl = creationEntity.shortUrl!
         createdAtAge = creationEntity.createdAtAge
+        
+        var createdAtAgePerCreatorTemp = [String: String]()
+        for createdAtAgePerCreatorObject in creationEntity.createdAtAgePerCreatorDict!
+        {
+            createdAtAgePerCreatorTemp.updateValue(createdAtAgePerCreatorObject.value!, forKey: createdAtAgePerCreatorObject.key!)
+        }
+        createdAtAgePerCreator = createdAtAgePerCreatorTemp
+        
+        reflectionText = creationEntity.reflectionText
+        reflectionVideoUrl = creationEntity.reflectionVideoUrl
         
         imageOriginalUrl = creationEntity.imageOriginalUrl
         imageFullViewUrl = creationEntity.imageFullViewUrl

@@ -30,6 +30,7 @@ class UserMapper: Mappable
     var identifier: String?
     var username: String?
     var displayName: String?
+    var listName: String?
     var name: String?
     var role: String?
     var lastBubbledAt: NSDate?
@@ -57,6 +58,7 @@ class UserMapper: Mappable
     var gender: String?
     var customStyleRelationship: RelationshipMapper?
     
+    var whatDoYouTeach: String?
     var interests : String?
     
     //MARK: - Mappable
@@ -67,6 +69,7 @@ class UserMapper: Mappable
         identifier  <- map["id"]
         username  <- map["attributes.username"]
         displayName  <- map["attributes.display_name"]
+        listName <- map["attributes.list_name"]
         name <- map["attributes.name"]
         role <- map["attributes.role"]
         lastBubbledAt <- (map["attributes.last_bubbled_at"], APIClientDateTransform.sharedTransform)
@@ -95,6 +98,7 @@ class UserMapper: Mappable
         
         customStyleRelationship <- map["relationships.custom_style.data"]
         
+        whatDoYouTeach <- map["attributes.what_do_you_teach"]
         interests <- map["attributes.interests"]
     }
     
