@@ -108,7 +108,7 @@ class UserMapper: Mappable
         switch self.role!
         {
             case "parent":  return Role.Parent
-            case "teacher": return Role.Teacher
+            case "instructor": return Role.Instructor
             case "creator": return Role.Creator
             default:        return Role.Creator
         }
