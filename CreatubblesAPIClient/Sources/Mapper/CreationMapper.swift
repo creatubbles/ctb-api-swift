@@ -65,6 +65,9 @@ class CreationMapper: Mappable
     
     var reflectionText: String?
     var reflectionVideoUrl: String?
+    
+    var objFileUrl: String?
+    var playIFrameUrl: String?
 
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
@@ -109,6 +112,9 @@ class CreationMapper: Mappable
         
         reflectionText <- map["attributes.reflection_text"]
         reflectionVideoUrl <- map["attributes.reflection_video_url"]
+        
+        objFileUrl <- map["attributes.obj_file_url"]
+        playIFrameUrl <- map["attributes.play_iframe_url"]
     }
     
     //MARK: Parsing

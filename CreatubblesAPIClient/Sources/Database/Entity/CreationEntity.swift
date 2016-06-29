@@ -68,4 +68,7 @@ class CreationEntity: Object
     
     dynamic var reflectionText: String?
     dynamic var reflectionVideoUrl: String?
+    
+    dynamic var objFileUrl: String?
+    dynamic var playIFrameUrl: String?
 }
