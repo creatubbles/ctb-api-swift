@@ -34,7 +34,9 @@ public class Bubble: NSObject, Identifiable
     public let bubbledGalleryRelationship: Relationship?
     public let bubbledUserRelationship: Relationship?
     
-    init(mapper: BubbleMapper, dataMapper: DataIncludeMapper? = nil)
+    public let abilities: [Ability]?
+    
+    init(mapper: BubbleMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         xPosition = mapper.xPosition
@@ -58,5 +60,7 @@ public class Bubble: NSObject, Identifiable
         bubbledCreation = MappingUtils.objectFromMapper(dataMapper, relationship: bubbledCreationRelationship, type: Creation.self)
         bubbledGallery = MappingUtils.objectFromMapper(dataMapper, relationship: bubbledGalleryRelationship, type: Gallery.self)
         bubbledUser = MappingUtils.objectFromMapper(dataMapper, relationship: bubbledUserRelationship, type: User.self)
+        
+        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
     }
 }

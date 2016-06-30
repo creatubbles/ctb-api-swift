@@ -26,7 +26,7 @@ class CommentsResponseHandler: ResponseHandler
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let comments = mappers.map({ Comment(mapper: $0, dataMapper: dataMapper) })
+            let comments = mappers.map({ Comment(mapper: $0, dataMapper: dataMapper, metadata: metadata) })
                     
             executeOnMainQueue { self.completion?(comments, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
         }

@@ -151,10 +151,7 @@ public class Creation: NSObject, Identifiable
         createdAtAge = creationEntity.createdAtAge
         
         var createdAtAgePerCreatorTemp = [String: String]()
-        for createdAtAgePerCreatorObject in creationEntity.createdAtAgePerCreatorDict!
-        {
-            createdAtAgePerCreatorTemp.updateValue(createdAtAgePerCreatorObject.value!, forKey: createdAtAgePerCreatorObject.key!)
-        }
+        creationEntity.createdAtAgePerCreatorDict?.forEach({ createdAtAgePerCreatorTemp[$0.key!] = $0.value})
         createdAtAgePerCreator = createdAtAgePerCreatorTemp
         
         reflectionText = creationEntity.reflectionText
