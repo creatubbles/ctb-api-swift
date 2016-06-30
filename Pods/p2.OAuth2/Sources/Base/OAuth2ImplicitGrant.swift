@@ -22,8 +22,8 @@ import Foundation
 
 
 /**
-    Class to handle OAuth2 requests for public clients, such as distributed Mac/iOS Apps.
- */
+Class to handle OAuth2 requests for public clients, such as distributed Mac/iOS Apps.
+*/
 public class OAuth2ImplicitGrant: OAuth2 {
 	
 	override public class var grantType: String {
@@ -35,7 +35,7 @@ public class OAuth2ImplicitGrant: OAuth2 {
 	}
 	
 	override public func handleRedirectURL(redirect: NSURL) {
-		logIfVerbose("Handling redirect URL \(redirect.description)")
+		logger?.debug("OAuth2", msg: "Handling redirect URL \(redirect.description)")
 		do {
 			// token should be in the URL fragment
 			let comp = NSURLComponents(URL: redirect, resolvingAgainstBaseURL: true)
@@ -43,9 +43,9 @@ public class OAuth2ImplicitGrant: OAuth2 {
 				throw OAuth2Error.InvalidRedirectURL(redirect.absoluteString)
 			}
 			
-			let params = OAuth2ImplicitGrant.paramsFromQuery(fragment)
+			let params = self.dynamicType.paramsFromQuery(fragment)
 			let dict = try parseAccessTokenResponse(params)
-			logIfVerbose("Successfully extracted access token")
+			logger?.debug("OAuth2", msg: "Successfully extracted access token")
 			didAuthorize(dict)
 		}
 		catch let error {

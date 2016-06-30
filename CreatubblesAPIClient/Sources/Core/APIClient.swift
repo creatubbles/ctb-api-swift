@@ -167,6 +167,18 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         }
     }
     
+    public func invalidateSession() {
+        requestSender.invalidateTokens()
+    }
+    
+    public func currentSessionData() -> SessionData {
+        return requestSender.currentSessionData()
+    }
+    
+    public func setSessionData(sessionData: SessionData) {
+        requestSender.setSessionData(sessionData)
+    }
+    
     public func logout()
     {
         requestSender.logout()

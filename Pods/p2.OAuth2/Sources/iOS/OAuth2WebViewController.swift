@@ -46,7 +46,7 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 					interceptComponents = NSURLComponents(URL: url, resolvingAgainstBaseURL: true)
 				}
 				else {
-					oauth?.logIfVerbose("Failed to parse URL \(interceptURLString), discarding")
+					oauth?.logger?.debug("OAuth2", msg: "Failed to parse URL \(interceptURLString), discarding")
 					interceptURLString = nil
 				}
 			}
@@ -69,16 +69,17 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 		didSet {
 			if let backButton = backButton {
 				backButton.target = self
-				backButton.action = "goBack:"
+				backButton.action = #selector(OAuth2WebViewController.goBack(_:))
 			}
 		}
 	}
 	
 	var cancelButton: UIBarButtonItem?
 	
-	/// Our web view; implicitly unwrapped so do not attempt to use it unless isViewLoaded() returns true.
-	var webView: UIWebView!
+	/// Our web view.
+	var webView: UIWebView?
 	
+	/// An overlay view containing a spinner.
 	var loadingView: UIView?
 	
 	init() {
@@ -100,37 +101,38 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 		super.loadView()
 		view.backgroundColor = UIColor.whiteColor()
 		
-		cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel:")
+		cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(OAuth2WebViewController.cancel(_:)))
 		navigationItem.rightBarButtonItem = cancelButton
 		
 		// create a web view
-		webView = UIWebView()
-		webView.translatesAutoresizingMaskIntoConstraints = false
-		webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal
-		webView.delegate = self
+		let web = UIWebView()
+		web.translatesAutoresizingMaskIntoConstraints = false
+		web.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal
+		web.delegate = self
 		
-		view.addSubview(webView)
-		let views = ["web": webView]
+		view.addSubview(web)
+		let views = ["web": web]
 		view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[web]|", options: [], metrics: nil, views: views))
 		view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[web]|", options: [], metrics: nil, views: views))
+		webView = web
 	}
 	
 	override public func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		if !webView.canGoBack {
+		if let web = webView where !web.canGoBack {
 			if nil != startURL {
 				loadURL(startURL!)
 			}
 			else {
-				webView.loadHTMLString("There is no `startURL`", baseURL: nil)
+				web.loadHTMLString("There is no `startURL`", baseURL: nil)
 			}
 		}
 	}
 	
 	func showHideBackButton(show: Bool) {
 		if show {
-			let bb = backButton ?? UIBarButtonItem(barButtonSystemItem: .Rewind, target: self, action: "goBack:")
+			let bb = backButton ?? UIBarButtonItem(barButtonSystemItem: .Rewind, target: self, action: #selector(OAuth2WebViewController.goBack(_:)))
 			navigationItem.leftBarButtonItem = bb
 		}
 		else {
@@ -154,11 +156,11 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 	// MARK: - Actions
 	
 	public func loadURL(url: NSURL) {
-		webView.loadRequest(NSURLRequest(URL: url))
+		webView?.loadRequest(NSURLRequest(URL: url))
 	}
 	
 	func goBack(sender: AnyObject?) {
-		webView.goBack()
+		webView?.goBack()
 	}
 	
 	func cancel(sender: AnyObject?) {
@@ -170,7 +172,7 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 	}
 	
 	func dismiss(asCancel asCancel: Bool, animated: Bool) {
-		webView.stopLoading()
+		webView?.stopLoading()
 		
 		if nil != self.onWillDismiss {
 			self.onWillDismiss!(didCancel: asCancel)
@@ -209,14 +211,14 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 		if let scheme = interceptComponents?.scheme where "urn" == scheme {
 			if let path = interceptComponents?.path where path.hasPrefix("ietf:wg:oauth:2.0:oob") {
 				if let title = webView.stringByEvaluatingJavaScriptFromString("document.title") where title.hasPrefix("Success ") {
-					oauth?.logIfVerbose("Creating redirect URL from document.title")
+					oauth?.logger?.debug("OAuth2", msg: "Creating redirect URL from document.title")
 					let qry = title.stringByReplacingOccurrencesOfString("Success ", withString: "")
 					if let url = NSURL(string: "http://localhost/?\(qry)") {
 						onIntercept?(url: url)
 						return
 					}
 					else {
-						oauth?.logIfVerbose("Failed to create a URL with query parts \"\(qry)\"")
+						oauth?.logger?.warn("OAuth2", msg: "Failed to create a URL with query parts \"\(qry)\"")
 					}
 				}
 			}
