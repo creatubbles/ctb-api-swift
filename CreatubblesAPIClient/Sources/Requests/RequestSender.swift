@@ -145,9 +145,24 @@ class RequestSender: NSObject
         return APIClientError.LoginError
     }
     
+    func currentSessionData() -> SessionData {
+        return SessionData(accessToken: oauth2PrivateClient.accessToken, idToken: oauth2PrivateClient.idToken, accessTokenExpiry: oauth2PrivateClient.accessTokenExpiry, refreshToken: oauth2PrivateClient.refreshToken)
+    }
+    
+    func setSessionData(sessionData: SessionData) {
+        oauth2PrivateClient.idToken = sessionData.idToken
+        oauth2PrivateClient.accessToken = sessionData.accessToken
+        oauth2PrivateClient.accessTokenExpiry = sessionData.accessTokenExpiry
+        oauth2PrivateClient.refreshToken = sessionData.refreshToken
+    }
+    
+    func invalidateTokens() {
+        oauth2PrivateClient.forgetTokens()
+    }
+    
     func logout()
-    {                
-        oauth2PrivateClient.forgetTokens()        
+    {
+        invalidateTokens()
     }
     
     func isLoggedIn() -> Bool
