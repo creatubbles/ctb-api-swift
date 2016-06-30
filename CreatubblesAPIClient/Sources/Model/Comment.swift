@@ -32,7 +32,9 @@ public class Comment: NSObject, Identifiable
     public let commentedGalleryRelationship: Relationship?
     public let commentedUserRelationship: Relationship?
     
-    init(mapper: CommentMapper, dataMapper: DataIncludeMapper? = nil)
+    public let abilities: [Ability]?
+    
+    init(mapper: CommentMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         text = mapper.text!
@@ -54,5 +56,7 @@ public class Comment: NSObject, Identifiable
         commentedCreation = MappingUtils.objectFromMapper(dataMapper, relationship: commentedCreationRelationship, type: Creation.self)
         commentedGallery = MappingUtils.objectFromMapper(dataMapper, relationship: commentedGalleryRelationship, type: Gallery.self)
         commentedUser = MappingUtils.objectFromMapper(dataMapper, relationship: commentedUserRelationship, type: User.self)
+        
+        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
     }
 }

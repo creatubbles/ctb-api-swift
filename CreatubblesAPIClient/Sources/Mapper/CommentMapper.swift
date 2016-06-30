@@ -26,7 +26,7 @@ class CommentMapper: Mappable
     var commentedCreationRelationship: RelationshipMapper?
     var commentedGalleryRelationship: RelationshipMapper?
     var commentedUserRelationship: RelationshipMapper?
-    
+        
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
@@ -45,7 +45,7 @@ class CommentMapper: Mappable
         commenterRelationship <- map["relationships.commenter.data"]
         commentedCreationRelationship <- map["relationships.creation.data"]
         commentedGalleryRelationship <- map["relationships.gallery.data"]
-        commentedUserRelationship <- map["relationships.user.data"]
+        commentedUserRelationship <- map["relationships.user.data"]        
     }
     
     func parseCommenterRelationship() -> Relationship?
