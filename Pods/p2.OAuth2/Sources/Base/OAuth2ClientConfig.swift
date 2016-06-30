@@ -43,7 +43,10 @@ public class OAuth2ClientConfig {
 	
 	/// The receiver's access token.
 	public var accessToken: String?
-	
+
+	/// The receiver's id token.  Used by Google + and AWS Cognito
+	public var idToken: String?
+
 	/// The access token's expiry date.
 	public var accessTokenExpiry: NSDate?
 	
@@ -61,6 +64,9 @@ public class OAuth2ClientConfig {
 	public final var endpointAuthMethod = OAuth2EndpointAuthMethod.None
 	
 	
+	/**
+	Initializer to initialize properties from a settings dictionary.
+	*/
 	public init(settings: OAuth2JSON) {
 		clientId = settings["client_id"] as? String
 		clientSecret = settings["client_secret"] as? String
@@ -104,9 +110,19 @@ public class OAuth2ClientConfig {
 	}
 	
 	
+	/**
+	Update properties from response data.
+	
+	This method assumes values are present with the standard names, such as `access_token`, and assigns them to its properties.
+	
+	- parameter json: JSON data returned from a request
+	*/
 	func updateFromResponse(json: OAuth2JSON) {
 		if let access = json["access_token"] as? String {
 			accessToken = access
+		}
+		if let idtoken = json["id_token"] as? String {
+			idToken = idtoken
 		}
 		accessTokenExpiry = nil
 		if let expires = json["expires_in"] as? NSTimeInterval {
@@ -120,6 +136,11 @@ public class OAuth2ClientConfig {
 		}
 	}
 	
+	/**
+	Creates a dictionary of credential items that can be stored to the keychain.
+	
+	- returns: A storable dictionary with credentials
+	*/
 	func storableCredentialItems() -> [String: NSCoding]? {
 		guard let clientId = clientId where !clientId.isEmpty else { return nil }
 		
@@ -131,6 +152,11 @@ public class OAuth2ClientConfig {
 		return items
 	}
 	
+	/**
+	Creates a dictionary of token items that can be stored to the keychain.
+	
+	- returns: A storable dictionary with token data
+	*/
 	func storableTokenItems() -> [String: NSCoding]? {
 		guard let access = accessToken where !access.isEmpty else { return nil }
 		
@@ -141,11 +167,18 @@ public class OAuth2ClientConfig {
 		if let refresh = refreshToken where !refresh.isEmpty {
 			items["refreshToken"] = refresh
 		}
+		if let idtoken = idToken where !idtoken.isEmpty {
+			items["idToken"] = idtoken
+		}
+        
 		return items
 	}
 	
 	/**
 	Updates receiver's instance variables with values found in the dictionary. Returns a list of messages that can be logged on debug.
+	
+	- parameter items: The dictionary representation of the data to store to keychain
+	- returns: An array of strings containing log messages
 	*/
 	func updateFromStorableItems(items: [String: NSCoding]) -> [String] {
 		var messages = [String]()
@@ -183,6 +216,10 @@ public class OAuth2ClientConfig {
 			messages.append("Found refresh token")
 			refreshToken = token
 		}
+		if let idtoken = items["idToken"] as? String where !idtoken.isEmpty {
+			messages.append("Found id token")
+			idToken = idtoken
+		}
 		return messages
 	}
 	
@@ -192,10 +229,12 @@ public class OAuth2ClientConfig {
 		clientSecret = nil
 	}
 	
+	/** Forgets the configuration's current tokens. */
 	public func forgetTokens() {
 		accessToken = nil
 		accessTokenExpiry = nil
 		refreshToken = nil
+		idToken = nil
 	}
 }
 
