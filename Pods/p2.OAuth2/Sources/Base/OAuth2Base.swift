@@ -19,11 +19,6 @@
 //
 
 import Foundation
-#if IMPORT_SWIFT_KEYCHAIN       // experimental for SwiftKeychain integration via CocoaPods (iOS only)
-import SwiftKeychain
-#elseif !NO_KEYCHAIN_IMPORT     // needs to be imported when using `swift build`, not when building via Xcode
-import SwiftKeychain
-#endif
 
 
 /// Typealias to ease working with JSON dictionaries.
@@ -32,23 +27,24 @@ public typealias OAuth2JSON = [String: AnyObject]
 /// Typealias to work with dictionaries full of strings.
 public typealias OAuth2StringDict = [String: String]
 
-/// We store the client's credentials (id and secret) under this keychain key name.
-let OAuth2KeychainCredentialsKey = "clientCredentials"
-
-/// We store the current tokens under this keychain key name.
-let OAuth2KeychainTokenKey = "currentTokens"
-
 
 /**
-    Abstract base class for OAuth2 authorization as well as client registration classes.
- */
-public class OAuth2Base
-{
+Abstract base class for OAuth2 authorization as well as client registration classes.
+*/
+public class OAuth2Base {
+	
 	/// Server-side settings, as set upon initialization.
 	final let settings: OAuth2JSON
 	
-	/// Set to `true` to log all the things. `false` by default. Use `"verbose": bool` in settings.
-	public var verbose = false
+	/// Set to `true` to log all the things. `false` by default. Use `"verbose": bool` in settings or assign `logger` yourself.
+	public var verbose = false {
+		didSet {
+			logger = verbose ? OAuth2DebugLogger() : nil
+		}
+	}
+	
+	/// The logger being used. Auto-assigned to a debug logger if you set `verbose` to true or false.
+	public var logger: OAuth2Logger?
 	
 	/// If set to `true` (the default) will use system keychain to store tokens. Use `"keychain": bool` in settings.
 	public var useKeychain = true {
@@ -59,11 +55,14 @@ public class OAuth2Base
 		}
 	}
 	
+	/// Defaults to `kSecAttrAccessibleWhenUnlocked`
+	public internal(set) var keychainAccessMode = kSecAttrAccessibleWhenUnlocked
+	
 	
 	/**
 	Base initializer.
 	
-	Looks at the `keychain` and `verbose` keys in the _settings_ dict. Everything else is handled by subclasses.
+	Looks at the `keychain`, `keychain_access_mode` and `verbose` keys in the _settings_ dict. Everything else is handled by subclasses.
 	*/
 	public init(settings: OAuth2JSON) {
 		self.settings = settings
@@ -72,37 +71,51 @@ public class OAuth2Base
 		if let keychain = settings["keychain"] as? Bool {
 			useKeychain = keychain
 		}
+		if let accessMode = settings["keychain_access_mode"] as? String {
+			keychainAccessMode = accessMode
+		}
 		if let verb = settings["verbose"] as? Bool {
 			verbose = verb
+			if verbose {
+				logger = OAuth2DebugLogger()
+			}
 		}
 		
 		// init from keychain
 		if useKeychain {
 			updateFromKeychain()
 		}
-		logIfVerbose("Initialization finished")
+		logger?.debug("OAuth2", msg: "Initialization finished")
 	}
 	
 	
 	// MARK: - Keychain Integration
 	
-	/** The service key under which to store keychain items. Returns the authorize URL by default. */
+	/** The service key under which to store keychain items. Returns "http://localhost", subclasses override to return the authorize URL. */
 	public func keychainServiceName() -> String {
 		return "http://localhost"
 	}
 	
 	/** Queries the keychain for tokens stored for the receiver's authorize URL, and updates the token properties accordingly. */
 	private func updateFromKeychain() {
-		logIfVerbose("Looking for items in keychain")
+		logger?.debug("OAuth2", msg: "Looking for items in keychain")
 		
-		let keychain = Keychain(serviceName: keychainServiceName())
-		let creds = ArchiveKey(keyName: OAuth2KeychainCredentialsKey)
-		if let items = keychain.get(creds).item?.object as? [String: NSCoding] {
-			updateFromKeychainItems(items)
+		do {
+			var creds = OAuth2KeychainAccount(oauth2: self, account: OAuth2KeychainTokenKey)
+			let creds_data = try creds.fetchedFromKeychain()
+			updateFromKeychainItems(creds_data)
 		}
-		let toks = ArchiveKey(keyName: OAuth2KeychainTokenKey)
-		if let items = keychain.get(toks).item?.object as? [String: NSCoding] {
-			updateFromKeychainItems(items)
+		catch {
+			logger?.warn("OAuth2", msg: "Failed to load client credentials from keychain: \(error)")
+		}
+		
+		do {
+			var toks = OAuth2KeychainAccount(oauth2: self, account: OAuth2KeychainCredentialsKey)
+			let toks_data = try toks.fetchedFromKeychain()
+			updateFromKeychainItems(toks_data)
+		}
+		catch {
+			logger?.warn("OAuth2", msg: "Failed to load tokens from keychain: \(error)")
 		}
 	}
 	
@@ -118,11 +131,13 @@ public class OAuth2Base
 	/** Stores our client credentials in the keychain. */
 	internal func storeClientToKeychain() {
 		if let items = storableCredentialItems() {
-			logIfVerbose("Storing client credentials to keychain")
-			let keychain = Keychain(serviceName: keychainServiceName())
-			let key = ArchiveKey(keyName: OAuth2KeychainCredentialsKey, object: items)
-			if let error = keychain.update(key) {
-				NSLog("Failed to store to keychain: \(error.localizedDescription)")
+			logger?.debug("OAuth2", msg: "Storing client credentials to keychain")
+			let keychain = OAuth2KeychainAccount(oauth2: self, account: OAuth2KeychainTokenKey, data: items)
+			do {
+				try keychain.saveInKeychain()
+			}
+			catch {
+				logger?.warn("OAuth2", msg: "Failed to store client credentials to keychain: \(error)")
 			}
 		}
 	}
@@ -133,50 +148,77 @@ public class OAuth2Base
 	}
 	
 	/** Stores our current token(s) in the keychain. */
-	internal func storeTokensToKeychain() {
+	public func storeTokensToKeychain() {
 		if let items = storableTokenItems() {
-			logIfVerbose("Storing tokens to keychain")
-			let keychain = Keychain(serviceName: keychainServiceName())
-			let key = ArchiveKey(keyName: OAuth2KeychainTokenKey, object: items)
-			if let error = keychain.update(key) {
-				NSLog("Failed to store to keychain: \(error.localizedDescription)")
+			logger?.debug("OAuth2", msg: "Storing tokens to keychain")
+			let keychain = OAuth2KeychainAccount(oauth2: self, account: OAuth2KeychainCredentialsKey, data: items)
+			do {
+				try keychain.saveInKeychain()
+			}
+			catch {
+				logger?.warn("OAuth2", msg: "Failed to store tokens to keychain: \(error)")
 			}
 		}
 	}
 	
 	/** Unsets the client credentials and deletes them from the keychain. */
 	public func forgetClient() {
-		logIfVerbose("Forgetting client credentials and removing them from keychain")
-		let keychain = Keychain(serviceName: keychainServiceName())
-		let key = ArchiveKey(keyName: OAuth2KeychainCredentialsKey)
-		if let error = keychain.remove(key) {
-			NSLog("Failed to delete tokens from keychain: \(error.localizedDescription)")
+		logger?.debug("OAuth2", msg: "Forgetting client credentials and removing them from keychain")
+		let keychain = OAuth2KeychainAccount(oauth2: self, account: OAuth2KeychainTokenKey)
+		do {
+			try keychain.removeFromKeychain()
+		}
+		catch {
+			logger?.warn("OAuth2", msg: "Failed to delete credentials from keychain: \(error)")
 		}
 	}
 	
 	/** Unsets the tokens and deletes them from the keychain. */
 	public func forgetTokens() {
-		logIfVerbose("Forgetting tokens and removing them from keychain")
-		let keychain = Keychain(serviceName: keychainServiceName())
-		let key = ArchiveKey(keyName: OAuth2KeychainTokenKey)
-		if let error = keychain.remove(key) {
-			NSLog("Failed to delete tokens from keychain: \(error.localizedDescription)")
+		logger?.debug("OAuth2", msg: "Forgetting tokens and removing them from keychain")
+
+		let keychain = OAuth2KeychainAccount(oauth2: self, account: OAuth2KeychainCredentialsKey)
+		do {
+			try keychain.removeFromKeychain()
+		}
+		catch {
+			logger?.warn("OAuth2", msg: "Failed to delete tokens from keychain: \(error)")
 		}
 	}
 	
 	
 	// MARK: - Requests
 	
-	var session: NSURLSession?
+	/// The instance's current session, creating one by the book if necessary. Defaults to using an ephemeral session, you can use
+	/// `sessionConfiguration` and/or `sessionDelegate` to affect how the session is configured.
+	public var session: NSURLSession {
+		if nil == _session {
+			let config = sessionConfiguration ?? NSURLSessionConfiguration.ephemeralSessionConfiguration()
+			_session = NSURLSession(configuration: config, delegate: sessionDelegate, delegateQueue: nil)
+		}
+		return _session!
+	}
 	
+	/// The backing store for `session`.
+	private var _session: NSURLSession?
+	
+	/// The configuration to use when creating `session`. Uses an `+ephemeralSessionConfiguration()` if nil.
+	public var sessionConfiguration: NSURLSessionConfiguration? {
+		didSet {
+			_session = nil
+		}
+	}
+	
+	/// URL session delegate that should be used for the `NSURLSession` the instance uses for requests.
 	public var sessionDelegate: NSURLSessionDelegate? {
 		didSet {
-			session = nil
+			_session = nil
 		}
 	}
 	
 	/**
-	Perform the supplied request and call the callback with the response JSON dict or an error.
+	Perform the supplied request and call the callback with the response JSON dict or an error. This method is intended for authorization
+	calls, not for data calls outside of the OAuth2 dance.
 	
 	This implementation uses the shared `NSURLSession` and executes a data task. If the server responds with an error, this will be
 	converted into an error according to information supplied in the response JSON (if availale).
@@ -185,8 +227,10 @@ public class OAuth2Base
 	- parameter callback: The callback to call when the request completes/fails; data and error are mutually exclusive
 	*/
 	public func performRequest(request: NSURLRequest, callback: ((data: NSData?, status: Int?, error: ErrorType?) -> Void)) {
-		let task = URLSession().dataTaskWithRequest(request) { sessData, sessResponse, error in
+		self.logger?.trace("OAuth2", msg: "REQUEST\n\(request.debugDescription)\n---")
+		let task = session.dataTaskWithRequest(request) { sessData, sessResponse, error in
 			self.abortableTask = nil
+			self.logger?.trace("OAuth2", msg: "RESPONSE\n\(sessResponse?.debugDescription ?? "no response")\n\n\(NSString(data: sessData ?? NSData(), encoding: NSUTF8StringEncoding) ?? "no data")\n---")
 			if let error = error {
 				if NSURLErrorDomain == error.domain && -999 == error.code {		// request was cancelled
 					callback(data: nil, status: nil, error: OAuth2Error.RequestCancelled)
@@ -207,19 +251,6 @@ public class OAuth2Base
 		task.resume()
 	}
 	
-	func URLSession() -> NSURLSession {
-		if nil == session {
-			if let delegate = sessionDelegate {
-				let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-				session = NSURLSession(configuration: config, delegate: delegate, delegateQueue: nil)
-			}
-			else {
-				session = NSURLSession.sharedSession()
-			}
-		}
-		return session!
-	}
-	
 	/// Currently running abortable session task.
 	private var abortableTask: NSURLSessionTask?
 	
@@ -232,7 +263,7 @@ public class OAuth2Base
 		guard let task = abortableTask else {
 			return false
 		}
-		logIfVerbose("Aborting request")
+		logger?.debug("OAuth2", msg: "Aborting request")
 		task.cancel()
 		return true
 	}
@@ -274,26 +305,9 @@ public class OAuth2Base
 			return json
 		}
 		if let str = NSString(data: data, encoding: NSUTF8StringEncoding) {
-			logIfVerbose("Unparsable JSON was: \(str)")
+			logger?.warn("OAuth2", msg: "Unparsable JSON was: \(str)")
 		}
 		throw OAuth2Error.JSONParserError
-	}
-	
-	/**
-	Create a query string from a dictionary of string: string pairs.
-	
-	This method does **form encode** the value part. If you're using NSURLComponents you want to assign the return value to
-	`percentEncodedQuery`, NOT `query` as this would double-encode the value.
-	
-	- parameter params: The parameters you want to have encoded
-	- returns: An URL-ready query string
-	*/
-	public final class func queryStringFor(params: OAuth2StringDict) -> String {
-		var arr: [String] = []
-		for (key, val) in params {
-			arr.append("\(key)=\(val.wwwFormURLEncodedString)")
-		}
-		return arr.joinWithSeparator("&")
 	}
 	
 	/**
@@ -316,21 +330,12 @@ public class OAuth2Base
 		}
 		return params
 	}
-	
-	/**
-	Debug logging, will only log if `verbose` is YES.
-	*/
-	public func logIfVerbose(log: String) {
-		if verbose {
-			print("OAuth2: \(log)")
-		}
-	}
 }
 
 
 /**
-    Helper function to ensure that the callback is executed on the main thread.
- */
+Helper function to ensure that the callback is executed on the main thread.
+*/
 func callOnMainThread(callback: (Void -> Void)) {
 	if NSThread.isMainThread() {
 		callback()
