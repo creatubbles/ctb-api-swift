@@ -60,6 +60,12 @@ class CreationUploadService: CreationUploadSessionDelegate
         return uploadSessions.filter({ $0.isActive == true }).map({ CreationUploadSessionPublicData(creationUploadSession: $0) })
     }
     
+    func getAllNotFinishedUploadSessionsPublicData() ->  Array<CreationUploadSessionPublicData>
+    {
+        return uploadSessions.filter({ $0.state.rawValue < CreationUploadSessionState.ServerNotified.rawValue })
+            .map({ CreationUploadSessionPublicData(creationUploadSession: $0) })
+    }    
+    
     func getAllFinishedUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
         return uploadSessions.filter({ $0.state == .ServerNotified }).map({ CreationUploadSessionPublicData(creationUploadSession: $0) })
