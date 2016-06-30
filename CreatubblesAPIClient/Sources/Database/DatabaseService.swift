@@ -302,6 +302,9 @@ class DatabaseService: NSObject
         creationEntity.video480Url = creation.video480Url
         creationEntity.video720Url = creation.video720Url
         
+        creationEntity.objFileUrl = creation.objFileUrl
+        creationEntity.playIFrameUrl = creation.playIFrameUrl
+        
         return creationEntity
     }
     

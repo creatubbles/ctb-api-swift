@@ -27,7 +27,7 @@ import UIKit
 @objc public enum Role: Int
 {
     case Parent
-    case Teacher
+    case Instructor
     case Creator        
     
     public var stringValue: String
@@ -35,7 +35,7 @@ import UIKit
         switch self
         {
             case .Parent:   return "parent"
-            case .Teacher:  return "teacher"
+            case .Instructor:  return "instructor"
             case .Creator:  return "creator"
         }
     }

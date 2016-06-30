@@ -64,7 +64,8 @@ public class Creation: NSObject, Identifiable
     public let reflectionText: String?
     public let reflectionVideoUrl: String?
     
-    
+    public let objFileUrl: String?
+    public let playIFrameUrl: String?
 
     //MARK: - Relationships
     public let owner: User?
@@ -115,6 +116,9 @@ public class Creation: NSObject, Identifiable
         approvalStatus = mapper.parseApprovalStatus()
         userRelationship = mapper.parseUserRelationship()
         creatorRelationships = mapper.parseCreatorRelationships()
+        
+        objFileUrl = mapper.objFileUrl
+        playIFrameUrl = mapper.playIFrameUrl
 
         owner = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)
         
@@ -131,6 +135,8 @@ public class Creation: NSObject, Identifiable
         {
             self.creators = nil
         }
+        
+        
     }
     
     init(creationEntity: CreationEntity)
@@ -169,6 +175,9 @@ public class Creation: NSObject, Identifiable
         
         video480Url = creationEntity.video480Url
         video720Url = creationEntity.video720Url
+        
+        objFileUrl = creationEntity.objFileUrl
+        playIFrameUrl = creationEntity.playIFrameUrl
 
         //TODO: Do we need relationships here?
         owner = nil
