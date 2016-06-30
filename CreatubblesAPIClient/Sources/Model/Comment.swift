@@ -58,5 +58,6 @@ public class Comment: NSObject, Identifiable
         commentedUser = MappingUtils.objectFromMapper(dataMapper, relationship: commentedUserRelationship, type: User.self)
         
         abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
+        
     }
 }
