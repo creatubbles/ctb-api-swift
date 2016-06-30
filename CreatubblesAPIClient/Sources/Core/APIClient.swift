@@ -302,6 +302,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return creationUploadService.getAllFinishedUploadSessionPublicData()
     }
     
+    public func getAllNotFinishedUploadSessionsPublicData() ->  Array<CreationUploadSessionPublicData>
+    {
+        return creationUploadService.getAllNotFinishedUploadSessionsPublicData()
+    }    
+    
     public func startAllNotFinishedUploadSessions(completion: CreationClosure?)
     {
         creationUploadService.startAllNotFinishedUploadSessions(completion)
