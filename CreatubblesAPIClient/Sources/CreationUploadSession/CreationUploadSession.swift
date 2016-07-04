@@ -32,6 +32,7 @@ enum CreationUploadSessionState: Int
     case UploadPathObtained = 3
     case ImageUploaded = 4
     case ServerNotified = 5
+    case Cancelled = 6
 }
 
 protocol CreationUploadSessionDelegate: class
@@ -41,23 +42,23 @@ protocol CreationUploadSessionDelegate: class
     func creationUploadSessionChangedProgress(creationUploadSession: CreationUploadSession,bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
 }
 
-class CreationUploadSession: NSObject
+class CreationUploadSession: NSObject, Cancelable
 {
+    private let requestSender: RequestSender
     let localIdentifier: String
     let creationData: NewCreationData
     let imageFileName: String
     let relativeImageFilePath: String
-    var state: CreationUploadSessionState
-    var isActive: Bool
+    
+    private (set) var state: CreationUploadSessionState
+    private (set) var isActive: Bool
+    private (set) var creation: Creation?               //Filled during upload flow
+    private (set) var creationUpload: CreationUpload?    //Filled during upload flow
+    
+    private var isAlreadyFinished: Bool { return state == .ServerNotified }
+    private var currentRequest: RequestHandler?
+    
     weak var delegate: CreationUploadSessionDelegate?
-    
-    
-    //Fields filled during creation upload flow
-    var creation: Creation?
-    var creationUpload: CreationUpload?
-    
-    private var isAlreadyFinished: Bool {return state == .ServerNotified }
-    private let requestSender: RequestSender
     
     init(data: NewCreationData, requestSender: RequestSender)
     {
@@ -94,6 +95,18 @@ class CreationUploadSession: NSObject
         }
     }
     
+    func cancel()
+    {
+        currentRequest?.cancel()
+        state = .Cancelled
+        delegate?.creationUploadSessionChangedState(self)
+        
+        if !isActive && !isAlreadyFinished
+        {
+            delegate?.creationUploadSessionUploadFailed(self, error: APIClientError.UploadCancelled)
+        }
+    }
+    
     func start(completion: CreationClosure?)
     {
         if isAlreadyFinished
@@ -106,14 +119,14 @@ class CreationUploadSession: NSObject
         saveImageOnDisk(nil) { [weak self](error) -> Void in
             if let weakSelf = self {
                 weakSelf.allocateCreation(error, completion: { (error) -> Void in
-                    
                     weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                    
                     weakSelf.obtainUploadPath(error, completion: { (error) -> Void in
-                        
                         weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                        
                         weakSelf.uploadImage(error, completion: { (error) -> Void in
-                            
                             weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                            
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
                                 
                                 print("Upload flow finished with error: \(error)")
@@ -148,16 +161,16 @@ class CreationUploadSession: NSObject
             return
         }
         saveCurrentImage()
+        {
+            [weak self](error: ErrorType?) -> Void in
+            if let weakSelf = self
             {
-                [weak self](error: ErrorType?) -> Void in
-                if let weakSelf = self
+                if error == nil
                 {
-                    if error == nil
-                    {
-                        weakSelf.state = .ImageSavedOnDisk
-                    }
+                    weakSelf.state = .ImageSavedOnDisk
                 }
-                completion(error)
+            }
+            completion(error)
         }
     }
     
@@ -186,8 +199,7 @@ class CreationUploadSession: NSObject
                 }
                 completion(error)
         }
-        requestSender.send(request, withResponseHandler: handler)
-        
+        currentRequest = requestSender.send(request, withResponseHandler: handler)
     }
     
     private func obtainUploadPath(error: ErrorType?, completion: (ErrorType?) -> Void)
@@ -214,7 +226,7 @@ class CreationUploadSession: NSObject
                 }
                 completion(error)
         }
-        requestSender.send(request, withResponseHandler: handler)
+        currentRequest = requestSender.send(request, withResponseHandler: handler)
     }
     
     private func uploadImage(error: ErrorType?, completion: (ErrorType?) -> Void)
@@ -230,7 +242,7 @@ class CreationUploadSession: NSObject
             return
         }
 
-        requestSender.send(creationData, uploadData: creationUpload!,
+        currentRequest =  requestSender.send(creationData, uploadData: creationUpload!,
         progressChanged:
         {
             (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
@@ -280,7 +292,7 @@ class CreationUploadSession: NSObject
                 }
                 completion(error)
         }
-        requestSender.send(request, withResponseHandler: handler)
+        currentRequest = requestSender.send(request, withResponseHandler: handler)
     }
     
     //MARK: - Utils
@@ -297,6 +309,7 @@ class CreationUploadSession: NSObject
             completion(nil)
             return
         }
+        
         let data = UIImageJPEGRepresentation(creationData.image!, 1)!
         let url = NSURL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
         let fileManager = NSFileManager.defaultManager()

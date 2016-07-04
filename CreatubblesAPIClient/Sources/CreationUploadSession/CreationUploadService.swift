@@ -82,6 +82,7 @@ class CreationUploadService: CreationUploadSessionDelegate
             let index = uploadSessions.indexOf(session)
         {
             session.delegate = nil
+            session.cancel()
             uploadSessions.removeAtIndex(index)
             databaseDAO.removeUploadSession(withIdentifier: sessionId)
             delegate?.creationUploadService(self, uploadFailed: session, withError: APIClientError.UploadCancelled)
@@ -90,7 +91,12 @@ class CreationUploadService: CreationUploadSessionDelegate
     
     func removeAllUploadSessions()
     {
-        uploadSessions.forEach({ $0.delegate = nil })
+        uploadSessions.forEach()
+        {
+            $0.delegate = nil
+            $0.cancel()
+        }
+        
         databaseDAO.removeAllUploadSessions()
         uploadSessions = databaseDAO.fetchAllCreationUploadSessions(requestSender)
     }

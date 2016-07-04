@@ -195,13 +195,13 @@ class RequestSender: NSObject
     }
     
     //MARK: - Creation sending
-    
-    func send(creationData: NewCreationData, uploadData: CreationUpload, progressChanged: (bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int) -> Void, completion: (error: ErrorType?) -> Void)
+    func send(creationData: NewCreationData, uploadData: CreationUpload, progressChanged: (bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int) -> Void, completion: (error: ErrorType?) -> Void) -> RequestHandler
     {
         if(creationData.dataType == .Image)
         {
             Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
-            Alamofire.upload(.PUT, uploadData.uploadUrl, headers:  ["Content-Type":uploadData.contentType], data: UIImagePNGRepresentation(creationData.image!)!)
+            
+            let request = Alamofire.upload(.PUT, uploadData.uploadUrl, headers:  ["Content-Type":uploadData.contentType], data: UIImagePNGRepresentation(creationData.image!)!)
             .progress(
             {
                 (written, totalWritten, totalExpected) -> Void in
@@ -213,11 +213,13 @@ class RequestSender: NSObject
                 Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
                 completion(error: response.result.error)
             })
+            
+            return RequestHandler(object: request)
         }
         else if(creationData.dataType == .Url)
         {
             Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
-            Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], file: creationData.url!)
+            let request = Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], file: creationData.url!)
             .progress(
             {
                 (written, totalWritten, totalExpected) -> Void in
@@ -229,11 +231,14 @@ class RequestSender: NSObject
                 Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
                 completion(error: response.result.error)
             })
+            
+            return RequestHandler(object: request)
         }
-        else if(creationData.dataType == .Data)
+        else
         {
+            assert(creationData.dataType == .Data)
             Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
-            Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], data: creationData.data!)
+            let request = Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], data: creationData.data!)
             .progress(
             {
                 (written, totalWritten, totalExpected) -> Void in
@@ -245,26 +250,12 @@ class RequestSender: NSObject
                 Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
                 completion(error: response.result.error)
             })
+            
+            return RequestHandler(object: request)
         }
-
     }
     
-    func send(data: NSData, uploadData: CreationUpload, progressChanged: (bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int) -> Void, completion: (error: ErrorType?) -> Void)
-    {
-        Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
-        uploadManager.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], data: data)
-        .progress(
-        {
-            (written, totalWritten, totalExpected) -> Void in
-            Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(totalWritten)/\(totalExpected)")
-            
-            progressChanged(bytesWritten: Int(written), totalBytesWritten: Int(totalWritten), totalBytesExpectedToWrite: Int(totalExpected))
-        })
-        .responseString(completionHandler: { (response) -> Void in
-            Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
-            completion(error: response.result.error)
-        })
-    }
+    
     //MARK: - Background session
     var backgroundCompletionHandler: (() -> Void)?
     {
