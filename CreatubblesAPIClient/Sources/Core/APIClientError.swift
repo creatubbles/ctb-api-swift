@@ -32,6 +32,7 @@ public enum APIClientError: ErrorType
     case NetworkError
     case LoginError
     case Unknown
+    case UploadCancelled
     
     public var errorDescription: String
     {
@@ -41,6 +42,7 @@ public enum APIClientError: ErrorType
             case .NetworkError:  return "Network error"
             case .Unknown: return "Unknown"
             case .LoginError: return "Error during login"
+            case .UploadCancelled: return "Creation upload cancelled"
         }
     }
 }

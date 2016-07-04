@@ -189,7 +189,17 @@ class DatabaseService: NSObject
     {
         if let entity = realm.objectForPrimaryKey(CreationUploadSessionEntity.self, key: identifier)
         {
-            realm.delete(entity)
+            do
+            {
+                try realm.write()
+                {
+                    realm.delete(entity)
+                }
+            }
+            catch let error
+            {
+                Logger.log.error("Error during removing upload session: \(error)")
+            }
         }
     }
     
