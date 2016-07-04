@@ -13,6 +13,7 @@ enum ContentType: String
     case Recent = "recent"
     case Trending = "trending"
     case BubbledContents = "bubbled_contents"
+    case Connected = "connected"
 }
 
 class ContentRequest: Request
