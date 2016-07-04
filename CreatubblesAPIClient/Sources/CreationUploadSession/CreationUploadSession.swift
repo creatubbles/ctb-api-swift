@@ -41,7 +41,7 @@ protocol CreationUploadSessionDelegate: class
     func creationUploadSessionChangedProgress(creationUploadSession: CreationUploadSession,bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
 }
 
-class CreationUploadSession: ResponseHandler
+class CreationUploadSession: NSObject
 {
     let localIdentifier: String
     let creationData: NewCreationData
@@ -67,8 +67,7 @@ class CreationUploadSession: ResponseHandler
         self.requestSender = requestSender
         self.creationData = data
         self.imageFileName = localIdentifier+"_creation"
-        self.relativeImageFilePath = "creations/"+imageFileName
-        
+        self.relativeImageFilePath = "creations/"+imageFileName        
     }
     
     init(creationUploadSessionEntity: CreationUploadSessionEntity, requestSender: RequestSender)
