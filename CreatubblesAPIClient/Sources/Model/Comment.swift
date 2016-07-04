@@ -32,7 +32,7 @@ public class Comment: NSObject, Identifiable
     public let commentedGalleryRelationship: Relationship?
     public let commentedUserRelationship: Relationship?
     
-    public let abilities: [Ability]?
+    public let abilities: Array<Ability>
     
     init(mapper: CommentMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {

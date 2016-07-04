@@ -34,7 +34,7 @@ public class Bubble: NSObject, Identifiable
     public let bubbledGalleryRelationship: Relationship?
     public let bubbledUserRelationship: Relationship?
     
-    public let abilities: [Ability]?
+    public let abilities: Array<Ability>
     
     init(mapper: BubbleMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
