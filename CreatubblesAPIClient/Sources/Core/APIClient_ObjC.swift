@@ -154,9 +154,9 @@ extension APIClient
         }
     }
     
-    public func _getCreations(galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getCreations(galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?)
     {
-        getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder)
+        getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, onlyPublic: onlyPublic)
         {
             (creations, pInfo, error) -> (Void) in
             completion?(creations, pInfo, APIClient.errorTypeToNSError(error))
@@ -173,9 +173,9 @@ extension APIClient
     }
     
     //MARK: - Batch fetching
-    public func _getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder, completion: ((Array<Creation>?, NSError?) -> (Void))?)
+    public func _getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, NSError?) -> (Void))?)
     {
-        getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder)
+        getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic)
         {
             (creations, error) -> (Void) in
             completion?(creations, APIClient.errorTypeToNSError(error))
