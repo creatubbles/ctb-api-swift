@@ -278,12 +278,12 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return creationsDAO.getCreation(creationId, completion: completion)
     }
     
-    public func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, onlyPublic: Bool?, completion: CreationsClosure?) -> RequestHandler
+    public func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, onlyPublic: Bool? = true, completion: CreationsClosure?) -> RequestHandler
     {
         return creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, onlyPublic: onlyPublic, completion: completion)
     }
     
-    public func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, onlyPublic: Bool?, completion: CreationsBatchClosure?) -> RequestHandler
+    public func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, onlyPublic: Bool? = true, completion: CreationsBatchClosure?) -> RequestHandler
     {
         return creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic, completion: completion)
     }
