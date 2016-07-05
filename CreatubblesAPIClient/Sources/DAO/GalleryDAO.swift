@@ -33,7 +33,14 @@ class GalleryDAO
         self.requestSender = requestSender
     }
     
-    func getGallery(galleryId: String, completion: GalleryClousure?)
+    func submitCreationToGallery(galleryId: String, creationId: String, completion: ErrorClosure) -> RequestHandler
+    {
+        let request = GallerySubmissionRequest(galleryId: galleryId, creationId: creationId)
+        let handler = GallerySubmissionResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler
     {
         let request = GalleriesRequest(galleryId: galleryId)
         let handler = GalleriesResponseHandler
@@ -41,26 +48,33 @@ class GalleryDAO
             (galleries, pageInfo, error) -> Void in
             completion?(galleries?.first, error)
         }
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClousure?)
+    func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
     {
         let request = GalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, sort: sort, userId: userId)
         let handler = GalleriesResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func newGallery(galleryData: NewGalleryData, completion: GalleryClousure?)
+    func getGalleries(creationId: String, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
+    {
+        let request = GalleriesRequest(creationId: creationId, page: pagingData?.page, perPage: pagingData?.pageSize, sort: sort)
+        let handler = GalleriesResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func newGallery(galleryData: NewGalleryData, completion: GalleryClosure?) -> RequestHandler
     {
         let request = NewGalleryRequest(name: galleryData.name, galleryDescription: galleryData.galleryDescription, openForAll: galleryData.openForAll, ownerId: galleryData.ownerId)
         let handler = NewGalleryResponseHandler(completion: completion)
-        requestSender.send(request, withResponseHandler: handler)
+        return requestSender.send(request, withResponseHandler: handler)
     }
 
-    func getGalleries(userId: String?, sort: SortOrder?, completion: GalleriesBatchClousure?)
+    func getGalleries(userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
     {
         let fetcher = GalleriesBatchFetcher(requestSender: requestSender)
-        fetcher.fetch(userId, sort: sort, completion: completion)
+        return fetcher.fetch(userId, sort: sort, completion: completion)
     }
 }

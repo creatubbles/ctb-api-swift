@@ -29,6 +29,7 @@ class GalleryMapper: Mappable
     var identifier: String?
     var name: String?
     var galleryDescription: String?
+    var openForAll: Bool?
     var createdAt: NSDate?
     var updatedAt: NSDate?
     var lastBubbledAt: NSDate?
@@ -38,25 +39,46 @@ class GalleryMapper: Mappable
     var commentsCount: Int?
     var shortUrl: String?
     var previewImageUrls: Array<String>?
+    var ownerRelationship: RelationshipMapper?
     
-    required init?(_ map: Map)
-    {
-        
-    }
+    var bannerOriginalUrl: String?
+    var bannerListViewUrl: String?
+    var bannerListViewRetinaUrl: String?
+    var bannerMatrixViewUrl: String?
+    var bannerMatrixViewRetinaUrl: String?
+    var bannerExploreMobileUrl: String?
+    
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
         identifier  <- map["id"]
         name <- map["attributes.name"]
         galleryDescription <- map["attributes.description"]
-        createdAt <- (map["attributes.created_at"], DateTransform())
-        updatedAt <- (map["attributes.updated_at"], DateTransform())
-        lastBubbledAt <- (map["attributes.last_bubbled_at"], DateTransform())
-        lastCommentedAt <- (map["attributes.last_commented_at"], DateTransform())
+        openForAll <- map["attributes.open_for_all"]
+        createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
+        updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
+        lastBubbledAt <- (map["attributes.last_bubbled_at"], APIClientDateTransform.sharedTransform)
+        lastCommentedAt <- (map["attributes.last_commented_at"], APIClientDateTransform.sharedTransform)
         commentsCount <- map["attributes.comments_count"]
         creationsCount <- map["attributes.creations_count"]
         bubblesCount <- map["attributes.bubbles_count"]
         shortUrl <- map["attributes.short_url"]
         previewImageUrls <- map["attributes.preview_image_urls"]
+        ownerRelationship <- map["relationships.owner.data"]
+        
+        bannerOriginalUrl <- map["attributes.banner.links.original"]
+        bannerListViewUrl <- map["attributes.banner.links.list_view"]
+        bannerListViewRetinaUrl <- map["attributes.banner.links.list_view_retina"]
+        bannerMatrixViewUrl <- map["banner.links.matrix_view"]
+        bannerMatrixViewRetinaUrl <- map["banner.links.matrix_view_retina"]
+        bannerExploreMobileUrl <- map["banner.links.explore_mobile"]
+        
+    }
+    
+    //MARK: Parsing
+    func parseOwnerRelationship() -> Relationship?
+    {
+        return MappingUtils.relationshipFromMapper(ownerRelationship)
     }
 }

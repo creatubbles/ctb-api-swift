@@ -23,11 +23,10 @@
 
 
 #import "CTAPIClient.h"
-#import "CTImageUploadJob.h"
 
-@interface CTAPIClient() <CreatubblesAPIClientDelegate>
+@interface CTAPIClient() <APIClientDelegate>
 @property (strong, nonatomic, readonly) NSHashTable *observers;
-@property (nonatomic, strong, readonly) CreatubblesAPIClient *client;
+@property (nonatomic, strong, readonly) APIClient *client;
 @end
 
 @implementation CTAPIClient
@@ -62,14 +61,9 @@
 
 - (void) setupClient
 {
-    CreatubblesAPIClientSettings *settings =[[CreatubblesAPIClientSettings alloc]
-                                             initWithAppId:@"APP_ID"
-                                              appSecret:@"APP_SECRET"
-                                               tokenUri:@"https://staging.creatubbles.com/api/v2/oauth/token"
-                                           authorizeUri:@"https://staging.creatubbles.com/api/v2/oauth/token"
-                                                baseUrl:@"https://staging.creatubbles.com"
-                                             apiVersion:@"v2" apiPrefix:@"api"];
-    _client = [[CreatubblesAPIClient alloc] initWithSettings:settings];
+    
+    APIClientSettings *settings = [[APIClientSettings alloc] initWithAppId:@"8d175e89d89a1946c21486b34fef79b7b85e4ec7af37668e2c35f1bce86cb59e" appSecret:@"b46f6125efa4e2cafb36342cd346eee206928ac7ec925e6db85e0e7998f9c557" backgroundSessionConfigurationIdentifier:BackgroundSessionUploadIdentifier];
+    _client = [[APIClient alloc] initWithSettings:settings];
     self.client.delegate = self;
 }
 #pragma mark - Observers handling
@@ -212,8 +206,19 @@
     [self.client _newCreation:creationData completion:completion];
 }
 
+#pragma mark - Background session
+- (void)setBackgroundCompletionHandler:(void (^)(void))backgroundCompletionHandler
+{
+    self.client.backgroundCompletionHandler = backgroundCompletionHandler;
+}
+
+- (void (^)(void))backgroundCompletionHandler
+{
+    return self.client.backgroundCompletionHandler;
+}
+
 #pragma mark - CreatubblesAPIClientDelegate
-- (void)creatubblesAPIClientImageUploadFailed:(CreatubblesAPIClient *)apiClient uploadSessionData:(CreationUploadSessionPublicData *)uploadSessionData error:(NSError *)error
+- (void)creatubblesAPIClientImageUploadFailed:(APIClient *)apiClient uploadSessionData:(CreationUploadSessionPublicData *)uploadSessionData error:(NSError *)error
 {
     for(id<CTAPIClientObserver> observer in self.observers)
     {
@@ -224,7 +229,7 @@
     }
 }
 
-- (void)creatubblesAPIClientImageUploadFinished:(CreatubblesAPIClient *)apiClient uploadSessionData:(CreationUploadSessionPublicData *)uploadSessionData
+- (void)creatubblesAPIClientImageUploadFinished:(APIClient *)apiClient uploadSessionData:(CreationUploadSessionPublicData *)uploadSessionData
 {
     for(id<CTAPIClientObserver> observer in self.observers)
     {
@@ -235,7 +240,7 @@
     }
 }
 
-- (void)creatubblesAPIClientImageUploadProcessChanged:(CreatubblesAPIClient *)apiClient uploadSessionData:(CreationUploadSessionPublicData *)uploadSessionData bytesUploaded:(NSInteger)bytesUploaded bytesExpectedToUpload:(NSInteger)bytesExpectedToUpload
+- (void)creatubblesAPIClientImageUploadProcessChanged:(APIClient *)apiClient uploadSessionData:(CreationUploadSessionPublicData *)uploadSessionData bytesUploaded:(NSInteger)bytesUploaded bytesExpectedToUpload:(NSInteger)bytesExpectedToUpload
 {
     for(id<CTAPIClientObserver> observer in self.observers)
     {
@@ -247,3 +252,4 @@
 }
 
 @end
+

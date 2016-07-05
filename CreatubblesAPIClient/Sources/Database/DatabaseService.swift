@@ -185,6 +185,39 @@ class DatabaseService: NSObject
         return finishedUploadsPublicData
     }
     
+    func removeUploadSession(withIdentifier identifier: String)
+    {
+        if let entity = realm.objectForPrimaryKey(CreationUploadSessionEntity.self, key: identifier)
+        {
+            do
+            {
+                try realm.write()
+                {
+                    realm.delete(entity)
+                }
+            }
+            catch let error
+            {
+                Logger.log.error("Error during removing upload session: \(error)")
+            }
+        }
+    }
+    
+    func removeAllUploadSessions()
+    {
+        do
+        {
+            try realm.write
+            {
+                realm.deleteAll()
+            }
+        }
+        catch let error
+        {
+            Logger.log.error("Error duting database clear: \(error)")
+        }
+    }
+    
     //MARK: - Transforms
     private func getUploadSessionEntityFromCreationUploadSession(creationUploadSession: CreationUploadSession) -> CreationUploadSessionEntity
     {
@@ -217,6 +250,7 @@ class DatabaseService: NSObject
         newCreationDataEntity.reflectionVideoUrl = newCreationData.reflectionVideoUrl
         newCreationDataEntity.galleryId = newCreationData.galleryId
         newCreationDataEntity.dataTypeRaw.value = newCreationData.dataType.rawValue
+        newCreationDataEntity.uploadExtensionRaw = newCreationData.uploadExtension.rawValue
         
         if let _ = newCreationData.creatorIds
         {
@@ -253,6 +287,17 @@ class DatabaseService: NSObject
         creationEntity.approved.value = creation.approved
         creationEntity.shortUrl = creation.shortUrl
         creationEntity.createdAtAge = creation.createdAtAge
+        
+        for (key, value) in creation.createdAtAgePerCreator
+        {
+            let createdAtAgePerCreatorDict = CreatedAtAgePerCreatorDict()
+            createdAtAgePerCreatorDict.key = key
+            createdAtAgePerCreatorDict.value = value
+            creationEntity.createdAtAgePerCreatorDict?.append(createdAtAgePerCreatorDict)
+        }
+        
+        creationEntity.reflectionText = creation.reflectionText
+        creationEntity.reflectionVideoUrl = creation.reflectionVideoUrl
 
         creationEntity.imageOriginalUrl = creation.imageOriginalUrl
         creationEntity.imageFullViewUrl = creation.imageFullViewUrl
@@ -263,6 +308,12 @@ class DatabaseService: NSObject
         creationEntity.imageGalleryMobileUrl = creation.imageGalleryMobileUrl
         creationEntity.imageExploreMobileUrl = creation.imageExploreMobileUrl
         creationEntity.imageShareUrl = creation.imageShareUrl
+        
+        creationEntity.video480Url = creation.video480Url
+        creationEntity.video720Url = creation.video720Url
+        
+        creationEntity.objFileUrl = creation.objFileUrl
+        creationEntity.playIFrameUrl = creation.playIFrameUrl
         
         return creationEntity
     }

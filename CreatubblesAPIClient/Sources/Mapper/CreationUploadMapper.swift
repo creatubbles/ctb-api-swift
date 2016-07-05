@@ -32,16 +32,8 @@ class CreationUploadMapper: NSObject, Mappable
     var contentType: String?
     var pingUrl: String?
     var completedAt: NSDate?
-    
-    override init()
-    {
-        //Ignore
-    }
-    
-    required init?(_ map: Map)
-    {
-        //Ignore
-    }
+        
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
@@ -49,6 +41,6 @@ class CreationUploadMapper: NSObject, Mappable
         uploadUrl <- map["attributes.url"]
         pingUrl <- map["attributes.ping_url"]
         contentType <- map["attributes.content_type"]
-        completedAt <- (map["attributes.completed_at"], DateTransform())
+        completedAt <- (map["attributes.completed_at"], APIClientDateTransform.sharedTransform)
     }
 }

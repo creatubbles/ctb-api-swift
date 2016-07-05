@@ -31,4 +31,10 @@ class ResponseHandler: NSObject
     {
         
     }
+    
+    func executeOnMainQueue(closure: () -> ()) {
+        dispatch_async(dispatch_get_main_queue()) { 
+            closure()
+        }
+    }
 }

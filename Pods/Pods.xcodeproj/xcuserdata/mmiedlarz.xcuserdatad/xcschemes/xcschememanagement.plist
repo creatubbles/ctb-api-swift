@@ -48,6 +48,8 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>XCGLogger.xcscheme</key>
 		<dict>
@@ -58,6 +60,8 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -68,6 +72,11 @@
 			<true/>
 		</dict>
 		<key>1AE4B9E048A0E983F16913493BB93BAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1D1E9FBAC5C55B4733321B15657E86A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,6 +96,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>558EA67F7575DCAC1695C146500A1973</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7A6B39D1E73EEB1755E4D3DBBF878EDA</key>
 		<dict>
 			<key>primary</key>
@@ -102,17 +116,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C5DB5104FED3C10F78978AFC810982B9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>C8F54543305BD95F34FAB796C9CAAFCA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E255F7445F6839359D09551842F6EEB1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF61C7C740C1B196A3B33F37B77DBC68</key>
 		<dict>
 			<key>primary</key>
 			<true/>

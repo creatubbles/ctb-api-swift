@@ -25,7 +25,7 @@
 import UIKit
 
 @objc
-public class Creation: NSObject
+public class Creation: NSObject, Identifiable
 {
     public let identifier: String
     public let name: String
@@ -44,6 +44,9 @@ public class Creation: NSObject
     public let imageExploreMobileUrl: String?
     public let imageShareUrl: String?
     
+    public let video480Url: String?
+    public let video720Url: String?
+    
     public let bubblesCount: Int
     public let commentsCount: Int
     public let viewsCount: Int
@@ -52,11 +55,31 @@ public class Creation: NSObject
     public let lastCommentedAt: NSDate?
     public let lastSubmittedAt: NSDate?
 
+    public let approvalStatus: ApprovalStatus
     public let approved: Bool
     public let shortUrl: String
     public let createdAtAge: String?
- 
-    init(mapper: CreationMapper)
+    public let createdAtAgePerCreator: [String:String]
+    
+    public let reflectionText: String?
+    public let reflectionVideoUrl: String?
+    
+    public let objFileUrl: String?
+    public let playIFrameUrl: String?
+
+    //MARK: - Relationships
+    public let owner: User?
+    public let creators: Array<User>?
+
+    public let userRelationship: Relationship?
+    public let creatorRelationships: Array<Relationship>?
+    
+    //MARK: - Metadata
+    public let isBubbled: Bool
+    public let abilities: Array<Ability>
+    
+    
+    init(mapper: CreationMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         name = mapper.name!
@@ -72,6 +95,10 @@ public class Creation: NSObject
         approved = mapper.approved!
         shortUrl = mapper.shortUrl!
         createdAtAge = mapper.createdAtAge
+        createdAtAgePerCreator = mapper.createdAtAgePerCreator
+        
+        reflectionText = mapper.reflectionText
+        reflectionVideoUrl = mapper.reflectionVideoUrl
         
         imageOriginalUrl = mapper.imageOriginalUrl
         imageFullViewUrl = mapper.imageFullViewUrl
@@ -82,6 +109,34 @@ public class Creation: NSObject
         imageGalleryMobileUrl = mapper.imageGalleryMobileUrl
         imageExploreMobileUrl = mapper.imageExploreMobileUrl
         imageShareUrl = mapper.imageShareUrl
+        
+        video480Url = mapper.video480Url
+        video720Url = mapper.video720Url
+
+        approvalStatus = mapper.parseApprovalStatus()
+        userRelationship = mapper.parseUserRelationship()
+        creatorRelationships = mapper.parseCreatorRelationships()
+        
+        objFileUrl = mapper.objFileUrl
+        playIFrameUrl = mapper.playIFrameUrl
+
+        owner = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)
+        
+        isBubbled = metadata?.bubbledCreationIdentifiers.contains(mapper.identifier!) ?? false
+        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
+        
+        if  let dataMapper = dataMapper,
+            let relationships = creatorRelationships
+        {
+            let creators = relationships.map( { dataMapper.objectWithIdentifier($0.identifier, type: User.self) })
+            self.creators = creators.flatMap({ $0 })
+        }
+        else
+        {
+            self.creators = nil
+        }
+        
+        
     }
     
     init(creationEntity: CreationEntity)
@@ -101,6 +156,13 @@ public class Creation: NSObject
         shortUrl = creationEntity.shortUrl!
         createdAtAge = creationEntity.createdAtAge
         
+        var createdAtAgePerCreatorTemp = [String: String]()
+        creationEntity.createdAtAgePerCreatorDict?.forEach({ createdAtAgePerCreatorTemp[$0.key!] = $0.value})
+        createdAtAgePerCreator = createdAtAgePerCreatorTemp
+        
+        reflectionText = creationEntity.reflectionText
+        reflectionVideoUrl = creationEntity.reflectionVideoUrl
+        
         imageOriginalUrl = creationEntity.imageOriginalUrl
         imageFullViewUrl = creationEntity.imageFullViewUrl
         imageListViewUrl = creationEntity.imageListViewUrl
@@ -110,5 +172,20 @@ public class Creation: NSObject
         imageGalleryMobileUrl = creationEntity.imageGalleryMobileUrl
         imageExploreMobileUrl = creationEntity.imageExploreMobileUrl
         imageShareUrl = creationEntity.imageShareUrl
+        
+        video480Url = creationEntity.video480Url
+        video720Url = creationEntity.video720Url
+        
+        objFileUrl = creationEntity.objFileUrl
+        playIFrameUrl = creationEntity.playIFrameUrl
+
+        //TODO: Do we need relationships here?
+        owner = nil
+        creators = nil
+        userRelationship = nil
+        creatorRelationships = nil
+        isBubbled = false
+        abilities = []
+        approvalStatus = .Unknown
     }
 }

@@ -29,6 +29,7 @@ public class PagingInfo: NSObject
 {
     public let totalPages: Int
     public let totalCount: Int
+
     
     init(totalPages: Int, totalCount: Int)
     {

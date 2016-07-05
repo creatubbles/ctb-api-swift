@@ -36,16 +36,23 @@ class NewCreationDataEntity: Object
     dynamic var reflectionText: String?
     dynamic var reflectionVideoUrl: String?
     dynamic var galleryId: String?
+    dynamic var uploadExtensionRaw: String?
     var creatorIds = List<CreatorIdString>()
     var creationYear = RealmOptional<Int>()
     var creationMonth = RealmOptional<Int>()
     
     var dataTypeRaw = RealmOptional<Int>()
+    
     var dataType: CreationDataType
     {
         get
         {
             return CreationDataType(rawValue: dataTypeRaw.value!)!
         }
+    }
+    
+    var uploadExtension: UploadExtension
+    {
+        return UploadExtension(rawValue: uploadExtensionRaw!)!
     }
 }

@@ -42,6 +42,9 @@ class CreationMapper: Mappable
     var imageGalleryMobileUrl: String?
     var imageExploreMobileUrl: String?
     var imageShareUrl: String?
+    
+    var video480Url: String?
+    var video720Url: String?
 
     var bubblesCount: Int?
     var commentsCount: Int?
@@ -52,20 +55,28 @@ class CreationMapper: Mappable
     var lastSubmittedAt: NSDate?
     
     var approved: Bool?
+    var approvalStatus: String?
     var shortUrl: String?
     var createdAtAge: String?
+    var createdAtAgePerCreator: [String:String] = [:]
+
+    var userRelationship: RelationshipMapper?
+    var creatorRelationships: Array<RelationshipMapper>?
     
-    required init?(_ map: Map)
-    {
-        
-    }
+    var reflectionText: String?
+    var reflectionVideoUrl: String?
+    
+    var objFileUrl: String?
+    var playIFrameUrl: String?
+
+    required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
         identifier  <- map["id"]
         name <- map["attributes.name"]
-        createdAt <- (map["attributes.created_at"], DateTransform())
-        updatedAt <- (map["attributes.updated_at"], DateTransform())
+        createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
+        updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
         
         imageStatus <- map["attributes.image_status"]
         
@@ -79,16 +90,60 @@ class CreationMapper: Mappable
         imageExploreMobileUrl <- map["attributes.image.links.explore_mobile"]
         imageShareUrl <- map["attributes.image.links.share"]
         
+        video480Url <- map["attributes.video_480_url"]
+        video720Url <- map["attributes.video_720_url"]
+        
         bubblesCount <- map["attributes.bubbles_count"]
         commentsCount <- map["attributes.comments_count"]
         viewsCount <- map["attributes.views_count"]
         
-        lastBubbledAt <- (map["attributes.last_bubbled_at"], DateTransform())
-        lastCommentedAt <- (map["attributes.last_commented_at"], DateTransform())
-        lastSubmittedAt <- (map["attributes.last_submitted_at"], DateTransform())
+        lastBubbledAt <- (map["attributes.last_bubbled_at"], APIClientDateTransform.sharedTransform)
+        lastCommentedAt <- (map["attributes.last_commented_at"], APIClientDateTransform.sharedTransform)
+        lastSubmittedAt <- (map["attributes.last_submitted_at"], APIClientDateTransform.sharedTransform)
         
         approved <- map["attributes.approved"]
+        approvalStatus <- map["attributes.approval_status"]
         shortUrl <- map["attributes.short_url"]
         createdAtAge <- map["attributes.created_at_age"]
+        createdAtAgePerCreator <- map["attributes.created_at_age_per_creator"]
+
+        userRelationship <- map["relationships.user.data"]
+        creatorRelationships <- map["relationships.creators.data"]
+        
+        reflectionText <- map["attributes.reflection_text"]
+        reflectionVideoUrl <- map["attributes.reflection_video_url"]
+        
+        objFileUrl <- map["attributes.obj_file_url"]
+        playIFrameUrl <- map["attributes.play_iframe_url"]
     }
+    
+    //MARK: Parsing
+    func parseCreatorRelationships() -> Array<Relationship>?
+    {
+        if let relationships = creatorRelationships
+        {
+            return relationships.map({ Relationship(mapper: $0 )})
+        }
+        return nil
+    }
+
+    func parseUserRelationship() -> Relationship?
+    {
+        return MappingUtils.relationshipFromMapper(userRelationship)        
+    }
+    
+    func parseApprovalStatus() -> ApprovalStatus
+    {
+        guard let approvalStatus = approvalStatus
+        else { return .Unknown }
+        
+        switch approvalStatus
+        {
+            case "approved": return .Approved
+            case "unapproved": return .Unapproved
+            case "rejected" :return .Rejected
+            default: return .Unknown
+        }
+    }
+
 }

@@ -35,7 +35,7 @@ class UsersBatchFetcher: BatchFetcher
         return CreatorsAndManagersRequest(userId: userId, page: page, perPage: perPage, scope: scope)
     }
     
-    private func responseHandler(completion: UsersBatchClousure?) -> CreatorsAndManagersResponseHandler
+    private func responseHandler(completion: UsersBatchClosure?) -> CreatorsAndManagersResponseHandler
     {
         return CreatorsAndManagersResponseHandler()
         {
@@ -66,10 +66,10 @@ class UsersBatchFetcher: BatchFetcher
         }
     }
     
-    func fetch(userId: String?, scope:CreatorsAndManagersScopeElement?, completion: UsersBatchClousure?)
+    func fetch(userId: String?, scope:CreatorsAndManagersScopeElement?, completion: UsersBatchClosure?) -> RequestHandler
     {
         self.userId = userId
         self.scope = scope
-        requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
+        return requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
     }
 }

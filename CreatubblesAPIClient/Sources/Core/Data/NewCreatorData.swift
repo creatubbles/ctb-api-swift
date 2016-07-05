@@ -28,20 +28,31 @@ import UIKit
 public class NewCreatorData: NSObject
 {
     public let name: String
-    public let displayName: String
-    public let birthYear: Int
-    public let birthMonth: Int
-    public let countryCode: String
-    public let gender: Gender
+    public let displayName: String?
+    public let birthYear: Int?
+    public let birthMonth: Int?
+    public let countryCode: String?
+    public let gender: Gender?
     
-    public init(name: String, displayName: String, birthYear: Int, birthMonth: Int, countryCode: String, gender: Gender)
+    public init(name: String, displayName: String? = nil, birthYear: Int? = nil, birthMonth: Int? = nil,
+                countryCode: String? = nil, gender: Gender? = nil)
     {
         self.name = name
         self.displayName = displayName
         self.birthMonth = birthMonth
         self.birthYear = birthYear
         self.countryCode = countryCode
-        self.gender = gender        
+        self.gender = gender
     }
     
+    //ObjC Compability
+    public init(name: String, gender: Gender, birthYear: Int, birthMonth: Int, displayName: String? = nil, countryCode: String? = nil)
+    {
+        self.name = name
+        self.displayName = displayName
+        self.birthMonth = birthMonth
+        self.birthYear = birthYear
+        self.countryCode = countryCode
+        self.gender = gender
+    }    
 }
