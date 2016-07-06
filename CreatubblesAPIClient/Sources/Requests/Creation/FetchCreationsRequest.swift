@@ -66,7 +66,7 @@ class FetchCreationsRequest: Request
         self.userId = userId
         self.sort = sort
         self.keyword = keyword
-        self.onlyPublic = true
+        self.onlyPublic = onlyPublic
         self.creationId = nil
         self.recommendedUserId = nil
         self.recommendedCreationId = nil
@@ -140,7 +140,7 @@ class FetchCreationsRequest: Request
         }
         if onlyPublic
         {
-            params["only_public"] = "true"
+            params["only_public"] = onlyPublic
         }
         if let keyword = keyword
         {
