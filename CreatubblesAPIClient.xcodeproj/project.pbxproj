@@ -191,6 +191,8 @@
 		18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9EDAE1CAD008600B85DD6 /* RequestHandler.swift */; };
 		18F9EDB11CAD051400B85DD6 /* TestRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9EDB01CAD051400B85DD6 /* TestRequestHandler.swift */; };
 		18FD15311C84315200A353C1 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD15301C84315200A353C1 /* APIClientError.swift */; };
+		219121941D2D1F510039FA94 /* MyConnectionsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */; };
+		219121961D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */; };
 		219772201D186A8800293859 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2197721F1D186A8800293859 /* TestConfiguration.swift */; };
 		21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F661C81E6A2009E95D1 /* PagingInfo.swift */; };
 		21A79F6F1C81E6C5009E95D1 /* BatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */; };
@@ -200,7 +202,6 @@
 		21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F751C8494C4009E95D1 /* CreationUploadSessionPublicData.swift */; };
 		21B9334A1D2AEC2900FCD248 /* MyConnectionsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B933491D2AEC2900FCD248 /* MyConnectionsRequest.swift */; };
 		21B9334C1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9334B1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift */; };
-		21B9334E1D2B111A00FCD248 /* MyConnectionRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9334D1D2B111A00FCD248 /* MyConnectionRequestSpec.swift */; };
 		21BF68D81C91CDF600BBAB11 /* test.zip in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D61C91CDF600BBAB11 /* test.zip */; };
 		21BF68D91C91CDF600BBAB11 /* testVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */; };
 		21C349931C904B38002972EC /* NewCreationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C349921C904B38002972EC /* NewCreationData.swift */; };
@@ -405,6 +406,8 @@
 		18F9EDAE1CAD008600B85DD6 /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		18F9EDB01CAD051400B85DD6 /* TestRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRequestHandler.swift; sourceTree = "<group>"; };
 		18FD15301C84315200A353C1 /* APIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
+		219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsRequestSpec.swift; sourceTree = "<group>"; };
+		219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		2197721F1D186A8800293859 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		21A79F661C81E6A2009E95D1 /* PagingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfo.swift; sourceTree = "<group>"; };
 		21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchFetcher.swift; sourceTree = "<group>"; };
@@ -414,7 +417,6 @@
 		21A79F751C8494C4009E95D1 /* CreationUploadSessionPublicData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadSessionPublicData.swift; sourceTree = "<group>"; };
 		21B933491D2AEC2900FCD248 /* MyConnectionsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsRequest.swift; sourceTree = "<group>"; };
 		21B9334B1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsResponseHandler.swift; sourceTree = "<group>"; };
-		21B9334D1D2B111A00FCD248 /* MyConnectionRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionRequestSpec.swift; sourceTree = "<group>"; };
 		21BF68D61C91CDF600BBAB11 /* test.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = test.zip; sourceTree = "<group>"; };
 		21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = testVideo.mp4; sourceTree = "<group>"; };
 		21C349921C904B38002972EC /* NewCreationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationData.swift; sourceTree = "<group>"; };
@@ -797,7 +799,8 @@
 				18F6E83C1D02172600AAC5FB /* NewCreatorResponseHandlerSpec.swift */,
 				182FB8B31D128F65004495CB /* EditProfileRequestSpec.swift */,
 				182FB8B51D1293AE004495CB /* EditProfileResponseHandlerSpec.swift */,
-				21B9334D1D2B111A00FCD248 /* MyConnectionRequestSpec.swift */,
+				219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */,
+				219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1348,6 +1351,7 @@
 				18F6E8481D0218A100AAC5FB /* ContentResponseHandlerSpec.swift in Sources */,
 				18F6E8151D020F3D00AAC5FB /* BubbleResponseHandlerSpec.swift in Sources */,
 				18290AF71D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift in Sources */,
+				219121961D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift in Sources */,
 				18F6E82D1D0215A400AAC5FB /* NewGalleryResponseHandlerSpec.swift in Sources */,
 				182FB8B61D1293AE004495CB /* EditProfileResponseHandlerSpec.swift in Sources */,
 				18290AF11D0704F0000EA216 /* NotificationReadRequestSpec.swift in Sources */,
@@ -1355,13 +1359,13 @@
 				18F6E8311D0215C500AAC5FB /* GallerySubmissionResponseHandlerSpec.swift in Sources */,
 				18779DC21C68E2D9000BFB57 /* TestConfigurationTemplate.swift in Sources */,
 				18F6E8211D02141200AAC5FB /* NewCreationUploadResponseHandlerSpec.swift in Sources */,
+				219121941D2D1F510039FA94 /* MyConnectionsRequestSpec.swift in Sources */,
 				18EFFF701C772A4E00BE0B70 /* APIClientSpec.swift in Sources */,
 				187901FE1C6C793F008F5302 /* TestResponses.swift in Sources */,
 				182FB8B41D128F65004495CB /* EditProfileRequestSpec.swift in Sources */,
 				18467F661D02EA59005CE5DD /* UIColorHexSpec.swift in Sources */,
 				18F6E8191D02114400AAC5FB /* CreationResponseHandlerSpec.swift in Sources */,
 				18F6E8371D02170500AAC5FB /* CreatorsAndManagersRequestSpec.swift in Sources */,
-				21B9334E1D2B111A00FCD248 /* MyConnectionRequestSpec.swift in Sources */,
 				18F6E81F1D0213B000AAC5FB /* NewCreationUploadRequestSpec.swift in Sources */,
 				18F6E82B1D02159800AAC5FB /* NewGalleryRequestSpec.swift in Sources */,
 				18467F5D1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift in Sources */,
