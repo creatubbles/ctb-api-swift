@@ -431,6 +431,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return contentDAO.getMyConnectionsContent(pagingData, completion: completion)
     }
     
+    public func getContentsByAUser(userId: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    {
+        return contentDAO.getContentsByAUser(userId, pagingData: pagingData, completion: completion)
+    }
+    
     //MARK: - CustomStyle
     public func fetchCustomStyleForUserWithIdentifier(identifier: String, completion: CustomStyleClosure?) -> RequestHandler
     {
