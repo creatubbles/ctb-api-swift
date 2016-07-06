@@ -38,7 +38,7 @@ class ContentDAO: NSObject
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getMyConnectionsContetn(pagingData: PagingData?,  completion: ContentEntryClosure?) -> RequestHandler
+    func getMyConnectionsContent(pagingData: PagingData?,  completion: ContentEntryClosure?) -> RequestHandler
     {
         let request = ContentRequest(type: .Connected, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ContentResponseHandler(completion: completion)
