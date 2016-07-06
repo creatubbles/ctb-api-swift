@@ -44,6 +44,12 @@ class ContentRequestSpec: QuickSpec
                 let request = ContentRequest(type: .Connected, page: nil, perPage: nil)
                 expect(request.endpoint).to(equal("contents/connected"))
             }
+            it("Should have a proper endpoint when fetching Contents By A User")
+            {
+                let testId = "testId"
+                let request = ContentRequest(type: .ContentsByAUser, page: nil, perPage: nil, userId: testId)
+                expect(request.endpoint).to(equal("users/testId/contents"))
+            }
         }
     }
 }
