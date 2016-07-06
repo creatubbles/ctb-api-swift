@@ -198,6 +198,9 @@
 		21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6D1C81E6C5009E95D1 /* GalleriesBatchFetcher.swift */; };
 		21A79F721C81E6C5009E95D1 /* UsersBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6E1C81E6C5009E95D1 /* UsersBatchFetcher.swift */; };
 		21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F751C8494C4009E95D1 /* CreationUploadSessionPublicData.swift */; };
+		21B9334A1D2AEC2900FCD248 /* MyConnectionsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B933491D2AEC2900FCD248 /* MyConnectionsRequest.swift */; };
+		21B9334C1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9334B1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift */; };
+		21B9334E1D2B111A00FCD248 /* MyConnectionRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9334D1D2B111A00FCD248 /* MyConnectionRequestSpec.swift */; };
 		21BF68D81C91CDF600BBAB11 /* test.zip in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D61C91CDF600BBAB11 /* test.zip */; };
 		21BF68D91C91CDF600BBAB11 /* testVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */; };
 		21C349931C904B38002972EC /* NewCreationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C349921C904B38002972EC /* NewCreationData.swift */; };
@@ -409,6 +412,9 @@
 		21A79F6D1C81E6C5009E95D1 /* GalleriesBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleriesBatchFetcher.swift; sourceTree = "<group>"; };
 		21A79F6E1C81E6C5009E95D1 /* UsersBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersBatchFetcher.swift; sourceTree = "<group>"; };
 		21A79F751C8494C4009E95D1 /* CreationUploadSessionPublicData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadSessionPublicData.swift; sourceTree = "<group>"; };
+		21B933491D2AEC2900FCD248 /* MyConnectionsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsRequest.swift; sourceTree = "<group>"; };
+		21B9334B1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsResponseHandler.swift; sourceTree = "<group>"; };
+		21B9334D1D2B111A00FCD248 /* MyConnectionRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionRequestSpec.swift; sourceTree = "<group>"; };
 		21BF68D61C91CDF600BBAB11 /* test.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = test.zip; sourceTree = "<group>"; };
 		21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = testVideo.mp4; sourceTree = "<group>"; };
 		21C349921C904B38002972EC /* NewCreationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationData.swift; sourceTree = "<group>"; };
@@ -791,6 +797,7 @@
 				18F6E83C1D02172600AAC5FB /* NewCreatorResponseHandlerSpec.swift */,
 				182FB8B31D128F65004495CB /* EditProfileRequestSpec.swift */,
 				182FB8B51D1293AE004495CB /* EditProfileResponseHandlerSpec.swift */,
+				21B9334D1D2B111A00FCD248 /* MyConnectionRequestSpec.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -919,6 +926,8 @@
 				18F6E8811D021B6500AAC5FB /* ProfileResponseHandler.swift */,
 				1895D36A1D11F7E3009B7271 /* EditProfileRequest.swift */,
 				182FB8B71D1293D7004495CB /* EditProfileResponseHandler.swift */,
+				21B933491D2AEC2900FCD248 /* MyConnectionsRequest.swift */,
+				21B9334B1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1209,11 +1218,13 @@
 				181E76CF1CC5351300A1546A /* Bubble.swift in Sources */,
 				18F6E8951D021B6500AAC5FB /* NewCreationPingRequest.swift in Sources */,
 				181E76E41CC5353600A1546A /* BubbleDAO.swift in Sources */,
+				21B9334A1D2AEC2900FCD248 /* MyConnectionsRequest.swift in Sources */,
 				21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */,
 				18F6E8971D021B6500AAC5FB /* NewCreationRequest.swift in Sources */,
 				18F6E88C1D021B6500AAC5FB /* NewCommentRequest.swift in Sources */,
 				21C349931C904B38002972EC /* NewCreationData.swift in Sources */,
 				183635421CB5013900ED778A /* DataInclude.swift in Sources */,
+				21B9334C1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift in Sources */,
 				18290AF91D070A17000EA216 /* NotificationDAO.swift in Sources */,
 				18E4354A1D0425FA00B728C6 /* NotificationsFetchRequest.swift in Sources */,
 				08BB575F1D253ED700E2E297 /* SessionData.swift in Sources */,
@@ -1350,6 +1361,7 @@
 				18467F661D02EA59005CE5DD /* UIColorHexSpec.swift in Sources */,
 				18F6E8191D02114400AAC5FB /* CreationResponseHandlerSpec.swift in Sources */,
 				18F6E8371D02170500AAC5FB /* CreatorsAndManagersRequestSpec.swift in Sources */,
+				21B9334E1D2B111A00FCD248 /* MyConnectionRequestSpec.swift in Sources */,
 				18F6E81F1D0213B000AAC5FB /* NewCreationUploadRequestSpec.swift in Sources */,
 				18F6E82B1D02159800AAC5FB /* NewGalleryRequestSpec.swift in Sources */,
 				18467F5D1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift in Sources */,
