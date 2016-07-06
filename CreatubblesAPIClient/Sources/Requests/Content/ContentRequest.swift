@@ -14,6 +14,7 @@ enum ContentType: String
     case Trending = "trending"
     case BubbledContents = "bubbled_contents"
     case Connected = "connected"
+    case ContentsByAUser = "contents"
 }
 
 class ContentRequest: Request
@@ -26,6 +27,11 @@ class ContentRequest: Request
             let identifier = userId
         {
             return "users/\(identifier)/bubbled_contents"
+        }
+        else if type == .ContentsByAUser,
+            let identifier = userId
+        {
+            return "users/\(identifier)/contents"
         }
         
         return "contents/"+type.rawValue

@@ -399,8 +399,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        
-                        client.getCreations(nil, userId: identifier, keyword: nil, sortOrder: nil, completion:
+                        client.getCreations(nil, userId: identifier, keyword: nil, sortOrder: nil, onlyPublic: false, completion:
                         {
                             (creations, error) -> (Void) in
                             expect(creations).notTo(beNil())
