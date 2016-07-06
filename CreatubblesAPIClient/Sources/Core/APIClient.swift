@@ -428,7 +428,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     
     public func getMyConnectionsContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
-        return contentDAO.getMyConnectionsContetn(pagingData, completion: completion)
+        return contentDAO.getMyConnectionsContent(pagingData, completion: completion)
     }
     
     //MARK: - CustomStyle
