@@ -31,7 +31,7 @@ class CreationsBatchFetcher: BatchFetcher
 
     private var sort: SortOrder?
     private var keyword: String?
-    private var onlyPublic: Bool?
+    private var onlyPublic: Bool = true
     
     private var allCreations = Array<Creation>()
     
@@ -71,7 +71,7 @@ class CreationsBatchFetcher: BatchFetcher
         }
     }
     
-    func fetch(userId: String?, galleryId: String?, keyword: String?, sort:SortOrder?, onlyPublic: Bool?, completion: CreationsBatchClosure?) -> RequestHandler
+    func fetch(userId: String?, galleryId: String?, keyword: String?, sort:SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
     {
         self.userId = userId
         self.galleryId = galleryId
