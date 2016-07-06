@@ -80,7 +80,7 @@ class FetchCreationsRequest: Request
         self.userId = nil
         self.sort = nil
         self.keyword = nil
-        self.onlyPublic = true
+        self.onlyPublic = false // this is the case when a single creation is returned, so onlyPublic value is irrelevant
         self.creationId = creationId
         self.recommendedUserId = nil
         self.recommendedCreationId = nil
