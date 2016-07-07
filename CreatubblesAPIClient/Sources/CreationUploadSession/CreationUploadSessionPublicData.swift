@@ -14,11 +14,13 @@ public class CreationUploadSessionPublicData: NSObject
     public let identifier: String
     public let creationData: NewCreationData
     public let creation: Creation?
+    public let error: ErrorType?
     
     init(creationUploadSession: CreationUploadSession)
     {
-        self.identifier = creationUploadSession.localIdentifier
+        identifier = creationUploadSession.localIdentifier
         creation = creationUploadSession.creation
         creationData = creationUploadSession.creationData
+        error = creationUploadSession.error
     }
 }
