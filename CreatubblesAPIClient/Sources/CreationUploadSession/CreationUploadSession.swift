@@ -54,6 +54,7 @@ class CreationUploadSession: NSObject, Cancelable
     private (set) var isActive: Bool
     private (set) var creation: Creation?               //Filled during upload flow
     private (set) var creationUpload: CreationUpload?    //Filled during upload flow
+    private (set) var error: ErrorType?
     
     private var isAlreadyFinished: Bool { return state == .ServerNotified }
     private var currentRequest: RequestHandler?
@@ -115,6 +116,7 @@ class CreationUploadSession: NSObject, Cancelable
             return
         }
         
+        self.error = nil        //MM: Should we clear error when we restart session? 
         self.isActive = true
         saveImageOnDisk(nil) { [weak self](error) -> Void in
             if let weakSelf = self {
@@ -126,16 +128,20 @@ class CreationUploadSession: NSObject, Cancelable
                         
                         weakSelf.uploadImage(error, completion: { (error) -> Void in
                             weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
-                            
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
                                 
-                                print("Upload flow finished with error: \(error)")
-                                
+                                weakSelf.error = error
                                 weakSelf.isActive = false
                                 weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                                
                                 if let error = error
                                 {
+                                    Logger.log.error("Upload \(weakSelf.localIdentifier) finished with error: \(error)")
                                     weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
+                                }
+                                else
+                                {
+                                    Logger.log.debug("Upload \(weakSelf.localIdentifier) finished successfully")
                                 }
                                 
                                 completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
