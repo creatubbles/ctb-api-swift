@@ -339,6 +339,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         creationUploadService.removeAllUploadSessions()
     }
     
+    public func startUploadSession(sessionId: String)
+    {
+        creationUploadService.startUploadSession(sessionId)
+    }
+    
     //MARK: - Creation flow
     public func newCreation(creationData: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData
     {
