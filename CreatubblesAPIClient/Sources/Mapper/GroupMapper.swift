@@ -29,14 +29,21 @@ class GroupMapper: Mappable
 {
     var identifier: String?
     var name: String?
-    var taggingsCount: Int?
+    var slug: String?
+    var creatorsCount: Int?
+    var avatarUrl: String?
+    var avatarCreationRelationship: RelationshipMapper?
     
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
         identifier  <- map["id"]
-        name <- map["name"]
-        taggingsCount <- map["taggings_count"]
+        name <- map["attributes.name"]
+        
+        slug <- map["attributes.slug"]
+        creatorsCount <- map["attributes.creators_count"]
+        avatarUrl <- map["attributes.avatar_url"]
+        avatarCreationRelationship <- map["relationships.avatar_creation.data"]
     }
 }
