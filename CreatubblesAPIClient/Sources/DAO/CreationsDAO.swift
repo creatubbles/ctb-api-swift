@@ -58,17 +58,17 @@ class CreationsDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCreations(galleryId: String?, userId: String?, keyword: String? ,pagingData: PagingData?, sortOrder: SortOrder?,completion: CreationsClosure?) -> RequestHandler
+    func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsClosure?) -> RequestHandler
     {
-        let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, galleryId: galleryId, userId: userId, sort: sortOrder, keyword: keyword)
+        let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, galleryId: galleryId, userId: userId, sort: sortOrder, keyword: keyword, onlyPublic: onlyPublic)
         let handler = FetchCreationsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, completion: CreationsBatchClosure?) -> RequestHandler
+    func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
     {
         let fetcher = CreationsBatchFetcher(requestSender: requestSender)
-        return fetcher.fetch(userId, galleryId: galleryId, keyword: keyword, sort: sortOrder, completion: completion)
+        return fetcher.fetch(userId, galleryId: galleryId, keyword: keyword, sort: sortOrder, onlyPublic: onlyPublic, completion: completion)
     }
     
     func editCreation(creationId: String, data: EditCreationData, completion: ErrorClosure?) -> RequestHandler

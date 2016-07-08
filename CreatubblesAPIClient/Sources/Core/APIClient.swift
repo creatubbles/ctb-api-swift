@@ -167,6 +167,18 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         }
     }
     
+    public func invalidateSession() {
+        requestSender.invalidateTokens()
+    }
+    
+    public func currentSessionData() -> SessionData {
+        return requestSender.currentSessionData()
+    }
+    
+    public func setSessionData(sessionData: SessionData) {
+        requestSender.setSessionData(sessionData)
+    }
+    
     public func logout()
     {
         requestSender.logout()
@@ -229,6 +241,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.editProfile(identifier, data: data, completion: completion)
     }
     
+    public func getMyConnections(pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    {
+        return userDAO.getMyConnections(pagingData, completion: completion)
+    }
+    
     //MARK: - Gallery managment
     public func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler
     {
@@ -266,14 +283,14 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return creationsDAO.getCreation(creationId, completion: completion)
     }
     
-    public func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, completion: CreationsClosure?) -> RequestHandler
+    public func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsClosure?) -> RequestHandler
     {
-        return creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, completion: completion)
+        return creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, onlyPublic: onlyPublic, completion: completion)
     }
     
-    public func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, completion: CreationsBatchClosure?) -> RequestHandler
+    public func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
     {
-        return creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, completion: completion)
+        return creationsDAO.getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic, completion: completion)
     }
     
     public func getRecomendedCreationsByUser(userId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
@@ -320,6 +337,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func removeAllUploadSessions()
     {
         creationUploadService.removeAllUploadSessions()
+    }
+    
+    public func startUploadSession(sessionId: String)
+    {
+        creationUploadService.startUploadSession(sessionId)
     }
     
     //MARK: - Creation flow
@@ -407,6 +429,16 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func getBubbledContent(userId: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
         return contentDAO.getUserBubbledContent(pagingData, completion: completion, userId: userId)
+    }
+    
+    public func getMyConnectionsContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    {
+        return contentDAO.getMyConnectionsContent(pagingData, completion: completion)
+    }
+    
+    public func getContentsByAUser(userId: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    {
+        return contentDAO.getContentsByAUser(userId, pagingData: pagingData, completion: completion)
     }
     
     //MARK: - CustomStyle

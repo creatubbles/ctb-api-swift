@@ -76,22 +76,45 @@ class CreationUploadService: CreationUploadSessionDelegate
         uploadSessions.forEach({ $0.start(completion) })                
     }
     
+    func startUploadSession(sessionId: String)
+    {
+        guard let session = uploadSessions.filter( {$0.localIdentifier == sessionId }).first
+        else
+        {
+            Logger.log.warning("Cannot find session with identifier \(sessionId) to start")
+            return
+        }
+        
+        session.delegate = self
+        session.start(nil)
+    }
+    
     func removeUploadSession(sessionId: String)
     {
-        if  let session = uploadSessions.filter( {$0.localIdentifier == sessionId }).first,
-            let index = uploadSessions.indexOf(session)
+        guard let session = uploadSessions.filter( {$0.localIdentifier == sessionId }).first,
+              let index = uploadSessions.indexOf(session)
+        else
         {
-            session.delegate = nil
-            uploadSessions.removeAtIndex(index)
-            databaseDAO.removeUploadSession(withIdentifier: sessionId)
+            Logger.log.warning("Cannot find session with identifier \(sessionId) to remove")
+            return
         }
+        
+        session.delegate = nil
+        session.cancel()
+        uploadSessions.removeAtIndex(index)
+        databaseDAO.removeUploadSession(withIdentifier: sessionId)
+        delegate?.creationUploadService(self, uploadFailed: session, withError: APIClientError.UploadCancelled)
     }
     
     func removeAllUploadSessions()
     {
-        uploadSessions.forEach({ $0.delegate = self })
+        uploadSessions.forEach()
+        {
+            $0.delegate = nil
+            $0.cancel()
+        }
         databaseDAO.removeAllUploadSessions()
-        uploadSessions = databaseDAO.fetchAllActiveUploadSessions(requestSender)
+        uploadSessions = databaseDAO.fetchAllCreationUploadSessions(requestSender)
     }
     
     func uploadCreation(data: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData
@@ -104,7 +127,6 @@ class CreationUploadService: CreationUploadSessionDelegate
         delegate?.creationUploadService(self, newSessionAdded: session)
         return CreationUploadSessionPublicData(creationUploadSession: session)        
     }
-    
     
     //MARK: - CreationUploadSessionDelegate
     func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
