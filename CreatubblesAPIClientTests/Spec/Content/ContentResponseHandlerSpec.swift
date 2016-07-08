@@ -65,10 +65,60 @@ class ContentResponseHandlerSpec: QuickSpec
                     }
                 }
             }
+            
+            it("Should return Connected contents after login")
+            {
+                let request = ContentRequest(type: .Connected, page: 1, perPage: 20, userId: nil)
+                let sender = RequestSender(settings: TestConfiguration.settings)
+                
+                waitUntil(timeout: 20)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:ContentResponseHandler()
+                        {
+                            (entries, pageInfo,  error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(entries).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+
         }
         it("Should return User Bubbled Contents after login")
         {
             let request = ContentRequest(type: .BubbledContents, page: 1, perPage: 20, userId: TestConfiguration.testUserIdentifier)
+            let sender = RequestSender(settings: TestConfiguration.settings)
+            
+            waitUntil(timeout: 20)
+            {
+                done in
+                sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                {
+                    (error: ErrorType?) -> Void in
+                    expect(error).to(beNil())
+                    sender.send(request, withResponseHandler: ContentResponseHandler()
+                    {
+                        (entries, pageInfo,  error) -> (Void) in
+                        expect(error).to(beNil())
+                        expect(entries).notTo(beNil())
+                        expect(pageInfo).notTo(beNil())
+                        sender.logout()
+                        done()
+                    })
+                }
+            }
+        }
+        it("Should return Contents By A User after login")
+        {
+            let request = ContentRequest(type: .ContentsByAUser, page: 1, perPage: 20, userId: TestConfiguration.testUserIdentifier)
             let sender = RequestSender(settings: TestConfiguration.settings)
             
             waitUntil(timeout: 20)

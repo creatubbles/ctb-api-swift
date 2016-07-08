@@ -52,12 +52,13 @@ class FetchCreationsRequest: Request
     private let userId: String?
     private let sort: SortOrder?
     private let keyword: String?
+    private let onlyPublic: Bool
     
     private let creationId: String?
     private let recommendedCreationId: String?
     private let recommendedUserId: String?
     
-    init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: SortOrder?, keyword: String?)
+    init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: SortOrder?, keyword: String?, onlyPublic: Bool)
     {
         self.page = page
         self.perPage = perPage
@@ -65,6 +66,7 @@ class FetchCreationsRequest: Request
         self.userId = userId
         self.sort = sort
         self.keyword = keyword
+        self.onlyPublic = onlyPublic
         self.creationId = nil
         self.recommendedUserId = nil
         self.recommendedCreationId = nil
@@ -78,6 +80,7 @@ class FetchCreationsRequest: Request
         self.userId = nil
         self.sort = nil
         self.keyword = nil
+        self.onlyPublic = false // this is the case when a single creation is returned, so onlyPublic value is irrelevant
         self.creationId = creationId
         self.recommendedUserId = nil
         self.recommendedCreationId = nil
@@ -91,6 +94,7 @@ class FetchCreationsRequest: Request
         self.userId = nil
         self.sort = nil
         self.keyword = nil
+        self.onlyPublic = true
         self.creationId = nil
         self.recommendedUserId = nil
         self.recommendedCreationId = recommendedCreationId
@@ -104,6 +108,7 @@ class FetchCreationsRequest: Request
         self.userId = nil
         self.sort = nil
         self.keyword = nil
+        self.onlyPublic = true
         self.creationId = nil
         self.recommendedUserId = recommendedUserId
         self.recommendedCreationId = nil
@@ -132,6 +137,10 @@ class FetchCreationsRequest: Request
         if let sort = sort
         {
             params["sort"] = Request.sortOrderStringValue(sort)
+        }
+        if onlyPublic
+        {
+            params["only_public"] = onlyPublic
         }
         if let keyword = keyword
         {

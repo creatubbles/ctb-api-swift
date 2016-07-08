@@ -87,6 +87,13 @@ class UserDAO
         return batchFetcher.fetch(userId, scope: .Managers, completion: completion)
     }
     
+    func getMyConnections(pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    {
+        let request = MyConnectionsRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
+        let handler = MyConnectionsResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func newCreator(data: NewCreatorData, completion: UserClosure?) -> RequestHandler
     {
         let request = NewCreatorRequest(name: data.name, displayName: data.displayName, birthYear: data.birthYear, birthMonth: data.birthMonth, countryCode: data.countryCode, gender: data.gender)

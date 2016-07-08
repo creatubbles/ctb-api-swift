@@ -37,4 +37,18 @@ class ContentDAO: NSObject
         let handler = ContentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func getMyConnectionsContent(pagingData: PagingData?,  completion: ContentEntryClosure?) -> RequestHandler
+    {
+        let request = ContentRequest(type: .Connected, page: pagingData?.page, perPage: pagingData?.pageSize)
+        let handler = ContentResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func getContentsByAUser(userId: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    {
+        let request = ContentRequest(type: .ContentsByAUser, page: pagingData?.page, perPage: pagingData?.pageSize, userId: userId)
+        let handler = ContentResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 }

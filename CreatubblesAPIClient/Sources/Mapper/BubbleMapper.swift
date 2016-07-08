@@ -27,7 +27,7 @@ class BubbleMapper: Mappable
     var bubbledCreationRelationship: RelationshipMapper?
     var bubbledGalleryRelationship: RelationshipMapper?
     var bubbledUserRelationship: RelationshipMapper?
-    
+        
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
