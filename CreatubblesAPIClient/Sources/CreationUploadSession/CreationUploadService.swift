@@ -57,14 +57,14 @@ class CreationUploadService: CreationUploadSessionDelegate
     
     func getAllActiveUploadSessionsPublicData() -> Array<CreationUploadSessionPublicData>
     {
-        return uploadSessions.filter({ $0.isActive == true }).map({ CreationUploadSessionPublicData(creationUploadSession: $0) })
+        return uploadSessions.filter({ $0.isActive == true && $0.state != .Cancelled }).map({ CreationUploadSessionPublicData(creationUploadSession: $0) })
     }
     
     func getAllNotFinishedUploadSessionsPublicData() ->  Array<CreationUploadSessionPublicData>
     {
         return uploadSessions.filter({ $0.state.rawValue < CreationUploadSessionState.ServerNotified.rawValue })
             .map({ CreationUploadSessionPublicData(creationUploadSession: $0) })
-    }    
+    }
     
     func getAllFinishedUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
@@ -73,7 +73,7 @@ class CreationUploadService: CreationUploadSessionDelegate
     
     func startAllNotFinishedUploadSessions(completion: CreationClosure?)
     {
-        uploadSessions.forEach({ $0.start(completion) })                
+        uploadSessions.forEach({ $0.start(completion) })
     }
     
     func startUploadSession(sessionId: String)
@@ -125,7 +125,7 @@ class CreationUploadService: CreationUploadSessionDelegate
         session.delegate = self
         session.start(completion)
         delegate?.creationUploadService(self, newSessionAdded: session)
-        return CreationUploadSessionPublicData(creationUploadSession: session)        
+        return CreationUploadSessionPublicData(creationUploadSession: session)
     }
     
     //MARK: - CreationUploadSessionDelegate

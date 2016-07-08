@@ -34,15 +34,29 @@ public enum APIClientError: ErrorType
     case Unknown
     case UploadCancelled
     
+    public static var Domain: String { return "com.creatubbles.errordomain" }
+    
+    public var code: Int
+    {
+        switch self
+        {
+        case .Generic: return -6000
+        case .NetworkError: return -6001
+        case .Unknown: return -6002
+        case .LoginError: return -6003
+        case .UploadCancelled: return -6004
+        }
+    }
+    
     public var errorDescription: String
     {
         switch self
         {
-            case .Generic(let desc): return desc
-            case .NetworkError:  return "Network error"
-            case .Unknown: return "Unknown"
-            case .LoginError: return "Error during login"
-            case .UploadCancelled: return "Creation upload cancelled"
+        case .Generic(let desc): return desc
+        case .NetworkError:  return "Network error"
+        case .Unknown: return "Unknown"
+        case .LoginError: return "Error during login"
+        case .UploadCancelled: return "Creation upload cancelled"
         }
     }
 }
