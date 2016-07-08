@@ -45,6 +45,7 @@ class LandingURLRequest: Request
     init(type: LandingURLType?)
     {
         assert(type != .Creation, "Please use init(creationId: String), to obtain LandingURL for creation.")
+        assert(type != .Unknown, "Unkown type is for read-only purposes. Please don't use it in LandingURL requests.")
         self.type = type
         self.creationId = nil;
     }
@@ -68,7 +69,10 @@ class LandingURLRequest: Request
                 case .UserProfile:    return "ctb-user_profile"
                 case .Explore:        return "ctb-explore"
                 case .ForgotPassword: return "ctb-forgot_password"
-                case .Creation:       return nil
+                case .AccountDashboard: return "cte-account_dashboard"
+                case .UploadGuidelines: return "cte-upload_guidelines"
+                case .Creation:        return nil
+                case .Unknown:         return nil
             }
         }
         return nil

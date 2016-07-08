@@ -65,6 +65,7 @@ public typealias NotificationsClosure = (Array<Notification>?, PagingInfo?, APIC
 
 @objc public enum LandingURLType: Int
 {
+    case Unknown //Read only
     case AboutUs
     case TermsOfUse
     case PrivacyPolicy
@@ -73,6 +74,8 @@ public typealias NotificationsClosure = (Array<Notification>?, PagingInfo?, APIC
     case Explore
     case Creation
     case ForgotPassword
+    case UploadGuidelines
+    case AccountDashboard
 }
 
 @objc public enum ApprovalStatus: Int

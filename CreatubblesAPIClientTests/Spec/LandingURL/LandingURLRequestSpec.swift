@@ -31,7 +31,9 @@ class LandingURLRequestSpec: QuickSpec
                 expect(LandingURLRequest(type: .Registration).endpoint).to(equal("landing_urls/ctb-registration"))
                 expect(LandingURLRequest(type: .UserProfile).endpoint).to(equal("landing_urls/ctb-user_profile"))
                 expect(LandingURLRequest(type: .Explore).endpoint).to(equal("landing_urls/ctb-explore"))
-                expect(LandingURLRequest(type: .ForgotPassword).endpoint).to(equal("landing_urls/ctb-forgot_password"))
+                expect(LandingURLRequest(type: .ForgotPassword).endpoint).to(equal("landing_urls/ctb-forgot_password"))                
+                expect(LandingURLRequest(type: .UploadGuidelines).endpoint).to(equal("landing_urls/cte-upload_guidelines"))
+                expect(LandingURLRequest(type: .AccountDashboard).endpoint).to(equal("landing_urls/cte-account_dashboard"))
             }
             
             it("Should have proper endpoint for Creation LandingURL")
