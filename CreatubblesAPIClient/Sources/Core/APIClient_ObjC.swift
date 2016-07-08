@@ -280,12 +280,12 @@ extension APIClient
         if let error = error as? APIClientError
         {
             let userInfo = [NSLocalizedDescriptionKey : error.errorDescription]
-            return NSError(domain: "com.creatubbles.errordomain", code: 1, userInfo: userInfo)
+            return NSError(domain: APIClientError.Domain, code: error.code, userInfo: userInfo)
         }
         if let _ = error
         {
             let userInfo = [NSLocalizedDescriptionKey :String(error)]
-            return NSError(domain: "com.creatubbles.errordomain", code: 1, userInfo: userInfo)
+            return NSError(domain: APIClientError.Domain, code: APIClientError.Generic("").code, userInfo: userInfo)
         }
         return nil
     }
