@@ -41,6 +41,7 @@ class DataIncludeMapper
         if let mapper = mapper as? CreationMapper { return Creation(mapper: mapper, dataMapper: self, metadata: metadata) as? T }
         if let mapper = mapper as? GalleryMapper  { return Gallery(mapper:  mapper, dataMapper: self, metadata: metadata) as? T }
         if let mapper = mapper as? GallerySubmissionMapper { return GallerySubmission(mapper: mapper, dataMapper: self) as? T }
+        if let mapper = mapper as? NotificationTextEntityMapper { return NotificationTextEntity(mapper: mapper, dataMapper: self) as? T }
         
         //DataIncludeMapper isn't passed here intentionally to get rid of infinite recurrence User -> CustomStyle -> User -> ...
         if let mapper = mapper as? CustomStyleMapper { return CustomStyle(mapper: mapper) as? T }
@@ -66,6 +67,7 @@ class DataIncludeMapper
             case "gallery_submissions": mapper = Mapper<GallerySubmissionMapper>().map(obj)
             case "user_entities": mapper = Mapper<NotificationTextEntityMapper>().map(obj)
             case "creation_entities": mapper = Mapper<NotificationTextEntityMapper>().map(obj)
+            case "gallery_entities": mapper = Mapper<NotificationTextEntityMapper>().map(obj)
             case "comments": mapper = Mapper<CommentMapper>().map(obj)
             
             default: mapper = nil
