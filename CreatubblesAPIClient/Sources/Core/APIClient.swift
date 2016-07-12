@@ -47,7 +47,7 @@ public typealias BubblesClousure = (Array<Bubble>?, PagingInfo?, APIClientError?
 
 public typealias ContentEntryClosure = (Array<ContentEntry>?, PagingInfo?, APIClientError?) -> (Void)
 public typealias CustomStyleClosure = (CustomStyle?, APIClientError?) -> (Void)
-public typealias NotificationsClosure = (Array<Notification>?, PagingInfo?, APIClientError?) -> (Void)
+public typealias NotificationsClosure = (Array<Notification>?, unreadNotificationsCount: Int?, PagingInfo?, APIClientError?) -> (Void)
 
 //MARK: - Enums
 @objc public enum Gender: Int
