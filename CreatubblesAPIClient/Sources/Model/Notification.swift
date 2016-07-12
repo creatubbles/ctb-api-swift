@@ -77,6 +77,5 @@ public class Notification: NSObject, Identifiable
         bubble = MappingUtils.objectFromMapper(dataMapper, relationship: bubbleRelationship, type: Bubble.self)
         
         totalUnreadCount = notificationMetadata?.totalUnreadCount ?? 0
-        NSLog("")
     }
 }
