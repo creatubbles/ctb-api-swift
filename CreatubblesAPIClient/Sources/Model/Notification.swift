@@ -40,10 +40,7 @@ public class Notification: NSObject, Identifiable
     public let bubbleRelationship: Relationship?
     public let bubble: Bubble?
     
-    //MARK: - Metadata
-    public let totalUnreadCount: Int?
-    
-    init(mapper: NotificationMapper, dataMapper: DataIncludeMapper? = nil, notificationMetadata: NotificationMetadata? = nil)
+    init(mapper: NotificationMapper, dataMapper: DataIncludeMapper? = nil)
     {
         identifier = mapper.identifier!
         text = mapper.text!
@@ -75,7 +72,5 @@ public class Notification: NSObject, Identifiable
         //Not sure if we still need this?
         bubbleRelationship = MappingUtils.relationshipFromMapper(mapper.bubbleRelationship)
         bubble = MappingUtils.objectFromMapper(dataMapper, relationship: bubbleRelationship, type: Bubble.self)
-        
-        totalUnreadCount = notificationMetadata?.totalUnreadCount ?? 0
     }
 }
