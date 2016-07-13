@@ -6,8 +6,61 @@
 //  Copyright © 2016 Nomtek. All rights reserved.
 //
 
-import UIKit
+import Quick
+import Nimble
+@testable import CreatubblesAPIClient
 
-class CreateMultipleCreatorsResponseHandlerSpec: NSObject {
-
+class CreateMultipleCreatorsResponseHandlerSpec: QuickSpec
+{
+    override func spec()
+    {
+        describe("Create Multiple Creators response handler")
+        {
+            let amount = 20
+            let birthYear = 2000
+            let group = "test"
+            
+            var multipleCreatorsRequest: CreateMultipleCreatorsRequest
+            {
+                return CreateMultipleCreatorsRequest(amount: amount, birthYear:birthYear, group: group)
+            }
+            
+            
+            it("Should return correct value after login")
+            {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 20)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(multipleCreatorsRequest, withResponseHandler: CreatuMultipleCreatorsResponseHandler()
+                        {
+                            (error: ErrorType?) -> Void in
+                            expect(error).to(beNil())
+                            done()
+                        })
+                    }
+                }
+            }
+            
+            it("Should return error when not logged in")
+            {
+                let sender = TestComponentsFactory.requestSender
+                sender.logout()
+                waitUntil(timeout: 20)
+                {
+                    done in
+                    sender.send(multipleCreatorsRequest, withResponseHandler: CreatuMultipleCreatorsResponseHandler()
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).notTo(beNil())
+                        done()
+                    })
+                }
+            }
+        }
+    }
 }
