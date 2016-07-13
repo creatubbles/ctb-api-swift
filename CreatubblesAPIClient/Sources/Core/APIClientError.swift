@@ -90,6 +90,8 @@ class ErrorTransformer
                 }
             }
             return errors
+        } else if let response = response, let errorDescription = response["error_description"] as? String {
+            return [APIClientError.Generic(errorDescription)]
         }
         return Array<APIClientError>()
     }
