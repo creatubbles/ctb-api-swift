@@ -44,7 +44,7 @@ class CreateMultipleCreatorsRequestSpec: QuickSpec
                 
                 expect(params["amount"] as? Int).to(equal(amount))
                 expect(params["birth_year"] as? Int).to(equal(birthYear))
-                expect(params["group"] as! Group).to(equal(group))
+                expect(params["group"] as? String).to(equal(group))
             }
             
             it("Should return correct value after login")

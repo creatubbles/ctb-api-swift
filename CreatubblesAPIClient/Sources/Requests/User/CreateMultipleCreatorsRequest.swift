@@ -30,7 +30,7 @@ class CreateMultipleCreatorsRequest: Request
         var params = Dictionary<String, AnyObject>()
         
         params["amount"] = amount
-        params["birthYear"] = birthYear
+        params["birth_year"] = birthYear
         
         if let group = group
         {
