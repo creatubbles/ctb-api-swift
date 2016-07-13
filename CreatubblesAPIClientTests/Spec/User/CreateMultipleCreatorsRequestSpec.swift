@@ -18,11 +18,11 @@ class CreateMultipleCreatorsRequestSpec: QuickSpec
         {
             let amount = 15
             let birthYear = 2000
-            let group: Group = nil
+            let group = "test"
 
             var multipleCreatorsRequest: CreateMultipleCreatorsRequest
             {
-                return CreateMultipleCreatorsRequest(amount, birthYear: birthYear, group: group?)
+                return CreateMultipleCreatorsRequest(amount: amount, birthYear: birthYear, group: group)
             }
             
             it("Should have proper endpoint")
@@ -39,12 +39,12 @@ class CreateMultipleCreatorsRequestSpec: QuickSpec
             
             it("Should have proper parameters")
             {
-                let request = creatorRequest
+                let request = multipleCreatorsRequest
                 let params = request.parameters
                 
                 expect(params["amount"] as? Int).to(equal(amount))
                 expect(params["birth_year"] as? Int).to(equal(birthYear))
-                expect(params["group"] as Group).to(equal(group))
+                expect(params["group"] as! Group).to(equal(group))
             }
             
             it("Should return correct value after login")
