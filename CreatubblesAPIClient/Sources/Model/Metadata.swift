@@ -14,7 +14,7 @@ class Metadata: NSObject
     let bubbledUserIdentifiers: Array<String>
     let bubbledGalleryIdentifiers: Array<String>
     let abilities: Array<Ability>
-    
+        
     init(mapper: MetadataMapper)
     {
         bubbledCreationIdentifiers = mapper.bubbledCreationIdentifiers ?? []

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		07E9BEF3959E71B5615B6944 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7DCA9B8836E687138EF88C /* Pods_CreatubblesAPIClientTests.framework */; };
+		080135391D353F9A0054DAB0 /* SwitchUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080135381D353F9A0054DAB0 /* SwitchUserRequest.swift */; };
+		0801353B1D353FF90054DAB0 /* SwitchUserResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0801353A1D353FF90054DAB0 /* SwitchUserResponseHandler.swift */; };
+		08A7B9761D361D14001D8461 /* SwitchUserRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A7B9751D361D14001D8461 /* SwitchUserRequestSpec.swift */; };
+		08A7B9781D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A7B9771D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift */; };
 		08BB575F1D253ED700E2E297 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BB575E1D253ED700E2E297 /* SessionData.swift */; };
 		180C97B11C6DEA4100BC682D /* Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97B01C6DEA4100BC682D /* Creation.swift */; };
 		1815D54D1C63658000EF4C38 /* CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */; };
@@ -193,6 +197,8 @@
 		18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9EDAE1CAD008600B85DD6 /* RequestHandler.swift */; };
 		18F9EDB11CAD051400B85DD6 /* TestRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9EDB01CAD051400B85DD6 /* TestRequestHandler.swift */; };
 		18FD15311C84315200A353C1 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD15301C84315200A353C1 /* APIClientError.swift */; };
+		2117F8C11D3520B800304D79 /* NotificationMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F8C01D3520B800304D79 /* NotificationMetadata.swift */; };
+		2117F8C31D3520CE00304D79 /* NotificationMetadataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F8C21D3520CE00304D79 /* NotificationMetadataMapper.swift */; };
 		219121941D2D1F510039FA94 /* MyConnectionsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */; };
 		219121961D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */; };
 		219772201D186A8800293859 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2197721F1D186A8800293859 /* TestConfiguration.swift */; };
@@ -222,6 +228,10 @@
 
 /* Begin PBXFileReference section */
 		055A4A2D59C871AD4EC1E7B9 /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
+		080135381D353F9A0054DAB0 /* SwitchUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserRequest.swift; sourceTree = "<group>"; };
+		0801353A1D353FF90054DAB0 /* SwitchUserResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserResponseHandler.swift; sourceTree = "<group>"; };
+		08A7B9751D361D14001D8461 /* SwitchUserRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserRequestSpec.swift; sourceTree = "<group>"; };
+		08A7B9771D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		08BB575E1D253ED700E2E297 /* SessionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
 		180C97B01C6DEA4100BC682D /* Creation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creation.swift; sourceTree = "<group>"; };
 		1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -410,6 +420,8 @@
 		18F9EDAE1CAD008600B85DD6 /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		18F9EDB01CAD051400B85DD6 /* TestRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRequestHandler.swift; sourceTree = "<group>"; };
 		18FD15301C84315200A353C1 /* APIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
+		2117F8C01D3520B800304D79 /* NotificationMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMetadata.swift; sourceTree = "<group>"; };
+		2117F8C21D3520CE00304D79 /* NotificationMetadataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMetadataMapper.swift; sourceTree = "<group>"; };
 		219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsRequestSpec.swift; sourceTree = "<group>"; };
 		219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		2197721F1D186A8800293859 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
@@ -539,6 +551,7 @@
 				18E4354B1D04287600B728C6 /* Notification.swift */,
 				18290AEC1D06E44B000EA216 /* NotificationTextEntity.swift */,
 				18290AE61D06B24B000EA216 /* GallerySubmission.swift */,
+				2117F8C01D3520B800304D79 /* NotificationMetadata.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -688,6 +701,7 @@
 				18366AA51D0591E200229D20 /* NotificationMapper.swift */,
 				18290AE41D06B09E000EA216 /* GallerySubmissionMapper.swift */,
 				18290AEE1D06E45A000EA216 /* NotificationTextEntityMapper.swift */,
+				2117F8C21D3520CE00304D79 /* NotificationMetadataMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -815,6 +829,8 @@
 				182FB8B51D1293AE004495CB /* EditProfileResponseHandlerSpec.swift */,
 				219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */,
 				219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */,
+				08A7B9751D361D14001D8461 /* SwitchUserRequestSpec.swift */,
+				08A7B9771D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -945,6 +961,8 @@
 				182FB8B71D1293D7004495CB /* EditProfileResponseHandler.swift */,
 				21B933491D2AEC2900FCD248 /* MyConnectionsRequest.swift */,
 				21B9334B1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift */,
+				080135381D353F9A0054DAB0 /* SwitchUserRequest.swift */,
+				0801353A1D353FF90054DAB0 /* SwitchUserResponseHandler.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1268,6 +1286,7 @@
 				18F6E89C1D021B6500AAC5FB /* GalleriesResponseHandler.swift in Sources */,
 				189D9F5F1C84B36100857CC6 /* GalleryMapper.swift in Sources */,
 				18DB8EB61CE3EF29008B5F52 /* APIClientDateFormatter.swift in Sources */,
+				2117F8C11D3520B800304D79 /* NotificationMetadata.swift in Sources */,
 				18F6E88B1D021B6500AAC5FB /* CommentsResponseHandler.swift in Sources */,
 				18F6E8921D021B6500AAC5FB /* ResponseHandler.swift in Sources */,
 				1895D36D1D11F81B009B7271 /* EditProfileData.swift in Sources */,
@@ -1323,7 +1342,9 @@
 				18FD15311C84315200A353C1 /* APIClientError.swift in Sources */,
 				18E9D1911D117F58006F2BAB /* EditCreationData.swift in Sources */,
 				189D9F5E1C84B36100857CC6 /* ErrorMapper.swift in Sources */,
+				0801353B1D353FF90054DAB0 /* SwitchUserResponseHandler.swift in Sources */,
 				183635471CB5014700ED778A /* DataIncludeMapper.swift in Sources */,
+				080135391D353F9A0054DAB0 /* SwitchUserRequest.swift in Sources */,
 				18C744FB1C84611600A07E4C /* CreationEntity.swift in Sources */,
 				181E76FB1CC5485100A1546A /* NewCommentData.swift in Sources */,
 				18F6E89B1D021B6500AAC5FB /* GalleriesRequest.swift in Sources */,
@@ -1332,6 +1353,7 @@
 				183728EE1CEDD1AC008784C7 /* ContentDAO.swift in Sources */,
 				21A79F6F1C81E6C5009E95D1 /* BatchFetcher.swift in Sources */,
 				18E6E86F1CFF2E1D008D7B89 /* AbilityMapper.swift in Sources */,
+				2117F8C31D3520CE00304D79 /* NotificationMetadataMapper.swift in Sources */,
 				18F6E8841D021B6500AAC5FB /* DeleteBubbleRequest.swift in Sources */,
 				188BCEAF1C64E19D00EA4F11 /* APIClient.swift in Sources */,
 				18F6E8911D021B6500AAC5FB /* Request.swift in Sources */,
@@ -1369,6 +1391,7 @@
 				18290AF71D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift in Sources */,
 				219121961D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift in Sources */,
 				18F6E82D1D0215A400AAC5FB /* NewGalleryResponseHandlerSpec.swift in Sources */,
+				08A7B9761D361D14001D8461 /* SwitchUserRequestSpec.swift in Sources */,
 				182FB8B61D1293AE004495CB /* EditProfileResponseHandlerSpec.swift in Sources */,
 				18290AF11D0704F0000EA216 /* NotificationReadRequestSpec.swift in Sources */,
 				18F6E8B81D0225F500AAC5FB /* CustomStyleFetchResponseHandlerSpec.swift in Sources */,
@@ -1395,6 +1418,7 @@
 				18779DBE1C68DFCB000BFB57 /* DummyResponseHandler.swift in Sources */,
 				18F6E8231D02145600AAC5FB /* CreationPingRequestSpec.swift in Sources */,
 				18F6E8131D020F3200AAC5FB /* BubbleRequestSpec.swift in Sources */,
+				08A7B9781D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift in Sources */,
 				18F6E8461D02189700AAC5FB /* ContentRequestSpec.swift in Sources */,
 				18F9EBBE1D084ED80090697F /* EditCreationRequestSpec.swift in Sources */,
 			);

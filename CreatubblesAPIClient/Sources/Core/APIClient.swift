@@ -50,7 +50,9 @@ public typealias BubblesClousure = (Array<Bubble>?, PagingInfo?, APIClientError?
 
 public typealias ContentEntryClosure = (Array<ContentEntry>?, PagingInfo?, APIClientError?) -> (Void)
 public typealias CustomStyleClosure = (CustomStyle?, APIClientError?) -> (Void)
-public typealias NotificationsClosure = (Array<Notification>?, PagingInfo?, APIClientError?) -> (Void)
+public typealias NotificationsClosure = (Array<Notification>?, unreadNotificationsCount: Int?, PagingInfo?, APIClientError?) -> (Void)
+
+public typealias SwitchUserClosure = (String?, APIClientError?) -> (Void)
 
 //MARK: - Enums
 @objc public enum Gender: Int
@@ -68,6 +70,7 @@ public typealias NotificationsClosure = (Array<Notification>?, PagingInfo?, APIC
 
 @objc public enum LandingURLType: Int
 {
+    case Unknown //Read only
     case AboutUs
     case TermsOfUse
     case PrivacyPolicy
@@ -76,6 +79,8 @@ public typealias NotificationsClosure = (Array<Notification>?, PagingInfo?, APIC
     case Explore
     case Creation
     case ForgotPassword
+    case UploadGuidelines
+    case AccountDashboard
 }
 
 @objc public enum ApprovalStatus: Int
@@ -212,6 +217,15 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func getCurrentUser(completion: UserClosure?) -> RequestHandler
     {
         return userDAO.getCurrentUser(completion)
+    }
+    
+    public func switchUser(targetUserId: String, accessToken: String, completion: SwitchUserClosure?) -> RequestHandler
+    {
+        return userDAO.switchUser(targetUserId, accessToken: accessToken) { [weak self] (accessToken, error) in completion?(accessToken, error)
+            if let strongSelf = self where error == nil {
+                strongSelf.delegate?.creatubblesAPIClientUserChanged(strongSelf)
+            }
+        }
     }
     
     public func getCreators(userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler

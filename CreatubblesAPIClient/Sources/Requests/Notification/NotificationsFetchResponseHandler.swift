@@ -25,14 +25,15 @@ class NotificationsFetchResponseHandler: ResponseHandler
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
+            let notificationMetadata = MappingUtils.notificationMetadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
             let objects    = mappers.map({ Notification(mapper: $0, dataMapper: dataMapper) }).filter({ $0.type != .Unknown })
             
-            executeOnMainQueue { self.completion?(objects, pageInfo, ErrorTransformer.errorFromResponse(response ,error: error)) }
+            executeOnMainQueue { self.completion?(objects, unreadNotificationsCount: notificationMetadata?.totalUnreadCount ,pageInfo, ErrorTransformer.errorFromResponse(response ,error: error)) }
         }
         else
         {
-            executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
+            executeOnMainQueue { self.completion?(nil, unreadNotificationsCount: nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
 }

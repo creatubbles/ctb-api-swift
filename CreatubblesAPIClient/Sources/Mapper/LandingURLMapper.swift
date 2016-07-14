@@ -25,6 +25,8 @@
 import UIKit
 import ObjectMapper
 
+
+
 class LandingURLMapper: Mappable
 {
     var destination: String?
@@ -40,17 +42,17 @@ class LandingURLMapper: Mappable
     
     var type: LandingURLType
     {
-        switch self.typeString!
-        {
-            case "ctb-about_us": return LandingURLType.AboutUs
-            case "ctb-terms_of_use": return LandingURLType.TermsOfUse
-            case "ctb-privacy_policy": return LandingURLType.PrivacyPolicy
-            case "ctb-user_profile": return LandingURLType.UserProfile
-            case "ctb-registration": return LandingURLType.Registration
-            case "ctb-explore": return LandingURLType.Explore
-            case "ctb-forgot_password": return LandingURLType.ForgotPassword
-            
-            default: return LandingURLType.Explore
-        }
+        if typeString == "ctb-about_us"          { return LandingURLType.AboutUs }
+        if typeString == "ctb-terms_of_use"      { return LandingURLType.TermsOfUse }
+        if typeString == "ctb-privacy_policy"    { return LandingURLType.PrivacyPolicy }
+        if typeString == "ctb-user_profile"      { return LandingURLType.UserProfile }
+        if typeString == "ctb-registration"      { return LandingURLType.Registration }
+        if typeString == "ctb-explore"           { return LandingURLType.Explore }
+        if typeString == "ctb-forgot_password"   { return LandingURLType.ForgotPassword }
+        if typeString == "cte-account_dashboard" { return LandingURLType.AccountDashboard }
+        if typeString == "cte-upload_guidelines" { return LandingURLType.UploadGuidelines }
+        
+        Logger.log.warning("Unknown landingURL: \(typeString)")
+        return .Unknown
     }
 }
