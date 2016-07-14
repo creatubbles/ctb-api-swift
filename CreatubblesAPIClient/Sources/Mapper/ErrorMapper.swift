@@ -26,6 +26,9 @@ import ObjectMapper
 
 class ErrorMapper: Mappable
 {
+    var status: Int?
+    var code: String?
+    var source: String?
     var title: String?
     var detail: String?
     
@@ -33,6 +36,9 @@ class ErrorMapper: Mappable
     
     func mapping(map: Map)
     {
+        status <- map["status"]
+        code <- map["code"]
+        source <- map["source"]
         title <- map["title"]
         detail <- map["detail"]
     }
