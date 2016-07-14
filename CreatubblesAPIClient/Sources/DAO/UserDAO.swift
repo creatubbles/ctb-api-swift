@@ -47,6 +47,13 @@ class UserDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func switchUser(targetUserId: String, accessToken: String, completion: SwitchUserClosure?) -> RequestHandler
+    {
+        let request = SwitchUserRequest(targetUserId: targetUserId, accessToken: accessToken)
+        let handler = SwitchUserResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getCreators(userId: String?, pagingData: PagingData?,completion: UsersClosure?) -> RequestHandler
     {
         let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Creators)
@@ -110,7 +117,7 @@ class UserDAO
     
     func createMultipleCreators(data: CreateMultipleCreatorsData, completion: ErrorClosure?) -> RequestHandler
     {
-        let request = CreateMultipleCreatorsRequest(amount: data.amount, birthYear: data.birthYear, groupName: data.group)
+        let request = CreateMultipleCreatorsRequest(amount: data.amount, birthYear: data.birthYear, groupName: data.groupName)
         let handler = CreateMultipleCreatorsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
         
