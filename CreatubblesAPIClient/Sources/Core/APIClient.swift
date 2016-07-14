@@ -244,6 +244,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.editProfile(identifier, data: data, completion: completion)
     }
     
+    public func createMultipleCreators(data: CreateMultipleCreatorsData, completion: ErrorClosure?) -> RequestHandler
+    {
+        return userDAO.createMultipleCreators(data, completion: completion)
+    }
+    
     public func getMyConnections(pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getMyConnections(pagingData, completion: completion)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreatuMultipleCreatorsResponseHandler: ErrorResponseHandler
+class CreateMultipleCreatorsResponseHandler: ErrorResponseHandler
 {
     
 }
