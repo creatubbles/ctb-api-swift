@@ -8,6 +8,17 @@
 
 import UIKit
 
-class CreateMultipleCreatorsData: NSObject {
-
+@objc
+public class CreateMultipleCreatorsData: NSObject
+{
+    public let amount: Int
+    public let birthYear: Int
+    public let group: String?
+    
+    public init(amount: Int, birthYear: Int, group: String? = nil)
+    {
+        self.amount = amount
+        self.birthYear = birthYear
+        self.group = group
+    }
 }
