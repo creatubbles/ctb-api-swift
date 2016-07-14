@@ -200,6 +200,8 @@
 		2178B72F1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B72D1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift */; };
 		2178B7301D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */; };
 		2178B7321D3797840013C251 /* CreateMultipleCreatorsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */; };
+		2178B7351D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7331D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift */; };
+		2178B7361D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7341D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift */; };
 		219121941D2D1F510039FA94 /* MyConnectionsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */; };
 		219121961D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */; };
 		219772201D186A8800293859 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2197721F1D186A8800293859 /* TestConfiguration.swift */; };
@@ -424,6 +426,8 @@
 		2178B72D1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsRequest.swift; sourceTree = "<group>"; };
 		2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsResponseHandler.swift; sourceTree = "<group>"; };
 		2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsData.swift; sourceTree = "<group>"; };
+		2178B7331D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsRequestSpec.swift; sourceTree = "<group>"; };
+		2178B7341D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsRequestSpec.swift; sourceTree = "<group>"; };
 		219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		2197721F1D186A8800293859 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
@@ -824,6 +828,8 @@
 				219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */,
 				08A7B9751D361D14001D8461 /* SwitchUserRequestSpec.swift */,
 				08A7B9771D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift */,
+				2178B7331D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift */,
+				2178B7341D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1361,6 +1367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				187901F41C6B43FA008F5302 /* TestComponentsFactory.swift in Sources */,
+				2178B7351D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift in Sources */,
 				187901F21C6B43E1008F5302 /* TestRequestSender.swift in Sources */,
 				18F9EDB11CAD051400B85DD6 /* TestRequestHandler.swift in Sources */,
 				18F6E8391D02170F00AAC5FB /* CreatorsAndManagersResponseHandlerSpec.swift in Sources */,
@@ -1381,6 +1388,7 @@
 				18F6E8501D0219FB00AAC5FB /* CommentsResponseHandlerSpec.swift in Sources */,
 				18F6E84C1D0219D500AAC5FB /* NewCommentRequestSpec.swift in Sources */,
 				18F6E83B1D02171D00AAC5FB /* NewCreatorRequestSpec.swift in Sources */,
+				2178B7361D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift in Sources */,
 				18F6E84A1D0219C800AAC5FB /* CommentsRequestSpec.swift in Sources */,
 				18F6E8481D0218A100AAC5FB /* ContentResponseHandlerSpec.swift in Sources */,
 				18F6E8151D020F3D00AAC5FB /* BubbleResponseHandlerSpec.swift in Sources */,
