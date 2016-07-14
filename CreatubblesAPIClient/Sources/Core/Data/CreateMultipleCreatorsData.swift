@@ -13,12 +13,12 @@ public class CreateMultipleCreatorsData: NSObject
 {
     public let amount: Int
     public let birthYear: Int
-    public let group: String?
+    public let groupName: String?
     
-    public init(amount: Int, birthYear: Int, group: String? = nil)
+    public init(amount: Int, birthYear: Int, groupName: String? = nil)
     {
         self.amount = amount
         self.birthYear = birthYear
-        self.group = group
+        self.groupName = groupName
     }
 }
