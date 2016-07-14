@@ -79,6 +79,7 @@
 		1859FA8D1D37B4B70023A6B6 /* NewGroupResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA841D37B4B70023A6B6 /* NewGroupResponseHandlerSpec.swift */; };
 		1859FA901D37B4D30023A6B6 /* EditGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA8E1D37B4D30023A6B6 /* EditGroupData.swift */; };
 		1859FA911D37B4D30023A6B6 /* NewGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA8F1D37B4D30023A6B6 /* NewGroupData.swift */; };
+		1859FA931D37B5190023A6B6 /* GroupDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA921D37B5190023A6B6 /* GroupDAO.swift */; };
 		187671401C7CA00500733E9E /* APIClient_ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876713F1C7CA00500733E9E /* APIClient_ObjC.swift */; };
 		187671431C7CA0F700733E9E /* PagingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187671421C7CA0F700733E9E /* PagingData.swift */; };
 		187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187671441C7CA23900733E9E /* NewCreatorData.swift */; };
@@ -323,6 +324,7 @@
 		1859FA841D37B4B70023A6B6 /* NewGroupResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		1859FA8E1D37B4D30023A6B6 /* EditGroupData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroupData.swift; sourceTree = "<group>"; };
 		1859FA8F1D37B4D30023A6B6 /* NewGroupData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupData.swift; sourceTree = "<group>"; };
+		1859FA921D37B5190023A6B6 /* GroupDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDAO.swift; sourceTree = "<group>"; };
 		1876713F1C7CA00500733E9E /* APIClient_ObjC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient_ObjC.swift; sourceTree = "<group>"; };
 		187671421C7CA0F700733E9E /* PagingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingData.swift; sourceTree = "<group>"; };
 		187671441C7CA23900733E9E /* NewCreatorData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreatorData.swift; sourceTree = "<group>"; };
@@ -706,6 +708,7 @@
 				18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */,
 				183728ED1CEDD1AC008784C7 /* ContentDAO.swift */,
 				18290AF81D070A17000EA216 /* NotificationDAO.swift */,
+				1859FA921D37B5190023A6B6 /* GroupDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -1303,6 +1306,7 @@
 				18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */,
 				18F6E88D1D021B6500AAC5FB /* NewCommentResponseHandler.swift in Sources */,
 				18F6E8AE1D021C3400AAC5FB /* CustomStyleMapper.swift in Sources */,
+				1859FA931D37B5190023A6B6 /* GroupDAO.swift in Sources */,
 				1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */,
 				18F6E8A71D021B6500AAC5FB /* NewCreatorRequest.swift in Sources */,
 				18467F6C1D02F2DA005CE5DD /* CustomStyleDAO.swift in Sources */,
