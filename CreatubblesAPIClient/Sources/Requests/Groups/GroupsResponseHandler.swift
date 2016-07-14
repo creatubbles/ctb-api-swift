@@ -23,16 +23,15 @@ class GroupsResponseHandler: ResponseHandler
         if  let response = response,
             let mappers = Mapper<GroupMapper>().mapArray(response["data"])
         {
-            let metadata = MappingUtils.metadataFromResponse(response)
-            let pageInfo = MappingUtils.pagingInfoFromResponse(response)
+            let metadata = MappingUtils.metadataFromResponse(response)            
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
             let objects    = mappers.map({ Group(mapper: $0, dataMapper: dataMapper) })
             
-            executeOnMainQueue { self.completion?(objects, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
+            executeOnMainQueue { self.completion?(objects, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
         else
         {
-            executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
+            executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
 }
