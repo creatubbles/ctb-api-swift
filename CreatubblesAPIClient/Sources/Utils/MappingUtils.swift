@@ -36,6 +36,12 @@ class MappingUtils
         return ( metadataMapper != nil ) ? Metadata(mapper: metadataMapper!) : nil
     }
     
+    class func notificationMetadataFromResponse(response: Dictionary<String, AnyObject>) -> NotificationMetadata?
+    {
+        let metadataMapper = Mapper<NotificationMetadataMapper>().map(response["meta"])
+        return ( metadataMapper != nil ) ? NotificationMetadata(mapper: metadataMapper!) : nil
+    }
+    
     class func dataIncludeMapperFromResponse(response: Dictionary<String, AnyObject>, metadata: Metadata?) -> DataIncludeMapper?
     {
         let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
