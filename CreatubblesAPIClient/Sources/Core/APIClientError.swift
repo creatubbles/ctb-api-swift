@@ -34,6 +34,16 @@ public enum APIClientError: ErrorType
     case Unknown
     case UploadCancelled
     
+    case BadRequest
+    case NotAuthorized
+    case Forbidden
+    case NotFound
+    case NotAcceptable
+    case ValidationError
+    case TooManyRequests
+    case InternalServerError
+    case ServiceUnavailable
+    
     public static var Domain: String { return "com.creatubbles.errordomain" }
     
     public var code: Int
@@ -45,6 +55,16 @@ public enum APIClientError: ErrorType
         case .Unknown: return -6002
         case .LoginError: return -6003
         case .UploadCancelled: return -6004
+            
+        case .BadRequest: return -6400
+        case .NotAuthorized: return -6401
+        case .Forbidden: return -6403
+        case .NotFound: return -6404
+        case .NotAcceptable: return -6406
+        case .ValidationError: return -6422
+        case .TooManyRequests: return -6429
+        case .InternalServerError: return -6500
+        case .ServiceUnavailable: return -6503
         }
     }
     
@@ -57,6 +77,17 @@ public enum APIClientError: ErrorType
         case .Unknown: return "Unknown"
         case .LoginError: return "Error during login"
         case .UploadCancelled: return "Creation upload cancelled"
+            
+        case .BadRequest: return "Bad request"
+        case .NotAuthorized: return "Not authorized"
+        case .Forbidden: return "Forbidden"
+        case .NotFound: return "Not found"
+        case .NotAcceptable: return "Not acceptable"
+        case .ValidationError: return "Validation error"
+        case .TooManyRequests: return "Too many requests"
+        case .InternalServerError: return "Internal server error"
+        case .ServiceUnavailable: return "Service unavailable"
+            
         }
     }
 }
