@@ -114,4 +114,12 @@ class UserDAO
         let handler = EditProfileResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func createMultipleCreators(data: CreateMultipleCreatorsData, completion: ErrorClosure?) -> RequestHandler
+    {
+        let request = CreateMultipleCreatorsRequest(amount: data.amount, birthYear: data.birthYear, groupName: data.groupName)
+        let handler = CreateMultipleCreatorsResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+        
+    }
 }
