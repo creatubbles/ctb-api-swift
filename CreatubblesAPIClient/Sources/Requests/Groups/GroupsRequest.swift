@@ -12,7 +12,6 @@ class GroupsRequest: Request
 {
     override var method: RequestMethod   { return .GET }
     override var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
-    
     override var endpoint: String
     {
         if let identifier = identifier { return "groups/\(identifier)"}
