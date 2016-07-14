@@ -9,7 +9,7 @@
 import UIKit
 
 @objc
-class NewGroupData: NSObject
+public class NewGroupData: NSObject
 {
     let name: String
     let avatarCreationIdentifier: String?
