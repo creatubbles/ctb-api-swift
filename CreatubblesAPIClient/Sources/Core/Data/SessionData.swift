@@ -9,7 +9,7 @@
 import UIKit
 
 @objc public class SessionData: NSObject {
-    let accessToken: String?
+    public var accessToken: String?
     let idToken: String?
     let accessTokenExpiry: NSDate?
     let refreshToken: String?

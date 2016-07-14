@@ -49,6 +49,8 @@ public typealias ContentEntryClosure = (Array<ContentEntry>?, PagingInfo?, APICl
 public typealias CustomStyleClosure = (CustomStyle?, APIClientError?) -> (Void)
 public typealias NotificationsClosure = (Array<Notification>?, unreadNotificationsCount: Int?, PagingInfo?, APIClientError?) -> (Void)
 
+public typealias SwitchUserClosure = (String?, APIClientError?) -> (Void)
+
 //MARK: - Enums
 @objc public enum Gender: Int
 {
@@ -212,6 +214,15 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func getCurrentUser(completion: UserClosure?) -> RequestHandler
     {
         return userDAO.getCurrentUser(completion)
+    }
+    
+    public func switchUser(targetUserId: String, accessToken: String, completion: SwitchUserClosure?) -> RequestHandler
+    {
+        return userDAO.switchUser(targetUserId, accessToken: accessToken) { [weak self] (accessToken, error) in completion?(accessToken, error)
+            if let strongSelf = self where error == nil {
+                strongSelf.delegate?.creatubblesAPIClientUserChanged(strongSelf)
+            }
+        }
     }
     
     public func getCreators(userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
