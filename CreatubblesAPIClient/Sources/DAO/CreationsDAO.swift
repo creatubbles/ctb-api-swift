@@ -44,6 +44,13 @@ class CreationsDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func reportCreation(creationId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        let request = ReportCreationRequest(creationId: creationId, message: message)
+        let handler = ReportCreationResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getRecomendedCreationsByUser(userId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
     {
         let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, recommendedUserId: userId)

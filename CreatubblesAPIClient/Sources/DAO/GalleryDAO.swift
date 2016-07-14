@@ -51,6 +51,13 @@ class GalleryDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func reportGallery(galleryId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        let request = ReportGalleryRequest(galleryId: galleryId, message: message)
+        let handler = ReportGalleryResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
     {
         let request = GalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, sort: sort, userId: userId)
