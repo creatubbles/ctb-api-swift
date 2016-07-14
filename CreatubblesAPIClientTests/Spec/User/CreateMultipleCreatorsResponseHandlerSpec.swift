@@ -22,7 +22,7 @@ class CreateMultipleCreatorsResponseHandlerSpec: QuickSpec
             
             var multipleCreatorsRequest: CreateMultipleCreatorsRequest
             {
-                return CreateMultipleCreatorsRequest(amount: amount, birthYear:birthYear, group: group)
+                return CreateMultipleCreatorsRequest(amount: amount, birthYear:birthYear, groupName: group)
             }
             
             
