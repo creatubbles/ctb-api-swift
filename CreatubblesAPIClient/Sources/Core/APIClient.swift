@@ -32,7 +32,7 @@ public typealias UsersClosure = (Array<User>?,PagingInfo? ,APIClientError?) -> (
 public typealias UsersBatchClosure = (Array<User>? ,APIClientError?) -> (Void)
 
 public typealias GroupClosure = (Group?, APIClientError?) -> (Void)
-public typealias GroupsClosure = (Array<Group>?, PagingInfo?, APIClientError?) -> (Void)
+public typealias GroupsClosure = (Array<Group>?, APIClientError?) -> (Void)
 
 public typealias CreationClosure = (Creation?, APIClientError?) -> (Void)
 public typealias CreationsClosure = (Array<Creation>?, PagingInfo?, APIClientError?) -> (Void)
