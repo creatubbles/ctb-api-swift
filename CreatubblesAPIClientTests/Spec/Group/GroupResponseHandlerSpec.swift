@@ -30,13 +30,13 @@ class GroupResponseHandlerSpec: QuickSpec
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
                         sender.send(GroupsRequest(groupId: groupIdentifier), withResponseHandler: GroupResponseHandler()
-                            {
-                                (group, error) -> (Void) in
-                                expect(error).to(beNil())
-                                expect(group).notTo(beNil())
-                                sender.logout()
-                                done()
-                            })
+                        {
+                            (group, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(group).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
                     }
                 }
             }
