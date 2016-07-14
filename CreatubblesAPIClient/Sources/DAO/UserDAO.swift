@@ -110,7 +110,7 @@ class UserDAO
     
     func createMultipleCreators(data: CreateMultipleCreatorsData, completion: ErrorClosure?) -> RequestHandler
     {
-        let request = CreateMultipleCreatorsRequest(amount: data.amount, birthYear: data.birthYear, group: data.group)
+        let request = CreateMultipleCreatorsRequest(amount: data.amount, birthYear: data.birthYear, groupName: data.group)
         let handler = CreateMultipleCreatorsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
         

@@ -16,13 +16,13 @@ class CreateMultipleCreatorsRequest: Request
     
     private let amount: Int
     private let birthYear: Int
-    private let group: String?
+    private let groupName: String?
 
-    init(amount: Int, birthYear:Int, group: String?)
+    init(amount: Int, birthYear:Int, groupName: String?)
     {
         self.amount = amount
         self.birthYear = birthYear
-        self.group = group
+        self.groupName = groupName
     }
 
     private func prepareParameters() -> Dictionary<String, AnyObject>
@@ -32,9 +32,9 @@ class CreateMultipleCreatorsRequest: Request
         params["amount"] = amount
         params["birth_year"] = birthYear
         
-        if let group = group
+        if let groupName = groupName
         {
-            params["group"] = group
+            params["group"] = groupName
         }
         
         return params
