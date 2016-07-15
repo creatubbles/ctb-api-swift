@@ -404,19 +404,19 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     }
     
     //MARK: - Bubbles
-    public func getBubblesForCreationWithIdentifier(creationIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure?) -> RequestHandler
+    public func getBubbles(creationIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure?) -> RequestHandler
     {
-        return bubbleDAO.getBubblesForCreationWithIdentifier(creationIdentifier: identifier, pagingData: pagingData, completion: completion)
+        return bubbleDAO.getBubbles(creationIdentifier: identifier, pagingData: pagingData, completion: completion)
     }
     
-    public func getBubblesForUserWithIdentifier(userIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
+    public func getBubbles(userIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
     {
-        return bubbleDAO.getBubblesForUserWithIdentifier(userIdentifier: identifier, pagingData: pagingData, completion: completion)
+        return bubbleDAO.getBubbles(userIdentifier: identifier, pagingData: pagingData, completion: completion)
     }
     
-    public func getBubblesForGalleryWithIdentifier(galleryIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
+    public func getBubbles(galleryIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
     {
-        return bubbleDAO.getBubblesForGalleryWithIdentifier(galleryIdentifier: identifier, pagingData: pagingData, completion: completion)
+        return bubbleDAO.getBubbles(galleryIdentifier: identifier, pagingData: pagingData, completion: completion)
     }
     
     public func newBubble(data data: NewBubbleData, completion: BubbleClousure?) -> RequestHandler
@@ -431,13 +431,13 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     
     public func deleteBubble(bubbleIdentifier bubbleId: String, completion: ErrorClosure?) -> RequestHandler
     {
-        return bubbleDAO.deleteBubbleWithIdentifier(bubbleIdentifier: bubbleId, completion: completion)
+        return bubbleDAO.deleteBubble(bubbleIdentifier: bubbleId, completion: completion)
     }
     //MARK: - Groups
     
-    public func fetchGroupWithIdentifier(groupIdentifier identifier: String, completion: GroupClosure?) -> RequestHandler
+    public func fetchGroup(groupIdentifier identifier: String, completion: GroupClosure?) -> RequestHandler
     {
-        return groupDAO.fetchGroupWithIdentifier(groupIdentifier: identifier, completion: completion)
+        return groupDAO.fetchGroup(groupIdentifier: identifier, completion: completion)
     }
     
     public func fetchGroups(completion: GroupsClosure?) -> RequestHandler
@@ -513,14 +513,14 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     }
     
     //MARK: - CustomStyle
-    public func fetchCustomStyleForUserWithIdentifier(userIdentifier identifier: String, completion: CustomStyleClosure?) -> RequestHandler
+    public func fetchCustomStyleForUser(userIdentifier identifier: String, completion: CustomStyleClosure?) -> RequestHandler
     {
-        return customStyleDAO.fetchCustomStyleForUserWithIdentifier(userIdentifier: identifier, completion: completion)
+        return customStyleDAO.fetchCustomStyleForUser(userIdentifier: identifier, completion: completion)
     }
     
-    public func editCustomStyleForUserWithIdentifier(userIdentifier identifier: String, withData data: CustomStyleEditData, completion: CustomStyleClosure?) -> RequestHandler
+    public func editCustomStyleForUser(userIdentifier identifier: String, withData data: CustomStyleEditData, completion: CustomStyleClosure?) -> RequestHandler
     {
-        return customStyleDAO.editCustomStyleForUserWithIdentifier(userIdentifier: identifier, withData: data, completion: completion)
+        return customStyleDAO.editCustomStyleForUser(userIdentifier: identifier, withData: data, completion: completion)
     }
     
     //MARK: - Notifications

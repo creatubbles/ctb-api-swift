@@ -17,21 +17,21 @@ class BubbleDAO: NSObject
         self.requestSender = requestSender
     }
     
-    func getBubblesForCreationWithIdentifier(creationIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure?) -> RequestHandler
+    func getBubbles(creationIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure?) -> RequestHandler
     {
         let request = BubblesFetchReqest(creationId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = BubblesFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getBubblesForUserWithIdentifier(userIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
+    func getBubbles(userIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
     {
         let request = BubblesFetchReqest(userId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = BubblesFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getBubblesForGalleryWithIdentifier(galleryIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
+    func getBubbles(galleryIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
     {
         let request = BubblesFetchReqest(galleryId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = BubblesFetchResponseHandler(completion: completion)
@@ -52,7 +52,7 @@ class BubbleDAO: NSObject
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func deleteBubbleWithIdentifier(bubbleIdentifier bubbleId: String, completion: ErrorClosure?) -> RequestHandler
+    func deleteBubble(bubbleIdentifier bubbleId: String, completion: ErrorClosure?) -> RequestHandler
     {
         let request = DeleteBubbleRequest(bubbleId: bubbleId)
         let handler = DeleteBubbleResponseHandler(completion: completion)

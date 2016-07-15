@@ -17,7 +17,7 @@ class GroupDAO: NSObject
         self.requestSender = requestSender
     }
     
-    func fetchGroupWithIdentifier(groupIdentifier identifier: String, completion: GroupClosure?) -> RequestHandler
+    func fetchGroup(groupIdentifier identifier: String, completion: GroupClosure?) -> RequestHandler
     {
         let request = GroupsRequest(groupId: identifier)
         let handler = GroupResponseHandler(completion: completion)
