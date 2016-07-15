@@ -119,33 +119,15 @@ class ErrorTransformer
                 {
                     switch status
                     {
-                    case "400":
-                        errors.append(APIClientError.BadRequest)
-                        break
-                    case "401":
-                        errors.append(APIClientError.NotAuthorized)
-                        break
-                    case "403":
-                        errors.append(APIClientError.Forbidden)
-                        break
-                    case "404":
-                        errors.append(APIClientError.NotFound)
-                        break
-                    case "406":
-                        errors.append(APIClientError.NotAcceptable)
-                        break
-                    case "422":
-                        errors.append(APIClientError.ValidationError)
-                        break
-                    case "429":
-                        errors.append(APIClientError.TooManyRequests)
-                        break
-                    case "500":
-                        errors.append(APIClientError.InternalServerError)
-                        break
-                    case "503":
-                        errors.append(APIClientError.ServiceUnavailable)
-                        break
+                    case "400": errors.append(APIClientError.BadRequest)
+                    case "401": errors.append(APIClientError.NotAuthorized)
+                    case "403": errors.append(APIClientError.Forbidden)
+                    case "404": errors.append(APIClientError.NotFound)
+                    case "406": errors.append(APIClientError.NotAcceptable)
+                    case "422": errors.append(APIClientError.ValidationError)
+                    case "429": errors.append(APIClientError.TooManyRequests)
+                    case "500": errors.append(APIClientError.InternalServerError)
+                    case "503": errors.append(APIClientError.ServiceUnavailable)
                     default:
                         errors.append(APIClientError.Unknown)
                     }
@@ -162,7 +144,10 @@ class ErrorTransformer
     
     private class func errorFromErrorType(error: ErrorType?) -> APIClientError?
     {
-        //TODO: Handle it properly.
+        if let err = error as? NSError
+        {
+            return APIClientError.Generic(err.localizedDescription)
+        }
         if let _ = error
         {
             return APIClientError.Unknown;
