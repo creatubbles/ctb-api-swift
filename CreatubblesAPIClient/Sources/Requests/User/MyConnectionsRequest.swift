@@ -11,10 +11,9 @@ import UIKit
 class MyConnectionsRequest: Request
 {
     override var method: RequestMethod  { return .GET }
-//    override var endpoint: String       { return "users/me/connected_users" }
     override var endpoint: String
     {
-        let user = userId != nil ? userId! : "me"
+        let user = userId ?? "me"
         return "users/"+user+"/connected_users"
     }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
