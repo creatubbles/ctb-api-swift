@@ -276,6 +276,12 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.getMyConnections(pagingData, completion: completion)
     }
     
+    public func getOtherUsersMyConnections(userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    {
+        return userDAO.getOtherUsersMyConnections(userId, pagingData: pagingData, completion: completion)
+    }
+
+    
     //MARK: - Gallery managment
     public func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler
     {
