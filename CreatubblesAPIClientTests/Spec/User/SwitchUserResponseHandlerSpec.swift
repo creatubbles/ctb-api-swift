@@ -19,7 +19,7 @@ class SwitchUserResponseHandlerSpec: QuickSpec {
                 let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 10) { done in
-                    sender.login(TestConfiguration.teacherUsername, password: TestConfiguration.teacherPassword) {
+                    sender.login(TestConfiguration.teacherUsername!, password: TestConfiguration.teacherPassword!) {
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
                         sender.send(SwitchUserRequest(targetUserId: TestConfiguration.studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler() {
