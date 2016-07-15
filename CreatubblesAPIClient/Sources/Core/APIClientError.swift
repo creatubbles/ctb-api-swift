@@ -115,15 +115,47 @@ class ErrorTransformer
             var errors = Array<APIClientError>()
             for mapper in mappers
             {
-                if let detail = mapper.detail
+                if let status = mapper.status
                 {
-                    errors.append(APIClientError.Generic(detail))
+                    switch status
+                    {
+                    case "400":
+                        errors.append(APIClientError.BadRequest)
+                        break
+                    case "401":
+                        errors.append(APIClientError.NotAuthorized)
+                        break
+                    case "403":
+                        errors.append(APIClientError.Forbidden)
+                        break
+                    case "404":
+                        errors.append(APIClientError.NotFound)
+                        break
+                    case "406":
+                        errors.append(APIClientError.NotAcceptable)
+                        break
+                    case "422":
+                        errors.append(APIClientError.ValidationError)
+                        break
+                    case "429":
+                        errors.append(APIClientError.TooManyRequests)
+                        break
+                    case "500":
+                        errors.append(APIClientError.InternalServerError)
+                        break
+                    case "503":
+                        errors.append(APIClientError.ServiceUnavailable)
+                        break
+                    default:
+                        errors.append(APIClientError.Unknown)
+                    }
                 }
             }
             return errors
         } else if let response = response, let errorDescription = response["error_description"] as? String {
             return [APIClientError.Generic(errorDescription)]
         }
+        
         return Array<APIClientError>()
     }
     
