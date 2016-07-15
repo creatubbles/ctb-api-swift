@@ -17,14 +17,14 @@ class CustomStyleDAO
         self.requestSender = requestSender
     }
     
-    func fetchCustomStyleForUserWithIdentifier(identifier: String, completion: CustomStyleClosure?) -> RequestHandler
+    func fetchCustomStyleForUserWithIdentifier(userIdentifier identifier: String, completion: CustomStyleClosure?) -> RequestHandler
     {
         let request = CustomStyleFetchRequest(userIdentifier: identifier)
         let handler = CustomStyleFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func editCustomStyleForUserWithIdentifier(identifier: String, withData data: CustomStyleEditData, completion: CustomStyleClosure?) -> RequestHandler
+    func editCustomStyleForUserWithIdentifier(userIdentifier identifier: String, withData data: CustomStyleEditData, completion: CustomStyleClosure?) -> RequestHandler
     {
         let request = CustomStyleEditRequest(userIdentifier: identifier, data: data)
         let handler = CustomStyleEditResponseHandler(completion: completion)

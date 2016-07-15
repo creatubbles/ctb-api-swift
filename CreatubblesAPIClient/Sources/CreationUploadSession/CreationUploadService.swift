@@ -76,7 +76,7 @@ class CreationUploadService: CreationUploadSessionDelegate
         uploadSessions.forEach({ $0.start(completion) })
     }
     
-    func startUploadSession(sessionId: String)
+    func startUploadSession(sessionIdentifier sessionId: String)
     {
         guard let session = uploadSessions.filter( {$0.localIdentifier == sessionId }).first
         else
@@ -89,7 +89,7 @@ class CreationUploadService: CreationUploadSessionDelegate
         session.start(nil)
     }
     
-    func removeUploadSession(sessionId: String)
+    func removeUploadSession(sessionIdentifier sessionId: String)
     {
         guard let session = uploadSessions.filter( {$0.localIdentifier == sessionId }).first,
               let index = uploadSessions.indexOf(session)
@@ -117,7 +117,7 @@ class CreationUploadService: CreationUploadSessionDelegate
         uploadSessions = databaseDAO.fetchAllCreationUploadSessions(requestSender)
     }
     
-    func uploadCreation(data: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData
+    func uploadCreation(data data: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData
     {
         let session = CreationUploadSession(data: data, requestSender: requestSender)
         uploadSessions.append(session)

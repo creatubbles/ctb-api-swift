@@ -33,7 +33,7 @@ class CreationsDAO
         self.requestSender = requestSender
     }
     
-    func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler
+    func getCreation(creationIdentifier creationId: String, completion: CreationClosure?) -> RequestHandler
     {
         let request = FetchCreationsRequest(creationId: creationId)
         let handler = FetchCreationsResponseHandler
@@ -44,45 +44,45 @@ class CreationsDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func reportCreation(creationId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    func reportCreation(creationIdentifier creationId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
         let request = ReportCreationRequest(creationId: creationId, message: message)
         let handler = ReportCreationResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getRecomendedCreationsByUser(userId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
+    func getRecomendedCreationsByUser(userIdentifier userId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
     {
         let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, recommendedUserId: userId)
         let handler = FetchCreationsResponseHandler(completion: completon)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getRecomendedCreationsByCreation(creationId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
+    func getRecomendedCreationsByCreation(creationIdentifier creationId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
     {
         let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, recommendedCreationId: creationId)
         let handler = FetchCreationsResponseHandler(completion: completon)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsClosure?) -> RequestHandler
+    func getCreations(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsClosure?) -> RequestHandler
     {
         let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, galleryId: galleryId, userId: userId, sort: sortOrder, keyword: keyword, onlyPublic: onlyPublic)
         let handler = FetchCreationsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
-    {
-        let fetcher = CreationsBatchFetcher(requestSender: requestSender)
-        return fetcher.fetch(userId, galleryId: galleryId, keyword: keyword, sort: sortOrder, onlyPublic: onlyPublic, completion: completion)
-    }
-    
-    func editCreation(creationId: String, data: EditCreationData, completion: ErrorClosure?) -> RequestHandler
+    func editCreation(creationIdentifier creationId: String, data: EditCreationData, completion: ErrorClosure?) -> RequestHandler
     {
         let request = EditCreationRequest(identifier: creationId, data: data)
         let handler = EditCreationResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-
+    
+    //MARK: BatchMode
+    func getCreationsInBatchMode(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
+    {
+        let fetcher = CreationsBatchFetcher(requestSender: requestSender)
+        return fetcher.fetch(userId, galleryId: galleryId, keyword: keyword, sort: sortOrder, onlyPublic: onlyPublic, completion: completion)
+    }
 }
