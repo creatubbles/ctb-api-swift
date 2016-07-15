@@ -17,7 +17,7 @@ class GroupDAO: NSObject
         self.requestSender = requestSender
     }
     
-    func fetchGroupWithIdentifier(identifier: String, completion: GroupClosure?) -> RequestHandler
+    func fetchGroupWithIdentifier(groupIdentifier identifier: String, completion: GroupClosure?) -> RequestHandler
     {
         let request = GroupsRequest(groupId: identifier)
         let handler = GroupResponseHandler(completion: completion)
@@ -31,21 +31,21 @@ class GroupDAO: NSObject
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func newGroup(data: NewGroupData, completion: GroupClosure?) -> RequestHandler
+    func newGroup(newGroupData data: NewGroupData, completion: GroupClosure?) -> RequestHandler
     {
         let request = NewGroupRequest(data: data)
         let handler = NewGroupResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func editGroup(identifier: String, data: EditGroupData, completion: ErrorClosure?) -> RequestHandler
+    func editGroup(groupIdentifier identifier: String, data: EditGroupData, completion: ErrorClosure?) -> RequestHandler
     {
         let request = EditGroupRequest(identifier: identifier, data: data)
         let handler = EditGroupResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func deleteGroup(identifier: String, completion: ErrorClosure?) -> RequestHandler
+    func deleteGroup(groupIdentifier identifier: String, completion: ErrorClosure?) -> RequestHandler
     {
         let request = DeleteGroupRequest(identifier: identifier)
         let handler = DeleteGroupResponseHandler(completion: completion)
