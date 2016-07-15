@@ -31,6 +31,9 @@ public typealias UserClosure = (User?, APIClientError?) -> (Void)
 public typealias UsersClosure = (Array<User>?,PagingInfo? ,APIClientError?) -> (Void)
 public typealias UsersBatchClosure = (Array<User>? ,APIClientError?) -> (Void)
 
+public typealias GroupClosure = (Group?, APIClientError?) -> (Void)
+public typealias GroupsClosure = (Array<Group>?, APIClientError?) -> (Void)
+
 public typealias CreationClosure = (Creation?, APIClientError?) -> (Void)
 public typealias CreationsClosure = (Array<Creation>?, PagingInfo?, APIClientError?) -> (Void)
 public typealias CreationsBatchClosure = (Array<Creation>?, APIClientError?) -> (Void)
@@ -121,6 +124,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     //MARK: - Internal
     private let settings: APIClientSettings
     private let requestSender: RequestSender
+    
     private let creationsDAO: CreationsDAO
     private let userDAO: UserDAO
     private let galleryDAO: GalleryDAO
@@ -130,6 +134,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     private let contentDAO: ContentDAO
     private let customStyleDAO: CustomStyleDAO
     private let notificationDAO: NotificationDAO
+    private let groupDAO: GroupDAO
     
     public weak var delegate: APIClientDelegate?
     
@@ -146,6 +151,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         self.contentDAO = ContentDAO(requestSender: requestSender)
         self.customStyleDAO = CustomStyleDAO(requestSender: requestSender)
         self.notificationDAO = NotificationDAO(requestSender: requestSender)
+        self.groupDAO = GroupDAO(requestSender: requestSender)
         
         Logger.setup()
         super.init()
@@ -426,6 +432,32 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func deleteBubble(bubbleId: String, completion: ErrorClosure?) -> RequestHandler
     {
         return bubbleDAO.deleteBubble(bubbleId, completion: completion)
+    }
+    //MARK: - Groups
+    
+    public func fetchGroupWithIdentifier(identifier: String, completion: GroupClosure?) -> RequestHandler
+    {
+        return groupDAO.fetchGroupWithIdentifier(identifier, completion: completion)
+    }
+    
+    public func fetchGroups(completion: GroupsClosure?) -> RequestHandler
+    {
+        return groupDAO.fetchGroups(completion)
+    }
+    
+    public func newGroup(data: NewGroupData, completion: GroupClosure?) -> RequestHandler
+    {
+        return groupDAO.newGroup(data, completion: completion)
+    }
+    
+    public func editGroup(identifier: String, data: EditGroupData, completion: ErrorClosure?) -> RequestHandler
+    {
+        return groupDAO.editGroup(identifier, data: data, completion: completion)
+    }
+    
+    public func deleteGroup(identifier: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        return groupDAO.deleteGroup(identifier, completion: completion)        
     }
 
     //MARK: - Comments
