@@ -17,12 +17,16 @@ class SwitchUserResponseHandlerSpec: QuickSpec {
             
             it("Should return correct value for the student after signing in as a teacher") {
                 let sender = TestComponentsFactory.requestSender
+                guard let teacherUsername = TestConfiguration.teacherUsername,
+                      let teacherPassword = TestConfiguration.teacherPassword,
+                      let studentIdentifier = TestConfiguration.studentIdentifier
+                else { return }
                 
                 waitUntil(timeout: 10) { done in
-                    sender.login(TestConfiguration.teacherUsername, password: TestConfiguration.teacherPassword) {
+                    sender.login(teacherUsername, password: teacherPassword) {
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(SwitchUserRequest(targetUserId: TestConfiguration.studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler() {
+                        sender.send(SwitchUserRequest(targetUserId: studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler() {
                                 (accessToken, error) -> Void in
                                 expect(accessToken).notTo(beNil())
                                 expect(error).to(beNil())
@@ -34,11 +38,14 @@ class SwitchUserResponseHandlerSpec: QuickSpec {
             }
             
             it("Should return error when not logged in") {
+                guard let studentIdentifier = TestConfiguration.studentIdentifier
+                else { return }
+                
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 
                 waitUntil(timeout: 10) { done in
-                    sender.send(SwitchUserRequest(targetUserId: TestConfiguration.teacherIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler() {
+                    sender.send(SwitchUserRequest(targetUserId: studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler() {
                             (accessToken, error) -> Void in
                             expect(error).notTo(beNil())
                             expect(accessToken).to(beNil())
