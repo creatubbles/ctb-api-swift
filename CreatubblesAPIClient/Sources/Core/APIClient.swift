@@ -231,6 +231,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         }
     }
     
+    public func reportUser(userId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        return userDAO.reportUser(userId, message: message, completion: completion)
+    }
+    
     public func getCreators(userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getCreators(userId, pagingData: pagingData, completion: completion)
@@ -297,6 +302,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return galleryDAO.newGallery(galleryData, completion: completion)
     }
     
+    public func reportGallery(galleryId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        return galleryDAO.reportGallery(galleryId, message: message, completion: completion)
+    }
+    
     public func submitCreationToGallery(galleryId: String, creationId: String, completion: ErrorClosure) -> RequestHandler
     {
         return galleryDAO.submitCreationToGallery(galleryId, creationId: creationId, completion: completion)
@@ -306,6 +316,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler
     {
         return creationsDAO.getCreation(creationId, completion: completion)
+    }
+    
+    public func reportCreation(creationId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        return creationsDAO.reportCreation(creationId, message: message, completion: completion)
     }
     
     public func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsClosure?) -> RequestHandler
@@ -449,6 +464,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func addComment(data: NewCommentData, completion: ErrorClosure?) -> RequestHandler
     {
         return commentsDAO.addComment(data, completion: completion)
+    }
+    
+    public func reportComment(commentId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        return commentsDAO.reportComment(commentId, message: message, completion: completion)
     }
     
     public func getCommentsForCreationWithIdentifier(identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
