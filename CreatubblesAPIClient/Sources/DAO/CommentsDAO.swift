@@ -24,6 +24,13 @@ class CommentsDAO: NSObject
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func reportComment(commentId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        let request = ReportCommentRequest(commentId: commentId, message: message)
+        let handler = ReportCommentResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getCommentsForCreationWithIdentifier(identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
     {
         let request = CommentsRequest(creationId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
