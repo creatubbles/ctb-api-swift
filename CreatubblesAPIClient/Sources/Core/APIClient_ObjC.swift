@@ -28,7 +28,7 @@ extension APIClient
     //MARK: - Session
     public func _login(username: String, password: String, completion: ((NSError?) -> (Void))?)
     {
-        login(username, password: password)
+        login(username: username, password: password)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
@@ -52,7 +52,7 @@ extension APIClient
     
     public func _getLandingURL(type: LandingURLType, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
     {
-        getLandingURL(type)
+        getLandingURL(type: type)
         {
             (landingUrls, error) -> (Void) in
             completion?(landingUrls, APIClient.errorTypeToNSError(error))
@@ -61,19 +61,17 @@ extension APIClient
     
     public func _getLandingURLForCreation(creationId: String, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
     {
-        getLandingURL(creationId)
+        getLandingURL(creationId: creationId)
         {
             (landingUrls, error) -> (Void) in
             completion?(landingUrls, APIClient.errorTypeToNSError(error))
         }
     }
     
-    //MARK: - Users handling
-   
-    
+    //MARK: - Users handling       
     public func _getUser(userId: String, completion: ((User?, NSError?) -> (Void))?)
     {
-        getUser(userId)
+        getUser(userId: userId)
         {
             (user, error) -> (Void) in
             completion?(user, APIClient.errorTypeToNSError(error))
@@ -91,7 +89,7 @@ extension APIClient
     
     public func _getCreators(userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?)
     {
-        getCreators(userId, pagingData: pagingData)
+        getCreators(userId: userId, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
@@ -100,7 +98,7 @@ extension APIClient
     
     public func _getManagers(userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo?, NSError?) -> (Void))?)
     {
-        getManagers(userId, pagingData: pagingData)
+        getManagers(userId: userId, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
@@ -109,7 +107,7 @@ extension APIClient
     
     public func _newCreator(creatorData: NewCreatorData, completion: ((User?, NSError?) -> (Void))?)
     {
-        newCreator(creatorData)
+        newCreator(data: creatorData)
         {
             (user, error) -> (Void) in
             completion?(user, APIClient.errorTypeToNSError(error))
@@ -119,7 +117,7 @@ extension APIClient
     //MARK: - Gallery handling
     public func _getGallery(galleryId: String, completion: ((Gallery?, NSError?) -> (Void))?)
     {
-        getGallery(galleryId)
+        getGallery(galleryIdentifier: galleryId)
         {
             (gallery, error) -> (Void) in
             completion?(gallery, APIClient.errorTypeToNSError(error))
@@ -128,7 +126,7 @@ extension APIClient
     
     public func _newGallery(galleryData: NewGalleryData, completion: ((Gallery?, NSError?) -> (Void))?)
     {
-        newGallery(galleryData)
+        newGallery(data: galleryData)
         {
             (gallery, error) -> (Void) in
             completion?(gallery, APIClient.errorTypeToNSError(error))
@@ -137,7 +135,7 @@ extension APIClient
     
     public func _getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?)
     {
-        getGalleries(userId, pagingData: pagingData, sort: sort)
+        getGalleries(userIdentifier: userId, pagingData: pagingData, sort: sort)
         {
             (galleries, pInfo, error) -> (Void) in
             completion?(galleries, pInfo, APIClient.errorTypeToNSError(error))
@@ -147,7 +145,7 @@ extension APIClient
     //MARK: - Creation handling
     public func _getCreation(creationId: String, completion: ((Creation?, NSError?) -> (Void))?)
     {
-        getCreation(creationId)
+        getCreation(creationIdentifier: creationId)
         {
             (creation, error) -> (Void) in
             completion?(creation, APIClient.errorTypeToNSError(error))
@@ -156,7 +154,7 @@ extension APIClient
     
     public func _getCreations(galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?)
     {
-        getCreations(galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, onlyPublic: onlyPublic)
+        getCreations(galleryIdentifier: galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, onlyPublic: onlyPublic)
         {
             (creations, pInfo, error) -> (Void) in
             completion?(creations, pInfo, APIClient.errorTypeToNSError(error))
@@ -165,7 +163,7 @@ extension APIClient
     
     public func _newCreation(creationData: NewCreationData, completion: ((Creation?, NSError?) -> (Void))?)
     {
-        newCreation(creationData)
+        newCreation(data: creationData)
         {
             (creation, error) -> (Void) in
             completion?(creation, APIClient.errorTypeToNSError(error))
@@ -173,36 +171,36 @@ extension APIClient
     }
     
     //MARK: - Batch fetching
-    public func _getCreations(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, NSError?) -> (Void))?)
+    public func _getCreationsInBatchMode(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, NSError?) -> (Void))?)
     {
-        getCreations(galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic)
+        getCreationsInBatchMode(galleryIdentifier: galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic)
         {
             (creations, error) -> (Void) in
             completion?(creations, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getGalleries(userId: String?, sort: SortOrder, completion: ((Array<Gallery>?, NSError?) -> (Void))?)
+    public func _getGalleriesInBatchMode(userId: String?, sort: SortOrder, completion: ((Array<Gallery>?, NSError?) -> (Void))?)
     {
-        getGalleries(userId, sort: sort)
+        getGalleriesInBatchMode(userIdentifier: userId, sort: sort)
         {
             (galleries, error) -> (Void) in
             completion?(galleries, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getCreators(userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
+    public func _getCreatorsInBatchMode(userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
     {
-        getCreators(userId)
+        getCreatorsInBatchMode(userId: userId)
         {
             (users, error) -> (Void) in
             completion?(users, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getManagers(userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
+    public func _getManagersInBatchMode(userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
     {
-        getManagers(userId)
+        getManagersInBatchMode(userId: userId)
         {
             (users, error) -> (Void) in
             completion?(users, APIClient.errorTypeToNSError(error))
@@ -231,7 +229,7 @@ extension APIClient
     //MARK: - Bubbles
     func _getBubblesForCreationWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
     {
-        getBubblesForCreationWithIdentifier(identifier, pagingData: pagingData)
+        getBubbles(creationIdentifier: identifier, pagingData: pagingData)
         {
             (bubbles, pInfo, error) -> (Void) in
             completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error))
@@ -240,7 +238,7 @@ extension APIClient
     
     func _getBubblesForUserWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?,PagingInfo?, NSError?) -> (Void))?)
     {
-        getBubblesForUserWithIdentifier(identifier, pagingData: pagingData)
+        getBubbles(userIdentifier: identifier, pagingData: pagingData)
         {
             (bubbles, pInfo, error) -> (Void) in
             completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error))
@@ -249,7 +247,7 @@ extension APIClient
     
     func _getBubblesForGalleryWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
     {
-        getBubblesForGalleryWithIdentifier(identifier, pagingData: pagingData)
+        getBubbles(galleryIdentifier: identifier, pagingData: pagingData)
         {
             (bubbles, pInfo, error) -> (Void) in
             completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error))
@@ -258,7 +256,7 @@ extension APIClient
     
     func _newBubble(data: NewBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
     {
-        newBubble(data)
+        newBubble(data: data)
         {
             (bubble, error) -> (Void) in
             completion?(bubble, APIClient.errorTypeToNSError(error))
@@ -267,7 +265,7 @@ extension APIClient
     
     func _updateBubble(data: UpdateBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
     {
-        updateBubble(data)
+        updateBubble(data: data)
             {
                 (bubble, error) -> (Void) in
                 completion?(bubble, APIClient.errorTypeToNSError(error))

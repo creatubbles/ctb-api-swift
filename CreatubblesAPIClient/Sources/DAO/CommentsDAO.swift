@@ -17,35 +17,35 @@ class CommentsDAO: NSObject
         self.requestSender = requestSender
     }
     
-    func addComment(data: NewCommentData, completion: ErrorClosure?) -> RequestHandler
+    func addComment(commendData data: NewCommentData, completion: ErrorClosure?) -> RequestHandler
     {
         let request = NewCommentRequest(data: data)
         let handler = NewCommentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func reportComment(commentId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    func reportComment(commentIdentifier commentId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
         let request = ReportCommentRequest(commentId: commentId, message: message)
         let handler = ReportCommentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCommentsForCreationWithIdentifier(identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
+    func getComments(creationIdentifier identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
     {
         let request = CommentsRequest(creationId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = CommentsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCommentsForUserWithIdentifier(identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
+    func getComments(userIdentifier identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
     {
         let request = CommentsRequest(userId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = CommentsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCommentsForGalleryWithIdentifier(identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
+    func getComments(galleryIdentifier identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
     {
         let request = CommentsRequest(galleryId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = CommentsResponseHandler(completion: completion)
