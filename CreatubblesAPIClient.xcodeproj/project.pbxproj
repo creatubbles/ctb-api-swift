@@ -10,6 +10,22 @@
 		07E9BEF3959E71B5615B6944 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7DCA9B8836E687138EF88C /* Pods_CreatubblesAPIClientTests.framework */; };
 		080135391D353F9A0054DAB0 /* SwitchUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080135381D353F9A0054DAB0 /* SwitchUserRequest.swift */; };
 		0801353B1D353FF90054DAB0 /* SwitchUserResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0801353A1D353FF90054DAB0 /* SwitchUserResponseHandler.swift */; };
+		083785871D378714006EF69E /* ReportCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785861D378714006EF69E /* ReportCommentRequest.swift */; };
+		083785891D37872C006EF69E /* ReportCommentResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785881D37872C006EF69E /* ReportCommentResponseHandler.swift */; };
+		0837858B1D378A85006EF69E /* ReportCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837858A1D378A85006EF69E /* ReportCreationRequest.swift */; };
+		0837858D1D378AAE006EF69E /* ReportCreationResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837858C1D378AAE006EF69E /* ReportCreationResponseHandler.swift */; };
+		0837858F1D378AF7006EF69E /* ReportGalleryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837858E1D378AF7006EF69E /* ReportGalleryRequest.swift */; };
+		083785911D378B28006EF69E /* ReportGalleryResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785901D378B28006EF69E /* ReportGalleryResponseHandler.swift */; };
+		083785931D378B64006EF69E /* ReportUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785921D378B64006EF69E /* ReportUserRequest.swift */; };
+		083785951D378B7D006EF69E /* ReportUserResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785941D378B7D006EF69E /* ReportUserResponseHandler.swift */; };
+		083785971D379A47006EF69E /* ReportCommentRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785961D379A47006EF69E /* ReportCommentRequestSpec.swift */; };
+		083785991D379A60006EF69E /* ReportCommentResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785981D379A60006EF69E /* ReportCommentResponseHandlerSpec.swift */; };
+		0837859B1D379A7E006EF69E /* ReportCreationRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837859A1D379A7E006EF69E /* ReportCreationRequestSpec.swift */; };
+		0837859D1D379A8C006EF69E /* ReportCreationResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837859C1D379A8C006EF69E /* ReportCreationResponseHandlerSpec.swift */; };
+		0837859F1D379AAD006EF69E /* ReportGalleryRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837859E1D379AAD006EF69E /* ReportGalleryRequestSpec.swift */; };
+		083785A11D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785A01D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift */; };
+		083785A31D379B35006EF69E /* ReportUserRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785A21D379B35006EF69E /* ReportUserRequestSpec.swift */; };
+		083785A51D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785A41D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift */; };
 		08A7B9761D361D14001D8461 /* SwitchUserRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A7B9751D361D14001D8461 /* SwitchUserRequestSpec.swift */; };
 		08A7B9781D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A7B9771D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift */; };
 		08BB575F1D253ED700E2E297 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BB575E1D253ED700E2E297 /* SessionData.swift */; };
@@ -59,27 +75,27 @@
 		18467F6C1D02F2DA005CE5DD /* CustomStyleDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F6B1D02F2DA005CE5DD /* CustomStyleDAO.swift */; };
 		1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847FBED1C75EAF900FE5FF3 /* CreationUploadService.swift */; };
 		1847FBF01C76024300FE5FF3 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847FBEF1C76024300FE5FF3 /* Logger.swift */; };
-		1859FA721D37B4A70023A6B6 /* DeleteGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA691D37B4A70023A6B6 /* DeleteGroupRequest.swift */; };
-		1859FA731D37B4A70023A6B6 /* DeleteGroupResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA6A1D37B4A70023A6B6 /* DeleteGroupResponseHandler.swift */; };
-		1859FA741D37B4A70023A6B6 /* EditGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA6B1D37B4A70023A6B6 /* EditGroupRequest.swift */; };
-		1859FA751D37B4A70023A6B6 /* EditGroupResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA6C1D37B4A70023A6B6 /* EditGroupResponseHandler.swift */; };
-		1859FA761D37B4A70023A6B6 /* GroupResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA6D1D37B4A70023A6B6 /* GroupResponseHandler.swift */; };
-		1859FA771D37B4A70023A6B6 /* GroupsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA6E1D37B4A70023A6B6 /* GroupsRequest.swift */; };
-		1859FA781D37B4A70023A6B6 /* GroupsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA6F1D37B4A70023A6B6 /* GroupsResponseHandler.swift */; };
-		1859FA791D37B4A70023A6B6 /* NewGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA701D37B4A70023A6B6 /* NewGroupRequest.swift */; };
-		1859FA7A1D37B4A70023A6B6 /* NewGroupResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA711D37B4A70023A6B6 /* NewGroupResponseHandler.swift */; };
-		1859FA851D37B4B70023A6B6 /* DeleteGroupRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA7C1D37B4B70023A6B6 /* DeleteGroupRequestSpec.swift */; };
-		1859FA861D37B4B70023A6B6 /* DeleteGroupResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA7D1D37B4B70023A6B6 /* DeleteGroupResponseHandlerSpec.swift */; };
-		1859FA871D37B4B70023A6B6 /* EditGroupRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA7E1D37B4B70023A6B6 /* EditGroupRequestSpec.swift */; };
-		1859FA881D37B4B70023A6B6 /* EditGroupResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA7F1D37B4B70023A6B6 /* EditGroupResponseHandlerSpec.swift */; };
-		1859FA891D37B4B70023A6B6 /* GroupResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA801D37B4B70023A6B6 /* GroupResponseHandlerSpec.swift */; };
-		1859FA8A1D37B4B70023A6B6 /* GroupsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA811D37B4B70023A6B6 /* GroupsRequestSpec.swift */; };
-		1859FA8B1D37B4B70023A6B6 /* GroupsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA821D37B4B70023A6B6 /* GroupsResponseHandlerSpec.swift */; };
-		1859FA8C1D37B4B70023A6B6 /* NewGroupRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA831D37B4B70023A6B6 /* NewGroupRequestSpec.swift */; };
-		1859FA8D1D37B4B70023A6B6 /* NewGroupResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA841D37B4B70023A6B6 /* NewGroupResponseHandlerSpec.swift */; };
-		1859FA901D37B4D30023A6B6 /* EditGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA8E1D37B4D30023A6B6 /* EditGroupData.swift */; };
-		1859FA911D37B4D30023A6B6 /* NewGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA8F1D37B4D30023A6B6 /* NewGroupData.swift */; };
-		1859FA931D37B5190023A6B6 /* GroupDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA921D37B5190023A6B6 /* GroupDAO.swift */; };
+		1859FA951D3905180023A6B6 /* GroupDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA941D3905180023A6B6 /* GroupDAO.swift */; };
+		1859FA981D3905210023A6B6 /* EditGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA961D3905210023A6B6 /* EditGroupData.swift */; };
+		1859FA991D3905210023A6B6 /* NewGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA971D3905210023A6B6 /* NewGroupData.swift */; };
+		1859FAA41D39052F0023A6B6 /* DeleteGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA9B1D39052F0023A6B6 /* DeleteGroupRequest.swift */; };
+		1859FAA51D39052F0023A6B6 /* DeleteGroupResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA9C1D39052F0023A6B6 /* DeleteGroupResponseHandler.swift */; };
+		1859FAA61D39052F0023A6B6 /* EditGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA9D1D39052F0023A6B6 /* EditGroupRequest.swift */; };
+		1859FAA71D39052F0023A6B6 /* EditGroupResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA9E1D39052F0023A6B6 /* EditGroupResponseHandler.swift */; };
+		1859FAA81D39052F0023A6B6 /* GroupResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FA9F1D39052F0023A6B6 /* GroupResponseHandler.swift */; };
+		1859FAA91D39052F0023A6B6 /* GroupsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAA01D39052F0023A6B6 /* GroupsRequest.swift */; };
+		1859FAAA1D39052F0023A6B6 /* GroupsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAA11D39052F0023A6B6 /* GroupsResponseHandler.swift */; };
+		1859FAAB1D39052F0023A6B6 /* NewGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAA21D39052F0023A6B6 /* NewGroupRequest.swift */; };
+		1859FAAC1D39052F0023A6B6 /* NewGroupResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAA31D39052F0023A6B6 /* NewGroupResponseHandler.swift */; };
+		1859FAB71D39053D0023A6B6 /* DeleteGroupRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAAE1D39053D0023A6B6 /* DeleteGroupRequestSpec.swift */; };
+		1859FAB81D39053D0023A6B6 /* DeleteGroupResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAAF1D39053D0023A6B6 /* DeleteGroupResponseHandlerSpec.swift */; };
+		1859FAB91D39053D0023A6B6 /* EditGroupRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAB01D39053D0023A6B6 /* EditGroupRequestSpec.swift */; };
+		1859FABA1D39053D0023A6B6 /* EditGroupResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAB11D39053D0023A6B6 /* EditGroupResponseHandlerSpec.swift */; };
+		1859FABB1D39053D0023A6B6 /* GroupResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAB21D39053D0023A6B6 /* GroupResponseHandlerSpec.swift */; };
+		1859FABC1D39053D0023A6B6 /* GroupsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAB31D39053D0023A6B6 /* GroupsRequestSpec.swift */; };
+		1859FABD1D39053D0023A6B6 /* GroupsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAB41D39053D0023A6B6 /* GroupsResponseHandlerSpec.swift */; };
+		1859FABE1D39053D0023A6B6 /* NewGroupRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAB51D39053D0023A6B6 /* NewGroupRequestSpec.swift */; };
+		1859FABF1D39053D0023A6B6 /* NewGroupResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAB61D39053D0023A6B6 /* NewGroupResponseHandlerSpec.swift */; };
 		187671401C7CA00500733E9E /* APIClient_ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876713F1C7CA00500733E9E /* APIClient_ObjC.swift */; };
 		187671431C7CA0F700733E9E /* PagingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187671421C7CA0F700733E9E /* PagingData.swift */; };
 		187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187671441C7CA23900733E9E /* NewCreatorData.swift */; };
@@ -221,6 +237,8 @@
 		2178B72F1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B72D1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift */; };
 		2178B7301D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */; };
 		2178B7321D3797840013C251 /* CreateMultipleCreatorsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */; };
+		2178B7351D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7331D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift */; };
+		2178B7361D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7341D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift */; };
 		219121941D2D1F510039FA94 /* MyConnectionsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */; };
 		219121961D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */; };
 		219772201D186A8800293859 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2197721F1D186A8800293859 /* TestConfiguration.swift */; };
@@ -252,6 +270,22 @@
 		055A4A2D59C871AD4EC1E7B9 /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
 		080135381D353F9A0054DAB0 /* SwitchUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserRequest.swift; sourceTree = "<group>"; };
 		0801353A1D353FF90054DAB0 /* SwitchUserResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserResponseHandler.swift; sourceTree = "<group>"; };
+		083785861D378714006EF69E /* ReportCommentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCommentRequest.swift; sourceTree = "<group>"; };
+		083785881D37872C006EF69E /* ReportCommentResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCommentResponseHandler.swift; sourceTree = "<group>"; };
+		0837858A1D378A85006EF69E /* ReportCreationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCreationRequest.swift; sourceTree = "<group>"; };
+		0837858C1D378AAE006EF69E /* ReportCreationResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCreationResponseHandler.swift; sourceTree = "<group>"; };
+		0837858E1D378AF7006EF69E /* ReportGalleryRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportGalleryRequest.swift; sourceTree = "<group>"; };
+		083785901D378B28006EF69E /* ReportGalleryResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportGalleryResponseHandler.swift; sourceTree = "<group>"; };
+		083785921D378B64006EF69E /* ReportUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportUserRequest.swift; sourceTree = "<group>"; };
+		083785941D378B7D006EF69E /* ReportUserResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportUserResponseHandler.swift; sourceTree = "<group>"; };
+		083785961D379A47006EF69E /* ReportCommentRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCommentRequestSpec.swift; sourceTree = "<group>"; };
+		083785981D379A60006EF69E /* ReportCommentResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCommentResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		0837859A1D379A7E006EF69E /* ReportCreationRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCreationRequestSpec.swift; sourceTree = "<group>"; };
+		0837859C1D379A8C006EF69E /* ReportCreationResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCreationResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		0837859E1D379AAD006EF69E /* ReportGalleryRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportGalleryRequestSpec.swift; sourceTree = "<group>"; };
+		083785A01D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportGalleryResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		083785A21D379B35006EF69E /* ReportUserRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportUserRequestSpec.swift; sourceTree = "<group>"; };
+		083785A41D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportUserResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		08A7B9751D361D14001D8461 /* SwitchUserRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserRequestSpec.swift; sourceTree = "<group>"; };
 		08A7B9771D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		08BB575E1D253ED700E2E297 /* SessionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
@@ -304,27 +338,27 @@
 		18467F6B1D02F2DA005CE5DD /* CustomStyleDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleDAO.swift; sourceTree = "<group>"; };
 		1847FBED1C75EAF900FE5FF3 /* CreationUploadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadService.swift; sourceTree = "<group>"; };
 		1847FBEF1C76024300FE5FF3 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		1859FA691D37B4A70023A6B6 /* DeleteGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteGroupRequest.swift; sourceTree = "<group>"; };
-		1859FA6A1D37B4A70023A6B6 /* DeleteGroupResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteGroupResponseHandler.swift; sourceTree = "<group>"; };
-		1859FA6B1D37B4A70023A6B6 /* EditGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroupRequest.swift; sourceTree = "<group>"; };
-		1859FA6C1D37B4A70023A6B6 /* EditGroupResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroupResponseHandler.swift; sourceTree = "<group>"; };
-		1859FA6D1D37B4A70023A6B6 /* GroupResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupResponseHandler.swift; sourceTree = "<group>"; };
-		1859FA6E1D37B4A70023A6B6 /* GroupsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsRequest.swift; sourceTree = "<group>"; };
-		1859FA6F1D37B4A70023A6B6 /* GroupsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsResponseHandler.swift; sourceTree = "<group>"; };
-		1859FA701D37B4A70023A6B6 /* NewGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupRequest.swift; sourceTree = "<group>"; };
-		1859FA711D37B4A70023A6B6 /* NewGroupResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupResponseHandler.swift; sourceTree = "<group>"; };
-		1859FA7C1D37B4B70023A6B6 /* DeleteGroupRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteGroupRequestSpec.swift; sourceTree = "<group>"; };
-		1859FA7D1D37B4B70023A6B6 /* DeleteGroupResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteGroupResponseHandlerSpec.swift; sourceTree = "<group>"; };
-		1859FA7E1D37B4B70023A6B6 /* EditGroupRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroupRequestSpec.swift; sourceTree = "<group>"; };
-		1859FA7F1D37B4B70023A6B6 /* EditGroupResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroupResponseHandlerSpec.swift; sourceTree = "<group>"; };
-		1859FA801D37B4B70023A6B6 /* GroupResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupResponseHandlerSpec.swift; sourceTree = "<group>"; };
-		1859FA811D37B4B70023A6B6 /* GroupsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsRequestSpec.swift; sourceTree = "<group>"; };
-		1859FA821D37B4B70023A6B6 /* GroupsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsResponseHandlerSpec.swift; sourceTree = "<group>"; };
-		1859FA831D37B4B70023A6B6 /* NewGroupRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupRequestSpec.swift; sourceTree = "<group>"; };
-		1859FA841D37B4B70023A6B6 /* NewGroupResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupResponseHandlerSpec.swift; sourceTree = "<group>"; };
-		1859FA8E1D37B4D30023A6B6 /* EditGroupData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroupData.swift; sourceTree = "<group>"; };
-		1859FA8F1D37B4D30023A6B6 /* NewGroupData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupData.swift; sourceTree = "<group>"; };
-		1859FA921D37B5190023A6B6 /* GroupDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDAO.swift; sourceTree = "<group>"; };
+		1859FA941D3905180023A6B6 /* GroupDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDAO.swift; sourceTree = "<group>"; };
+		1859FA961D3905210023A6B6 /* EditGroupData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroupData.swift; sourceTree = "<group>"; };
+		1859FA971D3905210023A6B6 /* NewGroupData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupData.swift; sourceTree = "<group>"; };
+		1859FA9B1D39052F0023A6B6 /* DeleteGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteGroupRequest.swift; sourceTree = "<group>"; };
+		1859FA9C1D39052F0023A6B6 /* DeleteGroupResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteGroupResponseHandler.swift; sourceTree = "<group>"; };
+		1859FA9D1D39052F0023A6B6 /* EditGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroupRequest.swift; sourceTree = "<group>"; };
+		1859FA9E1D39052F0023A6B6 /* EditGroupResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroupResponseHandler.swift; sourceTree = "<group>"; };
+		1859FA9F1D39052F0023A6B6 /* GroupResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupResponseHandler.swift; sourceTree = "<group>"; };
+		1859FAA01D39052F0023A6B6 /* GroupsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsRequest.swift; sourceTree = "<group>"; };
+		1859FAA11D39052F0023A6B6 /* GroupsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsResponseHandler.swift; sourceTree = "<group>"; };
+		1859FAA21D39052F0023A6B6 /* NewGroupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupRequest.swift; sourceTree = "<group>"; };
+		1859FAA31D39052F0023A6B6 /* NewGroupResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupResponseHandler.swift; sourceTree = "<group>"; };
+		1859FAAE1D39053D0023A6B6 /* DeleteGroupRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteGroupRequestSpec.swift; sourceTree = "<group>"; };
+		1859FAAF1D39053D0023A6B6 /* DeleteGroupResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteGroupResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		1859FAB01D39053D0023A6B6 /* EditGroupRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroupRequestSpec.swift; sourceTree = "<group>"; };
+		1859FAB11D39053D0023A6B6 /* EditGroupResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroupResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		1859FAB21D39053D0023A6B6 /* GroupResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		1859FAB31D39053D0023A6B6 /* GroupsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsRequestSpec.swift; sourceTree = "<group>"; };
+		1859FAB41D39053D0023A6B6 /* GroupsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		1859FAB51D39053D0023A6B6 /* NewGroupRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupRequestSpec.swift; sourceTree = "<group>"; };
+		1859FAB61D39053D0023A6B6 /* NewGroupResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		1876713F1C7CA00500733E9E /* APIClient_ObjC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient_ObjC.swift; sourceTree = "<group>"; };
 		187671421C7CA0F700733E9E /* PagingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingData.swift; sourceTree = "<group>"; };
 		187671441C7CA23900733E9E /* NewCreatorData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreatorData.swift; sourceTree = "<group>"; };
@@ -466,6 +500,8 @@
 		2178B72D1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsRequest.swift; sourceTree = "<group>"; };
 		2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsResponseHandler.swift; sourceTree = "<group>"; };
 		2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsData.swift; sourceTree = "<group>"; };
+		2178B7331D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsRequestSpec.swift; sourceTree = "<group>"; };
+		2178B7341D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsRequestSpec.swift; sourceTree = "<group>"; };
 		219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		2197721F1D186A8800293859 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
@@ -612,7 +648,7 @@
 				18F6E8661D021B6500AAC5FB /* Creation */,
 				18F6E8AF1D02229C00AAC5FB /* CustomStyle */,
 				18F6E86F1D021B6500AAC5FB /* Gallery */,
-				1859FA681D37B4A70023A6B6 /* Groups */,
+				1859FA9A1D39052F0023A6B6 /* Groups */,
 				18F6E8761D021B6500AAC5FB /* LandingURL */,
 				18E435481D0425CE00B728C6 /* Notification */,
 				18F6E87B1D021B6500AAC5FB /* User */,
@@ -628,34 +664,34 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		1859FA681D37B4A70023A6B6 /* Groups */ = {
+		1859FA9A1D39052F0023A6B6 /* Groups */ = {
 			isa = PBXGroup;
 			children = (
-				1859FA691D37B4A70023A6B6 /* DeleteGroupRequest.swift */,
-				1859FA6A1D37B4A70023A6B6 /* DeleteGroupResponseHandler.swift */,
-				1859FA6B1D37B4A70023A6B6 /* EditGroupRequest.swift */,
-				1859FA6C1D37B4A70023A6B6 /* EditGroupResponseHandler.swift */,
-				1859FA6D1D37B4A70023A6B6 /* GroupResponseHandler.swift */,
-				1859FA6E1D37B4A70023A6B6 /* GroupsRequest.swift */,
-				1859FA6F1D37B4A70023A6B6 /* GroupsResponseHandler.swift */,
-				1859FA701D37B4A70023A6B6 /* NewGroupRequest.swift */,
-				1859FA711D37B4A70023A6B6 /* NewGroupResponseHandler.swift */,
+				1859FA9B1D39052F0023A6B6 /* DeleteGroupRequest.swift */,
+				1859FA9C1D39052F0023A6B6 /* DeleteGroupResponseHandler.swift */,
+				1859FA9D1D39052F0023A6B6 /* EditGroupRequest.swift */,
+				1859FA9E1D39052F0023A6B6 /* EditGroupResponseHandler.swift */,
+				1859FA9F1D39052F0023A6B6 /* GroupResponseHandler.swift */,
+				1859FAA01D39052F0023A6B6 /* GroupsRequest.swift */,
+				1859FAA11D39052F0023A6B6 /* GroupsResponseHandler.swift */,
+				1859FAA21D39052F0023A6B6 /* NewGroupRequest.swift */,
+				1859FAA31D39052F0023A6B6 /* NewGroupResponseHandler.swift */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
 		};
-		1859FA7B1D37B4B70023A6B6 /* Group */ = {
+		1859FAAD1D39053D0023A6B6 /* Group */ = {
 			isa = PBXGroup;
 			children = (
-				1859FA7C1D37B4B70023A6B6 /* DeleteGroupRequestSpec.swift */,
-				1859FA7D1D37B4B70023A6B6 /* DeleteGroupResponseHandlerSpec.swift */,
-				1859FA7E1D37B4B70023A6B6 /* EditGroupRequestSpec.swift */,
-				1859FA7F1D37B4B70023A6B6 /* EditGroupResponseHandlerSpec.swift */,
-				1859FA801D37B4B70023A6B6 /* GroupResponseHandlerSpec.swift */,
-				1859FA811D37B4B70023A6B6 /* GroupsRequestSpec.swift */,
-				1859FA821D37B4B70023A6B6 /* GroupsResponseHandlerSpec.swift */,
-				1859FA831D37B4B70023A6B6 /* NewGroupRequestSpec.swift */,
-				1859FA841D37B4B70023A6B6 /* NewGroupResponseHandlerSpec.swift */,
+				1859FAAE1D39053D0023A6B6 /* DeleteGroupRequestSpec.swift */,
+				1859FAAF1D39053D0023A6B6 /* DeleteGroupResponseHandlerSpec.swift */,
+				1859FAB01D39053D0023A6B6 /* EditGroupRequestSpec.swift */,
+				1859FAB11D39053D0023A6B6 /* EditGroupResponseHandlerSpec.swift */,
+				1859FAB21D39053D0023A6B6 /* GroupResponseHandlerSpec.swift */,
+				1859FAB31D39053D0023A6B6 /* GroupsRequestSpec.swift */,
+				1859FAB41D39053D0023A6B6 /* GroupsResponseHandlerSpec.swift */,
+				1859FAB51D39053D0023A6B6 /* NewGroupRequestSpec.swift */,
+				1859FAB61D39053D0023A6B6 /* NewGroupResponseHandlerSpec.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -663,8 +699,8 @@
 		187671411C7CA0DD00733E9E /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				1859FA8E1D37B4D30023A6B6 /* EditGroupData.swift */,
-				1859FA8F1D37B4D30023A6B6 /* NewGroupData.swift */,
+				1859FA961D3905210023A6B6 /* EditGroupData.swift */,
+				1859FA971D3905210023A6B6 /* NewGroupData.swift */,
 				181E76FA1CC5485100A1546A /* NewCommentData.swift */,
 				181E76E51CC5358E00A1546A /* NewBubbleData.swift */,
 				181E76E61CC5358E00A1546A /* UpdateBubbleData.swift */,
@@ -698,6 +734,7 @@
 		188BCEA71C64E09800EA4F11 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				1859FA941D3905180023A6B6 /* GroupDAO.swift */,
 				21A79F6A1C81E6C5009E95D1 /* BatchFetch */,
 				181E76E31CC5353600A1546A /* BubbleDAO.swift */,
 				181E76EB1CC547C000A1546A /* CommentsDAO.swift */,
@@ -708,7 +745,6 @@
 				18C1CFF41C75C40A00A02DE3 /* UserDAO.swift */,
 				183728ED1CEDD1AC008784C7 /* ContentDAO.swift */,
 				18290AF81D070A17000EA216 /* NotificationDAO.swift */,
-				1859FA921D37B5190023A6B6 /* GroupDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -837,7 +873,7 @@
 				18F6E80D1D020F0A00AAC5FB /* Creation */,
 				18F6E8B21D0222D100AAC5FB /* CustomStyle */,
 				18F6E80E1D020F0A00AAC5FB /* Gallery */,
-				1859FA7B1D37B4B70023A6B6 /* Group */,
+				1859FAAD1D39053D0023A6B6 /* Group */,
 				18F6E83E1D02180A00AAC5FB /* LandingURL */,
 				18E435431D0424EB00B728C6 /* Notification */,
 				18F6E8111D020F0B00AAC5FB /* User */,
@@ -871,6 +907,8 @@
 				18F6E8241D02146100AAC5FB /* CreationPingResponseHandlerSpec.swift */,
 				18F9EBBD1D084ED80090697F /* EditCreationRequestSpec.swift */,
 				1895D3661D11F0A3009B7271 /* EditCreationResponseHandlerSpec.swift */,
+				0837859A1D379A7E006EF69E /* ReportCreationRequestSpec.swift */,
+				0837859C1D379A8C006EF69E /* ReportCreationResponseHandlerSpec.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -884,6 +922,8 @@
 				18F6E82C1D0215A400AAC5FB /* NewGalleryResponseHandlerSpec.swift */,
 				18F6E82E1D0215BC00AAC5FB /* GallerySubmissionRequestSpec.swift */,
 				18F6E8301D0215C500AAC5FB /* GallerySubmissionResponseHandlerSpec.swift */,
+				0837859E1D379AAD006EF69E /* ReportGalleryRequestSpec.swift */,
+				083785A01D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -903,6 +943,10 @@
 				219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */,
 				08A7B9751D361D14001D8461 /* SwitchUserRequestSpec.swift */,
 				08A7B9771D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift */,
+				2178B7331D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift */,
+				2178B7341D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift */,
+				083785A21D379B35006EF69E /* ReportUserRequestSpec.swift */,
+				083785A41D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -923,6 +967,8 @@
 				18F6E84F1D0219FB00AAC5FB /* CommentsResponseHandlerSpec.swift */,
 				18F6E84B1D0219D500AAC5FB /* NewCommentRequestSpec.swift */,
 				18F6E84D1D0219EA00AAC5FB /* NewCommentResponseHandlerSpec.swift */,
+				083785961D379A47006EF69E /* ReportCommentRequestSpec.swift */,
+				083785981D379A60006EF69E /* ReportCommentResponseHandlerSpec.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -958,6 +1004,8 @@
 				18F6E85C1D021B6500AAC5FB /* CommentsResponseHandler.swift */,
 				18F6E85D1D021B6500AAC5FB /* NewCommentRequest.swift */,
 				18F6E85E1D021B6500AAC5FB /* NewCommentResponseHandler.swift */,
+				083785861D378714006EF69E /* ReportCommentRequest.swift */,
+				083785881D37872C006EF69E /* ReportCommentResponseHandler.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -994,6 +1042,8 @@
 				18F6E86E1D021B6500AAC5FB /* NewCreationUploadResponseHandler.swift */,
 				18E9D18E1D117812006F2BAB /* EditCreationRequest.swift */,
 				1895D3681D11F204009B7271 /* EditCreationResponseHandler.swift */,
+				0837858A1D378A85006EF69E /* ReportCreationRequest.swift */,
+				0837858C1D378AAE006EF69E /* ReportCreationResponseHandler.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -1007,6 +1057,8 @@
 				18F6E8731D021B6500AAC5FB /* GallerySubmissionResponseHandler.swift */,
 				18F6E8741D021B6500AAC5FB /* NewGalleryRequest.swift */,
 				18F6E8751D021B6500AAC5FB /* NewGalleryResponseHandler.swift */,
+				0837858E1D378AF7006EF69E /* ReportGalleryRequest.swift */,
+				083785901D378B28006EF69E /* ReportGalleryResponseHandler.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -1037,6 +1089,8 @@
 				0801353A1D353FF90054DAB0 /* SwitchUserResponseHandler.swift */,
 				2178B72D1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift */,
 				2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */,
+				083785921D378B64006EF69E /* ReportUserRequest.swift */,
+				083785941D378B7D006EF69E /* ReportUserResponseHandler.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1290,11 +1344,12 @@
 			files = (
 				18290AE71D06B24B000EA216 /* GallerySubmission.swift in Sources */,
 				18F6E8861D021B6500AAC5FB /* NewBubbleRequest.swift in Sources */,
-				1859FA721D37B4A70023A6B6 /* DeleteGroupRequest.swift in Sources */,
 				189D9F621C84B36100857CC6 /* UserMapper.swift in Sources */,
+				083785871D378714006EF69E /* ReportCommentRequest.swift in Sources */,
 				18CC309E1CB28A9D00EA4A00 /* AlamofireRequest+Cancelable.swift in Sources */,
 				18F6E8B61D0224EE00AAC5FB /* CustomStyleFetchResponseHandler.swift in Sources */,
 				18F6E8AC1D021C2900AAC5FB /* CustomStyle.swift in Sources */,
+				1859FAA51D39052F0023A6B6 /* DeleteGroupResponseHandler.swift in Sources */,
 				18F6E88E1D021B6500AAC5FB /* ContentRequest.swift in Sources */,
 				18467F611D02E486005CE5DD /* CustomStyleEditData.swift in Sources */,
 				181E76E81CC5358E00A1546A /* UpdateBubbleData.swift in Sources */,
@@ -1306,15 +1361,14 @@
 				18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */,
 				18F6E88D1D021B6500AAC5FB /* NewCommentResponseHandler.swift in Sources */,
 				18F6E8AE1D021C3400AAC5FB /* CustomStyleMapper.swift in Sources */,
-				1859FA931D37B5190023A6B6 /* GroupDAO.swift in Sources */,
 				1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */,
 				18F6E8A71D021B6500AAC5FB /* NewCreatorRequest.swift in Sources */,
 				18467F6C1D02F2DA005CE5DD /* CustomStyleDAO.swift in Sources */,
 				18467F6A1D02EDE9005CE5DD /* CustomStyleEditResponseHandler.swift in Sources */,
 				183635431CB5013900ED778A /* Identifiable.swift in Sources */,
 				18F6E88A1D021B6500AAC5FB /* CommentsRequest.swift in Sources */,
-				1859FA761D37B4A70023A6B6 /* GroupResponseHandler.swift in Sources */,
 				18290AEF1D06E45A000EA216 /* NotificationTextEntityMapper.swift in Sources */,
+				1859FAA91D39052F0023A6B6 /* GroupsRequest.swift in Sources */,
 				18F6E8941D021B6500AAC5FB /* FetchCreationsResponseHandler.swift in Sources */,
 				18F6E8A81D021B6500AAC5FB /* NewCreatorResponseHandler.swift in Sources */,
 				188BCEB01C64E19D00EA4F11 /* APIClientSettings.swift in Sources */,
@@ -1322,6 +1376,7 @@
 				187671401C7CA00500733E9E /* APIClient_ObjC.swift in Sources */,
 				18F6E8A01D021B6500AAC5FB /* NewGalleryResponseHandler.swift in Sources */,
 				189D9F5D1C84B36100857CC6 /* CreationUploadMapper.swift in Sources */,
+				0837858B1D378A85006EF69E /* ReportCreationRequest.swift in Sources */,
 				189D9F5C1C84B36100857CC6 /* CreationMapper.swift in Sources */,
 				18F6E89F1D021B6500AAC5FB /* NewGalleryRequest.swift in Sources */,
 				2178B7301D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift in Sources */,
@@ -1330,16 +1385,17 @@
 				187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */,
 				2178B72F1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift in Sources */,
 				181E76CF1CC5351300A1546A /* Bubble.swift in Sources */,
-				1859FA731D37B4A70023A6B6 /* DeleteGroupResponseHandler.swift in Sources */,
+				083785951D378B7D006EF69E /* ReportUserResponseHandler.swift in Sources */,
 				18F6E8951D021B6500AAC5FB /* NewCreationPingRequest.swift in Sources */,
 				181E76E41CC5353600A1546A /* BubbleDAO.swift in Sources */,
 				21B9334A1D2AEC2900FCD248 /* MyConnectionsRequest.swift in Sources */,
 				21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */,
+				1859FAA81D39052F0023A6B6 /* GroupResponseHandler.swift in Sources */,
 				18F6E8971D021B6500AAC5FB /* NewCreationRequest.swift in Sources */,
-				1859FA771D37B4A70023A6B6 /* GroupsRequest.swift in Sources */,
 				18F6E88C1D021B6500AAC5FB /* NewCommentRequest.swift in Sources */,
 				21C349931C904B38002972EC /* NewCreationData.swift in Sources */,
 				183635421CB5013900ED778A /* DataInclude.swift in Sources */,
+				1859FAA71D39052F0023A6B6 /* EditGroupResponseHandler.swift in Sources */,
 				21B9334C1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift in Sources */,
 				18290AF91D070A17000EA216 /* NotificationDAO.swift in Sources */,
 				18E4354A1D0425FA00B728C6 /* NotificationsFetchRequest.swift in Sources */,
@@ -1359,9 +1415,9 @@
 				18E6E8711CFF2F24008D7B89 /* Metadata.swift in Sources */,
 				18C1CFF91C75C4B000A02DE3 /* GalleryDAO.swift in Sources */,
 				18366AA61D0591E200229D20 /* NotificationMapper.swift in Sources */,
+				1859FA951D3905180023A6B6 /* GroupDAO.swift in Sources */,
 				18F6E8881D021B6500AAC5FB /* UpdateBubbleRequest.swift in Sources */,
 				18E9D18F1D117812006F2BAB /* EditCreationRequest.swift in Sources */,
-				1859FA781D37B4A70023A6B6 /* GroupsResponseHandler.swift in Sources */,
 				18F6E89E1D021B6500AAC5FB /* GallerySubmissionResponseHandler.swift in Sources */,
 				18F6E89C1D021B6500AAC5FB /* GalleriesResponseHandler.swift in Sources */,
 				189D9F5F1C84B36100857CC6 /* GalleryMapper.swift in Sources */,
@@ -1373,7 +1429,6 @@
 				18F6E8991D021B6500AAC5FB /* NewCreationUploadRequest.swift in Sources */,
 				18F6E8A61D021B6500AAC5FB /* CreatorsAndManagersResponseHandler.swift in Sources */,
 				181E76D11CC5351D00A1546A /* BubbleMapper.swift in Sources */,
-				1859FA7A1D37B4A70023A6B6 /* NewGroupResponseHandler.swift in Sources */,
 				183728EC1CEDC93D008784C7 /* ContentEntryMapper.swift in Sources */,
 				18C744FA1C84611600A07E4C /* DatabaseService.swift in Sources */,
 				189D9F601C84B36100857CC6 /* GroupMapper.swift in Sources */,
@@ -1382,9 +1437,9 @@
 				187671491C7CA31600733E9E /* NewGalleryData.swift in Sources */,
 				18F6E89A1D021B6500AAC5FB /* NewCreationUploadResponseHandler.swift in Sources */,
 				181E76F01CC547FF00A1546A /* CommentMapper.swift in Sources */,
-				1859FA741D37B4A70023A6B6 /* EditGroupRequest.swift in Sources */,
 				18F6E8901D021B6500AAC5FB /* ErrorResponseHandler.swift in Sources */,
 				183635481CB5014700ED778A /* RelationshipMapper.swift in Sources */,
+				1859FAAB1D39052F0023A6B6 /* NewGroupRequest.swift in Sources */,
 				18C1CFF51C75C40A00A02DE3 /* UserDAO.swift in Sources */,
 				18F6E8821D021B6500AAC5FB /* BubblesFetchReqest.swift in Sources */,
 				187671431C7CA0F700733E9E /* PagingData.swift in Sources */,
@@ -1401,6 +1456,8 @@
 				1895D36B1D11F7E3009B7271 /* EditProfileRequest.swift in Sources */,
 				18290AEB1D06D410000EA216 /* NotificationsFetchResponseHandler.swift in Sources */,
 				188ECF701C74703200AFEE4F /* CreationUploadSession.swift in Sources */,
+				0837858D1D378AAE006EF69E /* ReportCreationResponseHandler.swift in Sources */,
+				0837858F1D378AF7006EF69E /* ReportGalleryRequest.swift in Sources */,
 				18F6E8A11D021B6500AAC5FB /* LandingURLRequest.swift in Sources */,
 				18F6E8A31D021B6500AAC5FB /* OAuth2+Alamofire.swift in Sources */,
 				181E76E71CC5358E00A1546A /* NewBubbleData.swift in Sources */,
@@ -1409,9 +1466,12 @@
 				21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */,
 				18F6E8A51D021B6500AAC5FB /* CreatorsAndManagersRequest.swift in Sources */,
 				2178B7321D3797840013C251 /* CreateMultipleCreatorsData.swift in Sources */,
+				1859FAAC1D39052F0023A6B6 /* NewGroupResponseHandler.swift in Sources */,
+				1859FAAA1D39052F0023A6B6 /* GroupsResponseHandler.swift in Sources */,
 				21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */,
 				18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */,
 				183635441CB5013900ED778A /* Relationship.swift in Sources */,
+				1859FAA61D39052F0023A6B6 /* EditGroupRequest.swift in Sources */,
 				18F6E8B11D0222AD00AAC5FB /* CustomStyleFetchRequest.swift in Sources */,
 				18467F631D02E9E1005CE5DD /* UIColor+Hex.swift in Sources */,
 				1815D5651C638BD200EF4C38 /* User.swift in Sources */,
@@ -1420,23 +1480,25 @@
 				182FB8B81D1293D7004495CB /* EditProfileResponseHandler.swift in Sources */,
 				18E4354C1D04287600B728C6 /* Notification.swift in Sources */,
 				181E76EE1CC547E900A1546A /* Comment.swift in Sources */,
-				1859FA911D37B4D30023A6B6 /* NewGroupData.swift in Sources */,
 				187902021C6C8BAF008F5302 /* Gallery.swift in Sources */,
+				1859FA991D3905210023A6B6 /* NewGroupData.swift in Sources */,
+				083785931D378B64006EF69E /* ReportUserRequest.swift in Sources */,
 				181E76EC1CC547C000A1546A /* CommentsDAO.swift in Sources */,
 				18FD15311C84315200A353C1 /* APIClientError.swift in Sources */,
 				18E9D1911D117F58006F2BAB /* EditCreationData.swift in Sources */,
+				1859FAA41D39052F0023A6B6 /* DeleteGroupRequest.swift in Sources */,
 				189D9F5E1C84B36100857CC6 /* ErrorMapper.swift in Sources */,
 				0801353B1D353FF90054DAB0 /* SwitchUserResponseHandler.swift in Sources */,
+				083785891D37872C006EF69E /* ReportCommentResponseHandler.swift in Sources */,
 				183635471CB5014700ED778A /* DataIncludeMapper.swift in Sources */,
 				080135391D353F9A0054DAB0 /* SwitchUserRequest.swift in Sources */,
 				18C744FB1C84611600A07E4C /* CreationEntity.swift in Sources */,
+				083785911D378B28006EF69E /* ReportGalleryResponseHandler.swift in Sources */,
 				181E76FB1CC5485100A1546A /* NewCommentData.swift in Sources */,
-				1859FA751D37B4A70023A6B6 /* EditGroupResponseHandler.swift in Sources */,
 				18F6E89B1D021B6500AAC5FB /* GalleriesRequest.swift in Sources */,
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,
+				1859FA981D3905210023A6B6 /* EditGroupData.swift in Sources */,
 				18C744FC1C84611600A07E4C /* CreationUploadEntity.swift in Sources */,
-				1859FA901D37B4D30023A6B6 /* EditGroupData.swift in Sources */,
-				1859FA791D37B4A70023A6B6 /* NewGroupRequest.swift in Sources */,
 				183728EE1CEDD1AC008784C7 /* ContentDAO.swift in Sources */,
 				21A79F6F1C81E6C5009E95D1 /* BatchFetcher.swift in Sources */,
 				18E6E86F1CFF2E1D008D7B89 /* AbilityMapper.swift in Sources */,
@@ -1452,14 +1514,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				187901F41C6B43FA008F5302 /* TestComponentsFactory.swift in Sources */,
-				1859FA8C1D37B4B70023A6B6 /* NewGroupRequestSpec.swift in Sources */,
-				1859FA8A1D37B4B70023A6B6 /* GroupsRequestSpec.swift in Sources */,
+				2178B7351D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift in Sources */,
 				187901F21C6B43E1008F5302 /* TestRequestSender.swift in Sources */,
 				18F9EDB11CAD051400B85DD6 /* TestRequestHandler.swift in Sources */,
 				18F6E8391D02170F00AAC5FB /* CreatorsAndManagersResponseHandlerSpec.swift in Sources */,
 				18F6E83D1D02172600AAC5FB /* NewCreatorResponseHandlerSpec.swift in Sources */,
+				083785A31D379B35006EF69E /* ReportUserRequestSpec.swift in Sources */,
 				18F6E84E1D0219EA00AAC5FB /* NewCommentResponseHandlerSpec.swift in Sources */,
 				18290AE91D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift in Sources */,
+				1859FABA1D39053D0023A6B6 /* EditGroupResponseHandlerSpec.swift in Sources */,
 				18F6E8421D02182A00AAC5FB /* LandingURLResponseHandlerSpec.swift in Sources */,
 				1895D3671D11F0A3009B7271 /* EditCreationResponseHandlerSpec.swift in Sources */,
 				18467F681D02ED98005CE5DD /* CustomStyleEditResponseHandlerSpec.swift in Sources */,
@@ -1470,15 +1533,20 @@
 				18EFFF711C772A4E00BE0B70 /* DataUploaderSpec.swift in Sources */,
 				18F6E8331D0216E300AAC5FB /* ProfileRequestSpec.swift in Sources */,
 				18F6E8171D02113800AAC5FB /* CreationRequestSpec.swift in Sources */,
-				1859FA8B1D37B4B70023A6B6 /* GroupsResponseHandlerSpec.swift in Sources */,
 				18E435471D04254800B728C6 /* NotificationsFetchRequestSpec.swift in Sources */,
-				1859FA861D37B4B70023A6B6 /* DeleteGroupResponseHandlerSpec.swift in Sources */,
 				18F6E8501D0219FB00AAC5FB /* CommentsResponseHandlerSpec.swift in Sources */,
 				18F6E84C1D0219D500AAC5FB /* NewCommentRequestSpec.swift in Sources */,
+				1859FABC1D39053D0023A6B6 /* GroupsRequestSpec.swift in Sources */,
 				18F6E83B1D02171D00AAC5FB /* NewCreatorRequestSpec.swift in Sources */,
+				2178B7361D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift in Sources */,
 				18F6E84A1D0219C800AAC5FB /* CommentsRequestSpec.swift in Sources */,
+				1859FAB81D39053D0023A6B6 /* DeleteGroupResponseHandlerSpec.swift in Sources */,
 				18F6E8481D0218A100AAC5FB /* ContentResponseHandlerSpec.swift in Sources */,
+				0837859D1D379A8C006EF69E /* ReportCreationResponseHandlerSpec.swift in Sources */,
+				1859FABD1D39053D0023A6B6 /* GroupsResponseHandlerSpec.swift in Sources */,
 				18F6E8151D020F3D00AAC5FB /* BubbleResponseHandlerSpec.swift in Sources */,
+				083785A51D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift in Sources */,
+				0837859F1D379AAD006EF69E /* ReportGalleryRequestSpec.swift in Sources */,
 				18290AF71D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift in Sources */,
 				219121961D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift in Sources */,
 				18F6E82D1D0215A400AAC5FB /* NewGalleryResponseHandlerSpec.swift in Sources */,
@@ -1488,32 +1556,36 @@
 				18F6E8B81D0225F500AAC5FB /* CustomStyleFetchResponseHandlerSpec.swift in Sources */,
 				18F6E8311D0215C500AAC5FB /* GallerySubmissionResponseHandlerSpec.swift in Sources */,
 				18779DC21C68E2D9000BFB57 /* TestConfigurationTemplate.swift in Sources */,
-				1859FA891D37B4B70023A6B6 /* GroupResponseHandlerSpec.swift in Sources */,
 				18F6E8211D02141200AAC5FB /* NewCreationUploadResponseHandlerSpec.swift in Sources */,
 				219121941D2D1F510039FA94 /* MyConnectionsRequestSpec.swift in Sources */,
+				083785991D379A60006EF69E /* ReportCommentResponseHandlerSpec.swift in Sources */,
 				18EFFF701C772A4E00BE0B70 /* APIClientSpec.swift in Sources */,
-				1859FA8D1D37B4B70023A6B6 /* NewGroupResponseHandlerSpec.swift in Sources */,
+				1859FAB71D39053D0023A6B6 /* DeleteGroupRequestSpec.swift in Sources */,
 				187901FE1C6C793F008F5302 /* TestResponses.swift in Sources */,
+				1859FAB91D39053D0023A6B6 /* EditGroupRequestSpec.swift in Sources */,
 				182FB8B41D128F65004495CB /* EditProfileRequestSpec.swift in Sources */,
 				18467F661D02EA59005CE5DD /* UIColorHexSpec.swift in Sources */,
 				18F6E8191D02114400AAC5FB /* CreationResponseHandlerSpec.swift in Sources */,
 				18F6E8371D02170500AAC5FB /* CreatorsAndManagersRequestSpec.swift in Sources */,
 				18F6E81F1D0213B000AAC5FB /* NewCreationUploadRequestSpec.swift in Sources */,
 				18F6E82B1D02159800AAC5FB /* NewGalleryRequestSpec.swift in Sources */,
+				1859FABE1D39053D0023A6B6 /* NewGroupRequestSpec.swift in Sources */,
 				18467F5D1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift in Sources */,
 				18F6E8401D02182000AAC5FB /* LandingURLRequestSpec.swift in Sources */,
 				18F6E8B41D0222DF00AAC5FB /* CustomStyleFetchRequestSpec.swift in Sources */,
 				18EFFF721C772A4E00BE0B70 /* RequestSenderSpec.swift in Sources */,
-				1859FA851D37B4B70023A6B6 /* DeleteGroupRequestSpec.swift in Sources */,
 				18F6E82F1D0215BC00AAC5FB /* GallerySubmissionRequestSpec.swift in Sources */,
 				18F6E8351D0216EE00AAC5FB /* ProfileResponseHandlerSpec.swift in Sources */,
 				219772201D186A8800293859 /* TestConfiguration.swift in Sources */,
+				0837859B1D379A7E006EF69E /* ReportCreationRequestSpec.swift in Sources */,
+				1859FABF1D39053D0023A6B6 /* NewGroupResponseHandlerSpec.swift in Sources */,
+				1859FABB1D39053D0023A6B6 /* GroupResponseHandlerSpec.swift in Sources */,
 				18F6E81B1D02132000AAC5FB /* NewCreationRequestSpec.swift in Sources */,
-				1859FA881D37B4B70023A6B6 /* EditGroupResponseHandlerSpec.swift in Sources */,
 				18779DBE1C68DFCB000BFB57 /* DummyResponseHandler.swift in Sources */,
+				083785971D379A47006EF69E /* ReportCommentRequestSpec.swift in Sources */,
 				18F6E8231D02145600AAC5FB /* CreationPingRequestSpec.swift in Sources */,
 				18F6E8131D020F3200AAC5FB /* BubbleRequestSpec.swift in Sources */,
-				1859FA871D37B4B70023A6B6 /* EditGroupRequestSpec.swift in Sources */,
+				083785A11D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift in Sources */,
 				08A7B9781D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift in Sources */,
 				18F6E8461D02189700AAC5FB /* ContentRequestSpec.swift in Sources */,
 				18F9EBBE1D084ED80090697F /* EditCreationRequestSpec.swift in Sources */,
