@@ -34,6 +34,16 @@ public enum APIClientError: ErrorType
     case Unknown
     case UploadCancelled
     
+    case BadRequest
+    case NotAuthorized
+    case Forbidden
+    case NotFound
+    case NotAcceptable
+    case ValidationError
+    case TooManyRequests
+    case InternalServerError
+    case ServiceUnavailable
+    
     public static var Domain: String { return "com.creatubbles.errordomain" }
     
     public var code: Int
@@ -45,6 +55,16 @@ public enum APIClientError: ErrorType
         case .Unknown: return -6002
         case .LoginError: return -6003
         case .UploadCancelled: return -6004
+            
+        case .BadRequest: return -6400
+        case .NotAuthorized: return -6401
+        case .Forbidden: return -6403
+        case .NotFound: return -6404
+        case .NotAcceptable: return -6406
+        case .ValidationError: return -6422
+        case .TooManyRequests: return -6429
+        case .InternalServerError: return -6500
+        case .ServiceUnavailable: return -6503
         }
     }
     
@@ -57,6 +77,17 @@ public enum APIClientError: ErrorType
         case .Unknown: return "Unknown"
         case .LoginError: return "Error during login"
         case .UploadCancelled: return "Creation upload cancelled"
+            
+        case .BadRequest: return "Bad request"
+        case .NotAuthorized: return "Not authorized"
+        case .Forbidden: return "Forbidden"
+        case .NotFound: return "Not found"
+        case .NotAcceptable: return "Not acceptable"
+        case .ValidationError: return "Validation error"
+        case .TooManyRequests: return "Too many requests"
+        case .InternalServerError: return "Internal server error"
+        case .ServiceUnavailable: return "Service unavailable"
+            
         }
     }
 }
@@ -84,22 +115,39 @@ class ErrorTransformer
             var errors = Array<APIClientError>()
             for mapper in mappers
             {
-                if let detail = mapper.detail
+                if let status = mapper.status
                 {
-                    errors.append(APIClientError.Generic(detail))
+                    switch status
+                    {
+                    case "400": errors.append(APIClientError.BadRequest)
+                    case "401": errors.append(APIClientError.NotAuthorized)
+                    case "403": errors.append(APIClientError.Forbidden)
+                    case "404": errors.append(APIClientError.NotFound)
+                    case "406": errors.append(APIClientError.NotAcceptable)
+                    case "422": errors.append(APIClientError.ValidationError)
+                    case "429": errors.append(APIClientError.TooManyRequests)
+                    case "500": errors.append(APIClientError.InternalServerError)
+                    case "503": errors.append(APIClientError.ServiceUnavailable)
+                    default:
+                        errors.append(APIClientError.Unknown)
+                    }
                 }
             }
             return errors
         } else if let response = response, let errorDescription = response["error_description"] as? String {
             return [APIClientError.Generic(errorDescription)]
         }
+        
         return Array<APIClientError>()
     }
     
     
     private class func errorFromErrorType(error: ErrorType?) -> APIClientError?
     {
-        //TODO: Handle it properly.
+        if let err = error as? NSError
+        {
+            return APIClientError.Generic(err.localizedDescription)
+        }
         if let _ = error
         {
             return APIClientError.Unknown;
