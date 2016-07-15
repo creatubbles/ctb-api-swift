@@ -26,7 +26,7 @@ import ObjectMapper
 
 class ErrorMapper: Mappable
 {
-    var status: Int?
+    var status: String?
     var code: String?
     var source: String?
     var title: String?
