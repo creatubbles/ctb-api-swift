@@ -29,12 +29,22 @@ public class Group: NSObject, Identifiable
 {
     public let identifier: String
     public let name: String
-    public let taggingsCount: Int
+    public let slug: String
+    public let creatorsCount: Int
+    public let avatarUrl: String?
     
-    init(mapper: GroupMapper)
+    public let avatarCreation: Creation?
+    public let avatarCreationRelationship: Relationship?
+    
+    init(mapper: GroupMapper, dataMapper: DataIncludeMapper? = nil)
     {
         identifier = mapper.identifier!
         name = mapper.name!
-        taggingsCount = mapper.taggingsCount!
+        slug = mapper.slug!
+        creatorsCount = mapper.creatorsCount!
+        avatarUrl = mapper.avatarUrl
+        
+        avatarCreationRelationship = MappingUtils.relationshipFromMapper(mapper.avatarCreationRelationship)
+        avatarCreation = MappingUtils.objectFromMapper(dataMapper, relationship: avatarCreationRelationship, type: Creation.self)
     }
 }
