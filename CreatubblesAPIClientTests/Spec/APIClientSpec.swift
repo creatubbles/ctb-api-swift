@@ -63,7 +63,7 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
@@ -83,7 +83,7 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    client.login("WrongUsername", password: "WrongPassword", completion:
+                    client.login(username: "WrongUsername", password: "WrongPassword", completion:
                     {
                         (error) -> (Void) in
                         expect(error).notTo(beNil())
@@ -102,7 +102,7 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
@@ -127,12 +127,12 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getUser(identifier)
+                        client.getUser(userId: identifier)
                         {
                             (user, error) -> (Void) in
                             expect(user).notTo(beNil())
@@ -153,12 +153,12 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getCreators(identifier, pagingData: nil)
+                        client.getCreators(userId: identifier, pagingData: nil)
                         {
                             (users, pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
@@ -179,12 +179,12 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getManagers(identifier, pagingData: nil)
+                        client.getManagers(userId: identifier, pagingData: nil)
                         {
                             (users,pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
@@ -238,12 +238,12 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getGallery(identifier)
+                        client.getGallery(galleryIdentifier: identifier)
                         {
                             (gallery, error) -> (Void) in
                             expect(gallery).notTo(beNil())
@@ -264,12 +264,12 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getGalleries(identifier, pagingData: nil, sort: nil)
+                        client.getGalleries(userIdentifier: identifier, pagingData: nil, sort: nil)
                         {
                             (galleries, pageInfo, error) -> (Void) in
                             expect(galleries).notTo(beNil())
@@ -288,12 +288,12 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getGalleries(nil, pagingData: nil, sort: .Popular)
+                        client.getGalleries(userIdentifier: nil, pagingData: nil, sort: .Popular)
                         {
                             (galleries, pageInfo, error) -> (Void) in
                             expect(galleries).notTo(beNil())
@@ -314,12 +314,12 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.newGallery(data)
+                        client.newGallery(data: data)
                         {
                             (gallery, error) -> (Void) in
                             expect(gallery).notTo(beNil())
@@ -342,12 +342,12 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getCreation(identifier, completion:
+                        client.getCreation(creationIdentifier: identifier, completion:
                         {
                             (creation, error) -> (Void) in
                             expect(creation).notTo(beNil())
@@ -367,12 +367,12 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 200)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getGalleries(nil, sort: .Popular, completion:
+                        client.getGalleriesInBatchMode(userIdentifier: nil, sort: .Popular, completion:
                         { (galleries, error) -> (Void) in
                             expect(galleries).notTo(beNil())
                             expect(galleries).notTo(beEmpty())
@@ -394,12 +394,12 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 200)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getCreations(nil, userId: identifier, keyword: nil, sortOrder: nil, onlyPublic: false, completion:
+                        client.getCreationsInBatchMode(galleryIdentifier: nil, userId: identifier, keyword: nil, sortOrder: nil, onlyPublic: false, completion:
                         {
                             (creations, error) -> (Void) in
                             expect(creations).notTo(beNil())
@@ -417,12 +417,12 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 200)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getCreators(nil, completion:
+                        client.getCreatorsInBatchMode(userId: nil, completion:
                         {
                             (creators, error) -> (Void) in
                             expect(creators).notTo(beNil())
@@ -440,7 +440,7 @@ class APIClientSpec: QuickSpec
                 waitUntil(timeout: 20)
                 {
                     done in
-                    client.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
                         (error) -> (Void) in
                         expect(error).to(beNil())
