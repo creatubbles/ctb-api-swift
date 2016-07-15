@@ -61,7 +61,7 @@ extension APIClient
     
     public func _getLandingURLForCreation(creationId: String, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
     {
-        getLandingURL(creationId: creationId)
+        getLandingURL(creationIdentifier: creationId)
         {
             (landingUrls, error) -> (Void) in
             completion?(landingUrls, APIClient.errorTypeToNSError(error))
@@ -71,7 +71,7 @@ extension APIClient
     //MARK: - Users handling       
     public func _getUser(userId: String, completion: ((User?, NSError?) -> (Void))?)
     {
-        getUser(userId: userId)
+        getUser(userIdentfier: userId)
         {
             (user, error) -> (Void) in
             completion?(user, APIClient.errorTypeToNSError(error))
@@ -89,7 +89,7 @@ extension APIClient
     
     public func _getCreators(userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?)
     {
-        getCreators(userId: userId, pagingData: pagingData)
+        getCreators(userIdentifier: userId, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
@@ -98,7 +98,7 @@ extension APIClient
     
     public func _getManagers(userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo?, NSError?) -> (Void))?)
     {
-        getManagers(userId: userId, pagingData: pagingData)
+        getManagers(userIdentifier: userId, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
@@ -191,7 +191,7 @@ extension APIClient
     
     public func _getCreatorsInBatchMode(userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
     {
-        getCreatorsInBatchMode(userId: userId)
+        getCreatorsInBatchMode(userIdentifier: userId)
         {
             (users, error) -> (Void) in
             completion?(users, APIClient.errorTypeToNSError(error))
@@ -200,7 +200,7 @@ extension APIClient
     
     public func _getManagersInBatchMode(userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
     {
-        getManagersInBatchMode(userId: userId)
+        getManagersInBatchMode(userIdentifier: userId)
         {
             (users, error) -> (Void) in
             completion?(users, APIClient.errorTypeToNSError(error))

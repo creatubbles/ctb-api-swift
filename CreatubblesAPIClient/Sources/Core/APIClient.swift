@@ -206,13 +206,13 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.getLandingURL(type: type, completion: completion)
     }
 
-    public func getLandingURL(creationId creationId: String, completion: LandingURLClosure?) -> RequestHandler
+    public func getLandingURL(creationIdentifier creationId: String, completion: LandingURLClosure?) -> RequestHandler
     {
         return userDAO.getLandingURL(creationId: creationId, completion: completion)
     }
     
     //MARK: - Creators managment
-    public func getUser(userId userId: String, completion: UserClosure?) -> RequestHandler
+    public func getUser(userIdentfier userId: String, completion: UserClosure?) -> RequestHandler
     {
         return userDAO.getUser(userId, completion: completion)
     }
@@ -222,7 +222,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.getCurrentUser(completion)
     }
     
-    public func switchUser(targetUserId targetUserId: String, accessToken: String, completion: SwitchUserClosure?) -> RequestHandler
+    public func switchUser(targetUserIdentifier targetUserId: String, accessToken: String, completion: SwitchUserClosure?) -> RequestHandler
     {
         return userDAO.switchUser(targetUserId, accessToken: accessToken) { [weak self] (accessToken, error) in completion?(accessToken, error)
             if let strongSelf = self where error == nil {
@@ -231,27 +231,27 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         }
     }
     
-    public func reportUser(userId userId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    public func reportUser(userIdentifier userId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
         return userDAO.reportUser(userId, message: message, completion: completion)
     }
     
-    public func getCreators(userId userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    public func getCreators(userIdentifier userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getCreators(userId, pagingData: pagingData, completion: completion)
     }
     
-    public func getManagers(userId userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    public func getManagers(userIdentifier userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getManagers(userId, pagingData: pagingData, completion: completion)
     }
 
-    public func getCreatorsInBatchMode(userId userId: String?, completion: UsersBatchClosure?) -> RequestHandler
+    public func getCreatorsInBatchMode(userIdentifier userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
         return userDAO.getCreatorsInBatchMode(userId, completion: completion)
     }
     
-    public func getManagersInBatchMode(userId userId: String?, completion: UsersBatchClosure?) -> RequestHandler
+    public func getManagersInBatchMode(userIdentifier userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
         return userDAO.getManagersInBatchMode(userId, completion: completion)
     }
@@ -261,7 +261,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.newCreator(creatorData, completion: completion)
     }
     
-    public func editProfile(identifier identifier: String, data: EditProfileData, completion: ErrorClosure?) -> RequestHandler
+    public func editProfile(userIdentifier identifier: String, data: EditProfileData, completion: ErrorClosure?) -> RequestHandler
     {
         return userDAO.editProfile(identifier, data: data, completion: completion)
     }
@@ -276,7 +276,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.getMyConnections(pagingData, completion: completion)
     }
     
-    public func getOtherUsersMyConnections(userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    public func getOtherUsersMyConnections(userIdentifier userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getOtherUsersMyConnections(userId, pagingData: pagingData, completion: completion)
     }
