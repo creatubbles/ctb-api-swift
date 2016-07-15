@@ -229,7 +229,7 @@ extension APIClient
     //MARK: - Bubbles
     func _getBubblesForCreationWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
     {
-        getBubblesForCreationWithIdentifier(creationIdentifier: identifier, pagingData: pagingData)
+        getBubbles(creationIdentifier: identifier, pagingData: pagingData)
         {
             (bubbles, pInfo, error) -> (Void) in
             completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error))
@@ -238,7 +238,7 @@ extension APIClient
     
     func _getBubblesForUserWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?,PagingInfo?, NSError?) -> (Void))?)
     {
-        getBubblesForUserWithIdentifier(userIdentifier: identifier, pagingData: pagingData)
+        getBubbles(userIdentifier: identifier, pagingData: pagingData)
         {
             (bubbles, pInfo, error) -> (Void) in
             completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error))
@@ -247,7 +247,7 @@ extension APIClient
     
     func _getBubblesForGalleryWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
     {
-        getBubblesForGalleryWithIdentifier(galleryIdentifier: identifier, pagingData: pagingData)
+        getBubbles(galleryIdentifier: identifier, pagingData: pagingData)
         {
             (bubbles, pInfo, error) -> (Void) in
             completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error))
