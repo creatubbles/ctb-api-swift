@@ -17,14 +17,14 @@ class NotificationDAO: NSObject
         self.requestSender = requestSender
     }
  
-    func getNotifications(pagingData: PagingData?, completion: NotificationsClosure?) -> RequestHandler
+    func getNotifications(pagingData pagingData: PagingData?, completion: NotificationsClosure?) -> RequestHandler
     {
         let request = NotificationsFetchRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = NotificationsFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func markNotificationAsRead(identifier: String, completion: ErrorClosure?) -> RequestHandler
+    func markNotificationAsRead(notificationIdentifier identifier: String, completion: ErrorClosure?) -> RequestHandler
     {
         let request = NotificationReadRequest(notificationIdentifier: identifier)
         let handler = NotificationReadResponseHandler(completion: completion)

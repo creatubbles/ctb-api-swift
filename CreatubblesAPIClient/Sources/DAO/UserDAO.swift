@@ -68,14 +68,14 @@ class UserDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getLandingURL(creationId: String, completion: LandingURLClosure?) -> RequestHandler
+    func getLandingURL(creationId creationId: String, completion: LandingURLClosure?) -> RequestHandler
     {
         let request = LandingURLRequest(creationId: creationId)
         let handler = LandingURLResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getLandingURL(type: LandingURLType?, completion: LandingURLClosure?) -> RequestHandler
+    func getLandingURL(type type: LandingURLType?, completion: LandingURLClosure?) -> RequestHandler
     {
         let request = LandingURLRequest(type: type)
         let handler = LandingURLResponseHandler(completion: completion)
@@ -87,18 +87,6 @@ class UserDAO
         let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Managers)
         let handler = CreatorsAndManagersResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
-    }
-    
-    func getCreators(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
-    {
-        let batchFetcher = UsersBatchFetcher(requestSender: requestSender)
-        return batchFetcher.fetch(userId, scope: .Creators, completion: completion)
-    }
-    
-    func getManagers(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
-    {
-        let batchFetcher = UsersBatchFetcher(requestSender: requestSender)
-        return batchFetcher.fetch(userId, scope: .Managers, completion: completion)
     }
     
     func getMyConnections(pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
@@ -134,6 +122,18 @@ class UserDAO
         let request = CreateMultipleCreatorsRequest(amount: data.amount, birthYear: data.birthYear, groupName: data.groupName)
         let handler = CreateMultipleCreatorsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
-        
+    }
+    
+    //MARK: Batch
+    func getCreatorsInBatchMode(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
+    {
+        let batchFetcher = UsersBatchFetcher(requestSender: requestSender)
+        return batchFetcher.fetch(userId, scope: .Creators, completion: completion)
+    }
+    
+    func getManagersInBatchMode(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
+    {
+        let batchFetcher = UsersBatchFetcher(requestSender: requestSender)
+        return batchFetcher.fetch(userId, scope: .Managers, completion: completion)
     }
 }
