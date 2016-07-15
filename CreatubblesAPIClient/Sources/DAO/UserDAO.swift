@@ -54,6 +54,13 @@ class UserDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func reportUser(userId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        let request = ReportUserRequest(userId: userId, message: message)
+        let handler = ReportUserResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getCreators(userId: String?, pagingData: PagingData?,completion: UsersClosure?) -> RequestHandler
     {
         let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Creators)
