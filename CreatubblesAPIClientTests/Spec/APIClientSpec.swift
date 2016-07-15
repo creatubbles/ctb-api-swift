@@ -132,7 +132,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getUser(userId: identifier)
+                        client.getUser(userIdentfier: identifier)
                         {
                             (user, error) -> (Void) in
                             expect(user).notTo(beNil())
@@ -158,7 +158,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getCreators(userId: identifier, pagingData: nil)
+                        client.getCreators(userIdentifier: identifier, pagingData: nil)
                         {
                             (users, pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
@@ -184,7 +184,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getManagers(userId: identifier, pagingData: nil)
+                        client.getManagers(userIdentifier: identifier, pagingData: nil)
                         {
                             (users,pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
@@ -422,7 +422,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getCreatorsInBatchMode(userId: nil, completion:
+                        client.getCreatorsInBatchMode(userIdentifier: nil, completion:
                         {
                             (creators, error) -> (Void) in
                             expect(creators).notTo(beNil())
