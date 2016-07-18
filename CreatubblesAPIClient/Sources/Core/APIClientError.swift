@@ -109,38 +109,48 @@ class ErrorTransformer
     
     private class func errorsFromResponse(response: Dictionary<String, AnyObject>?) -> Array<APIClientError>
     {
-        if  let response = response,
-            let mappers = Mapper<ErrorMapper>().mapArray(response["errors"])
+        guard let response = response
+        else  { return Array<APIClientError>() }
+        
+        if let mappers = Mapper<ErrorMapper>().mapArray(response["errors"])
         {
-            var errors = Array<APIClientError>()
-            for mapper in mappers
-            {
-                if let status = mapper.status
-                {
-                    switch status
-                    {
-                    case "400": errors.append(APIClientError.BadRequest)
-                    case "401": errors.append(APIClientError.NotAuthorized)
-                    case "403": errors.append(APIClientError.Forbidden)
-                    case "404": errors.append(APIClientError.NotFound)
-                    case "406": errors.append(APIClientError.NotAcceptable)
-                    case "422": errors.append(APIClientError.ValidationError)
-                    case "429": errors.append(APIClientError.TooManyRequests)
-                    case "500": errors.append(APIClientError.InternalServerError)
-                    case "503": errors.append(APIClientError.ServiceUnavailable)
-                    default:
-                        errors.append(APIClientError.Unknown)
-                    }
-                }
-            }
-            return errors
-        } else if let response = response, let errorDescription = response["error_description"] as? String {
+            return mappers.map({ ErrorTransformer.errorWithStatus($0.code) })
+        }
+        else if let errorDescription = response["error_description"] as? String
+        {
             return [APIClientError.Generic(errorDescription)]
+        }
+        else if let status = response["status"] as? String
+        {
+            return [ErrorTransformer.errorWithStatus(status)]
         }
         
         return Array<APIClientError>()
     }
     
+    private class func errorWithStatus(status: String?) -> APIClientError
+    {
+        guard let status = status
+        else
+        {
+            Logger.log.warning("Missing status for error")
+            return APIClientError.Unknown
+        }
+        
+        switch status
+        {
+            case "400": return APIClientError.BadRequest
+            case "401": return APIClientError.NotAuthorized
+            case "403": return APIClientError.Forbidden
+            case "404": return APIClientError.NotFound
+            case "406": return APIClientError.NotAcceptable
+            case "422": return APIClientError.ValidationError
+            case "429": return APIClientError.TooManyRequests
+            case "500": return APIClientError.InternalServerError
+            case "503": return APIClientError.ServiceUnavailable
+            default:    return APIClientError.Unknown
+        }
+    }
     
     private class func errorFromErrorType(error: ErrorType?) -> APIClientError?
     {
