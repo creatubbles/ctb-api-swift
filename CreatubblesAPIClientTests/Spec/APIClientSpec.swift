@@ -132,7 +132,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getUser(userIdentfier: identifier)
+                        client.getUser(userId: identifier)
                         {
                             (user, error) -> (Void) in
                             expect(user).notTo(beNil())
@@ -158,7 +158,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getCreators(userIdentifier: identifier, pagingData: nil)
+                        client.getCreators(userId: identifier, pagingData: nil)
                         {
                             (users, pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
@@ -184,7 +184,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getManagers(userIdentifier: identifier, pagingData: nil)
+                        client.getManagers(userId: identifier, pagingData: nil)
                         {
                             (users,pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
@@ -243,7 +243,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getGallery(galleryIdentifier: identifier)
+                        client.getGallery(galleryId: identifier)
                         {
                             (gallery, error) -> (Void) in
                             expect(gallery).notTo(beNil())
@@ -269,7 +269,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getGalleries(userIdentifier: identifier, pagingData: nil, sort: nil)
+                        client.getGalleries(creationId: identifier, pagingData: nil, sort: nil)
                         {
                             (galleries, pageInfo, error) -> (Void) in
                             expect(galleries).notTo(beNil())
@@ -293,7 +293,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getGalleries(userIdentifier: nil, pagingData: nil, sort: .Popular)
+                        client.getGalleries(userId: nil, pagingData: nil, sort: .Popular)
                         {
                             (galleries, pageInfo, error) -> (Void) in
                             expect(galleries).notTo(beNil())
@@ -347,7 +347,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getCreation(creationIdentifier: identifier, completion:
+                        client.getCreation(creationId: identifier, completion:
                         {
                             (creation, error) -> (Void) in
                             expect(creation).notTo(beNil())
@@ -372,7 +372,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getGalleriesInBatchMode(userIdentifier: nil, sort: .Popular, completion:
+                        client.getGalleriesInBatchMode(userId: nil, sort: .Popular, completion:
                         { (galleries, error) -> (Void) in
                             expect(galleries).notTo(beNil())
                             expect(galleries).notTo(beEmpty())
@@ -399,7 +399,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getCreationsInBatchMode(galleryIdentifier: nil, userId: identifier, keyword: nil, sortOrder: nil, onlyPublic: false, completion:
+                        client.getCreationsInBatchMode(galleryId: nil, userId: identifier, keyword: nil, sortOrder: nil, onlyPublic: false, completion:
                         {
                             (creations, error) -> (Void) in
                             expect(creations).notTo(beNil())
@@ -422,7 +422,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getCreatorsInBatchMode(userIdentifier: nil, completion:
+                        client.getCreatorsInBatchMode(userId: nil, completion:
                         {
                             (creators, error) -> (Void) in
                             expect(creators).notTo(beNil())
