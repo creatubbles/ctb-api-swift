@@ -101,6 +101,7 @@ public typealias SwitchUserClosure = (String?, APIClientError?) -> (Void)
     case FollowedCreator
     case AnotherComment
     case NewCommentForCreationUsers
+    case MultipleCreatorsCreated
 }
 
 @objc
