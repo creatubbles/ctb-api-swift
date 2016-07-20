@@ -124,6 +124,13 @@ class UserDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getUsersFollowedByAUser(userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    {
+        let request = UsersFollowedByAUserRequest(page: pagingData?.page, perPage: pagingData?.pageSize, userId: userId)
+        let handler = UsersFollowedByAUserResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     //MARK: Batch
     func getCreatorsInBatchMode(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {

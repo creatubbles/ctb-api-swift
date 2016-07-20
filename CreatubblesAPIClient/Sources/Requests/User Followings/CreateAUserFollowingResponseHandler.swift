@@ -10,5 +10,5 @@ import UIKit
 
 class CreateAUserFollowingResponseHandler: ErrorResponseHandler
 {
-
+    
 }
