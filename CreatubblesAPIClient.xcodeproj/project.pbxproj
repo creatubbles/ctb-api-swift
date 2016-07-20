@@ -234,6 +234,14 @@
 		18FD15311C84315200A353C1 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD15301C84315200A353C1 /* APIClientError.swift */; };
 		2117F8C11D3520B800304D79 /* NotificationMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F8C01D3520B800304D79 /* NotificationMetadata.swift */; };
 		2117F8C31D3520CE00304D79 /* NotificationMetadataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F8C21D3520CE00304D79 /* NotificationMetadataMapper.swift */; };
+		2152794D1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152794C1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift */; };
+		2152794F1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152794E1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift */; };
+		215279521D3F6FC400B67313 /* CreateAUserFollowingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279511D3F6FC400B67313 /* CreateAUserFollowingRequest.swift */; };
+		215279541D3F70D900B67313 /* CreateAUserFollowingResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279531D3F70D900B67313 /* CreateAUserFollowingResponseHandler.swift */; };
+		215279561D3F715400B67313 /* UsersFollowedByAUserRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279551D3F715400B67313 /* UsersFollowedByAUserRequestSpec.swift */; };
+		215279581D3F742F00B67313 /* UsersFollowedByAUserResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279571D3F742F00B67313 /* UsersFollowedByAUserResponseHandlerSpec.swift */; };
+		2152795B1D3F797300B67313 /* CreateAUserFollowingRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152795A1D3F797300B67313 /* CreateAUserFollowingRequestSpec.swift */; };
+		2152795D1D3F7B8D00B67313 /* CreateAUserFollowingResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152795C1D3F7B8D00B67313 /* CreateAUserFollowingResponseHandlerSpec.swift */; };
 		2178B72F1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B72D1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift */; };
 		2178B7301D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */; };
 		2178B7321D3797840013C251 /* CreateMultipleCreatorsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */; };
@@ -497,6 +505,14 @@
 		18FD15301C84315200A353C1 /* APIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
 		2117F8C01D3520B800304D79 /* NotificationMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMetadata.swift; sourceTree = "<group>"; };
 		2117F8C21D3520CE00304D79 /* NotificationMetadataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMetadataMapper.swift; sourceTree = "<group>"; };
+		2152794C1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersFollowedByAUserRequest.swift; sourceTree = "<group>"; };
+		2152794E1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersFollowedByAUserResponseHandler.swift; sourceTree = "<group>"; };
+		215279511D3F6FC400B67313 /* CreateAUserFollowingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAUserFollowingRequest.swift; sourceTree = "<group>"; };
+		215279531D3F70D900B67313 /* CreateAUserFollowingResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAUserFollowingResponseHandler.swift; sourceTree = "<group>"; };
+		215279551D3F715400B67313 /* UsersFollowedByAUserRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersFollowedByAUserRequestSpec.swift; sourceTree = "<group>"; };
+		215279571D3F742F00B67313 /* UsersFollowedByAUserResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersFollowedByAUserResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		2152795A1D3F797300B67313 /* CreateAUserFollowingRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAUserFollowingRequestSpec.swift; sourceTree = "<group>"; };
+		2152795C1D3F7B8D00B67313 /* CreateAUserFollowingResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAUserFollowingResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		2178B72D1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsRequest.swift; sourceTree = "<group>"; };
 		2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsResponseHandler.swift; sourceTree = "<group>"; };
 		2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsData.swift; sourceTree = "<group>"; };
@@ -652,6 +668,7 @@
 				18F6E8761D021B6500AAC5FB /* LandingURL */,
 				18E435481D0425CE00B728C6 /* Notification */,
 				18F6E87B1D021B6500AAC5FB /* User */,
+				215279501D3F6F9800B67313 /* User Followings */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -878,6 +895,7 @@
 				18E435431D0424EB00B728C6 /* Notification */,
 				18F6E8111D020F0B00AAC5FB /* User */,
 				18467F641D02EA47005CE5DD /* Utils */,
+				215279591D3F795400B67313 /* User Followings */,
 				18EFFF6B1C772A4E00BE0B70 /* APIClientSpec.swift */,
 				18EFFF6C1C772A4E00BE0B70 /* DataUploaderSpec.swift */,
 				18EFFF6D1C772A4E00BE0B70 /* RequestSenderSpec.swift */,
@@ -947,6 +965,8 @@
 				2178B7341D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift */,
 				083785A21D379B35006EF69E /* ReportUserRequestSpec.swift */,
 				083785A41D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift */,
+				215279551D3F715400B67313 /* UsersFollowedByAUserRequestSpec.swift */,
+				215279571D3F742F00B67313 /* UsersFollowedByAUserResponseHandlerSpec.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1091,6 +1111,8 @@
 				2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */,
 				083785921D378B64006EF69E /* ReportUserRequest.swift */,
 				083785941D378B7D006EF69E /* ReportUserResponseHandler.swift */,
+				2152794C1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift */,
+				2152794E1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1115,6 +1137,24 @@
 				18467F671D02ED98005CE5DD /* CustomStyleEditResponseHandlerSpec.swift */,
 			);
 			path = CustomStyle;
+			sourceTree = "<group>";
+		};
+		215279501D3F6F9800B67313 /* User Followings */ = {
+			isa = PBXGroup;
+			children = (
+				215279511D3F6FC400B67313 /* CreateAUserFollowingRequest.swift */,
+				215279531D3F70D900B67313 /* CreateAUserFollowingResponseHandler.swift */,
+			);
+			path = "User Followings";
+			sourceTree = "<group>";
+		};
+		215279591D3F795400B67313 /* User Followings */ = {
+			isa = PBXGroup;
+			children = (
+				2152795A1D3F797300B67313 /* CreateAUserFollowingRequestSpec.swift */,
+				2152795C1D3F7B8D00B67313 /* CreateAUserFollowingResponseHandlerSpec.swift */,
+			);
+			path = "User Followings";
 			sourceTree = "<group>";
 		};
 		21A79F6A1C81E6C5009E95D1 /* BatchFetch */ = {
@@ -1404,6 +1444,8 @@
 				18E6E86D1CFF2D74008D7B89 /* MetadataMapper.swift in Sources */,
 				18A7DCE61CEE33CC008EBDDF /* MappingUtils.swift in Sources */,
 				18F6E8961D021B6500AAC5FB /* NewCreationPingResponseHandler.swift in Sources */,
+				215279541D3F70D900B67313 /* CreateAUserFollowingResponseHandler.swift in Sources */,
+				215279521D3F6FC400B67313 /* CreateAUserFollowingRequest.swift in Sources */,
 				188ECF731C747FDE00AFEE4F /* String+Path.swift in Sources */,
 				18467F5F1D02E356005CE5DD /* CustomStyleEditRequest.swift in Sources */,
 				18F6E8A41D021B6500AAC5FB /* RequestSender.swift in Sources */,
@@ -1462,6 +1504,7 @@
 				18F6E8A31D021B6500AAC5FB /* OAuth2+Alamofire.swift in Sources */,
 				181E76E71CC5358E00A1546A /* NewBubbleData.swift in Sources */,
 				18F6E8A91D021B6500AAC5FB /* ProfileRequest.swift in Sources */,
+				2152794F1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift in Sources */,
 				18E30BEC1C8DAAE0000794B6 /* LandingURLMapper.swift in Sources */,
 				21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */,
 				18F6E8A51D021B6500AAC5FB /* CreatorsAndManagersRequest.swift in Sources */,
@@ -1481,6 +1524,7 @@
 				18E4354C1D04287600B728C6 /* Notification.swift in Sources */,
 				181E76EE1CC547E900A1546A /* Comment.swift in Sources */,
 				187902021C6C8BAF008F5302 /* Gallery.swift in Sources */,
+				2152794D1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift in Sources */,
 				1859FA991D3905210023A6B6 /* NewGroupData.swift in Sources */,
 				083785931D378B64006EF69E /* ReportUserRequest.swift in Sources */,
 				181E76EC1CC547C000A1546A /* CommentsDAO.swift in Sources */,
@@ -1534,6 +1578,7 @@
 				18F6E8331D0216E300AAC5FB /* ProfileRequestSpec.swift in Sources */,
 				18F6E8171D02113800AAC5FB /* CreationRequestSpec.swift in Sources */,
 				18E435471D04254800B728C6 /* NotificationsFetchRequestSpec.swift in Sources */,
+				2152795D1D3F7B8D00B67313 /* CreateAUserFollowingResponseHandlerSpec.swift in Sources */,
 				18F6E8501D0219FB00AAC5FB /* CommentsResponseHandlerSpec.swift in Sources */,
 				18F6E84C1D0219D500AAC5FB /* NewCommentRequestSpec.swift in Sources */,
 				1859FABC1D39053D0023A6B6 /* GroupsRequestSpec.swift in Sources */,
@@ -1573,6 +1618,8 @@
 				18467F5D1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift in Sources */,
 				18F6E8401D02182000AAC5FB /* LandingURLRequestSpec.swift in Sources */,
 				18F6E8B41D0222DF00AAC5FB /* CustomStyleFetchRequestSpec.swift in Sources */,
+				215279561D3F715400B67313 /* UsersFollowedByAUserRequestSpec.swift in Sources */,
+				215279581D3F742F00B67313 /* UsersFollowedByAUserResponseHandlerSpec.swift in Sources */,
 				18EFFF721C772A4E00BE0B70 /* RequestSenderSpec.swift in Sources */,
 				18F6E82F1D0215BC00AAC5FB /* GallerySubmissionRequestSpec.swift in Sources */,
 				18F6E8351D0216EE00AAC5FB /* ProfileResponseHandlerSpec.swift in Sources */,
@@ -1581,6 +1628,7 @@
 				1859FABF1D39053D0023A6B6 /* NewGroupResponseHandlerSpec.swift in Sources */,
 				1859FABB1D39053D0023A6B6 /* GroupResponseHandlerSpec.swift in Sources */,
 				18F6E81B1D02132000AAC5FB /* NewCreationRequestSpec.swift in Sources */,
+				2152795B1D3F797300B67313 /* CreateAUserFollowingRequestSpec.swift in Sources */,
 				18779DBE1C68DFCB000BFB57 /* DummyResponseHandler.swift in Sources */,
 				083785971D379A47006EF69E /* ReportCommentRequestSpec.swift in Sources */,
 				18F6E8231D02145600AAC5FB /* CreationPingRequestSpec.swift in Sources */,
