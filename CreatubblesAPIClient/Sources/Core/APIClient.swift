@@ -554,6 +554,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return userFollowingsDAO.createAUserFollowing(userId, completion: completion)
     }
     
+    public func deleteAUserFollowing(userId userId: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        return userFollowingsDAO.deleteAUserFollowing(userId, completion: completion)
+    }
+    
     //MARK: - Delegate
     func creationUploadService(sender: CreationUploadService, newSessionAdded session: CreationUploadSession)
     {
