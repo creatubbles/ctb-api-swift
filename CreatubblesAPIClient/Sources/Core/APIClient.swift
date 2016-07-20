@@ -136,6 +136,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     private let customStyleDAO: CustomStyleDAO
     private let notificationDAO: NotificationDAO
     private let groupDAO: GroupDAO
+    private let userFollowingsDAO: UserFollowingsDAO
     
     public weak var delegate: APIClientDelegate?
     
@@ -153,6 +154,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         self.customStyleDAO = CustomStyleDAO(requestSender: requestSender)
         self.notificationDAO = NotificationDAO(requestSender: requestSender)
         self.groupDAO = GroupDAO(requestSender: requestSender)
+        self.userFollowingsDAO = UserFollowingsDAO(requestSender: requestSender)
         
         Logger.setup()
         super.init()
@@ -280,6 +282,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func getOtherUsersMyConnections(userId userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getOtherUsersMyConnections(userId, pagingData: pagingData, completion: completion)
+    }
+    
+    public func getUsersFollowedByAUser(userId userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    {
+        return userDAO.getUsersFollowedByAUser(userId, pagingData: pagingData, completion: completion)
     }
 
     //MARK: - Gallery managment
@@ -541,6 +548,12 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return notificationDAO.markNotificationAsRead(notificationIdentifier: notificationId, completion: completion)
     }
     
+    //MARK: - User Followings
+    public func createUserFollowing(userId userId: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        return userFollowingsDAO.createAUserFollowing(userId, completion: completion)
+    }
+    
     //MARK: - Delegate
     func creationUploadService(sender: CreationUploadService, newSessionAdded session: CreationUploadSession)
     {
@@ -559,7 +572,6 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         let data = CreationUploadSessionPublicData(creationUploadSession: session)
         delegate?.creatubblesAPIClientImageUploadProcessChanged(self, uploadSessionData: data, bytesUploaded: totalBytesWritten, bytesExpectedToUpload: totalBytesExpectedToWrite)
     }
-    
     
     func creationUploadService(sender: CreationUploadService, uploadFailed session: CreationUploadSession, withError error: ErrorType)
     {
