@@ -16,7 +16,7 @@ class CreateAUserFollowingRequestSpec: QuickSpec
 
     override func spec()
     {
-        describe("Create A Usser Following Request")
+        describe("Create A User Following Request")
         {
             let createUserFollowingRequest = CreateAUserFollowingRequest(userId: self.userId)
             
@@ -30,28 +30,6 @@ class CreateAUserFollowingRequestSpec: QuickSpec
             {
                 let request = createUserFollowingRequest
                 expect(request.method).to(equal(RequestMethod.POST))
-            }
-            
-            it("Should return correct value after login")
-            {
-                let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
-                {
-                    done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
-                        (error: ErrorType?) -> Void in
-                        expect(error).to(beNil())
-                        sender.send(createUserFollowingRequest, withResponseHandler: DummyResponseHandler()
-                        {
-                            (response, error) -> Void in
-                            expect(response).notTo(beNil())
-                            expect(error).to(beNil())
-                            sender.logout()
-                            done()
-                        })
-                    }
-                }
             }
         }
     }
