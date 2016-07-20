@@ -315,6 +315,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return galleryDAO.newGallery(data: galleryData, completion: completion)
     }
     
+    public func updateGallery(data data: UpdateGalleryData, completion: ErrorClosure?) -> RequestHandler
+    {
+        return galleryDAO.updateGallery(data: data, completion: completion)
+    }
+    
     public func reportGallery(galleryId galleryId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
         return galleryDAO.reportGallery(galleryIdentifier: galleryId, message: message, completion: completion)
