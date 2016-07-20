@@ -29,6 +29,11 @@
 		08A7B9761D361D14001D8461 /* SwitchUserRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A7B9751D361D14001D8461 /* SwitchUserRequestSpec.swift */; };
 		08A7B9781D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A7B9771D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift */; };
 		08BB575F1D253ED700E2E297 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BB575E1D253ED700E2E297 /* SessionData.swift */; };
+		08F580731D3F9C1700EDCEE2 /* UpdateGalleryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F580721D3F9C1700EDCEE2 /* UpdateGalleryRequest.swift */; };
+		08F580751D3F9D4300EDCEE2 /* UpdateGalleryResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F580741D3F9D4300EDCEE2 /* UpdateGalleryResponseHandler.swift */; };
+		08F580771D3F9D7A00EDCEE2 /* UpdateGalleryRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F580761D3F9D7A00EDCEE2 /* UpdateGalleryRequestSpec.swift */; };
+		08F580791D3F9DA700EDCEE2 /* UpdateGalleryResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F580781D3F9DA700EDCEE2 /* UpdateGalleryResponseHandlerSpec.swift */; };
+		08F5807B1D3FAC1700EDCEE2 /* UpdateGalleryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F5807A1D3FAC1700EDCEE2 /* UpdateGalleryData.swift */; };
 		180C97B11C6DEA4100BC682D /* Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97B01C6DEA4100BC682D /* Creation.swift */; };
 		1815D54D1C63658000EF4C38 /* CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */; };
 		1815D5601C6383CF00EF4C38 /* CreatubblesAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -302,6 +307,11 @@
 		08A7B9751D361D14001D8461 /* SwitchUserRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserRequestSpec.swift; sourceTree = "<group>"; };
 		08A7B9771D361D38001D8461 /* SwitchUserResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		08BB575E1D253ED700E2E297 /* SessionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
+		08F580721D3F9C1700EDCEE2 /* UpdateGalleryRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryRequest.swift; sourceTree = "<group>"; };
+		08F580741D3F9D4300EDCEE2 /* UpdateGalleryResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryResponseHandler.swift; sourceTree = "<group>"; };
+		08F580761D3F9D7A00EDCEE2 /* UpdateGalleryRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryRequestSpec.swift; sourceTree = "<group>"; };
+		08F580781D3F9DA700EDCEE2 /* UpdateGalleryResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		08F5807A1D3FAC1700EDCEE2 /* UpdateGalleryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryData.swift; sourceTree = "<group>"; };
 		180C97B01C6DEA4100BC682D /* Creation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creation.swift; sourceTree = "<group>"; };
 		1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1815D54C1C63658000EF4C38 /* CreatubblesAPIClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CreatubblesAPIClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -740,6 +750,7 @@
 				1895D36C1D11F81B009B7271 /* EditProfileData.swift */,
 				08BB575E1D253ED700E2E297 /* SessionData.swift */,
 				2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */,
+				08F5807A1D3FAC1700EDCEE2 /* UpdateGalleryData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -953,6 +964,8 @@
 				18F6E8301D0215C500AAC5FB /* GallerySubmissionResponseHandlerSpec.swift */,
 				0837859E1D379AAD006EF69E /* ReportGalleryRequestSpec.swift */,
 				083785A01D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift */,
+				08F580761D3F9D7A00EDCEE2 /* UpdateGalleryRequestSpec.swift */,
+				08F580781D3F9DA700EDCEE2 /* UpdateGalleryResponseHandlerSpec.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -1090,6 +1103,8 @@
 				18F6E8751D021B6500AAC5FB /* NewGalleryResponseHandler.swift */,
 				0837858E1D378AF7006EF69E /* ReportGalleryRequest.swift */,
 				083785901D378B28006EF69E /* ReportGalleryResponseHandler.swift */,
+				08F580721D3F9C1700EDCEE2 /* UpdateGalleryRequest.swift */,
+				08F580741D3F9D4300EDCEE2 /* UpdateGalleryResponseHandler.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -1459,6 +1474,7 @@
 				18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */,
 				18E6E86D1CFF2D74008D7B89 /* MetadataMapper.swift in Sources */,
 				18A7DCE61CEE33CC008EBDDF /* MappingUtils.swift in Sources */,
+				08F580751D3F9D4300EDCEE2 /* UpdateGalleryResponseHandler.swift in Sources */,
 				18F6E8961D021B6500AAC5FB /* NewCreationPingResponseHandler.swift in Sources */,
 				215279541D3F70D900B67313 /* CreateAUserFollowingResponseHandler.swift in Sources */,
 				215279521D3F6FC400B67313 /* CreateAUserFollowingRequest.swift in Sources */,
@@ -1516,6 +1532,7 @@
 				18290AEB1D06D410000EA216 /* NotificationsFetchResponseHandler.swift in Sources */,
 				188ECF701C74703200AFEE4F /* CreationUploadSession.swift in Sources */,
 				0837858D1D378AAE006EF69E /* ReportCreationResponseHandler.swift in Sources */,
+				08F580731D3F9C1700EDCEE2 /* UpdateGalleryRequest.swift in Sources */,
 				0837858F1D378AF7006EF69E /* ReportGalleryRequest.swift in Sources */,
 				18F6E8A11D021B6500AAC5FB /* LandingURLRequest.swift in Sources */,
 				18F6E8A31D021B6500AAC5FB /* OAuth2+Alamofire.swift in Sources */,
@@ -1566,6 +1583,7 @@
 				18E6E86F1CFF2E1D008D7B89 /* AbilityMapper.swift in Sources */,
 				2117F8C31D3520CE00304D79 /* NotificationMetadataMapper.swift in Sources */,
 				18F6E8841D021B6500AAC5FB /* DeleteBubbleRequest.swift in Sources */,
+				08F5807B1D3FAC1700EDCEE2 /* UpdateGalleryData.swift in Sources */,
 				188BCEAF1C64E19D00EA4F11 /* APIClient.swift in Sources */,
 				18F6E8911D021B6500AAC5FB /* Request.swift in Sources */,
 			);
@@ -1584,6 +1602,7 @@
 				18F6E83D1D02172600AAC5FB /* NewCreatorResponseHandlerSpec.swift in Sources */,
 				215279651D3F81CB00B67313 /* DeleteAUserFollowingRequestSpec.swift in Sources */,
 				083785A31D379B35006EF69E /* ReportUserRequestSpec.swift in Sources */,
+				08F580771D3F9D7A00EDCEE2 /* UpdateGalleryRequestSpec.swift in Sources */,
 				18F6E84E1D0219EA00AAC5FB /* NewCommentResponseHandlerSpec.swift in Sources */,
 				18290AE91D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift in Sources */,
 				1859FABA1D39053D0023A6B6 /* EditGroupResponseHandlerSpec.swift in Sources */,
@@ -1601,6 +1620,7 @@
 				2152795D1D3F7B8D00B67313 /* CreateAUserFollowingResponseHandlerSpec.swift in Sources */,
 				18F6E8501D0219FB00AAC5FB /* CommentsResponseHandlerSpec.swift in Sources */,
 				18F6E84C1D0219D500AAC5FB /* NewCommentRequestSpec.swift in Sources */,
+				08F580791D3F9DA700EDCEE2 /* UpdateGalleryResponseHandlerSpec.swift in Sources */,
 				1859FABC1D39053D0023A6B6 /* GroupsRequestSpec.swift in Sources */,
 				18F6E83B1D02171D00AAC5FB /* NewCreatorRequestSpec.swift in Sources */,
 				2178B7361D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift in Sources */,
