@@ -51,6 +51,13 @@ class GalleryDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func updateGallery(data data: UpdateGalleryData, completion: ErrorClosure?) -> RequestHandler
+    {
+        let request = UpdateGalleryRequest(data: data)
+        let handler = UpdateGalleryResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func reportGallery(galleryIdentifier galleryId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
         let request = ReportGalleryRequest(galleryId: galleryId, message: message)
