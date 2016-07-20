@@ -23,4 +23,11 @@ class UserFollowingsDAO: NSObject
         let handler = CreateAUserFollowingResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func deleteAUserFollowing(userId: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        let request = DeleteAUserFollowingRequest(userId: userId)
+        let handler = DeleteAUserFollowingResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 }
