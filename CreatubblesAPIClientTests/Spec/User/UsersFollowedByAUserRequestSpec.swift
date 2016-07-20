@@ -40,28 +40,6 @@ class UsersFollowedByAUserRequestSpec: QuickSpec
                 expect(params["per_page"] as? Int).to(equal(self.pageCount))
                 expect(params["user_id"] as? String).to(equal(self.userId))
             }
-            
-            it("Should return correct value after login")
-            {
-                let sender = RequestSender(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
-                {
-                    done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
-                        (error: ErrorType?) -> Void in
-                        expect(error).to(beNil())
-                        sender.send(UsersFollowedByAUserRequest(page: nil, perPage: nil, userId: self.userId), withResponseHandler: DummyResponseHandler()
-                        {
-                            (response, error) -> Void in
-                            expect(response).notTo(beNil())
-                            expect(error).to(beNil())
-                            sender.logout()
-                            done()
-                        })
-                    }
-                }
-            }
         }
     }
 }

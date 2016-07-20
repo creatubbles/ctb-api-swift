@@ -31,28 +31,6 @@ class DeleteAUserFollowingRequestSpec: QuickSpec
                 let request = deleteUserFollowingRequest
                 expect(request.method).to(equal(RequestMethod.DELETE))
             }
-            
-            it("Should return correct value after login")
-            {
-                let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
-                {
-                    done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
-                        (error: ErrorType?) -> Void in
-                        expect(error).to(beNil())
-                        sender.send(deleteUserFollowingRequest, withResponseHandler: DummyResponseHandler()
-                        {
-                            (response, error) -> Void in
-                            expect(response).notTo(beNil())
-                            expect(error).to(beNil())
-                            sender.logout()
-                            done()
-                        })
-                    }
-                }
-            }
         }
     }
 
