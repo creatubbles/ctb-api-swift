@@ -20,7 +20,7 @@ public class UserAccountDetails: NSObject
     public let birthMonth: Int?
     public let ageDisplayType: String
     public let gender: Gender
-    public let uiLocale: String
+    public let uiLocale: String?
     public let pendingAvatarUrl: String?
     public let groupList: Array<String>?
     public let ownedGroups: Array<String>?
@@ -48,7 +48,7 @@ public class UserAccountDetails: NSObject
         birthMonth = mapper.birthMonth
         ageDisplayType = mapper.ageDisplayType!
         gender = mapper.gender
-        uiLocale = mapper.uiLocale!
+        uiLocale = mapper.uiLocale
         pendingAvatarUrl = mapper.pendingAvatarUrl
         groupList = mapper.groupList ?? []
         ownedGroups = mapper.ownedGroups ?? []

@@ -62,6 +62,8 @@
 		182A36C31D4094DF005E01DC /* UserAccountDetailsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A36C21D4094DF005E01DC /* UserAccountDetailsResponseHandler.swift */; };
 		182A36C51D4095D0005E01DC /* UserAccountDetailsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A36C41D4095D0005E01DC /* UserAccountDetailsMapper.swift */; };
 		182A36C71D409602005E01DC /* UserAccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A36C61D409602005E01DC /* UserAccountDetails.swift */; };
+		182A36C91D40A112005E01DC /* UserAccountDetailsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A36C81D40A112005E01DC /* UserAccountDetailsRequestSpec.swift */; };
+		182A36CB1D40A124005E01DC /* UserAccoundDetailsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A36CA1D40A124005E01DC /* UserAccoundDetailsResponseHandlerSpec.swift */; };
 		182FB8B41D128F65004495CB /* EditProfileRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FB8B31D128F65004495CB /* EditProfileRequestSpec.swift */; };
 		182FB8B61D1293AE004495CB /* EditProfileResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FB8B51D1293AE004495CB /* EditProfileResponseHandlerSpec.swift */; };
 		182FB8B81D1293D7004495CB /* EditProfileResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FB8B71D1293D7004495CB /* EditProfileResponseHandler.swift */; };
@@ -347,6 +349,8 @@
 		182A36C21D4094DF005E01DC /* UserAccountDetailsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountDetailsResponseHandler.swift; sourceTree = "<group>"; };
 		182A36C41D4095D0005E01DC /* UserAccountDetailsMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountDetailsMapper.swift; sourceTree = "<group>"; };
 		182A36C61D409602005E01DC /* UserAccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountDetails.swift; sourceTree = "<group>"; };
+		182A36C81D40A112005E01DC /* UserAccountDetailsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountDetailsRequestSpec.swift; sourceTree = "<group>"; };
+		182A36CA1D40A124005E01DC /* UserAccoundDetailsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccoundDetailsResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		182FB8B31D128F65004495CB /* EditProfileRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileRequestSpec.swift; sourceTree = "<group>"; };
 		182FB8B51D1293AE004495CB /* EditProfileResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		182FB8B71D1293D7004495CB /* EditProfileResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileResponseHandler.swift; sourceTree = "<group>"; };
@@ -1001,6 +1005,8 @@
 				083785A41D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift */,
 				215279551D3F715400B67313 /* UsersFollowedByAUserRequestSpec.swift */,
 				215279571D3F742F00B67313 /* UsersFollowedByAUserResponseHandlerSpec.swift */,
+				182A36C81D40A112005E01DC /* UserAccountDetailsRequestSpec.swift */,
+				182A36CA1D40A124005E01DC /* UserAccoundDetailsResponseHandlerSpec.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1632,6 +1638,7 @@
 				18EFFF711C772A4E00BE0B70 /* DataUploaderSpec.swift in Sources */,
 				18F6E8331D0216E300AAC5FB /* ProfileRequestSpec.swift in Sources */,
 				18F6E8171D02113800AAC5FB /* CreationRequestSpec.swift in Sources */,
+				182A36C91D40A112005E01DC /* UserAccountDetailsRequestSpec.swift in Sources */,
 				18E435471D04254800B728C6 /* NotificationsFetchRequestSpec.swift in Sources */,
 				2152795D1D3F7B8D00B67313 /* CreateAUserFollowingResponseHandlerSpec.swift in Sources */,
 				18F6E8501D0219FB00AAC5FB /* CommentsResponseHandlerSpec.swift in Sources */,
@@ -1664,6 +1671,7 @@
 				1859FAB71D39053D0023A6B6 /* DeleteGroupRequestSpec.swift in Sources */,
 				187901FE1C6C793F008F5302 /* TestResponses.swift in Sources */,
 				1859FAB91D39053D0023A6B6 /* EditGroupRequestSpec.swift in Sources */,
+				182A36CB1D40A124005E01DC /* UserAccoundDetailsResponseHandlerSpec.swift in Sources */,
 				182FB8B41D128F65004495CB /* EditProfileRequestSpec.swift in Sources */,
 				18467F661D02EA59005CE5DD /* UIColorHexSpec.swift in Sources */,
 				18F6E8191D02114400AAC5FB /* CreationResponseHandlerSpec.swift in Sources */,
