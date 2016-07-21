@@ -59,7 +59,7 @@ class UserAccountDetailsMapper: Mappable
         managedCreatorsCount <- map["attributes.managed_creators_count"]
         countryCode <- map["attributes.country_code"]
         receiveNotifications <- map["attributes.receive_notifications"]
-        receiveNewsletter <- map["attributes.receive_newswletter"]
+        receiveNewsletter <- map["attributes.newsletter"]
         
         passwordUpdatedAt <- (map["attributes.password_updated_at"], APIClientDateTransform.sharedTransform)
         currentSignInAt <- (map["attributes.current_sign_in_at"], APIClientDateTransform.sharedTransform)
