@@ -289,6 +289,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     {
         return userDAO.getUsersFollowedByAUser(userId, pagingData: pagingData, completion: completion)
     }
+    
+    public func getUserAccountData(userId userId: String, completion: UserAccountDetailsClosure?) -> RequestHandler
+    {
+        return userDAO.getUserAccountData(userId: userId, completion: completion)
+    }
 
     //MARK: - Gallery managment
     public func getGallery(galleryId galleryId: String, completion: GalleryClosure?) -> RequestHandler
