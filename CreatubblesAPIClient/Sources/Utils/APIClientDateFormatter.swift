@@ -13,3 +13,8 @@ class APIClientDateTransform: NSObject
 {
     static let sharedTransform = CustomDateFormatTransform(formatString: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
 }
+
+class APIClientShortDateTransform: NSObject
+{
+    static let sharedTransform = CustomDateFormatTransform(formatString: "yyyy-MM-dd")
+}
