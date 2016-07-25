@@ -26,7 +26,7 @@ class ContentSearchRequestSpec: QuickSpec
             it("Should have a proper endpoint")
             {
                 let request = ContentSearchRequest(query: "hanaG", page: 1, perPage: 20)
-                expect(request.endpoint).to(equal("contents?query=hanaG"))
+                expect(request.endpoint).to(equal("contents"))
             }
         }
     }

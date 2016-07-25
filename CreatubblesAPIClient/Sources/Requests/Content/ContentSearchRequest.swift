@@ -11,7 +11,7 @@ import UIKit
 class ContentSearchRequest: Request
 {
     override var method: RequestMethod   { return .GET }
-    override var endpoint: String        { return "contents?query=\(query)"   }
+    override var endpoint: String        { return "contents" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
 
     private let query: String
@@ -37,6 +37,7 @@ class ContentSearchRequest: Request
         {
             params["per_page"] = perPage
         }
+            params["query"] = query
         
         return params
     }
