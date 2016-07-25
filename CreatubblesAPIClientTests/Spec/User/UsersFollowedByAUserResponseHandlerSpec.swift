@@ -43,6 +43,28 @@ class UsersFollowedByAUserResponseHandlerSpec: QuickSpec
                 }
             }
             
+            it("Should return correct value after login")
+            {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(UsersFollowedByAUserRequest(page: self.page, perPage: self.pageCount, userId: self.userId!) , withResponseHandler:
+                            UsersFollowedByAUserResponseHandler()
+                        {
+                            (usersCount: Int?, error: ErrorType?) -> Void in
+                            expect(error).to(beNil())
+                            expect(usersCount).notTo(beNil())
+                            done()
+                        })
+                    }
+                }
+            }
+            
             it("Should return error when not logged in")
             {
                 let sender = TestComponentsFactory.requestSender

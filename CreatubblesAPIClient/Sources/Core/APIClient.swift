@@ -30,6 +30,7 @@ public typealias ErrorClosure = (APIClientError?) -> (Void)
 public typealias UserClosure = (User?, APIClientError?) -> (Void)
 public typealias UsersClosure = (Array<User>?,PagingInfo? ,APIClientError?) -> (Void)
 public typealias UsersBatchClosure = (Array<User>? ,APIClientError?) -> (Void)
+public typealias UsersCountClosure = (Int?, APIClientError?) -> (Void)
 
 public typealias GroupClosure = (Group?, APIClientError?) -> (Void)
 public typealias GroupsClosure = (Array<Group>?, APIClientError?) -> (Void)
@@ -287,6 +288,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func getUsersFollowedByAUser(userId userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getUsersFollowedByAUser(userId, pagingData: pagingData, completion: completion)
+    }
+    
+    public func getUsersFollowedByAUserCount(userId userId: String, completion: UsersCountClosure?) -> RequestHandler
+    {
+        return userDAO.getUsersFollowedByAUserCount(userId, completion: completion)
     }
 
     //MARK: - Gallery managment
