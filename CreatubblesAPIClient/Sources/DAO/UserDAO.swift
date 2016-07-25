@@ -131,6 +131,13 @@ class UserDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getUsersFollowedByAUserCount(userId: String, completion: UsersCountClosure?) -> RequestHandler
+    {
+        let request = UsersFollowedByAUserRequest(page: nil, perPage: nil, userId: userId)
+        let handler = UsersFollowedByAUserResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     //MARK: Batch
     func getCreatorsInBatchMode(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
