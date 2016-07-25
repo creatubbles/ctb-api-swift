@@ -530,6 +530,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return contentDAO.getContentsByAUser(userIdentfier: userId, pagingData: pagingData, completion: completion)
     }
     
+    public func getSearchedContents(query query: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    {
+        return contentDAO.getSearchedContents(query: query, pagingData: pagingData, completion: completion)
+    }
+    
     //MARK: - CustomStyle
     public func fetchCustomStyleForUser(userId identifier: String, completion: CustomStyleClosure?) -> RequestHandler
     {
