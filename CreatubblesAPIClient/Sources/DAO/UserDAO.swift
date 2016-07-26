@@ -131,6 +131,13 @@ class UserDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getUserAccountData(userId userId: String, completion: UserAccountDetailsClosure?) -> RequestHandler
+    {
+        let request = UserAccountDetailsRequest(userId: userId)
+        let handler = UserAccountDetailsResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     //MARK: Batch
     func getCreatorsInBatchMode(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
