@@ -53,6 +53,7 @@ public typealias CustomStyleClosure = (CustomStyle?, APIClientError?) -> (Void)
 public typealias NotificationsClosure = (Array<Notification>?, unreadNotificationsCount: Int?, PagingInfo?, APIClientError?) -> (Void)
 
 public typealias SwitchUserClosure = (String?, APIClientError?) -> (Void)
+public typealias UserAccountDetailsClosure = (UserAccountDetails?, APIClientError?) -> (Void)
 
 //MARK: - Enums
 @objc public enum Gender: Int
@@ -287,6 +288,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func getUsersFollowedByAUser(userId userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getUsersFollowedByAUser(userId, pagingData: pagingData, completion: completion)
+    }
+    
+    public func getUserAccountData(userId userId: String, completion: UserAccountDetailsClosure?) -> RequestHandler
+    {
+        return userDAO.getUserAccountData(userId: userId, completion: completion)
     }
 
     //MARK: - Gallery managment

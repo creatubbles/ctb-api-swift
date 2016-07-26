@@ -115,7 +115,6 @@ class CreationResponseHandlerSpec: QuickSpec
                                 (creations: Array<Creation>?, pageInfo: PagingInfo?, error: ErrorType?) -> Void in
                                 expect(creations).notTo(beNil())
                                 expect(error).to(beNil())
-                                expect(pageInfo).notTo(beNil())
                                 sender.logout()
                                 done()
                             })
