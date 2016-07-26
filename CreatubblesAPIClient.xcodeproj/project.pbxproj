@@ -258,6 +258,10 @@
 		215279631D3F817D00B67313 /* DeleteAUserFollowingResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279621D3F817D00B67313 /* DeleteAUserFollowingResponseHandler.swift */; };
 		215279651D3F81CB00B67313 /* DeleteAUserFollowingRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279641D3F81CB00B67313 /* DeleteAUserFollowingRequestSpec.swift */; };
 		215279691D3F841F00B67313 /* DeleteAUserFollowingResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279681D3F841F00B67313 /* DeleteAUserFollowingResponseHandlerSpec.swift */; };
+		215279751D464C6600B67313 /* ContentSearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279741D464C6600B67313 /* ContentSearchRequest.swift */; };
+		215279771D464F2600B67313 /* ContentSearchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279761D464F2600B67313 /* ContentSearchResponseHandler.swift */; };
+		215279791D46513200B67313 /* ContentSearchRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279781D46513200B67313 /* ContentSearchRequestSpec.swift */; };
+		2152797B1D4652B700B67313 /* ContentSearchResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152797A1D4652B700B67313 /* ContentSearchResponseHandlerSpec.swift */; };
 		2178B72F1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B72D1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift */; };
 		2178B7301D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */; };
 		2178B7321D3797840013C251 /* CreateMultipleCreatorsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */; };
@@ -545,6 +549,10 @@
 		215279621D3F817D00B67313 /* DeleteAUserFollowingResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAUserFollowingResponseHandler.swift; sourceTree = "<group>"; };
 		215279641D3F81CB00B67313 /* DeleteAUserFollowingRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAUserFollowingRequestSpec.swift; sourceTree = "<group>"; };
 		215279681D3F841F00B67313 /* DeleteAUserFollowingResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAUserFollowingResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		215279741D464C6600B67313 /* ContentSearchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentSearchRequest.swift; sourceTree = "<group>"; };
+		215279761D464F2600B67313 /* ContentSearchResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentSearchResponseHandler.swift; sourceTree = "<group>"; };
+		215279781D46513200B67313 /* ContentSearchRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentSearchRequestSpec.swift; sourceTree = "<group>"; };
+		2152797A1D4652B700B67313 /* ContentSearchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentSearchResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		2178B72D1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsRequest.swift; sourceTree = "<group>"; };
 		2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsResponseHandler.swift; sourceTree = "<group>"; };
 		2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsData.swift; sourceTree = "<group>"; };
@@ -1038,6 +1046,8 @@
 			children = (
 				18F6E8451D02189700AAC5FB /* ContentRequestSpec.swift */,
 				18F6E8471D0218A100AAC5FB /* ContentResponseHandlerSpec.swift */,
+				215279781D46513200B67313 /* ContentSearchRequestSpec.swift */,
+				2152797A1D4652B700B67313 /* ContentSearchResponseHandlerSpec.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -1075,6 +1085,8 @@
 			children = (
 				18F6E8601D021B6500AAC5FB /* ContentRequest.swift */,
 				18F6E8611D021B6500AAC5FB /* ContentResponseHandler.swift */,
+				215279741D464C6600B67313 /* ContentSearchRequest.swift */,
+				215279761D464F2600B67313 /* ContentSearchResponseHandler.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -1569,6 +1581,7 @@
 				1859FAAC1D39052F0023A6B6 /* NewGroupResponseHandler.swift in Sources */,
 				1859FAAA1D39052F0023A6B6 /* GroupsResponseHandler.swift in Sources */,
 				21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */,
+				215279771D464F2600B67313 /* ContentSearchResponseHandler.swift in Sources */,
 				18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */,
 				183635441CB5013900ED778A /* Relationship.swift in Sources */,
 				1859FAA61D39052F0023A6B6 /* EditGroupRequest.swift in Sources */,
@@ -1580,6 +1593,7 @@
 				182FB8B81D1293D7004495CB /* EditProfileResponseHandler.swift in Sources */,
 				18E4354C1D04287600B728C6 /* Notification.swift in Sources */,
 				181E76EE1CC547E900A1546A /* Comment.swift in Sources */,
+				215279751D464C6600B67313 /* ContentSearchRequest.swift in Sources */,
 				187902021C6C8BAF008F5302 /* Gallery.swift in Sources */,
 				2152794D1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift in Sources */,
 				1859FA991D3905210023A6B6 /* NewGroupData.swift in Sources */,
@@ -1668,11 +1682,13 @@
 				219121941D2D1F510039FA94 /* MyConnectionsRequestSpec.swift in Sources */,
 				083785991D379A60006EF69E /* ReportCommentResponseHandlerSpec.swift in Sources */,
 				18EFFF701C772A4E00BE0B70 /* APIClientSpec.swift in Sources */,
+				2152797B1D4652B700B67313 /* ContentSearchResponseHandlerSpec.swift in Sources */,
 				1859FAB71D39053D0023A6B6 /* DeleteGroupRequestSpec.swift in Sources */,
 				187901FE1C6C793F008F5302 /* TestResponses.swift in Sources */,
 				1859FAB91D39053D0023A6B6 /* EditGroupRequestSpec.swift in Sources */,
 				182A36CB1D40A124005E01DC /* UserAccoundDetailsResponseHandlerSpec.swift in Sources */,
 				182FB8B41D128F65004495CB /* EditProfileRequestSpec.swift in Sources */,
+				215279791D46513200B67313 /* ContentSearchRequestSpec.swift in Sources */,
 				18467F661D02EA59005CE5DD /* UIColorHexSpec.swift in Sources */,
 				18F6E8191D02114400AAC5FB /* CreationResponseHandlerSpec.swift in Sources */,
 				18F6E8371D02170500AAC5FB /* CreatorsAndManagersRequestSpec.swift in Sources */,
