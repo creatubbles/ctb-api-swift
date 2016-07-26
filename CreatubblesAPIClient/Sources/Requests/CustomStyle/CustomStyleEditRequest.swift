@@ -36,9 +36,17 @@ class CustomStyleEditRequest: Request
         if let value = data.bodyColors                 { attributesDict["body_colors"] = value.map({ $0.hexValue() }) }
         if let value = data.headerColors               { attributesDict["header_colors"] = value.map({ $0.hexValue() }) }
         
-        if let value = data.headerCreationIdentifier   { relationshipsDict["header_creation"] = ["data" : ["id" : value]] }
-        if let value = data.bodyCreationIdentifier     { relationshipsDict["body_creation"]   = ["data" : ["id" : value]] }
-            
+        if let value = data.headerCreationIdentifier
+        {
+            relationshipsDict["header_creation"] = ["data" : ["id" : value]]
+            attributesDict["header_background_id"] = "pattern0"
+        }
+        if let value = data.bodyCreationIdentifier
+        {
+            relationshipsDict["body_creation"]   = ["data" : ["id" : value]]
+            attributesDict["body_background_id"] = "pattern0"
+        }
+        
         dataDict["attributes"] = attributesDict
         dataDict["relationships"] = relationshipsDict
         
