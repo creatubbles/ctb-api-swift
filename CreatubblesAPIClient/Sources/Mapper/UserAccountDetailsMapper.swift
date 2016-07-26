@@ -69,11 +69,18 @@ class UserAccountDetailsMapper: Mappable
     
     var role: Role
     {
-        return .Creator
+        if roleString == "parent"     { return .Parent }
+        if roleString == "instructor" { return .Instructor }
+        if roleString == "creator"    { return .Creator }
+        
+        Logger.log.warning("Unkown or missing role string in user account detail")
+        return Role.Creator
     }
     
     var gender: Gender
     {
-        return .Male
+        if genderString == "male"   { return .Male }
+        if genderString == "female" { return .Female }
+        return .Unknown
     }
 }
