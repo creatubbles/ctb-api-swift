@@ -44,6 +44,7 @@ public typealias GalleriesBatchClosure = (Array<Gallery>?, APIClientError?) -> (
 
 public typealias LandingURLClosure = (Array<LandingURL>?, APIClientError?) -> (Void)
 public typealias CommentsClosure = (Array<Comment>?, PagingInfo?, APIClientError?) -> (Void)
+public typealias ActivitiesClosure = (Array<Activity>?, PagingInfo?, APIClientError?) -> (Void)
 
 public typealias BubbleClousure = (Bubble?, APIClientError?) -> (Void)
 public typealias BubblesClousure = (Array<Bubble>?, PagingInfo?, APIClientError?) -> (Void)
@@ -105,6 +106,19 @@ public typealias UserAccountDetailsClosure = (UserAccountDetails?, APIClientErro
     case MultipleCreatorsCreated
 }
 
+@objc public enum ActivityType: Int
+{
+    case Unknown
+    case CreationBubbled
+    case CreationCommented
+    case CreationPublished
+    case GalleryBubbled
+    case GalleryCommented
+    case GalleryCreationAdded
+    case UserBubbled
+    case UserCommented
+}
+
 @objc
 public protocol APIClientDelegate
 {
@@ -138,6 +152,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     private let notificationDAO: NotificationDAO
     private let groupDAO: GroupDAO
     private let userFollowingsDAO: UserFollowingsDAO
+    private let activitiesDAO: ActivitiesDAO
     
     public weak var delegate: APIClientDelegate?
     
@@ -156,6 +171,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         self.notificationDAO = NotificationDAO(requestSender: requestSender)
         self.groupDAO = GroupDAO(requestSender: requestSender)
         self.userFollowingsDAO = UserFollowingsDAO(requestSender: requestSender)
+        self.activitiesDAO = ActivitiesDAO(requestSender: requestSender)
         
         Logger.setup()
         super.init()
@@ -550,6 +566,13 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func editCustomStyleForUser(userId identifier: String, withData data: CustomStyleEditData, completion: CustomStyleClosure?) -> RequestHandler
     {
         return customStyleDAO.editCustomStyleForUser(userIdentifier: identifier, withData: data, completion: completion)
+    }
+    
+    // MARK: - Activities
+    
+    public func getActivities(pagingData pagingData: PagingData?, completion: ActivitiesClosure?) -> RequestHandler
+    {
+        return activitiesDAO.getActivities(pagingData, completion: completion)
     }
     
     //MARK: - Notifications
