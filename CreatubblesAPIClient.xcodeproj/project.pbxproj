@@ -252,6 +252,10 @@
 		18FD15311C84315200A353C1 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD15301C84315200A353C1 /* APIClientError.swift */; };
 		2117F8C11D3520B800304D79 /* NotificationMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F8C01D3520B800304D79 /* NotificationMetadata.swift */; };
 		2117F8C31D3520CE00304D79 /* NotificationMetadataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F8C21D3520CE00304D79 /* NotificationMetadataMapper.swift */; };
+		212A12151D50DD74001BA35A /* PartnerApplicationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A12141D50DD74001BA35A /* PartnerApplicationsRequest.swift */; };
+		212A12171D50E37D001BA35A /* PartnerApplicationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A12161D50E37D001BA35A /* PartnerApplicationsResponseHandler.swift */; };
+		212A12191D50E617001BA35A /* PartnerApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A12181D50E617001BA35A /* PartnerApplication.swift */; };
+		212A121B1D50EF08001BA35A /* PartnerApplicationsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A121A1D50EF08001BA35A /* PartnerApplicationsMapper.swift */; };
 		2152794D1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152794C1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift */; };
 		2152794F1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152794E1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift */; };
 		215279521D3F6FC400B67313 /* CreateAUserFollowingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279511D3F6FC400B67313 /* CreateAUserFollowingRequest.swift */; };
@@ -550,6 +554,10 @@
 		18FD15301C84315200A353C1 /* APIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
 		2117F8C01D3520B800304D79 /* NotificationMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMetadata.swift; sourceTree = "<group>"; };
 		2117F8C21D3520CE00304D79 /* NotificationMetadataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMetadataMapper.swift; sourceTree = "<group>"; };
+		212A12141D50DD74001BA35A /* PartnerApplicationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerApplicationsRequest.swift; sourceTree = "<group>"; };
+		212A12161D50E37D001BA35A /* PartnerApplicationsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerApplicationsResponseHandler.swift; sourceTree = "<group>"; };
+		212A12181D50E617001BA35A /* PartnerApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerApplication.swift; sourceTree = "<group>"; };
+		212A121A1D50EF08001BA35A /* PartnerApplicationsMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerApplicationsMapper.swift; sourceTree = "<group>"; };
 		2152794C1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersFollowedByAUserRequest.swift; sourceTree = "<group>"; };
 		2152794E1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersFollowedByAUserResponseHandler.swift; sourceTree = "<group>"; };
 		215279511D3F6FC400B67313 /* CreateAUserFollowingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAUserFollowingRequest.swift; sourceTree = "<group>"; };
@@ -722,6 +730,7 @@
 				2117F8C01D3520B800304D79 /* NotificationMetadata.swift */,
 				182A36C61D409602005E01DC /* UserAccountDetails.swift */,
 				08AC6A651D4259B4004A35C3 /* Activity.swift */,
+				212A12181D50E617001BA35A /* PartnerApplication.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -744,6 +753,7 @@
 				18E435481D0425CE00B728C6 /* Notification */,
 				18F6E87B1D021B6500AAC5FB /* User */,
 				215279501D3F6F9800B67313 /* User Followings */,
+				212A12131D50DCF3001BA35A /* Partner Applications */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -915,6 +925,7 @@
 				2117F8C21D3520CE00304D79 /* NotificationMetadataMapper.swift */,
 				182A36C41D4095D0005E01DC /* UserAccountDetailsMapper.swift */,
 				08AC6A631D425439004A35C3 /* ActivityMapper.swift */,
+				212A121A1D50EF08001BA35A /* PartnerApplicationsMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -1232,6 +1243,15 @@
 			path = CustomStyle;
 			sourceTree = "<group>";
 		};
+		212A12131D50DCF3001BA35A /* Partner Applications */ = {
+			isa = PBXGroup;
+			children = (
+				212A12141D50DD74001BA35A /* PartnerApplicationsRequest.swift */,
+				212A12161D50E37D001BA35A /* PartnerApplicationsResponseHandler.swift */,
+			);
+			path = "Partner Applications";
+			sourceTree = "<group>";
+		};
 		215279501D3F6F9800B67313 /* User Followings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1507,6 +1527,7 @@
 				18290AEF1D06E45A000EA216 /* NotificationTextEntityMapper.swift in Sources */,
 				1859FAA91D39052F0023A6B6 /* GroupsRequest.swift in Sources */,
 				18F6E8941D021B6500AAC5FB /* FetchCreationsResponseHandler.swift in Sources */,
+				212A12171D50E37D001BA35A /* PartnerApplicationsResponseHandler.swift in Sources */,
 				18F6E8A81D021B6500AAC5FB /* NewCreatorResponseHandler.swift in Sources */,
 				188BCEB01C64E19D00EA4F11 /* APIClientSettings.swift in Sources */,
 				21A79F701C81E6C5009E95D1 /* CreationsBatchFetcher.swift in Sources */,
@@ -1591,6 +1612,7 @@
 				08AC6A5D1D424A5F004A35C3 /* ActivitiesDAO.swift in Sources */,
 				18290AF31D070551000EA216 /* NotificationReadRequest.swift in Sources */,
 				18C744FE1C84611600A07E4C /* NewCreationDataEntity.swift in Sources */,
+				212A12151D50DD74001BA35A /* PartnerApplicationsRequest.swift in Sources */,
 				18290AF51D07071C000EA216 /* NotificationReadResponseHandler.swift in Sources */,
 				18C1CFF71C75C46C00A02DE3 /* CreationsDAO.swift in Sources */,
 				18F6E89D1D021B6500AAC5FB /* GallerySubmissionRequest.swift in Sources */,
@@ -1616,6 +1638,7 @@
 				18E30BEC1C8DAAE0000794B6 /* LandingURLMapper.swift in Sources */,
 				21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */,
 				2152795F1D3F7F7800B67313 /* UserFollowingsDAO.swift in Sources */,
+				212A12191D50E617001BA35A /* PartnerApplication.swift in Sources */,
 				18F6E8A51D021B6500AAC5FB /* CreatorsAndManagersRequest.swift in Sources */,
 				2178B7321D3797840013C251 /* CreateMultipleCreatorsData.swift in Sources */,
 				1859FAAC1D39052F0023A6B6 /* NewGroupResponseHandler.swift in Sources */,
@@ -1639,6 +1662,7 @@
 				1859FA991D3905210023A6B6 /* NewGroupData.swift in Sources */,
 				083785931D378B64006EF69E /* ReportUserRequest.swift in Sources */,
 				08AC6A641D425439004A35C3 /* ActivityMapper.swift in Sources */,
+				212A121B1D50EF08001BA35A /* PartnerApplicationsMapper.swift in Sources */,
 				08AC6A661D4259B4004A35C3 /* Activity.swift in Sources */,
 				181E76EC1CC547C000A1546A /* CommentsDAO.swift in Sources */,
 				18FD15311C84315200A353C1 /* APIClientError.swift in Sources */,
