@@ -67,14 +67,14 @@ public class PartnerApplication: NSObject
     //Mark: TODO: implement when api is ready
     //public let appScreenshots: Array<AppScreenshot>
     
-    override init(mapper: PartnerApplicationsMapper)
+    init(mapper: PartnerApplicationsMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
-        id = mapper.id
-        name = mapper.name
-        slug = mapper.slug
-        shorturl = mapper.shorturl
+        id = mapper.id!
+        name = mapper.name!
+        slug = mapper.slug!
+        shorturl = mapper.shorturl!
         
-        headerBgLinksOriginal = mappper.headerBgLinksOriginal
+        headerBgLinksOriginal = mapper.headerBgLinksOriginal
         headerBgLinksListViewRetina = mapper.headerBgLinksListViewRetina
         headerBgLinksListview = mapper.headerBgLinksListview
         headerBgLinksMagrixViewRetina = mapper.headerBgLinksMagrixViewRetina
@@ -93,7 +93,7 @@ public class PartnerApplication: NSObject
         
         ctaLoggedInLabel = mapper.ctaLoggedInLabel
         ctaLoggedOutLabel = mapper.ctaLoggedOutLabel
-        requestCtaForYoungsters = mapper.requestCtaForYoungsters
+        requestCtaForYoungsters = mapper.requestCtaForYoungsters!
         ctaForYoungsters = mapper.ctaForYoungsters
         ctaHref = mapper.ctaHref
         
@@ -103,7 +103,7 @@ public class PartnerApplication: NSObject
         support = mapper.support
         developers = mapper.developers
         platforms = mapper.platforms
-        showOtherApps = mapper.showOtherApps
+        showOtherApps = mapper.showOtherApps!
         displayCreationsNr = mapper.displayCreationsNr
         aboutCardText = mapper.aboutCardText
         
@@ -116,8 +116,8 @@ public class PartnerApplication: NSObject
         metaOgImage = mapper.metaOgImage
         
         avatarUrl = mapper.avatarUrl
-        createdAt = mapper.createdAt
-        updatedAt = mapper.updatedAt
+        createdAt = mapper.createdAt!
+        updatedAt = mapper.updatedAt!
         
         gallery = mapper.gallery
         relatedApps = mapper.relatedApps

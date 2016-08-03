@@ -56,6 +56,8 @@ public typealias NotificationsClosure = (Array<Notification>?, unreadNotificatio
 public typealias SwitchUserClosure = (String?, APIClientError?) -> (Void)
 public typealias UserAccountDetailsClosure = (UserAccountDetails?, APIClientError?) -> (Void)
 
+public typealias PartnerApplicationsClosure = (Array<PartnerApplication>?, APIClientError?) -> (Void)
+
 //MARK: - Enums
 @objc public enum Gender: Int
 {

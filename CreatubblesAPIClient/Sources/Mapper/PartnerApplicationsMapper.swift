@@ -45,7 +45,7 @@ class PartnerApplicationsMapper: Mappable
     var support: String?
     var developers: String?
     var platforms: String?
-    var showOtherApps: Bool
+    var showOtherApps: Bool?
     var displayCreationsNr: Int?
     var aboutCardText: String?
     var metaTitle: String?
@@ -66,61 +66,61 @@ class PartnerApplicationsMapper: Mappable
     //Mark: TODO: implement when api is ready
     //let appScreenshots: Array<AppScreenshot>
     
-    
+    //MARK: - Mappable
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
-        id <- map["id"]
-        name <- map["name"]
-        slug <- map["slug"]
-        shorturl <- map["short_url"]
+        id <- map["attributes.id"]
+        name <- map["attributes.name"]
+        slug <- map["attributes.slug"]
+        shorturl <- map["attributes.short_url"]
         
-        headerBgLinksOriginal <- map["header_bg.links.original"]
-        headerBgLinksListViewRetina <- map["header_bg.links.list_view_retina"]
-        headerBgLinksListview <- map["header_bg.links.list_view"]
-        headerBgLinksMagrixViewRetina <- map["header_bg.links.matrix_view_retina"]
-        headerBgLinksMatrixView <- map["header_bg.links.matrix_view"]
-        headerBgLinksExploreMobile <- map["header_bg.links.explore_mobile"]
+        headerBgLinksOriginal <- map["attributes.header_bg.links.original"]
+        headerBgLinksListViewRetina <- map["attributes.header_bg.links.list_view_retina"]
+        headerBgLinksListview <- map["attributes.header_bg.links.list_view"]
+        headerBgLinksMagrixViewRetina <- map["attributes.header_bg.links.matrix_view_retina"]
+        headerBgLinksMatrixView <- map["attributes.header_bg.links.matrix_view"]
+        headerBgLinksExploreMobile <- map["attributes.header_bg.links.explore_mobile"]
         
-        bodyBgLinksOriginal <- map["body_bg.links.original"]
-        bodyBgLinksListViewRetina <- map["body_bg.links.list_view_retina"]
-        bodyBgLinksListView <- map["body_bg.links.list_view"]
-        bodyBgLinksMatrixViewRetina <- map["body_bg.links.matrix_view_retina"]
-        bodyBgLinksMatrixView <- map["body_bg.links.matrix_view"]
-        bodyBgLinksExploreMobile <- map["body_bg.links.explore_mobile"]
+        bodyBgLinksOriginal <- map["attributes.body_bg.links.original"]
+        bodyBgLinksListViewRetina <- map["attributes.body_bg.links.list_view_retina"]
+        bodyBgLinksListView <- map["attributes.body_bg.links.list_view"]
+        bodyBgLinksMatrixViewRetina <- map["attributes.body_bg.links.matrix_view_retina"]
+        bodyBgLinksMatrixView <- map["attributes.body_bg.links.matrix_view"]
+        bodyBgLinksExploreMobile <- map["attributes.body_bg.links.explore_mobile"]
         
-        ownerName <- map["owner_name"]
-        partnerDescription <- map["description"]
+        ownerName <- map["attributes.owner_name"]
+        partnerDescription <- map["attributes.description"]
         
-        ctaLoggedInLabel <- map["cta_logged_in_label"]
-        ctaLoggedOutLabel <- map["cta_logged_out_label"]
+        ctaLoggedInLabel <- map["attributes.cta_logged_in_label"]
+        ctaLoggedOutLabel <- map["attributes.cta_logged_out_label"]
 
-        requestCtaForYoungsters <- map["reqeust_cta_for_youngsters"]
-        ctaForYoungsters <- map["cta_for_youngsters_label"]
-        ctaHref <- map["cta_href"]
-        categories <- map["categories"]
-        age <- map["age"]
-        languages <- map["languages"]
-        support <- map["support"]
-        developers <- map["developers"]
-        platforms <- map["platforms"]
-        showOtherApps <- map["show_other_apps"]
-        displayCreationsNr <- map["display_creations_nr"]
-        aboutCardText <- map["about_card_text"]
-        metaTitle <- map["meta_title"]
-        metaDescription <- map["meta_description"]
-        metaKeywords <- map["meta_keywords"]
-        metaOgTitle <- map["meta_og_title"]
-        metaOgDescription <- map["meta_og_description"]
-        metaOgType <- map["meta_og_type"]
-        metaOgImage <- map["meta_og_image"]
-        avatarUrl <- map["avatar_url"]
-        createdAt <- map["created_at"]
-        updatedAt <- map["updated_at"]
+        requestCtaForYoungsters <- map["attributes.reqeust_cta_for_youngsters"]
+        ctaForYoungsters <- map["attributes.cta_for_youngsters_label"]
+        ctaHref <- map["attributes.cta_href"]
+        categories <- map["attributes.categories"]
+        age <- map["attributes.age"]
+        languages <- map["attributes.languages"]
+        support <- map["attributes.support"]
+        developers <- map["attributes.developers"]
+        platforms <- map["attributes.platforms"]
+        showOtherApps <- map["attributes.show_other_apps"]
+        displayCreationsNr <- map["attributes.display_creations_nr"]
+        aboutCardText <- map["attributes.about_card_text"]
+        metaTitle <- map["attributes.meta_title"]
+        metaDescription <- map["attributes.meta_description"]
+        metaKeywords <- map["attributes.meta_keywords"]
+        metaOgTitle <- map["attributes.meta_og_title"]
+        metaOgDescription <- map["attributes.meta_og_description"]
+        metaOgType <- map["attributes.meta_og_type"]
+        metaOgImage <- map["attributes.meta_og_image"]
+        avatarUrl <- map["attributes.avatar_url"]
+        createdAt <- map["attributes.created_at"]
+        updatedAt <- map["attributes.updated_at"]
         
-        gallery <- map["gallery"]
-        relatedApps <- map["related_apps"]
-        //appScreenshots <- map["app_screenshots"]
+        gallery <- map["relationships.gallery"]
+        relatedApps <- map["relationships.related_apps"]
+        //appScreenshots <- map["relationships.app_screenshots"]
     }
 }
