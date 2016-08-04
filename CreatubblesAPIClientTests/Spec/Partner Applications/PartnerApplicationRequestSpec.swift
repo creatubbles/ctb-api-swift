@@ -10,7 +10,7 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class PartnerApplicationsRequestSpec: QuickSpec
+class PartnerApplicationRequestSpec: QuickSpec
 {
     let id = "test"
     override func spec()
@@ -19,13 +19,13 @@ class PartnerApplicationsRequestSpec: QuickSpec
         {
             it("Should have proper endpoint")
             {
-                let request = PartnerApplicationsRequest(id: self.id)
+                let request = PartnerApplicationRequest(id: self.id)
                 expect(request.endpoint).to(equal("partner_applications/test"))
             }
             
             it("Should have proper method")
             {
-                let request = PartnerApplicationsRequest(id: self.id)
+                let request = PartnerApplicationRequest(id: self.id)
                 expect(request.method).to(equal(RequestMethod.GET))
             }
         }

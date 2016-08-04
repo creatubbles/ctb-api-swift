@@ -8,9 +8,9 @@
 import UIKit
 
 @objc
-public class PartnerApplication: NSObject
+public class PartnerApplication: NSObject, Identifiable
 {
-    public let id: String
+    public let identifier: String
     public let name: String
     public let slug: String
     public let shorturl: String
@@ -69,7 +69,7 @@ public class PartnerApplication: NSObject
     
     init(mapper: PartnerApplicationsMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
-        id = mapper.id!
+        identifier = mapper.id!
         name = mapper.name!
         slug = mapper.slug!
         shorturl = mapper.shorturl!

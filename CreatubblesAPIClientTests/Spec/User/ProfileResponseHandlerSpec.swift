@@ -27,12 +27,12 @@ class ProfileResponseHandlerSpec: QuickSpec
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
                         sender.send(ProfileRequest(), withResponseHandler:ProfileResponseHandler()
-                            {
-                                (user: User?, error: ErrorType?) -> Void in
-                                expect(error).to(beNil())
-                                expect(user).notTo(beNil())
-                                done()
-                            })
+                        {
+                            (user: User?, error: ErrorType?) -> Void in
+                            expect(error).to(beNil())
+                            expect(user).notTo(beNil())
+                            done()
+                        })
                     }
                 }
             }
@@ -45,12 +45,12 @@ class ProfileResponseHandlerSpec: QuickSpec
                 {
                     done in
                     sender.send(ProfileRequest(), withResponseHandler:ProfileResponseHandler()
-                        {
-                            (user: User?, error: ErrorType?) -> Void in
-                            expect(error).notTo(beNil())
-                            expect(user).to(beNil())
-                            done()
-                        })
+                    {
+                        (user: User?, error: ErrorType?) -> Void in
+                        expect(error).notTo(beNil())
+                        expect(user).to(beNil())
+                        done()
+                    })
                 }
             }
         }

@@ -28,11 +28,11 @@ class PartnerApplicationsResponseHandlerSpec: QuickSpec
                     {
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(PartnerApplicationsRequest(id: self.id), withResponseHandler: PartnerApplicationsResponseHandler()
+                        sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler: PartnerApplicationResponseHandler()
                         {
-                            (partnerApplications: Array<PartnerApplication>?, error: ErrorType?) -> Void in
+                            (partnerApplication: PartnerApplication?, error: ErrorType?) -> Void in
                             expect(error).to(beNil())
-                            expect(partnerApplications).notTo(beNil())
+                            expect(partnerApplication).notTo(beNil())
                             done()
                         })
                     }
@@ -46,11 +46,11 @@ class PartnerApplicationsResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.send(PartnerApplicationsRequest(id: self.id), withResponseHandler:PartnerApplicationsResponseHandler()
+                    sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler:PartnerApplicationResponseHandler()
                     {
-                        (partnerApplications: Array<PartnerApplication>?, error: ErrorType?) -> Void in
+                        (partnerApplication: PartnerApplication?, error: ErrorType?) -> Void in
                         expect(error).notTo(beNil())
-                        expect(partnerApplications).to(beNil())
+                        expect(partnerApplication).to(beNil())
                         done()
                     })
                 }
