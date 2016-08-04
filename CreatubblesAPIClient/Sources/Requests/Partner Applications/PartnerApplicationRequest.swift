@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PartnerApplicationsRequest: Request
+class PartnerApplicationRequest: Request
 {
     override var method: RequestMethod   { return .GET }
     override var endpoint: String        { return "partner_applications/\(id)" }

@@ -9,10 +9,10 @@
 import UIKit
 import ObjectMapper
 
-class PartnerApplicationsResponseHandler: ResponseHandler
+class PartnerApplicationResponseHandler: ResponseHandler
 {
-    private let completion: PartnerApplicationsClosure?
-    init(completion: PartnerApplicationsClosure?)
+    private let completion: PartnerApplicationClosure?
+    init(completion: PartnerApplicationClosure?)
     {
         self.completion = completion
     }
@@ -20,13 +20,13 @@ class PartnerApplicationsResponseHandler: ResponseHandler
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         if  let response = response,
-            let partnerApplicationsMapper = Mapper<PartnerApplicationsMapper>().mapArray(response["data"])
+            let partnerApplicationsMapper = Mapper<PartnerApplicationsMapper>().map(response["data"])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let partnerApplications = partnerApplicationsMapper.map({ PartnerApplication(mapper: $0, dataMapper: dataMapper, metadata: metadata)})
+            let partnerApplication = PartnerApplication(mapper: partnerApplicationsMapper, dataMapper: dataMapper, metadata: metadata)
             
-            executeOnMainQueue { self.completion?(partnerApplications, ErrorTransformer.errorFromResponse(response, error: error)) }
+            executeOnMainQueue { self.completion?(partnerApplication, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
         }
         else
         {

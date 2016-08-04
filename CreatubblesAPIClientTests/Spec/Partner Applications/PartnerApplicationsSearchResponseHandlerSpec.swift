@@ -47,12 +47,12 @@ class PartnerApplicationsSearchResponseHandlerSpec: QuickSpec
                 {
                     done in
                     sender.send(PartnerApplicationsSearchRequest(query: self.query), withResponseHandler:PartnerApplicationsSearchResponseHandler()
-                        {
-                            (partnerApplications: Array<PartnerApplication>?, error: ErrorType?) -> Void in
-                            expect(error).notTo(beNil())
-                            expect(partnerApplications).to(beNil())
-                            done()
-                        })
+                    {
+                        (partnerApplications: Array<PartnerApplication>?, error: ErrorType?) -> Void in
+                        expect(error).notTo(beNil())
+                        expect(partnerApplications).to(beNil())
+                        done()
+                    })
                 }
             }
         }
