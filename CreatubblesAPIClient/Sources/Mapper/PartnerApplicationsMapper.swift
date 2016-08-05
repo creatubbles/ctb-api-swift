@@ -11,7 +11,7 @@ import ObjectMapper
 
 class PartnerApplicationsMapper: Mappable
 {
-    var id: String?
+    var identifier: String?
     var name: String?
     var slug: String?
     var shorturl: String?
@@ -71,7 +71,7 @@ class PartnerApplicationsMapper: Mappable
     
     func mapping(map: Map)
     {
-        id <- map["attributes.id"]
+        identifier <- map["attributes.id"]
         name <- map["attributes.name"]
         slug <- map["attributes.slug"]
         shorturl <- map["attributes.short_url"]
@@ -121,6 +121,8 @@ class PartnerApplicationsMapper: Mappable
         
         gallery <- map["relationships.gallery"]
         relatedApps <- map["relationships.related_apps"]
+        
+        //Mark: TODO: implement when api is ready
         //appScreenshots <- map["relationships.app_screenshots"]
     }
 }
