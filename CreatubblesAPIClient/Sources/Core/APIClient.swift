@@ -266,6 +266,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.getCreators(userId, pagingData: pagingData, completion: completion)
     }
     
+    public func getCreators(groupId groupId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    {
+        return userDAO.getCreators(groupId: groupId, pagingData: pagingData, completion: completion)
+    }
+    
     public func getManagers(userId userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getManagers(userId, pagingData: pagingData, completion: completion)
