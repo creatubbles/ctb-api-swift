@@ -56,6 +56,9 @@ public typealias NotificationsClosure = (Array<Notification>?, unreadNotificatio
 public typealias SwitchUserClosure = (String?, APIClientError?) -> (Void)
 public typealias UserAccountDetailsClosure = (UserAccountDetails?, APIClientError?) -> (Void)
 
+public typealias PartnerApplicationsClosure = (Array<PartnerApplication>?, APIClientError?) -> (Void)
+public typealias PartnerApplicationClosure = (PartnerApplication?, APIClientError?) -> (Void)
+
 //MARK: - Enums
 @objc public enum Gender: Int
 {
@@ -153,6 +156,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     private let groupDAO: GroupDAO
     private let userFollowingsDAO: UserFollowingsDAO
     private let activitiesDAO: ActivitiesDAO
+    private let partnerApplicationDAO: PartnerApplicationDAO
     
     public weak var delegate: APIClientDelegate?
     
@@ -172,6 +176,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         self.groupDAO = GroupDAO(requestSender: requestSender)
         self.userFollowingsDAO = UserFollowingsDAO(requestSender: requestSender)
         self.activitiesDAO = ActivitiesDAO(requestSender: requestSender)
+        self.partnerApplicationDAO = PartnerApplicationDAO(requestSender: requestSender)
         
         Logger.setup()
         super.init()
@@ -596,6 +601,17 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func deleteAUserFollowing(userId userId: String, completion: ErrorClosure?) -> RequestHandler
     {
         return userFollowingsDAO.deleteAUserFollowing(userId, completion: completion)
+    }
+    
+    //MARK: - Partner Applications
+    public func getPartnerApplication(id: String, completion: PartnerApplicationClosure) -> RequestHandler
+    {
+        return partnerApplicationDAO.getPartnerApplication(id, completion: completion)
+    }
+    
+    public func searchPartnerApplications(query: String, completion: PartnerApplicationsClosure) -> RequestHandler
+    {
+        return partnerApplicationDAO.searchPartnerApplications(query, completion: completion)
     }
     
     //MARK: - Delegate
