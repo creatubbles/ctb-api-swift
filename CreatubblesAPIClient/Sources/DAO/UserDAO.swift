@@ -68,6 +68,13 @@ class UserDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getCreators(groupId groupId: String, pagingData: PagingData?,completion: UsersClosure?) -> RequestHandler
+    {
+        let request = GroupCreatorsRequest(groupId: groupId, page: pagingData?.page, perPage: pagingData?.pageSize)
+        let handler = GroupCreatorsResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getLandingURL(creationId creationId: String, completion: LandingURLClosure?) -> RequestHandler
     {
         let request = LandingURLRequest(creationId: creationId)
