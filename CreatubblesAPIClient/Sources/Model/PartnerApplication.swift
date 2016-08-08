@@ -69,7 +69,7 @@ public class PartnerApplication: NSObject, Identifiable
     
     init(mapper: PartnerApplicationsMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
-        identifier = mapper.id!
+        identifier = mapper.identifier!
         name = mapper.name!
         slug = mapper.slug!
         shorturl = mapper.shorturl!
