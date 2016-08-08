@@ -11,9 +11,7 @@ import Nimble
 @testable import CreatubblesAPIClient
 
 class PartnerApplicationsSearchResponseHandlerSpec: QuickSpec
-{
-    //MARK: - Tests disabled until Partner applications are ready on the api side
-    
+{    
     let query = "hue"
     
     override func spec()

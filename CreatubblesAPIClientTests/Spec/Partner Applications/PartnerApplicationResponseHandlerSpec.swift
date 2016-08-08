@@ -9,11 +9,10 @@
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
+import Alamofire
 
 class PartnerApplicationsResponseHandlerSpec: QuickSpec
 {
-    //MARK: - Tests disabled until Partner applications are ready on the api side
-    
     let id = "hueanimation"
 
     override func spec()
