@@ -60,9 +60,11 @@ class PartnerApplicationsMapper: Mappable
     var updatedAt: NSDate?
     
     //MARK: Relationships
+    var galleryRelationship: RelationshipMapper?
     var gallery: Gallery?
+    var relatedAppsRelationships: Array<RelationshipMapper>?
     var relatedApps: Array<PartnerApplication>?
-    
+        
     //Mark: TODO: implement when api is ready
     //let appScreenshots: Array<AppScreenshot>
     
@@ -119,10 +121,29 @@ class PartnerApplicationsMapper: Mappable
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
         updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
         
-        gallery <- map["relationships.gallery"]
-        relatedApps <- map["relationships.related_apps"]
+        galleryRelationship <- map["relationships.gallery.data"]
+        relatedAppsRelationships <- map["relationships.related_apps.data"]
         
         //Mark: TODO: implement when api is ready
         //appScreenshots <- map["relationships.app_screenshots"]
+    }
+    
+    func parseGalleryRelationship() -> Relationship?
+    {
+        return MappingUtils.relationshipFromMapper(galleryRelationship)
+    }
+    
+    func parseRelatedAppsRelationships() -> Array<Relationship>?
+    {
+        if let relatedAppsRelationships = relatedAppsRelationships
+        {
+            var relationships = Array<Relationship>()
+            for relationship in relatedAppsRelationships
+            {
+                relationships.append(MappingUtils.relationshipFromMapper(relationship)!)
+            }
+            return relationships
+        }
+        return nil
     }
 }
