@@ -17,14 +17,14 @@ class PartnerApplicationDAO
         self.requestSender = requestSender
     }
     
-    func getPartnerApplication(id: String, completion: PartnerApplicationClosure) -> RequestHandler
+    func getPartnerApplication(id: String, completion: PartnerApplicationClosure?) -> RequestHandler
     {
         let request = PartnerApplicationRequest(id: id)
         let handler = PartnerApplicationResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func searchPartnerApplications(query: String, completion: PartnerApplicationsClosure) -> RequestHandler
+    func searchPartnerApplications(query: String, completion: PartnerApplicationsClosure?) -> RequestHandler
     {
         let request = PartnerApplicationsSearchRequest(query: query)
         let handler = PartnerApplicationsSearchResponseHandler(completion: completion)
