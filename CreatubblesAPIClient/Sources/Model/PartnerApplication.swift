@@ -61,7 +61,9 @@ public class PartnerApplication: NSObject, Identifiable
     public let updatedAt: NSDate
     
     //MARK: Relationships
-    public let gallery: Gallery?
+    public let galleryRelationship: Relationship
+    public let gallery: Gallery
+    public let relatedAppsRelationships: Array<Relationship>?
     public let relatedApps: Array<PartnerApplication>?
     
     //Mark: TODO: implement when api is ready
@@ -119,8 +121,22 @@ public class PartnerApplication: NSObject, Identifiable
         createdAt = mapper.createdAt!
         updatedAt = mapper.updatedAt!
         
-        gallery = mapper.gallery
-        relatedApps = mapper.relatedApps
-        //appScreenshots = mapper.appScreenshots
+        galleryRelationship = mapper.parseGalleryRelationship()!
+        gallery = MappingUtils.objectFromMapper(dataMapper, relationship: galleryRelationship, type: Gallery.self)!
+        
+        relatedAppsRelationships = mapper.parseRelatedAppsRelationships()
+        if let relatedAppsRelationships = relatedAppsRelationships
+        {
+            relatedApps = Array<PartnerApplication>()
+            
+            for relationship in relatedAppsRelationships
+            {
+                relatedApps?.append(MappingUtils.objectFromMapper(dataMapper, relationship: relationship, type: PartnerApplication.self)!)
+            }
+        }
+        else
+        {
+            relatedApps = nil
+        }
     }
 }
