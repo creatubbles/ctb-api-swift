@@ -609,7 +609,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     }
     
     //MARK: - Partner Applications
-    public func getPartnerApplication(id: String, completion: PartnerApplicationClosure) -> RequestHandler
+    public func getPartnerApplication(id: String, completion: PartnerApplicationClosure?) -> RequestHandler
     {
         return partnerApplicationDAO.getPartnerApplication(id, completion: completion)
     }
