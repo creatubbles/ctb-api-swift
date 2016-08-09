@@ -614,7 +614,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return partnerApplicationDAO.getPartnerApplication(id, completion: completion)
     }
     
-    public func searchPartnerApplications(query: String, completion: PartnerApplicationsClosure) -> RequestHandler
+    public func searchPartnerApplications(query: String, completion: PartnerApplicationsClosure?) -> RequestHandler
     {
         return partnerApplicationDAO.searchPartnerApplications(query, completion: completion)
     }
