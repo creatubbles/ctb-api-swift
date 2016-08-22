@@ -82,6 +82,8 @@ public class User: NSObject, Identifiable
     public let customStyleRelationship: Relationship?
     public let customStyle: CustomStyle?
     
+    public let isFollowed: Bool
+    
     init(mapper: UserMapper, dataMapper: DataIncludeMapper?, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
@@ -115,6 +117,8 @@ public class User: NSObject, Identifiable
         
         isBubbled = metadata?.bubbledUserIdentifiers.contains(mapper.identifier!) ?? false
         abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
+    
+        isFollowed = metadata?.userFollowedUsersIdentifiers.contains(mapper.identifier!) ?? false
         
         customStyleRelationship = MappingUtils.relationshipFromMapper(mapper.customStyleRelationship)
         customStyle = MappingUtils.objectFromMapper(dataMapper, relationship: customStyleRelationship, type: CustomStyle.self)
