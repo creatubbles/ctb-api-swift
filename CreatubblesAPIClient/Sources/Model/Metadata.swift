@@ -14,12 +14,16 @@ class Metadata: NSObject
     let bubbledUserIdentifiers: Array<String>
     let bubbledGalleryIdentifiers: Array<String>
     let abilities: Array<Ability>
-        
+    
+    let userFollowedUsersIdentifiers: Array<String>
+    
     init(mapper: MetadataMapper)
     {
         bubbledCreationIdentifiers = mapper.bubbledCreationIdentifiers ?? []
         bubbledUserIdentifiers = mapper.bubbledUserIdentifiers ?? []
         bubbledGalleryIdentifiers = mapper.bubbledGalleryIdentifiers ?? []
         abilities = mapper.abilityMappers?.map({ Ability(mapper: $0)}).filter({ $0.operation != .Unknown }) ?? []
+        
+        userFollowedUsersIdentifiers = mapper.userFollowedUsersIdentifiers ?? []
     }
 }
