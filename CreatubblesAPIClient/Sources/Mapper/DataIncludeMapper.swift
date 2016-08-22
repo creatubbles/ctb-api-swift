@@ -40,6 +40,7 @@ class DataIncludeMapper
         if let mapper = mapper as? UserMapper     { return User(mapper: mapper, dataMapper: self, metadata: metadata) as? T }
         if let mapper = mapper as? CreationMapper { return Creation(mapper: mapper, dataMapper: self, metadata: metadata) as? T }
         if let mapper = mapper as? GalleryMapper  { return Gallery(mapper:  mapper, dataMapper: self, metadata: metadata) as? T }
+        if let mapper = mapper as? CommentMapper  { return Comment(mapper:  mapper, dataMapper: self, metadata: metadata) as? T }
         if let mapper = mapper as? GallerySubmissionMapper { return GallerySubmission(mapper: mapper, dataMapper: self) as? T }
         if let mapper = mapper as? NotificationTextEntityMapper { return NotificationTextEntity(mapper: mapper, dataMapper: self) as? T }
         
