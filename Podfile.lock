@@ -20,7 +20,7 @@ DEPENDENCIES:
   - p2.OAuth2 (from `https://github.com/creatubbles/OAuth2.git`)
   - Quick (= 0.9.1)
   - RealmSwift (= 0.98.3)
-  - XCGLogger (~> 3.2)
+  - XCGLogger (= 3.2)
 
 EXTERNAL SOURCES:
   p2.OAuth2:
