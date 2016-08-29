@@ -29,6 +29,8 @@ class CreationMapper: Mappable
 {
     var identifier: String?
     var name: String?
+    var translatedNamesMap: Array<NameTranslationObjectMapper>?
+    
     var createdAt: NSDate?
     var updatedAt: NSDate?
     var imageStatus: Int?
@@ -68,6 +70,9 @@ class CreationMapper: Mappable
     
     var objFileUrl: String?
     var playIFrameUrl: String?
+    
+    
+    var test: String?
 
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
@@ -75,6 +80,10 @@ class CreationMapper: Mappable
     {
         identifier  <- map["id"]
         name <- map["attributes.name"]
+        test <- map["attributes.translated_names.code"]
+        
+        translatedNamesMap <- map["attributes.translated_names"]
+        
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
         updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
         

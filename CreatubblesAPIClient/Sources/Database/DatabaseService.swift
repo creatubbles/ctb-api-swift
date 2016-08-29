@@ -274,6 +274,12 @@ class DatabaseService: NSObject
         
         creationEntity.identifier = creation.identifier
         creationEntity.name = creation.name
+        
+        for name in creation.translatedNames
+        {
+            creationEntity.translatedNameEntities.append(getNameTranslationObjectEntityFromNameTranslationObject(name))
+        }
+        
         creationEntity.createdAt = creation.createdAt
         creationEntity.updatedAt = creation.updatedAt
         creationEntity.imageStatus.value = creation.imageStatus
@@ -316,6 +322,17 @@ class DatabaseService: NSObject
         creationEntity.playIFrameUrl = creation.playIFrameUrl
         
         return creationEntity
+    }
+    
+    private func getNameTranslationObjectEntityFromNameTranslationObject(nameTranslationObject: NameTranslationObject) -> NameTranslationObjectEntity
+    {
+        let nameTranslationObjectEntity = NameTranslationObjectEntity()
+        
+        nameTranslationObjectEntity.code = nameTranslationObject.code
+        nameTranslationObjectEntity.name = nameTranslationObject.name
+        nameTranslationObjectEntity.original.value = nameTranslationObject.original
+        
+        return nameTranslationObjectEntity
     }
     
     private func getCreationUploadEntityFromCreationUpload(creationUpload: CreationUpload) -> CreationUploadEntity
