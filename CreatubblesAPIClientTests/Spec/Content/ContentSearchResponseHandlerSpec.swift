@@ -30,10 +30,10 @@ class ContentSearchResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler: ContentSearchResponseHandler()
                         {
-                            (entries, pageInfo, error) -> (Void) in
-                            expect(error).to(beNil())
-                            expect(entries).notTo(beNil())
-                            expect(pageInfo).notTo(beNil())
+                            (responseData) -> (Void) in
+                            expect(responseData.error).to(beNil())
+                            expect(responseData.objects).notTo(beNil())
+                            expect(responseData.pagingInfo).notTo(beNil())
                             sender.logout()
                             done()
                         })
@@ -53,10 +53,10 @@ class ContentSearchResponseHandlerSpec: QuickSpec
                 done in
                 sender.send(request, withResponseHandler: ContentSearchResponseHandler()
                 {
-                    (entries, pageInfo, error) -> (Void) in
-                    expect(error).notTo(beNil())
-                    expect(entries).to(beNil())
-                    expect(pageInfo).to(beNil())
+                    (responseData) -> (Void) in
+                    expect(responseData.error).notTo(beNil())
+                    expect(responseData.objects).to(beNil())
+                    expect(responseData.pagingInfo).to(beNil())
                     done()
                 })
             }
