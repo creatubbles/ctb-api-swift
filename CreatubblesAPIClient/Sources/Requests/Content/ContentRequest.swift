@@ -15,6 +15,7 @@ enum ContentType: String
     case BubbledContents = "bubbled_contents"
     case Connected = "connected"
     case ContentsByAUser = "contents"
+    case Followed = "followed"
 }
 
 class ContentRequest: Request
