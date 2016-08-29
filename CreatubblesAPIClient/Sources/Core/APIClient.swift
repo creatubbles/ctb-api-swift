@@ -49,7 +49,7 @@ public typealias ActivitiesClosure = (Array<Activity>?, PagingInfo?, APIClientEr
 public typealias BubbleClousure = (Bubble?, APIClientError?) -> (Void)
 public typealias BubblesClousure = (Array<Bubble>?, PagingInfo?, APIClientError?) -> (Void)
 
-public typealias ContentEntryClosure = (Array<ContentEntry>?, PagingInfo?, APIClientError?) -> (Void)
+public typealias ContentEntryClosure = (ResponseData<ContentEntry>) -> (Void)
 public typealias CustomStyleClosure = (CustomStyle?, APIClientError?) -> (Void)
 public typealias NotificationsClosure = (Array<Notification>?, unreadNotificationsCount: Int?, PagingInfo?, APIClientError?) -> (Void)
 
@@ -58,6 +58,20 @@ public typealias UserAccountDetailsClosure = (UserAccountDetails?, APIClientErro
 
 public typealias PartnerApplicationsClosure = (Array<PartnerApplication>?, APIClientError?) -> (Void)
 public typealias PartnerApplicationClosure = (PartnerApplication?, APIClientError?) -> (Void)
+
+public class ResponseData<T> {
+    public let objects: Array<T>?
+    public let rejectedObjects: Array<T>?
+    public let pagingInfo: PagingInfo?
+    public let error: APIClientError?
+    
+    init(objects: Array<T>?, rejectedObjects: Array<T>?, pagingInfo: PagingInfo?, error: APIClientError?) {
+        self.objects = objects
+        self.rejectedObjects = rejectedObjects
+        self.pagingInfo = pagingInfo
+        self.error = error
+    }
+}
 
 //MARK: - Enums
 @objc public enum Gender: Int

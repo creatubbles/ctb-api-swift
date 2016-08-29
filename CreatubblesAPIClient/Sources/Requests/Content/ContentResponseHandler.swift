@@ -12,6 +12,7 @@ import ObjectMapper
 class ContentResponseHandler: ResponseHandler
 {
     private let completion: ContentEntryClosure?
+    private let validator: Validatable = ContentDataFilter()
     
     init(completion: ContentEntryClosure?)
     {
@@ -20,19 +21,29 @@ class ContentResponseHandler: ResponseHandler
     
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
+        var validEntries: [ContentEntry] = []
+        var invalidEntries: [ContentEntry] = []
+        
         if  let response = response,
             let mappers = Mapper<ContentEntryMapper>().mapArray(response["data"])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let entries = mappers.map({ ContentEntry(mapper: $0, dataMapper: dataMapper) }).filter({ $0.type != .None })            
             
-            executeOnMainQueue { self.completion?(entries, pageInfo, ErrorTransformer.errorFromResponse(response ,error: error)) }
+            mappers.forEach({ (mapper) in
+                let contentEntry = ContentEntry(mapper: mapper, dataMapper: dataMapper)
+                
+                validator.isValid(contentEntry) ? validEntries.append(contentEntry) : invalidEntries.append(contentEntry)
+            })
+            
+            let responseData = ResponseData(objects: validEntries, rejectedObjects: invalidEntries, pagingInfo: pageInfo, error: ErrorTransformer.errorFromResponse(response ,error: error))
+            executeOnMainQueue { self.completion?(responseData) }
         }
         else
         {
-            executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
+            let responseData = ResponseData(objects: validEntries, rejectedObjects: validEntries, pagingInfo: nil, error: ErrorTransformer.errorFromResponse(response ,error: error))
+            executeOnMainQueue { self.completion?(responseData) }
         }
     }
 }
