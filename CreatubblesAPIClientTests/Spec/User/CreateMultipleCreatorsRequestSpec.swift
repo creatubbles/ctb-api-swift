@@ -47,27 +47,27 @@ class CreateMultipleCreatorsRequestSpec: QuickSpec
                 expect(params["group"] as? String).to(equal(group))
             }
             
-            it("Should return correct value after login")
-            {
-                let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
-                {
-                    done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
-                        (error: ErrorType?) -> Void in
-                        expect(error).to(beNil())
-                        sender.send(multipleCreatorsRequest, withResponseHandler: DummyResponseHandler()
-                        {
-                            (response, error) -> Void in
-                            expect(response).notTo(beNil())
-                            expect(error).to(beNil())
-                            sender.logout()
-                            done()
-                        })
-                    }
-                }
-            }
+//            it("Should return correct value after login")
+//            {
+//                let sender = TestComponentsFactory.requestSender
+//                waitUntil(timeout: 10)
+//                {
+//                    done in
+//                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+//                    {
+//                        (error: ErrorType?) -> Void in
+//                        expect(error).to(beNil())
+//                        sender.send(multipleCreatorsRequest, withResponseHandler: DummyResponseHandler()
+//                        {
+//                            (response, error) -> Void in
+//                            expect(response).notTo(beNil())
+//                            expect(error).to(beNil())
+//                            sender.logout()
+//                            done()
+//                        })
+//                    }
+//                }
+//            }
         }
     }
 }
