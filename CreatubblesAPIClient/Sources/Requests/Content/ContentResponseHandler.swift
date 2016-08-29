@@ -12,7 +12,7 @@ import ObjectMapper
 class ContentResponseHandler: ResponseHandler
 {
     private let completion: ContentEntryClosure?
-    private let validators: [Validable] = [ContentDataFilter()]
+    private let validator: Validatable = ContentDataFilter()
     
     init(completion: ContentEntryClosure?)
     {
@@ -34,14 +34,7 @@ class ContentResponseHandler: ResponseHandler
             mappers.forEach({ (mapper) in
                 let contentEntry = ContentEntry(mapper: mapper, dataMapper: dataMapper)
                 
-                var isValid = true
-                validators.forEach({ (validator) in
-                    if isValid && !validator.isValid(contentEntry) {
-                        isValid = false
-                    }
-                })
-                
-                isValid ? validEntries.append(contentEntry) : invalidEntries.append(contentEntry)
+                validator.isValid(contentEntry) ? validEntries.append(contentEntry) : invalidEntries.append(contentEntry)
             })
             
             let responseData = ResponseData(objects: validEntries, rejectedObjects: invalidEntries, pagingInfo: pageInfo, error: ErrorTransformer.errorFromResponse(response ,error: error))
