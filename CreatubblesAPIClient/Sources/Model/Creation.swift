@@ -29,6 +29,7 @@ public class Creation: NSObject, Identifiable
 {
     public let identifier: String
     public let name: String
+    public let translatedNames: Array<NameTranslationObject>
     public let createdAt: NSDate
     public let updatedAt: NSDate
     
@@ -83,6 +84,14 @@ public class Creation: NSObject, Identifiable
     {
         identifier = mapper.identifier!
         name = mapper.name!
+        
+        var translatedNamesTemp = Array<NameTranslationObject>()
+        for nameMap in mapper.translatedNamesMap!
+        {
+            translatedNamesTemp.append(NameTranslationObject(mapper: nameMap))
+        }
+        translatedNames = translatedNamesTemp
+        
         createdAt = mapper.createdAt!
         updatedAt = mapper.updatedAt!
         imageStatus = mapper.imageStatus!
@@ -143,6 +152,14 @@ public class Creation: NSObject, Identifiable
     {
         identifier = creationEntity.identifier!
         name = creationEntity.name!
+        
+        var translatedNamesTemp = Array<NameTranslationObject>()
+        for nameEntity in creationEntity.translatedNameEntities
+        {
+            translatedNamesTemp.append(NameTranslationObject(nameTranslationObjectEntity: nameEntity))
+        }
+        translatedNames = translatedNamesTemp
+        
         createdAt = creationEntity.createdAt!
         updatedAt = creationEntity.updatedAt!
         imageStatus = creationEntity.imageStatus.value!
