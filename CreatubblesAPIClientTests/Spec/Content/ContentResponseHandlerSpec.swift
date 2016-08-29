@@ -30,10 +30,10 @@ class ContentResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:ContentResponseHandler()
                             {
-                                (entries, pageInfo, error) -> (Void) in
-                                expect(error).to(beNil())
-                                expect(entries).notTo(beNil())
-                                expect(pageInfo).notTo(beNil())
+                                (responseData) -> (Void) in
+                                expect(responseData.error).to(beNil())
+                                expect(responseData.objects).notTo(beNil())
+                                expect(responseData.pagingInfo).notTo(beNil())
                                 sender.logout()
                                 done()
                             })
@@ -55,10 +55,10 @@ class ContentResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:ContentResponseHandler()
                         {
-                            (entries, pageInfo,  error) -> (Void) in
-                            expect(error).to(beNil())
-                            expect(entries).notTo(beNil())
-                            expect(pageInfo).notTo(beNil())
+                            (responseData) -> (Void) in
+                            expect(responseData.error).to(beNil())
+                            expect(responseData.objects).notTo(beNil())
+                            expect(responseData.pagingInfo).notTo(beNil())
                             sender.logout()
                             done()
                         })
@@ -80,10 +80,10 @@ class ContentResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:ContentResponseHandler()
                         {
-                            (entries, pageInfo,  error) -> (Void) in
-                            expect(error).to(beNil())
-                            expect(entries).notTo(beNil())
-                            expect(pageInfo).notTo(beNil())
+                            (responseData) -> (Void) in
+                            expect(responseData.error).to(beNil())
+                            expect(responseData.objects).notTo(beNil())
+                            expect(responseData.pagingInfo).notTo(beNil())
                             sender.logout()
                             done()
                         })
@@ -106,10 +106,10 @@ class ContentResponseHandlerSpec: QuickSpec
                     expect(error).to(beNil())
                     sender.send(request, withResponseHandler: ContentResponseHandler()
                     {
-                        (entries, pageInfo,  error) -> (Void) in
-                        expect(error).to(beNil())
-                        expect(entries).notTo(beNil())
-                        expect(pageInfo).notTo(beNil())
+                        (responseData) -> (Void) in
+                        expect(responseData.error).to(beNil())
+                        expect(responseData.objects).notTo(beNil())
+                        expect(responseData.pagingInfo).notTo(beNil())
                         sender.logout()
                         done()
                     })
@@ -130,10 +130,10 @@ class ContentResponseHandlerSpec: QuickSpec
                     expect(error).to(beNil())
                     sender.send(request, withResponseHandler: ContentResponseHandler()
                     {
-                        (entries, pageInfo,  error) -> (Void) in
-                        expect(error).to(beNil())
-                        expect(entries).notTo(beNil())
-                        expect(pageInfo).notTo(beNil())
+                        (responseData) -> (Void) in
+                        expect(responseData.error).to(beNil())
+                        expect(responseData.objects).notTo(beNil())
+                        expect(responseData.pagingInfo).notTo(beNil())
                         sender.logout()
                         done()
                     })
