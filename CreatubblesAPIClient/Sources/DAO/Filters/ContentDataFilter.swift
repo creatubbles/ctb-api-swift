@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol Validable {
+protocol Validatable {
     func isValid(object: AnyObject) -> Bool
 }
 
-class ContentDataFilter: NSObject, Validable {
+class ContentDataFilter: NSObject, Validatable {
     
     func isValid(object: AnyObject) -> Bool {
         guard let contentEntry = object as? ContentEntry else { return false }
