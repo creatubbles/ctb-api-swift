@@ -18,7 +18,6 @@ class CreationResponseHandlerSpec: QuickSpec
     {
         describe("Fetch Creations response handler")
         {
-            NSURLCache.sharedURLCache().removeAllCachedResponses()
             it("Should return correct value for creations after login")
             {
                 let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, keyword: nil, onlyPublic: true)

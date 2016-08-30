@@ -85,12 +85,7 @@ public class Creation: NSObject, Identifiable
         identifier = mapper.identifier!
         name = mapper.name!
         
-        var translatedNamesTemp = Array<NameTranslationObject>()
-        for nameMap in mapper.translatedNamesMap!
-        {
-            translatedNamesTemp.append(NameTranslationObject(mapper: nameMap))
-        }
-        translatedNames = translatedNamesTemp
+        translatedNames = (mapper.translatedNamesMap?.map({ NameTranslationObject(mapper: $0) }))!
         
         createdAt = mapper.createdAt!
         updatedAt = mapper.updatedAt!
@@ -144,8 +139,6 @@ public class Creation: NSObject, Identifiable
         {
             self.creators = nil
         }
-        
-        
     }
     
     init(creationEntity: CreationEntity)
@@ -159,6 +152,8 @@ public class Creation: NSObject, Identifiable
             translatedNamesTemp.append(NameTranslationObject(nameTranslationObjectEntity: nameEntity))
         }
         translatedNames = translatedNamesTemp
+        
+        translatedNames = creationEntity.translatedNameEntities.map({ NameTranslationObject(nameTranslationObjectEntity: $0) })
         
         createdAt = creationEntity.createdAt!
         updatedAt = creationEntity.updatedAt!
