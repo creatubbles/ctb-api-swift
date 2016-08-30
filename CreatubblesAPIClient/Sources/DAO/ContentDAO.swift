@@ -52,6 +52,13 @@ class ContentDAO: NSObject
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getFollowedContents(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    {
+        let request = ContentRequest(type: .Followed, page: pagingData?.page, perPage: pagingData?.pageSize)
+        let handler = ContentResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getSearchedContents(query query: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
         let request = ContentSearchRequest(query: query, page: pagingData?.page, perPage: pagingData?.pageSize)
