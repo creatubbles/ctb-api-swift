@@ -35,6 +35,7 @@ class CreationEntity: Object
 {
     dynamic var identifier: String?
     dynamic var name: String?
+    var translatedNameEntities = List<NameTranslationObjectEntity>()
     dynamic var createdAt: NSDate?
     dynamic var updatedAt: NSDate?
     
