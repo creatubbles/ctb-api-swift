@@ -146,13 +146,6 @@ public class Creation: NSObject, Identifiable
         identifier = creationEntity.identifier!
         name = creationEntity.name!
         
-        var translatedNamesTemp = Array<NameTranslationObject>()
-        for nameEntity in creationEntity.translatedNameEntities
-        {
-            translatedNamesTemp.append(NameTranslationObject(nameTranslationObjectEntity: nameEntity))
-        }
-        translatedNames = translatedNamesTemp
-        
         translatedNames = creationEntity.translatedNameEntities.map({ NameTranslationObject(nameTranslationObjectEntity: $0) })
         
         createdAt = creationEntity.createdAt!
