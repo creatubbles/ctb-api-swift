@@ -24,4 +24,9 @@ class NameTranslationObjectMapper: Mappable
         name <- map["name"]
         original <- map["original"]
     }
+    
+    func isValid() -> Bool
+    {
+        return code != nil && name != nil && original != nil
+    }
 }
