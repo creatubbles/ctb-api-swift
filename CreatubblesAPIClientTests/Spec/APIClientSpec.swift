@@ -434,6 +434,34 @@ class APIClientSpec: QuickSpec
                     })
                 }
             }
+            
+            it("Should batch fetch group creators")
+            {
+                let client = APIClient(settings: TestConfiguration.settings)
+                
+                guard let groupIdentifier = TestConfiguration.testGroupIdentifier else { return }
+                
+                waitUntil(timeout: 200)
+                {
+                    done in
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
+                        {
+                            (error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(client.isLoggedIn()).to(beTrue())
+                            client.getGroupCreatorsInBatchMode(groupId: groupIdentifier, completion:
+                                {
+                                    (creators, error) -> (Void) in
+                                    expect(creators).notTo(beNil())
+                                    expect(creators).notTo(beEmpty())
+                                    expect(error).to(beNil())
+                                    done()
+                            })
+                            
+                    })
+                }
+            }
+            
             it("Should fetch all finished UploadSessions")
             {
                 let client = APIClient(settings: TestConfiguration.settings)

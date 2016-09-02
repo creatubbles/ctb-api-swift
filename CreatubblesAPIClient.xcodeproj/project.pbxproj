@@ -45,6 +45,7 @@
 		08B7E9121D524CDD007A30F3 /* GroupCreatorsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B7E9111D524CDD007A30F3 /* GroupCreatorsResponseHandlerSpec.swift */; };
 		08BB575F1D253ED700E2E297 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BB575E1D253ED700E2E297 /* SessionData.swift */; };
 		08E52DF81D6C422300262672 /* ContentDataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E52DF71D6C422300262672 /* ContentDataFilter.swift */; };
+		08E6FEF81D796F3200DCAB61 /* GroupUsersBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E6FEF71D796F3200DCAB61 /* GroupUsersBatchFetcher.swift */; };
 		08F580731D3F9C1700EDCEE2 /* UpdateGalleryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F580721D3F9C1700EDCEE2 /* UpdateGalleryRequest.swift */; };
 		08F580751D3F9D4300EDCEE2 /* UpdateGalleryResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F580741D3F9D4300EDCEE2 /* UpdateGalleryResponseHandler.swift */; };
 		08F580771D3F9D7A00EDCEE2 /* UpdateGalleryRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F580761D3F9D7A00EDCEE2 /* UpdateGalleryRequestSpec.swift */; };
@@ -363,6 +364,7 @@
 		08B7E9111D524CDD007A30F3 /* GroupCreatorsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCreatorsResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		08BB575E1D253ED700E2E297 /* SessionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
 		08E52DF71D6C422300262672 /* ContentDataFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentDataFilter.swift; sourceTree = "<group>"; };
+		08E6FEF71D796F3200DCAB61 /* GroupUsersBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupUsersBatchFetcher.swift; sourceTree = "<group>"; };
 		08F580721D3F9C1700EDCEE2 /* UpdateGalleryRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryRequest.swift; sourceTree = "<group>"; };
 		08F580741D3F9D4300EDCEE2 /* UpdateGalleryResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryResponseHandler.swift; sourceTree = "<group>"; };
 		08F580761D3F9D7A00EDCEE2 /* UpdateGalleryRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryRequestSpec.swift; sourceTree = "<group>"; };
@@ -1354,6 +1356,7 @@
 				21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */,
 				21A79F6D1C81E6C5009E95D1 /* GalleriesBatchFetcher.swift */,
 				21A79F6E1C81E6C5009E95D1 /* UsersBatchFetcher.swift */,
+				08E6FEF71D796F3200DCAB61 /* GroupUsersBatchFetcher.swift */,
 			);
 			path = BatchFetch;
 			sourceTree = "<group>";
@@ -1763,6 +1766,7 @@
 				18F6E89B1D021B6500AAC5FB /* GalleriesRequest.swift in Sources */,
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,
 				1859FA981D3905210023A6B6 /* EditGroupData.swift in Sources */,
+				08E6FEF81D796F3200DCAB61 /* GroupUsersBatchFetcher.swift in Sources */,
 				18C744FC1C84611600A07E4C /* CreationUploadEntity.swift in Sources */,
 				183728EE1CEDD1AC008784C7 /* ContentDAO.swift in Sources */,
 				21A79F6F1C81E6C5009E95D1 /* BatchFetcher.swift in Sources */,
