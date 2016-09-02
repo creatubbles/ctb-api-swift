@@ -300,6 +300,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.getCreatorsInBatchMode(userId, completion: completion)
     }
     
+    public func getGroupCreatorsInBatchMode(groupId groupId: String, completion: UsersBatchClosure?) -> RequestHandler
+    {
+        return userDAO.getGroupCreatorsInBatchMode(groupId, completion: completion)
+    }
+    
     public func getManagersInBatchMode(userId userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
         return userDAO.getManagersInBatchMode(userId, completion: completion)

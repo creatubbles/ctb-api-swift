@@ -159,6 +159,12 @@ class UserDAO
         return batchFetcher.fetch(userId, scope: .Creators, completion: completion)
     }
     
+    func getGroupCreatorsInBatchMode(groupId: String, completion: UsersBatchClosure?) -> RequestHandler
+    {
+        let batchFetcher = GroupUsersBatchFetcher(requestSender: requestSender)
+        return batchFetcher.fetch(groupId, completion: completion)
+    }
+    
     func getManagersInBatchMode(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
         let batchFetcher = UsersBatchFetcher(requestSender: requestSender)
