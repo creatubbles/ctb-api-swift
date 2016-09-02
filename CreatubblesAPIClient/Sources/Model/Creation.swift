@@ -85,7 +85,14 @@ public class Creation: NSObject, Identifiable
         identifier = mapper.identifier!
         name = mapper.name!
         
-        translatedNames = (mapper.translatedNamesMap?.map({ NameTranslationObject(mapper: $0) }))!
+        if let translatedNamesMappers = mapper.translatedNamesMap
+        {
+            translatedNames = translatedNamesMappers.flatMap( { $0.isValid() ? NameTranslationObject(mapper: $0) : nil } )
+        }
+        else
+        {
+            translatedNames = []
+        }        
         
         createdAt = mapper.createdAt!
         updatedAt = mapper.updatedAt!

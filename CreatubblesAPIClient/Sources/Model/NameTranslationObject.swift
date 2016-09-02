@@ -10,21 +10,21 @@ import UIKit
 @objc
 public class NameTranslationObject: NSObject
 {
-    public let code: String
-    public let name: String
-    public let original: Bool
+    public let code: String?
+    public let name: String?
+    public let original: Bool?
     
     init(mapper: NameTranslationObjectMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
-        code = mapper.code!
-        name = mapper.name!
-        original = mapper.original!
+        code = mapper.code
+        name = mapper.name
+        original = mapper.original
     }
     
     init(nameTranslationObjectEntity: NameTranslationObjectEntity)
     {
-        code = nameTranslationObjectEntity.code!
-        name = nameTranslationObjectEntity.name!
-        original = nameTranslationObjectEntity.original.value!
+        code = nameTranslationObjectEntity.code
+        name = nameTranslationObjectEntity.name
+        original = nameTranslationObjectEntity.original.value
     }
 }
