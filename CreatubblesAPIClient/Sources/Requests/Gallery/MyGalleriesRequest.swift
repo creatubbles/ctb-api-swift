@@ -17,7 +17,7 @@ enum MyGalleriesRequestFilter {
 class MyGalleriesRequest  : Request {
     override var method: RequestMethod { return .GET }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
-    override var endpoint: String       { return "me/galleries" }
+    override var endpoint: String       { return "users/me/galleries" }
     
     private let page: Int?
     private let perPage: Int?
