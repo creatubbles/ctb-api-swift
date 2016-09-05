@@ -18,33 +18,33 @@ class MyGalleriesRequestSpec: QuickSpec
         {
             it("Should have proper method")
             {
-                let request = MyGalleriesRequest()
+                let request = MyGalleriesRequest(page: 1, perPage: 20, filter: .None)
                 expect(request.method).to(equal(RequestMethod.GET))
             }
             
             it("Should have proper endpoint for list of galleries")
             {
-                let request = MyGalleriesRequest()
-                expect(request.endpoint).to(equal("me/galleries"))
+                let request = MyGalleriesRequest(page: 1, perPage: 20, filter: .None)
+                expect(request.endpoint).to(equal("users/me/galleries"))
             }
             
             it("Shouldn't have gallery_filter parameter for all galleries")
             {
-                let request = MyGalleriesRequest()
+                let request = MyGalleriesRequest(page: 1, perPage: 20, filter: .None)
                 let params = request.parameters
                 expect(params["gallery_filter"] as? String).to(beNil())
             }
             
             it("Shouldn have gallery_filter parameter for shared galleries")
             {
-                let request = MyGalleriesRequest()
+                let request = MyGalleriesRequest(page: 1, perPage: 20, filter: .Owned)
                 let params = request.parameters
                 expect(params["gallery_filter"] as? String).to(equal("only_owned"))
             }
             
             it("Shouldn't have gallery_filter parameter for owned galleries")
             {
-                let request = MyGalleriesRequest()
+                let request = MyGalleriesRequest(page: 1, perPage: 20, filter: .Shared)
                 let params = request.parameters
                 expect(params["gallery_filter"] as? String).to(equal("only_shared"))
             }
@@ -59,7 +59,7 @@ class MyGalleriesRequestSpec: QuickSpec
                     {
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(MyGalleriesRequest(page: 1, perPage: 20),
+                        sender.send(MyGalleriesRequest(page: 1, perPage: 20, filter: .None),
                                     withResponseHandler: DummyResponseHandler()
                                         {
                                             (response, error) -> Void in
