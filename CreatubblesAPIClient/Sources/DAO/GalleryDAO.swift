@@ -131,4 +131,16 @@ class GalleryDAO
         let fetcher = MyGalleriesBatchFetcher(requestSender: requestSender)
         return fetcher.fetch(.Shared, completion: completion)
     }
+    
+    func getFavoriteGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    {
+        let fetcher = FavoriteGalleriesBatchFetcher(requestSender: requestSender)
+        return fetcher.fetch(completion)
+    }
+    
+    func getFeaturedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    {
+        let fetcher = FeaturedGalleriesBatchFetcher(requestSender: requestSender)
+        return fetcher.fetch(completion)
+    }
 }

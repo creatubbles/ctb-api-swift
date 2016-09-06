@@ -447,6 +447,48 @@ class APIClientSpec: QuickSpec
                 }
             }
             
+            it("Should batch fetch favorite galleries")
+            {
+                let client = APIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: 200)
+                {
+                    done in
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
+                        {
+                            (error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(client.isLoggedIn()).to(beTrue())
+                            client.getFavoriteGalleriesInBatchMode({ (galleries, error) -> (Void) in
+                                expect(galleries).notTo(beNil())
+                                expect(error).to(beNil())
+                                done()
+                            })
+                            
+                    })
+                }
+            }
+            
+            it("Should batch fetch featured galleries")
+            {
+                let client = APIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: 200)
+                {
+                    done in
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
+                        {
+                            (error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(client.isLoggedIn()).to(beTrue())
+                            client.getFeaturedGalleriesInBatchMode({ (galleries, error) -> (Void) in
+                                expect(galleries).notTo(beNil())
+                                expect(error).to(beNil())
+                                done()
+                            })
+                            
+                    })
+                }
+            }
+            
             it("Should batch fetch creations")
             {
                 guard TestConfiguration.testUserIdentifier != nil else { return }
