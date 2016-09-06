@@ -79,6 +79,27 @@ class GalleryDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getMyGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    {
+        let request = MyGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, filter: .None)
+        let handler = GalleriesResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func getMyOwnedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    {
+        let request = MyGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, filter: .Owned)
+        let handler = GalleriesResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func getMySharedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    {
+        let request = MyGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, filter: .Shared )
+        let handler = GalleriesResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func newGallery(data galleryData: NewGalleryData, completion: GalleryClosure?) -> RequestHandler
     {
         let request = NewGalleryRequest(name: galleryData.name, galleryDescription: galleryData.galleryDescription, openForAll: galleryData.openForAll, ownerId: galleryData.ownerId)
@@ -91,5 +112,35 @@ class GalleryDAO
     {
         let fetcher = GalleriesBatchFetcher(requestSender: requestSender)
         return fetcher.fetch(userId, sort: sort, completion: completion)
+    }
+    
+    func getMyGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    {
+        let fetcher = MyGalleriesBatchFetcher(requestSender: requestSender)
+        return fetcher.fetch(.None, completion: completion)
+    }
+    
+    func getMyOwnedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    {
+        let fetcher = MyGalleriesBatchFetcher(requestSender: requestSender)
+        return fetcher.fetch(.Owned, completion: completion)
+    }
+    
+    func getMySharedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    {
+        let fetcher = MyGalleriesBatchFetcher(requestSender: requestSender)
+        return fetcher.fetch(.Shared, completion: completion)
+    }
+    
+    func getFavoriteGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    {
+        let fetcher = FavoriteGalleriesBatchFetcher(requestSender: requestSender)
+        return fetcher.fetch(completion)
+    }
+    
+    func getFeaturedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    {
+        let fetcher = FeaturedGalleriesBatchFetcher(requestSender: requestSender)
+        return fetcher.fetch(completion)
     }
 }

@@ -300,6 +300,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.getCreatorsInBatchMode(userId, completion: completion)
     }
     
+    public func getGroupCreatorsInBatchMode(groupId groupId: String, completion: UsersBatchClosure?) -> RequestHandler
+    {
+        return userDAO.getGroupCreatorsInBatchMode(groupId, completion: completion)
+    }
+    
     public func getManagersInBatchMode(userId userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
         return userDAO.getManagersInBatchMode(userId, completion: completion)
@@ -359,6 +364,46 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     public func getGalleriesInBatchMode(userId userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
     {
         return galleryDAO.getGalleriesInBatchMode(userIdentifier: userId, sort: sort, completion: completion)
+    }
+    
+    public func getMyGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    {
+        return galleryDAO.getMyGalleries(pagingData, completion: completion)
+    }
+    
+    public func getMyOwnedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    {
+        return galleryDAO.getMyOwnedGalleries(pagingData, completion: completion)
+    }
+    
+    public func getMySharedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    {
+        return galleryDAO.getMySharedGalleries(pagingData, completion: completion)
+    }
+    
+    public func getMyGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    {
+        return galleryDAO.getMyGalleriesInBatchMode(completion)
+    }
+    
+    public func getOwnedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    {
+        return galleryDAO.getMyOwnedGalleriesInBatchMode(completion)
+    }
+    
+    public func getSharedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    {
+        return galleryDAO.getMySharedGalleriesInBatchMode(completion)
+    }
+    
+    public func getFavoriteGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    {
+        return galleryDAO.getFavoriteGalleriesInBatchMode(completion)
+    }
+    
+    public func getFeaturedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    {
+        return galleryDAO.getFeaturedGalleriesInBatchMode(completion)
     }
     
     public func newGallery(data galleryData: NewGalleryData, completion: GalleryClosure?) -> RequestHandler

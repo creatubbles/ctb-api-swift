@@ -384,6 +384,111 @@ class APIClientSpec: QuickSpec
                 }
             }
             
+            it("Should batch fetch my galleries")
+            {
+                let client = APIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: 200)
+                {
+                    done in
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
+                        {
+                            (error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(client.isLoggedIn()).to(beTrue())
+                            client.getMyGalleriesInBatchMode({ (galleries, error) -> (Void) in
+                                    expect(galleries).notTo(beNil())
+                                    expect(error).to(beNil())
+                                    done()
+                            })
+                            
+                    })
+                }
+            }
+            
+            it("Should batch fetch owned galleries")
+            {
+                let client = APIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: 200)
+                {
+                    done in
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
+                        {
+                            (error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(client.isLoggedIn()).to(beTrue())
+                            client.getOwnedGalleriesInBatchMode({ (galleries, error) -> (Void) in
+                                    expect(galleries).notTo(beNil())
+                                    expect(error).to(beNil())
+                                    done()
+                            })
+                            
+                    })
+                }
+            }
+            
+            it("Should batch fetch shared galleries")
+            {
+                let client = APIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: 200)
+                {
+                    done in
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
+                        {
+                            (error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(client.isLoggedIn()).to(beTrue())
+                            client.getSharedGalleriesInBatchMode({ (galleries, error) -> (Void) in
+                                    expect(galleries).notTo(beNil())
+                                    expect(error).to(beNil())
+                                    done()
+                            })
+                            
+                    })
+                }
+            }
+            
+            it("Should batch fetch favorite galleries")
+            {
+                let client = APIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: 200)
+                {
+                    done in
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
+                        {
+                            (error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(client.isLoggedIn()).to(beTrue())
+                            client.getFavoriteGalleriesInBatchMode({ (galleries, error) -> (Void) in
+                                expect(galleries).notTo(beNil())
+                                expect(error).to(beNil())
+                                done()
+                            })
+                            
+                    })
+                }
+            }
+            
+            it("Should batch fetch featured galleries")
+            {
+                let client = APIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: 200)
+                {
+                    done in
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
+                        {
+                            (error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(client.isLoggedIn()).to(beTrue())
+                            client.getFeaturedGalleriesInBatchMode({ (galleries, error) -> (Void) in
+                                expect(galleries).notTo(beNil())
+                                expect(error).to(beNil())
+                                done()
+                            })
+                            
+                    })
+                }
+            }
+            
             it("Should batch fetch creations")
             {
                 guard TestConfiguration.testUserIdentifier != nil else { return }
@@ -434,6 +539,33 @@ class APIClientSpec: QuickSpec
                     })
                 }
             }
+            
+            it("Should batch fetch group creators")
+            {
+                let client = APIClient(settings: TestConfiguration.settings)
+                
+                guard let groupIdentifier = TestConfiguration.testGroupIdentifier else { return }
+                
+                waitUntil(timeout: 200)
+                {
+                    done in
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
+                        {
+                            (error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(client.isLoggedIn()).to(beTrue())
+                            client.getGroupCreatorsInBatchMode(groupId: groupIdentifier, completion:
+                                {
+                                    (creators, error) -> (Void) in
+                                    expect(creators).notTo(beNil())
+                                    expect(error).to(beNil())
+                                    done()
+                            })
+                            
+                    })
+                }
+            }
+            
             it("Should fetch all finished UploadSessions")
             {
                 let client = APIClient(settings: TestConfiguration.settings)
