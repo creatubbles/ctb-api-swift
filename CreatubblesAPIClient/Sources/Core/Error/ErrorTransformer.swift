@@ -68,8 +68,8 @@ class ErrorTransformer
     {
         return APIClientError(status: APIClientError.LoginStatus,
                               code: "authentication-error",
-                              title: "Authentication failed",
-                              source: oauthError.description,
+                              title: oauthError.description,
+                              source: APIClientError.DefaultSource,
                               detail: APIClientError.DefaultDetail)
     }
 }
