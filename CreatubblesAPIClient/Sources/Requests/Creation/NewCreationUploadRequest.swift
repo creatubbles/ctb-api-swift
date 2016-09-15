@@ -39,6 +39,7 @@ public enum UploadExtension: String
     case MP4 = "mp4"
     case M4V = "m4v"
     case MOV = "mov"
+    case UZPB = "uzpb"
 }
 
 class NewCreationUploadRequest: Request

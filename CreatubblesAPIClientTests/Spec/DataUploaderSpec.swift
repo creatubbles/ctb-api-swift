@@ -138,7 +138,7 @@ class DataUploaderSpec: QuickSpec
 //            }
 //        }
 //        
-//        describe("Api Client new creation")
+//        describe("APIClient ")
 //        {
 //            it("Should upload new creation")
 //            {
@@ -149,15 +149,38 @@ class DataUploaderSpec: QuickSpec
 //                waitUntil(timeout: 20)
 //                {
 //                    done in
-//                    apiClient.newCreation(NewCreationData(image: image), completion: { (creation, error) -> (Void) in
+//                    apiClient.newCreation(data: NewCreationData(image: image, uploadExtension: .JPG), completion: { (creation, error) -> (Void) in
 //                        expect(creation).notTo(beNil())
 //                        expect(error).to(beNil())
 //                        done()
 //                    })
 //                }
 //            }
-//                
-//        }
+//        
+//            it("Should upload .uzpb creation")
+//            {
+//                let path = NSBundle(forClass: self.dynamicType).URLForResource("test", withExtension: "uzpb")!
+//                let blob = NSData(contentsOfURL: path)!
+//                let apiClient = APIClient(settings: TestConfiguration.settings)
+//                let data = NewCreationData(data: blob, uploadExtension: .UZPB)
+//                waitUntil(timeout: 60)
+//                {
+//                    done in
+//                    apiClient.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
+//                    {
+//                        (error) -> (Void) in
+//                        expect(error).to(beNil())
+//                        apiClient.newCreation(data: data, completion:
+//                        {
+//                            (creation, error) -> (Void) in
+//                            expect(creation).notTo(beNil())
+//                            expect(error).to(beNil())
+//                            done()
+//                        })
 //
+//                    })
+//                }
+//            }
+//        }
 //    }
 }
