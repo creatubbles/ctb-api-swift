@@ -103,7 +103,7 @@ class CreationUploadService: CreationUploadSessionDelegate
         session.cancel()
         uploadSessions.removeAtIndex(index)
         databaseDAO.removeUploadSession(withIdentifier: sessionId)
-        delegate?.creationUploadService(self, uploadFailed: session, withError: APIClientError.UploadCancelled)
+        delegate?.creationUploadService(self, uploadFailed: session, withError: APIClientError.genericUploadCancelledError)
     }
     
     func removeAllUploadSessions()
