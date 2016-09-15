@@ -120,7 +120,7 @@ Pod::Spec.new do |s|
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   s.ios.dependency 'p2.OAuth2', '2.2.9'
   s.ios.dependency 'Alamofire', '3.0'
-  s.ios.dependency 'ObjectMapper', '1.1'
+  s.ios.dependency 'ObjectMapper', '1.2.0'
   s.ios.dependency "XCGLogger", '3.2'
   s.ios.dependency 'RealmSwift', '0.98.3'
 
