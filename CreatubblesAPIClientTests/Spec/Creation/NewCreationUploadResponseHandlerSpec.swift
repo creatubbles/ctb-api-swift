@@ -27,12 +27,12 @@ class NewCreationUploadResponseHandlerSpec: QuickSpec
                         (error: ErrorType?) -> Void in
                         expect(error).to(beNil())
                         sender.send(NewCreationUploadRequest(creationId: "TestCreation"), withResponseHandler:NewCreationUploadResponseHandler()
-                            {
-                                (creationUpload: CreationUpload?, error:ErrorType?) -> Void in
-                                expect(error).to(beNil())
-                                expect(creationUpload).notTo(beNil())
-                                done()
-                            })
+                        {
+                            (creationUpload: CreationUpload?, error:ErrorType?) -> Void in
+                            expect(error).to(beNil())
+                            expect(creationUpload).notTo(beNil())
+                            done()
+                        })
                     }
                 }
             }
@@ -45,12 +45,12 @@ class NewCreationUploadResponseHandlerSpec: QuickSpec
                 {
                     done in
                     sender.send(NewCreationUploadRequest(creationId: "TestCreation"), withResponseHandler:NewCreationUploadResponseHandler()
-                        {
-                            (creationUpload: CreationUpload?, error:ErrorType?) -> Void in
-                            expect(error).notTo(beNil())
-                            expect(creationUpload).to(beNil())
-                            done()
-                        })
+                    {
+                        (creationUpload: CreationUpload?, error:ErrorType?) -> Void in
+                        expect(error).notTo(beNil())
+                        expect(creationUpload).to(beNil())
+                        done()
+                    })
                 }
             }
         }
