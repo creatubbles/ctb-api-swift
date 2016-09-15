@@ -1,4 +1,3 @@
-
 //
 //  APIClientError.swift
 //  CreatubblesAPIClient
@@ -22,20 +21,32 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
 import UIKit
 import ObjectMapper
 
+//MARK: Defaults
+extension APIClientError
+{
+    public static let DefaultDomain: String = "com.creatubbles.apiclient.errordomain"
+    public static let DefaultStatus: Int    = -6000
+    public static let DefaultCode:   String = "creatubbles-apiclient-default-code"
+    public static let DefaultTitle:  String = "creatubbles-apiclient-default-title"
+    public static let DefaultSource: String = "creatubbles-apiclient-default-source"
+    public static let DefaultDetail: String = "creatubbles-apiclient-default-detail"
+}
+
+//MARK: Error codes
+extension APIClientError
+{
+    static let UnknownStatus: Int = -6001
+    static let LoginStatus: Int = -6002
+    static let UploadCancelledStatus: Int = -6003
+}
 
 public class APIClientError: ErrorType
-{
-    public static let DefaultDomain: String = "com.creatubbles.errordomain"
-    public static let DefaultStatus: Int = -6000
-    public static let DefaultCode: String = ""
-    public static let DefaultTitle: String = ""
-    public static let DefaultSource: String = ""
-    public static let DefaultDetail: String = ""
-    
+{    
     public let status: Int
     public let code: String
     public let title: String
@@ -64,39 +75,34 @@ public class APIClientError: ErrorType
     }
 }
 
-class ErrorTransformer
+extension APIClientError
 {
-    class func errorFromResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?) -> APIClientError?
+    class var genericLoginError: APIClientError
     {
-        if let err = error as? APIClientError
-        {
-            return err
-        }
-        if let err = errorsFromResponse(response).first
-        {
-            return err
-        }
-        return errorFromErrorType(error)
+        return APIClientError(status: APIClientError.LoginStatus,
+                              code:   "authentication-error",
+                              title:  "Authentication failed",
+                              source: "https://www.creatubbles.com/api/v2/users",
+                              detail: "Authentication failed. No more details are available at the moment. Please try again.")
     }
     
-    private class func errorsFromResponse(response: Dictionary<String, AnyObject>?) -> Array<APIClientError>
+    class var genericUploadCancelledError: APIClientError
     {
-        guard let response = response,
-              let mappers = Mapper<ErrorMapper>().mapArray(response["errors"])
-        else  { return Array<APIClientError>() }
-        return mappers.map({ APIClientError(mapper: $0) })
-    }
-    
-    private class func errorFromErrorType(error: ErrorType?) -> APIClientError?
-    {
-        guard let err = error as? NSError
-        else { return nil }        
-        return APIClientError(status: err.code,
-                              code: APIClientError.DefaultCode,
-                              title: err.localizedDescription,
+        return APIClientError(status: APIClientError.UploadCancelledStatus,
+                              code:   "upload-cancelled",
+                              title:  "Upload cancelled",
                               source: APIClientError.DefaultSource,
-                              detail: err.localizedFailureReason ?? APIClientError.DefaultDomain,
-                              domain: err.domain)
+                              detail: "Upload cancelled")
+    }
     
+    static func genericError(status: Int? = nil, code: String? = nil, title: String? = nil, source: String? = nil, detail: String? = nil, domain: String? = nil) -> APIClientError
+    {
+        return APIClientError(status: status ?? APIClientError.UnknownStatus,
+                              code: code ?? APIClientError.DefaultCode,
+                              title: title ?? APIClientError.DefaultTitle,
+                              source: source ?? APIClientError.DefaultSource,
+                              detail: detail ?? APIClientError.DefaultDetail,
+                              domain: domain ?? APIClientError.DefaultDomain)
     }
 }
+

@@ -135,14 +135,16 @@ class RequestSender: NSObject
     
     private class func errorFromLoginError(error: ErrorType?) -> APIClientError
     {
-        if let err = error as? OAuth2Error {
-            return APIClientError.Generic(err.description)
+        if let err = error as? OAuth2Error
+        {
+            return ErrorTransformer.errorFromOAuthError(err)
         }
-        if let err = error as? NSError {
-            return APIClientError.Generic(err.localizedDescription)
+        if let err = error as? NSError
+        {
+            return ErrorTransformer.errorFromNSError(err)
         }
         
-        return APIClientError.LoginError
+        return APIClientError.genericLoginError
     }
     
     func currentSessionData() -> SessionData {

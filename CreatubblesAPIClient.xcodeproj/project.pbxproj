@@ -155,7 +155,6 @@
 		1895D36D1D11F81B009B7271 /* EditProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895D36C1D11F81B009B7271 /* EditProfileData.swift */; };
 		189BE34D1D8B22A20090DAC5 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BE34C1D8B22A20090DAC5 /* APIClientError.swift */; };
 		189BE34F1D8B22BC0090DAC5 /* ErrorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BE34E1D8B22BC0090DAC5 /* ErrorTransformer.swift */; };
-		189BE3511D8B230D0090DAC5 /* APIClientError+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BE3501D8B230D0090DAC5 /* APIClientError+Factory.swift */; };
 		189D9F5C1C84B36100857CC6 /* CreationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F551C84B36100857CC6 /* CreationMapper.swift */; };
 		189D9F5D1C84B36100857CC6 /* CreationUploadMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F561C84B36100857CC6 /* CreationUploadMapper.swift */; };
 		189D9F5E1C84B36100857CC6 /* ErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F571C84B36100857CC6 /* ErrorMapper.swift */; };
@@ -488,7 +487,6 @@
 		1895D36C1D11F81B009B7271 /* EditProfileData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileData.swift; sourceTree = "<group>"; };
 		189BE34C1D8B22A20090DAC5 /* APIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
 		189BE34E1D8B22BC0090DAC5 /* ErrorTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTransformer.swift; sourceTree = "<group>"; };
-		189BE3501D8B230D0090DAC5 /* APIClientError+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClientError+Factory.swift"; sourceTree = "<group>"; };
 		189D9F551C84B36100857CC6 /* CreationMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationMapper.swift; sourceTree = "<group>"; };
 		189D9F561C84B36100857CC6 /* CreationUploadMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadMapper.swift; sourceTree = "<group>"; };
 		189D9F571C84B36100857CC6 /* ErrorMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMapper.swift; sourceTree = "<group>"; };
@@ -978,7 +976,6 @@
 			children = (
 				189BE34C1D8B22A20090DAC5 /* APIClientError.swift */,
 				189BE34E1D8B22BC0090DAC5 /* ErrorTransformer.swift */,
-				189BE3501D8B230D0090DAC5 /* APIClientError+Factory.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -1688,7 +1685,6 @@
 				18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */,
 				18E6E86D1CFF2D74008D7B89 /* MetadataMapper.swift in Sources */,
 				18A7DCE61CEE33CC008EBDDF /* MappingUtils.swift in Sources */,
-				189BE3511D8B230D0090DAC5 /* APIClientError+Factory.swift in Sources */,
 				08F580751D3F9D4300EDCEE2 /* UpdateGalleryResponseHandler.swift in Sources */,
 				18F6E8961D021B6500AAC5FB /* NewCreationPingResponseHandler.swift in Sources */,
 				215279541D3F70D900B67313 /* CreateAUserFollowingResponseHandler.swift in Sources */,
