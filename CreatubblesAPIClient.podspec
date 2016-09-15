@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CreatubblesAPIClient"
-  s.version      = "0.1.92”
+  s.version      = "0.1.92"
   s.summary      = "A Creatubbles api framework pod."
 
   # This description is used to generate tags and improve search results.
@@ -36,7 +36,7 @@ Pod::Spec.new do |s|
   #  Licensing your code is important. See http://choosealicense.com for more info.
   #  CocoaPods will detect a license file if there is a named LICENSE*
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
-  #  
+  #
   s.license      = { :type => "MIT", :file => "LICENSE.md" }
 
 
@@ -50,14 +50,14 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             =  "Creatubbles" 
+  s.author             =  "Creatubbles"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  If this Pod runs only on iOS or OS X, then specify the platform and
   #  the deployment target. You can optionally include the target after the platform.
   #
-  
+
   s.platform      = :ios, "8.0"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -121,7 +121,7 @@ Pod::Spec.new do |s|
   s.ios.dependency 'p2.OAuth2', '~> 2.2'
   s.ios.dependency 'Alamofire', '~> 3.0'
   s.ios.dependency 'ObjectMapper', '~> 1.1'
-  s.ios.dependency "XCGLogger", "3.2"
+  s.ios.dependency "XCGLogger", '3.2'
   s.ios.dependency 'RealmSwift', '0.98.3'
 
 end
