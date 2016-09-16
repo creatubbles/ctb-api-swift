@@ -53,6 +53,6 @@ class NewCreationDataEntity: Object
     
     var uploadExtension: UploadExtension
     {
-        return UploadExtension(rawValue: uploadExtensionRaw!)!
+        return UploadExtension.fromString(uploadExtensionRaw!)!
     }
 }
