@@ -24,22 +24,62 @@
 
 import UIKit
 
-public enum UploadExtension: String
+@objc public enum UploadExtension: Int
 {
-    case PNG = "png"
-    case JPG = "jpg"
-    case JPEG = "jpeg"
-    case H264 = "h64"
-    case MPEG4 = "mpeg4"
-    case WMV = "wmv"
-    case WEBM = "webm"
-    case FLV = "flv"
-    case OGG = "ogg"
-    case OGV = "ogv"
-    case MP4 = "mp4"
-    case M4V = "m4v"
-    case MOV = "mov"
-    case UZPB = "uzpb"
+    case PNG
+    case JPG
+    case JPEG
+    case H264
+    case MPEG4
+    case WMV
+    case WEBM
+    case FLV
+    case OGG
+    case OGV
+    case MP4
+    case M4V
+    case MOV
+    case UZPB
+    
+    var stringValue: String
+    {
+        switch self
+        {
+            case .PNG: return "png"
+            case JPG: return "jpg"
+            case JPEG: return "jpeg"
+            case H264: return "h264"
+            case MPEG4: return "mpeg4"
+            case WMV: return "wmv"
+            case WEBM: return "webm"
+            case FLV: return "flv"
+            case OGG: return "ogg"
+            case OGV: return "ogv"
+            case MP4: return "mp4"
+            case M4V: return "m4v"
+            case MOV: return "mov"
+            case UZPB: return "uzpb"
+        }
+    }
+    
+    static func fromString(stringValue: String) -> UploadExtension?
+    {
+        if stringValue == "png"   { return .PNG }
+        if stringValue == "jpg"   { return .JPG }
+        if stringValue == "jpeg"  { return .JPEG }
+        if stringValue == "h264"  { return .H264 }
+        if stringValue == "mpeg4" { return .MPEG4 }
+        if stringValue == "wmv"   { return .WMV }
+        if stringValue == "webm"  { return .WEBM }
+        if stringValue == "flv"   { return .FLV }
+        if stringValue == "ogg"   { return .OGG }
+        if stringValue == "ogv"   { return .OGV }
+        if stringValue == "mp4"   { return .MP4 }
+        if stringValue == "m4v"   { return .M4V }
+        if stringValue == "mov"   { return .MOV }
+        if stringValue == "uzpb"  { return .UZPB }
+        return nil
+    }
 }
 
 class NewCreationUploadRequest: Request
@@ -50,7 +90,7 @@ class NewCreationUploadRequest: Request
     {
         if let ext = creationExtension
         {
-            return ["extension": ext.rawValue]
+            return ["extension": ext.stringValue]
         }
         return Dictionary<String, AnyObject>()
     }
