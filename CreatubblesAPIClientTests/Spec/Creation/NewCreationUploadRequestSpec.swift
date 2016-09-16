@@ -38,7 +38,7 @@ class NewCreationUploadRequestSpec: QuickSpec
                 for availableExtension in availableExtensions
                 {
                     let  request = NewCreationUploadRequest(creationId: "TestId", creationExtension: availableExtension)
-                    expect(request.parameters["extension"] as? String).to(equal(availableExtension.rawValue))
+                    expect(request.parameters["extension"] as? String).to(equal(availableExtension.stringValue))
                 }
             }
             
