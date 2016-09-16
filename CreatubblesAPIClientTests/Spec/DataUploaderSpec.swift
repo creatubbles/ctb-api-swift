@@ -31,8 +31,8 @@ import Realm
 
 class DataUploaderSpec: QuickSpec
 {
-//    override func spec()
-//    {        
+    override func spec()
+    {
 //        describe("Creation upload session")
 //        {
 //            it("Should upload image")
@@ -145,14 +145,22 @@ class DataUploaderSpec: QuickSpec
 //                let path = NSBundle(forClass: self.dynamicType).URLForResource("creatubbles_logo", withExtension: "jpg")
 //                let image = UIImage(contentsOfFile: path!.path!)!
 //                let apiClient = APIClient(settings: TestConfiguration.settings)
-//                
-//                waitUntil(timeout: 20)
+//                let data = NewCreationData(image: image, uploadExtension: .JPG)
+//                waitUntil(timeout: 60)
 //                {
 //                    done in
-//                    apiClient.newCreation(data: NewCreationData(image: image, uploadExtension: .JPG), completion: { (creation, error) -> (Void) in
-//                        expect(creation).notTo(beNil())
+//                    apiClient.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
+//                    {
+//                        (error) -> (Void) in
 //                        expect(error).to(beNil())
-//                        done()
+//                        apiClient.newCreation(data: data, completion:
+//                        {
+//                            (creation, error) -> (Void) in
+//                            expect(creation).notTo(beNil())
+//                            expect(error).to(beNil())
+//                            done()
+//                        })
+//
 //                    })
 //                }
 //            }
@@ -182,5 +190,5 @@ class DataUploaderSpec: QuickSpec
 //                }
 //            }
 //        }
-//    }
+    }
 }

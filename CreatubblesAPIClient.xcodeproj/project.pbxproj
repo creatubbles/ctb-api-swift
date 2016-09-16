@@ -2069,7 +2069,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CreatubblesAPIClientTests/Spec/ObjectiveC/CreatubblesAPIClientTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -2084,7 +2083,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CreatubblesAPIClientTests/Spec/ObjectiveC/CreatubblesAPIClientTests-Bridging-Header.h";
 			};
 			name = Release;
 		};
