@@ -35,16 +35,20 @@ extension APIClientError
     public static let DefaultTitle:  String = "creatubbles-apiclient-default-title"
     public static let DefaultSource: String = "creatubbles-apiclient-default-source"
     public static let DefaultDetail: String = "creatubbles-apiclient-default-detail"
+    public static let DefaultAuthenticationCode:   String = "authentication-error"
 }
 
 //MARK: Error codes
 extension APIClientError
 {
-    static let UnknownStatus: Int = -6001
-    static let LoginStatus: Int = -6002
-    static let UploadCancelledStatus: Int = -6003
+    public static let UnknownStatus: Int = -6001
+    public static let LoginStatus: Int = -6002
+    public static let UploadCancelledStatus: Int = -6003
 }
 
+//  For error documentation, please check:
+//  https://partners.creatubbles.com/api/#errors
+//  http://jsonapi.org/format/#error-objects
 public class APIClientError: ErrorType
 {    
     public let status: Int
@@ -80,10 +84,10 @@ extension APIClientError
     class var genericLoginError: APIClientError
     {
         return APIClientError(status: APIClientError.LoginStatus,
-                              code:   "authentication-error",
+                              code:   APIClientError.DefaultAuthenticationCode,
                               title:  "Authentication failed",
                               source: "https://www.creatubbles.com/api/v2/users",
-                              detail: "Authentication failed. No more details are available at the moment. Please try again.")
+                              detail: "No more details are available at the moment. Please try again.")
     }
     
     class var genericUploadCancelledError: APIClientError
@@ -92,7 +96,7 @@ extension APIClientError
                               code:   "upload-cancelled",
                               title:  "Upload cancelled",
                               source: APIClientError.DefaultSource,
-                              detail: "Upload cancelled")
+                              detail: "Your creation upload was cancelled. Please re-upload again, or add new creation.")
     }
     
     static func genericError(status: Int? = nil, code: String? = nil, title: String? = nil, source: String? = nil, detail: String? = nil, domain: String? = nil) -> APIClientError

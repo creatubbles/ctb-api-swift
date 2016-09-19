@@ -67,7 +67,7 @@ class ErrorTransformer
     static func errorFromOAuthError(oauthError: OAuth2Error) -> APIClientError
     {
         return APIClientError(status: APIClientError.LoginStatus,
-                              code: "authentication-error",
+                              code: APIClientError.DefaultAuthenticationCode,
                               title: oauthError.description,
                               source: APIClientError.DefaultSource,
                               detail: APIClientError.DefaultDetail)
