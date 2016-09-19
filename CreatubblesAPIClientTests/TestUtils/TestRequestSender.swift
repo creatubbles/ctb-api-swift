@@ -42,7 +42,7 @@ class TestRequestSender: RequestSender
         let authorized = username == TestConfiguration.username &&
                          password == TestConfiguration.password
 
-        let error: APIClientError? = authorized ? nil : APIClientError.Generic("CreatubblesTest - Not Logged In")
+        let error: APIClientError? = authorized ? nil : APIClientError.genericLoginError
         isLoggedIn = authorized
         completion?(error)
         return TestRequestHandler()
@@ -62,7 +62,7 @@ class TestRequestSender: RequestSender
         }
         else
         {
-            let error = APIClientError.Generic("CreatubblesTest - Not Logged In")
+            let error = APIClientError.genericLoginError
             handler.handleResponse(nil, error: error)
         }
         return TestRequestHandler()

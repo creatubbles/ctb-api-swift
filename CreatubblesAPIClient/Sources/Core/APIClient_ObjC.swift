@@ -277,13 +277,13 @@ extension APIClient
     {
         if let error = error as? APIClientError
         {
-            let userInfo = [NSLocalizedDescriptionKey : error.errorDescription]
-            return NSError(domain: APIClientError.Domain, code: error.code, userInfo: userInfo)
+            let userInfo = [NSLocalizedDescriptionKey : error.title]
+            return NSError(domain: APIClientError.DefaultDomain, code: error.status, userInfo: userInfo)
         }
         if let _ = error
         {
             let userInfo = [NSLocalizedDescriptionKey :String(error)]
-            return NSError(domain: APIClientError.Domain, code: APIClientError.Generic("").code, userInfo: userInfo)
+            return NSError(domain: APIClientError.DefaultDomain, code: APIClientError.UnknownStatus, userInfo: userInfo)
         }
         return nil
     }
