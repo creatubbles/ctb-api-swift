@@ -100,6 +100,20 @@ class GalleryDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getMyFavoriteGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    {
+        let request = FavoriteGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
+        let handler = GalleriesResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func getFeaturedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    {
+        let request = FeaturedGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
+        let handler = GalleriesResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func newGallery(data galleryData: NewGalleryData, completion: GalleryClosure?) -> RequestHandler
     {
         let request = NewGalleryRequest(name: galleryData.name, galleryDescription: galleryData.galleryDescription, openForAll: galleryData.openForAll, ownerId: galleryData.ownerId)

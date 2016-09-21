@@ -381,6 +381,16 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return galleryDAO.getMySharedGalleries(pagingData, completion: completion)
     }
     
+    public func getMyFavoriteGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    {
+        return galleryDAO.getMyFavoriteGalleries(pagingData, completion: completion)
+    }
+    
+    public func getFeaturedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    {
+        return galleryDAO.getFeaturedGalleries(pagingData, completion: completion)
+    }
+    
     public func getMyGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
     {
         return galleryDAO.getMyGalleriesInBatchMode(completion)
