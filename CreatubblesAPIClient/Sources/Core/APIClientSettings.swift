@@ -62,6 +62,11 @@ public class APIClientSettings: NSObject
     */
     let backgroundSessionConfigurationIdentifier: String?
     
+    /*
+        Locale code used for getting localized responses from servers. Example values: “en”, “pl”, “de”.
+        See: https://partners.creatubbles.com/api/#locales for details
+    */
+    let locale: String?
     
     public init(appId: String, appSecret: String, backgroundSessionConfigurationIdentifier: String? = nil)
     {
@@ -71,10 +76,11 @@ public class APIClientSettings: NSObject
         self.authorizeUri = "https://api.creatubbles.com/v2/oauth/token"
         self.baseUrl = "https://api.creatubbles.com"
         self.apiVersion = "v2"
+        self.locale = nil
         self.backgroundSessionConfigurationIdentifier = backgroundSessionConfigurationIdentifier
     }
     
-    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, backgroundSessionConfigurationIdentifier: String? = nil)
+    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, locale: String? = nil, backgroundSessionConfigurationIdentifier: String? = nil)
     {
         self.appId = appId
         self.appSecret = appSecret
@@ -82,6 +88,7 @@ public class APIClientSettings: NSObject
         self.authorizeUri = authorizeUri
         self.baseUrl = baseUrl
         self.apiVersion = apiVersion
+        self.locale = locale
         self.backgroundSessionConfigurationIdentifier = backgroundSessionConfigurationIdentifier
     }
 }
