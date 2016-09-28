@@ -175,8 +175,9 @@ class RequestSender: NSObject
     //MARK: - Request sending
     func send(request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
     {
-        Logger.log.debug("Sending request: \(request.dynamicType)")        
-        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters)
+        Logger.log.debug("Sending request: \(request.dynamicType)")
+        let headers: Dictionary<String, String>? = settings.locale == nil ? nil : ["Accept-Language" : settings.locale!]
+        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters, headers: headers)
         .responseString
         {
             (response) -> Void in
