@@ -19,63 +19,36 @@
 //
 
 import Foundation
+#if !NO_MODULE_IMPORT
+import Base
+#endif
 
 
 /**
-    Class to handle two-legged OAuth2 requests of the "client_credentials" type.
- */
-public class OAuth2ClientCredentials: OAuth2 {
+Class to handle two-legged OAuth2 requests of the "client_credentials" type.
+*/
+open class OAuth2ClientCredentials: OAuth2 {
 	
-	public override class var grantType: String {
+	override open class var grantType: String {
 		return "client_credentials"
 	}
 	
-	override func doAuthorize(params inParams: OAuth2StringDict? = nil) {
+	override open func doAuthorize(params inParams: OAuth2StringDict? = nil) {
 		self.obtainAccessToken(params: inParams) { params, error in
 			if let error = error {
-				self.didFail(error)
+				self.didFail(with: error.asOAuth2Error)
 			}
 			else {
-				self.didAuthorize(params ?? OAuth2JSON())
+				self.didAuthorize(withParameters: params ?? OAuth2JSON())
 			}
-		}
-	}
-	
-	/**
-	Use the client credentials to retrieve a fresh access token.
-	
-	- parameter callback: The callback to call after the process has finished
-	*/
-	func obtainAccessToken(params: OAuth2StringDict? = nil, callback: ((params: OAuth2JSON?, error: ErrorProtocol?) -> Void)) {
-		do {
-			let post = try tokenRequest(params: params).asURLRequestFor(self)
-			logger?.debug("OAuth2", msg: "Requesting new access token from \(post.url?.description ?? "nil")")
-			
-			performRequest(post) { data, status, error in
-				do {
-					guard let data = data else {
-						throw error ?? OAuth2Error.noDataInResponse
-					}
-					
-					let params = try self.parseAccessTokenResponseData(data)
-					self.logger?.debug("OAuth2", msg: "Did get access token [\(nil != self.clientConfig.accessToken)]")
-					callback(params: params, error: nil)
-				}
-				catch let error {
-					callback(params: nil, error: error)
-				}
-			}
-		}
-		catch let error {
-			callback(params: nil, error: error)
 		}
 	}
 	
 	/**
 	Creates a POST request with x-www-form-urlencoded body created from the supplied URL's query part.
 	*/
-	func tokenRequest(params: OAuth2StringDict? = nil) throws -> OAuth2AuthRequest {
-		guard let clientId = clientConfig.clientId where !clientId.isEmpty else {
+	open func accessTokenRequest(params: OAuth2StringDict? = nil) throws -> OAuth2AuthRequest {
+		guard let clientId = clientConfig.clientId, !clientId.isEmpty else {
 			throw OAuth2Error.noClientId
 		}
 		guard nil != clientConfig.clientSecret else {
@@ -83,13 +56,42 @@ public class OAuth2ClientCredentials: OAuth2 {
 		}
 		
 		let req = OAuth2AuthRequest(url: (clientConfig.tokenURL ?? clientConfig.authorizeURL))
-		req.params["grant_type"] = self.dynamicType.grantType
+		req.params["grant_type"] = type(of: self).grantType
 		if let scope = clientConfig.scope {
 			req.params["scope"] = scope
 		}
-		req.addParams(params: params)
+		req.add(params: params)
 		
 		return req
+	}
+	
+	/**
+	Use the client credentials to retrieve a fresh access token.
+	
+	Uses `accessTokenRequest(params:)` to create the request, which you can subclass to change implementation specifics.
+	
+	- parameter callback: The callback to call after the process has finished
+	*/
+	public func obtainAccessToken(params: OAuth2StringDict? = nil, callback: @escaping ((_ params: OAuth2JSON?, _ error: OAuth2Error?) -> Void)) {
+		do {
+			let post = try accessTokenRequest(params: params).asURLRequest(for: self)
+			logger?.debug("OAuth2", msg: "Requesting new access token from \(post.url?.description ?? "nil")")
+			
+			perform(request: post) { response in
+				do {
+					let data = try response.responseData()
+					let params = try self.parseAccessTokenResponse(data: data)
+					self.logger?.debug("OAuth2", msg: "Did get access token [\(nil != self.clientConfig.accessToken)]")
+					callback(params, nil)
+				}
+				catch let error {
+					callback(nil, error.asOAuth2Error)
+				}
+			}
+		}
+		catch let error {
+			callback(nil, error.asOAuth2Error)
+		}
 	}
 }
 

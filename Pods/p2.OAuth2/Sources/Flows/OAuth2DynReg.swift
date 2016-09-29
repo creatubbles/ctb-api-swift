@@ -19,30 +19,26 @@
 //
 
 import Foundation
-
-
-public enum OAuth2EndpointAuthMethod: String {
-	case None = "none"
-	case ClientSecretPost = "client_secret_post"
-	case ClientSecretBasic = "client_secret_basic"
-}
+#if !NO_MODULE_IMPORT
+import Base
+#endif
 
 
 /**
-    Class to handle OAuth2 Dynamic Client Registration.
+Class to handle OAuth2 Dynamic Client Registration.
 
-    This is a lightweight class that uses a OAuth2 instance's settings when registering, only few settings are held by instances of this
-    class. Hence it's highly portable and can be instantiated when needed with ease.
+This is a lightweight class that uses a OAuth2 instance's settings when registering, only few settings are held by instances of this class.
+Hence it's highly portable and can be instantiated when needed with ease.
 
-	For the full OAuth2 Dynamic Client Registration spec see https://tools.ietf.org/html/rfc7591
- */
-public class OAuth2DynReg {
+For the full OAuth2 Dynamic Client Registration spec see https://tools.ietf.org/html/rfc7591
+*/
+open class OAuth2DynReg {
 	
 	/// Additional HTTP headers to supply during registration.
-	public var extraHeaders: OAuth2StringDict?
+	open var extraHeaders: OAuth2StringDict?
 	
 	/// Whether registration should also allow refresh tokens. Defaults to true, making sure "refresh_token" grant type is being registered.
-	public var allowRefreshTokens = true
+	open var allowRefreshTokens = true
 	
 	public init() {  }
 	
@@ -55,33 +51,30 @@ public class OAuth2DynReg {
 	- parameter client: The client to register and update with client credentials, when successful
 	- parameter callback: The callback to call when done with the registration response (JSON) and/or an error
 	*/
-	public func registerClient(_ client: OAuth2, callback: ((json: OAuth2JSON?, error: ErrorProtocol?) -> Void)) {
+	open func register(client: OAuth2, callback: @escaping ((_ json: OAuth2JSON?, _ error: OAuth2Error?) -> Void)) {
 		do {
-			let req = try registrationRequest(client)
+			let req = try registrationRequest(for: client)
 			client.logger?.debug("OAuth2", msg: "Registering client at \(req.url!) with scopes “\(client.scope ?? "(none)")”")
-			client.performRequest(req) { data, status, error in
+			client.perform(request: req) { response in
 				do {
-					guard let data = data else {
-						throw error ?? OAuth2Error.noDataInResponse
-					}
-					
-					let dict = try self.parseRegistrationResponse(data, client: client)
+					let data = try response.responseData()
+					let dict = try self.parseRegistrationResponse(data: data, client: client)
 					try client.assureNoErrorInResponse(dict)
-					if status >= 400 {
-						client.logger?.warn("OAuth2", msg: "Registration failed with \(status)")
+					if response.response.statusCode >= 400 {
+						client.logger?.warn("OAuth2", msg: "Registration failed with \(response.response.statusCode)")
 					}
 					else {
-						self.didRegisterWith(dict, client: client)
+						self.didRegisterWith(json: dict, client: client)
 					}
-					callback(json: dict, error: nil)
+					callback(dict, nil)
 				}
 				catch let error {
-					callback(json: nil, error: error)
+					callback(nil, error.asOAuth2Error)
 				}
 			}
 		}
 		catch let error {
-			callback(json: nil, error: error)
+			callback(nil, error.asOAuth2Error)
 		}
 	}
 	
@@ -91,9 +84,10 @@ public class OAuth2DynReg {
 	/**
 	Returns a URL request, set up to be used for registration: POST method, JSON body data.
 	
-	- returns: A URL request to be used for registration
+	- parameter for: The OAuth2 client the request is built for
+	- returns:       A URL request to be used for registration
 	*/
-	public func registrationRequest(_ client: OAuth2) throws -> URLRequest {
+	open func registrationRequest(for client: OAuth2) throws -> URLRequest {
 		guard let registrationURL = client.clientConfig.registrationURL else {
 			throw OAuth2Error.noRegistrationURL
 		}
@@ -107,7 +101,7 @@ public class OAuth2DynReg {
 				req.setValue(val, forHTTPHeaderField: key)
 			}
 		}
-		let body = registrationBody(client)
+		let body = registrationBody(for: client)
 		client.logger?.debug("OAuth2", msg: "Registration parameters: \(body)")
 		req.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
 		
@@ -115,7 +109,7 @@ public class OAuth2DynReg {
 	}
 	
 	/** The body data to use for registration. */
-	public func registrationBody(_ client: OAuth2) -> OAuth2JSON {
+	open func registrationBody(for client: OAuth2) -> OAuth2JSON {
 		var dict = OAuth2JSON()
 		if let client = client.clientConfig.clientName {
 			dict["client_name"] = client
@@ -131,23 +125,23 @@ public class OAuth2DynReg {
 		}
 		
 		// grant types, response types and auth method
-		var grant_types = [client.dynamicType.grantType]
+		var grant_types = [type(of: client).grantType]
 		if allowRefreshTokens {
 			grant_types.append("refresh_token")
 		}
 		dict["grant_types"] = grant_types
-		if let responseType = client.dynamicType.responseType {
+		if let responseType = type(of: client).responseType {
 			dict["response_types"] = [responseType]
 		}
 		dict["token_endpoint_auth_method"] = client.clientConfig.endpointAuthMethod.rawValue
 		return dict
 	}
 	
-	public func parseRegistrationResponse(_ data: Data, client: OAuth2) throws -> OAuth2JSON {
+	open func parseRegistrationResponse(data: Data, client: OAuth2) throws -> OAuth2JSON {
 		return try client.parseJSON(data)
 	}
 	
-	public func didRegisterWith(_ json: OAuth2JSON, client: OAuth2) {
+	open func didRegisterWith(json: OAuth2JSON, client: OAuth2) {
 		if let id = json["client_id"] as? String {
 			client.clientId = id
 			client.logger?.debug("OAuth2", msg: "Did register with client-id “\(id)”, params: \(json)")
@@ -157,7 +151,7 @@ public class OAuth2DynReg {
 		}
 		if let secret = json["client_secret"] as? String {
 			client.clientSecret = secret
-			if let expires = json["client_secret_expires_at"] as? Double where 0 != expires {
+			if let expires = json["client_secret_expires_at"] as? Double, 0 != expires {
 				client.logger?.debug("OAuth2", msg: "Client secret will expire on \(Date(timeIntervalSince1970: expires))")
 			}
 		}

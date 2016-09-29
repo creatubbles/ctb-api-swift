@@ -26,7 +26,7 @@ All errors that might occur.
 
 The response errors return a description as defined in the spec: http://tools.ietf.org/html/rfc6749#section-4.1.2.1
 */
-public enum OAuth2Error: ErrorProtocol, CustomStringConvertible, Equatable {
+public enum OAuth2Error: Error, CustomStringConvertible, Equatable {
 	
 	/// An error for which we don't have a specific one.
 	case generic(String)
@@ -54,6 +54,9 @@ public enum OAuth2Error: ErrorProtocol, CustomStringConvertible, Equatable {
 	
 	/// There is no password.
 	case noPassword
+	
+	/// The client is already authorizing.
+	case alreadyAuthorizing
 	
 	/// There is no authorization context.
 	case noAuthorizationContext
@@ -100,6 +103,9 @@ public enum OAuth2Error: ErrorProtocol, CustomStringConvertible, Equatable {
 	/// Some prerequisite failed; with explanation.
 	case prerequisiteFailed(String)
 	
+	/// The state parameter was missing in the response.
+	case missingState
+	
 	/// The state parameter was invalid.
 	case invalidState
 	
@@ -115,8 +121,14 @@ public enum OAuth2Error: ErrorProtocol, CustomStringConvertible, Equatable {
 	
 	// MARK: - OAuth2 errors
 	
-	/// The client is unauthorized.
+	/// The client is unauthorized (HTTP status 401).
 	case unauthorizedClient
+	
+	/// The request was forbidden (HTTP status 403).
+	case forbidden
+	
+	/// Username or password was wrong (HTTP status 403 on password grant).
+	case wrongUsernamePassword
 	
 	/// Access was denied.
 	case accessDenied
@@ -175,21 +187,23 @@ public enum OAuth2Error: ErrorProtocol, CustomStringConvertible, Equatable {
 		case .invalidURLComponents(let components):
 			return "Failed to create URL from components: \(components)"
 		
-		case noClientId:
+		case .noClientId:
 			return "Client id not set"
-		case noClientSecret:
+		case .noClientSecret:
 			return "Client secret not set"
-		case noRedirectURL:
+		case .noRedirectURL:
 			return "Redirect URL not set"
-		case noUsername:
+		case .noUsername:
 			return "No username"
-		case noPassword:
+		case .noPassword:
 			return "No password"
-		case noAuthorizationContext:
+		case .alreadyAuthorizing:
+			return "The client is already authorizing, wait for it to finish or abort authorization before trying again"
+		case .noAuthorizationContext:
 			return "No authorization context present"
-		case invalidAuthorizationContext:
+		case .invalidAuthorizationContext:
 			return "Invalid authorization context"
-		case invalidRedirectURL(let url):
+		case .invalidRedirectURL(let url):
 			return "Invalid redirect URL: \(url)"
 		case .noRefreshToken:
 			return "I don't have a refresh token, not trying to refresh"
@@ -205,25 +219,31 @@ public enum OAuth2Error: ErrorProtocol, CustomStringConvertible, Equatable {
 			return "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed."
 		case .requestCancelled:
 			return "The request has been cancelled"
-		case noTokenType:
+		case .noTokenType:
 			return "No token type received, will not use the token"
-		case unsupportedTokenType(let message):
+		case .unsupportedTokenType(let message):
 			return message
-		case noDataInResponse:
+		case .noDataInResponse:
 			return "No data in the response"
-		case prerequisiteFailed(let message):
+		case .prerequisiteFailed(let message):
 			return message
-		case invalidState:
-			return "The state was either empty or did not check out"
-		case jsonParserError:
+		case .missingState:
+			return "The state parameter was missing in the response"
+		case .invalidState:
+			return "The state parameter did not check out"
+		case .jsonParserError:
 			return "Error parsing JSON"
-		case utf8EncodeError:
+		case .utf8EncodeError:
 			return "Failed to UTF-8 encode the given string"
-		case utf8DecodeError:
+		case .utf8DecodeError:
 			return "Failed to decode given data as a UTF-8 string"
 		
 		case .unauthorizedClient:
 			return "The client is not authorized to request an access token using this method."
+		case .forbidden:
+			return "Forbidden"
+		case .wrongUsernamePassword:
+			return "The username or password is incorrect"
 		case .accessDenied:
 			return "The resource owner or authorization server denied the request."
 		case .unsupportedResponseType:
@@ -238,46 +258,66 @@ public enum OAuth2Error: ErrorProtocol, CustomStringConvertible, Equatable {
 			return message
 		}
 	}
+	
+	
+	// MARK: - Equatable
+	
+	public static func ==(lhs: OAuth2Error, rhs: OAuth2Error) -> Bool {
+		switch (lhs, rhs) {
+		case (.generic(let lhm), .generic(let rhm)):    return lhm == rhm
+		case (.nsError(let lhe), .nsError(let rhe)):    return lhe.isEqual(rhe)
+		case (.invalidURLComponents(let lhe), .invalidURLComponents(let rhe)):   return (lhe == rhe)
+		
+		case (.noClientId, .noClientId):                             return true
+		case (.noClientSecret, .noClientSecret):                     return true
+		case (.noRedirectURL, .noRedirectURL):                       return true
+		case (.noUsername, .noUsername):                             return true
+		case (.noPassword, .noPassword):                             return true
+		case (.alreadyAuthorizing, .alreadyAuthorizing):             return true
+		case (.noAuthorizationContext, .noAuthorizationContext):                 return true
+		case (.invalidAuthorizationContext, .invalidAuthorizationContext):       return true
+		case (.invalidRedirectURL(let lhu), .invalidRedirectURL(let rhu)):       return lhu == rhu
+		case (.noRefreshToken, .noRefreshToken):			         return true
+		
+		case (.notUsingTLS, .notUsingTLS):                           return true
+		case (.unableToOpenAuthorizeURL, .unableToOpenAuthorizeURL): return true
+		case (.invalidRequest, .invalidRequest):                     return true
+		case (.requestCancelled, .requestCancelled):                 return true
+		case (.noTokenType, .noTokenType):                           return true
+		case (.unsupportedTokenType(let lhm), .unsupportedTokenType(let rhm)):   return lhm == rhm
+		case (.noDataInResponse, .noDataInResponse):                 return true
+		case (.prerequisiteFailed(let lhm), .prerequisiteFailed(let rhm)):       return lhm == rhm
+		case (.missingState, .missingState):                         return true
+		case (.invalidState, .invalidState):                         return true
+		case (.jsonParserError, .jsonParserError):                   return true
+		case (.utf8EncodeError, .utf8EncodeError):                   return true
+		case (.utf8DecodeError, .utf8DecodeError):                   return true
+		
+		case (.unauthorizedClient, .unauthorizedClient):             return true
+		case (.forbidden, .forbidden):                               return true
+		case (.wrongUsernamePassword, .wrongUsernamePassword):       return true
+		case (.accessDenied, .accessDenied):                         return true
+		case (.unsupportedResponseType, .unsupportedResponseType):   return true
+		case (.invalidScope, .invalidScope):                         return true
+		case (.serverError, .serverError):                           return true
+		case (.temporarilyUnavailable, .temporarilyUnavailable):     return true
+		case (.responseError(let lhm), .responseError(let rhm)):     return lhm == rhm
+		default:                                                     return false
+		}
+	}
 }
 
 
-public func ==(lhs: OAuth2Error, rhs: OAuth2Error) -> Bool {
-	switch (lhs, rhs) {
-	case (.generic(let lhm), .generic(let rhm)):    return lhm == rhm
-	case (.nsError(let lhe), .nsError(let rhe)):    return lhe.isEqual(rhe)
-	case (.invalidURLComponents(let lhe), .invalidURLComponents(let rhe)):   return (lhe == rhe)
+public extension Error {
 	
-	case (.noClientId, .noClientId):                             return true
-	case (.noClientSecret, .noClientSecret):                     return true
-	case (.noRedirectURL, .noRedirectURL):                       return true
-	case (.noUsername, .noUsername):                             return true
-	case (.noPassword, .noPassword):                             return true
-	case (.noAuthorizationContext, .noAuthorizationContext):                 return true
-	case (.invalidAuthorizationContext, .invalidAuthorizationContext):       return true
-	case (.invalidRedirectURL(let lhu), .invalidRedirectURL(let rhu)):       return lhu == rhu
-	case (.noRefreshToken, .noRefreshToken):			         return true
-	
-	case (.notUsingTLS, .notUsingTLS):                           return true
-	case (.unableToOpenAuthorizeURL, .unableToOpenAuthorizeURL): return true
-	case (.invalidRequest, .invalidRequest):                     return true
-	case (.requestCancelled, .requestCancelled):                 return true
-	case (.noTokenType, .noTokenType):                           return true
-	case (.unsupportedTokenType(let lhm), .unsupportedTokenType(let rhm)):   return lhm == rhm
-	case (.noDataInResponse, .noDataInResponse):                 return true
-	case (.prerequisiteFailed(let lhm), .prerequisiteFailed(let rhm)):       return lhm == rhm
-	case (.invalidState, .invalidState):                         return true
-	case (.jsonParserError, .jsonParserError):                   return true
-	case (.utf8EncodeError, .utf8EncodeError):                   return true
-	case (.utf8DecodeError, .utf8DecodeError):                   return true
-	
-	case (.unauthorizedClient, .unauthorizedClient):             return true
-	case (.accessDenied, .accessDenied):                         return true
-	case (.unsupportedResponseType, .unsupportedResponseType):   return true
-	case (.invalidScope, .invalidScope):                         return true
-	case (.serverError, .serverError):                           return true
-	case (.temporarilyUnavailable, .temporarilyUnavailable):     return true
-	case (.responseError(let lhm), .responseError(let rhm)):     return lhm == rhm
-	default:                                                     return false
+	/**
+	Convenience getter to easily retrieve an OAuth2Error from any Error.
+	*/
+	public var asOAuth2Error: OAuth2Error {
+		if let oaerror = self as? OAuth2Error {
+			return oaerror
+		}
+		return OAuth2Error.nsError(self as NSError)
 	}
 }
 

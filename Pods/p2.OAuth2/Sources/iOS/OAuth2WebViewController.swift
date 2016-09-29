@@ -17,23 +17,27 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
+#if os(iOS)
 
 import UIKit
+#if !NO_MODULE_IMPORT
+import Base
+#endif
 
 
 /**
-    A simple iOS web view controller that allows you to display the login/authorization screen.
- */
-public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
-{
+A simple iOS web view controller that allows you to display the login/authorization screen.
+*/
+open class OAuth2WebViewController: UIViewController, UIWebViewDelegate {
+	
 	/// Handle to the OAuth2 instance in play, only used for debug lugging at this time.
 	var oauth: OAuth2?
 	
 	/// The URL to load on first show.
-	public var startURL: URL? {
+	open var startURL: URL? {
 		didSet(oldURL) {
-			if nil != startURL && nil == oldURL && isViewLoaded() {
-				loadURL(startURL!)
+			if nil != startURL && nil == oldURL && isViewLoaded {
+				load(url: startURL!)
 			}
 		}
 	}
@@ -59,13 +63,13 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 	
 	/// Closure called when the web view gets asked to load the redirect URL, specified in `interceptURLString`. Return a Bool indicating
 	/// that you've intercepted the URL.
-	var onIntercept: ((url: URL) -> Bool)?
+	var onIntercept: ((URL) -> Bool)?
 	
-	/// Called when the web view is about to be dismissed.
-	var onWillDismiss: ((didCancel: Bool) -> Void)?
+	/// Called when the web view is about to be dismissed. The Bool indicates whether the request was (user-)cancelled.
+	var onWillDismiss: ((_ didCancel: Bool) -> Void)?
 	
 	/// Assign to override the back button, shown when it's possible to go back in history. Will adjust target/action accordingly.
-	public var backButton: UIBarButtonItem? {
+	open var backButton: UIBarButtonItem? {
 		didSet {
 			if let backButton = backButton {
 				backButton.target = self
@@ -93,13 +97,13 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 	
 	// MARK: - View Handling
 	
-	override public func loadView() {
+	override open func loadView() {
 		edgesForExtendedLayout = .all
 		extendedLayoutIncludesOpaqueBars = true
 		automaticallyAdjustsScrollViewInsets = true
 		
 		super.loadView()
-		view.backgroundColor = UIColor.white()
+		view.backgroundColor = UIColor.white
 		
 		cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(OAuth2WebViewController.cancel(_:)))
 		navigationItem.rightBarButtonItem = cancelButton
@@ -117,12 +121,12 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 		webView = web
 	}
 	
-	override public func viewWillAppear(_ animated: Bool) {
+	override open func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		if let web = webView where !web.canGoBack {
+		if let web = webView, !web.canGoBack {
 			if nil != startURL {
-				loadURL(startURL!)
+				load(url: startURL!)
 			}
 			else {
 				web.loadHTMLString("There is no `startURL`", baseURL: nil)
@@ -155,7 +159,7 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 	
 	// MARK: - Actions
 	
-	public func loadURL(_ url: URL) {
+	open func load(url: URL) {
 		webView?.loadRequest(URLRequest(url: url))
 	}
 	
@@ -164,57 +168,57 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 	}
 	
 	func cancel(_ sender: AnyObject?) {
-		dismiss(asCancel: true, animated: nil != sender ? true : false)
+		dismiss(asCancel: true, animated: (nil != sender) ? true : false)
 	}
 	
-	func dismiss(animated: Bool) {
-		dismiss(asCancel: false, animated: animated)
+	override open func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+		dismiss(asCancel: false, animated: flag, completion: completion)
 	}
 	
-	func dismiss(asCancel: Bool, animated: Bool) {
+	func dismiss(asCancel: Bool, animated: Bool, completion: (() -> Void)? = nil) {
 		webView?.stopLoading()
 		
 		if nil != self.onWillDismiss {
-			self.onWillDismiss!(didCancel: asCancel)
+			self.onWillDismiss!(asCancel)
 		}
-		dismiss(animated: animated)
+		super.dismiss(animated: animated, completion: completion)
 	}
 	
 	
 	// MARK: - Web View Delegate
 	
-	public func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-		if nil == onIntercept {
+	open func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+		guard let onIntercept = onIntercept else {
 			return true
 		}
 		
 		// we compare the scheme and host first, then check the path (if there is any). Not sure if a simple string comparison
 		// would work as there may be URL parameters attached
-		if let url = request.url where url.scheme == interceptComponents?.scheme && url.host == interceptComponents?.host {
+		if let url = request.url, url.scheme == interceptComponents?.scheme && url.host == interceptComponents?.host {
 			let haveComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
-			if let hp = haveComponents?.path, ip = interceptComponents?.path where hp == ip || ("/" == hp + ip) {
-				return !onIntercept!(url: url)
+			if let hp = haveComponents?.path, let ip = interceptComponents?.path, hp == ip || ("/" == hp + ip) {
+				return !onIntercept(url)
 			}
 		}
 		
 		return true
 	}
 	
-	public func webViewDidStartLoad(_ webView: UIWebView) {
+	open func webViewDidStartLoad(_ webView: UIWebView) {
 		if "file" != webView.request?.url?.scheme {
 			showLoadingIndicator()
 		}
 	}
 	
 	/* Special handling for Google's `urn:ietf:wg:oauth:2.0:oob` callback */
-	public func webViewDidFinishLoad(_ webView: UIWebView) {
-		if let scheme = interceptComponents?.scheme where "urn" == scheme {
-			if let path = interceptComponents?.path where path.hasPrefix("ietf:wg:oauth:2.0:oob") {
-				if let title = webView.stringByEvaluatingJavaScript(from: "document.title") where title.hasPrefix("Success ") {
+	open func webViewDidFinishLoad(_ webView: UIWebView) {
+		if let scheme = interceptComponents?.scheme, "urn" == scheme {
+			if let path = interceptComponents?.path, path.hasPrefix("ietf:wg:oauth:2.0:oob") {
+				if let title = webView.stringByEvaluatingJavaScript(from: "document.title"), title.hasPrefix("Success ") {
 					oauth?.logger?.debug("OAuth2", msg: "Creating redirect URL from document.title")
 					let qry = title.replacingOccurrences(of: "Success ", with: "")
 					if let url = URL(string: "http://localhost/?\(qry)") {
-						onIntercept?(url: url)
+						_ = onIntercept?(url)
 						return
 					}
 					else {
@@ -228,15 +232,16 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 		showHideBackButton(webView.canGoBack)
 	}
 	
-	public func webView(_ webView: UIWebView, didFailLoadWithError error: NSError?) {
-		if NSURLErrorDomain == error?.domain && NSURLErrorCancelled == error?.code {
+	open func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+		if NSURLErrorDomain == error._domain && NSURLErrorCancelled == error._code {
 			return
 		}
 		// do we still need to intercept "WebKitErrorDomain" error 102?
 		
 		if nil != loadingView {
-			showErrorMessage(error?.localizedDescription ?? "Unknown web view load error", animated: true)
+			showErrorMessage(error.localizedDescription, animated: true)
 		}
 	}
 }
 
+#endif

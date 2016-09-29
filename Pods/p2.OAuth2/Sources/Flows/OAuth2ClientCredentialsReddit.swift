@@ -18,6 +18,10 @@
 //  limitations under the License.
 //
 
+#if !NO_MODULE_IMPORT
+import Base
+#endif
+
 
 /**
 Enables Reddit's special client credentials flow for installed apps.
@@ -29,7 +33,7 @@ https://github.com/reddit/reddit/wiki/OAuth2#application-only-oauth
 */
 public class OAuth2ClientCredentialsReddit: OAuth2ClientCredentials {
 	
-	public override class var grantType: String {
+	override public class var grantType: String {
 		return "https://oauth.reddit.com/grants/installed_client"
 	}
 	
@@ -43,19 +47,19 @@ public class OAuth2ClientCredentialsReddit: OAuth2ClientCredentials {
 	
 	- parameter settings: The authorization settings
 	*/
-	public override init(settings: OAuth2JSON) {
+	override public init(settings: OAuth2JSON) {
 		deviceId = settings["device_id"] as? String
 		super.init(settings: settings)
 		clientConfig.clientSecret = ""
 	}
 	
 	/** Add `device_id` parameter to the request created by the superclass. */
-	override func tokenRequest(params: OAuth2StringDict? = nil) throws -> OAuth2AuthRequest {
+	override open func accessTokenRequest(params: OAuth2StringDict? = nil) throws -> OAuth2AuthRequest {
 		guard let device = deviceId else {
 			throw OAuth2Error.generic("You must configure this flow with a `device_id` (via settings) or manually assign `deviceId`")
 		}
 		
-		let req = try super.tokenRequest(params: params)
+		let req = try super.accessTokenRequest(params: params)
 		req.params["device_id"] = device
 		return req
 	}

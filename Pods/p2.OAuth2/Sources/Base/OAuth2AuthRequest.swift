@@ -25,7 +25,11 @@ import Foundation
 HTTP methods for auth requests.
 */
 public enum OAuth2HTTPMethod: String {
+	
+	/// "GET" is the HTTP method of choice.
 	case GET = "GET"
+	
+	/// This is a "POST" method.
 	case POST = "POST"
 }
 
@@ -36,31 +40,47 @@ Content types that will be specified in the request header under "Content-type".
 public enum OAuth2HTTPContentType: String {
 	
 	/// JSON content: `application/json`
-	case JSON = "application/json"
+	case json = "application/json"
 	
 	/// Form encoded content, using UTF-8: `application/x-www-form-urlencoded; charset=utf-8`
-	case WWWForm = "application/x-www-form-urlencoded; charset=utf-8"
+	case wwwForm = "application/x-www-form-urlencoded; charset=utf-8"
+}
+
+
+/**
+The auth method supported by the endpoint.
+*/
+public enum OAuth2EndpointAuthMethod: String {
+	
+	/// No auth method is to be used. Good luck with that.
+	case none = "none"
+	
+	/// The `client_secret_post` method should be used.
+	case clientSecretPost = "client_secret_post"
+	
+	/// The `client_secret_basic` method should be used.
+	case clientSecretBasic = "client_secret_basic"
 }
 
 
 /**
 Class representing an OAuth2 authorization request that can be used to create NSURLRequest instances.
 */
-public class OAuth2AuthRequest {
+open class OAuth2AuthRequest {
 	
 	/// The url of the receiver. Queries may by added by parameters specified on `params`.
-	public let url: URL
+	open let url: URL
 	
 	/// The HTTP method.
-	public let method: OAuth2HTTPMethod
+	open let method: OAuth2HTTPMethod
 	
-	/// The content type that will be specified. Defaults to `WWWForm`.
-	public var contentType = OAuth2HTTPContentType.WWWForm
+	/// The content type that will be specified. Defaults to `wwwForm`.
+	open var contentType = OAuth2HTTPContentType.wwwForm
 	
-	/// If set will take preference over any "Authorize" header that would otherwise be set.
-	public var headerAuthorize: String?
+	/// Custom headers can be set here, they will take precedence over any built-in headers.
+	open private(set) var headers: [String: String]?
 	
-	public var params = OAuth2AuthRequestParams()
+	open var params = OAuth2RequestParams()
 	
 	
 	/**
@@ -72,6 +92,33 @@ public class OAuth2AuthRequest {
 	}
 	
 	
+	// MARK: - Headers
+	
+	/**
+	Set the given custom header.
+	
+	- parameter header: The header's name
+	- parameter value:  The value to use
+	*/
+	public func set(header: String, to value: String) {
+		if nil == headers {
+			headers = [header: value]
+		}
+		else {
+			headers![header] = value
+		}
+	}
+	
+	/**
+	Unset the given header so that the default can be applied again.
+	
+	- parameter header: The header's name
+	*/
+	public func unset(header: String) {
+		_ = headers?.removeValue(forKey: header)
+	}
+	
+	
 	// MARK: - Parameter
 	
 	/**
@@ -79,7 +126,7 @@ public class OAuth2AuthRequest {
 	
 	- parameter params: The parameters to add to the receiver
 	*/
-	public func addParams(params inParams: OAuth2StringDict?) {
+	open func add(params inParams: OAuth2StringDict?) {
 		if let prms = inParams {
 			for (key, val) in prms {
 				params[key] = val
@@ -97,7 +144,7 @@ public class OAuth2AuthRequest {
 	*/
 	func asURLComponents() throws -> URLComponents {
 		let comp = URLComponents(url: url, resolvingAgainstBaseURL: false)
-		guard var components = comp where "https" == components.scheme else {
+		guard var components = comp, "https" == components.scheme else {
 			throw OAuth2Error.notUsingTLS
 		}
 		if .GET == method && params.count > 0 {
@@ -111,7 +158,7 @@ public class OAuth2AuthRequest {
 	
 	- returns: An NSURL representing the receiver
 	*/
-	public func asURL() throws -> URL {
+	open func asURL() throws -> URL {
 		let comp = try asURLComponents()
 		if let finalURL = comp.url {
 			return finalURL
@@ -125,13 +172,8 @@ public class OAuth2AuthRequest {
 	- parameter oauth2: The OAuth2 instance from which to take client and auth settings
 	- returns: A mutable NSURLRequest
 	*/
-	public func asURLRequestFor(_ oauth2: OAuth2) throws -> URLRequest {
-		guard let clientId = oauth2.clientId where !clientId.isEmpty else {
-			throw OAuth2Error.noClientId
-		}
-		
+	open func asURLRequest(for oauth2: OAuth2Base) throws -> URLRequest {
 		var finalParams = params
-		var finalAuthHeader = headerAuthorize
 		
 		// base request
 		let finalURL = try asURL()
@@ -141,7 +183,7 @@ public class OAuth2AuthRequest {
 		req.setValue("application/json", forHTTPHeaderField: "Accept")
 		
 		// handle client secret if there is one
-		if let secret = oauth2.clientConfig.clientSecret {
+		if let clientId = oauth2.clientConfig.clientId, !clientId.isEmpty, let secret = oauth2.clientConfig.clientSecret {
 			
 			// add to request body
 			if oauth2.authConfig.secretInBody {
@@ -151,23 +193,32 @@ public class OAuth2AuthRequest {
 			}
 			
 			// add Authorization header (if not in body)
-			else if nil == finalAuthHeader {
+			else {
 				oauth2.logger?.debug("OAuth2", msg: "Adding “Authorization” header as “Basic client-key:client-secret”")
 				let pw = "\(clientId.wwwFormURLEncodedString):\(secret.wwwFormURLEncodedString)"
 				if let utf8 = pw.data(using: String.Encoding.utf8) {
-					finalAuthHeader = "Basic \(utf8.base64EncodedString([]))"
+					req.setValue("Basic \(utf8.base64EncodedString())", forHTTPHeaderField: "Authorization")
 				}
 				else {
 					throw OAuth2Error.utf8EncodeError
 				}
-				finalParams.removeValueForKey("client_id")
-				finalParams.removeValueForKey("client_secret")
+				finalParams.removeValue(forKey: "client_id")
+				finalParams.removeValue(forKey: "client_secret")
 			}
 		}
 		
-		// add custom Authorize header
-		if let authHeader = finalAuthHeader {
-			req.setValue(authHeader, forHTTPHeaderField: "Authorization")
+		// add custom headers, first from our OAuth2 instance, then our custom ones
+		if let headers = oauth2.authHeaders {
+			for (key, val) in headers {
+				oauth2.logger?.trace("OAuth2", msg: "Overriding “\(key)” header")
+				req.setValue(val, forHTTPHeaderField: key)
+			}
+		}
+		if let headers = headers {
+			for (key, val) in headers {
+				oauth2.logger?.trace("OAuth2", msg: "Adding custom “\(key)” header")
+				req.setValue(val, forHTTPHeaderField: key)
+			}
 		}
 		
 		// add a body to POST requests
@@ -180,14 +231,16 @@ public class OAuth2AuthRequest {
 
 
 /**
-Struct to hold on to request parameters. Provides utility functions so the parameters can be correctly encoded for use in URLs and request
-bodies.
+Struct to hold on to request parameters.
+
+Provides utility functions so the parameters can be correctly encoded for use in URLs and request bodies.
 */
-public struct OAuth2AuthRequestParams {
+public struct OAuth2RequestParams {
 	
 	/// The parameters to be used.
-	private var params: OAuth2StringDict? = nil
+	public private(set) var params: OAuth2StringDict? = nil
 	
+	/** Designated initalizer. */
 	public init() {  }
 	
 	public subscript(key: String) -> String? {
@@ -203,10 +256,11 @@ public struct OAuth2AuthRequestParams {
 	/**
 	Removes the given value from the receiver, if it is defined.
 	
-	- parameter key: The key for the value to be removed
+	- parameter forKey: The key for the value to be removed
 	- returns: The value that was removed, if any
 	*/
-	public mutating func removeValueForKey(_ key: String) -> String? {
+	@discardableResult
+	public mutating func removeValue(forKey key: String) -> String? {
 		return params?.removeValue(forKey: key)
 	}
 	
@@ -245,7 +299,7 @@ public struct OAuth2AuthRequestParams {
 		guard let params = params else {
 			return ""
 		}
-		return self.dynamicType.formEncodedQueryStringFor(params)
+		return type(of: self).formEncodedQueryStringFor(params)
 	}
 	
 	/**
