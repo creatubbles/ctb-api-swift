@@ -16,7 +16,7 @@ class BubbleMapper: Mappable
     var yPosition: Float?
     var colorName: String?
     var colorHex: String?
-    var createdAt: NSDate?
+    var createdAt: Date?
     var bubblerId: String?
     var isPositionRandom: Bool?
     var bubbledUserId: String?
@@ -30,7 +30,7 @@ class BubbleMapper: Mappable
         
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(map: Map)
+    func mapping(_ map: Map)
     {
         identifier <- map["id"]
         xPosition  <- map["attributes.x_pos"]

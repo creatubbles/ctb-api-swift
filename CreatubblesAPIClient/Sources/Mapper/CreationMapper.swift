@@ -31,8 +31,8 @@ class CreationMapper: Mappable
     var name: String?
     var translatedNamesMap: Array<NameTranslationObjectMapper>?
     
-    var createdAt: NSDate?
-    var updatedAt: NSDate?
+    var createdAt: Date?
+    var updatedAt: Date?
     var imageStatus: Int?
     
     var imageOriginalUrl: String?
@@ -52,9 +52,9 @@ class CreationMapper: Mappable
     var commentsCount: Int?
     var viewsCount: Int?
     
-    var lastBubbledAt: NSDate?
-    var lastCommentedAt: NSDate?
-    var lastSubmittedAt: NSDate?
+    var lastBubbledAt: Date?
+    var lastCommentedAt: Date?
+    var lastSubmittedAt: Date?
     
     var approved: Bool?
     var approvalStatus: String?
@@ -76,7 +76,7 @@ class CreationMapper: Mappable
 
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(map: Map)
+    func mapping(_ map: Map)
     {
         identifier  <- map["id"]
         name <- map["attributes.name"]
@@ -144,14 +144,14 @@ class CreationMapper: Mappable
     func parseApprovalStatus() -> ApprovalStatus
     {
         guard let approvalStatus = approvalStatus
-        else { return .Unknown }
+        else { return .unknown }
         
         switch approvalStatus
         {
-            case "approved": return .Approved
-            case "unapproved": return .Unapproved
-            case "rejected" :return .Rejected
-            default: return .Unknown
+            case "approved": return .approved
+            case "unapproved": return .unapproved
+            case "rejected" :return .rejected
+            default: return .unknown
         }
     }
 

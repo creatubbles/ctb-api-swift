@@ -27,13 +27,13 @@ import ObjectMapper
 
 class LandingURLResponseHandler: ResponseHandler
 {
-    private let completion: LandingURLClosure?
+    fileprivate let completion: LandingURLClosure?
     init(completion: LandingURLClosure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
             let mappers = Mapper<LandingURLMapper>().mapArray(response["data"])

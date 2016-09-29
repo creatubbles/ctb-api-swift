@@ -13,7 +13,7 @@ class RelationshipMapper: Mappable
 
     required init?(_ map: Map) { /* Intentionally left empty  */ }
 
-    func mapping(map: Map)
+    func mapping(_ map: Map)
     {
         type <- map["type"]
         identifier <- map["id"]

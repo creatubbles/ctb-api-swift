@@ -25,10 +25,10 @@
 import UIKit
 
 @objc
-public class PagingData: NSObject
+open class PagingData: NSObject
 {
-    public let page: Int
-    public let pageSize: Int
+    open let page: Int
+    open let pageSize: Int
     
     public init(page: Int, pageSize: Int)
     {

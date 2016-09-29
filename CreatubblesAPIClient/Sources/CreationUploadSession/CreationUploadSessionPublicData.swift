@@ -9,12 +9,12 @@
 import UIKit
 
 @objc
-public class CreationUploadSessionPublicData: NSObject
+open class CreationUploadSessionPublicData: NSObject
 {
-    public let identifier: String
-    public let creationData: NewCreationData
-    public let creation: Creation?
-    public let error: ErrorType?
+    open let identifier: String
+    open let creationData: NewCreationData
+    open let creation: Creation?
+    open let error: Error?
     
     init(creationUploadSession: CreationUploadSession)
     {

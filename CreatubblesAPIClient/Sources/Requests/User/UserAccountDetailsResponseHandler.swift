@@ -11,13 +11,13 @@ import ObjectMapper
 
 class UserAccountDetailsResponseHandler: ResponseHandler
 {
-    private let completion: UserAccountDetailsClosure?
+    fileprivate let completion: UserAccountDetailsClosure?
     init(completion: UserAccountDetailsClosure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
             let mapper = Mapper<UserAccountDetailsMapper>().map(response["data"])

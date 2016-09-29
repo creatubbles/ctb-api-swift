@@ -20,7 +20,7 @@ class MetadataMapper: Mappable
     
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(map: Map)
+    func mapping(_ map: Map)
     {
         bubbledCreationIdentifiers <- map["user_bubbled_creations"]
         bubbledUserIdentifiers <- map["user_bubbled_users"]

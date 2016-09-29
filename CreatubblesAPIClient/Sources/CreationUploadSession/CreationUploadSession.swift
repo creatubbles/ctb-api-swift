@@ -26,46 +26,46 @@ import UIKit
 
 enum CreationUploadSessionState: Int
 {
-    case Initialized = 0
-    case ImageSavedOnDisk = 1
-    case CreationAllocated = 2
-    case UploadPathObtained = 3
-    case ImageUploaded = 4
-    case ServerNotified = 5
-    case Cancelled = 6
+    case initialized = 0
+    case imageSavedOnDisk = 1
+    case creationAllocated = 2
+    case uploadPathObtained = 3
+    case imageUploaded = 4
+    case serverNotified = 5
+    case cancelled = 6
 }
 
 protocol CreationUploadSessionDelegate: class
 {
-    func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
-    func creationUploadSessionUploadFailed(creationUploadSession: CreationUploadSession, error: ErrorType)
-    func creationUploadSessionChangedProgress(creationUploadSession: CreationUploadSession,bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+    func creationUploadSessionChangedState(_ creationUploadSession: CreationUploadSession)
+    func creationUploadSessionUploadFailed(_ creationUploadSession: CreationUploadSession, error: Error)
+    func creationUploadSessionChangedProgress(_ creationUploadSession: CreationUploadSession,bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
 }
 
 class CreationUploadSession: NSObject, Cancelable
 {
-    private let requestSender: RequestSender
+    fileprivate let requestSender: RequestSender
     let localIdentifier: String
     let creationData: NewCreationData
     let imageFileName: String
     let relativeImageFilePath: String
     
-    private (set) var state: CreationUploadSessionState
-    private (set) var isActive: Bool
-    private (set) var creation: Creation?               //Filled during upload flow
-    private (set) var creationUpload: CreationUpload?    //Filled during upload flow
-    private (set) var error: ErrorType?
+    fileprivate (set) var state: CreationUploadSessionState
+    fileprivate (set) var isActive: Bool
+    fileprivate (set) var creation: Creation?               //Filled during upload flow
+    fileprivate (set) var creationUpload: CreationUpload?    //Filled during upload flow
+    fileprivate (set) var error: Error?
     
-    private var isAlreadyFinished: Bool { return state == .ServerNotified }
-    private var currentRequest: RequestHandler?
+    fileprivate var isAlreadyFinished: Bool { return state == .serverNotified }
+    fileprivate var currentRequest: RequestHandler?
     
     weak var delegate: CreationUploadSessionDelegate?
     
     init(data: NewCreationData, requestSender: RequestSender)
     {
-        self.localIdentifier = NSUUID().UUIDString;
+        self.localIdentifier = UUID().uuidString;
         self.isActive = false
-        self.state = .Initialized
+        self.state = .initialized
         self.requestSender = requestSender
         self.creationData = data
         self.imageFileName = localIdentifier+"_creation"
@@ -86,7 +86,7 @@ class CreationUploadSession: NSObject, Cancelable
             self.creationUpload = CreationUpload(creationUploadEntity: creationUploadEntity)
         }
         
-        let url = NSURL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
+        let url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
         
         self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, url: url)
         
@@ -99,16 +99,16 @@ class CreationUploadSession: NSObject, Cancelable
     func cancel()
     {
         currentRequest?.cancel()
-        state = .Cancelled
+        state = .cancelled
         delegate?.creationUploadSessionChangedState(self)
         
         if !isActive && !isAlreadyFinished
         {
-            delegate?.creationUploadSessionUploadFailed(self, error: APIClientError.genericUploadCancelledError)
+            delegate?.creationUploadSessionUploadFailed(self, error: APIClientError.genericUploadCancelledError as! Error)
         }
     }
     
-    func start(completion: CreationClosure?)
+    func start(_ completion: CreationClosure?)
     {
         if isAlreadyFinished
         {
@@ -154,33 +154,33 @@ class CreationUploadSession: NSObject, Cancelable
     }
     
     //MARK: Upload Flow
-    private func saveImageOnDisk(error: ErrorType?,completion: (ErrorType?) -> Void)
+    fileprivate func saveImageOnDisk(_ error: Error?,completion: @escaping (Error?) -> Void)
     {
         if let error = error
         {
             completion(error)
             return
         }
-        if state.rawValue >= CreationUploadSessionState.ImageSavedOnDisk.rawValue
+        if state.rawValue >= CreationUploadSessionState.imageSavedOnDisk.rawValue
         {
             completion(nil)
             return
         }
         saveCurrentImage()
         {
-            [weak self](error: ErrorType?) -> Void in
+            [weak self](error: Error?) -> Void in
             if let weakSelf = self
             {
                 if error == nil
                 {
-                    weakSelf.state = .ImageSavedOnDisk
+                    weakSelf.state = .imageSavedOnDisk
                 }
             }
             completion(error)
         }
     }
     
-    private func allocateCreation(error: ErrorType?, completion: (ErrorType?) -> Void)
+    fileprivate func allocateCreation(_ error: Error?, completion: @escaping (Error?) -> Void)
     {
         if let error = error
         {
@@ -188,7 +188,7 @@ class CreationUploadSession: NSObject, Cancelable
             completion(error)
             return
         }
-        if state.rawValue >= CreationUploadSessionState.CreationAllocated.rawValue
+        if state.rawValue >= CreationUploadSessionState.creationAllocated.rawValue
         {
             completion(nil)
             return
@@ -201,21 +201,21 @@ class CreationUploadSession: NSObject, Cancelable
                     let creation = creation
                 {
                     weakSelf.creation = creation
-                    weakSelf.state = .CreationAllocated
+                    weakSelf.state = .creationAllocated
                 }
                 completion(error)
         }
         currentRequest = requestSender.send(request, withResponseHandler: handler)
     }
     
-    private func obtainUploadPath(error: ErrorType?, completion: (ErrorType?) -> Void)
+    fileprivate func obtainUploadPath(_ error: Error?, completion: @escaping (Error?) -> Void)
     {
         if let error = error
         {
             completion(error)
             return
         }
-        if state.rawValue >= CreationUploadSessionState.UploadPathObtained.rawValue
+        if state.rawValue >= CreationUploadSessionState.uploadPathObtained.rawValue
         {
             completion(nil)
             return
@@ -225,24 +225,24 @@ class CreationUploadSession: NSObject, Cancelable
             {
                 [weak self](creationUpload, error) -> Void in
                 if  let weakSelf = self,
-                    creationUpload = creationUpload
+                    let creationUpload = creationUpload
                 {
                     weakSelf.creationUpload = creationUpload
-                    weakSelf.state = .UploadPathObtained
+                    weakSelf.state = .uploadPathObtained
                 }
                 completion(error)
         }
         currentRequest = requestSender.send(request, withResponseHandler: handler)
     }
     
-    private func uploadImage(error: ErrorType?, completion: (ErrorType?) -> Void)
+    fileprivate func uploadImage(_ error: Error?, completion: @escaping (Error?) -> Void)
     {
         if let error = error
         {
             completion(error)
             return
         }
-        if state.rawValue >= CreationUploadSessionState.ImageUploaded.rawValue
+        if state.rawValue >= CreationUploadSessionState.imageUploaded.rawValue
         {
             completion(nil)
             return
@@ -261,26 +261,26 @@ class CreationUploadSession: NSObject, Cancelable
             {
                 if error == nil
                 {
-                    weakSelf.state = .ImageUploaded
+                    weakSelf.state = .imageUploaded
                 }
                 else
                 {
                     //MM: Failure can be related to expired AWS token. Will update token for safety.
-                    weakSelf.state = .CreationAllocated
+                    weakSelf.state = .creationAllocated
                 }
                 completion(error)
             }
         })
     }
     
-    private func notifyServer(error: ErrorType?, completion: (ErrorType?) -> Void)
+    fileprivate func notifyServer(_ error: Error?, completion: @escaping (Error?) -> Void)
     {
         if let error = error
         {
             completion(error)
             return
         }
-        if state.rawValue >= CreationUploadSessionState.ServerNotified.rawValue
+        if state.rawValue >= CreationUploadSessionState.serverNotified.rawValue
         {
             completion(nil)
             return
@@ -293,7 +293,7 @@ class CreationUploadSession: NSObject, Cancelable
                 {
                     if error == nil
                     {
-                        weakSelf.state = .ServerNotified
+                        weakSelf.state = .serverNotified
                     }
                 }
                 completion(error)
@@ -302,51 +302,51 @@ class CreationUploadSession: NSObject, Cancelable
     }
     
     //MARK: - Utils
-    private class func documentsDirectory() -> String
+    fileprivate class func documentsDirectory() -> String
     {
-        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true);
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true);
         return paths.first!
     }
     
-    private func saveCurrentImage(completion: (ErrorType?) -> Void)
+    fileprivate func saveCurrentImage(_ completion: (Error?) -> Void)
     {
-        if(creationData.dataType != .Image)
+        if(creationData.dataType != .image)
         {
             completion(nil)
             return
         }
         
         let data = UIImageJPEGRepresentation(creationData.image!, 1)!
-        let url = NSURL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
-        let fileManager = NSFileManager.defaultManager()
+        let url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
+        let fileManager = FileManager.default
         
-        if !fileManager.fileExistsAtPath(url.path!.stringByDeletingLastPathComponent)
+        if !fileManager.fileExists(atPath: url.path.stringByDeletingLastPathComponent)
         {
             do
             {
-                try fileManager.createDirectoryAtPath(url.path!.stringByDeletingLastPathComponent, withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectory(atPath: url.path.stringByDeletingLastPathComponent, withIntermediateDirectories: true, attributes: nil)
             }
             catch let error
             {
                 completion(error)
             }
         }
-        if fileManager.fileExistsAtPath(url.path!)
+        if fileManager.fileExists(atPath: url.path)
         {
             do
             {
-                try fileManager.removeItemAtPath(url.path!)
+                try fileManager.removeItem(atPath: url.path)
             }
             catch let error
             {
                 completion(error)
             }
         }
-        data.writeToURL(url, atomically: true)
+        try? data.write(to: url, options: [.atomic])
         completion(nil)
     }
     
-    private func notifyDelegateSessionChanged()
+    fileprivate func notifyDelegateSessionChanged()
     {
         delegate?.creationUploadSessionChangedState(self)
     }

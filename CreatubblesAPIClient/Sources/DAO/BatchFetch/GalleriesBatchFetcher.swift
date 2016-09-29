@@ -26,16 +26,16 @@ import UIKit
 
 class GalleriesBatchFetcher: BatchFetcher
 {
-    private var userId: String?
-    private var sort: SortOrder?
-    private var allGalleries = Array<Gallery>()
+    fileprivate var userId: String?
+    fileprivate var sort: SortOrder?
+    fileprivate var allGalleries = Array<Gallery>()
     
-    private var currentRequest: GalleriesRequest
+    fileprivate var currentRequest: GalleriesRequest
     {
         return GalleriesRequest(page: page, perPage: perPage, sort: sort, userId: userId)
     }
     
-    private func responseHandler(completion: GalleriesBatchClosure?) -> GalleriesResponseHandler
+    fileprivate func responseHandler(_ completion: GalleriesBatchClosure?) -> GalleriesResponseHandler
     {
         return GalleriesResponseHandler()
         {
@@ -48,7 +48,7 @@ class GalleriesBatchFetcher: BatchFetcher
             {
                 if let galleries = galleries
                 {
-                    self.allGalleries.appendContentsOf(galleries)
+                    self.allGalleries.append(contentsOf: galleries)
                 }
                 if let pInfo = pInfo
                 {
@@ -66,7 +66,7 @@ class GalleriesBatchFetcher: BatchFetcher
         }
     }
     
-    func fetch(userId: String?, sort:SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
+    func fetch(_ userId: String?, sort:SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
     {
         self.userId = userId
         self.sort = sort

@@ -26,7 +26,7 @@ import UIKit
 
 class FetchCreationsRequest: Request
 {
-    override var method: RequestMethod  { return .GET }
+    override var method: RequestMethod  { return .get }
     override var endpoint: String
     {
         if let creationId = creationId
@@ -46,17 +46,17 @@ class FetchCreationsRequest: Request
     
     override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
     
-    private let page: Int?
-    private let perPage: Int?
-    private let galleryId: String?
-    private let userId: String?
-    private let sort: SortOrder?
-    private let keyword: String?
-    private let onlyPublic: Bool
+    fileprivate let page: Int?
+    fileprivate let perPage: Int?
+    fileprivate let galleryId: String?
+    fileprivate let userId: String?
+    fileprivate let sort: SortOrder?
+    fileprivate let keyword: String?
+    fileprivate let onlyPublic: Bool
     
-    private let creationId: String?
-    private let recommendedCreationId: String?
-    private let recommendedUserId: String?
+    fileprivate let creationId: String?
+    fileprivate let recommendedCreationId: String?
+    fileprivate let recommendedUserId: String?
     
     init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: SortOrder?, keyword: String?, onlyPublic: Bool)
     {
@@ -120,19 +120,19 @@ class FetchCreationsRequest: Request
         
         if let page = page
         {
-            params["page"] = page
+            params["page"] = page as AnyObject?
         }
         if let perPage = perPage
         {
-            params["per_page"] = perPage
+            params["per_page"] = perPage as AnyObject?
         }
         if let galleryId = galleryId
         {
-            params["gallery_id"] = galleryId
+            params["gallery_id"] = galleryId as AnyObject?
         }
         if let userId = userId
         {
-            params["user_id"] = userId
+            params["user_id"] = userId as AnyObject?
         }
         if let sort = sort
         {
@@ -140,11 +140,11 @@ class FetchCreationsRequest: Request
         }
         if onlyPublic
         {
-            params["only_public"] = onlyPublic
+            params["only_public"] = onlyPublic as AnyObject?
         }
         if let keyword = keyword
         {
-            params["search"] = keyword
+            params["search"] = keyword as AnyObject?
         }
         return params
     }

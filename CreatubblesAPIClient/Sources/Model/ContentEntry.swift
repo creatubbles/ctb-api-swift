@@ -11,25 +11,25 @@ import UIKit
 @objc
 public enum ContentEntryType: Int
 {
-    case Unknown       //Error type, shouldn't ever happened
-    case Creation
-    case Gallery
-    case User
+    case unknown       //Error type, shouldn't ever happened
+    case creation
+    case gallery
+    case user
 }
 
 @objc
-public class ContentEntry: NSObject
+open class ContentEntry: NSObject
 {
-    public let type: ContentEntryType
-    public let identifier: String
+    open let type: ContentEntryType
+    open let identifier: String
     
-    public let user: User?
-    public let creation: Creation?
-    public let gallery: Gallery?
+    open let user: User?
+    open let creation: Creation?
+    open let gallery: Gallery?
     
-    public let userRelationship: Relationship?
-    public let creationRelationship: Relationship?
-    public let galleryRelationship: Relationship?
+    open let userRelationship: Relationship?
+    open let creationRelationship: Relationship?
+    open let galleryRelationship: Relationship?
     
     init(mapper: ContentEntryMapper, dataMapper: DataIncludeMapper? = nil)
     {

@@ -11,14 +11,14 @@ import ObjectMapper
 
 class NotificationsFetchResponseHandler: ResponseHandler
 {
-    private let completion: NotificationsClosure?
+    fileprivate let completion: NotificationsClosure?
     
     init(completion: NotificationsClosure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
             let mappers = Mapper<NotificationMapper>().mapArray(response["data"])
@@ -33,7 +33,7 @@ class NotificationsFetchResponseHandler: ResponseHandler
         }
         else
         {
-            executeOnMainQueue { self.completion?(nil, unreadNotificationsCount: nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
+            executeOnMainQueue { self.completion?(nil, nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
 }

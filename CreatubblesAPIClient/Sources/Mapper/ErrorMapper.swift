@@ -34,7 +34,7 @@ class ErrorMapper: Mappable
     
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(map: Map)
+    func mapping(_ map: Map)
     {
         status <- map["status"]
         code <- map["code"]

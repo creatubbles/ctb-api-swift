@@ -26,7 +26,7 @@ import UIKit
 
 class NewCreatorRequest: Request
 {
-    override var method: RequestMethod  { return .POST }
+    override var method: RequestMethod  { return .post }
     override var endpoint: String       { return "creators" }
     override var parameters: Dictionary<String, AnyObject>
     {
@@ -34,12 +34,12 @@ class NewCreatorRequest: Request
         
     }
     
-    private let name: String
-    private let displayName: String?
-    private let birthYear: Int?
-    private let birthMonth: Int?
-    private let countryCode: String?
-    private let gender: Gender?
+    fileprivate let name: String
+    fileprivate let displayName: String?
+    fileprivate let birthYear: Int?
+    fileprivate let birthMonth: Int?
+    fileprivate let countryCode: String?
+    fileprivate let gender: Gender?
     
     init(name: String, displayName: String?, birthYear: Int?, birthMonth: Int?, countryCode: String?, gender: Gender?)
     {
@@ -51,30 +51,30 @@ class NewCreatorRequest: Request
         self.gender = gender
     }
     
-    private func prepareParams() -> Dictionary<String, AnyObject>
+    fileprivate func prepareParams() -> Dictionary<String, AnyObject>
     {
         var params = Dictionary<String, AnyObject>()
-        params["name"] = name
+        params["name"] = name as AnyObject?
         
         if let displayName = displayName
         {
-            params["display_name"] = displayName
+            params["display_name"] = displayName as AnyObject?
         }
         if let birthYear = birthYear
         {
-            params["birth_year"] = birthYear
+            params["birth_year"] = birthYear as AnyObject?
         }
         if let birthMonth = birthMonth
         {
-            params["birth_month"] = birthMonth
+            params["birth_month"] = birthMonth as AnyObject?
         }
         if let countryCode = countryCode
         {
-            params["country"] = countryCode
+            params["country"] = countryCode as AnyObject?
         }
         if let gender = gender
         {
-            params["gender"] = gender.rawValue
+            params["gender"] = gender.rawValue as AnyObject?
         }
         
         return params

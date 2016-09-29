@@ -25,59 +25,59 @@
 import UIKit
 
 @objc
-public class Creation: NSObject, Identifiable
+open class Creation: NSObject, Identifiable
 {
-    public let identifier: String
-    public let name: String
-    public let translatedNames: Array<NameTranslationObject>
-    public let createdAt: NSDate
-    public let updatedAt: NSDate
+    open let identifier: String
+    open let name: String
+    open let translatedNames: Array<NameTranslationObject>
+    open let createdAt: Date
+    open let updatedAt: Date
     
-    public let imageStatus: Int
+    open let imageStatus: Int
     
-    public let imageOriginalUrl: String?
-    public let imageFullViewUrl: String?
-    public let imageListViewUrl: String?
-    public let imageListViewRetinaUrl: String?
-    public let imageMatrixViewUrl: String?
-    public let imageMatrixViewRetinaUrl: String?
-    public let imageGalleryMobileUrl: String?
-    public let imageExploreMobileUrl: String?
-    public let imageShareUrl: String?
+    open let imageOriginalUrl: String?
+    open let imageFullViewUrl: String?
+    open let imageListViewUrl: String?
+    open let imageListViewRetinaUrl: String?
+    open let imageMatrixViewUrl: String?
+    open let imageMatrixViewRetinaUrl: String?
+    open let imageGalleryMobileUrl: String?
+    open let imageExploreMobileUrl: String?
+    open let imageShareUrl: String?
     
-    public let video480Url: String?
-    public let video720Url: String?
+    open let video480Url: String?
+    open let video720Url: String?
     
-    public let bubblesCount: Int
-    public let commentsCount: Int
-    public let viewsCount: Int
+    open let bubblesCount: Int
+    open let commentsCount: Int
+    open let viewsCount: Int
     
-    public let lastBubbledAt: NSDate?
-    public let lastCommentedAt: NSDate?
-    public let lastSubmittedAt: NSDate?
+    open let lastBubbledAt: Date?
+    open let lastCommentedAt: Date?
+    open let lastSubmittedAt: Date?
 
-    public let approvalStatus: ApprovalStatus
-    public let approved: Bool
-    public let shortUrl: String
-    public let createdAtAge: String?
-    public let createdAtAgePerCreator: [String:String]
+    open let approvalStatus: ApprovalStatus
+    open let approved: Bool
+    open let shortUrl: String
+    open let createdAtAge: String?
+    open let createdAtAgePerCreator: [String:String]
     
-    public let reflectionText: String?
-    public let reflectionVideoUrl: String?
+    open let reflectionText: String?
+    open let reflectionVideoUrl: String?
     
-    public let objFileUrl: String?
-    public let playIFrameUrl: String?
+    open let objFileUrl: String?
+    open let playIFrameUrl: String?
 
     //MARK: - Relationships
-    public let owner: User?
-    public let creators: Array<User>?
+    open let owner: User?
+    open let creators: Array<User>?
 
-    public let userRelationship: Relationship?
-    public let creatorRelationships: Array<Relationship>?
+    open let userRelationship: Relationship?
+    open let creatorRelationships: Array<Relationship>?
     
     //MARK: - Metadata
-    public let isBubbled: Bool
-    public let abilities: Array<Ability>
+    open let isBubbled: Bool
+    open let abilities: Array<Ability>
     
     
     init(mapper: CreationMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
@@ -94,15 +94,15 @@ public class Creation: NSObject, Identifiable
             translatedNames = []
         }        
         
-        createdAt = mapper.createdAt!
-        updatedAt = mapper.updatedAt!
+        createdAt = mapper.createdAt! as Date
+        updatedAt = mapper.updatedAt! as Date
         imageStatus = mapper.imageStatus!
         bubblesCount = mapper.bubblesCount!
         commentsCount = mapper.commentsCount!
         viewsCount = mapper.viewsCount!
-        lastBubbledAt = mapper.lastBubbledAt
-        lastCommentedAt = mapper.lastCommentedAt
-        lastSubmittedAt = mapper.lastSubmittedAt
+        lastBubbledAt = mapper.lastBubbledAt as Date?
+        lastCommentedAt = mapper.lastCommentedAt as Date?
+        lastSubmittedAt = mapper.lastSubmittedAt as Date?
         approved = mapper.approved!
         shortUrl = mapper.shortUrl!
         createdAtAge = mapper.createdAtAge
@@ -155,15 +155,15 @@ public class Creation: NSObject, Identifiable
         
         translatedNames = creationEntity.translatedNameEntities.map({ NameTranslationObject(nameTranslationObjectEntity: $0) })
         
-        createdAt = creationEntity.createdAt!
-        updatedAt = creationEntity.updatedAt!
+        createdAt = creationEntity.createdAt! as Date
+        updatedAt = creationEntity.updatedAt! as Date
         imageStatus = creationEntity.imageStatus.value!
         bubblesCount = creationEntity.bubblesCount.value!
         commentsCount = creationEntity.commentsCount.value!
         viewsCount = creationEntity.viewsCount.value!
-        lastBubbledAt = creationEntity.lastBubbledAt
-        lastCommentedAt = creationEntity.lastCommentedAt
-        lastSubmittedAt = creationEntity.lastSubmittedAt
+        lastBubbledAt = creationEntity.lastBubbledAt as Date?
+        lastCommentedAt = creationEntity.lastCommentedAt as Date?
+        lastSubmittedAt = creationEntity.lastSubmittedAt as Date?
         approved = creationEntity.approved.value!
         shortUrl = creationEntity.shortUrl!
         createdAtAge = creationEntity.createdAtAge
@@ -198,6 +198,6 @@ public class Creation: NSObject, Identifiable
         creatorRelationships = nil
         isBubbled = false
         abilities = []
-        approvalStatus = .Unknown
+        approvalStatus = .unknown
     }
 }

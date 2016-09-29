@@ -12,9 +12,9 @@ import Nimble
 
 class MyConnectionsRequestSpec: QuickSpec
 {
-    private let page = 1
-    private let pageCount = 10
-    private let userId = "TestUserId"
+    fileprivate let page = 1
+    fileprivate let pageCount = 10
+    fileprivate let userId = "TestUserId"
     
     override func spec()
     {

@@ -9,37 +9,37 @@
 import UIKit
 @objc public enum CommentedObjectType: Int
 {
-    case Gallery
-    case Creation
-    case User
+    case gallery
+    case creation
+    case user
 }
 
 @objc
-public class NewCommentData: NSObject
+open class NewCommentData: NSObject
 {
-    public let commentedObjectIdentifier: String
-    public let type: CommentedObjectType
+    open let commentedObjectIdentifier: String
+    open let type: CommentedObjectType
     
-    public let text: String?
+    open let text: String?
     
     public init(userId: String, text: String)
     {
         self.commentedObjectIdentifier = userId
-        self.type = .User
+        self.type = .user
         self.text = text
     }
     
     public init(galleryId: String, text: String)
     {
         self.commentedObjectIdentifier = galleryId
-        self.type = .Gallery
+        self.type = .gallery
         self.text = text
     }
     
     public init(creationId: String, text: String)
     {
         self.commentedObjectIdentifier = creationId
-        self.type = .Creation
+        self.type = .creation
         self.text = text
     }
 

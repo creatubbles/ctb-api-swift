@@ -12,7 +12,7 @@ import Nimble
 
 class DeleteAUserFollowingResponseHandlerSpec: QuickSpec
 {
-    private let userId = TestConfiguration.testUserIdentifier
+    fileprivate let userId = TestConfiguration.testUserIdentifier
     
     override func spec()
     {

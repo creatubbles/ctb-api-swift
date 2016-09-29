@@ -27,13 +27,13 @@ import ObjectMapper
 
 class NewGalleryResponseHandler: ResponseHandler
 {
-    private let completion: GalleryClosure?
+    fileprivate let completion: GalleryClosure?
     init(completion: GalleryClosure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if let response = response,
            let mapper = Mapper<GalleryMapper>().map(response["data"])

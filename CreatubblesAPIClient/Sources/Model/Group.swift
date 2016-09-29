@@ -25,16 +25,16 @@
 import UIKit
 
 @objc
-public class Group: NSObject, Identifiable
+open class Group: NSObject, Identifiable
 {
-    public let identifier: String
-    public let name: String
-    public let slug: String
-    public let creatorsCount: Int
-    public let avatarUrl: String?
+    open let identifier: String
+    open let name: String
+    open let slug: String
+    open let creatorsCount: Int
+    open let avatarUrl: String?
     
-    public let avatarCreation: Creation?
-    public let avatarCreationRelationship: Relationship?
+    open let avatarCreation: Creation?
+    open let avatarCreationRelationship: Relationship?
     
     init(mapper: GroupMapper, dataMapper: DataIncludeMapper? = nil)
     {

@@ -11,15 +11,15 @@ import ObjectMapper
 
 class ContentSearchResponseHandler: ResponseHandler
 {
-    private let completion: ContentEntryClosure?
-    private let validator: Validatable = ContentDataFilter()
+    fileprivate let completion: ContentEntryClosure?
+    fileprivate let validator: Validatable = ContentDataFilter()
     
     init(completion: ContentEntryClosure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         var validEntries: [ContentEntry] = []
         var invalidEntries: [ContentEntry] = []

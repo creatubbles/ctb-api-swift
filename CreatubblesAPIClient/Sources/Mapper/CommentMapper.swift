@@ -14,7 +14,7 @@ class CommentMapper: Mappable
     var identifier: String?
     var text: String?
     var approved: Bool?
-    var createdAt: NSDate?
+    var createdAt: Date?
     var commentableType: String?
     var commenterId: String?
     
@@ -29,7 +29,7 @@ class CommentMapper: Mappable
         
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(map: Map)
+    func mapping(_ map: Map)
     {
         identifier <- map["id"]
         text <- map["attributes.text"]

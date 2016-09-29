@@ -11,13 +11,13 @@ import ObjectMapper
 
 class UsersFollowedByAUserResponseHandler: ResponseHandler
 {
-    private let completion: UsersClosure?
+    fileprivate let completion: UsersClosure?
     init(completion: UsersClosure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
             let usersMapper = Mapper<UserMapper>().mapArray(response["data"])

@@ -10,21 +10,21 @@ import UIKit
 
 class UserFollowingsDAO: NSObject
 {
-    private let requestSender: RequestSender
+    fileprivate let requestSender: RequestSender
     
     init(requestSender: RequestSender)
     {
         self.requestSender = requestSender
     }
     
-    func createAUserFollowing(userId: String, completion: ErrorClosure?) -> RequestHandler
+    func createAUserFollowing(_ userId: String, completion: ErrorClosure?) -> RequestHandler
     {
         let request = CreateAUserFollowingRequest(userId: userId)
         let handler = CreateAUserFollowingResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func deleteAUserFollowing(userId: String, completion: ErrorClosure?) -> RequestHandler
+    func deleteAUserFollowing(_ userId: String, completion: ErrorClosure?) -> RequestHandler
     {
         let request = DeleteAUserFollowingRequest(userId: userId)
         let handler = DeleteAUserFollowingResponseHandler(completion: completion)

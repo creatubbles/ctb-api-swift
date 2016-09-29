@@ -26,12 +26,12 @@ import UIKit
 extension APIClient
 {
     //MARK: - Session
-    public func _login(username: String, password: String, completion: ((NSError?) -> (Void))?)
+    public func _login(_ username: String, password: String, completion: ((NSError?) -> (Void))?)
     {
         login(username: username, password: password)
         {
             (error) -> (Void) in
-            completion?(APIClient.errorTypeToNSError(error))
+            (completion?(APIClient.errorTypeToNSError(error)))!
         }
     }
     
@@ -50,160 +50,160 @@ extension APIClient
         return authenticationToken()
     }
     
-    public func _getLandingURL(type: LandingURLType, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
+    public func _getLandingURL(_ type: LandingURLType, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
     {
         getLandingURL(type: type)
         {
             (landingUrls, error) -> (Void) in
-            completion?(landingUrls, APIClient.errorTypeToNSError(error))
+            (completion?(landingUrls, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getLandingURLForCreation(creationId: String, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
+    public func _getLandingURLForCreation(_ creationId: String, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
     {
         getLandingURL(creationId: creationId)
         {
             (landingUrls, error) -> (Void) in
-            completion?(landingUrls, APIClient.errorTypeToNSError(error))
+            (completion?(landingUrls, APIClient.errorTypeToNSError(error)))!
         }
     }
     
     //MARK: - Users handling       
-    public func _getUser(userId: String, completion: ((User?, NSError?) -> (Void))?)
+    public func _getUser(_ userId: String, completion: ((User?, NSError?) -> (Void))?)
     {
         getUser(userId: userId)
         {
             (user, error) -> (Void) in
-            completion?(user, APIClient.errorTypeToNSError(error))
+            (completion?(user, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getCurrentUser(completion: ((User?, NSError?) -> (Void))?)
+    public func _getCurrentUser(_ completion: ((User?, NSError?) -> (Void))?)
     {
         getCurrentUser()
         {
             (user, error) -> (Void) in
-            completion?(user, APIClient.errorTypeToNSError(error))
+            (completion?(user, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getCreators(userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?)
+    public func _getCreators(_ userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?)
     {
         getCreators(userId: userId, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
-            completion?(users, pInfo, APIClient.errorTypeToNSError(error))
+            (completion?(users, pInfo, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getManagers(userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo?, NSError?) -> (Void))?)
+    public func _getManagers(_ userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo?, NSError?) -> (Void))?)
     {
         getManagers(userId: userId, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
-            completion?(users, pInfo, APIClient.errorTypeToNSError(error))
+            (completion?(users, pInfo, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _newCreator(creatorData: NewCreatorData, completion: ((User?, NSError?) -> (Void))?)
+    public func _newCreator(_ creatorData: NewCreatorData, completion: ((User?, NSError?) -> (Void))?)
     {
         newCreator(data: creatorData)
         {
             (user, error) -> (Void) in
-            completion?(user, APIClient.errorTypeToNSError(error))
+            (completion?(user, APIClient.errorTypeToNSError(error)))!
         }
     }
     
     //MARK: - Gallery handling
-    public func _getGallery(galleryId: String, completion: ((Gallery?, NSError?) -> (Void))?)
+    public func _getGallery(_ galleryId: String, completion: ((Gallery?, NSError?) -> (Void))?)
     {
         getGallery(galleryId: galleryId)
         {
             (gallery, error) -> (Void) in
-            completion?(gallery, APIClient.errorTypeToNSError(error))
+            (completion?(gallery, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _newGallery(galleryData: NewGalleryData, completion: ((Gallery?, NSError?) -> (Void))?)
+    public func _newGallery(_ galleryData: NewGalleryData, completion: ((Gallery?, NSError?) -> (Void))?)
     {
         newGallery(data: galleryData)
         {
             (gallery, error) -> (Void) in
-            completion?(gallery, APIClient.errorTypeToNSError(error))
+            (completion?(gallery, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getGalleries(_ userId: String?, pagingData: PagingData?, sort: SortOrder, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?)
     {
         getGalleries(userId: userId, pagingData: pagingData, sort: sort)
         {
             (galleries, pInfo, error) -> (Void) in
-            completion?(galleries, pInfo, APIClient.errorTypeToNSError(error))
+            (completion?(galleries, pInfo, APIClient.errorTypeToNSError(error)))!
         }
     }
     
     //MARK: - Creation handling
-    public func _getCreation(creationId: String, completion: ((Creation?, NSError?) -> (Void))?)
+    public func _getCreation(_ creationId: String, completion: ((Creation?, NSError?) -> (Void))?)
     {
         getCreation(creationId: creationId)
         {
             (creation, error) -> (Void) in
-            completion?(creation, APIClient.errorTypeToNSError(error))
+            (completion?(creation, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getCreations(galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getCreations(_ galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?)
     {
         getCreations(galleryId: galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, onlyPublic: onlyPublic)
         {
             (creations, pInfo, error) -> (Void) in
-            completion?(creations, pInfo, APIClient.errorTypeToNSError(error))
+            (completion?(creations, pInfo, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _newCreation(creationData: NewCreationData, completion: ((Creation?, NSError?) -> (Void))?)
+    public func _newCreation(_ creationData: NewCreationData, completion: ((Creation?, NSError?) -> (Void))?)
     {
         newCreation(data: creationData)
         {
             (creation, error) -> (Void) in
-            completion?(creation, APIClient.errorTypeToNSError(error))
+            (completion?(creation, APIClient.errorTypeToNSError(error)))!
         }
     }
     
     //MARK: - Batch fetching
-    public func _getCreationsInBatchMode(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, NSError?) -> (Void))?)
+    public func _getCreationsInBatchMode(_ galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, NSError?) -> (Void))?)
     {
         getCreationsInBatchMode(galleryId: galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic)
         {
             (creations, error) -> (Void) in
-            completion?(creations, APIClient.errorTypeToNSError(error))
+            (completion?(creations, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getGalleriesInBatchMode(userId: String?, sort: SortOrder, completion: ((Array<Gallery>?, NSError?) -> (Void))?)
+    public func _getGalleriesInBatchMode(_ userId: String?, sort: SortOrder, completion: ((Array<Gallery>?, NSError?) -> (Void))?)
     {
         getGalleriesInBatchMode(userId: userId, sort: sort)
         {
             (galleries, error) -> (Void) in
-            completion?(galleries, APIClient.errorTypeToNSError(error))
+            (completion?(galleries, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getCreatorsInBatchMode(userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
+    public func _getCreatorsInBatchMode(_ userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
     {
         getCreatorsInBatchMode(userId: userId)
         {
             (users, error) -> (Void) in
-            completion?(users, APIClient.errorTypeToNSError(error))
+            (completion?(users, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getManagersInBatchMode(userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
+    public func _getManagersInBatchMode(_ userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
     {
         getManagersInBatchMode(userId: userId)
         {
             (users, error) -> (Void) in
-            completion?(users, APIClient.errorTypeToNSError(error))
+            (completion?(users, APIClient.errorTypeToNSError(error)))!
         }
     }
     
@@ -218,62 +218,62 @@ extension APIClient
         return getAllFinishedUploadSessionPublicData()
     }
     
-    public func _startAllNotFinishedUploadSessions(completion: ((Creation?, NSError?) -> (Void))?)
+    public func _startAllNotFinishedUploadSessions(_ completion: ((Creation?, NSError?) -> (Void))?)
     {
         startAllNotFinishedUploadSessions {
             (creation, error) -> (Void) in
-            completion?(creation, APIClient.errorTypeToNSError(error))
+            (completion?(creation, APIClient.errorTypeToNSError(error)))!
         }
     }
     
     //MARK: - Bubbles
-    func _getBubblesForCreationWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
+    func _getBubblesForCreationWithIdentifier(_ identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
     {
         getBubbles(creationId: identifier, pagingData: pagingData)
         {
             (bubbles, pInfo, error) -> (Void) in
-            completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error))
+            (completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    func _getBubblesForUserWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?,PagingInfo?, NSError?) -> (Void))?)
+    func _getBubblesForUserWithIdentifier(_ identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?,PagingInfo?, NSError?) -> (Void))?)
     {
         getBubbles(userId: identifier, pagingData: pagingData)
         {
             (bubbles, pInfo, error) -> (Void) in
-            completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error))
+            (completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error as! Error?)))!
         }
     }
     
-    func _getBubblesForGalleryWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
+    func _getBubblesForGalleryWithIdentifier(_ identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
     {
         getBubbles(galleryId: identifier, pagingData: pagingData)
         {
             (bubbles, pInfo, error) -> (Void) in
-            completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error))
+            (completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error as! Error?)))!
         }
     }
     
-    func _newBubble(data: NewBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
+    func _newBubble(_ data: NewBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
     {
         newBubble(data: data)
         {
             (bubble, error) -> (Void) in
-            completion?(bubble, APIClient.errorTypeToNSError(error))
+            (completion?(bubble, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    func _updateBubble(data: UpdateBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
+    func _updateBubble(_ data: UpdateBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
     {
         updateBubble(data: data)
             {
                 (bubble, error) -> (Void) in
-                completion?(bubble, APIClient.errorTypeToNSError(error))
+                (completion?(bubble, APIClient.errorTypeToNSError(error)))!
         }
     }
 
     //MARK: - Utils
-    static func errorTypeToNSError(error: ErrorType?) -> NSError?
+    static func errorTypeToNSError(_ error: Error?) -> NSError?
     {
         if let error = error as? APIClientError
         {
@@ -282,7 +282,7 @@ extension APIClient
         }
         if let _ = error
         {
-            let userInfo = [NSLocalizedDescriptionKey :String(error)]
+            let userInfo = [NSLocalizedDescriptionKey :String(describing: error)]
             return NSError(domain: APIClientError.DefaultDomain, code: APIClientError.UnknownStatus, userInfo: userInfo)
         }
         return nil

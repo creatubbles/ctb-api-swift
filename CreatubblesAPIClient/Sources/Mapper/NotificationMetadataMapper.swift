@@ -15,7 +15,7 @@ class NotificationMetadataMapper: Mappable
     
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(map: Map)
+    func mapping(_ map: Map)
     {
         totalUnreadCount <- map["total_unread_count"]
     }

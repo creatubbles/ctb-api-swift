@@ -29,7 +29,7 @@ import p2_OAuth2
 
 class ErrorTransformer
 {
-    static func errorFromResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?) -> APIClientError?
+    static func errorFromResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) -> APIClientError?
     {
         if let err = error as? APIClientError
         {
@@ -46,7 +46,7 @@ class ErrorTransformer
         return nil
     }
     
-    static func errorsFromResponse(response: Dictionary<String, AnyObject>?) -> Array<APIClientError>
+    static func errorsFromResponse(_ response: Dictionary<String, AnyObject>?) -> Array<APIClientError>
     {
         guard let response = response,
               let mappers = Mapper<ErrorMapper>().mapArray(response["errors"])
@@ -54,7 +54,7 @@ class ErrorTransformer
         return mappers.map({ APIClientError(mapper: $0) })
     }
     
-    static func errorFromNSError(error: NSError) -> APIClientError
+    static func errorFromNSError(_ error: NSError) -> APIClientError
     {        
         return APIClientError(status: error.code,
                               code: APIClientError.DefaultCode,
@@ -64,7 +64,7 @@ class ErrorTransformer
                               domain: error.domain)
     }
     
-    static func errorFromOAuthError(oauthError: OAuth2Error) -> APIClientError
+    static func errorFromOAuthError(_ oauthError: OAuth2Error) -> APIClientError
     {
         return APIClientError(status: APIClientError.LoginStatus,
                               code: APIClientError.DefaultAuthenticationCode,

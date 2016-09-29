@@ -27,14 +27,14 @@ import ObjectMapper
 
 class FetchCreationsResponseHandler: ResponseHandler
 {
-    private let completion: CreationsClosure?
+    fileprivate let completion: CreationsClosure?
     
     init(completion: CreationsClosure?)
     {
         self.completion = completion
     }
 
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
             let mappers = Mapper<CreationMapper>().mapArray(response["data"])

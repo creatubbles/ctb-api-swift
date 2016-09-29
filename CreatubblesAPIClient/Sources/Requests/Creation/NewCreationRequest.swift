@@ -26,16 +26,16 @@ import UIKit
 
 class NewCreationRequest: Request
 {
-    override var method: RequestMethod  { return .POST }
+    override var method: RequestMethod  { return .post }
     override var endpoint: String       { return "creations" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParams() }
 
-    private let creationData: NewCreationData
+    fileprivate let creationData: NewCreationData
     
     
     override init()
     {
-        self.creationData = NewCreationData(image: UIImage(), uploadExtension: .JPEG)
+        self.creationData = NewCreationData(image: UIImage(), uploadExtension: .jpeg)
     }
     
     init(creationData: NewCreationData)
@@ -43,32 +43,32 @@ class NewCreationRequest: Request
         self.creationData = creationData
     }
     
-    private func prepareParams() -> Dictionary<String, AnyObject>
+    fileprivate func prepareParams() -> Dictionary<String, AnyObject>
     {
         var params = Dictionary<String, AnyObject>()
         if let name = creationData.name
         {
-            params["name"] = name
+            params["name"] = name as AnyObject?
         }
         if let creatorIds = creationData.creatorIds
         {
-            params["creator_ids"] = creatorIds.joinWithSeparator(",")
+            params["creator_ids"] = creatorIds.joined(separator: ",") as AnyObject?
         }
         if let creationMonth = creationData.creationMonth
         {
-            params["created_at_month"] = creationMonth
+            params["created_at_month"] = creationMonth as AnyObject?
         }
         if let creationYear = creationData.creationYear
         {
-            params["created_at_year"] = creationYear
+            params["created_at_year"] = creationYear as AnyObject?
         }
         if let reflectionText = creationData.reflectionText
         {
-            params["reflection_text"] = reflectionText
+            params["reflection_text"] = reflectionText as AnyObject?
         }
         if let reflectionVideoUrl = creationData.reflectionVideoUrl
         {
-            params["reflection_video_url"] = reflectionVideoUrl
+            params["reflection_video_url"] = reflectionVideoUrl as AnyObject?
         }
         
         return params

@@ -10,11 +10,11 @@ import UIKit
 
 class PartnerApplicationsSearchRequest: Request
 {
-    override var method: RequestMethod   { return .GET }
+    override var method: RequestMethod   { return .get }
     override var endpoint: String        { return "partner_applications" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
     
-    private let query: String
+    fileprivate let query: String
     
     init(query: String)
     {
@@ -25,7 +25,7 @@ class PartnerApplicationsSearchRequest: Request
     {
         var params = Dictionary<String, AnyObject>()
         
-        params["query"] = query
+        params["query"] = query as AnyObject?
         return params
     }
     

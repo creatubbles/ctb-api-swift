@@ -25,7 +25,7 @@ import UIKit
 
 class LandingURLRequest: Request
 {
-    override var method: RequestMethod   { return .GET }
+    override var method: RequestMethod   { return .get }
     override var endpoint: String
     {
         if let creationId = creationId
@@ -39,40 +39,40 @@ class LandingURLRequest: Request
         return "landing_urls"
     }
     
-    private let type: LandingURLType?
-    private let creationId: String?
+    fileprivate let type: LandingURLType?
+    fileprivate let creationId: String?
     
     init(type: LandingURLType?)
     {
-        assert(type != .Creation, "Please use init(creationId: String), to obtain LandingURL for creation.")
-        assert(type != .Unknown, "Unkown type is for read-only purposes. Please don't use it in LandingURL requests.")
+        assert(type != .creation, "Please use init(creationId: String), to obtain LandingURL for creation.")
+        assert(type != .unknown, "Unkown type is for read-only purposes. Please don't use it in LandingURL requests.")
         self.type = type
         self.creationId = nil;
     }
     
     init(creationId: String)
     {
-        self.type = .Creation
+        self.type = .creation
         self.creationId = creationId
     }
     
-    private class func typeStringFromType(type: LandingURLType?) -> String?
+    fileprivate class func typeStringFromType(_ type: LandingURLType?) -> String?
     {
         if let type = type
         {
             switch type
             {
-                case .AboutUs:        return "ctb-about_us"
-                case .TermsOfUse:     return "ctb-terms_of_use"
-                case .PrivacyPolicy:  return "ctb-privacy_policy"
-                case .Registration:   return "ctb-registration"
-                case .UserProfile:    return "ctb-user_profile"
-                case .Explore:        return "ctb-explore"
-                case .ForgotPassword: return "ctb-forgot_password"
-                case .AccountDashboard: return "cte-account_dashboard"
-                case .UploadGuidelines: return "cte-upload_guidelines"
-                case .Creation:        return nil
-                case .Unknown:         return nil
+                case .aboutUs:        return "ctb-about_us"
+                case .termsOfUse:     return "ctb-terms_of_use"
+                case .privacyPolicy:  return "ctb-privacy_policy"
+                case .registration:   return "ctb-registration"
+                case .userProfile:    return "ctb-user_profile"
+                case .explore:        return "ctb-explore"
+                case .forgotPassword: return "ctb-forgot_password"
+                case .accountDashboard: return "cte-account_dashboard"
+                case .uploadGuidelines: return "cte-upload_guidelines"
+                case .creation:        return nil
+                case .unknown:         return nil
             }
         }
         return nil

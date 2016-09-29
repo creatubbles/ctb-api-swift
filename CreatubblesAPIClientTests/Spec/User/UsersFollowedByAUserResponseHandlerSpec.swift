@@ -12,9 +12,9 @@ import Nimble
 
 class UsersFollowedByAUserResponseHandlerSpec: QuickSpec
 {
-    private let page = 1
-    private let pageCount = 10
-    private let userId = TestConfiguration.testUserIdentifier
+    fileprivate let page = 1
+    fileprivate let pageCount = 10
+    fileprivate let userId = TestConfiguration.testUserIdentifier
     
     override func spec()
     {

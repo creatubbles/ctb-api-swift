@@ -9,15 +9,15 @@
 import UIKit
 
 @objc
-public class GallerySubmission: NSObject, Identifiable
+open class GallerySubmission: NSObject, Identifiable
 {
-    public let identifier: String
+    open let identifier: String
     
-    public let creation: Creation?
-    public let gallery: Gallery?
+    open let creation: Creation?
+    open let gallery: Gallery?
     
-    public let creationRelationship: Relationship?
-    public let galleryRelationship:  Relationship?
+    open let creationRelationship: Relationship?
+    open let galleryRelationship:  Relationship?
     
     init(mapper: GallerySubmissionMapper, dataMapper: DataIncludeMapper? = nil)
     {
