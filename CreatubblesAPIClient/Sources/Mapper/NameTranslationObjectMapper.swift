@@ -16,9 +16,9 @@ class NameTranslationObjectMapper: Mappable
     var original: Bool?
     
     //MARK: - Mappable
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(_ map: Map)
+    func mapping(map: Map)
     {
         code <- map["code"]
         name <- map["name"]
