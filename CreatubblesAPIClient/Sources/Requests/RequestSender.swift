@@ -29,7 +29,7 @@ import p2_OAuth2
 
 class RequestSender: NSObject
 {
-    fileprivate let uploadManager: Alamofire.Manager
+    fileprivate let uploadManager: Alamofire.SessionManager
     fileprivate let settings: APIClientSettings
     fileprivate let oauth2PrivateClient: OAuth2PasswordGrant
     fileprivate let oauth2PublicClient: OAuth2ClientCredentials
@@ -49,17 +49,17 @@ class RequestSender: NSObject
         super.init()
     }
     
-    fileprivate static func prepareUploadManager(_ settings: APIClientSettings) -> Alamofire.Manager
+    fileprivate static func prepareUploadManager(_ settings: APIClientSettings) -> Alamofire.SessionManager
     {
         if let identifier = settings.backgroundSessionConfigurationIdentifier
         {
-            let configuration = URLSessionConfiguration.backgroundSessionConfigurationWithIdentifier(identifier)
-            return Alamofire.Manager(configuration: configuration)
+            let configuration = URLSessionConfiguration.background(withIdentifier: identifier)
+            return Alamofire.SessionManager(configuration: configuration)
         }
         else
         {
             let configuration = URLSessionConfiguration.default
-            return Alamofire.Manager(configuration: configuration)
+            return Alamofire.SessionManager(configuration: configuration)
         }
     }
     
@@ -278,19 +278,20 @@ class RequestSender: NSObject
         return String(format: "%@/%@/%@", arguments: [settings.baseUrl, settings.apiVersion, request.endpoint])
     }
     
-    fileprivate func alamofireMethod(_ method: RequestMethod) -> Alamofire.Method
+    fileprivate func alamofireMethod(_ method: RequestMethod) -> Alamofire.HTTPMethod
     {
         switch method
         {
-            case .OPTIONS:  return .OPTIONS
-            case .GET:      return .GET
-            case .HEAD:     return .HEAD
-            case .POST:     return .POST
-            case .PUT:      return .PUT
-            case .PATCH:    return .PATCH
-            case .DELETE:   return .DELETE
-            case .TRACE:    return .TRACE
-            case .CONNECT:  return .CONNECT
+
+            case .options:  return .options
+            case .get:      return .get
+            case .head:     return .head
+            case .post:     return .post
+            case .put:      return .put
+            case .patch:    return .patch
+            case .delete:   return .delete
+            case .trace:    return .trace
+            case .connect:  return .connect
         }
     }
 }

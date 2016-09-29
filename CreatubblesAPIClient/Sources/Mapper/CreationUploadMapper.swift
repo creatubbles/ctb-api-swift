@@ -33,9 +33,9 @@ class CreationUploadMapper: NSObject, Mappable
     var pingUrl: String?
     var completedAt: Date?
         
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(_ map: Map)
+    func mapping(map: Map)
     {
         identifier  <- map["id"]
         uploadUrl <- map["attributes.url"]

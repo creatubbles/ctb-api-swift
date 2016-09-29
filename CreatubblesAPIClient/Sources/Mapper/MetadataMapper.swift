@@ -18,9 +18,9 @@ class MetadataMapper: Mappable
     
     var userFollowedUsersIdentifiers: Array<String>?
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(_ map: Map)
+    func mapping(map: Map)
     {
         bubbledCreationIdentifiers <- map["user_bubbled_creations"]
         bubbledUserIdentifiers <- map["user_bubbled_users"]

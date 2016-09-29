@@ -28,9 +28,9 @@ class BubbleMapper: Mappable
     var bubbledGalleryRelationship: RelationshipMapper?
     var bubbledUserRelationship: RelationshipMapper?
         
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(_ map: Map)
+    func mapping(map: Map)
     {
         identifier <- map["id"]
         xPosition  <- map["attributes.x_pos"]
