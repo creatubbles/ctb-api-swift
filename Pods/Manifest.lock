@@ -1,47 +1,45 @@
 PODS:
   - Alamofire (4.0.1)
   - Nimble (3.2.0)
-  - ObjectMapper (1.4.0)
-  - p2.OAuth2 (2.2.7):
-    - SwiftKeychain (~> 1.0)
+  - ObjectMapper (2.0.0)
+  - p2.OAuth2 (3.0.0)
   - Quick (0.9.1)
   - Realm (2.0.0):
     - Realm/Headers (= 2.0.0)
   - Realm/Headers (2.0.0)
   - RealmSwift (2.0.0):
     - Realm (= 2.0.0)
-  - SwiftKeychain (1.0.0)
   - XCGLogger (3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - Nimble (= 3.2.0)
-  - ObjectMapper (~> 1.1)
-  - p2.OAuth2 (from `https://github.com/creatubbles/OAuth2.git`)
+  - ObjectMapper (~> 2.0)
+  - p2.OAuth2 (from `https://github.com/creatubbles/OAuth2.git`, branch `feature/Swift_Update`)
   - Quick (= 0.9.1)
   - RealmSwift (= 2.0)
   - XCGLogger (= 3.2)
 
 EXTERNAL SOURCES:
   p2.OAuth2:
+    :branch: feature/Swift_Update
     :git: https://github.com/creatubbles/OAuth2.git
 
 CHECKOUT OPTIONS:
   p2.OAuth2:
-    :commit: 774c779f408de900d3596b859197501718c0c9bf
+    :commit: 631c68ef4f44250a3f6771fda9ca3ea373e6df02
     :git: https://github.com/creatubbles/OAuth2.git
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
-  ObjectMapper: a07ad0462c5adf014adc0f89ef04c29b626e855e
-  p2.OAuth2: a4391406917fc2a3bb820aec6e1180b8f87321fd
+  ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
+  p2.OAuth2: a8f96ecad6a46189b9b193691fea401139e43491
   Quick: a5221fc21788b6aeda934805e68b061839bc3165
   Realm: 6dda421ae4b3e9a09742fc2cf4b876d459cbedcd
   RealmSwift: 7d015f34a2781a50889be9b5a15c36c08597ea0e
-  SwiftKeychain: fd9ad69f7b3ff7a0c7ba579da508bbaa89a395b2
   XCGLogger: da1f341f4bb8979db6e1df64232f04d9698402d4
 
-PODFILE CHECKSUM: c6b8ba2ad04647c154fcfcf919a9c44f7bb3c641
+PODFILE CHECKSUM: c06392f94fd6098e3e808ec7bdc15adb0124cd67
 
 COCOAPODS: 1.1.0.rc.2
