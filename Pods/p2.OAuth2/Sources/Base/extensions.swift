@@ -34,7 +34,7 @@ extension HTTPURLResponse {
 
 extension String {
 	
-	private static var wwwFormURLPlusSpaceCharacterSet: CharacterSet = CharacterSet.wwwFormURLPlusSpaceCharacterSet
+	fileprivate static var wwwFormURLPlusSpaceCharacterSet: CharacterSet = CharacterSet.wwwFormURLPlusSpaceCharacterSet
 	
 	/// Encodes a string to become x-www-form-urlencoded; the space is encoded as plus sign (+).
 	var wwwFormURLEncodedString: String {
@@ -88,15 +88,30 @@ extension URLRequest {
 	/**
 	Signs the receiver by setting its "Authorization" header to "Bearer {token}".
 	
-	Will log an error if the OAuth2 instance does not have an access token!
+	Will log an error if the OAuth2 instance does not have an access token.
+	
+	- parameter oauth2: The OAuth2 instance providing the access token to sign the request
 	*/
-	mutating func sign(_ oauth: OAuth2) {
-		if let access = oauth.clientConfig.accessToken where !access.isEmpty {
+	public mutating func sign(with oauth2: OAuth2Base) {
+		if let access = oauth2.clientConfig.accessToken, !access.isEmpty {
 			setValue("Bearer \(access)", forHTTPHeaderField: "Authorization")
 		}
 		else {
 			NSLog("Cannot sign request, access token is empty")
 		}
+	}
+	
+	/**
+	Returns a copy of the receiver, signed by setting its "Authorization" header to "Bearer {token}".
+	
+	Will log an error if the OAuth2 instance does not have an access token.
+	
+	- parameter oauth2: The OAuth2 instance providing the access token to sign the receiver
+	*/
+	public func signed(with oauth2: OAuth2Base) -> URLRequest {
+		var signed = self
+		signed.sign(with: oauth2)
+		return signed
 	}
 }
 
@@ -104,7 +119,7 @@ extension URLRequest {
 extension HTTPURLResponse {
 	
 	/** Format HTTP status and response headers as is customary. */
-	override public var debugDescription: String {
+	override open var debugDescription: String {
 		var msg = "HTTP/1.1 \(statusCode) \(statusString)"
 		allHeaderFields.forEach() { msg += "\n\($0): \($1)" }
 		return msg

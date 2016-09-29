@@ -19,6 +19,9 @@
 //
 
 import Foundation
+#if !NO_MODULE_IMPORT
+import Base
+#endif
 
 
 /**
@@ -28,13 +31,13 @@ This auth flow is designed for clients that are capable of protecting their clie
 exchange and token refresh flows, **if** the client has a secret, a "Basic key:secret" Authorization header will be used. If not the client
 key will be embedded into the request body.
 */
-public class OAuth2CodeGrant: OAuth2 {
+open class OAuth2CodeGrant: OAuth2 {
 	
-	public override class var grantType: String {
+	override open class var grantType: String {
 		return "authorization_code"
 	}
 	
-	override public class var responseType: String? {
+	override open class var responseType: String? {
 		return "code"
 	}
 	
@@ -51,8 +54,8 @@ public class OAuth2CodeGrant: OAuth2 {
 	- parameter params: Optional additional params to add as URL parameters
 	- returns: A request you can use to create a URL request to exchange the code for an access token
 	*/
-	func tokenRequestWithCode(_ code: String, params: OAuth2StringDict? = nil) throws -> OAuth2AuthRequest {
-		guard let clientId = clientConfig.clientId where !clientId.isEmpty else {
+	open func accessTokenRequest(with code: String, params: OAuth2StringDict? = nil) throws -> OAuth2AuthRequest {
+		guard let clientId = clientConfig.clientId, !clientId.isEmpty else {
 			throw OAuth2Error.noClientId
 		}
 		guard let redirect = context.redirectURL else {
@@ -61,9 +64,9 @@ public class OAuth2CodeGrant: OAuth2 {
 		
 		let req = OAuth2AuthRequest(url: (clientConfig.tokenURL ?? clientConfig.authorizeURL))
 		req.params["code"] = code
-		req.params["grant_type"] = self.dynamicType.grantType
+		req.params["grant_type"] = type(of: self).grantType
 		req.params["redirect_uri"] = redirect
-		req.params["client_id"] = clientConfig.clientId
+		req.params["client_id"] = clientId
 		
 		return req
 	}
@@ -71,19 +74,21 @@ public class OAuth2CodeGrant: OAuth2 {
 	/**
 	Extracts the code from the redirect URL and exchanges it for a token.
 	*/
-	override public func handleRedirectURL(_ redirect: URL) {
+	override open func handleRedirectURL(_ redirect: URL) {
 		logger?.debug("OAuth2", msg: "Handling redirect URL \(redirect.description)")
 		do {
 			let code = try validateRedirectURL(redirect)
 			exchangeCodeForToken(code)
 		}
 		catch let error {
-			didFail(error)
+			didFail(with: error.asOAuth2Error)
 		}
 	}
 	
 	/**
 	Takes the received code and exchanges it for a token.
+	
+	Uses `accessTokenRequest(params:)` to create the request, which you can subclass to change implementation specifics.
 	*/
 	public func exchangeCodeForToken(_ code: String) {
 		do {
@@ -91,31 +96,26 @@ public class OAuth2CodeGrant: OAuth2 {
 				throw OAuth2Error.prerequisiteFailed("I don't have a code to exchange, let the user authorize first")
 			}
 			
-			let post = try tokenRequestWithCode(code).asURLRequestFor(self)
+			let post = try accessTokenRequest(with: code).asURLRequest(for: self)
 			logger?.debug("OAuth2", msg: "Exchanging code \(code) for access token at \(post.url!)")
 			
-			performRequest(post) { data, status, error in
+			perform(request: post) { response in
 				do {
-					guard let data = data else {
-						throw error ?? OAuth2Error.noDataInResponse
+					let data = try response.responseData()
+					let params = try self.parseAccessTokenResponse(data: data)
+					if response.response.statusCode >= 400 {
+						throw OAuth2Error.generic("Failed with status \(response.response.statusCode)")
 					}
-					
-					let params = try self.parseAccessTokenResponseData(data)
-					if status < 400 {
-						self.logger?.debug("OAuth2", msg: "Did exchange code for access [\(nil != self.clientConfig.accessToken)] and refresh [\(nil != self.clientConfig.refreshToken)] tokens")
-						self.didAuthorize(params)
-					}
-					else {
-						throw OAuth2Error.generic("\(status)")
-					}
+					self.logger?.debug("OAuth2", msg: "Did exchange code for access [\(nil != self.clientConfig.accessToken)] and refresh [\(nil != self.clientConfig.refreshToken)] tokens")
+					self.didAuthorize(withParameters: params)
 				}
 				catch let error {
-					self.didFail(error)
+					self.didFail(with: error.asOAuth2Error)
 				}
 			}
 		}
 		catch let error {
-			didFail(error)
+			didFail(with: error.asOAuth2Error)
 		}
 	}
 	
@@ -125,21 +125,21 @@ public class OAuth2CodeGrant: OAuth2 {
 	/**
 	Validates the redirect URI: returns a tuple with the code and nil on success, nil and an error on failure.
 	*/
-	func validateRedirectURL(_ redirect: URL) throws -> String {
+	open func validateRedirectURL(_ redirect: URL) throws -> String {
 		guard let expectRedirect = context.redirectURL else {
 			throw OAuth2Error.noRedirectURL
 		}
 		let comp = URLComponents(url: redirect, resolvingAgainstBaseURL: true)
-		if !(redirect.absoluteString?.hasPrefix(expectRedirect))! && (!(redirect.absoluteString?.hasPrefix("urn:ietf:wg:oauth:2.0:oob"))! && "localhost" != comp?.host) {
+		if !(redirect.absoluteString.hasPrefix(expectRedirect)) && (!(redirect.absoluteString.hasPrefix("urn:ietf:wg:oauth:2.0:oob")) && "localhost" != comp?.host) {
 			throw OAuth2Error.invalidRedirectURL("Expecting «\(expectRedirect)» but received «\(redirect)»")
 		}
-		if let compQuery = comp?.query where compQuery.characters.count > 0 {
-			let query = OAuth2CodeGrant.paramsFromQuery(comp!.percentEncodedQuery!)
-			try assureNoErrorInResponse(query)
+		if let compQuery = comp?.query, compQuery.characters.count > 0 {
+			let query = OAuth2CodeGrant.params(fromQuery: comp!.percentEncodedQuery!)
+			try assureNoErrorInResponse(query as OAuth2JSON)
 			if let cd = query["code"] {
 				
 				// we got a code, use it if state is correct (and reset state)
-				try assureMatchesState(query)
+				try assureMatchesState(query as OAuth2JSON)
 				return cd
 			}
 			throw OAuth2Error.responseError("No “code” received")

@@ -17,20 +17,22 @@ DEPENDENCIES:
   - Alamofire (~> 4.0)
   - Nimble (= 3.2.0)
   - ObjectMapper (~> 2.0)
-  - p2.OAuth2 (from `https://github.com/creatubbles/OAuth2.git`, branch `feature/Swift_Update`)
+  - p2.OAuth2 (from `https://github.com/p2/OAuth2`, branch `develop`)
   - Quick (= 0.9.1)
   - RealmSwift (= 2.0)
   - XCGLogger (~> 4.0.0)
 
 EXTERNAL SOURCES:
   p2.OAuth2:
-    :branch: feature/Swift_Update
-    :git: https://github.com/creatubbles/OAuth2.git
+    :branch: develop
+    :git: https://github.com/p2/OAuth2
+    :submodules: true
 
 CHECKOUT OPTIONS:
   p2.OAuth2:
-    :commit: 631c68ef4f44250a3f6771fda9ca3ea373e6df02
-    :git: https://github.com/creatubbles/OAuth2.git
+    :commit: 5d5e3e1b1a13f39d4dce439fd6dce11bc4ccc721
+    :git: https://github.com/p2/OAuth2
+    :submodules: true
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
@@ -42,6 +44,6 @@ SPEC CHECKSUMS:
   RealmSwift: 7d015f34a2781a50889be9b5a15c36c08597ea0e
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: 1a52c23b8404d4d5557a8a49aa4f65b5d91aecb8
+PODFILE CHECKSUM: 91282ddbb1c454f757a4256ac10bd92628b22b18
 
 COCOAPODS: 1.1.0.rc.2
