@@ -8,10 +8,10 @@
 
 import UIKit
 
-@objc public class UpdateGalleryData: NSObject {
-    public let identifier: String
-    public let name: String?
-    public let galleryDescription: String?
+@objc open class UpdateGalleryData: NSObject {
+    open let identifier: String
+    open let name: String?
+    open let galleryDescription: String?
     
     public init(galleryId: String, name: String?, galleryDescription: String?) {
         self.identifier = galleryId

@@ -21,8 +21,8 @@ class CustomStyleMapper: Mappable
     var bodyCreationURL: String?
     var headerCreationURL: String?
     
-    var createdAt: NSDate?
-    var updatedAt: NSDate?
+    var createdAt: Date?
+    var updatedAt: Date?
     
     var userRelationship: RelationshipMapper?
     var headerCreationRelationship: RelationshipMapper?
@@ -30,7 +30,7 @@ class CustomStyleMapper: Mappable
     
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(map: Map)
+    func mapping(_ map: Map)
     {
         identifier <- map["id"]
         

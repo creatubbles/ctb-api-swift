@@ -10,11 +10,11 @@ import UIKit
 
 class DeleteBubbleRequest: Request
 {
-    override var method: RequestMethod  { return .DELETE }
+    override var method: RequestMethod  { return .delete }
     override var parameters: Dictionary<String, AnyObject> { return Dictionary<String,AnyObject>() }
     override var endpoint: String { return "bubbles/\(identifier)" }
     
-    private let identifier: String
+    fileprivate let identifier: String
     init(bubbleId: String)
     {
         self.identifier = bubbleId

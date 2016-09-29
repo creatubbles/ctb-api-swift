@@ -26,77 +26,77 @@ import UIKit
 
 @objc public enum UploadExtension: Int
 {
-    case PNG
-    case JPG
-    case JPEG
-    case H264
-    case MPEG4
-    case WMV
-    case WEBM
-    case FLV
-    case OGG
-    case OGV
-    case MP4
-    case M4V
-    case MOV
-    case UZPB
+    case png
+    case jpg
+    case jpeg
+    case h264
+    case mpeg4
+    case wmv
+    case webm
+    case flv
+    case ogg
+    case ogv
+    case mp4
+    case m4V
+    case mov
+    case uzpb
     
     var stringValue: String
     {
         switch self
         {
-            case .PNG: return "png"
-            case JPG: return "jpg"
-            case JPEG: return "jpeg"
-            case H264: return "h264"
-            case MPEG4: return "mpeg4"
-            case WMV: return "wmv"
-            case WEBM: return "webm"
-            case FLV: return "flv"
-            case OGG: return "ogg"
-            case OGV: return "ogv"
-            case MP4: return "mp4"
-            case M4V: return "m4v"
-            case MOV: return "mov"
-            case UZPB: return "uzpb"
+            case .png: return "png"
+            case .jpg: return "jpg"
+            case .jpeg: return "jpeg"
+            case .h264: return "h264"
+            case .mpeg4: return "mpeg4"
+            case .wmv: return "wmv"
+            case .webm: return "webm"
+            case .flv: return "flv"
+            case .ogg: return "ogg"
+            case .ogv: return "ogv"
+            case .mp4: return "mp4"
+            case .m4V: return "m4v"
+            case .mov: return "mov"
+            case .uzpb: return "uzpb"
         }
     }
     
-    static func fromString(stringValue: String) -> UploadExtension?
+    static func fromString(_ stringValue: String) -> UploadExtension?
     {
-        if stringValue == "png"   { return .PNG }
-        if stringValue == "jpg"   { return .JPG }
-        if stringValue == "jpeg"  { return .JPEG }
-        if stringValue == "h264"  { return .H264 }
-        if stringValue == "mpeg4" { return .MPEG4 }
-        if stringValue == "wmv"   { return .WMV }
-        if stringValue == "webm"  { return .WEBM }
-        if stringValue == "flv"   { return .FLV }
-        if stringValue == "ogg"   { return .OGG }
-        if stringValue == "ogv"   { return .OGV }
-        if stringValue == "mp4"   { return .MP4 }
-        if stringValue == "m4v"   { return .M4V }
-        if stringValue == "mov"   { return .MOV }
-        if stringValue == "uzpb"  { return .UZPB }
+        if stringValue == "png"   { return .png }
+        if stringValue == "jpg"   { return .jpg }
+        if stringValue == "jpeg"  { return .jpeg }
+        if stringValue == "h264"  { return .h264 }
+        if stringValue == "mpeg4" { return .mpeg4 }
+        if stringValue == "wmv"   { return .wmv }
+        if stringValue == "webm"  { return .webm }
+        if stringValue == "flv"   { return .flv }
+        if stringValue == "ogg"   { return .ogg }
+        if stringValue == "ogv"   { return .ogv }
+        if stringValue == "mp4"   { return .mp4 }
+        if stringValue == "m4v"   { return .m4V }
+        if stringValue == "mov"   { return .mov }
+        if stringValue == "uzpb"  { return .uzpb }
         return nil
     }
 }
 
 class NewCreationUploadRequest: Request
 {
-    override var method: RequestMethod  { return .POST }
+    override var method: RequestMethod  { return .post }
     override var endpoint: String       { return "creations/"+creationId+"/uploads" }
     override var parameters: Dictionary<String, AnyObject>
     {
         if let ext = creationExtension
         {
-            return ["extension": ext.stringValue]
+            return ["extension": ext.stringValue as AnyObject]
         }
         return Dictionary<String, AnyObject>()
     }
     
-    private let creationId: String
-    private let creationExtension: UploadExtension?
+    fileprivate let creationId: String
+    fileprivate let creationExtension: UploadExtension?
     
     init(creationId: String, creationExtension: UploadExtension? = nil)
     {

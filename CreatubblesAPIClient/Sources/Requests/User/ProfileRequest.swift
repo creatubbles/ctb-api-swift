@@ -26,7 +26,7 @@ import UIKit
 
 class ProfileRequest: Request
 {
-    override var method: RequestMethod   { return .GET }
+    override var method: RequestMethod   { return .get }
     override var endpoint: String
     {
         let user = userId != nil ? userId! : "me"
@@ -38,7 +38,7 @@ class ProfileRequest: Request
         return Dictionary<String, AnyObject>()
     }
     
-    private let userId: String?
+    fileprivate let userId: String?
     init(userId: String? = nil)
     {
         self.userId = userId

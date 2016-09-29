@@ -12,7 +12,7 @@ import Nimble
 
 class CreateAUserFollowingRequestSpec: QuickSpec
 {
-    private let userId = "TestUserId"
+    fileprivate let userId = "TestUserId"
 
     override func spec()
     {

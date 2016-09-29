@@ -8,9 +8,9 @@ import ObjectMapper
 
 class DataIncludeMapper
 {
-    private let metadata: Metadata?
-    private let includeResponse: Array<Dictionary<String, AnyObject>>
-    private lazy var mappers: Dictionary<String, Mappable> = self.parseMappers()
+    fileprivate let metadata: Metadata?
+    fileprivate let includeResponse: Array<Dictionary<String, AnyObject>>
+    fileprivate lazy var mappers: Dictionary<String, Mappable> = self.parseMappers()
     
     init(includeResponse: Array<Dictionary<String, AnyObject>>, metadata: Metadata?)
     {
@@ -18,7 +18,7 @@ class DataIncludeMapper
         self.includeResponse = includeResponse
     }
     
-    private func parseMappers() -> Dictionary<String, Mappable>
+    fileprivate func parseMappers() -> Dictionary<String, Mappable>
     {
         var mappers = Dictionary<String, Mappable>()
         for object in includeResponse
@@ -32,7 +32,7 @@ class DataIncludeMapper
         return mappers
     }
     
-    func objectWithIdentifier<T: Identifiable>(identifier: String, type: T.Type) -> T?
+    func objectWithIdentifier<T: Identifiable>(_ identifier: String, type: T.Type) -> T?
     {
         guard let mapper = mappers[identifier]
         else { return nil }
@@ -51,7 +51,7 @@ class DataIncludeMapper
     }
     
     //MARK: - Included response parse
-    private func mapperForObject(obj: Dictionary<String, AnyObject>) -> (identifier: String, mapper: Mappable)?
+    fileprivate func mapperForObject(_ obj: Dictionary<String, AnyObject>) -> (identifier: String, mapper: Mappable)?
     {
         guard   let typeString = obj["type"] as? String,
                 let identifierString = obj["id"] as? String

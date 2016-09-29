@@ -11,14 +11,14 @@ import ObjectMapper
 
 class BubblesFetchResponseHandler: ResponseHandler
 {
-    private let completion: BubblesClousure?
+    fileprivate let completion: BubblesClousure?
     
     init(completion: BubblesClousure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
             let mappers = Mapper<BubbleMapper>().mapArray(response["data"])

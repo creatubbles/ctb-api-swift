@@ -11,14 +11,14 @@ import ObjectMapper
 
 class SwitchUserResponseHandler: ResponseHandler
 {
-    private let completion: SwitchUserClosure?
+    fileprivate let completion: SwitchUserClosure?
     
     init(completion: SwitchUserClosure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
             let accessToken = response["access_token"] as? String {

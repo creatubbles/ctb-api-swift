@@ -28,37 +28,37 @@ class DatabaseDAO: NSObject
 {
     let databaseService = DatabaseService()
     
-    func saveCreationUploadSessionToDatabase(creationUploadSession: CreationUploadSession)
+    func saveCreationUploadSessionToDatabase(_ creationUploadSession: CreationUploadSession)
     {
         databaseService.saveCreationUploadSessionToDatabase(creationUploadSession)
     }
     
-    func fetchAllCreationUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
+    func fetchAllCreationUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession>
     {
         return databaseService.fetchAllCreationUploadSessions(requestSender)
     }
     
-    func fetchASingleCreationUploadSessionWithLocalIdentifier(localIdentifier: String) -> CreationUploadSessionEntity?
+    func fetchASingleCreationUploadSessionWithLocalIdentifier(_ localIdentifier: String) -> CreationUploadSessionEntity?
     {
         return databaseService.fetchASingleCreationUploadSessionWithLocalIdentifier(localIdentifier)
     }
     
-    func fetchAllFinishedUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
+    func fetchAllFinishedUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession>
     {
         return databaseService.getAllFinishedUploadSessions(requestSender)
     }
     
-    func fetchAllActiveUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
+    func fetchAllActiveUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession>
     {
         return databaseService.getAllActiveUploadSessions(requestSender)
     }
     
-    func getAllActiveUploadSessionsPublicData(requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
+    func getAllActiveUploadSessionsPublicData(_ requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
     {
         return databaseService.getAllActiveUploadSessionsPublicData(requestSender)
     }
     
-    func getAllFinishedUploadSessionsPublicData(requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
+    func getAllFinishedUploadSessionsPublicData(_ requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
     {
         return databaseService.getAllFinishedUploadSessionPublicData(requestSender)
     }

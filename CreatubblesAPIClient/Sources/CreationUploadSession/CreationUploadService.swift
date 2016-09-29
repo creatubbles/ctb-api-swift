@@ -27,19 +27,19 @@ import UIKit
 
 protocol CreationUploadServiceDelegate: class
 {
-    func creationUploadService(sender: CreationUploadService, newSessionAdded session: CreationUploadSession)
-    func creationUploadService(sender: CreationUploadService, uploadFinished session: CreationUploadSession)
-    func creationUploadService(sender: CreationUploadService, uploadFailed session: CreationUploadSession, withError error: ErrorType)
-    func creationUploadService(sender: CreationUploadService, progressChanged session: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+    func creationUploadService(_ sender: CreationUploadService, newSessionAdded session: CreationUploadSession)
+    func creationUploadService(_ sender: CreationUploadService, uploadFinished session: CreationUploadSession)
+    func creationUploadService(_ sender: CreationUploadService, uploadFailed session: CreationUploadSession, withError error: Error)
+    func creationUploadService(_ sender: CreationUploadService, progressChanged session: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
 }
 
 class CreationUploadService: CreationUploadSessionDelegate
 {
     weak var delegate: CreationUploadServiceDelegate?
     
-    private let databaseDAO: DatabaseDAO
-    private let requestSender: RequestSender
-    private var uploadSessions: Array<CreationUploadSession>
+    fileprivate let databaseDAO: DatabaseDAO
+    fileprivate let requestSender: RequestSender
+    fileprivate var uploadSessions: Array<CreationUploadSession>
     
     init(requestSender: RequestSender)
     {
@@ -49,7 +49,7 @@ class CreationUploadService: CreationUploadSessionDelegate
         setupSessions()
     }
     
-    private func setupSessions()
+    fileprivate func setupSessions()
     {
         uploadSessions = databaseDAO.fetchAllCreationUploadSessions(requestSender)
         uploadSessions.forEach({ $0.delegate = self })
@@ -57,21 +57,21 @@ class CreationUploadService: CreationUploadSessionDelegate
     
     func getAllActiveUploadSessionsPublicData() -> Array<CreationUploadSessionPublicData>
     {
-        return uploadSessions.filter({ $0.isActive == true && $0.state != .Cancelled }).map({ CreationUploadSessionPublicData(creationUploadSession: $0) })
+        return uploadSessions.filter({ $0.isActive == true && $0.state != .cancelled }).map({ CreationUploadSessionPublicData(creationUploadSession: $0) })
     }
     
     func getAllNotFinishedUploadSessionsPublicData() ->  Array<CreationUploadSessionPublicData>
     {
-        return uploadSessions.filter({ $0.state.rawValue < CreationUploadSessionState.ServerNotified.rawValue })
+        return uploadSessions.filter({ $0.state.rawValue < CreationUploadSessionState.serverNotified.rawValue })
             .map({ CreationUploadSessionPublicData(creationUploadSession: $0) })
     }
     
     func getAllFinishedUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
-        return uploadSessions.filter({ $0.state == .ServerNotified }).map({ CreationUploadSessionPublicData(creationUploadSession: $0) })
+        return uploadSessions.filter({ $0.state == .serverNotified }).map({ CreationUploadSessionPublicData(creationUploadSession: $0) })
     }
     
-    func startAllNotFinishedUploadSessions(completion: CreationClosure?)
+    func startAllNotFinishedUploadSessions(_ completion: CreationClosure?)
     {
         uploadSessions.forEach({ $0.start(completion) })
     }
@@ -92,7 +92,7 @@ class CreationUploadService: CreationUploadSessionDelegate
     func removeUploadSession(sessionIdentifier sessionId: String)
     {
         guard let session = uploadSessions.filter( {$0.localIdentifier == sessionId }).first,
-              let index = uploadSessions.indexOf(session)
+              let index = uploadSessions.index(of: session)
         else
         {
             Logger.log.warning("Cannot find session with identifier \(sessionId) to remove")
@@ -101,9 +101,9 @@ class CreationUploadService: CreationUploadSessionDelegate
         
         session.delegate = nil
         session.cancel()
-        uploadSessions.removeAtIndex(index)
+        uploadSessions.remove(at: index)
         databaseDAO.removeUploadSession(withIdentifier: sessionId)
-        delegate?.creationUploadService(self, uploadFailed: session, withError: APIClientError.genericUploadCancelledError)
+        delegate?.creationUploadService(self, uploadFailed: session, withError: APIClientError.genericUploadCancelledError as! Error)
     }
     
     func removeAllUploadSessions()
@@ -117,7 +117,7 @@ class CreationUploadService: CreationUploadSessionDelegate
         uploadSessions = databaseDAO.fetchAllCreationUploadSessions(requestSender)
     }
     
-    func uploadCreation(data data: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData
+    func uploadCreation(data: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData
     {
         let session = CreationUploadSession(data: data, requestSender: requestSender)
         uploadSessions.append(session)
@@ -129,21 +129,21 @@ class CreationUploadService: CreationUploadSessionDelegate
     }
     
     //MARK: - CreationUploadSessionDelegate
-    func creationUploadSessionChangedState(creationUploadSession: CreationUploadSession)
+    func creationUploadSessionChangedState(_ creationUploadSession: CreationUploadSession)
     {
         databaseDAO.saveCreationUploadSessionToDatabase(creationUploadSession)
-        if(creationUploadSession.state == .ServerNotified)
+        if(creationUploadSession.state == .serverNotified)
         {
             delegate?.creationUploadService(self, uploadFinished: creationUploadSession)
         }
     }
     
-    func creationUploadSessionChangedProgress(creationUploadSession: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+    func creationUploadSessionChangedProgress(_ creationUploadSession: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
     {
         delegate?.creationUploadService(self, progressChanged: creationUploadSession, bytesWritten: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
     }
     
-    func creationUploadSessionUploadFailed(creationUploadSession: CreationUploadSession, error: ErrorType)
+    func creationUploadSessionUploadFailed(_ creationUploadSession: CreationUploadSession, error: Error)
     {
         delegate?.creationUploadService(self, uploadFailed: creationUploadSession, withError: error)
     }

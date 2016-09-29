@@ -27,17 +27,17 @@ import UIKit
 
 class DummyResponseHandler: ResponseHandler
 {
-    private let completion: (response: Dictionary<String, AnyObject>?, error:ErrorType?) -> Void
+    fileprivate let completion: (_ response: Dictionary<String, AnyObject>?, _ error:Error?) -> Void
     
-    init(completion: (response: Dictionary<String, AnyObject>?, error:ErrorType?) -> Void)
+    init(completion: @escaping (_ response: Dictionary<String, AnyObject>?, _ error:Error?) -> Void)
     {
         self.completion = completion
         
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
-        completion(response: response, error: error)
+        completion(response, error)
     }
     
 }

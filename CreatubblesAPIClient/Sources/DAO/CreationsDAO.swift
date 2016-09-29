@@ -26,7 +26,7 @@ import UIKit
 
 class CreationsDAO
 {
-    private let requestSender: RequestSender
+    fileprivate let requestSender: RequestSender
     
     init(requestSender: RequestSender)
     {

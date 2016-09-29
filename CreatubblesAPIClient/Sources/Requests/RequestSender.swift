@@ -29,11 +29,11 @@ import p2_OAuth2
 
 class RequestSender: NSObject
 {
-    private let uploadManager: Alamofire.Manager
-    private let settings: APIClientSettings
-    private let oauth2PrivateClient: OAuth2PasswordGrant
-    private let oauth2PublicClient: OAuth2ClientCredentials
-    private var oauth2: OAuth2
+    fileprivate let uploadManager: Alamofire.Manager
+    fileprivate let settings: APIClientSettings
+    fileprivate let oauth2PrivateClient: OAuth2PasswordGrant
+    fileprivate let oauth2PublicClient: OAuth2ClientCredentials
+    fileprivate var oauth2: OAuth2
     {
         let clientType = oauth2PrivateClient.hasUnexpiredAccessToken() ? "private" : "public"
         Logger.log.verbose("Using \(clientType) OAuth client")
@@ -49,21 +49,21 @@ class RequestSender: NSObject
         super.init()
     }
     
-    private static func prepareUploadManager(settings: APIClientSettings) -> Alamofire.Manager
+    fileprivate static func prepareUploadManager(_ settings: APIClientSettings) -> Alamofire.Manager
     {
         if let identifier = settings.backgroundSessionConfigurationIdentifier
         {
-            let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier(identifier)
+            let configuration = URLSessionConfiguration.backgroundSessionConfigurationWithIdentifier(identifier)
             return Alamofire.Manager(configuration: configuration)
         }
         else
         {
-            let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            let configuration = URLSessionConfiguration.default
             return Alamofire.Manager(configuration: configuration)
         }
     }
     
-    private static func prepareOauthPrivateClient(settings: APIClientSettings) -> OAuth2PasswordGrant
+    fileprivate static func prepareOauthPrivateClient(_ settings: APIClientSettings) -> OAuth2PasswordGrant
     {
         let oauthSettings =
         [
@@ -78,7 +78,7 @@ class RequestSender: NSObject
         return client
     }
     
-    private static func prepareOauthPublicClient(settings: APIClientSettings) -> OAuth2ClientCredentials
+    fileprivate static func prepareOauthPublicClient(_ settings: APIClientSettings) -> OAuth2ClientCredentials
     {
         let oauthSettings =
         [
@@ -95,7 +95,7 @@ class RequestSender: NSObject
         client.authorize()
         client.onFailure =
         {
-            (error: ErrorType?) -> Void in
+            (error: Error?) -> Void in
             Logger.log.error("Cannot login as Public Client! Error: \(error)")
         }
         return client
@@ -105,7 +105,7 @@ class RequestSender: NSObject
     
     var authenticationToken: String? { return oauth2PrivateClient.accessToken }
     
-    func login(username: String, password: String, completion: ErrorClosure?) -> RequestHandler
+    func login(_ username: String, password: String, completion: ErrorClosure?) -> RequestHandler
     {
         oauth2PrivateClient.username = username
         oauth2PrivateClient.password = password
@@ -121,7 +121,7 @@ class RequestSender: NSObject
         }        
         oauth2PrivateClient.onFailure =
         {
-            [weak self](error: ErrorType?) -> Void in
+            [weak self](error: Error?) -> Void in
             if let weakSelf = self
             {
                 weakSelf.oauth2PrivateClient.onFailure = nil
@@ -133,7 +133,7 @@ class RequestSender: NSObject
         return RequestHandler(object: oauth2PrivateClient)
     }
     
-    private class func errorFromLoginError(error: ErrorType?) -> APIClientError
+    fileprivate class func errorFromLoginError(_ error: Error?) -> APIClientError
     {
         if let err = error as? OAuth2Error
         {
@@ -151,7 +151,7 @@ class RequestSender: NSObject
         return SessionData(accessToken: oauth2PrivateClient.accessToken, idToken: oauth2PrivateClient.idToken, accessTokenExpiry: oauth2PrivateClient.accessTokenExpiry, refreshToken: oauth2PrivateClient.refreshToken)
     }
     
-    func setSessionData(sessionData: SessionData) {
+    func setSessionData(_ sessionData: SessionData) {
         oauth2PrivateClient.idToken = sessionData.idToken
         oauth2PrivateClient.accessToken = sessionData.accessToken
         oauth2PrivateClient.accessTokenExpiry = sessionData.accessTokenExpiry
@@ -173,9 +173,9 @@ class RequestSender: NSObject
     }
     
     //MARK: - Request sending
-    func send(request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
+    func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
     {
-        Logger.log.debug("Sending request: \(request.dynamicType)")
+        Logger.log.debug("Sending request: \(type(of: request))")
         let headers: Dictionary<String, String>? = settings.locale == nil ? nil : ["Accept-Language" : settings.locale!]
         let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters, headers: headers)
         .responseString
@@ -183,7 +183,7 @@ class RequestSender: NSObject
             (response) -> Void in
             if let err = response.result.error
             {
-                Logger.log.error("Error while sending request:\(request.dynamicType) \nError:\n \(err) \nResponse:\n \(response.result.value)")
+                Logger.log.error("Error while sending request:\(type(of: request)) \nError:\n \(err) \nResponse:\n \(response.result.value)")
             }
         }
         .responseJSON
@@ -198,9 +198,9 @@ class RequestSender: NSObject
     }
     
     //MARK: - Creation sending
-    func send(creationData: NewCreationData, uploadData: CreationUpload, progressChanged: (bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int) -> Void, completion: (error: ErrorType?) -> Void) -> RequestHandler
+    func send(_ creationData: NewCreationData, uploadData: CreationUpload, progressChanged: @escaping (_ bytesWritten: Int, _ totalBytesWritten: Int, _ totalBytesExpectedToWrite: Int) -> Void, completion: @escaping (_ error: Error?) -> Void) -> RequestHandler
     {
-        if(creationData.dataType == .Image)
+        if(creationData.dataType == .image)
         {
             Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
             
@@ -219,7 +219,7 @@ class RequestSender: NSObject
             
             return RequestHandler(object: request)
         }
-        else if(creationData.dataType == .Url)
+        else if(creationData.dataType == .url)
         {
             Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
             let request = Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], file: creationData.url!)
@@ -239,7 +239,7 @@ class RequestSender: NSObject
         }
         else
         {
-            assert(creationData.dataType == .Data)
+            assert(creationData.dataType == .data)
             Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
             let request = Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], data: creationData.data!)
             .progress(
@@ -273,12 +273,12 @@ class RequestSender: NSObject
     }
     
     //MARK: - Utils
-    private func urlStringWithRequest(request: Request) -> String
+    fileprivate func urlStringWithRequest(_ request: Request) -> String
     {
         return String(format: "%@/%@/%@", arguments: [settings.baseUrl, settings.apiVersion, request.endpoint])
     }
     
-    private func alamofireMethod(method: RequestMethod) -> Alamofire.Method
+    fileprivate func alamofireMethod(_ method: RequestMethod) -> Alamofire.Method
     {
         switch method
         {

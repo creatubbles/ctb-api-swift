@@ -20,7 +20,7 @@ class ContentEntryMapper: Mappable
     
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(map: Map)
+    func mapping(_ map: Map)
     {
         identifier <- map["id"]
         type <- map["attributes.type"]
@@ -45,9 +45,9 @@ class ContentEntryMapper: Mappable
     
     func parseType() -> ContentEntryType
     {
-        if type == "creation"   { return .Creation }
-        if type == "gallery"    { return .Gallery  }
-        if type == "user"       { return .User     }
-        return .Unknown
+        if type == "creation"   { return .creation }
+        if type == "gallery"    { return .gallery  }
+        if type == "user"       { return .user     }
+        return .unknown
     }
 }

@@ -36,7 +36,7 @@ class GroupMapper: Mappable
     
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(map: Map)
+    func mapping(_ map: Map)
     {
         identifier  <- map["id"]
         name <- map["attributes.name"]

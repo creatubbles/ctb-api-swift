@@ -33,10 +33,10 @@ class UserMapper: Mappable
     var listName: String?
     var name: String?
     var role: String?
-    var lastBubbledAt: NSDate?
-    var lastCommentedAt: NSDate?
-    var createdAt: NSDate?
-    var updatedAt: NSDate?
+    var lastBubbledAt: Date?
+    var lastCommentedAt: Date?
+    var createdAt: Date?
+    var updatedAt: Date?
     var avatarUrl: String?
     var countryCode: String?
     var countryName: String?
@@ -64,7 +64,7 @@ class UserMapper: Mappable
     //MARK: - Mappable
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(map: Map)
+    func mapping(_ map: Map)
     {
         identifier  <- map["id"]
         username  <- map["attributes.username"]
@@ -107,17 +107,17 @@ class UserMapper: Mappable
     {
         switch self.role!
         {
-            case "parent":  return Role.Parent
-            case "instructor": return Role.Instructor
-            case "creator": return Role.Creator
-            default:        return Role.Creator
+            case "parent":  return Role.parent
+            case "instructor": return Role.instructor
+            case "creator": return Role.creator
+            default:        return Role.creator
         }
     }
     
     func parseGender() -> Gender
     {
-        if gender == "male"   { return .Male }
-        if gender == "female" { return .Female }
-        return .Unknown
+        if gender == "male"   { return .male }
+        if gender == "female" { return .female }
+        return .unknown
     }
 }

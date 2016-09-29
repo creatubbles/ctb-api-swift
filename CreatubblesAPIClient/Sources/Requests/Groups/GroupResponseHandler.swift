@@ -11,14 +11,14 @@ import ObjectMapper
 
 class GroupResponseHandler: ResponseHandler
 {
-    private let completion: GroupClosure?
+    fileprivate let completion: GroupClosure?
     
     init(completion: GroupClosure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
             let mapper = Mapper<GroupMapper>().map(response["data"])

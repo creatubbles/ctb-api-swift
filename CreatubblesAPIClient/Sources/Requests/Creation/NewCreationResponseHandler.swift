@@ -27,13 +27,13 @@ import ObjectMapper
 
 class NewCreationResponseHandler: ResponseHandler
 {
-    private let completion: (creation: Creation?, error: ErrorType?) -> Void
-    init(completion: (creation: Creation?, error: ErrorType?) -> Void)
+    fileprivate let completion: (_ creation: Creation?, _ error: Error?) -> Void
+    init(completion: @escaping (_ creation: Creation?, _ error: Error?) -> Void)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
             let mapper = Mapper<CreationMapper>().map(response["data"])
@@ -45,7 +45,7 @@ class NewCreationResponseHandler: ResponseHandler
         }
         else
         {
-            executeOnMainQueue { self.completion(creation: nil, error: ErrorTransformer.errorFromResponse(response, error: error)) }
+            executeOnMainQueue { self.completion(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
 }

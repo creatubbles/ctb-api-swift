@@ -30,11 +30,11 @@ class DatabaseService: NSObject
 {
     let realm = DatabaseService.prepareRealm()
     
-    private class func prepareRealm() -> Realm
+    fileprivate class func prepareRealm() -> Realm
     {
         do
         {
-            let r = try Realm()
+            let r = try Realm
             return r
         }
         catch let realmError
@@ -42,8 +42,8 @@ class DatabaseService: NSObject
             Logger.log.error("Realm error error: \(realmError)")
             do
             {
-                let path = RLMRealmConfiguration.defaultConfiguration().path
-                try NSFileManager.defaultManager().removeItemAtPath(path!)
+                let path = RLMRealmConfiguration.default().path
+                try FileManager.default.removeItem(atPath: path!)
             }
             catch let fileManagerError
             {
@@ -53,7 +53,7 @@ class DatabaseService: NSObject
         return try! Realm()
     }
     
-    func saveCreationUploadSessionToDatabase(creationUploadSession: CreationUploadSession)
+    func saveCreationUploadSessionToDatabase(_ creationUploadSession: CreationUploadSession)
     {
         let creationUploadSessionEntity = getUploadSessionEntityFromCreationUploadSession(creationUploadSession)
         
@@ -84,7 +84,7 @@ class DatabaseService: NSObject
     }
     
     
-    func deleteOldDatabaseObjects(creationUploadSessionEntity: CreationUploadSessionEntity)
+    func deleteOldDatabaseObjects(_ creationUploadSessionEntity: CreationUploadSessionEntity)
     {
         if let creationEntity = creationUploadSessionEntity.creationEntity
         {
@@ -112,7 +112,7 @@ class DatabaseService: NSObject
         return creationUploadSessionEntitiesArray
     }
     
-    func fetchAllCreationUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
+    func fetchAllCreationUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession>
     {
         let sessionEntities = fetchAllCreationUploadSessionEntities()
         var sessions = [CreationUploadSession]()
@@ -126,17 +126,17 @@ class DatabaseService: NSObject
         return sessions
     }
     
-    func fetchASingleCreationUploadSessionWithLocalIdentifier(localIdentifier: String) -> CreationUploadSessionEntity?
+    func fetchASingleCreationUploadSessionWithLocalIdentifier(_ localIdentifier: String) -> CreationUploadSessionEntity?
     {
         let creationUploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter("localIdentifier = %@", localIdentifier)
         return creationUploadSessionEntities.first
     }
     
-    func getAllActiveUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
+    func getAllActiveUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession>
     {
         var activeUploadSessions = [CreationUploadSession]()
 
-        let predicate = NSPredicate(format: "stateRaw < \(CreationUploadSessionState.ServerNotified.rawValue)")
+        let predicate = NSPredicate(format: "stateRaw < \(CreationUploadSessionState.serverNotified.rawValue)")
         let uploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter(predicate)
         
         for uploadSessionEntity in uploadSessionEntities
@@ -147,10 +147,10 @@ class DatabaseService: NSObject
         return activeUploadSessions
     }
     
-    func getAllFinishedUploadSessions(requestSender: RequestSender) -> Array<CreationUploadSession>
+    func getAllFinishedUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession>
     {
         var finishedUploadSessions = [CreationUploadSession]()
-        let predicate = NSPredicate(format: "stateRaw >= \(CreationUploadSessionState.ServerNotified.rawValue)")
+        let predicate = NSPredicate(format: "stateRaw >= \(CreationUploadSessionState.serverNotified.rawValue)")
         let uploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter(predicate)
         
         for uploadSessionEntity in uploadSessionEntities
@@ -161,7 +161,7 @@ class DatabaseService: NSObject
         return finishedUploadSessions
     }
     
-    func getAllActiveUploadSessionsPublicData(requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
+    func getAllActiveUploadSessionsPublicData(_ requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
     {
         let activeUploads = getAllActiveUploadSessions(requestSender)
         var activeUploadsPublicData = [CreationUploadSessionPublicData]()
@@ -173,7 +173,7 @@ class DatabaseService: NSObject
         return activeUploadsPublicData
     }
     
-    func getAllFinishedUploadSessionPublicData(requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
+    func getAllFinishedUploadSessionPublicData(_ requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
     {
         let finishedUploads = getAllFinishedUploadSessions(requestSender)
         var finishedUploadsPublicData = [CreationUploadSessionPublicData]()
@@ -219,7 +219,7 @@ class DatabaseService: NSObject
     }
     
     //MARK: - Transforms
-    private func getUploadSessionEntityFromCreationUploadSession(creationUploadSession: CreationUploadSession) -> CreationUploadSessionEntity
+    fileprivate func getUploadSessionEntityFromCreationUploadSession(_ creationUploadSession: CreationUploadSession) -> CreationUploadSessionEntity
     {
         let creationUploadSessionEntity = CreationUploadSessionEntity()
         
@@ -242,7 +242,7 @@ class DatabaseService: NSObject
         return creationUploadSessionEntity
     }
     
-    private func getNewCreationDataEntityFromCreationData(newCreationData: NewCreationData) -> NewCreationDataEntity
+    fileprivate func getNewCreationDataEntityFromCreationData(_ newCreationData: NewCreationData) -> NewCreationDataEntity
     {
         let newCreationDataEntity = NewCreationDataEntity()
         
@@ -268,7 +268,7 @@ class DatabaseService: NSObject
         return newCreationDataEntity
     }
     
-    private func getCreationEntityFromCreation(creation: Creation) -> CreationEntity
+    fileprivate func getCreationEntityFromCreation(_ creation: Creation) -> CreationEntity
     {
         let creationEntity = CreationEntity()
         
@@ -324,7 +324,7 @@ class DatabaseService: NSObject
         return creationEntity
     }
     
-    private func getNameTranslationObjectEntityFromNameTranslationObject(nameTranslationObject: NameTranslationObject) -> NameTranslationObjectEntity
+    fileprivate func getNameTranslationObjectEntityFromNameTranslationObject(_ nameTranslationObject: NameTranslationObject) -> NameTranslationObjectEntity
     {
         let nameTranslationObjectEntity = NameTranslationObjectEntity()
         
@@ -335,7 +335,7 @@ class DatabaseService: NSObject
         return nameTranslationObjectEntity
     }
     
-    private func getCreationUploadEntityFromCreationUpload(creationUpload: CreationUpload) -> CreationUploadEntity
+    fileprivate func getCreationUploadEntityFromCreationUpload(_ creationUpload: CreationUpload) -> CreationUploadEntity
     {
        let creationUploadEntity = CreationUploadEntity()
         

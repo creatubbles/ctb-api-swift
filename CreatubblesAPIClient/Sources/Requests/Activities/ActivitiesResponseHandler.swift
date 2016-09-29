@@ -10,13 +10,13 @@ import UIKit
 import ObjectMapper
 
 class ActivitiesResponseHandler: ResponseHandler {
-    private let completion: ActivitiesClosure?
+    fileprivate let completion: ActivitiesClosure?
     
     init(completion: ActivitiesClosure?) {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?) {
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response, let mappers = Mapper<ActivityMapper>().mapArray(response["data"]) {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)

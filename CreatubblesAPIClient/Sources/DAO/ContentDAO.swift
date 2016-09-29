@@ -10,21 +10,21 @@ import UIKit
 
 class ContentDAO: NSObject
 {
-    private let requestSender: RequestSender
+    fileprivate let requestSender: RequestSender
     
     init(requestSender: RequestSender)
     {
         self.requestSender = requestSender
     }
     
-    func getTrendingContent(pagingData pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    func getTrendingContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
         let request = ContentRequest(type: .Trending, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ContentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getRecentContent(pagingData pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    func getRecentContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
         let request = ContentRequest(type: .Recent, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ContentResponseHandler(completion: completion)
@@ -38,7 +38,7 @@ class ContentDAO: NSObject
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getMyConnectionsContent(pagingData pagingData: PagingData?,  completion: ContentEntryClosure?) -> RequestHandler
+    func getMyConnectionsContent(pagingData: PagingData?,  completion: ContentEntryClosure?) -> RequestHandler
     {
         let request = ContentRequest(type: .Connected, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ContentResponseHandler(completion: completion)
@@ -52,14 +52,14 @@ class ContentDAO: NSObject
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getFollowedContents(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    func getFollowedContents(_ pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
         let request = ContentRequest(type: .Followed, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ContentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getSearchedContents(query query: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    func getSearchedContents(query: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
         let request = ContentSearchRequest(query: query, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ContentSearchResponseHandler(completion: completion)
