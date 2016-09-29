@@ -9,7 +9,9 @@ PODS:
   - Realm/Headers (2.0.0)
   - RealmSwift (2.0.0):
     - Realm (= 2.0.0)
-  - XCGLogger (3.2)
+  - XCGLogger (4.0.0):
+    - XCGLogger/Core (= 4.0.0)
+  - XCGLogger/Core (4.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
@@ -18,7 +20,7 @@ DEPENDENCIES:
   - p2.OAuth2 (from `https://github.com/creatubbles/OAuth2.git`, branch `feature/Swift_Update`)
   - Quick (= 0.9.1)
   - RealmSwift (= 2.0)
-  - XCGLogger (= 3.2)
+  - XCGLogger (~> 4.0.0)
 
 EXTERNAL SOURCES:
   p2.OAuth2:
@@ -38,8 +40,8 @@ SPEC CHECKSUMS:
   Quick: a5221fc21788b6aeda934805e68b061839bc3165
   Realm: 6dda421ae4b3e9a09742fc2cf4b876d459cbedcd
   RealmSwift: 7d015f34a2781a50889be9b5a15c36c08597ea0e
-  XCGLogger: da1f341f4bb8979db6e1df64232f04d9698402d4
+  XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: c06392f94fd6098e3e808ec7bdc15adb0124cd67
+PODFILE CHECKSUM: 1a52c23b8404d4d5557a8a49aa4f65b5d91aecb8
 
 COCOAPODS: 1.1.0.rc.2

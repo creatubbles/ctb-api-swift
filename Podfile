@@ -6,7 +6,7 @@ target 'CreatubblesAPIClient' do
 pod 'p2.OAuth2', :git => 'https://github.com/creatubbles/OAuth2.git', :branch => 'feature/Swift_Update'
 pod 'Alamofire', '~> 4.0'
 pod 'ObjectMapper', '~> 2.0'
-pod 'XCGLogger', '3.2'
+pod 'XCGLogger', '~> 4.0.0'
 pod 'RealmSwift', '2.0'
 
 end
