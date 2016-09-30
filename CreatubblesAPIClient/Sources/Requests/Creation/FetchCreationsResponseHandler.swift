@@ -37,7 +37,7 @@ class FetchCreationsResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let mappers = Mapper<CreationMapper>().mapArray(response["data"])
+            let mappers = Mapper<CreationMapper>().mapArray(JSONArray: response["data"] as! [[String : Any]])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
@@ -47,7 +47,7 @@ class FetchCreationsResponseHandler: ResponseHandler
             executeOnMainQueue { self.completion?(creations,pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
         else if let response = response,
-                let mapper = Mapper<CreationMapper>().map(response["data"])
+                let mapper = Mapper<CreationMapper>().map(JSON: response["data"] as! [String : Any])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)

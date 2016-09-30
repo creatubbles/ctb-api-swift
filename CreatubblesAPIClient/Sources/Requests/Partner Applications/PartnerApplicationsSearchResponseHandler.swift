@@ -20,7 +20,7 @@ class PartnerApplicationsSearchResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let partnerApplicationsMapper = Mapper<PartnerApplicationsMapper>().mapArray(response["data"])
+            let partnerApplicationsMapper = Mapper<PartnerApplicationsMapper>().mapArray(JSONArray: response["data"] as! [[String : Any]])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
