@@ -21,7 +21,7 @@ class CustomStyleFetchResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let mapper = Mapper<CustomStyleMapper>().map(response["data"])
+            let mapper = Mapper<CustomStyleMapper>().map(JSON: response["data"] as! [String : Any])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)                        

@@ -26,19 +26,19 @@ class MappingUtils
     
     class func pagingInfoFromResponse(_ response: Dictionary<String, AnyObject>) -> PagingInfo
     {
-        let mapper = Mapper<PagingInfoMapper>().map(response["meta"])!
+        let mapper = Mapper<PagingInfoMapper>().map(JSON: response["meta"] as! [String : Any])!
         return PagingInfo(mapper: mapper)
     }
     
     class func metadataFromResponse(_ response: Dictionary<String, AnyObject>) -> Metadata?
     {
-        let metadataMapper = Mapper<MetadataMapper>().map(response["meta"])
+        let metadataMapper = Mapper<MetadataMapper>().map(JSON: response["meta"] as! [String : Any])
         return ( metadataMapper != nil ) ? Metadata(mapper: metadataMapper!) : nil
     }
     
     class func notificationMetadataFromResponse(_ response: Dictionary<String, AnyObject>) -> NotificationMetadata?
     {
-        let metadataMapper = Mapper<NotificationMetadataMapper>().map(response["meta"])
+        let metadataMapper = Mapper<NotificationMetadataMapper>().map(JSON: response["meta"] as! [String : Any])
         return ( metadataMapper != nil ) ? NotificationMetadata(mapper: metadataMapper!) : nil
     }
     

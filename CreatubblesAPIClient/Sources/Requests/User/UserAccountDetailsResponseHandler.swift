@@ -20,7 +20,7 @@ class UserAccountDetailsResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let mapper = Mapper<UserAccountDetailsMapper>().map(response["data"])
+            let mapper = Mapper<UserAccountDetailsMapper>().map(JSON: response["data"] as! [String : Any])
         {
             let details = UserAccountDetails(mapper: mapper)
             executeOnMainQueue { self.completion?(details, ErrorTransformer.errorFromResponse(response, error: error)) }
