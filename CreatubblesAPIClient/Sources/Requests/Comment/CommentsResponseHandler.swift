@@ -21,7 +21,7 @@ class CommentsResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let mappers = Mapper<CommentMapper>().mapArray(response["data"])
+            let mappers = Mapper<CommentMapper>().mapArray(JSONArray: response["data"] as! [[String : Any]])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
