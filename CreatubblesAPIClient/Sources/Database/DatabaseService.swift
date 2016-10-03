@@ -34,7 +34,7 @@ class DatabaseService: NSObject
     {
         do
         {
-            let r = try Realm
+            let r = try Realm()
             return r
         }
         catch let realmError
@@ -42,7 +42,7 @@ class DatabaseService: NSObject
             Logger.log.error("Realm error error: \(realmError)")
             do
             {
-                let path = RLMRealmConfiguration.default().path
+                let path = RLMRealmConfiguration.default().fileURL?.absoluteString
                 try FileManager.default.removeItem(atPath: path!)
             }
             catch let fileManagerError
@@ -187,7 +187,7 @@ class DatabaseService: NSObject
     
     func removeUploadSession(withIdentifier identifier: String)
     {
-        if let entity = realm.objectForPrimaryKey(CreationUploadSessionEntity.self, key: identifier)
+        if let entity = realm.object(ofType: CreationUploadSessionEntity.self, forPrimaryKey: identifier)
         {
             do
             {

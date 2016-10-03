@@ -29,9 +29,9 @@ extension OAuth2
 {
     public func request(
         _ method: Alamofire.Method,
-        _ URLString: URLStringConvertible,
+        _ URLString: URLConvertible,
         parameters: [String: AnyObject]? = nil,
-        encoding: Alamofire.ParameterEncoding = .URL,
+        encoding: Alamofire.ParameterEncoding = URLEncoding.default,
         headers: [String: String]? = nil)
         -> Alamofire.Request
     {
@@ -40,11 +40,7 @@ extension OAuth2
         if let token = accessToken {
             hdrs["Authorization"] = "Bearer \(token)"
         }
-        return Alamofire.request(
-            method,
-            URLString,
-            parameters: parameters,
-            encoding: encoding,
-            headers: hdrs)
+        
+        return Alamofire.request(URLString, method: method, parameters: parameters, encoding: encoding, headers: hdrs)
     }
 }

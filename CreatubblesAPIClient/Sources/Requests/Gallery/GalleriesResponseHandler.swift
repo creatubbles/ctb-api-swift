@@ -36,7 +36,7 @@ class GalleriesResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {        
         if  let response = response,
-            let mappers = Mapper<GalleryMapper>().mapArray(response["data"])
+            let mappers = Mapper<GalleryMapper>().mapArray(JSONArray: response["data"] as! [[String : Any]])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
@@ -46,7 +46,7 @@ class GalleriesResponseHandler: ResponseHandler
             executeOnMainQueue { self.completion?(galleries, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
         else if let response = response,
-                let mapper = Mapper<GalleryMapper>().map(response["data"])
+                let mapper = Mapper<GalleryMapper>().map(JSON: response["data"] as! [String : Any])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)                        

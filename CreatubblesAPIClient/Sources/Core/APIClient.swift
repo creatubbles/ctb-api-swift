@@ -431,7 +431,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return galleryDAO.reportGallery(galleryIdentifier: galleryId, message: message, completion: completion)
     }
     
-    open func submitCreationToGallery(galleryId: String, creationId: String, completion: ErrorClosure) -> RequestHandler
+    open func submitCreationToGallery(galleryId: String, creationId: String, completion: @escaping ErrorClosure) -> RequestHandler
     {
         return galleryDAO.submitCreationToGallery(galleryIdentifier: galleryId, creationId: creationId, completion: completion)
     }
@@ -533,12 +533,12 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return bubbleDAO.getBubbles(creationIdentifier: identifier, pagingData: pagingData, completion: completion)
     }
     
-    open func getBubbles(userId identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
+    open func getBubbles(userId identifier: String, pagingData: PagingData?, completion: @escaping BubblesClousure) -> RequestHandler
     {
         return bubbleDAO.getBubbles(userIdentifier: identifier, pagingData: pagingData, completion: completion)
     }
     
-    open func getBubbles(galleryId identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
+    open func getBubbles(galleryId identifier: String, pagingData: PagingData?, completion: @escaping BubblesClousure) -> RequestHandler
     {
         return bubbleDAO.getBubbles(galleryIdentifier: identifier, pagingData: pagingData, completion: completion)
     }

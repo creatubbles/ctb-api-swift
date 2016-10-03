@@ -94,7 +94,7 @@ class GalleriesRequest: Request
             }
             if let sort = sort
             {
-                dict["sort"] = Request.sortOrderStringValue(sort)
+                dict["sort"] = Request.sortOrderStringValue(sort) as AnyObject?
             }
             
             return dict

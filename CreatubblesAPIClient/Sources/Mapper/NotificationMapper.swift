@@ -33,9 +33,9 @@ class NotificationMapper: Mappable
     var bubbleRelationship: RelationshipMapper?
     
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(_ map: Map)
+    func mapping(map: Map)
     {
         identifier <- map["id"]
         type <- map["attributes.type"]
@@ -70,7 +70,7 @@ class NotificationMapper: Mappable
         if type == "new_comment_for_creation_users" { return .newCommentForCreationUsers }
         if type == "multiple_creators_created" { return .multipleCreatorsCreated }
         
-        Logger.log.warning("Unknown notification type: \(type)")
+        Logger.log.warning("Unknown notification type: \(self.type)")
         return .unknown
     }
 }
