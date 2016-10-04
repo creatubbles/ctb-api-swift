@@ -142,7 +142,7 @@ public protocol APIClientDelegate
     func creatubblesAPIClientNewImageUpload(_ apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData)
     func creatubblesAPIClientImageUploadFinished(_ apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData)
     func creatubblesAPIClientImageUploadFailed(_ apiClient: APIClient,  uploadSessionData: CreationUploadSessionPublicData, error: NSError)
-    func creatubblesAPIClientImageUploadProcessChanged(_ apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData, bytesUploaded: Int, bytesExpectedToUpload: Int)
+    func creatubblesAPIClientImageUploadProcessChanged(_ apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData, completedUnitCount: Int64, _ totalUnitCount: Int64, _ fractionCompleted: Double)
     func creatubblesAPIClientUserChanged(_ apiClient: APIClient)
 }
 
@@ -711,10 +711,10 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         delegate?.creatubblesAPIClientImageUploadFinished(self, uploadSessionData: data)
     }
     
-    func creationUploadService(_ sender: CreationUploadService, progressChanged session: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+    func creationUploadService(_ sender: CreationUploadService, progressChanged session: CreationUploadSession, completedUnitCount: Int64, totalUnitcount: Int64, fractionCompleted: Double)
     {
         let data = CreationUploadSessionPublicData(creationUploadSession: session)
-        delegate?.creatubblesAPIClientImageUploadProcessChanged(self, uploadSessionData: data, bytesUploaded: totalBytesWritten, bytesExpectedToUpload: totalBytesExpectedToWrite)
+        delegate?.creatubblesAPIClientImageUploadProcessChanged(self, uploadSessionData: data, completedUnitCount: completedUnitCount, totalUnitcount, fractionCompleted)
     }
     
     func creationUploadService(_ sender: CreationUploadService, uploadFailed session: CreationUploadSession, withError error: Error)

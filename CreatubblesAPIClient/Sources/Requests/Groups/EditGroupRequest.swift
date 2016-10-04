@@ -31,7 +31,7 @@ class EditGroupRequest: Request
         
         dataDict["type"] = "groups" as AnyObject?
         if let value = data.name { attributesDict["name"] = value as AnyObject? }
-        if let value = data.avatarCreationIdentifier { relationshipsDict["avatar_creation"] = ["data" : ["id" : value]] }
+        if let value = data.avatarCreationIdentifier { relationshipsDict["avatar_creation"] = ["data" : ["id" : value]] as AnyObject? }
         
         dataDict["attributes"] = attributesDict as AnyObject?
         dataDict["relationships"] = relationshipsDict as AnyObject?

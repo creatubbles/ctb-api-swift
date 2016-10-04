@@ -33,17 +33,27 @@ class CustomStyleEditRequest: Request
         if let value = data.bodyBackgroundIdentifier   { attributesDict["body_background_id"] = value as AnyObject? }
         if let value = data.fontName                   { attributesDict["font"] = value as AnyObject? }
         if let value = data.bio                        { attributesDict["bio"] = value as AnyObject? }
+        
+        if let value = data.bodyColors
+        {
+            for color in value
+            {
+                let hexValue = color.hexValue()
+                attributesDict["body_Colors"]?.add(hexValue)
+            }
+        }
+        
         if let value = data.bodyColors                 { attributesDict["body_colors"] = value.map({ $0.hexValue() }) }
-        if let value = data.headerColors               { attributesDict["header_colors"] = value.map({ $0.hexValue() }) }
+        if let value = data.headerColors               { attributesDict["header_colors"] = value.map({ $0.hexValue() as AnyObject? }) }
         
         if let value = data.headerCreationIdentifier
         {
-            relationshipsDict["header_creation"] = ["data" : ["id" : value]]
+            relationshipsDict["header_creation"] = ["data" : ["id" : value] as AnyObject?]
             attributesDict["header_background_id"] = "pattern0" as AnyObject?
         }
         if let value = data.bodyCreationIdentifier
         {
-            relationshipsDict["body_creation"]   = ["data" : ["id" : value]]
+            relationshipsDict["body_creation"]   = ["data" : ["id" : value] as AnyObject?]
             attributesDict["body_background_id"] = "pattern0" as AnyObject?
         }
         

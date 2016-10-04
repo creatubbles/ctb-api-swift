@@ -25,7 +25,7 @@ class ContentSearchResponseHandler: ResponseHandler
         var invalidEntries: [ContentEntry] = []
         
         if  let response = response,
-            let mappers = Mapper<ContentEntryMapper>().mapArray(response["data"])
+            let mappers = Mapper<ContentEntryMapper>().mapArray(JSONArray: response["data"] as! [[String : Any]])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)

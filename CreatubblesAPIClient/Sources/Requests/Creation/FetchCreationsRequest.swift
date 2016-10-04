@@ -136,7 +136,7 @@ class FetchCreationsRequest: Request
         }
         if let sort = sort
         {
-            params["sort"] = Request.sortOrderStringValue(sort)
+            params["sort"] = Request.sortOrderStringValue(sort) as AnyObject?
         }
         if onlyPublic
         {

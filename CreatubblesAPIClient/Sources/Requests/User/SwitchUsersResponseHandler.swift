@@ -20,7 +20,7 @@ class SwitchUsersResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         
         if  let response = response,
-            let usersMapper = Mapper<UserMapper>().mapArray(response["data"]) {
+            let usersMapper = Mapper<UserMapper>().mapArray(JSONArray: response["data"] as! [[String : Any]]) {
             
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)

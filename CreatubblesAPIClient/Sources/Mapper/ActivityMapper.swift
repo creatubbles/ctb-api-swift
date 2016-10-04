@@ -55,7 +55,7 @@ class ActivityMapper: Mappable {
         if type == "user.bubbled" { return .userBubbled }
         if type == "user.commented" { return .userCommented }
         
-        Logger.log.warning("Unknown activity type: \(type)")
+        Logger.log.warning("Unknown activity type: \(self.type)")
         return .unknown
     }
 }

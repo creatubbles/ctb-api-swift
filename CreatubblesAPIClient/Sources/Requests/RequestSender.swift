@@ -177,8 +177,28 @@ class RequestSender: NSObject
     {
         Logger.log.debug("Sending request: \(type(of: request))")
         let headers: Dictionary<String, String>? = settings.locale == nil ? nil : ["Accept-Language" : settings.locale!]
-        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters, headers: headers)
-        .responseString
+        
+        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters: request.parameters, encoding: URLEncoding.default, headers: headers).response
+        {
+            (response) -> Void in
+            
+        }
+        
+//        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters, headers: headers)
+//            .responseString
+//            {
+//                (response) -> Void in
+//                if let err = response.result.error
+//                {
+//                      Logger.log.error("Error while sending request:\(request.dynamicType) \nError:\n \(err) \nResponse:\n \(response.result.value)")
+//                      Logger.log.error("Error while sending request:\(type(of: request)) \nError:\n \(err) \nResponse:\n \(response.result.value)")
+//                }
+//            }
+//            .responseJSON
+        
+        
+        
+        let request2 = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters: request.parameters, encoding: URLEncoding.default, headers: headers)
         {
             (response) -> Void in
             if let err = response.result.error
@@ -198,7 +218,7 @@ class RequestSender: NSObject
     }
     
     //MARK: - Creation sending
-    func send(_ creationData: NewCreationData, uploadData: CreationUpload, progressChanged: @escaping (_ fractionCompleted: Double) -> Void, completion: @escaping (_ error: Error?) -> Void) -> RequestHandler
+    func send(_ creationData: NewCreationData, uploadData: CreationUpload, progressChanged: @escaping (_ completedUnitCount: Int64, _ totalUnitCount: Int64, _ fractionCompleted: Double) -> Void, completion: @escaping (_ error: Error?) -> Void) -> RequestHandler
     {
         if(creationData.dataType == .image)
         {
@@ -208,9 +228,8 @@ class RequestSender: NSObject
                                             to: uploadData.uploadUrl, method: .put, headers: ["Content-Type":uploadData.contentType]).uploadProgress(closure:
             {
                 progress in
-                
                 Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(progress.fractionCompleted)")
-                progressChanged(progress.fractionCompleted)
+                progressChanged(progress.completedUnitCount, progress.totalUnitCount, progress.fractionCompleted)
             }).responseString()
             {
                 response in
@@ -229,7 +248,7 @@ class RequestSender: NSObject
                 progress in
                 
                 Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(progress.fractionCompleted)")
-                progressChanged(progress.fractionCompleted)
+                progressChanged(progress.completedUnitCount, progress.totalUnitCount, progress.fractionCompleted)
             }).responseString()
             {
                 response in
@@ -250,7 +269,7 @@ class RequestSender: NSObject
                     progress in
                     
                     Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(progress.fractionCompleted)")
-                    progressChanged(progress.fractionCompleted)
+                    progressChanged(progress.completedUnitCount, progress.totalUnitCount, progress.fractionCompleted)
             }).responseString()
                 {
                     response in
