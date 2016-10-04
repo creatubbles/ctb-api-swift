@@ -16,9 +16,9 @@ class GallerySubmissionMapper: Mappable
     var creationRelationship: RelationshipMapper?
     var galleryRelationship:  RelationshipMapper?
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(_ map: Map)
+    func mapping(map: Map)
     {
         identifier  <- map["id"]
         creationRelationship <- map["relationships.creation.data"]

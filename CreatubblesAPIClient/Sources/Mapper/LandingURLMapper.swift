@@ -32,9 +32,9 @@ class LandingURLMapper: Mappable
     var destination: String?
     fileprivate var typeString: String?
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(_ map: Map)
+    func mapping(map: Map)
     {
         destination <- map["attributes.url"]
         typeString <- map["id"]
@@ -52,7 +52,7 @@ class LandingURLMapper: Mappable
         if typeString == "cte-account_dashboard" { return LandingURLType.accountDashboard }
         if typeString == "cte-upload_guidelines" { return LandingURLType.uploadGuidelines }
         
-        Logger.log.warning("Unknown landingURL: \(typeString)")
+        Logger.log.warning("Unknown landingURL: \(self.typeString)")
         return .unknown
     }
 }

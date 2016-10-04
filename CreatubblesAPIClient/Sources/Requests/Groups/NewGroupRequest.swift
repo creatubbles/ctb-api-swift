@@ -29,7 +29,7 @@ class NewGroupRequest: Request
         dataDict["type"] = "groups" as AnyObject?
         attributesDict["name"] = data.name as AnyObject?
         
-        if let value = data.avatarCreationIdentifier { relationshipsDict["avatar_creation"] = ["data" : ["id" : value]] }
+        if let value = data.avatarCreationIdentifier { relationshipsDict["avatar_creation"] = ["data" : ["id" : value]] as AnyObject?}
         
         dataDict["attributes"] = attributesDict as AnyObject?
         dataDict["relationships"] = relationshipsDict as AnyObject?

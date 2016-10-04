@@ -36,12 +36,12 @@ class NewCreationResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let mapper = Mapper<CreationMapper>().map(response["data"])
+            let mapper = Mapper<CreationMapper>().map(JSON: response["data"] as! [String : Any])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)            
             let creation = Creation(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
-            executeOnMainQueue { self.completion(creation: creation, error: error) }
+            executeOnMainQueue { self.completion(creation, error) }
         }
         else
         {

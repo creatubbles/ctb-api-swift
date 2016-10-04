@@ -39,7 +39,7 @@ protocol CreationUploadSessionDelegate: class
 {
     func creationUploadSessionChangedState(_ creationUploadSession: CreationUploadSession)
     func creationUploadSessionUploadFailed(_ creationUploadSession: CreationUploadSession, error: Error)
-    func creationUploadSessionChangedProgress(_ creationUploadSession: CreationUploadSession,bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+    func creationUploadSessionChangedProgress(_ creationUploadSession: CreationUploadSession, completedUnitCount: Int64, totalUnitcount: Int64, fractionCompleted: Double)
 }
 
 class CreationUploadSession: NSObject, Cancelable
@@ -251,8 +251,8 @@ class CreationUploadSession: NSObject, Cancelable
         currentRequest =  requestSender.send(creationData, uploadData: creationUpload!,
         progressChanged:
         {
-            (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
-            self.delegate?.creationUploadSessionChangedProgress(self, bytesWritten: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
+            (completedUnitCount, totalUnitCount, fractionCompleted) -> Void in
+            self.delegate?.creationUploadSessionChangedProgress(self, completedUnitCount: completedUnitCount, totalUnitcount: totalUnitCount, fractionCompleted: fractionCompleted)
         },
         completion:
         {

@@ -28,7 +28,7 @@ import p2_OAuth2
 extension OAuth2
 {
     public func request(
-        _ method: Alamofire.Method,
+        _ method: Alamofire.HTTPMethod,
         _ URLString: URLConvertible,
         parameters: [String: AnyObject]? = nil,
         encoding: Alamofire.ParameterEncoding = URLEncoding.default,

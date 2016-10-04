@@ -30,7 +30,7 @@ protocol CreationUploadServiceDelegate: class
     func creationUploadService(_ sender: CreationUploadService, newSessionAdded session: CreationUploadSession)
     func creationUploadService(_ sender: CreationUploadService, uploadFinished session: CreationUploadSession)
     func creationUploadService(_ sender: CreationUploadService, uploadFailed session: CreationUploadSession, withError error: Error)
-    func creationUploadService(_ sender: CreationUploadService, progressChanged session: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+    func creationUploadService(_ sender: CreationUploadService, progressChanged session: CreationUploadSession, completedUnitCount: Int64, totalUnitcount: Int64, fractionCompleted: Double)
 }
 
 class CreationUploadService: CreationUploadSessionDelegate
@@ -138,9 +138,9 @@ class CreationUploadService: CreationUploadSessionDelegate
         }
     }
     
-    func creationUploadSessionChangedProgress(_ creationUploadSession: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+    func creationUploadSessionChangedProgress(_ creationUploadSession: CreationUploadSession, completedUnitCount: Int64, totalUnitcount totalUnitCount: Int64, fractionCompleted: Double)
     {
-        delegate?.creationUploadService(self, progressChanged: creationUploadSession, bytesWritten: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
+        delegate?.creationUploadService(self, progressChanged: creationUploadSession, completedUnitCount: completedUnitCount, totalUnitcount: totalUnitCount, fractionCompleted: fractionCompleted)
     }
     
     func creationUploadSessionUploadFailed(_ creationUploadSession: CreationUploadSession, error: Error)

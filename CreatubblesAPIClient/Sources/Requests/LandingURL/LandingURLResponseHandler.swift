@@ -36,13 +36,13 @@ class LandingURLResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let mappers = Mapper<LandingURLMapper>().mapArray(response["data"])
+            let mappers = Mapper<LandingURLMapper>().mapArray(JSONArray: response["data"] as! [[String : Any]])
         {
             let landingUrls = mappers.map({ LandingURL(mapper: $0) })                        
             executeOnMainQueue { self.completion?(landingUrls, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
         else if let response = response,
-                let mapper = Mapper<LandingURLMapper>().map(response["data"])
+                let mapper = Mapper<LandingURLMapper>().map(JSON: response["data"] as! [String : Any])
         {
             let landingURL = LandingURL(mapper: mapper)
             executeOnMainQueue { self.completion?([landingURL], ErrorTransformer.errorFromResponse(response, error: error)) }
