@@ -92,6 +92,7 @@ class RequestSender: NSObject
         as OAuth2JSON
         
         let client = OAuth2ClientCredentials(settings: oauthSettings)
+        
         client.verbose = false
         client.authorize()
         {
@@ -101,8 +102,7 @@ class RequestSender: NSObject
                 Logger.log.error("Cannot login as Public Client! Error: \(error)")
             }
         }
-        return client
-    }
+        return client    }
     
     //MARK: - Authentication
     
@@ -112,27 +112,22 @@ class RequestSender: NSObject
     {
         oauth2PrivateClient.username = username
         oauth2PrivateClient.password = password
-        oauth2PrivateClient.onAuthorize =
-        {
-            [weak self](parameters: OAuth2JSON) -> Void in
-            if let weakSelf = self
-            {
-                weakSelf.oauth2PrivateClient.onAuthorize = nil
-            }
-            Logger.log.debug("User logged in successfully")
-            completion?(nil)
-        }        
-        oauth2PrivateClient.onFailure =
-        {
-            [weak self](error: Error?) -> Void in
-            if let weakSelf = self
-            {
-                weakSelf.oauth2PrivateClient.onFailure = nil
-            }
-            Logger.log.error("Error while login:\(error)")
-            completion?(RequestSender.errorFromLoginError(error))
-        }
+        
         oauth2PrivateClient.authorize()
+        {
+            (oauth2JSON, error) in
+            if let error = error
+            {
+                Logger.log.error("Error while login:\(error)")
+                completion?(RequestSender.errorFromLoginError(error))
+            }
+            else
+            {
+                Logger.log.debug("User logged in successfully")
+                completion?(nil)
+            }
+        }
+        
         return RequestHandler(object: oauth2PrivateClient)
     }
     

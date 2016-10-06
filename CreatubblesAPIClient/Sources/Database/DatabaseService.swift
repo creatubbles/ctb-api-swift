@@ -102,7 +102,7 @@ class DatabaseService: NSObject
     
     func fetchAllCreationUploadSessionEntities() -> Array<CreationUploadSessionEntity>
     {
-        let realmObjects = realm.objects(CreationUploadSessionEntity)
+        let realmObjects = realm.objects(CreationUploadSessionEntity.self)
         var creationUploadSessionEntitiesArray = [CreationUploadSessionEntity]()
         
         for entity in realmObjects
@@ -128,7 +128,7 @@ class DatabaseService: NSObject
     
     func fetchASingleCreationUploadSessionWithLocalIdentifier(_ localIdentifier: String) -> CreationUploadSessionEntity?
     {
-        let creationUploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter("localIdentifier = %@", localIdentifier)
+        let creationUploadSessionEntities = realm.objects(CreationUploadSessionEntity.self).filter("localIdentifier = %@", localIdentifier)
         return creationUploadSessionEntities.first
     }
     
@@ -137,7 +137,7 @@ class DatabaseService: NSObject
         var activeUploadSessions = [CreationUploadSession]()
 
         let predicate = NSPredicate(format: "stateRaw < \(CreationUploadSessionState.serverNotified.rawValue)")
-        let uploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter(predicate)
+        let uploadSessionEntities = realm.objects(CreationUploadSessionEntity.self).filter(predicate)
         
         for uploadSessionEntity in uploadSessionEntities
         {
@@ -151,7 +151,7 @@ class DatabaseService: NSObject
     {
         var finishedUploadSessions = [CreationUploadSession]()
         let predicate = NSPredicate(format: "stateRaw >= \(CreationUploadSessionState.serverNotified.rawValue)")
-        let uploadSessionEntities = realm.objects(CreationUploadSessionEntity).filter(predicate)
+        let uploadSessionEntities = realm.objects(CreationUploadSessionEntity.self).filter(predicate)
         
         for uploadSessionEntity in uploadSessionEntities
         {

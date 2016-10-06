@@ -55,7 +55,7 @@ class GalleriesBatchFetcher: BatchFetcher
                     if(pInfo.totalPages > self.page && self.page < self.maxPageCount)
                     {
                         self.page += 1
-                        self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
+                        _ = self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
                     }
                     else
                     {

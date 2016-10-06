@@ -104,7 +104,7 @@ class CreationUploadSession: NSObject, Cancelable
         
         if !isActive && !isAlreadyFinished
         {
-            delegate?.creationUploadSessionUploadFailed(self, error: APIClientError.genericUploadCancelledError as! Error)
+            delegate?.creationUploadSessionUploadFailed(self, error: APIClientError.genericUploadCancelledError as Error)
         }
     }
     

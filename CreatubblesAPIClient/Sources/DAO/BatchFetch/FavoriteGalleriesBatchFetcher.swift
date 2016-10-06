@@ -27,7 +27,7 @@ class FavoriteGalleriesBatchFetcher: BatchFetcher {
                 if let pagingInfo = pagingInfo {
                     if(pagingInfo.totalPages > self.page && self.page < self.maxPageCount) {
                         self.page += 1
-                        self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
+                        _ = self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
                     } else {
                         completion?(self.galleries, error)
                     }
