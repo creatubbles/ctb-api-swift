@@ -25,7 +25,7 @@ class CustomStyleFetchRequestSpec: QuickSpec
             it("Should have GET method")
             {
                 let request = CustomStyleFetchRequest(userIdentifier: "")
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have 'users/USER_IDENTIFIER/custom_style' endpoint")

@@ -19,7 +19,7 @@ class GroupsRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = GroupsRequest()
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have proper endpoint for general groups request")

@@ -18,18 +18,18 @@ class GalleriesResponseHandlerSpec: QuickSpec
         {
             it("Should return correct value for many galleries after login")
             {
-                let request = GalleriesRequest(page: 1, perPage: 10, sort: .Popular, userId: nil)
+                let request = GalleriesRequest(page: 1, perPage: 10, sort: .popular, userId: nil)
                 let sender =  TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:GalleriesResponseHandler()
+                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler()
                             {
-                                (galleries: Array<Gallery>?,pageInfo: PagingInfo?, error: ErrorType?) -> Void in
+                                (galleries: Array<Gallery>?,pageInfo: PagingInfo?, error: Error?) -> Void in
                                 expect(galleries).notTo(beNil())
                                 expect(error).to(beNil())
                                 expect(pageInfo).notTo(beNil())
@@ -47,13 +47,13 @@ class GalleriesResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:GalleriesResponseHandler()
+                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler()
                             {
-                                (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: ErrorType?) -> Void in
+                                (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                                 expect(galleries).notTo(beNil())
                                 expect(error).to(beNil())
                                 expect(pageInfo).to(beNil())
@@ -74,13 +74,13 @@ class GalleriesResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:GalleriesResponseHandler()
+                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler()
                             {
-                                (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: ErrorType?) -> Void in
+                                (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                                 expect(galleries).notTo(beNil())
                                 expect(error).to(beNil())
                                 expect(pageInfo).notTo(beNil())
@@ -94,15 +94,15 @@ class GalleriesResponseHandlerSpec: QuickSpec
             
             it("Should return error when not logged in")
             {
-                let request = GalleriesRequest(page: 0, perPage: 20, sort: .Recent, userId: nil)
+                let request = GalleriesRequest(page: 0, perPage: 20, sort: .recent, userId: nil)
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.send(request, withResponseHandler:NewCreatorResponseHandler()
+                    _ = sender.send(request, withResponseHandler:NewCreatorResponseHandler()
                         {
-                            (user: User?, error:ErrorType?) -> Void in
+                            (user: User?, error:Error?) -> Void in
                             expect(error).notTo(beNil())
                             expect(user).to(beNil())
                             done()

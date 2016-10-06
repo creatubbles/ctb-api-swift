@@ -25,7 +25,7 @@ class NewCommentResponseHandlerSpec: QuickSpec
                 {
                     done in
                     sender.logout()
-                    sender.send(request, withResponseHandler:NewCommentResponseHandler()
+                    _ = sender.send(request, withResponseHandler:NewCommentResponseHandler()
                     {
                         (error) -> (Void) in
                         expect(error).notTo(beNil())
@@ -47,11 +47,11 @@ class NewCommentResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:NewCommentResponseHandler()
+                        _ = sender.send(request, withResponseHandler:NewCommentResponseHandler()
                         {
                             (error) -> (Void) in
                             expect(error).to(beNil())
@@ -74,11 +74,11 @@ class NewCommentResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:NewCommentResponseHandler()
+                        _ = sender.send(request, withResponseHandler:NewCommentResponseHandler()
                         {
                             (error) -> (Void) in
                             expect(error).to(beNil())
@@ -101,11 +101,11 @@ class NewCommentResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:NewCommentResponseHandler()
+                        _ = sender.send(request, withResponseHandler:NewCommentResponseHandler()
                             {
                                 (error) -> (Void) in
                                 expect(error).to(beNil())

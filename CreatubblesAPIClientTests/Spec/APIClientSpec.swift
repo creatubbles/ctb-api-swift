@@ -107,7 +107,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getCurrentUser(
+                        _ = client.getCurrentUser(
                         {
                             (user, error) -> (Void) in
                             expect(user).notTo(beNil())
@@ -132,7 +132,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getUser(userId: identifier)
+                        _ = client.getUser(userId: identifier)
                         {
                             (user, error) -> (Void) in
                             expect(user).notTo(beNil())
@@ -158,7 +158,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getCreators(userId: identifier, pagingData: nil)
+                        _ = client.getCreators(userId: identifier, pagingData: nil)
                         {
                             (users, pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
@@ -184,7 +184,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getManagers(userId: identifier, pagingData: nil)
+                        _ = client.getManagers(userId: identifier, pagingData: nil)
                         {
                             (users,pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
@@ -199,7 +199,7 @@ class APIClientSpec: QuickSpec
             it("Should add new creator")
             {
                 //MM: Commented for now
-//                let timestamp = String(Int(round(NSDate().timeIntervalSince1970 % 1000)))
+//                let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(Double: 1000))))
 //                let data = NewCreatorData(name: "CTBAPITestCreator_"+timestamp, displayName: "CTBAPITestCreator_"+timestamp, birthYear: 2016, birthMonth: 1, countryCode: "UK", gender: .Male)
 //                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
 //                waitUntil(timeout: 10)
@@ -243,7 +243,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getGallery(galleryId: identifier)
+                        _ = client.getGallery(galleryId: identifier)
                         {
                             (gallery, error) -> (Void) in
                             expect(gallery).notTo(beNil())
@@ -269,7 +269,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getGalleries(creationId: identifier, pagingData: nil, sort: nil)
+                        _ = client.getGalleries(creationId: identifier, pagingData: nil, sort: nil)
                         {
                             (galleries, pageInfo, error) -> (Void) in
                             expect(galleries).notTo(beNil())
@@ -293,7 +293,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getGalleries(userId: nil, pagingData: nil, sort: .Popular)
+                        _ = client.getGalleries(userId: nil, pagingData: nil, sort: .popular)
                         {
                             (galleries, pageInfo, error) -> (Void) in
                             expect(galleries).notTo(beNil())
@@ -308,7 +308,7 @@ class APIClientSpec: QuickSpec
             
             it("Should create new gallery")
             {
-                let timestamp = String(Int(round(NSDate().timeIntervalSince1970 % 1000)))
+                let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(dividingBy: 1000))))
                 let data = NewGalleryData(name: "TestGallery_\(timestamp)", galleryDescription: "TestDescription_\(timestamp)", openForAll: false, ownerId: nil)
                 let client = APIClient(settings: TestConfiguration.settings)
                 waitUntil(timeout: 10)
@@ -319,7 +319,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.newGallery(data: data)
+                        _ = client.newGallery(data: data)
                         {
                             (gallery, error) -> (Void) in
                             expect(gallery).notTo(beNil())
@@ -347,7 +347,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getCreation(creationId: identifier, completion:
+                        _ = client.getCreation(creationId: identifier, completion:
                         {
                             (creation, error) -> (Void) in
                             expect(creation).notTo(beNil())
@@ -577,7 +577,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        client.getAllFinishedUploadSessionPublicData()
+                        _ = client.getAllFinishedUploadSessionPublicData()
                         done()
                     }
                 )}

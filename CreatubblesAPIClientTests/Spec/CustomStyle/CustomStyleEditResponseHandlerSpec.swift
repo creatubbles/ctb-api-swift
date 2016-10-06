@@ -24,9 +24,9 @@ class CustomStyleEditResponseHandlerSpec: QuickSpec
                 let data = CustomStyleEditData()
                 
                 data.headerBackgroundIndex = 3
-                data.headerColors = [UIColor.redColor()]
+                data.headerColors = [UIColor.red]
                 data.bodyBackgroundIndex = 1
-                data.bodyColors = [UIColor.blueColor()]
+                data.bodyColors = [UIColor.blue]
                 
                 let request = CustomStyleEditRequest(userIdentifier: identifier, data: data)
                 
@@ -34,11 +34,11 @@ class CustomStyleEditResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:CustomStyleEditResponseHandler()
+                        _ = sender.send(request, withResponseHandler:CustomStyleEditResponseHandler()
                         {
                             (customStyle, error) -> (Void) in
                             expect(customStyle).notTo(beNil())

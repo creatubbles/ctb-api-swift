@@ -19,7 +19,7 @@ class DeleteGroupRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = DeleteGroupRequest(identifier: "")
-                expect(request.method).to(equal(RequestMethod.DELETE))
+                expect(request.method).to(equal(RequestMethod.delete))
             }
             
             it("Should have proper endpoint")

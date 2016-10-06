@@ -19,7 +19,7 @@ class NewGroupRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = NewGroupRequest(data: NewGroupData(name: ""))
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper endpoint")
@@ -33,9 +33,9 @@ class NewGroupRequestSpec: QuickSpec
                 let data = NewGroupData(name: "TestGroupName", avatarCreationIdentifier: "TestAvatarIdentifier")                                
                 let request = NewGroupRequest(data: data)
                 
-                expect((request.parameters as NSDictionary).valueForKeyPath("data.type") as? String).to(equal("groups"))
-                expect((request.parameters as NSDictionary).valueForKeyPath("data.attributes.name") as? String).to(equal("TestGroupName"))
-                expect((request.parameters as NSDictionary).valueForKeyPath("data.relationships.avatar_creation.data.id") as? String).to(equal("TestAvatarIdentifier"))
+                expect((request.parameters as NSDictionary).value(forKeyPath: "data.type") as? String).to(equal("groups"))
+                expect((request.parameters as NSDictionary).value(forKeyPath: "data.attributes.name") as? String).to(equal("TestGroupName"))
+                expect((request.parameters as NSDictionary).value(forKeyPath: "data.relationships.avatar_creation.data.id") as? String).to(equal("TestAvatarIdentifier"))
             }
         }
     }

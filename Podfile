@@ -13,9 +13,8 @@ end
 
 target 'CreatubblesAPIClientTests' do
 
-pod 'Quick', '0.9.1'
-pod 'Nimble', '3.2.0'
-
+pod 'Quick', '~> 0.10.0'
+pod 'Nimble', '~> 5.0.0'
 end
 
 post_install do |installer|

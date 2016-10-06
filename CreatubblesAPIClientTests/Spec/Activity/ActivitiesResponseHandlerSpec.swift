@@ -23,7 +23,7 @@ class ActivitiesResponseHandlerSpec: QuickSpec {
                 
                 waitUntil(timeout: 10) { done in
                     
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password) { (error: ErrorType?) -> Void in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) { (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:ActivitiesResponseHandler() { (activities, pageInfo, error) -> (Void) in
                             expect(error).to(beNil())

@@ -19,14 +19,14 @@ class SwitchUsersResponseHandlerSpec: QuickSpec {
                 let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 10) { done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
-                        (error: ErrorType?) -> Void in
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         let page = 1
                         let pageCount = 10
-                        sender.send(SwitchUsersRequest(page: page, perPage: pageCount), withResponseHandler: SwitchUsersResponseHandler()
+                        _ = sender.send(SwitchUsersRequest(page: page, perPage: pageCount), withResponseHandler: SwitchUsersResponseHandler()
                             {
-                                (users: Array<User>?, pageInfo: PagingInfo?, error: ErrorType?) -> Void in
+                                (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                                 expect(error).to(beNil())
                                 expect(users).notTo(beNil())
                                 expect(pageInfo).notTo(beNil())

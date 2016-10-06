@@ -18,7 +18,7 @@ class ActivitiesRequestSpec: QuickSpec {
             
             it("Should have a proper method") {
                 let request = ActivitiesRequest(page: nil, perPage: nil)
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have a proper endpoint for activities source") {

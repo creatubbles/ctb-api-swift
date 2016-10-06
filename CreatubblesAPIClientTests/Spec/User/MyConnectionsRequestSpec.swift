@@ -35,7 +35,7 @@ class MyConnectionsRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = MyConnectionsRequest()
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have proper parameters set")
@@ -55,7 +55,7 @@ class MyConnectionsRequestSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(MyConnectionsRequest(page: nil, perPage: nil), withResponseHandler: DummyResponseHandler()
                         {
@@ -77,7 +77,7 @@ class MyConnectionsRequestSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(MyConnectionsRequest(page: nil, perPage: nil, userId: self.userId), withResponseHandler: DummyResponseHandler()
                         {

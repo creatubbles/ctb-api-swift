@@ -29,7 +29,7 @@ class DeleteAUserFollowingRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = deleteUserFollowingRequest
-                expect(request.method).to(equal(RequestMethod.DELETE))
+                expect(request.method).to(equal(RequestMethod.delete))
             }
         }
     }

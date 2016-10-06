@@ -24,12 +24,12 @@ class NewCreationResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         
-                        sender.send(NewCreationRequest(creationData: NewCreationData(image: UIImage(), uploadExtension: .JPEG)), withResponseHandler:NewCreationResponseHandler()
+                        sender.send(NewCreationRequest(creationData: NewCreationData(image: UIImage(), uploadExtension: .jpeg)), withResponseHandler:NewCreationResponseHandler()
                             {
-                                (creation: Creation?, error:ErrorType?) -> Void in
+                                (creation: Creation?, error:Error?) -> Void in
                                 expect(error).to(beNil())
                                 expect(creation).notTo(beNil())
                                 done()
@@ -45,9 +45,9 @@ class NewCreationResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.send(NewCreationRequest(creationData: NewCreationData(image:UIImage(), uploadExtension: .JPEG)), withResponseHandler:NewCreationResponseHandler()
+                    _ = sender.send(NewCreationRequest(creationData: NewCreationData(image:UIImage(), uploadExtension: .jpeg)), withResponseHandler:NewCreationResponseHandler()
                         {
-                            (creation: Creation?, error:ErrorType?) -> Void in
+                            (creation: Creation?, error:Error?) -> Void in
                             expect(error).notTo(beNil())
                             expect(creation).to(beNil())
                             done()

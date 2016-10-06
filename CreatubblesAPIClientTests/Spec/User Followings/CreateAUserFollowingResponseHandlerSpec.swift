@@ -28,11 +28,11 @@ class CreateAUserFollowingResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(createAUserFollowing, withResponseHandler:CreateAUserFollowingResponseHandler()
                         {
-                            (error: ErrorType?) -> Void in
+                            (error: Error?) -> Void in
                             expect(error).to(beNil())
                             done()
                         })
@@ -49,7 +49,7 @@ class CreateAUserFollowingResponseHandlerSpec: QuickSpec
                     done in
                     sender.send(createAUserFollowing, withResponseHandler:CreateAUserFollowingResponseHandler()
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).notTo(beNil())
                         done()
                     })

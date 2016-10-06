@@ -34,11 +34,11 @@ class CreateMultipleCreatorsResponseHandlerSpec: QuickSpec
 //                    done in
 //                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
 //                    {
-//                        (error: ErrorType?) -> Void in
+//                        (error: Error?) -> Void in
 //                        expect(error).to(beNil())
 //                        sender.send(multipleCreatorsRequest, withResponseHandler: CreateMultipleCreatorsResponseHandler()
 //                        {
-//                            (error: ErrorType?) -> Void in
+//                            (error: Error?) -> Void in
 //                            expect(error).to(beNil())
 //                            done()
 //                        })
@@ -55,7 +55,7 @@ class CreateMultipleCreatorsResponseHandlerSpec: QuickSpec
 //                    done in
 //                    sender.send(multipleCreatorsRequest, withResponseHandler: CreateMultipleCreatorsResponseHandler()
 //                    {
-//                        (error: ErrorType?) -> Void in
+//                        (error: Error?) -> Void in
 //                        expect(error).notTo(beNil())
 //                        done()
 //                    })

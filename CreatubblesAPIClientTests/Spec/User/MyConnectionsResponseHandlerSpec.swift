@@ -24,12 +24,12 @@ class MyConnectionsResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(MyConnectionsRequest(), withResponseHandler:
                             MyConnectionsResponseHandler()
                             {
-                                (users: Array<User>?,pageInfo: PagingInfo?, error: ErrorType?) -> Void in
+                                (users: Array<User>?,pageInfo: PagingInfo?, error: Error?) -> Void in
                                 expect(error).to(beNil())
                                 expect(users).notTo(beNil())
                                 expect(pageInfo).notTo(beNil())
@@ -49,7 +49,7 @@ class MyConnectionsResponseHandlerSpec: QuickSpec
                     sender.send(MyConnectionsRequest(), withResponseHandler:
                     MyConnectionsResponseHandler()
                         {
-                            (users: Array<User>?, pageInfo: PagingInfo?, error: ErrorType?) -> Void in
+                            (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                             expect(error).notTo(beNil())
                             expect(users).to(beNil())
                             expect(pageInfo).to(beNil())
@@ -72,7 +72,7 @@ class MyConnectionsResponseHandlerSpec: QuickSpec
                     sender.send(MyConnectionsRequest(page: page, perPage: perPage, userId: userId), withResponseHandler:
                         MyConnectionsResponseHandler()
                         {
-                            (users: Array<User>?, pageInfo: PagingInfo?, error: ErrorType?) -> Void in
+                            (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                             expect(error).notTo(beNil())
                             expect(users).to(beNil())
                             expect(pageInfo).to(beNil())
@@ -93,12 +93,12 @@ class MyConnectionsResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(MyConnectionsRequest(page: page, perPage: perPage, userId: userId), withResponseHandler:
                             MyConnectionsResponseHandler()
                             {
-                                (users: Array<User>?,pageInfo: PagingInfo?, error: ErrorType?) -> Void in
+                                (users: Array<User>?,pageInfo: PagingInfo?, error: Error?) -> Void in
                                 expect(error).to(beNil())
                                 expect(users).notTo(beNil())
                                 expect(pageInfo).notTo(beNil())

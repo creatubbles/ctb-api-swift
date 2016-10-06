@@ -108,6 +108,7 @@ class RequestSender: NSObject
     
     var authenticationToken: String? { return oauth2PrivateClient.accessToken }
     
+    @discardableResult
     func login(_ username: String, password: String, completion: ErrorClosure?) -> RequestHandler
     {
         oauth2PrivateClient.username = username
@@ -171,6 +172,7 @@ class RequestSender: NSObject
     }
     
     //MARK: - Request sending
+    @discardableResult
     func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
     {
         Logger.log.debug("Sending request: \(type(of: request))")

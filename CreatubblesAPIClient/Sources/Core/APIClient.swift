@@ -203,6 +203,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return requestSender.authenticationToken;
     }
     
+    @discardableResult
     open func login(username: String, password: String, completion:ErrorClosure?) -> RequestHandler
     {
         

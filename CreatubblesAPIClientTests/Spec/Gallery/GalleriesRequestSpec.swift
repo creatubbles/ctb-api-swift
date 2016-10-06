@@ -19,7 +19,7 @@ class GalleriesRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = GalleriesRequest(galleryId: "TestGalleryId")
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have proper endpoint for specified gallery")
@@ -31,21 +31,21 @@ class GalleriesRequestSpec: QuickSpec
             
             it("Should have proper endpoint for list of galleries")
             {
-                let request = GalleriesRequest(page: 1, perPage: 20, sort: .Recent, userId: nil)
+                let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, userId: nil)
                 expect(request.endpoint).to(equal("galleries"))
             }
             
             it("Should have proper endpoint for list of creation galleries")
             {
                 let id = "TestCreationId"
-                let request = GalleriesRequest(creationId: id, page: 1, perPage: 20, sort: .Recent)
+                let request = GalleriesRequest(creationId: id, page: 1, perPage: 20, sort: .recent)
                 expect(request.endpoint).to(equal("creations/\(id)/galleries"))
             }
             
             it("Should have proper endpoint for list of user galleries")
             {
                 let userId = "TestUserId"
-                let request = GalleriesRequest(page: 1, perPage: 20, sort: .Recent, userId: userId)
+                let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, userId: userId)
                 expect(request.endpoint).to(equal("users/\(userId)/galleries"))
             }
             
@@ -57,7 +57,7 @@ class GalleriesRequestSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(GalleriesRequest(galleryId: "NrLLiMVC"), withResponseHandler: DummyResponseHandler()
                             {
@@ -79,9 +79,9 @@ class GalleriesRequestSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(GalleriesRequest(page: 1, perPage: 20, sort: .Recent, userId: nil),
+                        sender.send(GalleriesRequest(page: 1, perPage: 20, sort: .recent, userId: nil),
                                     withResponseHandler: DummyResponseHandler()
                                         {
                                             (response, error) -> Void in

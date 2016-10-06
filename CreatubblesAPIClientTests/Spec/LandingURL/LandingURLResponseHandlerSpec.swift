@@ -22,11 +22,11 @@ class LandingURLResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(LandingURLRequest(type: nil), withResponseHandler:LandingURLResponseHandler()
+                        _ = sender.send(LandingURLRequest(type: nil), withResponseHandler:LandingURLResponseHandler()
                             {
                                 (landingUrls, error) -> (Void) in
                                 expect(error).to(beNil())
@@ -47,9 +47,9 @@ class LandingURLResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(LandingURLRequest(type: .Explore), withResponseHandler:LandingURLResponseHandler()
+                        sender.send(LandingURLRequest(type: .explore), withResponseHandler:LandingURLResponseHandler()
                             {
                                 (landingUrls, error) -> (Void) in
                                 expect(error).to(beNil())
@@ -71,7 +71,7 @@ class LandingURLResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(LandingURLRequest(creationId: "YNzO8Rmv"), withResponseHandler:LandingURLResponseHandler()
                             {
@@ -96,18 +96,20 @@ class LandingURLResponseHandlerSpec: QuickSpec
                 {
                     done in                    
                     //Have to wait for sender to login with Public Grant
-                    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
-                    dispatch_after(time, dispatch_get_main_queue(),
+
+                    let time: DispatchTime = DispatchTime.now() + Double(Int64(5 * Double(NSEC_PER_SEC)))
+
+                    DispatchQueue.main.asyncAfter(deadline: time, execute:
                     {
-                        sender.send(LandingURLRequest(type: .ForgotPassword), withResponseHandler:LandingURLResponseHandler()
-                        {
-                            (landingUrls, error) -> (Void) in
-                            expect(error).to(beNil())
-                            expect(landingUrls).notTo(beNil())
-                            expect(landingUrls).notTo(beEmpty())
-                            expect(landingUrls?.count).to(equal(1))
-                            sender.logout()
-                            done()
+                        sender.send(LandingURLRequest(type: .forgotPassword), withResponseHandler:LandingURLResponseHandler()
+                            {
+                                (landingUrls, error) -> (Void) in
+                                expect(error).to(beNil())
+                                expect(landingUrls).notTo(beNil())
+                                expect(landingUrls).notTo(beEmpty())
+                                expect(landingUrls?.count).to(equal(1))
+                                sender.logout()
+                                done()
                         })
                     })
                 }
