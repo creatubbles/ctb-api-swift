@@ -26,13 +26,13 @@ class DeleteAUserFollowingResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(deleteAUserFollowing, withResponseHandler:DeleteAUserFollowingResponseHandler()
+                        _ = sender.send(deleteAUserFollowing, withResponseHandler:DeleteAUserFollowingResponseHandler()
                         {
-                            (error: ErrorType?) -> Void in
+                            (error: Error?) -> Void in
                             expect(error).to(beNil())
                             done()
                         })
@@ -47,9 +47,9 @@ class DeleteAUserFollowingResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.send(deleteAUserFollowing, withResponseHandler:DeleteAUserFollowingResponseHandler()
+                    _ = sender.send(deleteAUserFollowing, withResponseHandler:DeleteAUserFollowingResponseHandler()
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).notTo(beNil())
                         done()
                     })

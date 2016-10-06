@@ -28,12 +28,12 @@ class UsersFollowedByAUserResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(UsersFollowedByAUserRequest(page: self.page, perPage: self.pageCount, userId: self.userId!) , withResponseHandler:
                             UsersFollowedByAUserResponseHandler()
                         {
-                            (users: Array<User>?,pageInfo: PagingInfo?, error: ErrorType?) -> Void in
+                            (users: Array<User>?,pageInfo: PagingInfo?, error: Error?) -> Void in
                             expect(error).to(beNil())
                             expect(users).notTo(beNil())
                             expect(pageInfo).notTo(beNil())
@@ -53,7 +53,7 @@ class UsersFollowedByAUserResponseHandlerSpec: QuickSpec
                     sender.send(UsersFollowedByAUserRequest(page: self.page, perPage: self.pageCount, userId: self.userId!) , withResponseHandler:
                         UsersFollowedByAUserResponseHandler()
                     {
-                        (users: Array<User>?, pageInfo: PagingInfo?, error: ErrorType?) -> Void in
+                        (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                         expect(error).notTo(beNil())
                         expect(users).to(beNil())
                         expect(pageInfo).to(beNil())

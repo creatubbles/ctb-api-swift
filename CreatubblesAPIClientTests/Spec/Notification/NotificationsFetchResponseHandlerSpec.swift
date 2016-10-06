@@ -25,7 +25,7 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.send(request, withResponseHandler:NotificationsFetchResponseHandler()
+                    _ = sender.send(request, withResponseHandler:NotificationsFetchResponseHandler()
                     {
                         (notifications, unreadNotificationsCount,  pInfo, error) -> (Void) in
                         expect(notifications).to(beNil())
@@ -44,11 +44,11 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:NotificationsFetchResponseHandler()
+                        _ = sender.send(request, withResponseHandler:NotificationsFetchResponseHandler()
                         {
                             (notifications, unreadNotificationsCount, pInfo, error) -> (Void) in
                             expect(notifications).notTo(beNil())

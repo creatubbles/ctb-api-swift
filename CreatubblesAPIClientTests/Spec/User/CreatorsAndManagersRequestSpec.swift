@@ -25,7 +25,7 @@ class CreatorsAndManagersRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = CreatorsAndManagersRequest()
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have proper parameters set")
@@ -51,7 +51,7 @@ class CreatorsAndManagersRequestSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(CreatorsAndManagersRequest(userId:nil, page: nil, perPage: nil, scope:.Managers), withResponseHandler: DummyResponseHandler()
                             {

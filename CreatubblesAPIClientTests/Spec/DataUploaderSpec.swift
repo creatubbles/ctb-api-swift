@@ -47,10 +47,10 @@ class DataUploaderSpec: QuickSpec
 //                    done in
 //                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
 //                    {
-//                        (error: ErrorType?) -> Void in
+//                        (error: Error?) -> Void in
 //                        session.start
 //                        {
-//                            (creation: Creation? ,error: ErrorType?) -> Void in
+//                            (creation: Creation? ,error: Error?) -> Void in
 //                            expect(creation).notTo(beNil())
 //                            expect(error).to(beNil())
 //                            done()
@@ -69,10 +69,10 @@ class DataUploaderSpec: QuickSpec
 //                    done in
 //                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
 //                    {
-//                        (error: ErrorType?) -> Void in
+//                        (error: Error?) -> Void in
 //                        session.start
 //                        {
-//                            (creation: Creation? ,error: ErrorType?) -> Void in
+//                            (creation: Creation? ,error: Error?) -> Void in
 //                            expect(creation).notTo(beNil())
 //                            expect(error).to(beNil())
 //                            done()
@@ -91,10 +91,10 @@ class DataUploaderSpec: QuickSpec
 //                    done in
 //                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
 //                    {
-//                        (error: ErrorType?) -> Void in
+//                        (error: Error?) -> Void in
 //                        session.start
 //                        {
-//                            (creation: Creation? ,error: ErrorType?) -> Void in
+//                            (creation: Creation? ,error: Error?) -> Void in
 //                            expect(creation).notTo(beNil())
 //                            expect(error).to(beNil())
 //                            done()
@@ -122,12 +122,12 @@ class DataUploaderSpec: QuickSpec
 //                        
 //                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
 //                    {
-//                        (error: ErrorType?) -> Void in
+//                        (error: Error?) -> Void in
 //                        for session in creationUploadSessions
 //                        {
 //                            session.start
 //                            {
-//                                (creation: Creation? ,error: ErrorType?) -> Void in
+//                                (creation: Creation? ,error: Error?) -> Void in
 //                                expect(creation).notTo(beNil())
 //                                expect(error).to(beNil())
 //                                done()

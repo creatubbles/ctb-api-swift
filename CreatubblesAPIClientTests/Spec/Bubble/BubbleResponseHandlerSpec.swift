@@ -51,7 +51,7 @@ class BubbleResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:NewBubbleResponseHandler()
                         {
@@ -101,7 +101,7 @@ class BubbleResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:UpdateBubbleResponseHandler()
                         {
@@ -129,7 +129,7 @@ class BubbleResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(BubblesFetchReqest(userId: TestConfiguration.testUserIdentifier!, page: nil, perPage: nil), withResponseHandler:BubblesFetchResponseHandler()
                         {

@@ -25,12 +25,12 @@ class NewCreationRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = NewCreationRequest()
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper parameters set")
             {
-                let data = NewCreationData(image: UIImage(), uploadExtension: .JPEG)
+                let data = NewCreationData(image: UIImage(), uploadExtension: .jpeg)
                 data.name = "TestCreationName"
                 data.creatorIds = ["TestCreationId1", "TestCreationId2"]
                 data.creationMonth = 1
@@ -42,7 +42,7 @@ class NewCreationRequestSpec: QuickSpec
                 let params = request.parameters
                 
                 expect(params["name"] as? String).to(equal(data.name))
-                expect(params["creator_ids"] as? String).to(equal(data.creatorIds?.joinWithSeparator(",")))
+                expect(params["creator_ids"] as? String).to(equal(data.creatorIds?.joined(separator: ",")))
                 expect(params["created_at_year"] as? Int).to(equal(data.creationYear))
                 expect(params["created_at_month"] as? Int).to(equal(data.creationMonth))
                 expect(params["reflection_text"] as? String).to(equal(data.reflectionText))
@@ -57,7 +57,7 @@ class NewCreationRequestSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(NewCreationRequest(), withResponseHandler: DummyResponseHandler()
                             {

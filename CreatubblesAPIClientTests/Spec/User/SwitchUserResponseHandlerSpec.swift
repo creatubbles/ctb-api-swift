@@ -24,7 +24,7 @@ class SwitchUserResponseHandlerSpec: QuickSpec {
                 
                 waitUntil(timeout: 10) { done in
                     sender.login(teacherUsername, password: teacherPassword) {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(SwitchUserRequest(targetUserId: studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler() {
                                 (accessToken, error) -> Void in

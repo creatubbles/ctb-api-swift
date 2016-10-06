@@ -24,11 +24,11 @@ class ProfileResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(ProfileRequest(), withResponseHandler:ProfileResponseHandler()
                         {
-                            (user: User?, error: ErrorType?) -> Void in
+                            (user: User?, error: Error?) -> Void in
                             expect(error).to(beNil())
                             expect(user).notTo(beNil())
                             done()
@@ -46,7 +46,7 @@ class ProfileResponseHandlerSpec: QuickSpec
                     done in
                     sender.send(ProfileRequest(), withResponseHandler:ProfileResponseHandler()
                     {
-                        (user: User?, error: ErrorType?) -> Void in
+                        (user: User?, error: Error?) -> Void in
                         expect(error).notTo(beNil())
                         expect(user).to(beNil())
                         done()

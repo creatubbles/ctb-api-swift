@@ -33,8 +33,9 @@ class CustomStyleFetchResponseHandlerSpec: QuickSpec
                 {
                     done in
                     //Have to wait for sender to login with Public Grant
-                    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
-                    dispatch_after(time, dispatch_get_main_queue(),
+                    let time: DispatchTime = DispatchTime.now() + Double(Int64(5 * Double(NSEC_PER_SEC)))
+                    
+                    DispatchQueue.main.asyncAfter(deadline: time, execute:
                    {
                         sender.send(request, withResponseHandler: CustomStyleFetchResponseHandler()
                         {

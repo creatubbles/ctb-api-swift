@@ -29,7 +29,7 @@ class CreateAUserFollowingRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = createUserFollowingRequest
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
         }
     }

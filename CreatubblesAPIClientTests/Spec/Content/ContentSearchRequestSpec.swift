@@ -20,7 +20,7 @@ class ContentSearchRequestSpec: QuickSpec
             it("Should have a proper method")
             {
                 let request = ContentSearchRequest(query: "hanaG", page: 1, perPage: 20)
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have a proper endpoint")

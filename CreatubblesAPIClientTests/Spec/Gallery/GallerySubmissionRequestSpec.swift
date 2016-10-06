@@ -19,7 +19,7 @@ class GallerySubmissionRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = GallerySubmissionRequest(galleryId: "12345", creationId: "12345")
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper endpoint")
@@ -45,7 +45,7 @@ class GallerySubmissionRequestSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(GallerySubmissionRequest(galleryId: "x3pUEOeZ", creationId: "OvM8Xmqj"), withResponseHandler: DummyResponseHandler()
                             {

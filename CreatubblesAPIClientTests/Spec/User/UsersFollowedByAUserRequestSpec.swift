@@ -29,7 +29,7 @@ class UsersFollowedByAUserRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = UsersFollowedByAUserRequest(userId: self.userId)
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have proper parameters set")

@@ -19,7 +19,7 @@ class FeaturedGalleriesRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = FeaturedGalleriesRequest(page: 1, perPage: 20)
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have proper endpoint for list of galleries")
@@ -36,7 +36,7 @@ class FeaturedGalleriesRequestSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(FeaturedGalleriesRequest(page: 1, perPage: 20),
                                     withResponseHandler: DummyResponseHandler()

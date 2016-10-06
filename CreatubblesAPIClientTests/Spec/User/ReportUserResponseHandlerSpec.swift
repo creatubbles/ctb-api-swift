@@ -22,7 +22,7 @@ class ReportUserResponseHandlerSpec: QuickSpec {
                 
                 waitUntil(timeout: 10) { done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password) {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(ReportUserRequest(userId: userIdentifier, message: "message"), withResponseHandler: ReportUserResponseHandler()
                             {

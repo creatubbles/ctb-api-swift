@@ -82,11 +82,11 @@ class TestRequestSender: RequestSender
         {
             return TestResponses.newCreatorTestResponse
         }
-        if request is GalleriesRequest && request.endpoint.containsString("/")
+        if request is GalleriesRequest && request.endpoint.contains("/")
         {
             return TestResponses.singleGalleryTestResponse
         }
-        if request is GalleriesRequest && !request.endpoint.containsString("/")
+        if request is GalleriesRequest && !request.endpoint.contains("/")
         {
             return TestResponses.galleriesTestResponse
         }

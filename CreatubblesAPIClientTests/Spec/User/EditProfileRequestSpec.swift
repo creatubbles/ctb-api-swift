@@ -19,7 +19,7 @@ class EditProfileRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = EditProfileRequest(identifier: "", data: EditProfileData())
-                expect(request.method).to(equal(RequestMethod.PUT))
+                expect(request.method).to(equal(RequestMethod.put))
             }
             
             it("Should have `users/IDENTIFIER/account` endpoint")

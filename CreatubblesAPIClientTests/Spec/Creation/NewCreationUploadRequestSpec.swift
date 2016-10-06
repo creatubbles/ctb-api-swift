@@ -19,7 +19,7 @@ class NewCreationUploadRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = NewCreationUploadRequest(creationId: "TestId")
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper endpoint")
@@ -34,7 +34,7 @@ class NewCreationUploadRequestSpec: QuickSpec
                 let defaultRequest = NewCreationUploadRequest(creationId: "TestId")
                 expect(defaultRequest.parameters["extension"]).to(beNil())
                 
-                let availableExtensions = [UploadExtension.PNG, .JPG, .JPEG, .H264, .MPEG4, .WMV, .WEBM, .FLV, .OGG, .OGV, .MP4, .M4V, .MOV]
+                let availableExtensions = [UploadExtension.png, UploadExtension.jpg, UploadExtension.jpeg, UploadExtension.h264, UploadExtension.mpeg4, UploadExtension.wmv, UploadExtension.webm, UploadExtension.flv, UploadExtension.ogg, UploadExtension.ogv, UploadExtension.mp4, UploadExtension.m4V, UploadExtension.mov]
                 for availableExtension in availableExtensions
                 {
                     let  request = NewCreationUploadRequest(creationId: "TestId", creationExtension: availableExtension)
@@ -50,7 +50,7 @@ class NewCreationUploadRequestSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(NewCreationUploadRequest(creationId: "QMH4I18k"), withResponseHandler: DummyResponseHandler()
                         {

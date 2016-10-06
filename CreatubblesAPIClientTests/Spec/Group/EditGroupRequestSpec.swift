@@ -19,7 +19,7 @@ class EditGroupRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = EditGroupRequest(identifier: "", data: EditGroupData())
-                expect(request.method).to(equal(RequestMethod.PUT))
+                expect(request.method).to(equal(RequestMethod.put))
             }
             
             it("Should have proper endpoint")
@@ -37,9 +37,9 @@ class EditGroupRequestSpec: QuickSpec
                 
                 let request = EditGroupRequest(identifier: "", data: data)
                 
-                expect((request.parameters as NSDictionary).valueForKeyPath("data.type") as? String).to(equal("groups"))
-                expect((request.parameters as NSDictionary).valueForKeyPath("data.attributes.name") as? String).to(equal("TestGroupName"))
-                expect((request.parameters as NSDictionary).valueForKeyPath("data.relationships.avatar_creation.data.id") as? String).to(equal("TestAvatarIdentifier"))
+                expect((request.parameters as NSDictionary).value(forKeyPath: "data.type") as? String).to(equal("groups"))
+                expect((request.parameters as NSDictionary).value(forKeyPath: "data.attributes.name") as? String).to(equal("TestGroupName"))
+                expect((request.parameters as NSDictionary).value(forKeyPath: "data.relationships.avatar_creation.data.id") as? String).to(equal("TestAvatarIdentifier"))
             }
         }
     }
