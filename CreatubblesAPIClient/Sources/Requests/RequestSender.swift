@@ -30,7 +30,7 @@ import p2_OAuth2
 class RequestSender: NSObject
 {
     fileprivate let uploadManager: Alamofire.SessionManager
-    fileprivate let alamofireManager: SessionManager
+    fileprivate var alamofireManager: SessionManager?
     fileprivate let settings: APIClientSettings
     fileprivate let oauth2PrivateClient: OAuth2PasswordGrant
     fileprivate let oauth2PublicClient: OAuth2ClientCredentials
@@ -94,10 +94,12 @@ class RequestSender: NSObject
         let client = OAuth2ClientCredentials(settings: oauthSettings)
         client.verbose = false
         client.authorize()
-        client.onFailure =
         {
-            (error: Error?) -> Void in
-            Logger.log.error("Cannot login as Public Client! Error: \(error)")
+            (oauthJson, error) in
+            if let error = error
+            {
+                Logger.log.error("Cannot login as Public Client! Error: \(error)")
+            }
         }
         return client
     }
@@ -178,12 +180,31 @@ class RequestSender: NSObject
     {
         Logger.log.debug("Sending request: \(type(of: request))")
         let headers: Dictionary<String, String>? = settings.locale == nil ? nil : ["Accept-Language" : settings.locale!]
-        
+
         let sessionManager = SessionManager()
-        sessionManager.retrier = OAuth2hand
-
-        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters: request.parameters, encoding: URLEncoding.default, headers: headers)
-
+        let retrier = OAuth2RetryHandler(oauth2: oauth2)
+        sessionManager.retrier = retrier
+        sessionManager.adapter = retrier
+        self.alamofireManager = sessionManager
+        
+        sessionManager.request(urlStringWithRequest(request), method: alamofireMethod(request.method), parameters: request.parameters, encoding:  URLEncoding.default, headers: headers).validate().response
+        {
+            response in
+            if let err = response.error
+            {
+                  Logger.log.error("Error while sending request:\(type(of: request)) \nError:\n \(err) \nResponse:\n \(response)")
+            }
+        }
+        .responseJSON
+        {
+            response -> Void in
+            DispatchQueue.global().async
+            {
+                handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)
+            }
+        }
+        
+        return RequestHandler(object: request as! Cancelable)
         
 //        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters, headers: headers)
 //            .responseString
