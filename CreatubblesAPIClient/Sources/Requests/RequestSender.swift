@@ -30,6 +30,7 @@ import p2_OAuth2
 class RequestSender: NSObject
 {
     fileprivate let uploadManager: Alamofire.SessionManager
+    fileprivate let alamofireManager: SessionManager
     fileprivate let settings: APIClientSettings
     fileprivate let oauth2PrivateClient: OAuth2PasswordGrant
     fileprivate let oauth2PublicClient: OAuth2ClientCredentials
@@ -178,11 +179,11 @@ class RequestSender: NSObject
         Logger.log.debug("Sending request: \(type(of: request))")
         let headers: Dictionary<String, String>? = settings.locale == nil ? nil : ["Accept-Language" : settings.locale!]
         
-        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters: request.parameters, encoding: URLEncoding.default, headers: headers).response
-        {
-            (response) -> Void in
-            
-        }
+        let sessionManager = SessionManager()
+        sessionManager.retrier = OAuth2hand
+
+        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters: request.parameters, encoding: URLEncoding.default, headers: headers)
+
         
 //        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters, headers: headers)
 //            .responseString
@@ -198,23 +199,23 @@ class RequestSender: NSObject
         
         
         
-        let request2 = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters: request.parameters, encoding: URLEncoding.default, headers: headers)
-        {
-            (response) -> Void in
-            if let err = response.result.error
-            {
-                Logger.log.error("Error while sending request:\(type(of: request)) \nError:\n \(err) \nResponse:\n \(response.result.value)")
-            }
-        }
-        .responseJSON
-        {
-            response -> Void in
-            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-            dispatch_async(dispatch_get_global_queue(priority, 0)) {
-                handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)
-            }
-        }
-        return RequestHandler(object: request)
+//        let request2 = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters: request.parameters, encoding: URLEncoding.default, headers: headers)
+//        {
+//            (response) -> Void in
+//            if let err = response.result.error
+//            {
+//                Logger.log.error("Error while sending request:\(type(of: request)) \nError:\n \(err) \nResponse:\n \(response.result.value)")
+//            }
+//        }
+//        .responseJSON
+//        {
+//            response -> Void in
+//            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+//            dispatch_async(dispatch_get_global_queue(priority, 0)) {
+//                handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)
+//            }
+//        }
+//        return RequestHandler(object: request)
     }
     
     //MARK: - Creation sending
