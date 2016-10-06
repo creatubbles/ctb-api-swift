@@ -13,7 +13,7 @@ class OAuth2RetryHandler: RequestRetrier, RequestAdapter {
     
     /// Intercept 401 and do an OAuth2 authorization.
     
-    func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion)
+    func should(_ manager: SessionManager, retry request: Alamofire.Request, with error: Error, completion: @escaping RequestRetryCompletion)
     {
         if let response = request.task?.response as? HTTPURLResponse, 401 == response.statusCode, let req = request.request {
             var dataRequest = OAuth2DataRequest(request: req, callback: { _ in })
@@ -27,8 +27,7 @@ class OAuth2RetryHandler: RequestRetrier, RequestAdapter {
                 }
             }
         }
-        else
-        {
+        else {
             completion(false, 0.0)   // not a 401, not our problem
         }
     }
