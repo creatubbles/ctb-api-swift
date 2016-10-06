@@ -33,7 +33,7 @@ extension OAuth2
         parameters: [String: AnyObject]? = nil,
         encoding: Alamofire.ParameterEncoding = URLEncoding.default,
         headers: [String: String]? = nil)
-        -> Alamofire.Request
+        -> Alamofire.DataRequest
     {
         
         var hdrs = headers ?? [:]
