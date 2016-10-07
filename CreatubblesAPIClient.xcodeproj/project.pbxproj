@@ -272,7 +272,6 @@
 		2110E04E1D742B3F00B62156 /* NameTranslationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2110E04D1D742B3F00B62156 /* NameTranslationObject.swift */; };
 		2110E0501D742C0E00B62156 /* NameTranslationObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2110E04F1D742C0E00B62156 /* NameTranslationObjectMapper.swift */; };
 		2110E0541D7465AE00B62156 /* NameTranslationObjectEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2110E0531D7465AE00B62156 /* NameTranslationObjectEntity.swift */; };
-		211219571D58BED90046FFD2 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211219561D58BED90046FFD2 /* TestConfiguration.swift */; };
 		2117F8C11D3520B800304D79 /* NotificationMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F8C01D3520B800304D79 /* NotificationMetadata.swift */; };
 		2117F8C31D3520CE00304D79 /* NotificationMetadataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F8C21D3520CE00304D79 /* NotificationMetadataMapper.swift */; };
 		212A12151D50DD74001BA35A /* PartnerApplicationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A12141D50DD74001BA35A /* PartnerApplicationRequest.swift */; };
@@ -309,6 +308,7 @@
 		2178B7351D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7331D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift */; };
 		2178B7361D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7341D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift */; };
 		217929C71DA3C667000959BF /* OAuth2RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217929C61DA3C667000959BF /* OAuth2RetryHandler.swift */; };
+		218A0D571DA71B3C006B6A16 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A0D561DA71B3C006B6A16 /* TestConfiguration.swift */; };
 		219121941D2D1F510039FA94 /* MyConnectionsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */; };
 		219121961D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */; };
 		21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F661C81E6A2009E95D1 /* PagingInfo.swift */; };
@@ -605,7 +605,6 @@
 		2110E04D1D742B3F00B62156 /* NameTranslationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTranslationObject.swift; sourceTree = "<group>"; };
 		2110E04F1D742C0E00B62156 /* NameTranslationObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTranslationObjectMapper.swift; sourceTree = "<group>"; };
 		2110E0531D7465AE00B62156 /* NameTranslationObjectEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTranslationObjectEntity.swift; sourceTree = "<group>"; };
-		211219561D58BED90046FFD2 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		2117F8C01D3520B800304D79 /* NotificationMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMetadata.swift; sourceTree = "<group>"; };
 		2117F8C21D3520CE00304D79 /* NotificationMetadataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMetadataMapper.swift; sourceTree = "<group>"; };
 		212A12141D50DD74001BA35A /* PartnerApplicationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerApplicationRequest.swift; sourceTree = "<group>"; };
@@ -642,6 +641,7 @@
 		2178B7331D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsRequestSpec.swift; sourceTree = "<group>"; };
 		2178B7341D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		217929C61DA3C667000959BF /* OAuth2RetryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2RetryHandler.swift; sourceTree = "<group>"; };
+		218A0D561DA71B3C006B6A16 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsRequestSpec.swift; sourceTree = "<group>"; };
 		219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		21A79F661C81E6A2009E95D1 /* PagingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfo.swift; sourceTree = "<group>"; };
@@ -900,7 +900,7 @@
 				187901F31C6B43FA008F5302 /* TestComponentsFactory.swift */,
 				187901FD1C6C793F008F5302 /* TestResponses.swift */,
 				18F9EDB01CAD051400B85DD6 /* TestRequestHandler.swift */,
-				211219561D58BED90046FFD2 /* TestConfiguration.swift */,
+				218A0D561DA71B3C006B6A16 /* TestConfiguration.swift */,
 			);
 			path = TestUtils;
 			sourceTree = "<group>";
@@ -1923,10 +1923,10 @@
 				18F6E8351D0216EE00AAC5FB /* ProfileResponseHandlerSpec.swift in Sources */,
 				0837859B1D379A7E006EF69E /* ReportCreationRequestSpec.swift in Sources */,
 				1859FABF1D39053D0023A6B6 /* NewGroupResponseHandlerSpec.swift in Sources */,
-				211219571D58BED90046FFD2 /* TestConfiguration.swift in Sources */,
 				1859FABB1D39053D0023A6B6 /* GroupResponseHandlerSpec.swift in Sources */,
 				18F6E81B1D02132000AAC5FB /* NewCreationRequestSpec.swift in Sources */,
 				2152795B1D3F797300B67313 /* CreateAUserFollowingRequestSpec.swift in Sources */,
+				218A0D571DA71B3C006B6A16 /* TestConfiguration.swift in Sources */,
 				18779DBE1C68DFCB000BFB57 /* DummyResponseHandler.swift in Sources */,
 				083785971D379A47006EF69E /* ReportCommentRequestSpec.swift in Sources */,
 				18F6E8231D02145600AAC5FB /* CreationPingRequestSpec.swift in Sources */,
