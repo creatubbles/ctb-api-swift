@@ -92,7 +92,7 @@ class LandingURLResponseHandlerSpec: QuickSpec
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 sender.logout()
                 
-                waitUntil(timeout: 15)
+                waitUntil(timeout: 30)
                 {
                     done in                    
                     //Have to wait for sender to login with Public Grant

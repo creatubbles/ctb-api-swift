@@ -58,14 +58,14 @@ open class APIClientError: Error
     open let detail: String
     open let domain: String
     
-    init(status: Int, code: String, title: String, source: String, detail: String, domain: String = APIClientError.DefaultDomain)
+    init(status: Int?, code: String?, title: String?, source: String?, detail: String?, domain: String? = APIClientError.DefaultDomain)
     {
-        self.status = status
-        self.code = code
-        self.title = title
-        self.source = source
-        self.detail = detail
-        self.domain = domain
+        self.status = status ?? APIClientError.DefaultStatus
+        self.code   = code   ?? APIClientError.DefaultCode
+        self.title  = title  ?? APIClientError.DefaultTitle
+        self.source = source ?? APIClientError.DefaultSource
+        self.detail = detail ?? APIClientError.DefaultDetail
+        self.domain = APIClientError.DefaultDomain
     }
     
     init(mapper: ErrorMapper)
