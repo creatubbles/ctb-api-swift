@@ -37,7 +37,8 @@ class ProfileResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let userMapper = Mapper<UserMapper>().map(JSON: response["data"] as! [String : Any])
+//            let userMapper = Mapper<UserMapper>().map(JSON: response["data"] as! [String : Any])
+            let userMapper = Mapper<UserMapper>().map(JSONObject: response["data"])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)

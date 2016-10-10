@@ -49,9 +49,22 @@ class ErrorTransformer
     static func errorsFromResponse(_ response: Dictionary<String, AnyObject>?) -> Array<APIClientError>
     {
         guard let response = response,
-            let mappers = Mapper<ErrorMapper>().mapArray(JSONObject: response["data"])
-        else  { return Array<APIClientError>() }
-        return mappers.map({ APIClientError(mapper: $0) })
+              let mappers = Mapper<ErrorMapper>().mapArray(JSONObject: response["data"])
+        else
+        {
+            return Array<APIClientError>()
+        }
+        var errorsArray = Array<APIClientError>()
+        for mapper in mappers
+        {
+            if mapper.status != nil || mapper.code != nil || mapper.title != nil || mapper.source != nil || mapper.detail != nil
+            {
+                errorsArray.append(APIClientError(status: mapper.status, code: mapper.code, title: mapper.title, source: mapper.source, detail: mapper.detail))
+            }
+        }
+        return errorsArray
+
+//        return mappers.map({ APIClientError(mapper: $0) })
     }
     
     static func errorFromNSError(_ error: NSError) -> APIClientError

@@ -44,7 +44,7 @@ class SwitchUserResponseHandlerSpec: QuickSpec {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 
-                waitUntil(timeout: 10) { done in
+                waitUntil(timeout: 30) { done in
                     sender.send(SwitchUserRequest(targetUserId: studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler() {
                             (accessToken, error) -> Void in
                             expect(error).notTo(beNil())
