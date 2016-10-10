@@ -32,7 +32,8 @@ class MappingUtils
     
     class func metadataFromResponse(_ response: Dictionary<String, AnyObject>) -> Metadata?
     {
-        let metadataMapper = Mapper<MetadataMapper>().map(JSON: response["meta"] as! [String : Any])
+        let metadataMapper = Mapper<MetadataMapper>().map(JSONObject: response["meta"])
+
         return ( metadataMapper != nil ) ? Metadata(mapper: metadataMapper!) : nil
     }
     
