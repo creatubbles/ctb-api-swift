@@ -21,7 +21,7 @@ class BubblesFetchResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let mappers = Mapper<BubbleMapper>().mapArray(JSONArray: response["data"] as! [[String : Any]])
+            let mappers = Mapper<BubbleMapper>().mapArray(JSONObject: response["data"])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
