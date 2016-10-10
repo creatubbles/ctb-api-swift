@@ -20,12 +20,12 @@ class GroupCreatorsResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         
         if  let response = response,
-            let usersMapper = Mapper<UserMapper>().mapArray(JSONArray: response["data"] as! [[String : Any]]) {
-            
+            let usersMappers = Mapper<UserMapper>().mapArray(JSONObject: response["data"])
+        {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let users = usersMapper.map({ User(mapper: $0, dataMapper: dataMapper, metadata: metadata)})
+            let users = usersMappers.map({ User(mapper: $0, dataMapper: dataMapper, metadata: metadata)})
             
             executeOnMainQueue { self.completion?(users, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
         } else {

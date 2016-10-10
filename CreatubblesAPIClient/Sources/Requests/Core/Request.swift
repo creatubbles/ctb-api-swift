@@ -29,7 +29,7 @@ enum RequestMethod
     case options, get, head, post, put, patch, delete, trace, connect
 }
 
-class Request: NSObject
+class Request: NSObject, Cancelable
 {
     var method: RequestMethod   { return .get }
     var endpoint: String        { return ""   }
@@ -42,5 +42,10 @@ class Request: NSObject
             case .popular:  return "popular"
             case .recent:   return "recent"
         }
+    }
+    
+    func cancel()
+    {
+        
     }
 }

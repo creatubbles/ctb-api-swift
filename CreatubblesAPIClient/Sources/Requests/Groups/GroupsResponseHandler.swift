@@ -21,9 +21,9 @@ class GroupsResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let mappers = Mapper<GroupMapper>().mapArray(JSONArray: response["data"] as! [[String : Any]])
+            let mappers = Mapper<GroupMapper>().mapArray(JSONObject: response["data"])
         {
-            let metadata = MappingUtils.metadataFromResponse(response)            
+            let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
             let objects    = mappers.map({ Group(mapper: $0, dataMapper: dataMapper) })
             

@@ -201,7 +201,7 @@ class RequestSender: NSObject
             }
         }
         
-        return RequestHandler(object: request as! Cancelable)
+        return RequestHandler(object: request as Cancelable)
         
 //        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters, headers: headers)
 //            .responseString

@@ -25,7 +25,7 @@ class ContentResponseHandler: ResponseHandler
         var invalidEntries: [ContentEntry] = []
         
         if  let response = response,
-            let mappers = Mapper<ContentEntryMapper>().mapArray(JSONArray: response["data"] as! [[String : Any]])
+            let mappers = Mapper<ContentEntryMapper>().mapArray(JSONObject: response["data"])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
