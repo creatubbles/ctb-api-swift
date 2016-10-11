@@ -35,25 +35,26 @@ class NotificationsViewTrackerResponseHandlerSpec: QuickSpec
                 }
             }
             
-            it("Should return error when user is not logged in")
+            it("Shouldn't return any errors when user is logged in")
             {
                 let request = NotificationsViewTrackerRequest()
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 
                 waitUntil(timeout: 10)
                 {
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password
-                    {
-                    
-                    })
-
                     done in
-                    sender.send(request, withResponseHandler:NotificationsViewTrackerResponseHandler()
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
-                        (error) in
-                        expect(error).notTo(beNil())
-                        done()
+                        error in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:NotificationsViewTrackerResponseHandler()
+                        {
+                            (error) in
+                            expect(error).to(beNil())
+                            done()
+                        })
                     })
+                }
             }
         }
     }

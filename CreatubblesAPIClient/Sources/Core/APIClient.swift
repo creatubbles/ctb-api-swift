@@ -676,6 +676,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return notificationDAO.markNotificationAsRead(notificationIdentifier: notificationId, completion: completion)
     }
     
+    public func trackWhenNotificationsWereViewed(completion: ErrorClosure?) -> RequestHandler
+    {
+        return notificationDAO.trackWhenNotificationsWereViewed(completion)
+    }
+    
     //MARK: - User Followings
     public func createUserFollowing(userId userId: String, completion: ErrorClosure?) -> RequestHandler
     {
