@@ -321,6 +321,10 @@
 		21BF68D81C91CDF600BBAB11 /* test.zip in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D61C91CDF600BBAB11 /* test.zip */; };
 		21BF68D91C91CDF600BBAB11 /* testVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */; };
 		21C349931C904B38002972EC /* NewCreationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C349921C904B38002972EC /* NewCreationData.swift */; };
+		21D068C21DAD13E2002B5019 /* NotificationsViewTrackerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D068C11DAD13E2002B5019 /* NotificationsViewTrackerRequest.swift */; };
+		21D068C41DAD13F4002B5019 /* NotificationsViewTrackerResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D068C31DAD13F4002B5019 /* NotificationsViewTrackerResponseHandler.swift */; };
+		21D068C61DAD1D21002B5019 /* NotificationsViewTrackerRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D068C51DAD1D21002B5019 /* NotificationsViewTrackerRequestSpec.swift */; };
+		21D068C81DAD1D39002B5019 /* NotificationsViewTrackerResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D068C71DAD1D39002B5019 /* NotificationsViewTrackerResponseHandlerSpec.swift */; };
 		62BA23C0E658DB9BC4E19F04 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93535D9A1F3F295F8E41E78C /* Pods_CreatubblesAPIClientTests.framework */; };
 		AE24365252B73EA065044586 /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E68E54E7B87A7F0BCCEBDB4 /* Pods_CreatubblesAPIClient.framework */; };
 /* End PBXBuildFile section */
@@ -654,6 +658,10 @@
 		21BF68D61C91CDF600BBAB11 /* test.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = test.zip; sourceTree = "<group>"; };
 		21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = testVideo.mp4; sourceTree = "<group>"; };
 		21C349921C904B38002972EC /* NewCreationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationData.swift; sourceTree = "<group>"; };
+		21D068C11DAD13E2002B5019 /* NotificationsViewTrackerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewTrackerRequest.swift; sourceTree = "<group>"; };
+		21D068C31DAD13F4002B5019 /* NotificationsViewTrackerResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewTrackerResponseHandler.swift; sourceTree = "<group>"; };
+		21D068C51DAD1D21002B5019 /* NotificationsViewTrackerRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewTrackerRequestSpec.swift; sourceTree = "<group>"; };
+		21D068C71DAD1D39002B5019 /* NotificationsViewTrackerResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewTrackerResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		639F1076C97C3A895DB14B27 /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		93535D9A1F3F295F8E41E78C /* Pods_CreatubblesAPIClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0BD2BF53DF0CFA95F54F0D3 /* Pods-CreatubblesAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.release.xcconfig"; sourceTree = "<group>"; };
@@ -1039,6 +1047,8 @@
 				18290AE81D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift */,
 				18290AF01D0704F0000EA216 /* NotificationReadRequestSpec.swift */,
 				18290AF61D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift */,
+				21D068C51DAD1D21002B5019 /* NotificationsViewTrackerRequestSpec.swift */,
+				21D068C71DAD1D39002B5019 /* NotificationsViewTrackerResponseHandlerSpec.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -1050,6 +1060,8 @@
 				18290AEA1D06D410000EA216 /* NotificationsFetchResponseHandler.swift */,
 				18290AF21D070551000EA216 /* NotificationReadRequest.swift */,
 				18290AF41D07071C000EA216 /* NotificationReadResponseHandler.swift */,
+				21D068C11DAD13E2002B5019 /* NotificationsViewTrackerRequest.swift */,
+				21D068C31DAD13F4002B5019 /* NotificationsViewTrackerResponseHandler.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -1699,6 +1711,7 @@
 				182A36C71D409602005E01DC /* UserAccountDetails.swift in Sources */,
 				18E6E8711CFF2F24008D7B89 /* Metadata.swift in Sources */,
 				18C1CFF91C75C4B000A02DE3 /* GalleryDAO.swift in Sources */,
+				21D068C41DAD13F4002B5019 /* NotificationsViewTrackerResponseHandler.swift in Sources */,
 				18366AA61D0591E200229D20 /* NotificationMapper.swift in Sources */,
 				1859FA951D3905180023A6B6 /* GroupDAO.swift in Sources */,
 				18F6E8881D021B6500AAC5FB /* UpdateBubbleRequest.swift in Sources */,
@@ -1772,6 +1785,7 @@
 				18F6E8A51D021B6500AAC5FB /* CreatorsAndManagersRequest.swift in Sources */,
 				2178B7321D3797840013C251 /* CreateMultipleCreatorsData.swift in Sources */,
 				1859FAAC1D39052F0023A6B6 /* NewGroupResponseHandler.swift in Sources */,
+				21D068C21DAD13E2002B5019 /* NotificationsViewTrackerRequest.swift in Sources */,
 				1859FAAA1D39052F0023A6B6 /* GroupsResponseHandler.swift in Sources */,
 				21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */,
 				215279771D464F2600B67313 /* ContentSearchResponseHandler.swift in Sources */,
@@ -1877,6 +1891,7 @@
 				219121961D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift in Sources */,
 				18F6E82D1D0215A400AAC5FB /* NewGalleryResponseHandlerSpec.swift in Sources */,
 				08A7B9761D361D14001D8461 /* SwitchUserRequestSpec.swift in Sources */,
+				21D068C81DAD1D39002B5019 /* NotificationsViewTrackerResponseHandlerSpec.swift in Sources */,
 				182FB8B61D1293AE004495CB /* EditProfileResponseHandlerSpec.swift in Sources */,
 				18290AF11D0704F0000EA216 /* NotificationReadRequestSpec.swift in Sources */,
 				18F6E8B81D0225F500AAC5FB /* CustomStyleFetchResponseHandlerSpec.swift in Sources */,
@@ -1909,6 +1924,7 @@
 				215279561D3F715400B67313 /* UsersFollowedByAUserRequestSpec.swift in Sources */,
 				215279581D3F742F00B67313 /* UsersFollowedByAUserResponseHandlerSpec.swift in Sources */,
 				18EFFF721C772A4E00BE0B70 /* RequestSenderSpec.swift in Sources */,
+				21D068C61DAD1D21002B5019 /* NotificationsViewTrackerRequestSpec.swift in Sources */,
 				212A12201D535345001BA35A /* PartnerApplicationResponseHandlerSpec.swift in Sources */,
 				08E693531D7CAF1B007A79B7 /* MyGalleriesRequestSpec.swift in Sources */,
 				18F6E82F1D0215BC00AAC5FB /* GallerySubmissionRequestSpec.swift in Sources */,
