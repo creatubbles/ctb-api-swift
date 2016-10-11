@@ -36,7 +36,7 @@ class NewGalleryResponseHandler: ResponseHandler
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if let response = response,
-           let mapper = Mapper<GalleryMapper>().map(JSON: response["data"] as! [String : Any])
+           let mapper = Mapper<GalleryMapper>().map(JSONObject: response["data"])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)                       
