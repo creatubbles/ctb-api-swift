@@ -321,6 +321,10 @@
 		21BF68D81C91CDF600BBAB11 /* test.zip in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D61C91CDF600BBAB11 /* test.zip */; };
 		21BF68D91C91CDF600BBAB11 /* testVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */; };
 		21C349931C904B38002972EC /* NewCreationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C349921C904B38002972EC /* NewCreationData.swift */; };
+		21D068BA1DACEB9A002B5019 /* RemoveCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D068B91DACEB9A002B5019 /* RemoveCreationRequest.swift */; };
+		21D068BC1DACEBAA002B5019 /* RemoveCreationResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D068BB1DACEBAA002B5019 /* RemoveCreationResponseHandler.swift */; };
+		21D068BE1DAD050E002B5019 /* RemoveCreationRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D068BD1DAD050E002B5019 /* RemoveCreationRequestSpec.swift */; };
+		21D068C01DAD053A002B5019 /* RemoveCreationResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D068BF1DAD053A002B5019 /* RemoveCreationResponseHandlerSpec.swift */; };
 		62BA23C0E658DB9BC4E19F04 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93535D9A1F3F295F8E41E78C /* Pods_CreatubblesAPIClientTests.framework */; };
 		AE24365252B73EA065044586 /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E68E54E7B87A7F0BCCEBDB4 /* Pods_CreatubblesAPIClient.framework */; };
 /* End PBXBuildFile section */
@@ -654,6 +658,10 @@
 		21BF68D61C91CDF600BBAB11 /* test.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = test.zip; sourceTree = "<group>"; };
 		21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = testVideo.mp4; sourceTree = "<group>"; };
 		21C349921C904B38002972EC /* NewCreationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationData.swift; sourceTree = "<group>"; };
+		21D068B91DACEB9A002B5019 /* RemoveCreationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveCreationRequest.swift; sourceTree = "<group>"; };
+		21D068BB1DACEBAA002B5019 /* RemoveCreationResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveCreationResponseHandler.swift; sourceTree = "<group>"; };
+		21D068BD1DAD050E002B5019 /* RemoveCreationRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveCreationRequestSpec.swift; sourceTree = "<group>"; };
+		21D068BF1DAD053A002B5019 /* RemoveCreationResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveCreationResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		639F1076C97C3A895DB14B27 /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		93535D9A1F3F295F8E41E78C /* Pods_CreatubblesAPIClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0BD2BF53DF0CFA95F54F0D3 /* Pods-CreatubblesAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.release.xcconfig"; sourceTree = "<group>"; };
@@ -1102,6 +1110,8 @@
 				1895D3661D11F0A3009B7271 /* EditCreationResponseHandlerSpec.swift */,
 				0837859A1D379A7E006EF69E /* ReportCreationRequestSpec.swift */,
 				0837859C1D379A8C006EF69E /* ReportCreationResponseHandlerSpec.swift */,
+				21D068BD1DAD050E002B5019 /* RemoveCreationRequestSpec.swift */,
+				21D068BF1DAD053A002B5019 /* RemoveCreationResponseHandlerSpec.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -1254,6 +1264,8 @@
 				1895D3681D11F204009B7271 /* EditCreationResponseHandler.swift */,
 				0837858A1D378A85006EF69E /* ReportCreationRequest.swift */,
 				0837858C1D378AAE006EF69E /* ReportCreationResponseHandler.swift */,
+				21D068B91DACEB9A002B5019 /* RemoveCreationRequest.swift */,
+				21D068BB1DACEBAA002B5019 /* RemoveCreationResponseHandler.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -1645,6 +1657,7 @@
 				08BBFE3C1D7EB27F005F1F11 /* FeaturedGalleriesBatchFetcher.swift in Sources */,
 				2110E0541D7465AE00B62156 /* NameTranslationObjectEntity.swift in Sources */,
 				18F6E8941D021B6500AAC5FB /* FetchCreationsResponseHandler.swift in Sources */,
+				21D068BA1DACEB9A002B5019 /* RemoveCreationRequest.swift in Sources */,
 				212A12171D50E37D001BA35A /* PartnerApplicationResponseHandler.swift in Sources */,
 				18F6E8A81D021B6500AAC5FB /* NewCreatorResponseHandler.swift in Sources */,
 				188BCEB01C64E19D00EA4F11 /* APIClientSettings.swift in Sources */,
@@ -1774,6 +1787,7 @@
 				1859FAAC1D39052F0023A6B6 /* NewGroupResponseHandler.swift in Sources */,
 				1859FAAA1D39052F0023A6B6 /* GroupsResponseHandler.swift in Sources */,
 				21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */,
+				21D068BC1DACEBAA002B5019 /* RemoveCreationResponseHandler.swift in Sources */,
 				215279771D464F2600B67313 /* ContentSearchResponseHandler.swift in Sources */,
 				18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */,
 				183635441CB5013900ED778A /* Relationship.swift in Sources */,
@@ -1847,6 +1861,7 @@
 				1859FABA1D39053D0023A6B6 /* EditGroupResponseHandlerSpec.swift in Sources */,
 				18F6E8421D02182A00AAC5FB /* LandingURLResponseHandlerSpec.swift in Sources */,
 				1895D3671D11F0A3009B7271 /* EditCreationResponseHandlerSpec.swift in Sources */,
+				21D068C01DAD053A002B5019 /* RemoveCreationResponseHandlerSpec.swift in Sources */,
 				18467F681D02ED98005CE5DD /* CustomStyleEditResponseHandlerSpec.swift in Sources */,
 				18F6E81D1D02132F00AAC5FB /* NewCreationResponseHandlerSpec.swift in Sources */,
 				18F6E8251D02146100AAC5FB /* CreationPingResponseHandlerSpec.swift in Sources */,
@@ -1913,6 +1928,7 @@
 				08E693531D7CAF1B007A79B7 /* MyGalleriesRequestSpec.swift in Sources */,
 				18F6E82F1D0215BC00AAC5FB /* GallerySubmissionRequestSpec.swift in Sources */,
 				0816F3AE1D587FD80026A40E /* SwitchUserResponseHandlerSpec.swift in Sources */,
+				21D068BE1DAD050E002B5019 /* RemoveCreationRequestSpec.swift in Sources */,
 				08BBFE3E1D7EB474005F1F11 /* FavoriteGalleriesRequestSpec.swift in Sources */,
 				18F6E8351D0216EE00AAC5FB /* ProfileResponseHandlerSpec.swift in Sources */,
 				0837859B1D379A7E006EF69E /* ReportCreationRequestSpec.swift in Sources */,
