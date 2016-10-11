@@ -36,5 +36,27 @@ class RemoveCreationResponseHandlerSpec: QuickSpec
                 }
             }
         }
+        it("Should return error when logged in and creation's name does not exist")
+        {
+            let creationId = "id"
+            let request = RemoveCreationRequest(creationId: creationId)
+            let sender = RequestSender(settings: TestConfiguration.settings)
+            
+            waitUntil(timeout: 10)
+            {
+                done in
+                sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                {
+                    (error: ErrorType?) -> Void in
+                    expect(error).to(beNil())
+                    sender.send(request, withResponseHandler:RemoveCreationResponseHandler()
+                    {
+                        (error: ErrorType?) -> Void in
+                        expect(error).notTo(beNil())
+                        done()
+                    })
+                }
+            }
+        }
     }
 }
