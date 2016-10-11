@@ -472,6 +472,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return creationsDAO.getCreationsInBatchMode(galleryIdentifier: galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic, completion: completion)
     }
     
+    public func removeCreation(creationId creationId: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        return creationsDAO.removeCreation(creationIdentifier: creationId, completion: completion)
+    }
+    
     //MARK: - Upload Sessions
     public func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
