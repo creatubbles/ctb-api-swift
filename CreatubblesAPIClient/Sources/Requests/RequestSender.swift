@@ -202,38 +202,6 @@ class RequestSender: NSObject
         }
         
         return RequestHandler(object: request as Cancelable)
-        
-//        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters, headers: headers)
-//            .responseString
-//            {
-//                (response) -> Void in
-//                if let err = response.result.error
-//                {
-//                      Logger.log.error("Error while sending request:\(request.dynamicType) \nError:\n \(err) \nResponse:\n \(response.result.value)")
-//                      Logger.log.error("Error while sending request:\(type(of: request)) \nError:\n \(err) \nResponse:\n \(response.result.value)")
-//                }
-//            }
-//            .responseJSON
-        
-        
-        
-//        let request2 = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters: request.parameters, encoding: URLEncoding.default, headers: headers)
-//        {
-//            (response) -> Void in
-//            if let err = response.result.error
-//            {
-//                Logger.log.error("Error while sending request:\(type(of: request)) \nError:\n \(err) \nResponse:\n \(response.result.value)")
-//            }
-//        }
-//        .responseJSON
-//        {
-//            response -> Void in
-//            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-//            dispatch_async(dispatch_get_global_queue(priority, 0)) {
-//                handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)
-//            }
-//        }
-//        return RequestHandler(object: request)
     }
     
     //MARK: - Creation sending

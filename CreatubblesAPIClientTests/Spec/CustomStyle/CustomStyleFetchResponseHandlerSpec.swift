@@ -29,7 +29,7 @@ class CustomStyleFetchResponseHandlerSpec: QuickSpec
                 let request = CustomStyleFetchRequest(userIdentifier: identifier)
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 
-                waitUntil(timeout: 30)
+                waitUntil(timeout: 35)
                 {
                     done in
                     //Have to wait for sender to login with Public Grant
