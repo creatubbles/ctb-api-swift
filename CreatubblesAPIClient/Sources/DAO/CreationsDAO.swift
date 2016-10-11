@@ -81,7 +81,7 @@ class CreationsDAO
     
     func removeCreation(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler
     {
-        let request =  RemoveCreationRequest(creationId: creationId)
+        let request = RemoveCreationRequest(creationId: creationId)
         let handler = RemoveCreationResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
