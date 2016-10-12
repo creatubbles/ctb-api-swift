@@ -97,9 +97,7 @@ class LandingURLResponseHandlerSpec: QuickSpec
                     done in                    
                     //Have to wait for sender to login with Public Grant
 
-                    let time: DispatchTime = DispatchTime.now() + Double(Int64(5 * Double(NSEC_PER_SEC)))
-
-                    DispatchQueue.main.asyncAfter(deadline: time, execute:
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute:
                     {
                         sender.send(LandingURLRequest(type: .forgotPassword), withResponseHandler:LandingURLResponseHandler()
                             {

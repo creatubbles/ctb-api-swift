@@ -60,13 +60,13 @@ class GalleriesRequestSpec: QuickSpec
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(GalleriesRequest(galleryId: "NrLLiMVC"), withResponseHandler: DummyResponseHandler()
-                            {
-                                (response, error) -> Void in
-                                expect(response).notTo(beNil())
-                                expect(error).to(beNil())
-                                sender.logout()
-                                done()
-                            })
+                        {
+                            (response, error) -> Void in
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
                     }
                 }
             }
@@ -83,13 +83,13 @@ class GalleriesRequestSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(GalleriesRequest(page: 1, perPage: 20, sort: .recent, userId: nil),
                                     withResponseHandler: DummyResponseHandler()
-                                        {
-                                            (response, error) -> Void in
-                                            expect(response).notTo(beNil())
-                                            expect(error).to(beNil())
-                                            sender.logout()
-                                            done()
-                            })
+                        {
+                            (response, error) -> Void in
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
                     }
                 }
             }

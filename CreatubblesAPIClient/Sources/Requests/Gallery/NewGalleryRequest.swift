@@ -48,7 +48,7 @@ class NewGalleryRequest: Request
         var params = Dictionary<String, AnyObject>()
         params["name"] = name as AnyObject?
         params["description"] = galleryDescription as AnyObject?
-        params["open_for_all"] = openForAll ? 1 as AnyObject? : 0 as AnyObject?
+        params["open_for_all"] = openForAll ? true as AnyObject? : false as AnyObject?
         
         if let ownerId = ownerId
         {

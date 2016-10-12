@@ -9,6 +9,7 @@
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
+import Alamofire
 
 class MyConnectionsRequestSpec: QuickSpec
 {
@@ -72,14 +73,14 @@ class MyConnectionsRequestSpec: QuickSpec
             it("Should return correct value after login for a different user")
             {
                 let sender = RequestSender(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 30)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(MyConnectionsRequest(page: nil, perPage: nil, userId: self.userId), withResponseHandler: DummyResponseHandler()
+                        sender.send(MyConnectionsRequest(page: nil, perPage: nil, userId: "qjR44g6U"), withResponseHandler: DummyResponseHandler()
                         {
                             (response, error) -> Void in
                             expect(response).notTo(beNil())

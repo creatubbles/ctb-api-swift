@@ -9,6 +9,8 @@
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
+import Alamofire
+
 
 class GallerySubmissionRequestSpec: QuickSpec
 {
@@ -37,24 +39,30 @@ class GallerySubmissionRequestSpec: QuickSpec
                 expect(request.parameters["creation_id"] as? String).to(equal(creationId))
             }
             
-            it("Should return correct value after login")
+            it("Should return a 422 error after logging in and trying to submit a duplicate creation to the gallery")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 30)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(GallerySubmissionRequest(galleryId: "x3pUEOeZ", creationId: "OvM8Xmqj"), withResponseHandler: DummyResponseHandler()
+                        sender.send(GallerySubmissionRequest(galleryId: "b4dcLMAk", creationId: "KnplgMmS"), withResponseHandler: DummyResponseHandler()
+                        {
+                            (response, error) -> Void in
+                            if let error = (error as? AFError)
                             {
-                                (response, error) -> Void in
-                                expect(response).notTo(beNil())
-                                expect(error).to(beNil())
-                                sender.logout()
-                                done()
-                            })
+                                expect(error.responseCode).to(equal(422))
+                            }
+                            else
+                            {
+                                fail("Did not receive an expected AFError")
+                            }
+                            sender.logout()
+                            done()
+                        })
                     }
                 }
             }

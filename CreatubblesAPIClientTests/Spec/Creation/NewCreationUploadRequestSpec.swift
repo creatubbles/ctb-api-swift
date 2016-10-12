@@ -45,14 +45,14 @@ class NewCreationUploadRequestSpec: QuickSpec
             it("Should return correct value after login")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 30)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(NewCreationUploadRequest(creationId: "QMH4I18k"), withResponseHandler: DummyResponseHandler()
+                        sender.send(NewCreationUploadRequest(creationId: "hkwIetSk"), withResponseHandler: DummyResponseHandler()
                         {
                             (response, error) -> Void in
                             expect(response).notTo(beNil())
