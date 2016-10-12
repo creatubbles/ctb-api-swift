@@ -9,6 +9,7 @@
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
+import Alamofire
 
 class NewCreationUploadResponseHandlerSpec: QuickSpec
 {
@@ -26,7 +27,7 @@ class NewCreationUploadResponseHandlerSpec: QuickSpec
                     {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(NewCreationUploadRequest(creationId: "TestCreation"), withResponseHandler:NewCreationUploadResponseHandler()
+                        sender.send(NewCreationUploadRequest(creationId: "hkwIetSk"), withResponseHandler:NewCreationUploadResponseHandler()
                         {
                             (creationUpload: CreationUpload?, error:Error?) -> Void in
                             expect(error).to(beNil())

@@ -83,7 +83,7 @@ open class Creation: NSObject, Identifiable
     init(mapper: CreationMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
-        name = mapper.name!
+        name = mapper.name ?? "Untitled"
         
         if let translatedNamesMappers = mapper.translatedNamesMap
         {

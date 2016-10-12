@@ -29,14 +29,13 @@ class CustomStyleFetchResponseHandlerSpec: QuickSpec
                 let request = CustomStyleFetchRequest(userIdentifier: identifier)
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 
-                waitUntil(timeout: 35)
+                waitUntil(timeout: 30)
                 {
                     done in
                     //Have to wait for sender to login with Public Grant
-                    let time: DispatchTime = DispatchTime.now() + Double(Int64(5 * Double(NSEC_PER_SEC)))
                     
-                    DispatchQueue.main.asyncAfter(deadline: time, execute:
-                   {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute:
+                    {
                         sender.send(request, withResponseHandler: CustomStyleFetchResponseHandler()
                         {
                             (style: CustomStyle?, error: APIClientError?) -> Void in
