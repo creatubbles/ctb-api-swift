@@ -79,6 +79,14 @@ class CreationsDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func removeCreation(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        let request =  RemoveCreationRequest(creationId: creationId)
+        let handler = RemoveCreationResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+
+    
     //MARK: BatchMode
     func getCreationsInBatchMode(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
     {

@@ -473,6 +473,12 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return creationsDAO.getCreationsInBatchMode(galleryIdentifier: galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic, completion: completion)
     }
     
+    public func removeCreation(creationId: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        return creationsDAO.removeCreation(creationIdentifier: creationId, completion: completion)
+    }
+
+    
     //MARK: - Upload Sessions
     open func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
@@ -677,6 +683,11 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return notificationDAO.markNotificationAsRead(notificationIdentifier: notificationId, completion: completion)
     }
     
+    open func trackWhenNotificationsWereViewed(completion: ErrorClosure?) -> RequestHandler
+    {
+        return notificationDAO.trackWhenNotificationsWereViewed(completion: completion)
+    }
+
     //MARK: - User Followings
     open func createUserFollowing(userId: String, completion: ErrorClosure?) -> RequestHandler
     {
