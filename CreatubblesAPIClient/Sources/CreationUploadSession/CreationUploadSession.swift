@@ -193,19 +193,36 @@ class CreationUploadSession: NSObject, Cancelable
             completion(nil)
             return
         }
-        let request = NewCreationRequest(creationData: creationData)
-        let handler = NewCreationResponseHandler
-            {
-                [weak self](creation, error) -> Void in
-                if let weakSelf = self,
-                    let creation = creation
+        
+        if let creationIdentifier = creationData.creationIdentifier {
+            let request = FetchCreationsRequest(creationId: creationIdentifier)
+            let handler = FetchCreationsResponseHandler
                 {
-                    weakSelf.creation = creation
-                    weakSelf.state = .CreationAllocated
-                }
-                completion(error)
+                    [weak self]  (creations, pageInfo, error) -> (Void) in
+                    if let strongSelf = self,
+                        let creation = creations?.first
+                    {
+                        strongSelf.creation = creation
+                        strongSelf.state = .CreationAllocated
+                    }
+                    completion(error)
+            }
+            currentRequest = requestSender.send(request, withResponseHandler: handler)
+        } else {
+            let request = NewCreationRequest(creationData: creationData)
+            let handler = NewCreationResponseHandler
+                {
+                    [weak self] (creation, error) -> Void in
+                    if let strongSelf = self,
+                        let creation = creation
+                    {
+                        strongSelf.creation = creation
+                        strongSelf.state = .CreationAllocated
+                    }
+                    completion(error)
+            }
+            currentRequest = requestSender.send(request, withResponseHandler: handler)
         }
-        currentRequest = requestSender.send(request, withResponseHandler: handler)
     }
     
     private func obtainUploadPath(error: ErrorType?, completion: (ErrorType?) -> Void)
