@@ -308,6 +308,10 @@
 		2178B7321D3797840013C251 /* CreateMultipleCreatorsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */; };
 		2178B7351D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7331D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift */; };
 		2178B7361D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7341D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift */; };
+		217C88371DBE2A2C00E1B6E0 /* NotificationsViewTrackerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217C88351DBE2A2C00E1B6E0 /* NotificationsViewTrackerRequest.swift */; };
+		217C88381DBE2A2C00E1B6E0 /* NotificationsViewTrackerResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217C88361DBE2A2C00E1B6E0 /* NotificationsViewTrackerResponseHandler.swift */; };
+		217C883B1DBE2A4200E1B6E0 /* NotificationsViewTrackerRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217C88391DBE2A4200E1B6E0 /* NotificationsViewTrackerRequestSpec.swift */; };
+		217C883C1DBE2A4200E1B6E0 /* NotificationsViewTrackerResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217C883A1DBE2A4200E1B6E0 /* NotificationsViewTrackerResponseHandlerSpec.swift */; };
 		219121941D2D1F510039FA94 /* MyConnectionsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */; };
 		219121961D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */; };
 		21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F661C81E6A2009E95D1 /* PagingInfo.swift */; };
@@ -645,6 +649,10 @@
 		2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsData.swift; sourceTree = "<group>"; };
 		2178B7331D37CE4E0013C251 /* CreateMultipleCreatorsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsRequestSpec.swift; sourceTree = "<group>"; };
 		2178B7341D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		217C88351DBE2A2C00E1B6E0 /* NotificationsViewTrackerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewTrackerRequest.swift; sourceTree = "<group>"; };
+		217C88361DBE2A2C00E1B6E0 /* NotificationsViewTrackerResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewTrackerResponseHandler.swift; sourceTree = "<group>"; };
+		217C88391DBE2A4200E1B6E0 /* NotificationsViewTrackerRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewTrackerRequestSpec.swift; sourceTree = "<group>"; };
+		217C883A1DBE2A4200E1B6E0 /* NotificationsViewTrackerResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewTrackerResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsRequestSpec.swift; sourceTree = "<group>"; };
 		219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		21A79F661C81E6A2009E95D1 /* PagingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfo.swift; sourceTree = "<group>"; };
@@ -1047,6 +1055,8 @@
 				18290AE81D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift */,
 				18290AF01D0704F0000EA216 /* NotificationReadRequestSpec.swift */,
 				18290AF61D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift */,
+				217C88391DBE2A4200E1B6E0 /* NotificationsViewTrackerRequestSpec.swift */,
+				217C883A1DBE2A4200E1B6E0 /* NotificationsViewTrackerResponseHandlerSpec.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -1058,6 +1068,8 @@
 				18290AEA1D06D410000EA216 /* NotificationsFetchResponseHandler.swift */,
 				18290AF21D070551000EA216 /* NotificationReadRequest.swift */,
 				18290AF41D07071C000EA216 /* NotificationReadResponseHandler.swift */,
+				217C88351DBE2A2C00E1B6E0 /* NotificationsViewTrackerRequest.swift */,
+				217C88361DBE2A2C00E1B6E0 /* NotificationsViewTrackerResponseHandler.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -1813,6 +1825,7 @@
 				181E76EC1CC547C000A1546A /* CommentsDAO.swift in Sources */,
 				18E9D1911D117F58006F2BAB /* EditCreationData.swift in Sources */,
 				1859FAA41D39052F0023A6B6 /* DeleteGroupRequest.swift in Sources */,
+				217C88371DBE2A2C00E1B6E0 /* NotificationsViewTrackerRequest.swift in Sources */,
 				189D9F5E1C84B36100857CC6 /* ErrorMapper.swift in Sources */,
 				0816F3AA1D587CEB0026A40E /* SwitchUsersResponseHandler.swift in Sources */,
 				0801353B1D353FF90054DAB0 /* SwitchUserResponseHandler.swift in Sources */,
@@ -1826,6 +1839,7 @@
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,
 				1859FA981D3905210023A6B6 /* EditGroupData.swift in Sources */,
 				08E6FEF81D796F3200DCAB61 /* GroupUsersBatchFetcher.swift in Sources */,
+				217C88381DBE2A2C00E1B6E0 /* NotificationsViewTrackerResponseHandler.swift in Sources */,
 				18C744FC1C84611600A07E4C /* CreationUploadEntity.swift in Sources */,
 				183728EE1CEDD1AC008784C7 /* ContentDAO.swift in Sources */,
 				21A79F6F1C81E6C5009E95D1 /* BatchFetcher.swift in Sources */,
@@ -1875,6 +1889,7 @@
 				2152795D1D3F7B8D00B67313 /* CreateAUserFollowingResponseHandlerSpec.swift in Sources */,
 				18F6E8501D0219FB00AAC5FB /* CommentsResponseHandlerSpec.swift in Sources */,
 				18F6E84C1D0219D500AAC5FB /* NewCommentRequestSpec.swift in Sources */,
+				217C883B1DBE2A4200E1B6E0 /* NotificationsViewTrackerRequestSpec.swift in Sources */,
 				212A12261D5360B0001BA35A /* PartnerApplicationsSearchRequestSpec.swift in Sources */,
 				08F580791D3F9DA700EDCEE2 /* UpdateGalleryResponseHandlerSpec.swift in Sources */,
 				1859FABC1D39053D0023A6B6 /* GroupsRequestSpec.swift in Sources */,
@@ -1907,6 +1922,7 @@
 				212A12281D536A3C001BA35A /* PartnerApplicationsSearchResponseHandlerSpec.swift in Sources */,
 				1859FAB91D39053D0023A6B6 /* EditGroupRequestSpec.swift in Sources */,
 				182A36CB1D40A124005E01DC /* UserAccoundDetailsResponseHandlerSpec.swift in Sources */,
+				217C883C1DBE2A4200E1B6E0 /* NotificationsViewTrackerResponseHandlerSpec.swift in Sources */,
 				182FB8B41D128F65004495CB /* EditProfileRequestSpec.swift in Sources */,
 				215279791D46513200B67313 /* ContentSearchRequestSpec.swift in Sources */,
 				08AC6A6B1D425DEC004A35C3 /* ActivitiesResponseHandlerSpec.swift in Sources */,

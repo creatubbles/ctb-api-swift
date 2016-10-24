@@ -30,4 +30,11 @@ class NotificationDAO: NSObject
         let handler = NotificationReadResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func trackWhenNotificationsWereViewed(completion: ErrorClosure?) -> RequestHandler
+    {
+        let request = NotificationsViewTrackerRequest()
+        let handler = NotificationsViewTrackerResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 }
