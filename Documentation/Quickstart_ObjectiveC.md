@@ -1,4 +1,4 @@
-#Quickstart
+# Objective-C Quickstart
 - Initialization
 - Login
 - Fetching Creators
@@ -6,48 +6,46 @@
 - Fetching landing URLs
 - Uploading creation
 
-# Swift
 ### Initialization
 To initialize APIClient, first you have to import CreatubblesAPIClient framework:
-```Swift
-import CreatubblesAPIClient
+
+```ObjectiveC
+@import CreatubblesAPIClient;
 ```
 Then, you can create `APIClientSettings` object. You will need OAuth application id and secret (please contact us to obtain your own keys).
 There are two servers which are available for our partners: production and staging, but you can use same OAuth keys for communicating them.
-```Swift
-let productionSettings = APIClientSettings(appId: "YOUR_APP_ID",
-                                           appSecret: "YOUR_APP_SECRET",
-                                           backgroundSessionConfigurationIdentifier:"BACKGROUND_SESSION_IDENTIFIER" //Optional pass it to support background uploads.
-                                           )
+```ObjectiveC
+APIClientSettings *productionSettings = [[APIClientSettings alloc] initWithAppId:@"YOUR_APP_ID"
+                                                                       appSecret:@"YOUR_APP_SECRET"
+                                        backgroundSessionConfigurationIdentifier:@"BACKGROUND_SESSION_IDENTIFIER"];
 ```
-Connecting to staging server requires some more detailed information:
 
-```Swift
-let stagingSettings = APIClientSettings(appId: "YOUR_APP_ID",
-                                        appSecret: "YOUR_APP_SECRET"",
-                                        tokenUri: "https://api.creatubbles.com/v2/oauth/token",
-                                        authorizeUri: "https://api.creatubbles.com/v2/oauth/token",
-                                        baseUrl: "https://api.creatubbles.com",
-                                        apiVersion: "v2",
-                                        locale: "en",   //Optional, see https://partners.creatubbles.com/api/#locales for supported locales
-                                        backgroundSessionConfigurationIdentifier:"BACKGROUND_SESSION_IDENTIFIER"  //Optional
-                                        )
+Connecting to staging server requires some more detailed information:
+```ObjectiveC
+APIClientSettings *settings = [[APIClientSettings alloc] initWithAppId:@"YOUR_APP_ID"
+                                                            appSecret:@"YOUR_APP_SECRET"
+                                                             tokenUri:@"https://api.staging.creatubbles.com/v2/oauth/token"
+                                                         authorizeUri:@"https://api.staging.creatubbles.com/v2/oauth/token"
+                                                              baseUrl:@"https://api.staging.creatubbles.com"
+                                                           apiVersion:@"v2"
+                             backgroundSessionConfigurationIdentifier:@"BACKGROUND_SESSION_IDENTIFIER"];    
 ```
 With ready `APIClientSettings` instance, you can create `APIClient` object:
-```Swift
-let settings = APIClientSettings(...)
-let client = APIClient(settings: settings)
+```ObjectiveC
+APIClientSettings *settings = [][APIClientSettings alloc] initWithAppId...];
+APIClient *client = [[APIClient alloc] initWithSettings:settings];
 ```
+
 ### Login
-```Swift
-client.login("username", password: "password")
+```ObjectiveC
+[client _login:@"username" password:@"password" completion:
+^(NSError* error)
 {
-  (error) -> (Void) in
-  if error != nil
-  {
-    print("Wohoo! We're authorized!")
-  }
-}
+ if(!error)
+ {
+   NSLog(@"Wohoo! We're authorized from Objective-C code!");
+ }
+}];
 ```
 
 ### Fetching creators
