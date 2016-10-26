@@ -12,7 +12,6 @@ Please note, that library is still under heavy development, and interface may be
 ## Author
 [Creatubbles](https://www.creatubbles.com/)
 
-
 ## Dependencies
 - [Alamofire](https://github.com/Alamofire/Alamofire)
 - [OAuth2](https://github.com/p2/OAuth2)
@@ -31,6 +30,13 @@ use_frameworks!
 
 pod 'CreatubblesAPIClient'
 ```
+or to use development version:
+```Ruby
+ pod 'CreatubblesAPIClient', :git => 'https://github.com/creatubbles/ctb-api-swift.git', :branch => 'develop'
+```
+
+## Available Operations
+See [Available Operations](AvailableOperations.md) for a list of supported endpoints in APIClient, with more detailed examples of usage.
 
 ## Usage (Swift)
 ```Swift
@@ -65,7 +71,7 @@ APIClient *client = [[APIClient alloc] initWithSettings:settings];
   }
 }];
 ```
-### Objective-C API Client
+## Objective-C API Client
 Feel free to use our own CTAPIClient wrapper for your Objective-C projects. You can check it out [here](https://github.com/creatubbles/ctb-api-swift/tree/develop/ObjectiveC_APIClient)
 
 ## Contact
