@@ -7,12 +7,12 @@
 - Uploading creation
 
 ### Initialization
-To initialize APIClient, first you have to import CreatubblesAPIClient framework:
+To initialize the APIClient, first you have to import CreatubblesAPIClient framework:
 ```Swift
 import CreatubblesAPIClient
 ```
-Then, you can create `APIClientSettings` object. You will need OAuth application id and secret (please contact us to obtain your own keys).
-There are two servers which are available for our partners: production and staging, but you can use same OAuth keys for communicating them.
+Then, you can create the `APIClientSettings` object. You will need the OAuth application's id and secret (please contact us to obtain your own keys).
+There are two servers which are available for our partners: production and staging, but you can use the same OAuth keys to communicate with both of them.
 ```Swift
 let productionSettings = APIClientSettings(appId: "YOUR_APP_ID",
                                            appSecret: "YOUR_APP_SECRET",
@@ -32,7 +32,7 @@ let stagingSettings = APIClientSettings(appId: "YOUR_APP_ID",
                                         backgroundSessionConfigurationIdentifier:"BACKGROUND_SESSION_IDENTIFIER"  //Optional
                                         )
 ```
-With ready `APIClientSettings` instance, you can create `APIClient` object:
+With a prepared `APIClientSettings` instance, you can create an `APIClient` object:
 ```Swift
 let settings = APIClientSettings(...)
 let client = APIClient(settings: settings)
@@ -50,7 +50,7 @@ client.login("username", password: "password")
 ```
 
 ### Fetching creators
-To fetch creators of a user, use a `getCreators(...)` method:
+To fetch user’s creators, use the `getCreators(...)` method:
 ```Swift
 public func getCreators(userId userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
 ```
@@ -60,7 +60,7 @@ or fetch them in batch mode (which may take some time):
 public func getCreatorsInBatchMode(userId userId: String?, completion: UsersBatchClosure?) -> RequestHandler
 ```
 
-If you pass `nil` as a userId, creators of currently logged in user will be returned.
+If you pass the userId as `nil`, creators of currently logged in user will be returned.
 
 ### Fetching galleries
 To fetch galleries by user, use `getGalleries(userId ...)` method.
@@ -71,7 +71,7 @@ Or in batch mode
 ```Swift
 func getGalleriesInBatchMode(userIdentifier userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
 ```
-In completion closure you will receive galleries owned by selected user. If you pass `nil` as a userId, you will receive galleries of currently logged in user.
+In completion closure you will receive galleries owned by the selected user. If you pass `nil` as a userId, you will receive galleries of the currently logged in user.
 
 ### Fetching landing URLs
 We're supporting fetching landing urls for:
@@ -97,7 +97,7 @@ public func getLandingURL(type type: LandingURLType?, completion: LandingURLClos
 ```
 
 ### Uploading creation
-To upload creation, create `NewCreationData` object. You can create it with binary blob (`NSData`), image (`UIImage`), or URL to local file (`NSURL`). Also you have to specify type (extension) of uploaded creation. We're supporting following extensions:
+To upload a creation, create `NewCreationData` object. You can create it with binary blob (`NSData`), image (`UIImage`), or URL to local file (`NSURL`). Also you have to specify type (extension) of uploaded creation. We're supporting following extensions:
 - PNG
 - JPG
 - JPEG
@@ -127,7 +127,7 @@ let creationData = NewCreationData(data: data, uploadExtension: .MP4)
 let path = NSBundle.mainBundle().URLForResource("demo", withExtension: "mp4")!
 let creationData = NewCreationData(path: path, uploadExtension: .MP4)
 ```
-On `NewCreationData` object you can set:
+In `NewCreationData` object you can set:
 - name
 - reflection text
 - reflection video url
@@ -147,7 +147,7 @@ creationData.creationYear = 2015
 creationData.creationMonth = 10
 ```
 
-And on this point you should be ready to upload creation.
+At this point you should be ready to upload creation.
 ```Swift
 apiClient.newCreation(data: creationData)
 {
