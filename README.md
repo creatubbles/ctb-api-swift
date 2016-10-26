@@ -38,13 +38,39 @@ or to use development version:
 ## Available Operations
 See [Available Operations](AvailableOperations.md) for a list of supported endpoints in APIClient, with more detailed examples of usage.
 
-## Usage (Swift)
+## Initialization (Swift)
+To initialize APIClient, first you have to import CreatubblesAPIClient framework:
 ```Swift
 import CreatubblesAPIClient
+```
+Then, you can create `APIClientSettings` object. You will need OAuth application id and secret (please contact us for your own keys).
+There are two servers which are available for our partners: production and staging, but you can use same OAuth keys for communicating them.
+```Swift
+let productionSettings = APIClientSettings(appId: "YOUR_APP_ID",
+                                           appSecret: "YOUR_APP_SECRET",
+                                           backgroundSessionConfigurationIdentifier:"BACKGROUND_SESSION_IDENTIFIER" //Optional pass it to support background uploads.
+                                           )
+```
+Connecting to staging server requires some more detailed information:
 
-let settings = APIClientSettings(appId: "YOUR_APP_ID", appSecret: "YOUR_APP_SECRET")
+```Swift
+let stagingSettings = APIClientSettings(appId: "YOUR_APP_ID",
+                                        appSecret: "YOUR_APP_SECRET"",
+                                        tokenUri: "https://api.creatubbles.com/v2/oauth/token",
+                                        authorizeUri: "https://api.creatubbles.com/v2/oauth/token",
+                                        baseUrl: "https://api.creatubbles.com",
+                                        apiVersion: "v2",
+                                        locale: "en",   //Optional, see https://partners.creatubbles.com/api/#locales for supported locales
+                                        backgroundSessionConfigurationIdentifier:"BACKGROUND_SESSION_IDENTIFIER"  //Optional
+                                        )
+```
+With ready `APIClientSettings` instance, you can create `APIClient` object:
+```Swift
+let settings = APIClientSettings(...)
 let client = APIClient(settings: settings)
-
+```
+and login:
+```Swift
 client.login("username", password: "password")
 {
   (error) -> (Void) in
@@ -54,14 +80,36 @@ client.login("username", password: "password")
   }
 }
 ```
-## Usage (Objective-C)
-Use methods with _ prefix to communicate using Objective-C
 
+## Initialization (Objective-C)
+Initialization in Objective-C is very similar to Swift. First import `CreatubblesAPIClient` framework:
 ```ObjectiveC
-import CreatubblesAPIClient;
+@import CreatubblesAPIClient;
+```
+Production config:
+```ObjectiveC
+APIClientSettings *settings = [[APIClientSettings alloc] initWithAppId:@"YOUR_APP_ID"
+                                                             appSecret:@"YOUR_APP_SECRET"
+                              backgroundSessionConfigurationIdentifier:@"BACKGROUND_SESSION_IDENTIFIER"];
 
-APIClientSettings *settings = [[APIClientSettings alloc] initWithAppId:@"YOUR_APP_ID" appSecret:@"YOUR_APP_SECRET"];
+```
+Staging config:
+```ObjectiveC
+APIClientSettings *settings = [[APIClientSettings alloc] initWithAppId:@"YOUR_APP_ID"
+                                                             appSecret:@"YOUR_APP_SECRET"
+                                                              tokenUri:@"https://api.staging.creatubbles.com/v2/oauth/token"
+                                                          authorizeUri:@"https://api.staging.creatubbles.com/v2/oauth/token"
+                                                               baseUrl:@"https://api.staging.creatubbles.com"
+                                                            apiVersion:@"v2"
+                              backgroundSessionConfigurationIdentifier:@"BACKGROUND_SESSION_IDENTIFIER"];    
+```
+APIClient initialization:
+```ObjectiveC
+APIClientSettings *settings = [][APIClientSettings alloc] initWithAppId...];
 APIClient *client = [[APIClient alloc] initWithSettings:settings];
+```
+and login:
+```ObjectiveC
 [client _login:@"username" password:@"password" completion:
 ^(NSError* error)
 {
@@ -71,6 +119,7 @@ APIClient *client = [[APIClient alloc] initWithSettings:settings];
   }
 }];
 ```
+
 ## Objective-C API Client
 Feel free to use our own CTAPIClient wrapper for your Objective-C projects. You can check it out [here](https://github.com/creatubbles/ctb-api-swift/tree/develop/ObjectiveC_APIClient)
 
