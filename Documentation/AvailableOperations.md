@@ -12,12 +12,21 @@
   - Fetching currently logged in user
   - Fetching single user by identifier
   - Fetching single user account data
-  - Fetching Creators
-  - Fetching Managers
+  - Fetching creators
+  - Fetching managers
   - Adding single Creator
   - Adding multiple Creators
   - Editing profile
 - Gallery management
+  - Fetching single gallery
+  - Fetching galleries by creation
+  - Fetching galleries by user
+  - Fetching owned galleries
+  - Fetching galleries shared with currently logged in user
+  - Fetching favorite galleries of currently logged in user
+  - Fetching featured galleries
+  - Adding gallery
+  - Editing gallery
 - Creation management
 - Upload Sessions
 - Creation flow
@@ -33,7 +42,14 @@
   - Fetching users followed by user
 - Partner Applications
 - Reports
+  - User
+  - Gallery
+  - Creation
+  - Comment
 - Batch fetching
+  - Creators
+  - Managers
+  - Galleries
 
 ### Initialization settings
 ### Authentication
@@ -148,6 +164,78 @@ public func editProfile(userId identifier: String, data: EditProfileData, comple
 For data which can be edited see [Account Details](https://partners.creatubbles.com/api/#account-details) section of API Reference.
 
 ### Gallery management
+#### Fetching single gallery
+To fetch single gallery, use `getGallery(galleryId ...)` method.
+```Swift
+public func getGallery(galleryId galleryId: String, completion: GalleryClosure?) -> RequestHandler
+```
+
+#### Fetching galleries by creation
+To fetch galleries by creation, use `getGalleries(creationId ...)` method.
+```Swift
+public func getGalleries(creationId creationId: String, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
+```
+In completion closure you will receive galleries which contains selected creation.
+
+#### Fetching galleries by user
+To fetch galleries by user, use `getGalleries(userId ...)` method.
+```Swift
+public func getGalleries(userId userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
+```
+In completion closure you will receive galleries owned by selected user. If you pass `nil` as a userId, you will receive galleries of currently logged in user.
+
+#### Fetching owned galleries
+To fetch galleries owned by currently logged in user, use `getMyOwnedGalleries(...)` method.
+```Swift
+public func getMyOwnedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+```
+You can also fetch all owned galleries in bach mode: `getOwnedGalleriesInBatchMode(...)`
+```Swift
+public func getOwnedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+```
+
+#### Fetching galleries shared with currently logged in user
+To fetch galleries owned shared with currently logged in user, use `getMySharedGalleries(...)` method.
+```Swift
+public func getMySharedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+```
+You can also fetch shared galleries in batch mode: `getSharedGalleriesInBatchMode(...)`
+```Swift
+public func getSharedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+```
+#### Fetching favorite galleries of currently logged in user
+To fetch favorite galleries of currently logged in user, use `getMyFavoriteGalleries(...)` method.
+```Swift
+public func getMyFavoriteGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+```
+You can also fetch favorite galleries in batch mode: `getFavoriteGalleriesInBatchMode(...)`
+```Swift
+public func getFavoriteGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+```
+
+#### Fetching featured galleries
+To fetch featured galleries, use `getFeaturedGalleries(...)` method.
+```Swift
+public func getFeaturedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+```
+You can also fetch featured galleries in batch mode: `getFeaturedGalleriesInBatchMode(...)`
+```Swift
+public func getFeaturedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+```
+
+#### Adding gallery
+You can add a gallery using `newGallery(...)` method.
+```Swift
+public func newGallery(data galleryData: NewGalleryData, completion: GalleryClosure?) -> RequestHandler
+```
+
+#### Editing gallery
+For editing gallery, use `updateGallery(..)` method.
+```Swift
+public func updateGallery(data data: UpdateGalleryData, completion: ErrorClosure?) -> RequestHandler
+```
+For data which can be edited see [Gallery Details](https://partners.creatubbles.com/api/#gallery-details) section of API Reference.
+
 ### Creation management
 ### Upload Sessions
 ### Creation flow
