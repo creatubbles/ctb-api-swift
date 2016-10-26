@@ -4,11 +4,19 @@
   - Login
   - Logout
   - Switching users
-- Landing URL's
+- Landing URLs
   - Supported landing URLs
   - Landing URL for Creation
   - Other Landing URLs
-- Creators management
+- Creator management
+  - Fetching currently logged in user
+  - Fetching single user by identifier
+  - Fetching single user account data
+  - Fetching Creators
+  - Fetching Managers
+  - Adding single Creator
+  - Adding multiple Creators
+  - Editing profile
 - Gallery management
 - Creation management
 - Upload Sessions
@@ -22,7 +30,10 @@
 - Activities
 - Notifications
 - User Followings
+  - Fetching users followed by user
 - Partner Applications
+- Reports
+- Batch fetching
 
 ### Initialization settings
 ### Authentication
@@ -41,7 +52,7 @@ public func logout()
 #### Switching users (without password)
 Switching user without password is a bit more complicated operation.
 You can fetch all users which you can login to using:
-```Switf
+```Swift
 public func getSwitchUsers(pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
 ```
 Next, use `switchUser(...)` method to obtain OAuth token for user which would you like to login as.
@@ -79,6 +90,63 @@ public func getLandingURL(type type: LandingURLType?, completion: LandingURLClos
 ```
 
 ### Creators management
+#### Fetching currently logged in user
+To fetch currently logged in user, use `getCurrentUser(...)` method:
+```Swift
+public func getCurrentUser(completion: UserClosure?) -> RequestHandler
+```
+
+#### Fetching single user by identifier
+To fetch user by his identifier, use `getUser(...)` method:
+```Swift
+public func getUser(userId userId: String, completion: UserClosure?) -> RequestHandler
+```
+
+#### Fetching single user account data
+Account data contains more detailed information about user. To fetch it, use `getUserAccountData(...)` method:
+```Swift
+public func getUserAccountData(userId userId: String, completion: UserAccountDetailsClosure?) -> RequestHandler
+```
+You can read more about account data [here](https://partners.creatubbles.com/api/#account-details)
+
+#### Fetching Creators
+To fetch creators of a user, use a `getCreators(...)` method:
+```Swift
+public func getCreators(userId userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+```
+
+You can also fetch Creators from single group:
+```Swift
+public func getCreators(groupId groupId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+```
+
+#### Fetching Managers
+To fetch managers (parents or teachers) of a creator, use a `getManagers(...)` method:
+```Swift
+public func getManagers(userId userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+```
+If you pass `nil` as a userId, managers of currently logged in user will be returned.
+
+#### Adding single Creator
+To add single Creator, use `newCreator(...)` method.
+```Swift
+public func newCreator(data creatorData: NewCreatorData,completion: UserClosure?) -> RequestHandler
+```
+
+#### Adding multiple Creators
+To add many Creators in single API call, use `createMultipleCreators(...)`.
+Note that this method will allow you to set amount of Creators and their birth year only. Usernames will be generated based on your nickname, but Creators should be able to change them after they login.
+```Swift
+public func createMultipleCreators(data data: CreateMultipleCreatorsData, completion: ErrorClosure?) -> RequestHandler
+```
+
+#### Editing profile
+To edit profile, use `editProfile(...)` method.
+```Swift
+public func editProfile(userId identifier: String, data: EditProfileData, completion: ErrorClosure?) -> RequestHandler
+```
+For data which can be edited see [Account Details](https://partners.creatubbles.com/api/#account-details) section of API Reference.
+
 ### Gallery management
 ### Creation management
 ### Upload Sessions
