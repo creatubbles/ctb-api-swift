@@ -35,8 +35,9 @@ or to use development version:
  pod 'CreatubblesAPIClient', :git => 'https://github.com/creatubbles/ctb-api-swift.git', :branch => 'develop'
 ```
 
-## Available Operations
-See [Available Operations](AvailableOperations.md) for a list of supported endpoints in APIClient, with more detailed examples of usage.
+## Quickstart
+After installation you can start using APIClient. See Quickstart for [Swift](Quickstart_Swift.md) or [Objective-C](Quickstart_ObjectiveC.md) for first steps with library.
+For detailed information about available operations, see [this](AvailableOperations.md) doc.
 
 ## Objective-C API Client
 Feel free to use our own CTAPIClient wrapper for your Objective-C projects. You can check it out [here](https://github.com/creatubbles/ctb-api-swift/tree/develop/ObjectiveC_APIClient)
