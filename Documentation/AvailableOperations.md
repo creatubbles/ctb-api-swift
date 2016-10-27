@@ -1,4 +1,4 @@
-# Available Operations
+# Available Operations (doc in progress)
 - Initialization settings
 - [Authentication](https://github.com/Alamofire/Alamofire)
   - Login
