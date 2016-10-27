@@ -13,7 +13,7 @@ To initialize APIClient, first you have to import CreatubblesAPIClient framework
 @import CreatubblesAPIClient;
 ```
 Then, you can create `APIClientSettings` object. You will need OAuth application id and secret (please contact us to obtain your own keys).
-There are two servers which are available for our partners: production and staging, but you can use same OAuth keys for communicating them.
+There are two servers which are available for our partners: production and staging, but you can use the same OAuth key to communicate with both of them.
 ```ObjectiveC
 APIClientSettings *productionSettings = [[APIClientSettings alloc] initWithAppId:@"YOUR_APP_ID"
                                                                        appSecret:@"YOUR_APP_SECRET"
@@ -30,7 +30,7 @@ APIClientSettings *settings = [[APIClientSettings alloc] initWithAppId:@"YOUR_AP
                                                            apiVersion:@"v2"
                              backgroundSessionConfigurationIdentifier:@"BACKGROUND_SESSION_IDENTIFIER"];    
 ```
-With ready `APIClientSettings` instance, you can create `APIClient` object:
+With a prepared `APIClientSettings` instance, you can create the `APIClient` object:
 ```ObjectiveC
 APIClientSettings *settings = [][APIClientSettings alloc] initWithAppId...];
 APIClient *client = [[APIClient alloc] initWithSettings:settings];
@@ -49,7 +49,7 @@ APIClient *client = [[APIClient alloc] initWithSettings:settings];
 ```
 
 ### Fetching creators
-To fetch creators of a user, use a `[client _getCreators:...]` method:
+To fetch user's creators, use a `[client _getCreators:...]` method:
 ```ObjectiveC
 - (void) _getCreators:(NSString * _Nullable)userId pagingData:(PagingData * _Nullable)pagingData completion:(void (^ _Nullable)(NSArray<User *> * _Nullable, PagingInfo * _Nullable, NSError * _Nullable))completion;
 ```
@@ -147,7 +147,7 @@ creationData.creatorIds = @[@"Creator1Id", @"Creator2Id"];
 [creationData setCreationMonth:@(10)];
 ```
 
-And on this point you should be ready to upload creation.
+At this point you should be ready to upload a creation
 ```ObjectiveC
 [client _newCreation:creationData completion: ^(Creation *creation, NSError *error)
 {
