@@ -1,4 +1,4 @@
-//
+
 //  CreationUploadSession.swift
 //  CreatubblesAPIClient
 //
@@ -355,7 +355,7 @@ class CreationUploadSession: NSObject, Cancelable
             return
         }
         
-        let request = GallerySubmissionRequest(galleryId: creationData.galleryId!, creationId: creationUpload!.identifier)
+        let request = GallerySubmissionRequest(galleryId: creationData.galleryId!, creationId: creation!.identifier)
         let handler = GallerySubmissionResponseHandler()
         {
             [weak self](error) -> Void in
