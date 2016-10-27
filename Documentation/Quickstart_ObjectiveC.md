@@ -49,25 +49,25 @@ APIClient *client = [[APIClient alloc] initWithSettings:settings];
 ```
 
 ### Fetching creators
-To fetch creators of a user, use a `getCreators(...)` method:
-```Swift
-public func getCreators(userId userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+To fetch creators of a user, use a `[client _getCreators:...]` method:
+```ObjectiveC
+- (void) _getCreators:(NSString * _Nullable)userId pagingData:(PagingData * _Nullable)pagingData completion:(void (^ _Nullable)(NSArray<User *> * _Nullable, PagingInfo * _Nullable, NSError * _Nullable))completion;
 ```
 
 or fetch them in batch mode (which may take some time):
-```Swift
-public func getCreatorsInBatchMode(userId userId: String?, completion: UsersBatchClosure?) -> RequestHandler
+```ObjectiveC
+- (void) _getCreatorsInBatchMode:(NSString * _Nullable)userId completion:(void (^ _Nullable)(NSArray<User *> * _Nullable, NSError * _Nullable))completion;
 ```
 
 If you pass `nil` as a userId, creators of currently logged in user will be returned.
 
 ### Fetching galleries
-To fetch galleries by user, use `getGalleries(userId ...)` method.
-```Swift
+To fetch galleries by user, use `[client _getGalleries:...]` method.
+```ObjectiveC
 public func getGalleries(userId userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
 ```
 Or in batch mode
-```Swift
+```ObjectiveC
 func getGalleriesInBatchMode(userIdentifier userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
 ```
 In completion closure you will receive galleries owned by selected user. If you pass `nil` as a userId, you will receive galleries of currently logged in user.
@@ -86,13 +86,13 @@ We're supporting fetching landing urls for:
 - Account dashboard
 
 For Creation landing URL, please use:
-```Swift
-public func getLandingURL(creationId creationId: String, completion: LandingURLClosure?) -> RequestHandler
+```ObjectiveC
+- (void)_getLandingURLForCreation:(NSString * _Nonnull)creationId completion:(void (^ _Nullable)(NSArray<LandingURL *> * _Nullable, NSError * _Nullable))completion;
 ```
 
 For other types of landing urls, use:
-```Swift
-public func getLandingURL(type type: LandingURLType?, completion: LandingURLClosure?) -> RequestHandler
+```ObjectiveC
+- (void)_getLandingURL:(enum LandingURLType)type completion:(void (^ _Nullable)(NSArray<LandingURL *> * _Nullable, NSError * _Nullable))completion;
 ```
 
 ### Uploading creation
@@ -113,18 +113,18 @@ To upload creation, create `NewCreationData` object. You can create it with bina
 - UZPB
 
 Example:
-```Swift
+```ObjectiveC
 //UIImage
-let creationData = NewCreationData(image: UIImage(named:"demo")!, uploadExtension: .PNG)
+NewCreationData *creationData = [NewCreationData alloc] initWithImage:[UIImage imageNamed:@"demo"] uploadExtension:UploadExtensionJPG];
 
 //NSData
-let path = NSBundle.mainBundle().URLForResource("demo", withExtension: "mp4")!
-let data = NSData(contentsOfURL: path)!
-let creationData = NewCreationData(data: data, uploadExtension: .MP4)
+NSURL *path = [[NSBundle mainBundle] URLForResource:@"demo" withExtension:@"mp4"];
+NSData *data = [NSData dataWithContentsOfURL:path];
+NewCreationData *creationData = [[NewCreationData alloc] initWithData:data uploadExtension:UploadExtensionMP4];
 
 //URL
-let path = NSBundle.mainBundle().URLForResource("demo", withExtension: "mp4")!
-let creationData = NewCreationData(path: path, uploadExtension: .MP4)
+NSURL *path = [[NSBundle mainBundle] URLForResource:@"demo" withExtension:@"mp4"];
+NewCreationData *creationData = [[NewCreationData alloc] initWithUrl:path uploadExtension:UploadExtensionMP4];
 ```
 On `NewCreationData` object you can set:
 - name
@@ -135,62 +135,22 @@ On `NewCreationData` object you can set:
 - creation year
 - creation month
 
-```Swift
-let creationData = NewCreationData(...)
-creationData.name = "My Name"
-creationData.reflectionText = "Creation description"
-creationData.reflectionVideoUrl  = "https://www.youtube.com/watch?v=f8YGyXoihMQ"
-creationData.gallery = "SelectedGalleryIdentifier"
-creationData.creatorIds = ["Creator1Id", "Creator2Id"]
-creationData.creationYear = 2015
-creationData.creationMonth = 10
+```ObjectiveC
+NewCreationData *creationData = [[NewCreationData alloc] initWith...];
+creationData.name = @"My Name";
+creationData.reflectionText = @"Creation description";
+creationData.reflectionVideoUrl  = @"https://www.youtube.com/watch?v=f8YGyXoihMQ";
+creationData.gallery = @"SelectedGalleryIdentifier";
+creationData.creatorIds = @[@"Creator1Id", @"Creator2Id"];
+
+[creationData setCreationYear:@(2015)];
+[creationData setCreationMonth:@(10)];
 ```
 
 And on this point you should be ready to upload creation.
-```Swift
-apiClient.newCreation(data: creationData)
+```ObjectiveC
+[client _newCreation:creationData completion: ^(Creation *creation, NSError *error)
 {
-  (creation, error) -> (Void) in
-  print("Creation uploaded. Error: \(error)")
-}
-```
-
-# Objective-C
-### Initialization
-Initialization in Objective-C is very similar to Swift. First import `CreatubblesAPIClient` framework:
-```ObjectiveC
-@import CreatubblesAPIClient;
-```
-Production config:
-```ObjectiveC
-APIClientSettings *settings = [[APIClientSettings alloc] initWithAppId:@"YOUR_APP_ID"
-                                                             appSecret:@"YOUR_APP_SECRET"
-                              backgroundSessionConfigurationIdentifier:@"BACKGROUND_SESSION_IDENTIFIER"];
-
-```
-Staging config:
-```ObjectiveC
-APIClientSettings *settings = [[APIClientSettings alloc] initWithAppId:@"YOUR_APP_ID"
-                                                             appSecret:@"YOUR_APP_SECRET"
-                                                              tokenUri:@"https://api.staging.creatubbles.com/v2/oauth/token"
-                                                          authorizeUri:@"https://api.staging.creatubbles.com/v2/oauth/token"
-                                                               baseUrl:@"https://api.staging.creatubbles.com"
-                                                            apiVersion:@"v2"
-                              backgroundSessionConfigurationIdentifier:@"BACKGROUND_SESSION_IDENTIFIER"];    
-```
-APIClient initialization:
-```ObjectiveC
-APIClientSettings *settings = [][APIClientSettings alloc] initWithAppId...];
-APIClient *client = [[APIClient alloc] initWithSettings:settings];
-```
-### Login
-```ObjectiveC
-[client _login:@"username" password:@"password" completion:
-^(NSError* error)
-{
-  if(!error)
-  {
-    NSLog(@"Wohoo! We're authorized from Objective-C code!");
-  }
+  NSLog(@"Creation uploaded. Error %@",error);
 }];
 ```
