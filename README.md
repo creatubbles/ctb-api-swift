@@ -36,7 +36,7 @@ or to use development version:
 ```
 
 ## Quickstart
-After installation you can start using APIClient. See Quickstart for [Swift](Quickstart_Swift.md) or [Objective-C](Quickstart_ObjectiveC.md) for first steps with library.
+After installation you can start using APIClient. See Quickstart for [Swift](QuickStart_Swift.md) or [Objective-C](QuickStart_ObjectiveC.md) for first steps with library.
 For detailed information about available operations, see [this](AvailableOperations.md) doc.
 
 ## Objective-C API Client

@@ -1,10 +1,10 @@
-# Swift Quickstart
-- Initialization
-- Login
-- Fetching Creators
-- Fetching galleries
-- Fetching landing URLs
-- Uploading creation
+# Swift QuickStart
+- [Initialization](#initialization)
+- [Login](#login)
+- [Fetching Creators](#fetching-creators)
+- [Fetching galleries](#fetching-galleries)
+- [Fetching landing URLs](#fetching-landing-urls)
+- [Uploading creation](#uploading-creation)
 
 ### Initialization
 To initialize the APIClient, first you have to import CreatubblesAPIClient framework:
