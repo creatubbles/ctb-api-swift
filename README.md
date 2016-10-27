@@ -12,7 +12,6 @@ Please note, that library is still under heavy development, and interface may be
 ## Author
 [Creatubbles](https://www.creatubbles.com/)
 
-
 ## Dependencies
 - [Alamofire](https://github.com/Alamofire/Alamofire)
 - [OAuth2](https://github.com/p2/OAuth2)
@@ -31,41 +30,15 @@ use_frameworks!
 
 pod 'CreatubblesAPIClient'
 ```
-
-## Usage (Swift)
-```Swift
-import CreatubblesAPIClient
-
-let settings = APIClientSettings(appId: "YOUR_APP_ID", appSecret: "YOUR_APP_SECRET")
-let client = APIClient(settings: settings)
-
-client.login("username", password: "password")
-{
-  (error) -> (Void) in
-  if error != nil
-  {
-    print("Wohoo! We're authorized!")
-  }
-}
+or to use development version:
+```Ruby
+ pod 'CreatubblesAPIClient', :git => 'https://github.com/creatubbles/ctb-api-swift.git', :branch => 'develop'
 ```
-## Usage (Objective-C)
-Use methods with _ prefix to communicate using Objective-C
 
-```ObjectiveC
-import CreatubblesAPIClient;
+## QuickStart
+After installation you can start using APIClient. See QuickStart for [Swift](QuickStart_Swift.md) or [Objective-C](QuickStart_ObjectiveC.md) for first steps with library.
 
-APIClientSettings *settings = [[APIClientSettings alloc] initWithAppId:@"YOUR_APP_ID" appSecret:@"YOUR_APP_SECRET"];
-APIClient *client = [[APIClient alloc] initWithSettings:settings];
-[client _login:@"username" password:@"password" completion:
-^(NSError* error)
-{
-  if(!error)
-  {
-    NSLog(@"Wohoo! We're authorized from Objective-C code!");
-  }
-}];
-```
-### Objective-C API Client
+## Objective-C API Client
 Feel free to use our own CTAPIClient wrapper for your Objective-C projects. You can check it out [here](https://github.com/creatubbles/ctb-api-swift/tree/develop/ObjectiveC_APIClient)
 
 ## Contact
