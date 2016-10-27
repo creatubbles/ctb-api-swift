@@ -82,7 +82,7 @@ public func setSessionData(data sessionData: SessionData)
 ```
 ### Landing URL's
 #### Supported landing URLs
-We're supporting fetching landing urls for:
+We support fetching of landing urls for:
 - About us
 - Terms of use
 - Privacy policy
@@ -95,7 +95,7 @@ We're supporting fetching landing urls for:
 - Account dashboard
 
 #### Landing URL for Creation
-For Creation landing URL, please use:
+To get a Creation's landing URL, please use:
 ```Swift
 public func getLandingURL(creationId creationId: String, completion: LandingURLClosure?) -> RequestHandler
 ```
@@ -126,7 +126,7 @@ public func getUserAccountData(userId userId: String, completion: UserAccountDet
 You can read more about account data [here](https://partners.creatubbles.com/api/#account-details)
 
 #### Fetching Creators
-To fetch creators of a user, use a `getCreators(...)` method:
+To fetch user's creators, use a `getCreators(...)` method:
 ```Swift
 public func getCreators(userId userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
 ```
@@ -144,14 +144,14 @@ public func getManagers(userId userId: String?, pagingData: PagingData?, complet
 If you pass `nil` as a userId, managers of currently logged in user will be returned.
 
 #### Adding single Creator
-To add single Creator, use `newCreator(...)` method.
+To add a single Creator, use `newCreator(...)` method.
 ```Swift
 public func newCreator(data creatorData: NewCreatorData,completion: UserClosure?) -> RequestHandler
 ```
 
 #### Adding multiple Creators
 To add many Creators in single API call, use `createMultipleCreators(...)`.
-Note that this method will allow you to set amount of Creators and their birth year only. Usernames will be generated based on your nickname, but Creators should be able to change them after they login.
+Note that this method allows you to set the amount of Creators and their birth year only. Usernames will be generated based on your nickname, but Creators should be able to change them after they login.
 ```Swift
 public func createMultipleCreators(data data: CreateMultipleCreatorsData, completion: ErrorClosure?) -> RequestHandler
 ```
@@ -195,7 +195,7 @@ public func getOwnedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> 
 ```
 
 #### Fetching galleries shared with currently logged in user
-To fetch galleries owned shared with currently logged in user, use `getMySharedGalleries(...)` method.
+To fetch galleries shared with currently logged in user, use `getMySharedGalleries(...)` method.
 ```Swift
 public func getMySharedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
 ```
