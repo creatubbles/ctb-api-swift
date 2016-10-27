@@ -32,7 +32,8 @@ enum CreationUploadSessionState: Int
     case UploadPathObtained = 3
     case ImageUploaded = 4
     case ServerNotified = 5
-    case Cancelled = 6
+    case SubmittedToGallery = 6
+    case Cancelled = 7
 }
 
 protocol CreationUploadSessionDelegate: class
@@ -130,21 +131,44 @@ class CreationUploadSession: NSObject, Cancelable
                             weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
                                 
-                                weakSelf.error = error
-                                weakSelf.isActive = false
                                 weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                                 
-                                if let error = error
+                                if let _ = weakSelf.creationData.galleryId
                                 {
-                                    Logger.log.error("Upload \(weakSelf.localIdentifier) finished with error: \(error)")
-                                    weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
+                                    weakSelf.uploadToGallery(error, completion: { (error) in
+                                        
+                                        weakSelf.error = error
+                                        weakSelf.isActive = false
+
+                                        if let error = error
+                                        {
+                                            Logger.log.error("Upload \(weakSelf.localIdentifier) finished with error: \(error)")
+                                            weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
+                                        }
+                                        else
+                                        {
+                                            Logger.log.debug("Upload \(weakSelf.localIdentifier) finished successfully")
+                                        }
+                                        completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
+                                    })
                                 }
                                 else
                                 {
-                                    Logger.log.debug("Upload \(weakSelf.localIdentifier) finished successfully")
+                                    weakSelf.error = error
+                                    weakSelf.isActive = false
+                                    
+                                    if let error = error
+                                    {
+                                        Logger.log.error("Upload \(weakSelf.localIdentifier) finished with error: \(error)")
+                                        weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
+                                    }
+                                    else
+                                    {
+
+                                        Logger.log.debug("Upload \(weakSelf.localIdentifier) finished successfully")
+                                    }
+                                    completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
                                 }
-                                
-                                completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
                             })
                         })
                     })
@@ -314,6 +338,35 @@ class CreationUploadSession: NSObject, Cancelable
                     }
                 }
                 completion(error)
+        }
+        currentRequest = requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    private func uploadToGallery(error: ErrorType?, completion: (ErrorType?) -> Void)
+    {
+        if let error = error
+        {
+            completion(error)
+            return
+        }
+        if state.rawValue >= CreationUploadSessionState.SubmittedToGallery.rawValue
+        {
+            completion(nil)
+            return
+        }
+        
+        let request = GallerySubmissionRequest(galleryId: creationData.galleryId!, creationId: creationUpload!.identifier)
+        let handler = GallerySubmissionResponseHandler()
+        {
+            [weak self](error) -> Void in
+            if let weakSelf = self
+            {
+                if error == nil
+                {
+                    weakSelf.state = .SubmittedToGallery
+                }
+            }
+            completion(error)
         }
         currentRequest = requestSender.send(request, withResponseHandler: handler)
     }
