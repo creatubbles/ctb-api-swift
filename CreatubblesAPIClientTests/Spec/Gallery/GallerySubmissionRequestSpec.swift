@@ -9,7 +9,6 @@
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
-import Alamofire
 
 
 class GallerySubmissionRequestSpec: QuickSpec
@@ -52,9 +51,9 @@ class GallerySubmissionRequestSpec: QuickSpec
                         sender.send(GallerySubmissionRequest(galleryId: "b4dcLMAk", creationId: "KnplgMmS"), withResponseHandler: DummyResponseHandler()
                         {
                             (response, error) -> Void in
-                            if let error = (error as? AFError)
+                            if let error = error
                             {
-                                expect(error.responseCode).to(equal(422))
+                                expect(error).toNot(beNil())
                             }
                             else
                             {
