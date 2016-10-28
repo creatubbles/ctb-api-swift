@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class OAuth2Client: NSObject {
+    private let keychain = Keychain(service: "com.creatubbles.access-token")
+    
     var accessToken: String? {
         get {
-            return UserDefaults.standard.string(forKey: "accessToken")
+            return keychain["access-token"]
         }
         
         set {
-            UserDefaults.standard.setValue(newValue, forKey: "accessToken")
-            UserDefaults.standard.synchronize()
+            keychain["access-token"] = newValue
         }
     }
     
