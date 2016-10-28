@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 @objc
 open class RequestHandler: NSObject, Cancelable
