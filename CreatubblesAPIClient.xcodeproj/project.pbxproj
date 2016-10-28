@@ -14,6 +14,7 @@
 		0816F3AC1D587FC60026A40E /* SwitchUsersRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816F3AB1D587FC60026A40E /* SwitchUsersRequestSpec.swift */; };
 		0816F3AE1D587FD80026A40E /* SwitchUserResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816F3AD1D587FD80026A40E /* SwitchUserResponseHandlerSpec.swift */; };
 		0816F3B01D5880070026A40E /* SwitchUsersResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816F3AF1D5880070026A40E /* SwitchUsersResponseHandlerSpec.swift */; };
+		0832717E1DC09D2F00DF008A /* ParametersEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0832717D1DC09D2F00DF008A /* ParametersEncoder.swift */; };
 		083785871D378714006EF69E /* ReportCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785861D378714006EF69E /* ReportCommentRequest.swift */; };
 		083785891D37872C006EF69E /* ReportCommentResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785881D37872C006EF69E /* ReportCommentResponseHandler.swift */; };
 		0837858B1D378A85006EF69E /* ReportCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837858A1D378A85006EF69E /* ReportCreationRequest.swift */; };
@@ -30,6 +31,10 @@
 		083785A11D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785A01D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift */; };
 		083785A31D379B35006EF69E /* ReportUserRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785A21D379B35006EF69E /* ReportUserRequestSpec.swift */; };
 		083785A51D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785A41D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift */; };
+		08A587411DC34BE100F570C4 /* UploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A587401DC34BE100F570C4 /* UploadManager.swift */; };
+		08A587431DC34E0200F570C4 /* HTTPHeadersBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A587421DC34E0200F570C4 /* HTTPHeadersBuilder.swift */; };
+		08A75A9E1DC219E7007F546D /* UploadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A75A9D1DC219E7007F546D /* UploadTask.swift */; };
+		08A75AA01DC238EA007F546D /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A75A9F1DC238EA007F546D /* AuthenticationError.swift */; };
 		08A7B9761D361D14001D8461 /* SwitchUserRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A7B9751D361D14001D8461 /* SwitchUserRequestSpec.swift */; };
 		08AC6A5D1D424A5F004A35C3 /* ActivitiesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AC6A5C1D424A5F004A35C3 /* ActivitiesDAO.swift */; };
 		08AC6A601D424F89004A35C3 /* ActivitiesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AC6A5F1D424F89004A35C3 /* ActivitiesRequest.swift */; };
@@ -38,6 +43,9 @@
 		08AC6A661D4259B4004A35C3 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AC6A651D4259B4004A35C3 /* Activity.swift */; };
 		08AC6A691D425DAB004A35C3 /* ActivitiesRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AC6A681D425DAB004A35C3 /* ActivitiesRequestSpec.swift */; };
 		08AC6A6B1D425DEC004A35C3 /* ActivitiesResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AC6A6A1D425DEC004A35C3 /* ActivitiesResponseHandlerSpec.swift */; };
+		08B4DD5D1DC0BAFF00EF6D67 /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B4DD5C1DC0BAFF00EF6D67 /* OAuth2Client.swift */; };
+		08B4DD5F1DC0BB2700EF6D67 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B4DD5E1DC0BB2700EF6D67 /* NetworkManager.swift */; };
+		08B4DD621DC0BDA000EF6D67 /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B4DD611DC0BDA000EF6D67 /* AuthenticationRequest.swift */; };
 		08B7E90C1D522EA3007A30F3 /* GroupCreatorsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B7E90B1D522EA3007A30F3 /* GroupCreatorsRequest.swift */; };
 		08B7E90E1D52302D007A30F3 /* GroupCreatorsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B7E90D1D52302D007A30F3 /* GroupCreatorsResponseHandler.swift */; };
 		08B7E9101D524CC6007A30F3 /* GroupCreatorsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B7E90F1D524CC6007A30F3 /* GroupCreatorsRequestSpec.swift */; };
@@ -352,6 +360,7 @@
 		0816F3AB1D587FC60026A40E /* SwitchUsersRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUsersRequestSpec.swift; sourceTree = "<group>"; };
 		0816F3AD1D587FD80026A40E /* SwitchUserResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		0816F3AF1D5880070026A40E /* SwitchUsersResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUsersResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		0832717D1DC09D2F00DF008A /* ParametersEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParametersEncoder.swift; sourceTree = "<group>"; };
 		083785861D378714006EF69E /* ReportCommentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCommentRequest.swift; sourceTree = "<group>"; };
 		083785881D37872C006EF69E /* ReportCommentResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCommentResponseHandler.swift; sourceTree = "<group>"; };
 		0837858A1D378A85006EF69E /* ReportCreationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCreationRequest.swift; sourceTree = "<group>"; };
@@ -368,6 +377,10 @@
 		083785A01D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportGalleryResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		083785A21D379B35006EF69E /* ReportUserRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportUserRequestSpec.swift; sourceTree = "<group>"; };
 		083785A41D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportUserResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		08A587401DC34BE100F570C4 /* UploadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadManager.swift; sourceTree = "<group>"; };
+		08A587421DC34E0200F570C4 /* HTTPHeadersBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHeadersBuilder.swift; sourceTree = "<group>"; };
+		08A75A9D1DC219E7007F546D /* UploadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadTask.swift; sourceTree = "<group>"; };
+		08A75A9F1DC238EA007F546D /* AuthenticationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
 		08A7B9751D361D14001D8461 /* SwitchUserRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserRequestSpec.swift; sourceTree = "<group>"; };
 		08AC6A5C1D424A5F004A35C3 /* ActivitiesDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesDAO.swift; sourceTree = "<group>"; };
 		08AC6A5F1D424F89004A35C3 /* ActivitiesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesRequest.swift; sourceTree = "<group>"; };
@@ -376,6 +389,9 @@
 		08AC6A651D4259B4004A35C3 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		08AC6A681D425DAB004A35C3 /* ActivitiesRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesRequestSpec.swift; sourceTree = "<group>"; };
 		08AC6A6A1D425DEC004A35C3 /* ActivitiesResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		08B4DD5C1DC0BAFF00EF6D67 /* OAuth2Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2Client.swift; sourceTree = "<group>"; };
+		08B4DD5E1DC0BB2700EF6D67 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		08B4DD611DC0BDA000EF6D67 /* AuthenticationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
 		08B7E90B1D522EA3007A30F3 /* GroupCreatorsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCreatorsRequest.swift; sourceTree = "<group>"; };
 		08B7E90D1D52302D007A30F3 /* GroupCreatorsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCreatorsResponseHandler.swift; sourceTree = "<group>"; };
 		08B7E90F1D524CC6007A30F3 /* GroupCreatorsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCreatorsRequestSpec.swift; sourceTree = "<group>"; };
@@ -700,6 +716,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0832717C1DC09CCE00DF008A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0832717D1DC09D2F00DF008A /* ParametersEncoder.swift */,
+				08B4DD5C1DC0BAFF00EF6D67 /* OAuth2Client.swift */,
+				08B4DD5E1DC0BB2700EF6D67 /* NetworkManager.swift */,
+				08A75A9D1DC219E7007F546D /* UploadTask.swift */,
+				08A75A9F1DC238EA007F546D /* AuthenticationError.swift */,
+				08A587401DC34BE100F570C4 /* UploadManager.swift */,
+				08A587421DC34E0200F570C4 /* HTTPHeadersBuilder.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		08AC6A5E1D424F5F004A35C3 /* Activities */ = {
 			isa = PBXGroup;
 			children = (
@@ -716,6 +746,14 @@
 				08AC6A6A1D425DEC004A35C3 /* ActivitiesResponseHandlerSpec.swift */,
 			);
 			path = Activity;
+			sourceTree = "<group>";
+		};
+		08B4DD601DC0BD6C00EF6D67 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				08B4DD611DC0BDA000EF6D67 /* AuthenticationRequest.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		08E52DF61D6C41FB00262672 /* Filters */ = {
@@ -769,6 +807,7 @@
 		1815D55C1C6383CF00EF4C38 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				0832717C1DC09CCE00DF008A /* Network */,
 				1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */,
 				188BCEAC1C64E19D00EA4F11 /* Core */,
 				188ECF6E1C746F8200AFEE4F /* CreationUploadSession */,
@@ -825,6 +864,7 @@
 		1815D5631C638B9C00EF4C38 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				08B4DD601DC0BD6C00EF6D67 /* Authentication */,
 				08AC6A5E1D424F5F004A35C3 /* Activities */,
 				18F6E8621D021B6500AAC5FB /* Core */,
 				18F6E8791D021B6500AAC5FB /* OAuth2+Alamofire.swift */,
@@ -1646,6 +1686,7 @@
 				18F6E8861D021B6500AAC5FB /* NewBubbleRequest.swift in Sources */,
 				189D9F621C84B36100857CC6 /* UserMapper.swift in Sources */,
 				083785871D378714006EF69E /* ReportCommentRequest.swift in Sources */,
+				08B4DD621DC0BDA000EF6D67 /* AuthenticationRequest.swift in Sources */,
 				18CC309E1CB28A9D00EA4A00 /* AlamofireRequest+Cancelable.swift in Sources */,
 				18F6E8B61D0224EE00AAC5FB /* CustomStyleFetchResponseHandler.swift in Sources */,
 				18F6E8AC1D021C2900AAC5FB /* CustomStyle.swift in Sources */,
@@ -1660,6 +1701,7 @@
 				18C744FD1C84611600A07E4C /* CreationUploadSessionEntity.swift in Sources */,
 				18CC30A01CB28B1600EA4A00 /* OAuth2+Cancelable.swift in Sources */,
 				21A79F721C81E6C5009E95D1 /* UsersBatchFetcher.swift in Sources */,
+				08A75AA01DC238EA007F546D /* AuthenticationError.swift in Sources */,
 				18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */,
 				18F6E88D1D021B6500AAC5FB /* NewCommentResponseHandler.swift in Sources */,
 				18F6E8AE1D021C3400AAC5FB /* CustomStyleMapper.swift in Sources */,
@@ -1708,6 +1750,7 @@
 				212A12241D536068001BA35A /* PartnerApplicationsSearchResponseHandler.swift in Sources */,
 				21B9334C1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift in Sources */,
 				18290AF91D070A17000EA216 /* NotificationDAO.swift in Sources */,
+				0832717E1DC09D2F00DF008A /* ParametersEncoder.swift in Sources */,
 				18E4354A1D0425FA00B728C6 /* NotificationsFetchRequest.swift in Sources */,
 				08BB575F1D253ED700E2E297 /* SessionData.swift in Sources */,
 				18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */,
@@ -1719,6 +1762,7 @@
 				215279521D3F6FC400B67313 /* CreateAUserFollowingRequest.swift in Sources */,
 				188ECF731C747FDE00AFEE4F /* String+Path.swift in Sources */,
 				18467F5F1D02E356005CE5DD /* CustomStyleEditRequest.swift in Sources */,
+				08A75A9E1DC219E7007F546D /* UploadTask.swift in Sources */,
 				18F6E8A41D021B6500AAC5FB /* RequestSender.swift in Sources */,
 				18F6E8AA1D021B6500AAC5FB /* ProfileResponseHandler.swift in Sources */,
 				18F6E8831D021B6500AAC5FB /* BubblesFetchResponseHandler.swift in Sources */,
@@ -1730,6 +1774,7 @@
 				18C1CFF91C75C4B000A02DE3 /* GalleryDAO.swift in Sources */,
 				18366AA61D0591E200229D20 /* NotificationMapper.swift in Sources */,
 				1859FA951D3905180023A6B6 /* GroupDAO.swift in Sources */,
+				08A587431DC34E0200F570C4 /* HTTPHeadersBuilder.swift in Sources */,
 				18F6E8881D021B6500AAC5FB /* UpdateBubbleRequest.swift in Sources */,
 				18E9D18F1D117812006F2BAB /* EditCreationRequest.swift in Sources */,
 				08B7E90E1D52302D007A30F3 /* GroupCreatorsResponseHandler.swift in Sources */,
@@ -1749,6 +1794,7 @@
 				18F6E8A61D021B6500AAC5FB /* CreatorsAndManagersResponseHandler.swift in Sources */,
 				181E76D11CC5351D00A1546A /* BubbleMapper.swift in Sources */,
 				183728EC1CEDC93D008784C7 /* ContentEntryMapper.swift in Sources */,
+				08B4DD5F1DC0BB2700EF6D67 /* NetworkManager.swift in Sources */,
 				18C744FA1C84611600A07E4C /* DatabaseService.swift in Sources */,
 				189D9F601C84B36100857CC6 /* GroupMapper.swift in Sources */,
 				18F6E8981D021B6500AAC5FB /* NewCreationResponseHandler.swift in Sources */,
@@ -1762,6 +1808,7 @@
 				18C1CFF51C75C40A00A02DE3 /* UserDAO.swift in Sources */,
 				2110E04E1D742B3F00B62156 /* NameTranslationObject.swift in Sources */,
 				18F6E8821D021B6500AAC5FB /* BubblesFetchReqest.swift in Sources */,
+				08B4DD5D1DC0BAFF00EF6D67 /* OAuth2Client.swift in Sources */,
 				08B7E90C1D522EA3007A30F3 /* GroupCreatorsRequest.swift in Sources */,
 				187671431C7CA0F700733E9E /* PagingData.swift in Sources */,
 				08AC6A5D1D424A5F004A35C3 /* ActivitiesDAO.swift in Sources */,
@@ -1834,6 +1881,7 @@
 				1859FAA41D39052F0023A6B6 /* DeleteGroupRequest.swift in Sources */,
 				189D9F5E1C84B36100857CC6 /* ErrorMapper.swift in Sources */,
 				0816F3AA1D587CEB0026A40E /* SwitchUsersResponseHandler.swift in Sources */,
+				08A587411DC34BE100F570C4 /* UploadManager.swift in Sources */,
 				0801353B1D353FF90054DAB0 /* SwitchUserResponseHandler.swift in Sources */,
 				083785891D37872C006EF69E /* ReportCommentResponseHandler.swift in Sources */,
 				183635471CB5014700ED778A /* DataIncludeMapper.swift in Sources */,
