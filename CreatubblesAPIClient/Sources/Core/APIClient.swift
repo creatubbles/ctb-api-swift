@@ -198,9 +198,14 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     }
     
     //MARK: - Authentication
-    open func authenticationToken() -> String?
-    {
-        return requestSender.authenticationToken;
+    
+    var authenticationToken: String? {
+        get {
+            return requestSender.authenticationToken
+        }
+        set {
+            requestSender.authenticationToken = newValue
+        }
     }
     
     @discardableResult
@@ -216,19 +221,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
                 weakSelf.delegate?.creatubblesAPIClientUserChanged(weakSelf)
             }
         }
-    }
-    
-    open func invalidateSession() {
-        requestSender.invalidateTokens()
-    }
-    
-    open func currentSessionData() -> SessionData {
-        return requestSender.currentSessionData()
-    }
-    
-    open func setSessionData(data sessionData: SessionData) {
-        requestSender.setSessionData(sessionData)
-    }
+    }   
     
     open func logout()
     {
