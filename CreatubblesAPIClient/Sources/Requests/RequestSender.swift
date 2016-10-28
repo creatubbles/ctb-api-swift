@@ -23,9 +23,6 @@
 //  THE SOFTWARE.
 
 import UIKit
-import Alamofire
-import p2_OAuth2
-
 
 class RequestSender: NSObject
 {
@@ -82,8 +79,8 @@ class RequestSender: NSObject
     }
     
     fileprivate class func errorFromLoginError(_ error: Error?) -> APIClientError {
-        if let err = error as? OAuth2Error {
-            return ErrorTransformer.errorFromOAuthError(err)
+        if let err = error as? AuthenticationError {
+            return ErrorTransformer.errorFromAuthenticationError(err)
         }
         
         if let err = error as? NSError {
