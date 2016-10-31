@@ -5,7 +5,7 @@ target 'CreatubblesAPIClient' do
 
 pod 'ObjectMapper', '~> 2.0'
 pod 'XCGLogger', '~> 4.0.0'
-pod 'RealmSwift', '2.0'
+pod 'RealmSwift', '2.0.3'
 pod 'KeychainAccess', '~> 3.0.1'
 
 end
