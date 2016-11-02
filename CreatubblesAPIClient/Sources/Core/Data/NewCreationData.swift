@@ -36,9 +36,10 @@ open class NewCreationData: NSObject
 {
     open let uploadExtension: UploadExtension
     
-    open var data: Data?
+    open var data: NSData?
     open var image: UIImage?
-    open var url: URL?
+    open var url: NSURL?
+    open var creationIdentifier: String?
     
     
     open var name: String? = nil
@@ -53,7 +54,7 @@ open class NewCreationData: NSObject
     
     public init(data: Data, uploadExtension: UploadExtension)
     {
-        self.data = data
+        self.data = data as NSData?
         self.dataType = .data
         self.uploadExtension = uploadExtension
     }
@@ -65,13 +66,14 @@ open class NewCreationData: NSObject
     }
     public init(url: URL, uploadExtension: UploadExtension)
     {
-        self.url = url
+        self.url = url as NSURL?
         self.dataType = .url
         self.uploadExtension = uploadExtension
     }
     
     init(creationDataEntity: NewCreationDataEntity, url: URL)
     {
+        self.creationIdentifier = creationDataEntity.creationIdentifier
         self.name = creationDataEntity.name
         self.reflectionText = creationDataEntity.reflectionText
         self.reflectionVideoUrl = creationDataEntity.reflectionVideoUrl
@@ -93,7 +95,7 @@ open class NewCreationData: NSObject
         }
         else if(dataType.rawValue == 1)
         {
-            self.url = url
+            self.url = url as NSURL?
         }
         else if(dataType.rawValue == 2)
         {

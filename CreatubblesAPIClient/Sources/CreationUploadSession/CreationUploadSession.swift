@@ -1,4 +1,4 @@
-//
+
 //  CreationUploadSession.swift
 //  CreatubblesAPIClient
 //
@@ -32,7 +32,8 @@ enum CreationUploadSessionState: Int
     case uploadPathObtained = 3
     case imageUploaded = 4
     case serverNotified = 5
-    case cancelled = 6
+    case submittedToGallery = 6
+    case cancelled = 7
 }
 
 protocol CreationUploadSessionDelegate: class
@@ -130,21 +131,26 @@ class CreationUploadSession: NSObject, Cancelable
                             weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
                                 
-                                weakSelf.error = error
-                                weakSelf.isActive = false
                                 weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                                 
-                                if let error = error
-                                {
-                                    Logger.log.error("Upload \(weakSelf.localIdentifier) finished with error: \(error)")
-                                    weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
-                                }
-                                else
-                                {
-                                    Logger.log.debug("Upload \(weakSelf.localIdentifier) finished successfully")
-                                }
+
+                                    weakSelf.uploadToGallery(error: error, completion: { (error) in
+                                        
+                                    weakSelf.error = error
+                                    weakSelf.isActive = false
+
+                                    if let error = error
+                                    {
+                                        Logger.log.error("Upload \(weakSelf.localIdentifier) finished with error: \(error)")
+                                        weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
+                                    }
+                                    else
+                                    {
+                                        Logger.log.debug("Upload \(weakSelf.localIdentifier) finished successfully")
+                                    }
+                                    completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
+                                })
                                 
-                                completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
                             })
                         })
                     })
@@ -193,19 +199,36 @@ class CreationUploadSession: NSObject, Cancelable
             completion(nil)
             return
         }
-        let request = NewCreationRequest(creationData: creationData)
-        let handler = NewCreationResponseHandler
-            {
-                [weak self](creation, error) -> Void in
-                if let weakSelf = self,
-                    let creation = creation
+        
+        if let creationIdentifier = creationData.creationIdentifier {
+            let request = FetchCreationsRequest(creationId: creationIdentifier)
+            let handler = FetchCreationsResponseHandler
                 {
-                    weakSelf.creation = creation
-                    weakSelf.state = .creationAllocated
-                }
-                completion(error)
+                    [weak self]  (creations, pageInfo, error) -> (Void) in
+                    if let strongSelf = self,
+                        let creation = creations?.first
+                    {
+                        strongSelf.creation = creation
+                        strongSelf.state = .creationAllocated
+                    }
+                    completion(error)
+            }
+            currentRequest = requestSender.send(request, withResponseHandler: handler)
+        } else {
+            let request = NewCreationRequest(creationData: creationData)
+            let handler = NewCreationResponseHandler
+                {
+                    [weak self] (creation, error) -> Void in
+                    if let strongSelf = self,
+                        let creation = creation
+                    {
+                        strongSelf.creation = creation
+                        strongSelf.state = .creationAllocated
+                    }
+                    completion(error)
+            }
+            currentRequest = requestSender.send(request, withResponseHandler: handler)
         }
-        currentRequest = requestSender.send(request, withResponseHandler: handler)
     }
     
     fileprivate func obtainUploadPath(_ error: Error?, completion: @escaping (Error?) -> Void)
@@ -297,6 +320,44 @@ class CreationUploadSession: NSObject, Cancelable
                     }
                 }
                 completion(error)
+        }
+        currentRequest = requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    private func uploadToGallery(error: Error?, completion: @escaping (Error?) -> Void)
+    {
+        if let error = error
+        {
+            completion(error)
+            return
+        }
+        if state.rawValue >= CreationUploadSessionState.submittedToGallery.rawValue
+        {
+            completion(nil)
+            return
+        }
+        
+        guard let galleryId = creationData.galleryId
+            else
+        {
+            state = .submittedToGallery
+            Logger.log.error("GalleryId not set for creation \(self.creation!.identifier)")
+            completion(nil)
+            return
+        }
+        
+        let request = GallerySubmissionRequest(galleryId: galleryId, creationId: creation!.identifier)
+        let handler = GallerySubmissionResponseHandler()
+        {
+            [weak self](error) -> Void in
+            if let weakSelf = self
+            {
+                if error == nil
+                {
+                    weakSelf.state = .submittedToGallery
+                }
+            }
+            completion(error)
         }
         currentRequest = requestSender.send(request, withResponseHandler: handler)
     }

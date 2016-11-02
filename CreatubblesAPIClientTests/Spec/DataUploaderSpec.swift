@@ -31,18 +31,20 @@ import Realm
 
 class DataUploaderSpec: QuickSpec
 {
-    override func spec()
-    {
+//    override func spec()
+//    {
 //        describe("Creation upload session")
 //        {
-//            it("Should upload image")
+//            it("Should upload image and add a creation to a gallery")
 //            {
 //                let path = NSBundle(forClass: self.dynamicType).URLForResource("creatubbles_logo", withExtension: "jpg")
 //                let image = UIImage(contentsOfFile: path!.path!)!
 //                let requestSender = RequestSender(settings: TestConfiguration.settings)
-//                let session = CreationUploadSession(data: NewCreationData(image: image), requestSender: requestSender)
+//                let data = NewCreationData(image: image, uploadExtension: .JPG)
+//                data.galleryId = "OLhco6SA"
+//                let session = CreationUploadSession(data: data, requestSender: requestSender)
 //                
-//                waitUntil(timeout: 30)
+//                waitUntil(timeout: 300)
 //                {
 //                    done in
 //                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -62,7 +64,7 @@ class DataUploaderSpec: QuickSpec
 //            {
 //                let path = NSBundle(forClass: self.dynamicType).URLForResource("testVideo", withExtension: "mp4")
 //                let requestSender = RequestSender(settings: TestConfiguration.settings)
-//                let session = CreationUploadSession(data: NewCreationData(url: path!), requestSender: requestSender)
+//                let session = CreationUploadSession(data: NewCreationData(url: path!, uploadExtension: .MP4), requestSender: requestSender)
 //                
 //                waitUntil(timeout: 10000)
 //                {
@@ -80,11 +82,12 @@ class DataUploaderSpec: QuickSpec
 //                    }
 //                }
 //            }
+//        }
 //            it("Should upload zip file")
 //            {
 //                let path = NSBundle(forClass: self.dynamicType).URLForResource("test", withExtension: "zip")
 //                let requestSender = RequestSender(settings: TestConfiguration.settings)
-//                let session = CreationUploadSession(data: NewCreationData(data: NSData(contentsOfURL: path!)!), requestSender: requestSender)
+//                let session = CreationUploadSession(data: NewCreationData(data: NSData(contentsOfURL: path!)!, uploadExtension: .ZIP), requestSender: requestSender)
 //                
 //                waitUntil(timeout: 10000)
 //                {
@@ -102,8 +105,8 @@ class DataUploaderSpec: QuickSpec
 //                    }
 //                }
 //            }
-//            
-//
+            
+
 //            it("Should upload database sessions")
 //            {
 //                let databaseDAO = DatabaseDAO()
@@ -137,7 +140,7 @@ class DataUploaderSpec: QuickSpec
 //                }
 //            }
 //        }
-//        
+        
 //        describe("APIClient ")
 //        {
 //            it("Should upload new creation")
@@ -190,5 +193,5 @@ class DataUploaderSpec: QuickSpec
 //                }
 //            }
 //        }
-    }
 }
+

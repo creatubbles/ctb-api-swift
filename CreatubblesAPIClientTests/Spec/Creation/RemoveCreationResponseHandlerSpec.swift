@@ -52,6 +52,7 @@ class RemoveCreationResponseHandlerSpec: QuickSpec
                     sender.send(request, withResponseHandler:RemoveCreationResponseHandler()
                     {
                         (error: Error?) -> Void in
+
                         expect(error).notTo(beNil())
                         done()
                     })
