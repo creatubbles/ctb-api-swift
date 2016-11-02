@@ -11,9 +11,9 @@ import ObjectMapper
 
 class FetchToybooCreationResponseHandler: ResponseHandler
 {
-    private let completion: CreationClosure?
+    private let completion: ToybooCreationClosure?
     
-    init(completion: CreationClosure?)
+    init(completion: ToybooCreationClosure?)
     {
         self.completion = completion
     }
@@ -21,11 +21,11 @@ class FetchToybooCreationResponseHandler: ResponseHandler
     override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
     {
         if let response = response,
-            let mapper = Mapper<CreationMapper>().map(response["data"])
+            let mapper = Mapper<ToybooCreationMapper>().map(response["data"])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let creation = Creation(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
+            let creation = ToybooCreation(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
             
             executeOnMainQueue { self.completion?(creation, ErrorTransformer.errorFromResponse(response, error: error)) }
         }

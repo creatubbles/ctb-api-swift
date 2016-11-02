@@ -86,7 +86,7 @@ class CreationsDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getToybooCreation(creationIdentifier creationId: String, completion: CreationClosure) -> RequestHandler
+    func getToybooCreation(creationIdentifier creationId: String, completion: ToybooCreationClosure) -> RequestHandler
     {
         let request = FetchToybooCreationRequest(creationId: creationId)
         let handler = FetchToybooCreationResponseHandler(completion: completion)

@@ -20,7 +20,7 @@ class FetchToybooCreationResponseHandlerSpec: QuickSpec
             {
                 let request = FetchToybooCreationRequest(creationId: "kniSnnvO")
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 100)
+                waitUntil(timeout: 200)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -41,9 +41,22 @@ class FetchToybooCreationResponseHandlerSpec: QuickSpec
             
             it("Should return an error when not logged in")
             {
-                
+                let request = FetchToybooCreationRequest(creationId: "kniSnnvO")
+                let sender =  TestComponentsFactory.requestSender
+                waitUntil(timeout: 20)
+                {
+                    done in
+                    sender.logout()
+                    sender.send(request, withResponseHandler: FetchToybooCreationResponseHandler
+                    {
+                        (creation, error) -> (Void) in
+                        expect(creation).to(beNil())
+                        expect(error).notTo(beNil())
+                        sender.logout()
+                        done()
+                    })
+                }
             }
-
         }
     }
 }

@@ -286,6 +286,8 @@
 		212A12261D5360B0001BA35A /* PartnerApplicationsSearchRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A12251D5360B0001BA35A /* PartnerApplicationsSearchRequestSpec.swift */; };
 		212A12281D536A3C001BA35A /* PartnerApplicationsSearchResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A12271D536A3C001BA35A /* PartnerApplicationsSearchResponseHandlerSpec.swift */; };
 		212A122A1D537213001BA35A /* PartnerApplicationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A12291D537213001BA35A /* PartnerApplicationDAO.swift */; };
+		21300F6E1DCA105A00416EDF /* ToybooCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21300F6D1DCA105A00416EDF /* ToybooCreation.swift */; };
+		21300F701DCA127500416EDF /* ToybooCreationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21300F6F1DCA127500416EDF /* ToybooCreationMapper.swift */; };
 		2152794D1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152794C1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift */; };
 		2152794F1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152794E1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift */; };
 		215279521D3F6FC400B67313 /* CreateAUserFollowingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279511D3F6FC400B67313 /* CreateAUserFollowingRequest.swift */; };
@@ -631,6 +633,8 @@
 		212A12251D5360B0001BA35A /* PartnerApplicationsSearchRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerApplicationsSearchRequestSpec.swift; sourceTree = "<group>"; };
 		212A12271D536A3C001BA35A /* PartnerApplicationsSearchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerApplicationsSearchResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		212A12291D537213001BA35A /* PartnerApplicationDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerApplicationDAO.swift; sourceTree = "<group>"; };
+		21300F6D1DCA105A00416EDF /* ToybooCreation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToybooCreation.swift; sourceTree = "<group>"; };
+		21300F6F1DCA127500416EDF /* ToybooCreationMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToybooCreationMapper.swift; sourceTree = "<group>"; };
 		2152794C1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersFollowedByAUserRequest.swift; sourceTree = "<group>"; };
 		2152794E1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersFollowedByAUserResponseHandler.swift; sourceTree = "<group>"; };
 		215279511D3F6FC400B67313 /* CreateAUserFollowingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAUserFollowingRequest.swift; sourceTree = "<group>"; };
@@ -824,6 +828,7 @@
 				08AC6A651D4259B4004A35C3 /* Activity.swift */,
 				212A12181D50E617001BA35A /* PartnerApplication.swift */,
 				2110E04D1D742B3F00B62156 /* NameTranslationObject.swift */,
+				21300F6D1DCA105A00416EDF /* ToybooCreation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1031,6 +1036,7 @@
 				08AC6A631D425439004A35C3 /* ActivityMapper.swift */,
 				212A121A1D50EF08001BA35A /* PartnerApplicationsMapper.swift */,
 				2110E04F1D742C0E00B62156 /* NameTranslationObjectMapper.swift */,
+				21300F6F1DCA127500416EDF /* ToybooCreationMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -1836,6 +1842,7 @@
 				08AC6A641D425439004A35C3 /* ActivityMapper.swift in Sources */,
 				212A121B1D50EF08001BA35A /* PartnerApplicationsMapper.swift in Sources */,
 				08AC6A661D4259B4004A35C3 /* Activity.swift in Sources */,
+				21300F701DCA127500416EDF /* ToybooCreationMapper.swift in Sources */,
 				181E76EC1CC547C000A1546A /* CommentsDAO.swift in Sources */,
 				18E9D1911D117F58006F2BAB /* EditCreationData.swift in Sources */,
 				1859FAA41D39052F0023A6B6 /* DeleteGroupRequest.swift in Sources */,
@@ -1851,6 +1858,7 @@
 				181E76FB1CC5485100A1546A /* NewCommentData.swift in Sources */,
 				18F6E89B1D021B6500AAC5FB /* GalleriesRequest.swift in Sources */,
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,
+				21300F6E1DCA105A00416EDF /* ToybooCreation.swift in Sources */,
 				1859FA981D3905210023A6B6 /* EditGroupData.swift in Sources */,
 				08E6FEF81D796F3200DCAB61 /* GroupUsersBatchFetcher.swift in Sources */,
 				217C88381DBE2A2C00E1B6E0 /* NotificationsViewTrackerResponseHandler.swift in Sources */,
