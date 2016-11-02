@@ -37,6 +37,7 @@ public typealias GroupsClosure = (Array<Group>?, APIClientError?) -> (Void)
 public typealias CreationClosure = (Creation?, APIClientError?) -> (Void)
 public typealias CreationsClosure = (Array<Creation>?, PagingInfo?, APIClientError?) -> (Void)
 public typealias CreationsBatchClosure = (Array<Creation>?, APIClientError?) -> (Void)
+public typealias ToybooCreationClosure = (ToybooCreation?, APIClientError?) -> (Void)
 
 public typealias GalleryClosure = (Gallery?, APIClientError?) -> (Void)
 public typealias GalleriesClosure = (Array<Gallery>?, PagingInfo?, APIClientError?) -> (Void)
@@ -477,7 +478,7 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return creationsDAO.removeCreation(creationIdentifier: creationId, completion: completion)
     }
     
-    public func getToybooCreation(creationId creationId: String, completion: CreationClosure) -> RequestHandler
+    public func getToybooCreation(creationId creationId: String, completion: ToybooCreationClosure) -> RequestHandler
     {
         return creationsDAO.getToybooCreation(creationIdentifier: creationId, completion: completion)
     }
