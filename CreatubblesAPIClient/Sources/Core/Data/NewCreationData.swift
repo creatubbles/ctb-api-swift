@@ -38,7 +38,7 @@ open class NewCreationData: NSObject
     
     open var data: NSData?
     open var image: UIImage?
-    open var url: NSURL?
+    open var url: URL?
     open var creationIdentifier: String?
     
     
@@ -66,7 +66,7 @@ open class NewCreationData: NSObject
     }
     public init(url: URL, uploadExtension: UploadExtension)
     {
-        self.url = url as NSURL?
+        self.url = url
         self.dataType = .url
         self.uploadExtension = uploadExtension
     }
@@ -95,7 +95,7 @@ open class NewCreationData: NSObject
         }
         else if(dataType.rawValue == 1)
         {
-            self.url = url as NSURL?
+            self.url = url
         }
         else if(dataType.rawValue == 2)
         {
