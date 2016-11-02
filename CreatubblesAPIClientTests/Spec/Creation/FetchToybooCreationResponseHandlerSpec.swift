@@ -18,7 +18,9 @@ class FetchToybooCreationResponseHandlerSpec: QuickSpec
         {
             it("Should return a correct creation after login")
             {
-                let request = FetchToybooCreationRequest(creationId: "kniSnnvO")
+                guard let creationId = TestConfiguration.toyboCreationIdentifier
+                    else { return }
+                let request = FetchToybooCreationRequest(creationId: creationId)
                 let sender =  TestComponentsFactory.requestSender
                 waitUntil(timeout: 200)
                 {
@@ -41,7 +43,9 @@ class FetchToybooCreationResponseHandlerSpec: QuickSpec
             
             it("Should return an error when not logged in")
             {
-                let request = FetchToybooCreationRequest(creationId: "kniSnnvO")
+                guard let creationId = TestConfiguration.toyboCreationIdentifier
+                    else { return }
+                let request = FetchToybooCreationRequest(creationId: creationId)
                 let sender =  TestComponentsFactory.requestSender
                 waitUntil(timeout: 20)
                 {
