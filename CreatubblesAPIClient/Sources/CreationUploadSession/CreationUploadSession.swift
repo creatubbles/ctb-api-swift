@@ -133,30 +133,12 @@ class CreationUploadSession: NSObject, Cancelable
                                 
                                 weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                                 
-                                if let _ = weakSelf.creationData.galleryId
-                                {
+
                                     weakSelf.uploadToGallery(error, completion: { (error) in
                                         
-                                        weakSelf.error = error
-                                        weakSelf.isActive = false
-
-                                        if let error = error
-                                        {
-                                            Logger.log.error("Upload \(weakSelf.localIdentifier) finished with error: \(error)")
-                                            weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
-                                        }
-                                        else
-                                        {
-                                            Logger.log.debug("Upload \(weakSelf.localIdentifier) finished successfully")
-                                        }
-                                        completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
-                                    })
-                                }
-                                else
-                                {
                                     weakSelf.error = error
                                     weakSelf.isActive = false
-                                    
+
                                     if let error = error
                                     {
                                         Logger.log.error("Upload \(weakSelf.localIdentifier) finished with error: \(error)")
@@ -164,11 +146,11 @@ class CreationUploadSession: NSObject, Cancelable
                                     }
                                     else
                                     {
-
                                         Logger.log.debug("Upload \(weakSelf.localIdentifier) finished successfully")
                                     }
                                     completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
-                                }
+                                })
+                                
                             })
                         })
                     })
@@ -355,7 +337,16 @@ class CreationUploadSession: NSObject, Cancelable
             return
         }
         
-        let request = GallerySubmissionRequest(galleryId: creationData.galleryId!, creationId: creation!.identifier)
+        guard let galleryId = creationData.galleryId
+            else
+        {
+            state = .SubmittedToGallery
+            Logger.log.error("GalleryId not set for creation \(creation!.identifier)")
+            completion(nil)
+            return
+        }
+        
+        let request = GallerySubmissionRequest(galleryId: galleryId, creationId: creation!.identifier)
         let handler = GallerySubmissionResponseHandler()
         {
             [weak self](error) -> Void in
