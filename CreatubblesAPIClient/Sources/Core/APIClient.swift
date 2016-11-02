@@ -475,12 +475,12 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     }
     
 
-    open func removeCreation(creationId creationId: String, completion: ErrorClosure?) -> RequestHandler
+    open func removeCreation(creationId: String, completion: ErrorClosure?) -> RequestHandler
     {
         return creationsDAO.removeCreation(creationIdentifier: creationId, completion: completion)
     }
     
-    open func getToybooCreation(creationId creationId: String, completion: ToybooCreationClosure?) -> RequestHandler
+    open func getToybooCreation(creationId: String, completion: ToybooCreationClosure?) -> RequestHandler
     {
         return creationsDAO.getToybooCreation(creationIdentifier: creationId, completion: completion)
     }
