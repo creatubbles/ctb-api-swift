@@ -31,6 +31,7 @@ class NewCreationRequestSpec: QuickSpec
             it("Should have proper parameters set")
             {
                 let data = NewCreationData(image: UIImage(), uploadExtension: .jpeg)
+
                 data.name = "TestCreationName"
                 data.creatorIds = ["TestCreationId1", "TestCreationId2"]
                 data.creationMonth = 1

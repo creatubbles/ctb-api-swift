@@ -37,6 +37,7 @@ public typealias GroupsClosure = (Array<Group>?, APIClientError?) -> (Void)
 public typealias CreationClosure = (Creation?, APIClientError?) -> (Void)
 public typealias CreationsClosure = (Array<Creation>?, PagingInfo?, APIClientError?) -> (Void)
 public typealias CreationsBatchClosure = (Array<Creation>?, APIClientError?) -> (Void)
+public typealias ToybooCreationClosure = (ToybooCreation?, APIClientError?) -> (Void)
 
 public typealias GalleryClosure = (Gallery?, APIClientError?) -> (Void)
 public typealias GalleriesClosure = (Array<Gallery>?, PagingInfo?, APIClientError?) -> (Void)
@@ -473,11 +474,16 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return creationsDAO.getCreationsInBatchMode(galleryIdentifier: galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic, completion: completion)
     }
     
-    public func removeCreation(creationId: String, completion: ErrorClosure?) -> RequestHandler
+
+    open func removeCreation(creationId creationId: String, completion: ErrorClosure?) -> RequestHandler
     {
         return creationsDAO.removeCreation(creationIdentifier: creationId, completion: completion)
     }
-
+    
+    open func getToybooCreation(creationId creationId: String, completion: ToybooCreationClosure?) -> RequestHandler
+    {
+        return creationsDAO.getToybooCreation(creationIdentifier: creationId, completion: completion)
+    }
     
     //MARK: - Upload Sessions
     open func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
