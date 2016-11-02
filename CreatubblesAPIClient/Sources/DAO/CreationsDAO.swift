@@ -86,6 +86,13 @@ class CreationsDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getToybooCreation(creationIdentifier creationId: String, completion: CreationClosure) -> RequestHandler
+    {
+        let request = FetchToybooCreationRequest(creationId: creationId)
+        let handler = FetchToybooCreationResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     //MARK: BatchMode
     func getCreationsInBatchMode(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
     {

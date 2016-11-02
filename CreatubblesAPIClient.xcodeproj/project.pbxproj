@@ -314,6 +314,10 @@
 		217C883C1DBE2A4200E1B6E0 /* NotificationsViewTrackerResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217C883A1DBE2A4200E1B6E0 /* NotificationsViewTrackerResponseHandlerSpec.swift */; };
 		219121941D2D1F510039FA94 /* MyConnectionsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */; };
 		219121961D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */; };
+		219F2B321DC9EB190023BC99 /* FetchToybooCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F2B311DC9EB190023BC99 /* FetchToybooCreationRequest.swift */; };
+		219F2B341DC9EB3A0023BC99 /* FetchToybooCreationResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F2B331DC9EB3A0023BC99 /* FetchToybooCreationResponseHandler.swift */; };
+		219F2B361DC9ED680023BC99 /* FetchToybooCreationRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F2B351DC9ED680023BC99 /* FetchToybooCreationRequestSpec.swift */; };
+		219F2B381DC9ED910023BC99 /* FetchToybooCreationResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F2B371DC9ED910023BC99 /* FetchToybooCreationResponseHandlerSpec.swift */; };
 		21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F661C81E6A2009E95D1 /* PagingInfo.swift */; };
 		21A79F6F1C81E6C5009E95D1 /* BatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */; };
 		21A79F701C81E6C5009E95D1 /* CreationsBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */; };
@@ -655,6 +659,10 @@
 		217C883A1DBE2A4200E1B6E0 /* NotificationsViewTrackerResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewTrackerResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsRequestSpec.swift; sourceTree = "<group>"; };
 		219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		219F2B311DC9EB190023BC99 /* FetchToybooCreationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchToybooCreationRequest.swift; sourceTree = "<group>"; };
+		219F2B331DC9EB3A0023BC99 /* FetchToybooCreationResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchToybooCreationResponseHandler.swift; sourceTree = "<group>"; };
+		219F2B351DC9ED680023BC99 /* FetchToybooCreationRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchToybooCreationRequestSpec.swift; sourceTree = "<group>"; };
+		219F2B371DC9ED910023BC99 /* FetchToybooCreationResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchToybooCreationResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		21A79F661C81E6A2009E95D1 /* PagingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfo.swift; sourceTree = "<group>"; };
 		21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchFetcher.swift; sourceTree = "<group>"; };
 		21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsBatchFetcher.swift; sourceTree = "<group>"; };
@@ -1124,6 +1132,8 @@
 				0837859C1D379A8C006EF69E /* ReportCreationResponseHandlerSpec.swift */,
 				21D068BD1DAD050E002B5019 /* RemoveCreationRequestSpec.swift */,
 				21D068BF1DAD053A002B5019 /* RemoveCreationResponseHandlerSpec.swift */,
+				219F2B351DC9ED680023BC99 /* FetchToybooCreationRequestSpec.swift */,
+				219F2B371DC9ED910023BC99 /* FetchToybooCreationResponseHandlerSpec.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -1278,6 +1288,8 @@
 				0837858C1D378AAE006EF69E /* ReportCreationResponseHandler.swift */,
 				21D068B91DACEB9A002B5019 /* RemoveCreationRequest.swift */,
 				21D068BB1DACEBAA002B5019 /* RemoveCreationResponseHandler.swift */,
+				219F2B311DC9EB190023BC99 /* FetchToybooCreationRequest.swift */,
+				219F2B331DC9EB3A0023BC99 /* FetchToybooCreationResponseHandler.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -1764,6 +1776,7 @@
 				212A12221D53582F001BA35A /* PartnerApplicationsSearchRequest.swift in Sources */,
 				18290AF31D070551000EA216 /* NotificationReadRequest.swift in Sources */,
 				18C744FE1C84611600A07E4C /* NewCreationDataEntity.swift in Sources */,
+				219F2B321DC9EB190023BC99 /* FetchToybooCreationRequest.swift in Sources */,
 				212A12151D50DD74001BA35A /* PartnerApplicationRequest.swift in Sources */,
 				18290AF51D07071C000EA216 /* NotificationReadResponseHandler.swift in Sources */,
 				18C1CFF71C75C46C00A02DE3 /* CreationsDAO.swift in Sources */,
@@ -1807,6 +1820,7 @@
 				18F6E8B11D0222AD00AAC5FB /* CustomStyleFetchRequest.swift in Sources */,
 				18467F631D02E9E1005CE5DD /* UIColor+Hex.swift in Sources */,
 				1815D5651C638BD200EF4C38 /* User.swift in Sources */,
+				219F2B341DC9EB3A0023BC99 /* FetchToybooCreationResponseHandler.swift in Sources */,
 				212A122A1D537213001BA35A /* PartnerApplicationDAO.swift in Sources */,
 				18E6E8731CFF2F39008D7B89 /* Ability.swift in Sources */,
 				183728EA1CEDC835008784C7 /* ContentEntry.swift in Sources */,
@@ -1898,6 +1912,7 @@
 				18F6E84A1D0219C800AAC5FB /* CommentsRequestSpec.swift in Sources */,
 				1859FAB81D39053D0023A6B6 /* DeleteGroupResponseHandlerSpec.swift in Sources */,
 				18F6E8481D0218A100AAC5FB /* ContentResponseHandlerSpec.swift in Sources */,
+				219F2B381DC9ED910023BC99 /* FetchToybooCreationResponseHandlerSpec.swift in Sources */,
 				0837859D1D379A8C006EF69E /* ReportCreationResponseHandlerSpec.swift in Sources */,
 				1859FABD1D39053D0023A6B6 /* GroupsResponseHandlerSpec.swift in Sources */,
 				18F6E8151D020F3D00AAC5FB /* BubbleResponseHandlerSpec.swift in Sources */,
@@ -1926,6 +1941,7 @@
 				182FB8B41D128F65004495CB /* EditProfileRequestSpec.swift in Sources */,
 				215279791D46513200B67313 /* ContentSearchRequestSpec.swift in Sources */,
 				08AC6A6B1D425DEC004A35C3 /* ActivitiesResponseHandlerSpec.swift in Sources */,
+				219F2B361DC9ED680023BC99 /* FetchToybooCreationRequestSpec.swift in Sources */,
 				18467F661D02EA59005CE5DD /* UIColorHexSpec.swift in Sources */,
 				18F6E8191D02114400AAC5FB /* CreationResponseHandlerSpec.swift in Sources */,
 				08B7E9121D524CDD007A30F3 /* GroupCreatorsResponseHandlerSpec.swift in Sources */,
