@@ -477,6 +477,11 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
         return creationsDAO.removeCreation(creationIdentifier: creationId, completion: completion)
     }
     
+    public func getToybooCreation(creationId creationId: String, completion: CreationClosure) -> RequestHandler
+    {
+        return creationsDAO.getToybooCreation(creationIdentifier: creationId, completion: completion)
+    }
+    
     //MARK: - Upload Sessions
     public func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
