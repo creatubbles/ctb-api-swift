@@ -37,6 +37,7 @@ class RequestSenderSpec: QuickSpec
             let settings = TestConfiguration.settings
             let sender = RequestSender(settings: settings)
             sender.logout()
+            
         }
         
         describe("Request Sender")

@@ -40,6 +40,7 @@ import UIKit
     case m4V
     case mov
     case uzpb
+    case zip
     
     var stringValue: String
     {
@@ -59,6 +60,7 @@ import UIKit
             case .m4V: return "m4v"
             case .mov: return "mov"
             case .uzpb: return "uzpb"
+            case .zip: return "zip"
         }
     }
     
