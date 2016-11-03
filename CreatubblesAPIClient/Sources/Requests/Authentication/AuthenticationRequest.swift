@@ -11,6 +11,7 @@ import UIKit
 class AuthenticationRequest: Request {
     override var method: RequestMethod  { return .post }
     override var endpoint: String { return settings.tokenUri }
+    override var onlyPath: Bool { return false }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
     
     fileprivate let settings: APIClientSettings

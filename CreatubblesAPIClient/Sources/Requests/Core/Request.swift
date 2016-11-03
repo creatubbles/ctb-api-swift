@@ -41,6 +41,7 @@ class Request: NSObject, Cancelable
 {
     var method: RequestMethod   { return .get }
     var endpoint: String        { return ""   }
+    var onlyPath: Bool          { return true }
     var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
     
     class func sortOrderStringValue(_ sortOrder: SortOrder) -> String
