@@ -45,11 +45,6 @@ extension APIClient
         return isLoggedIn()
     }
     
-    public func _authenticationToken() -> String?
-    {
-        return authenticationToken()
-    }
-    
     public func _getLandingURL(_ type: LandingURLType, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
     {
        _ = getLandingURL(type: type)

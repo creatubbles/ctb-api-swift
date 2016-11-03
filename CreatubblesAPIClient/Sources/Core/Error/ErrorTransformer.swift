@@ -25,7 +25,6 @@
 
 import Foundation
 import ObjectMapper
-import p2_OAuth2
 
 class ErrorTransformer
 {
@@ -77,11 +76,11 @@ class ErrorTransformer
                               domain: error.domain)
     }
     
-    static func errorFromOAuthError(_ oauthError: OAuth2Error) -> APIClientError
+    static func errorFromAuthenticationError(_ authenticationError: AuthenticationError) -> APIClientError
     {
         return APIClientError(status: APIClientError.LoginStatus,
                               code: APIClientError.DefaultAuthenticationCode,
-                              title: oauthError.description,
+                              title: authenticationError.description,
                               source: APIClientError.DefaultSource,
                               detail: APIClientError.DefaultDetail)
     }

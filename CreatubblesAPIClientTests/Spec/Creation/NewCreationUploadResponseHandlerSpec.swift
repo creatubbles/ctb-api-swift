@@ -9,7 +9,6 @@
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
-import Alamofire
 
 class NewCreationUploadResponseHandlerSpec: QuickSpec
 {
