@@ -19,7 +19,7 @@ class FetchToybooCreationRequestSpec: QuickSpec
             it("Should have a proper method")
             {
                 let request = FetchToybooCreationRequest(creationId: "")
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have a proper endpoint")

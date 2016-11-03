@@ -36,7 +36,7 @@ open class NewCreationData: NSObject
 {
     open let uploadExtension: UploadExtension
     
-    open var data: NSData?
+    open var data: Data?
     open var image: UIImage?
     open var url: URL?
     open var creationIdentifier: String?
@@ -54,7 +54,7 @@ open class NewCreationData: NSObject
     
     public init(data: Data, uploadExtension: UploadExtension)
     {
-        self.data = data as NSData?
+        self.data = data
         self.dataType = .data
         self.uploadExtension = uploadExtension
     }
