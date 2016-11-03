@@ -42,8 +42,8 @@ class DatabaseService: NSObject
             Logger.log.error("Realm error error: \(realmError)")
             do
             {
-                let path = RLMRealmConfiguration.default().fileURL?.absoluteString
-                try FileManager.default.removeItem(atPath: path!)
+                let url = RLMRealmConfiguration.default().fileURL
+                try FileManager.default.removeItem(at: url!)
             }
             catch let fileManagerError
             {

@@ -18,7 +18,7 @@ DEPENDENCIES:
   - Nimble (~> 5.0.0)
   - ObjectMapper (~> 2.0)
   - p2.OAuth2 (from `https://github.com/p2/OAuth2`, branch `develop`)
-  - Quick
+  - Quick (~> 0.10.0)
   - RealmSwift (= 2.0)
   - XCGLogger (~> 4.0.0)
 
@@ -44,6 +44,6 @@ SPEC CHECKSUMS:
   RealmSwift: 7d015f34a2781a50889be9b5a15c36c08597ea0e
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: c5ea741a88365a4dc79ef9939600405018022292
+PODFILE CHECKSUM: 8185495fcd261a86338cdc09ecbd052c226fb63a
 
 COCOAPODS: 1.1.0.rc.2
