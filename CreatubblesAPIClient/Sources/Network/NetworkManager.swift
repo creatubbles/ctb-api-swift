@@ -11,10 +11,6 @@ import UIKit
 class NetworkManager: NSObject {
     private lazy var session: URLSession = {
         var configuration = URLSessionConfiguration.default
-        if let identifier = self.settings.backgroundSessionConfigurationIdentifier {
-            configuration = URLSessionConfiguration.background(withIdentifier: identifier)
-        }
-        
         configuration.httpAdditionalHeaders = HTTPHeadersBuilder.defaultHTTPHeaders
         return URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
     }()
