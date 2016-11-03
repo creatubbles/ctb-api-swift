@@ -36,7 +36,7 @@ class NetworkManager: NSObject {
     }
     
     private func clientURLRequest(request: Request) -> URLRequest {
-        var urlRequest = URLRequest(url: NSURL(string: urlStringWithRequest(request))! as URL)
+        var urlRequest = URLRequest(url: URL(string: request.onlyPath ? urlStringWithRequest(request) : request.endpoint)!)
         urlRequest.httpMethod = request.method.rawValue
         
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
