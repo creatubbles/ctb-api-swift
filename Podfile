@@ -3,11 +3,10 @@ use_frameworks!
 
 target 'CreatubblesAPIClient' do
 
-pod 'p2.OAuth2', :git => 'https://github.com/p2/OAuth2', :branch => 'develop', :submodules => true
-pod 'Alamofire', '~> 4.0'
 pod 'ObjectMapper', '~> 2.0'
 pod 'XCGLogger', '~> 4.0.0'
-pod 'RealmSwift', '2.0'
+pod 'RealmSwift', '2.0.3'
+pod 'KeychainAccess', '~> 3.0.1'
 
 end
 
