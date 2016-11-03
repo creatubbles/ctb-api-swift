@@ -16,14 +16,14 @@ class UpdateGalleryRequestSpec: QuickSpec {
         describe("Update gallery request") {
             
             it("Should have proper method") {
-                let data = UpdateGalleryData(galleryId: "12345", name: nil, galleryDescription: nil)
+                let data = UpdateGalleryData(galleryId: "12345", name: nil, galleryDescription: nil, openForAll: nil)
                 let request = UpdateGalleryRequest(data: data)
                 expect(request.method).to(equal(RequestMethod.put))
             }
             
             it("Should have proper endpoint") {
                 let galleryId = "12345"
-                let data = UpdateGalleryData(galleryId: galleryId, name: nil, galleryDescription: nil)
+                let data = UpdateGalleryData(galleryId: galleryId, name: nil, galleryDescription: nil, openForAll: nil)
                 let request = UpdateGalleryRequest(data: data)
                 expect(request.endpoint).to(equal("galleries/\(galleryId)"))
             }
@@ -32,10 +32,11 @@ class UpdateGalleryRequestSpec: QuickSpec {
                 let galleryId = "12345"
                 let title = "sampleTitle"
                 let description = "sampleDescription"
-                let data = UpdateGalleryData(galleryId: galleryId, name: title, galleryDescription: description)
+                let data = UpdateGalleryData(galleryId: galleryId, name: title, galleryDescription: description, openForAll: true)
                 let request = UpdateGalleryRequest(data: data)
                 expect(request.parameters["name"] as? String).to(equal(title))
                 expect(request.parameters["description"] as? String).to(equal(description))
+                expect(request.parameters["open_for_all"] as? Bool).to(beTrue())
             }
             
             it("Should return correct value after login") {
@@ -47,7 +48,7 @@ class UpdateGalleryRequestSpec: QuickSpec {
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)  { (error: Error?) -> Void in
                         expect(error).to(beNil())
                         
-                        let data = UpdateGalleryData(galleryId: galleryIdentifier, name: "Sample", galleryDescription: "Sample")
+                        let data = UpdateGalleryData(galleryId: galleryIdentifier, name: "Sample", galleryDescription: "Sample", openForAll: true)
                         let request = UpdateGalleryRequest(data: data)
                         _ = sender.send(request, withResponseHandler: DummyResponseHandler() { (response, error) -> Void in
                                 expect(response).to(beNil())

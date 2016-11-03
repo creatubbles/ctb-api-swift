@@ -37,5 +37,4 @@ class NotificationDAO: NSObject
         let handler = NotificationsViewTrackerResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-
 }

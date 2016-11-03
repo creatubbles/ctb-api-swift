@@ -39,6 +39,7 @@ open class NewCreationData: NSObject
     open var data: Data?
     open var image: UIImage?
     open var url: URL?
+    open var creationIdentifier: String?
     
     
     open var name: String? = nil
@@ -72,6 +73,7 @@ open class NewCreationData: NSObject
     
     init(creationDataEntity: NewCreationDataEntity, url: URL)
     {
+        self.creationIdentifier = creationDataEntity.creationIdentifier
         self.name = creationDataEntity.name
         self.reflectionText = creationDataEntity.reflectionText
         self.reflectionVideoUrl = creationDataEntity.reflectionVideoUrl
