@@ -57,14 +57,14 @@ class CreationResponseHandlerSpec: QuickSpec
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:FetchCreationsResponseHandler
-                            {
-                                (creations: Array<Creation>?,pageInfo: PagingInfo?, error: Error?) -> Void in
-                                expect(creations).notTo(beNil())
-                                expect(error).to(beNil())
-                                expect(pageInfo).notTo(beNil())
-                                sender.logout()
-                                done()
-                            })
+                        {
+                            (creations: Array<Creation>?,pageInfo: PagingInfo?, error: Error?) -> Void in
+                            expect(creations).notTo(beNil())
+                            expect(error).to(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
                     }
                 }
             }

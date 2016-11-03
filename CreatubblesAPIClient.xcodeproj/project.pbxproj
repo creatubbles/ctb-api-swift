@@ -293,6 +293,12 @@
 		212A12261D5360B0001BA35A /* PartnerApplicationsSearchRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A12251D5360B0001BA35A /* PartnerApplicationsSearchRequestSpec.swift */; };
 		212A12281D536A3C001BA35A /* PartnerApplicationsSearchResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A12271D536A3C001BA35A /* PartnerApplicationsSearchResponseHandlerSpec.swift */; };
 		212A122A1D537213001BA35A /* PartnerApplicationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A12291D537213001BA35A /* PartnerApplicationDAO.swift */; };
+		213B29EF1DCA390E003E7314 /* ToybooCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B29EE1DCA390E003E7314 /* ToybooCreation.swift */; };
+		213B29F11DCA3918003E7314 /* ToybooCreationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B29F01DCA3918003E7314 /* ToybooCreationMapper.swift */; };
+		213B29F41DCA3936003E7314 /* FetchToybooCreationRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B29F21DCA3936003E7314 /* FetchToybooCreationRequestSpec.swift */; };
+		213B29F51DCA3936003E7314 /* FetchToybooCreationResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B29F31DCA3936003E7314 /* FetchToybooCreationResponseHandlerSpec.swift */; };
+		213B29F81DCA3946003E7314 /* FetchToybooCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B29F61DCA3946003E7314 /* FetchToybooCreationRequest.swift */; };
+		213B29F91DCA3946003E7314 /* FetchToybooCreationResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B29F71DCA3946003E7314 /* FetchToybooCreationResponseHandler.swift */; };
 		2152794D1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152794C1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift */; };
 		2152794F1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152794E1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift */; };
 		215279521D3F6FC400B67313 /* CreateAUserFollowingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279511D3F6FC400B67313 /* CreateAUserFollowingRequest.swift */; };
@@ -634,6 +640,12 @@
 		212A12251D5360B0001BA35A /* PartnerApplicationsSearchRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerApplicationsSearchRequestSpec.swift; sourceTree = "<group>"; };
 		212A12271D536A3C001BA35A /* PartnerApplicationsSearchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerApplicationsSearchResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		212A12291D537213001BA35A /* PartnerApplicationDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerApplicationDAO.swift; sourceTree = "<group>"; };
+		213B29EE1DCA390E003E7314 /* ToybooCreation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToybooCreation.swift; sourceTree = "<group>"; };
+		213B29F01DCA3918003E7314 /* ToybooCreationMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToybooCreationMapper.swift; sourceTree = "<group>"; };
+		213B29F21DCA3936003E7314 /* FetchToybooCreationRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchToybooCreationRequestSpec.swift; sourceTree = "<group>"; };
+		213B29F31DCA3936003E7314 /* FetchToybooCreationResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchToybooCreationResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		213B29F61DCA3946003E7314 /* FetchToybooCreationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchToybooCreationRequest.swift; sourceTree = "<group>"; };
+		213B29F71DCA3946003E7314 /* FetchToybooCreationResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchToybooCreationResponseHandler.swift; sourceTree = "<group>"; };
 		2152794C1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersFollowedByAUserRequest.swift; sourceTree = "<group>"; };
 		2152794E1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersFollowedByAUserResponseHandler.swift; sourceTree = "<group>"; };
 		215279511D3F6FC400B67313 /* CreateAUserFollowingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAUserFollowingRequest.swift; sourceTree = "<group>"; };
@@ -818,6 +830,7 @@
 				08AC6A651D4259B4004A35C3 /* Activity.swift */,
 				212A12181D50E617001BA35A /* PartnerApplication.swift */,
 				2110E04D1D742B3F00B62156 /* NameTranslationObject.swift */,
+				213B29EE1DCA390E003E7314 /* ToybooCreation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1025,6 +1038,7 @@
 				08AC6A631D425439004A35C3 /* ActivityMapper.swift */,
 				212A121A1D50EF08001BA35A /* PartnerApplicationsMapper.swift */,
 				2110E04F1D742C0E00B62156 /* NameTranslationObjectMapper.swift */,
+				213B29F01DCA3918003E7314 /* ToybooCreationMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -1126,6 +1140,8 @@
 				0837859C1D379A8C006EF69E /* ReportCreationResponseHandlerSpec.swift */,
 				21297EAF1DAFACD8003CCF75 /* RemoveCreationRequestSpec.swift */,
 				21297EB01DAFACD8003CCF75 /* RemoveCreationResponseHandlerSpec.swift */,
+				213B29F21DCA3936003E7314 /* FetchToybooCreationRequestSpec.swift */,
+				213B29F31DCA3936003E7314 /* FetchToybooCreationResponseHandlerSpec.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -1281,6 +1297,8 @@
 				0837858C1D378AAE006EF69E /* ReportCreationResponseHandler.swift */,
 				21297EAD1DAFACA8003CCF75 /* RemoveCreationRequest.swift */,
 				21297EA91DAFAC7B003CCF75 /* RemoveCreationResponseHandler.swift */,
+				213B29F61DCA3946003E7314 /* FetchToybooCreationRequest.swift */,
+				213B29F71DCA3946003E7314 /* FetchToybooCreationResponseHandler.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -1672,6 +1690,7 @@
 				18290AEF1D06E45A000EA216 /* NotificationTextEntityMapper.swift in Sources */,
 				1859FAA91D39052F0023A6B6 /* GroupsRequest.swift in Sources */,
 				08BBFE3C1D7EB27F005F1F11 /* FeaturedGalleriesBatchFetcher.swift in Sources */,
+				213B29EF1DCA390E003E7314 /* ToybooCreation.swift in Sources */,
 				2110E0541D7465AE00B62156 /* NameTranslationObjectEntity.swift in Sources */,
 				18F6E8941D021B6500AAC5FB /* FetchCreationsResponseHandler.swift in Sources */,
 				212A12171D50E37D001BA35A /* PartnerApplicationResponseHandler.swift in Sources */,
@@ -1758,7 +1777,9 @@
 				181E76F01CC547FF00A1546A /* CommentMapper.swift in Sources */,
 				18F6E8901D021B6500AAC5FB /* ErrorResponseHandler.swift in Sources */,
 				183635481CB5014700ED778A /* RelationshipMapper.swift in Sources */,
+				213B29F91DCA3946003E7314 /* FetchToybooCreationResponseHandler.swift in Sources */,
 				1859FAAB1D39052F0023A6B6 /* NewGroupRequest.swift in Sources */,
+				213B29F81DCA3946003E7314 /* FetchToybooCreationRequest.swift in Sources */,
 				18C1CFF51C75C40A00A02DE3 /* UserDAO.swift in Sources */,
 				2110E04E1D742B3F00B62156 /* NameTranslationObject.swift in Sources */,
 				18F6E8821D021B6500AAC5FB /* BubblesFetchReqest.swift in Sources */,
@@ -1797,6 +1818,7 @@
 				21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */,
 				21297EAE1DAFACA8003CCF75 /* RemoveCreationRequest.swift in Sources */,
 				2152795F1D3F7F7800B67313 /* UserFollowingsDAO.swift in Sources */,
+				213B29F11DCA3918003E7314 /* ToybooCreationMapper.swift in Sources */,
 				08E6934F1D7C9DA0007A79B7 /* MyGalleriesRequest.swift in Sources */,
 				212A12191D50E617001BA35A /* PartnerApplication.swift in Sources */,
 				18F6E8A51D021B6500AAC5FB /* CreatorsAndManagersRequest.swift in Sources */,
@@ -1904,6 +1926,7 @@
 				18F6E84A1D0219C800AAC5FB /* CommentsRequestSpec.swift in Sources */,
 				1859FAB81D39053D0023A6B6 /* DeleteGroupResponseHandlerSpec.swift in Sources */,
 				18F6E8481D0218A100AAC5FB /* ContentResponseHandlerSpec.swift in Sources */,
+				213B29F51DCA3936003E7314 /* FetchToybooCreationResponseHandlerSpec.swift in Sources */,
 				0837859D1D379A8C006EF69E /* ReportCreationResponseHandlerSpec.swift in Sources */,
 				1859FABD1D39053D0023A6B6 /* GroupsResponseHandlerSpec.swift in Sources */,
 				18F6E8151D020F3D00AAC5FB /* BubbleResponseHandlerSpec.swift in Sources */,
@@ -1932,6 +1955,7 @@
 				182FB8B41D128F65004495CB /* EditProfileRequestSpec.swift in Sources */,
 				215279791D46513200B67313 /* ContentSearchRequestSpec.swift in Sources */,
 				08AC6A6B1D425DEC004A35C3 /* ActivitiesResponseHandlerSpec.swift in Sources */,
+				213B29F41DCA3936003E7314 /* FetchToybooCreationRequestSpec.swift in Sources */,
 				18467F661D02EA59005CE5DD /* UIColorHexSpec.swift in Sources */,
 				18F6E8191D02114400AAC5FB /* CreationResponseHandlerSpec.swift in Sources */,
 				08B7E9121D524CDD007A30F3 /* GroupCreatorsResponseHandlerSpec.swift in Sources */,
