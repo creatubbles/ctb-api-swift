@@ -39,22 +39,46 @@ class NetworkManager: NSObject {
         var urlRequest = URLRequest(url: URL(string: request.onlyPath ? urlStringWithRequest(request) : request.endpoint)!)
         urlRequest.httpMethod = request.method.rawValue
         
-        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         if let locale = settings.locale {
             urlRequest.setValue(locale, forHTTPHeaderField: "Accept-Language")
         }
-        
-        let parametersEncoder = ParametersEncoder()
-        urlRequest.httpBody = parametersEncoder.encode(request.parameters).data(using: String.Encoding.utf8)
         
         if let accessToken = authClient.accessToken {
             urlRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
         
+        if request.parameters.count == 0 { return urlRequest }
+        guard let url = urlRequest.url else { return urlRequest }
+        
+        let parametersEncoder = ParametersEncoder()
+        
+        if encodesParametersInURL(with: request.method) {
+            if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false), !request.parameters.isEmpty {
+                let percentEncodedQuery = (urlComponents.percentEncodedQuery.map { $0 + "&" } ?? "") + parametersEncoder.encode(request.parameters)
+                urlComponents.percentEncodedQuery = percentEncodedQuery
+                urlRequest.url = urlComponents.url
+            }
+        } else {
+            if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+                urlRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            }
+        
+            urlRequest.httpBody = parametersEncoder.encode(request.parameters).data(using: .utf8, allowLossyConversion: false)
+        }
+        
         return urlRequest
     }
     
-    fileprivate func urlStringWithRequest(_ request: Request) -> String {
+    private func urlStringWithRequest(_ request: Request) -> String {
         return String(format: "%@/%@/%@", arguments: [settings.baseUrl, settings.apiVersion, request.endpoint])
+    }
+    
+    private func encodesParametersInURL(with method: RequestMethod) -> Bool {
+        switch method {
+            case .get, .head, .delete:
+                return true
+            default:
+                return false
+        }
     }
 }
