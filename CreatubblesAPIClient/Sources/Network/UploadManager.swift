@@ -37,12 +37,30 @@ class UploadManager: NSObject {
     }
     
     func upload(request: URLRequest, fromData data: Data) -> UploadTask {
-        let task = session.uploadTask(with: request, from: data)
-        let uploadTask = UploadTask(task: task)
-        uploadTasks[task] = uploadTask
-        task.resume()
+        let isBackgroundSession = session.configuration.identifier != nil
         
-        return uploadTask
+        if isBackgroundSession {
+            let fileManager = FileManager.default
+            let tempDirectoryURL = URL(fileURLWithPath: NSTemporaryDirectory())
+            let directoryURL = tempDirectoryURL.appendingPathComponent("com.creatubbles.uploads")
+            let fileName = UUID().uuidString
+            let fileURL = directoryURL.appendingPathComponent(fileName)
+            
+            do {
+                try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                try data.write(to: fileURL)
+            } catch { }
+            
+            
+            return upload(request: request, fromFile: fileURL)
+        } else {
+            let task = session.uploadTask(with: request, from: data)
+            let uploadTask = UploadTask(task: task)
+            uploadTasks[task] = uploadTask
+            task.resume()
+            
+            return uploadTask
+        }
     }
     
     func upload(request: URLRequest, fromFile fileUrl: URL) -> UploadTask {
@@ -55,28 +73,18 @@ class UploadManager: NSObject {
 
 extension UploadManager: URLSessionTaskDelegate {
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        print("didCompleteWithError")
-        
         guard let uploadTask = uploadTasks[task] else { return }
         uploadTask.completionHandler?(error)
         uploadTasks.removeValue(forKey: task)
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
-        print("didSendBodyData")
-        
         guard let uploadTask = uploadTasks[task] else { return }
         uploadTask.urlSession(session, task: task, didSendBodyData: bytesSent, totalBytesSent: totalBytesSent, totalBytesExpectedToSend: totalBytesExpectedToSend)
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
-        print("didReceiveResponse")
-        
         completionHandler(.performDefaultHandling, nil)
-    }
-    
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        print("didReceiveData")
     }
     
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
