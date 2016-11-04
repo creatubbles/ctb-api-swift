@@ -200,7 +200,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     
     //MARK: - Authentication
     
-    var authenticationToken: String? {
+    open var authenticationToken: String? {
         get {
             return requestSender.authenticationToken
         }
