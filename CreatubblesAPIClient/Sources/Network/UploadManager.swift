@@ -34,6 +34,7 @@ class UploadManager: NSObject {
         } else {
             return URLSessionConfiguration.default
         }
+
     }
     
     func upload(request: URLRequest, fromData data: Data) -> UploadTask {
@@ -65,16 +66,21 @@ class UploadManager: NSObject {
     
     func upload(request: URLRequest, fromFile fileUrl: URL) -> UploadTask {
         let task = session.uploadTask(with: request, fromFile: fileUrl)
+        let uploadTask = UploadTask(task: task)
+        uploadTasks[task] = uploadTask
         task.resume()
         
-        return UploadTask(task: task)
+        return uploadTask
     }
 }
 
 extension UploadManager: URLSessionTaskDelegate {
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         guard let uploadTask = uploadTasks[task] else { return }
-        uploadTask.completionHandler?(error)
+        DispatchQueue.main.async {
+            uploadTask.completionHandler?(error)
+        }
+
         uploadTasks.removeValue(forKey: task)
     }
     
