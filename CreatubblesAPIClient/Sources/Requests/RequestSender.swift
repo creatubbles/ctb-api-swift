@@ -55,19 +55,19 @@ class RequestSender: NSObject
         let request = AuthenticationRequest(username: username, password: password, settings: settings)
         
         self.networkManager.dataTask(request: request) { (success, response) in
-            if !success {
-                Logger.log.error("Error while login:\(response)")
-                self.networkManager.authClient.accessToken = nil
-                if let err_msg = response?["error_description"] as? String {
-                    completion?(RequestSender.errorFromLoginError(AuthenticationError.responseError(err_msg)))
-                } else if let err_code = response?["error"] as? String {
-                    completion?(RequestSender.errorFromLoginError(AuthenticationError.fromResponseError(err_code)))
+            DispatchQueue.main.async {
+                if !success {
+                    Logger.log.error("Error while login:\(response)")
+                    self.networkManager.authClient.accessToken = nil
+                    if let err_msg = response?["error_description"] as? String {
+                        completion?(RequestSender.errorFromLoginError(AuthenticationError.responseError(err_msg)))
+                    } else if let err_code = response?["error"] as? String {
+                        completion?(RequestSender.errorFromLoginError(AuthenticationError.fromResponseError(err_code)))
+                    }
+                    
+                    return
                 }
                 
-                return
-            }
-            
-            DispatchQueue.global().async {
                 if let accessToken = response?["access_token"] as? String {
                     self.networkManager.authClient.accessToken = accessToken
                 }
