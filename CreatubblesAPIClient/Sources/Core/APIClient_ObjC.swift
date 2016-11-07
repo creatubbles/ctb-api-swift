@@ -68,7 +68,7 @@ extension APIClient
         }
     }
     
-    //MARK: - Users handling       
+    //MARK: - Users handling
     public func _getUser(userId: String, completion: ((User?, NSError?) -> (Void))?)
     {
         getUser(userId: userId)
@@ -227,7 +227,7 @@ extension APIClient
     }
     
     //MARK: - Bubbles
-    func _getBubblesForCreationWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getBubblesForCreationWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
     {
         getBubbles(creationId: identifier, pagingData: pagingData)
         {
@@ -236,7 +236,7 @@ extension APIClient
         }
     }
     
-    func _getBubblesForUserWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?,PagingInfo?, NSError?) -> (Void))?)
+    public func _getBubblesForUserWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?,PagingInfo?, NSError?) -> (Void))?)
     {
         getBubbles(userId: identifier, pagingData: pagingData)
         {
@@ -245,7 +245,7 @@ extension APIClient
         }
     }
     
-    func _getBubblesForGalleryWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getBubblesForGalleryWithIdentifier(identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
     {
         getBubbles(galleryId: identifier, pagingData: pagingData)
         {
@@ -254,7 +254,7 @@ extension APIClient
         }
     }
     
-    func _newBubble(data: NewBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
+    public func _newBubble(data: NewBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
     {
         newBubble(data: data)
         {
@@ -263,15 +263,25 @@ extension APIClient
         }
     }
     
-    func _updateBubble(data: UpdateBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
+    public func _updateBubble(data: UpdateBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
     {
         updateBubble(data: data)
-            {
-                (bubble, error) -> (Void) in
-                completion?(bubble, APIClient.errorTypeToNSError(error))
+        {
+            (bubble, error) -> (Void) in
+            completion?(bubble, APIClient.errorTypeToNSError(error))
         }
     }
-
+    
+    //MARK: - Toyboo Creation
+    public func _getToybooCreation(creationId: String, completion: ((ToybooCreation?, NSError?) -> (Void))?)
+    {
+        getToybooCreation(creationId: creationId)
+        {
+            (toybooCreation, error) -> (Void) in
+            completion?(toybooCreation, APIClient.errorTypeToNSError(error) )
+        }
+    }
+    
     //MARK: - Utils
     static func errorTypeToNSError(error: ErrorType?) -> NSError?
     {
@@ -287,5 +297,5 @@ extension APIClient
         }
         return nil
     }
-
+    
 }
