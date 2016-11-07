@@ -47,6 +47,8 @@ class NetworkManager: NSObject {
             urlRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
         
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        
         if request.parameters.count == 0 { return urlRequest }
         guard let url = urlRequest.url else { return urlRequest }
         
