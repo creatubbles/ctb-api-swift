@@ -16,7 +16,7 @@ class NameTranslationObjectMapper: Mappable
     var original: Bool?
     
     //MARK: - Mappable
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

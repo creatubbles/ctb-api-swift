@@ -19,7 +19,7 @@ class CustomStyleEditRequestSpec: QuickSpec
             it("Should use PUT method")
             {
                 let request = CustomStyleEditRequest(userIdentifier: "", data: CustomStyleEditData())
-                expect(request.method).to(equal(RequestMethod.PUT))
+                expect(request.method).to(equal(RequestMethod.put))
             }
             
             it("Should have users/USER_IDENTIFIER/custom_style endpoint")
@@ -39,8 +39,8 @@ class CustomStyleEditRequestSpec: QuickSpec
             {
                 let testBio = "TestBio"
                 let testFontName = "TestFontName"
-                let testBodyColors = [UIColor.whiteColor(), UIColor.redColor(), UIColor.brownColor()]
-                let testHeaderColors = [UIColor.whiteColor(), UIColor.redColor(), UIColor.brownColor()]
+                let testBodyColors = [UIColor.white, UIColor.red, UIColor.brown]
+                let testHeaderColors = [UIColor.white, UIColor.red, UIColor.brown]
                 
                 let data = CustomStyleEditData()
                 data.headerBackgroundIndex = 1

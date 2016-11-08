@@ -31,7 +31,7 @@ class CreationUpload: NSObject, Identifiable
     let uploadUrl: String
     let contentType: String
     let pingUrl: String
-    let completedAt: NSDate?
+    let completedAt: Date?
 
     init(mapper: CreationUploadMapper)
     {
@@ -39,7 +39,7 @@ class CreationUpload: NSObject, Identifiable
         uploadUrl = mapper.uploadUrl!
         contentType = mapper.contentType!
         pingUrl = mapper.pingUrl!
-        completedAt = mapper.completedAt
+        completedAt = mapper.completedAt as Date?
     }
     
     init(creationUploadEntity: CreationUploadEntity)
@@ -48,6 +48,6 @@ class CreationUpload: NSObject, Identifiable
         uploadUrl = creationUploadEntity.uploadUrl!
         contentType = creationUploadEntity.contentType!
         pingUrl = creationUploadEntity.pingUrl!
-        completedAt = creationUploadEntity.completedAt
+        completedAt = creationUploadEntity.completedAt as Date?
     }
 }

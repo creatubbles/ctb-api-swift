@@ -9,37 +9,37 @@
 import UIKit
 
 @objc
-public class Comment: NSObject, Identifiable
+open class Comment: NSObject, Identifiable
 {
-    public var identifier: String
-    public var text: String
-    public var approved: Bool
-    public var createdAt: NSDate
-    public var commentableType: String
-    public var commenterId: String
+    open var identifier: String
+    open var text: String
+    open var approved: Bool
+    open var createdAt: Date
+    open var commentableType: String
+    open var commenterId: String
     
-    public let commentedUserId: String?
-    public let commentedCreationId: String?
-    public let commentedGalleryId: String?
+    open let commentedUserId: String?
+    open let commentedCreationId: String?
+    open let commentedGalleryId: String?
     
-    public let commenter: User?
-    public let commentedCreation: Creation?
-    public let commentedGallery: Gallery?
-    public let commentedUser: User?
+    open let commenter: User?
+    open let commentedCreation: Creation?
+    open let commentedGallery: Gallery?
+    open let commentedUser: User?
     
-    public let commenterRelationship: Relationship?
-    public let commentedCreationRelationship: Relationship?
-    public let commentedGalleryRelationship: Relationship?
-    public let commentedUserRelationship: Relationship?
+    open let commenterRelationship: Relationship?
+    open let commentedCreationRelationship: Relationship?
+    open let commentedGalleryRelationship: Relationship?
+    open let commentedUserRelationship: Relationship?
     
-    public let abilities: Array<Ability>
+    open let abilities: Array<Ability>
     
     init(mapper: CommentMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         text = mapper.text!
         approved = mapper.approved!
-        createdAt = mapper.createdAt!
+        createdAt = mapper.createdAt! as Date
         commentableType = mapper.commentableType!
         commenterId = mapper.commenterId!
         

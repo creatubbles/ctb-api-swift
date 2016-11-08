@@ -51,7 +51,7 @@ class RequestSenderSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         done()
                     })
@@ -66,7 +66,7 @@ class RequestSenderSpec: QuickSpec
                     done in
                     sender.login("wrongEmail@wrong.com", password: "wrong password", completion:
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).notTo(beNil())
                         done()
                     })

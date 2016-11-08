@@ -27,7 +27,7 @@ class ReportGalleryRequestSpec: QuickSpec {
                 let galleryId = "galleryId"
                 let message = "message"
                 let request = ReportGalleryRequest(galleryId: galleryId, message: message)
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper parameters set") {

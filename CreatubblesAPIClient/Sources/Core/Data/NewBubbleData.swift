@@ -11,25 +11,25 @@ import UIKit
 
 @objc public enum BubbledObjectType: Int
 {
-    case Gallery
-    case Creation
-    case User
+    case gallery
+    case creation
+    case user
 }
 
 @objc
-public class NewBubbleData: NSObject
+open class NewBubbleData: NSObject
 {
-    public let bubbledObjectIdentifier: String
-    public let type: BubbledObjectType
+    open let bubbledObjectIdentifier: String
+    open let type: BubbledObjectType
     
-    public let colorName: String?
-    public let xPosition: Float?
-    public let yPosition: Float?
+    open let colorName: String?
+    open let xPosition: Float?
+    open let yPosition: Float?
     
     public init(userId: String)
     {
         self.bubbledObjectIdentifier = userId
-        self.type = .User
+        self.type = .user
         self.colorName = nil
         self.xPosition = nil
         self.yPosition = nil
@@ -38,7 +38,7 @@ public class NewBubbleData: NSObject
     public init(galleryId: String)
     {
         self.bubbledObjectIdentifier = galleryId
-        self.type = .Gallery
+        self.type = .gallery
         self.colorName = nil
         self.xPosition = nil
         self.yPosition = nil
@@ -47,7 +47,7 @@ public class NewBubbleData: NSObject
     public init(creationId: String, colorName: String?, xPosition: Float?, yPosition: Float?)
     {
         self.bubbledObjectIdentifier = creationId
-        self.type = .Creation
+        self.type = .creation
         self.colorName = colorName
         self.xPosition = xPosition
         self.yPosition = yPosition

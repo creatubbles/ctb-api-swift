@@ -12,9 +12,9 @@ import Nimble
 
 class MyConnectionsRequestSpec: QuickSpec
 {
-    private let page = 1
-    private let pageCount = 10
-    private let userId = "TestUserId"
+    fileprivate let page = 1
+    fileprivate let pageCount = 10
+    fileprivate let userId = "TestUserId"
     
     override func spec()
     {
@@ -35,7 +35,7 @@ class MyConnectionsRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = MyConnectionsRequest()
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have proper parameters set")
@@ -55,7 +55,7 @@ class MyConnectionsRequestSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(MyConnectionsRequest(page: nil, perPage: nil), withResponseHandler: DummyResponseHandler()
                         {
@@ -72,14 +72,14 @@ class MyConnectionsRequestSpec: QuickSpec
             it("Should return correct value after login for a different user")
             {
                 let sender = RequestSender(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 30)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(MyConnectionsRequest(page: nil, perPage: nil, userId: self.userId), withResponseHandler: DummyResponseHandler()
+                        sender.send(MyConnectionsRequest(page: nil, perPage: nil, userId: "qjR44g6U"), withResponseHandler: DummyResponseHandler()
                         {
                             (response, error) -> Void in
                             expect(response).notTo(beNil())

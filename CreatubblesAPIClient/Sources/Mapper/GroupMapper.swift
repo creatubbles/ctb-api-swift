@@ -34,7 +34,7 @@ class GroupMapper: Mappable
     var avatarUrl: String?
     var avatarCreationRelationship: RelationshipMapper?
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

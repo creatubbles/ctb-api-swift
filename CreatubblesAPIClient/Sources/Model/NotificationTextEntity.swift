@@ -11,27 +11,27 @@ import UIKit
 @objc
 public enum NotificationTextEntityType: Int
 {
-    case Unknown
-    case Creation
-    case Gallery
-    case User
+    case unknown
+    case creation
+    case gallery
+    case user
 }
 
 @objc
-public class NotificationTextEntity: NSObject, Identifiable
+open class NotificationTextEntity: NSObject, Identifiable
 {
-    public let identifier: String
-    public let startIndex: Int
-    public let endIndex: Int
-    public let type: NotificationTextEntityType
+    open let identifier: String
+    open let startIndex: Int
+    open let endIndex: Int
+    open let type: NotificationTextEntityType
     
-    public let user: User?
-    public let creation: Creation?
-    public let gallery: Gallery?
+    open let user: User?
+    open let creation: Creation?
+    open let gallery: Gallery?
     
-    public let userRelationship: Relationship?
-    public let creationRelationship: Relationship?
-    public let galleryRelationship: Relationship?        
+    open let userRelationship: Relationship?
+    open let creationRelationship: Relationship?
+    open let galleryRelationship: Relationship?        
         
     init(mapper: NotificationTextEntityMapper, dataMapper: DataIncludeMapper? = nil)
     {

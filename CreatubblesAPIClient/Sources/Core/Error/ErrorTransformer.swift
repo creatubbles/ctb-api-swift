@@ -25,11 +25,10 @@
 
 import Foundation
 import ObjectMapper
-import p2_OAuth2
 
 class ErrorTransformer
 {
-    static func errorFromResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?) -> APIClientError?
+    static func errorFromResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) -> APIClientError?
     {
         if let err = error as? APIClientError
         {
@@ -46,15 +45,28 @@ class ErrorTransformer
         return nil
     }
     
-    static func errorsFromResponse(response: Dictionary<String, AnyObject>?) -> Array<APIClientError>
+    static func errorsFromResponse(_ response: Dictionary<String, AnyObject>?) -> Array<APIClientError>
     {
         guard let response = response,
-              let mappers = Mapper<ErrorMapper>().mapArray(response["errors"])
-        else  { return Array<APIClientError>() }
-        return mappers.map({ APIClientError(mapper: $0) })
+              let mappers = Mapper<ErrorMapper>().mapArray(JSONObject: response["data"])
+        else
+        {
+            return Array<APIClientError>()
+        }
+        var errorsArray = Array<APIClientError>()
+        for mapper in mappers
+        {
+            if mapper.status != nil || mapper.code != nil || mapper.title != nil || mapper.source != nil || mapper.detail != nil
+            {
+                errorsArray.append(APIClientError(status: mapper.status, code: mapper.code, title: mapper.title, source: mapper.source, detail: mapper.detail))
+            }
+        }
+        return errorsArray
+
+//        return mappers.map({ APIClientError(mapper: $0) })
     }
     
-    static func errorFromNSError(error: NSError) -> APIClientError
+    static func errorFromNSError(_ error: NSError) -> APIClientError
     {        
         return APIClientError(status: error.code,
                               code: APIClientError.DefaultCode,
@@ -64,11 +76,11 @@ class ErrorTransformer
                               domain: error.domain)
     }
     
-    static func errorFromOAuthError(oauthError: OAuth2Error) -> APIClientError
+    static func errorFromAuthenticationError(_ authenticationError: AuthenticationError) -> APIClientError
     {
         return APIClientError(status: APIClientError.LoginStatus,
                               code: APIClientError.DefaultAuthenticationCode,
-                              title: oauthError.description,
+                              title: authenticationError.description,
                               source: APIClientError.DefaultSource,
                               detail: APIClientError.DefaultDetail)
     }

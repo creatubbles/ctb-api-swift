@@ -10,30 +10,30 @@ import UIKit
 
 class NewGroupRequest: Request
 {
-    override var method: RequestMethod   { return .POST }
+    override var method: RequestMethod   { return .post }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
     override var endpoint: String { return "groups" }
-    private let data: NewGroupData
+    fileprivate let data: NewGroupData
     
     init(data: NewGroupData)
     {
         self.data = data
     }
     
-    private func prepareParameters() -> Dictionary<String, AnyObject>
+    fileprivate func prepareParameters() -> Dictionary<String, AnyObject>
     {
         var dataDict = Dictionary<String, AnyObject>()
         var attributesDict = Dictionary<String, AnyObject>()
         var relationshipsDict = Dictionary<String, AnyObject>()
         
-        dataDict["type"] = "groups"
-        attributesDict["name"] = data.name
+        dataDict["type"] = "groups" as AnyObject?
+        attributesDict["name"] = data.name as AnyObject?
         
-        if let value = data.avatarCreationIdentifier { relationshipsDict["avatar_creation"] = ["data" : ["id" : value]] }
+        if let value = data.avatarCreationIdentifier { relationshipsDict["avatar_creation"] = ["data" : ["id" : value]] as AnyObject?}
         
-        dataDict["attributes"] = attributesDict
-        dataDict["relationships"] = relationshipsDict
+        dataDict["attributes"] = attributesDict as AnyObject?
+        dataDict["relationships"] = relationshipsDict as AnyObject?
         
-        return ["data" : dataDict]
+        return ["data" : dataDict as AnyObject]
     }
 }

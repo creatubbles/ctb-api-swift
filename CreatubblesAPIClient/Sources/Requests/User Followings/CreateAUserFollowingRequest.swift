@@ -10,10 +10,10 @@ import UIKit
 
 class CreateAUserFollowingRequest: Request
 {
-    override var method: RequestMethod  { return .POST }
+    override var method: RequestMethod  { return .post }
     override var endpoint: String       { return "users/"+userId+"/following" }
     
-    private let userId: String
+    fileprivate let userId: String
 
     init(userId: String)
     {

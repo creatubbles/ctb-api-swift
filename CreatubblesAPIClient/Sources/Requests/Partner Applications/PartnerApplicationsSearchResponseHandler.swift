@@ -11,16 +11,16 @@ import ObjectMapper
 
 class PartnerApplicationsSearchResponseHandler: ResponseHandler
 {
-    private let completion: PartnerApplicationsClosure?
+    fileprivate let completion: PartnerApplicationsClosure?
     init(completion: PartnerApplicationsClosure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let partnerApplicationsMapper = Mapper<PartnerApplicationsMapper>().mapArray(response["data"])
+            let partnerApplicationsMapper = Mapper<PartnerApplicationsMapper>().mapArray(JSONObject: response["data"])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)

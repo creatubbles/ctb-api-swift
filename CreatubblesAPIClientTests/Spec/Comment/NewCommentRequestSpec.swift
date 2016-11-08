@@ -20,7 +20,7 @@ class NewCommentRequestSpec: QuickSpec
             {
                 let newCommentData = NewCommentData(creationId: "", text: "That's the best comment you've ever read!")
                 let request = NewCommentRequest(data: newCommentData)
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             it("Should have a correct endpoint when commenting on a creation")
             {

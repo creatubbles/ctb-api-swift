@@ -21,7 +21,7 @@ enum ContentType: String
 class ContentRequest: Request
 {
     override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
-    override var method: RequestMethod  { return .GET }
+    override var method: RequestMethod  { return .get }
     override var endpoint: String
     {
         if  type == .BubbledContents,
@@ -38,10 +38,10 @@ class ContentRequest: Request
         return "contents/"+type.rawValue
     }
     
-    private let type: ContentType
-    private let page: Int?
-    private let perPage: Int?
-    private let userId: String?
+    fileprivate let type: ContentType
+    fileprivate let page: Int?
+    fileprivate let perPage: Int?
+    fileprivate let userId: String?
     
     init(type: ContentType, page: Int?, perPage: Int?, userId: String? = nil)
     {
@@ -58,11 +58,11 @@ class ContentRequest: Request
         
         if let page = page
         {
-            params["page"] = page
+            params["page"] = page as AnyObject?
         }
         if let perPage = perPage
         {
-            params["per_page"] = perPage
+            params["per_page"] = perPage as AnyObject?
         }
         
         return params

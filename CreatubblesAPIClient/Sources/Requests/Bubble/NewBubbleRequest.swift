@@ -10,45 +10,45 @@ import UIKit
 
 class NewBubbleRequest: Request
 {
-    override var method: RequestMethod  { return .POST }
+    override var method: RequestMethod  { return .post }
     override var endpoint: String
     {
         switch data.type
         {
-            case .Creation: return "creations/\(data.bubbledObjectIdentifier)/bubbles"
-            case .Gallery:  return "galleries/\(data.bubbledObjectIdentifier)/bubbles"
-            case .User:     return "users/\(data.bubbledObjectIdentifier)/bubbles"
+            case .creation: return "creations/\(data.bubbledObjectIdentifier)/bubbles"
+            case .gallery:  return "galleries/\(data.bubbledObjectIdentifier)/bubbles"
+            case .user:     return "users/\(data.bubbledObjectIdentifier)/bubbles"
         }
     }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
     
-    private let data: NewBubbleData
+    fileprivate let data: NewBubbleData
     
     init(data: NewBubbleData)
     {
         self.data = data
     }
     
-    private func prepareParameters() -> Dictionary<String,AnyObject>
+    fileprivate func prepareParameters() -> Dictionary<String,AnyObject>
     {
         var params = Dictionary<String,AnyObject>()
         switch data.type
         {
-            case .Creation: params["creation_id"] = data.bubbledObjectIdentifier
-            case .Gallery:  params["gallery_id"] = data.bubbledObjectIdentifier
-            case .User:     params["user_id"] = data.bubbledObjectIdentifier
+            case .creation: params["creation_id"] = data.bubbledObjectIdentifier as AnyObject?
+            case .gallery:  params["gallery_id"] = data.bubbledObjectIdentifier as AnyObject?
+            case .user:     params["user_id"] = data.bubbledObjectIdentifier as AnyObject?
         }
         if let color = data.colorName
         {
-            params["color"] = color
+            params["color"] = color as AnyObject?
         }
         if let xPos = data.xPosition
         {
-            params["x_pos"] = xPos
+            params["x_pos"] = xPos as AnyObject?
         }
         if let yPos = data.yPosition
         {
-            params["y_pos"] = yPos
+            params["y_pos"] = yPos as AnyObject?
         }
         return params
     }

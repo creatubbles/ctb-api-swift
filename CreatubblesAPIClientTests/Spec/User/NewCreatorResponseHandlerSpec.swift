@@ -16,13 +16,14 @@ class NewCreatorResponseHandlerSpec: QuickSpec
     {
         describe("New creator response handler")
         {
-            let timestamp = String(Int(round(NSDate().timeIntervalSince1970 % 1000)))
+//            let timestamp = String(Int(round(NSDate().time)))
+            let timestamp = String(Int(round(NSDate().timeIntervalSince1970.truncatingRemainder(dividingBy: 1000))))
             let name = "MMCreator"+timestamp
             let displayName = "MMCreator"+timestamp
             let birthYear = 2000
             let birthMonth = 10
             let countryCode = "PL"
-            let gender = Gender.Male
+            let gender = Gender.male
             var creatorRequest: NewCreatorRequest { return NewCreatorRequest(name: name, displayName: displayName, birthYear: birthYear,
                                                                              birthMonth: birthMonth, countryCode: countryCode, gender: gender) }
             
@@ -32,13 +33,13 @@ class NewCreatorResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(creatorRequest, withResponseHandler:NewCreatorResponseHandler()
+                        _ = sender.send(creatorRequest, withResponseHandler:NewCreatorResponseHandler()
                             {
-                                (user: User?, error: ErrorType?) -> Void in
+                                (user: User?, error: Error?) -> Void in
                                 expect(error).to(beNil())
                                 expect(user).notTo(beNil())
                                 done()
@@ -54,9 +55,9 @@ class NewCreatorResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.send(creatorRequest, withResponseHandler:NewCreatorResponseHandler()
+                    _ = sender.send(creatorRequest, withResponseHandler:NewCreatorResponseHandler()
                         {
-                            (user: User?, error: ErrorType?) -> Void in
+                            (user: User?, error: Error?) -> Void in
                             expect(error).notTo(beNil())
                             expect(user).to(beNil())
                             done()

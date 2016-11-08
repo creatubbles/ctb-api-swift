@@ -27,7 +27,7 @@ class GroupResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(GroupsRequest(groupId: groupIdentifier), withResponseHandler: GroupResponseHandler()
                         {

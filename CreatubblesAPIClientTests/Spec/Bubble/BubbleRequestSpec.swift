@@ -19,7 +19,7 @@ class BubbleRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = BubblesFetchReqest(creationId: "", page: nil, perPage: nil)
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have proper endpoint for bubbles source")
@@ -37,7 +37,7 @@ class BubbleRequestSpec: QuickSpec
             {
                 let data = UpdateBubbleData(bubbleId: "", colorName: nil)
                 let request = UpdateBubbleRequest(data: data)
-                expect(request.method).to(equal(RequestMethod.PUT))
+                expect(request.method).to(equal(RequestMethod.put))
             }
             
             it("Should have proper endpoint")
@@ -65,7 +65,7 @@ class BubbleRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = DeleteBubbleRequest(bubbleId: "")
-                expect(request.method).to(equal(RequestMethod.DELETE))
+                expect(request.method).to(equal(RequestMethod.delete))
             }
             
             it("Should have proper endpoint")
@@ -82,7 +82,7 @@ class BubbleRequestSpec: QuickSpec
             {
                 let data = NewBubbleData(userId: "")
                 let request = NewBubbleRequest(data: data)
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper endpoint for bubbling creation")

@@ -10,6 +10,7 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
+
 class GallerySubmissionRequestSpec: QuickSpec
 {
     override func spec()
@@ -19,7 +20,7 @@ class GallerySubmissionRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = GallerySubmissionRequest(galleryId: "12345", creationId: "12345")
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper endpoint")
@@ -37,24 +38,30 @@ class GallerySubmissionRequestSpec: QuickSpec
                 expect(request.parameters["creation_id"] as? String).to(equal(creationId))
             }
             
-            it("Should return correct value after login")
+            it("Should return a 422 error after logging in and trying to submit a duplicate creation to the gallery")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 30)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(GallerySubmissionRequest(galleryId: "x3pUEOeZ", creationId: "OvM8Xmqj"), withResponseHandler: DummyResponseHandler()
+                        sender.send(GallerySubmissionRequest(galleryId: "b4dcLMAk", creationId: "KnplgMmS"), withResponseHandler: DummyResponseHandler()
+                        {
+                            (response, error) -> Void in
+                            if let error = error
                             {
-                                (response, error) -> Void in
-                                expect(response).notTo(beNil())
-                                expect(error).to(beNil())
-                                sender.logout()
-                                done()
-                            })
+                                expect(error).toNot(beNil())
+                            }
+                            else
+                            {
+                                fail("Did not receive an expected AFError")
+                            }
+                            sender.logout()
+                            done()
+                        })
                     }
                 }
             }

@@ -19,7 +19,7 @@ class NotificationsViewTrackerRequestSpec: QuickSpec
             it("Should use PUT method")
             {
                 let request = NotificationsViewTrackerRequest()
-                expect(request.method).to(equal(RequestMethod.PUT))
+                expect(request.method).to(equal(RequestMethod.put))
             }
             
             it("Should have 'notifications/view_tracker' endpoint")

@@ -9,13 +9,13 @@
 import UIKit
 
 class ActivitiesDAO: NSObject {
-    private let requestSender: RequestSender
+    fileprivate let requestSender: RequestSender
     
     init(requestSender: RequestSender) {
         self.requestSender = requestSender
     }
     
-    func getActivities(pagingData: PagingData?, completion: ActivitiesClosure?) -> RequestHandler {
+    func getActivities(_ pagingData: PagingData?, completion: ActivitiesClosure?) -> RequestHandler {
         let request = ActivitiesRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ActivitiesResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)

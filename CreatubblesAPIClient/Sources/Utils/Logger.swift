@@ -32,6 +32,6 @@ class Logger
     
     class func setup()
     {
-        log.setup(.Debug, showLogIdentifier: true, showFunctionName: false, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, showDate: true, writeToFile: nil, fileLogLevel: nil)
+        log.setup(level: .debug, showLogIdentifier: true, showFunctionName: false, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, showDate: true, writeToFile: nil, fileLevel: nil)
     }
 }

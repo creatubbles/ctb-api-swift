@@ -9,29 +9,29 @@
 import UIKit
 
 @objc
-public class Activity: NSObject, Identifiable
+open class Activity: NSObject, Identifiable
 {
-    public let identifier: String
-    public let type: ActivityType
-    public let count: Int
-    public let itemsCount: Int
+    open let identifier: String
+    open let type: ActivityType
+    open let count: Int
+    open let itemsCount: Int
     
-    public let createdAt: NSDate
-    public let lastUpdatedAt: NSDate
+    open let createdAt: Date
+    open let lastUpdatedAt: Date
     
-    public let owners: Array<User>?
-    public let creation: Creation?
-    public let gallery: Gallery?
-    public let user: User?
-    public let relatedCreations: Array<Creation>?
-    public let relatedComments: Array<Comment>?
+    open let owners: Array<User>?
+    open let creation: Creation?
+    open let gallery: Gallery?
+    open let user: User?
+    open let relatedCreations: Array<Creation>?
+    open let relatedComments: Array<Comment>?
     
-    public let ownersRelationships: Array<Relationship>?
-    public let creationRelationship: Relationship?
-    public let galleryRelationship: Relationship?
-    public let userRelationship: Relationship?
-    public let relatedCreationsRelationships: Array<Relationship>?
-    public let relatedCommentsRelationships: Array<Relationship>?
+    open let ownersRelationships: Array<Relationship>?
+    open let creationRelationship: Relationship?
+    open let galleryRelationship: Relationship?
+    open let userRelationship: Relationship?
+    open let relatedCreationsRelationships: Array<Relationship>?
+    open let relatedCommentsRelationships: Array<Relationship>?
     
     init(mapper: ActivityMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil) {
         identifier = mapper.identifier!
@@ -40,8 +40,8 @@ public class Activity: NSObject, Identifiable
         count = mapper.count!
         itemsCount = mapper.itemsCount!
         
-        createdAt = mapper.createdAt!
-        lastUpdatedAt = mapper.lastUpdatedAt!
+        createdAt = mapper.createdAt! as Date
+        lastUpdatedAt = mapper.lastUpdatedAt! as Date
         
         ownersRelationships  = mapper.ownersRelationships?.flatMap({ MappingUtils.relationshipFromMapper($0) })
         creationRelationship = MappingUtils.relationshipFromMapper(mapper.creationRelationship)

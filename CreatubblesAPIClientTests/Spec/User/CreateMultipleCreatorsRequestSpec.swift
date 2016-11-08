@@ -34,7 +34,7 @@ class CreateMultipleCreatorsRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = multipleCreatorsRequest
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper parameters")
@@ -55,7 +55,7 @@ class CreateMultipleCreatorsRequestSpec: QuickSpec
 //                    done in
 //                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
 //                    {
-//                        (error: ErrorType?) -> Void in
+//                        (error: Error?) -> Void in
 //                        expect(error).to(beNil())
 //                        sender.send(multipleCreatorsRequest, withResponseHandler: DummyResponseHandler()
 //                        {

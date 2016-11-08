@@ -7,28 +7,28 @@
 //
 
 @objc
-public class CustomStyle: NSObject, Identifiable
+open class CustomStyle: NSObject, Identifiable
 {
-    public let identifier: String
-    public let headerBackgroundIdentifier: String?
-    public let bodyBackgroundIdentifier: String?
-    public let fontName: String?
-    public let bio: String?
-    public let bodyColorsHex: Array<String>?
-    public let headerColorsHex: Array<String>?
-    public let bodyCreationURL: String?
-    public let headerCreationURL: String?
+    open let identifier: String
+    open let headerBackgroundIdentifier: String?
+    open let bodyBackgroundIdentifier: String?
+    open let fontName: String?
+    open let bio: String?
+    open let bodyColorsHex: Array<String>?
+    open let headerColorsHex: Array<String>?
+    open let bodyCreationURL: String?
+    open let headerCreationURL: String?
     
-    public let createdAt: NSDate
-    public let updatedAt: NSDate
+    open let createdAt: Date
+    open let updatedAt: Date
     
-    public let userRelationship: Relationship?
-    public let headerCreationRelationship: Relationship?
-    public let bodyCreationRelationship: Relationship?
+    open let userRelationship: Relationship?
+    open let headerCreationRelationship: Relationship?
+    open let bodyCreationRelationship: Relationship?
     
-    public let user: User?
-    public let headerCreation: Creation?
-    public let bodyCreation: Creation?
+    open let user: User?
+    open let headerCreation: Creation?
+    open let bodyCreation: Creation?
     
     init(mapper: CustomStyleMapper, dataMapper: DataIncludeMapper? = nil)
     {
@@ -45,8 +45,8 @@ public class CustomStyle: NSObject, Identifiable
         bodyCreationURL = mapper.bodyCreationURL
         headerCreationURL = mapper.headerCreationURL
         
-        createdAt = mapper.createdAt!
-        updatedAt = mapper.updatedAt!
+        createdAt = mapper.createdAt! as Date
+        updatedAt = mapper.updatedAt! as Date
         
         userRelationship = MappingUtils.relationshipFromMapper(mapper.userRelationship)
         headerCreationRelationship = MappingUtils.relationshipFromMapper(mapper.headerCreationRelationship)

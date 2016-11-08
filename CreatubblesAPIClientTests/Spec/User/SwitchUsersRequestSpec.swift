@@ -27,7 +27,7 @@ class SwitchUsersRequestSpec: QuickSpec {
                 let page = 1
                 let pageCount = 10
                 let request = SwitchUsersRequest(page: page, perPage: pageCount)
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have proper parameters set") {

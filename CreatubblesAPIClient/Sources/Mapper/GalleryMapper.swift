@@ -30,10 +30,10 @@ class GalleryMapper: Mappable
     var name: String?
     var galleryDescription: String?
     var openForAll: Bool?
-    var createdAt: NSDate?
-    var updatedAt: NSDate?
-    var lastBubbledAt: NSDate?
-    var lastCommentedAt: NSDate?
+    var createdAt: Date?
+    var updatedAt: Date?
+    var lastBubbledAt: Date?
+    var lastCommentedAt: Date?
     var creationsCount: Int?
     var bubblesCount: Int?
     var commentsCount: Int?
@@ -48,7 +48,7 @@ class GalleryMapper: Mappable
     var bannerMatrixViewRetinaUrl: String?
     var bannerExploreMobileUrl: String?
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

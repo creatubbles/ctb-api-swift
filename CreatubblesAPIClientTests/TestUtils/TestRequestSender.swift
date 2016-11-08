@@ -27,8 +27,8 @@ import UIKit
 
 class TestRequestSender: RequestSender
 {
-    private let settings: APIClientSettings
-    private var isLoggedIn = false
+    fileprivate let settings: APIClientSettings
+    fileprivate var isLoggedIn = false
     
     override init(settings: APIClientSettings)
     {
@@ -37,7 +37,7 @@ class TestRequestSender: RequestSender
     }
     
     //MARK: - Interface
-    override func login(username: String, password: String, completion: ErrorClosure?) -> RequestHandler
+    override func login(_ username: String, password: String, completion: ErrorClosure?) -> RequestHandler
     {
         let authorized = username == TestConfiguration.username &&
                          password == TestConfiguration.password
@@ -53,9 +53,9 @@ class TestRequestSender: RequestSender
         isLoggedIn = false
     }
     
-    override func send(request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
+    override func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
     {
-        Logger.log.debug("Sending request: \(request.dynamicType)")
+        Logger.log.debug("Sending request: \(type(of: request))")
         if(isLoggedIn)
         {
             handler.handleResponse(responseForRequest(request), error: nil)
@@ -68,7 +68,7 @@ class TestRequestSender: RequestSender
         return TestRequestHandler()
     }
     
-    private func responseForRequest(request: Request) -> Dictionary<String, AnyObject>
+    fileprivate func responseForRequest(_ request: Request) -> Dictionary<String, AnyObject>
     {
         if request is ProfileRequest
         {
@@ -82,11 +82,11 @@ class TestRequestSender: RequestSender
         {
             return TestResponses.newCreatorTestResponse
         }
-        if request is GalleriesRequest && request.endpoint.containsString("/")
+        if request is GalleriesRequest && request.endpoint.contains("/")
         {
             return TestResponses.singleGalleryTestResponse
         }
-        if request is GalleriesRequest && !request.endpoint.containsString("/")
+        if request is GalleriesRequest && !request.endpoint.contains("/")
         {
             return TestResponses.galleriesTestResponse
         }

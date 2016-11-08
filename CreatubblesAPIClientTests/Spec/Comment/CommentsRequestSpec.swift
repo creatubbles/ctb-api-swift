@@ -19,7 +19,7 @@ class CommentsRequestSpec: QuickSpec
             it("Should have a proper method")
             {
                 let request = CommentsRequest(creationId: "", page: nil, perPage: nil)
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have a proper endpoint for comments source")

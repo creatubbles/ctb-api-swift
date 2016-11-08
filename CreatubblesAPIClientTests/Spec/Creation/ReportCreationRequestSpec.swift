@@ -27,7 +27,7 @@ class ReportCreationRequestSpec: QuickSpec {
                 let creationId = "creationId"
                 let message = "message"
                 let request = ReportCreationRequest(creationId: creationId, message: message)
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper parameters set") {

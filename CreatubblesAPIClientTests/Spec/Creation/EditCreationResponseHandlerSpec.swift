@@ -20,7 +20,7 @@ class EditCreationResponseHandlerSpec: QuickSpec
             data.name = "TestEditCreationName"
             data.reflectionText = "Hello darkness my old friend"
             data.reflectionVideoURL = "https://www.youtube.com/watch?v=4zLfCnGVeL4"
-            data.creationDate = NSDate(timeIntervalSince1970: 1460751998)
+            data.creationDate = NSDate(timeIntervalSince1970: 1460751998) as Date
             
             it("Should edit creation when logged in")
             {
@@ -33,13 +33,13 @@ class EditCreationResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:EditCreationResponseHandler()
+                        _ = sender.send(request, withResponseHandler:EditCreationResponseHandler()
                         {
-                            (error: ErrorType?) -> Void in
+                            (error: Error?) -> Void in
                             expect(error).to(beNil())
                             done()
                         })

@@ -24,7 +24,7 @@
 
 import UIKit
 
-public class APIClientSettings: NSObject
+open class APIClientSettings: NSObject
 {
     /*
      Personal application identifier. Please contact support@creatubbles.com to obtain it.

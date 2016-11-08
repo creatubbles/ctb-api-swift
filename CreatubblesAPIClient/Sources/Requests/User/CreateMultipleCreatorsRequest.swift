@@ -10,13 +10,13 @@ import UIKit
 
 class CreateMultipleCreatorsRequest: Request
 {
-    override var method: RequestMethod  { return .POST }
+    override var method: RequestMethod  { return .post }
     override var endpoint: String       { return "creator_builder_jobs" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
     
-    private let amount: Int
-    private let birthYear: Int
-    private let groupName: String?
+    fileprivate let amount: Int
+    fileprivate let birthYear: Int
+    fileprivate let groupName: String?
 
     init(amount: Int, birthYear:Int, groupName: String?)
     {
@@ -25,16 +25,16 @@ class CreateMultipleCreatorsRequest: Request
         self.groupName = groupName
     }
 
-    private func prepareParameters() -> Dictionary<String, AnyObject>
+    fileprivate func prepareParameters() -> Dictionary<String, AnyObject>
     {
         var params = Dictionary<String, AnyObject>()
         
-        params["amount"] = amount
-        params["birth_year"] = birthYear
+        params["amount"] = amount as AnyObject?
+        params["birth_year"] = birthYear as AnyObject?
         
         if let groupName = groupName
         {
-            params["group"] = groupName
+            params["group"] = groupName as AnyObject?
         }
         
         return params

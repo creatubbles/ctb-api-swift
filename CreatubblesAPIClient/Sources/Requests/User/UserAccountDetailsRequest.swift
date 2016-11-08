@@ -10,11 +10,11 @@ import UIKit
 
 class UserAccountDetailsRequest: Request
 {
-    override var method: RequestMethod { return .GET }
+    override var method: RequestMethod { return .get }
     override var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
     override var endpoint: String  { return "users/\(userId)/account" }
     
-    private let userId: String
+    fileprivate let userId: String
     
     init(userId: String)
     {

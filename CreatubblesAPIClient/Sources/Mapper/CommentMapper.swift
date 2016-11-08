@@ -14,7 +14,7 @@ class CommentMapper: Mappable
     var identifier: String?
     var text: String?
     var approved: Bool?
-    var createdAt: NSDate?
+    var createdAt: Date?
     var commentableType: String?
     var commenterId: String?
     
@@ -27,7 +27,7 @@ class CommentMapper: Mappable
     var commentedGalleryRelationship: RelationshipMapper?
     var commentedUserRelationship: RelationshipMapper?
         
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

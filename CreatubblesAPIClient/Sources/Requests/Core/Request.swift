@@ -24,23 +24,37 @@
 
 import UIKit
 
-enum RequestMethod
+enum RequestMethod: String
 {
-    case OPTIONS, GET, HEAD, POST, PUT, PATCH, DELETE, TRACE, CONNECT
+    case options = "OPTIONS"
+    case get     = "GET"
+    case head    = "HEAD"
+    case post    = "POST"
+    case put     = "PUT"
+    case patch   = "PATCH"
+    case delete  = "DELETE"
+    case trace   = "TRACE"
+    case connect = "CONNECT"
 }
 
-class Request: NSObject
+class Request: NSObject, Cancelable
 {
-    var method: RequestMethod   { return .GET }
+    var method: RequestMethod   { return .get }
     var endpoint: String        { return ""   }
+    var onlyPath: Bool          { return true }
     var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
     
-    class func sortOrderStringValue(sortOrder: SortOrder) -> String
+    class func sortOrderStringValue(_ sortOrder: SortOrder) -> String
     {
         switch sortOrder
         {
-            case .Popular:  return "popular"
-            case .Recent:   return "recent"
+            case .popular:  return "popular"
+            case .recent:   return "recent"
         }
+    }
+    
+    func cancel()
+    {
+        
     }
 }

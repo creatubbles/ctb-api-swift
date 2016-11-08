@@ -32,14 +32,14 @@ enum CreatorsAndManagersScopeElement: String
 
 class CreatorsAndManagersRequest: Request
 {
-    override var method: RequestMethod  { return .GET }
+    override var method: RequestMethod  { return .get }
     override var endpoint: String       { return "users" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
     
-    private let userId: String?
-    private let page: Int?
-    private let perPage: Int?
-    private let scope: CreatorsAndManagersScopeElement?
+    fileprivate let userId: String?
+    fileprivate let page: Int?
+    fileprivate let perPage: Int?
+    fileprivate let scope: CreatorsAndManagersScopeElement?
     
     init(userId: String? = nil, page: Int? = nil, perPage: Int? = nil, scope:CreatorsAndManagersScopeElement? = nil)
     {
@@ -49,25 +49,25 @@ class CreatorsAndManagersRequest: Request
         self.scope = scope
     }
     
-    private func prepareParameters() -> Dictionary<String, AnyObject>
+    fileprivate func prepareParameters() -> Dictionary<String, AnyObject>
     {
         var params = Dictionary<String, AnyObject>()
         
         if let userId = userId
         {
-            params["user_id"] = userId
+            params["user_id"] = userId as AnyObject?
         }
         if let page = page
         {
-            params["page"] = page
+            params["page"] = page as AnyObject?
         }
         if let perPage = perPage
         {
-            params["per_page"] = perPage
+            params["per_page"] = perPage as AnyObject?
         }
         if let scope = scope
         {
-            params["scope"] = scope.rawValue
+            params["scope"] = scope.rawValue as AnyObject?
         }
         
         return params

@@ -28,7 +28,7 @@ class RemoveCreationRequestSpec: QuickSpec
         it("Should use DELETE method")
         {
             let request = RemoveCreationRequest(creationId: "")
-            expect(request.method).to(equal(RequestMethod.DELETE))
+            expect(request.method).to(equal(RequestMethod.delete))
         }
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class CommentsRequest: Request
 {
-    override var method: RequestMethod   { return .GET }
+    override var method: RequestMethod   { return .get }
     override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
     override var endpoint: String
     {
@@ -27,11 +27,11 @@ class CommentsRequest: Request
 
     }
     
-    private var creationId: String?
-    private var galleryId: String?
-    private var userId: String?
-    private let page: Int?
-    private let perPage: Int?
+    fileprivate var creationId: String?
+    fileprivate var galleryId: String?
+    fileprivate var userId: String?
+    fileprivate let page: Int?
+    fileprivate let perPage: Int?
     
     init(creationId: String, page: Int?, perPage: Int?)
     {
@@ -66,11 +66,11 @@ class CommentsRequest: Request
         
         if let page = page
         {
-            params["page"] = page
+            params["page"] = page as AnyObject?
         }
         if let perPage = perPage
         {
-            params["per_page"] = perPage
+            params["per_page"] = perPage as AnyObject?
         }
         return params
     }    
