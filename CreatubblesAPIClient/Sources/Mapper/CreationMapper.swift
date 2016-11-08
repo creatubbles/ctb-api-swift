@@ -71,16 +71,14 @@ class CreationMapper: Mappable
     var objFileUrl: String?
     var playIFrameUrl: String?
     
+    var contentType: String?
     
-    var test: String?
-
     required init?(_ map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
         identifier  <- map["id"]
         name <- map["attributes.name"]
-        test <- map["attributes.translated_names.code"]
         
         translatedNamesMap <- map["attributes.translated_names"]
         
@@ -124,6 +122,8 @@ class CreationMapper: Mappable
         
         objFileUrl <- map["attributes.obj_file_url"]
         playIFrameUrl <- map["attributes.play_iframe_url"]
+        
+        contentType <- map["attributes.content_type"]
     }
     
     //MARK: Parsing

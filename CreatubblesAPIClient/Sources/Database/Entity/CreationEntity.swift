@@ -72,4 +72,6 @@ class CreationEntity: Object
     
     dynamic var objFileUrl: String?
     dynamic var playIFrameUrl: String?
+    
+    dynamic var contentType: String?
 }

@@ -67,6 +67,8 @@ public class Creation: NSObject, Identifiable
     
     public let objFileUrl: String?
     public let playIFrameUrl: String?
+    
+    public let contentType: String
 
     //MARK: - Relationships
     public let owner: User?
@@ -78,7 +80,6 @@ public class Creation: NSObject, Identifiable
     //MARK: - Metadata
     public let isBubbled: Bool
     public let abilities: Array<Ability>
-    
     
     init(mapper: CreationMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
@@ -130,7 +131,9 @@ public class Creation: NSObject, Identifiable
         
         objFileUrl = mapper.objFileUrl
         playIFrameUrl = mapper.playIFrameUrl
-
+        
+        contentType = mapper.contentType ?? ""
+        
         owner = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)
         
         isBubbled = metadata?.bubbledCreationIdentifiers.contains(mapper.identifier!) ?? false
@@ -190,6 +193,8 @@ public class Creation: NSObject, Identifiable
         
         objFileUrl = creationEntity.objFileUrl
         playIFrameUrl = creationEntity.playIFrameUrl
+        
+        contentType = creationEntity.contentType ?? ""
 
         //TODO: Do we need relationships here?
         owner = nil
