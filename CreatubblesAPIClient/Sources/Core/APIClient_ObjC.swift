@@ -26,9 +26,9 @@ import UIKit
 extension APIClient
 {
     //MARK: - Session
-    public func _login(_ username: String, password: String, completion: ((NSError?) -> (Void))?)
+    public func _login(_ username: String, password: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = login(username: username, password: password)
+        return login(username: username, password: password)
         {
             (error) -> (Void) in
             (completion?(APIClient.errorTypeToNSError(error)))!
@@ -45,18 +45,18 @@ extension APIClient
         return isLoggedIn()
     }
     
-    public func _getLandingURL(_ type: LandingURLType, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
+    public func _getLandingURL(_ type: LandingURLType, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getLandingURL(type: type)
+        return getLandingURL(type: type)
         {
             (landingUrls, error) -> (Void) in
             (completion?(landingUrls, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getLandingURLForCreation(_ creationId: String, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?)
+    public func _getLandingURLForCreation(_ creationId: String, completion: ((Array<LandingURL>? ,NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getLandingURL(creationId: creationId)
+        return getLandingURL(creationId: creationId)
         {
             (landingUrls, error) -> (Void) in
             (completion?(landingUrls, APIClient.errorTypeToNSError(error)))!
@@ -65,145 +65,145 @@ extension APIClient
     
 
     //MARK: - Users handling       
-    public func _getUser(_ userId: String, completion: ((User?, NSError?) -> (Void))?)
+    public func _getUser(_ userId: String, completion: ((User?, NSError?) -> (Void))?) -> RequestHandler
     {
-        _ = getUser(userId: userId)
+        return getUser(userId: userId)
         {
             (user, error) -> (Void) in
             (completion?(user, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getCurrentUser(_ completion: ((User?, NSError?) -> (Void))?)
+    public func _getCurrentUser(_ completion: ((User?, NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getCurrentUser()
+        return getCurrentUser()
         {
             (user, error) -> (Void) in
             (completion?(user, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _switchUser(targetUserId: String, accessToken: String, completion: ((String?, NSError?) -> (Void))?)
+    public func _switchUser(targetUserId: String, accessToken: String, completion: ((String?, NSError?) -> (Void))?) -> RequestHandler
     {
-        switchUser(targetUserId: targetUserId, accessToken: accessToken)
+        return switchUser(targetUserId: targetUserId, accessToken: accessToken)
         {
             (accessToken, error) -> (Void) in
             completion?(accessToken, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _reportUser(userId: String, message: String, completion: ((NSError?) -> (Void))?)
+    public func _reportUser(userId: String, message: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        reportUser(userId: userId, message: message)
+        return reportUser(userId: userId, message: message)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getCreators(userId userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?)
+    public func _getCreators(userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
 
     {
-       _ = getCreators(userId: userId, pagingData: pagingData)
+        return getCreators(userId: userId, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             (completion?(users, pInfo, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getCreators(groupId groupId: String, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?)
+    public func _getCreators(groupId: String, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
     {
-        getCreators(groupId: groupId, pagingData: pagingData)
+        return getCreators(groupId: groupId, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getSwitchUsers(pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?)
+    public func _getSwitchUsers(pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
     {
-        getSwitchUsers(pagingData)
+        return getSwitchUsers(pagingData)
         {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getManagers(_ userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo?, NSError?) -> (Void))?)
+    public func _getManagers(_ userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getManagers(userId: userId, pagingData: pagingData)
+        return getManagers(userId: userId, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             (completion?(users, pInfo, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _newCreator(_ creatorData: NewCreatorData, completion: ((User?, NSError?) -> (Void))?)
+    public func _newCreator(_ creatorData: NewCreatorData, completion: ((User?, NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = newCreator(data: creatorData)
+        return newCreator(data: creatorData)
         {
             (user, error) -> (Void) in
             (completion?(user, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getGroupCreatorsInBatchMode(groupId: String, completion: ((Array<User>?, NSError?) -> (Void))?)
+    public func _getGroupCreatorsInBatchMode(groupId: String, completion: ((Array<User>?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getGroupCreatorsInBatchMode(groupId: groupId)
+        return getGroupCreatorsInBatchMode(groupId: groupId)
         {
             (users, error) -> (Void) in
             completion?(users, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _editProfile(identifier: String, data: EditProfileData, completion: ((NSError?) -> (Void))?)
+    public func _editProfile(identifier: String, data: EditProfileData, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        editProfile(userId: identifier, data: data)
+        return editProfile(userId: identifier, data: data)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
         }
     }
 
-    public func _createMultipleCreators(data: CreateMultipleCreatorsData, completion: ((NSError?) -> (Void))?)
+    public func _createMultipleCreators(data: CreateMultipleCreatorsData, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        createMultipleCreators(data: data)
+        return createMultipleCreators(data: data)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getMyConnections(pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?)
+    public func _getMyConnections(pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
     {
-        getMyConnections(pagingData: pagingData)
+        return getMyConnections(pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getOtherUsersMyConnections(userId: String, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?)
+    public func _getOtherUsersMyConnections(userId: String, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
     {
-        getOtherUsersMyConnections(userId: userId, pagingData: pagingData)
+        return getOtherUsersMyConnections(userId: userId, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
 
-    public func _getUsersFollowedByAUser(userId: String, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?)
+    public func _getUsersFollowedByAUser(userId: String, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
     {
-        getUsersFollowedByAUser(userId: userId, pagingData: pagingData)
+        return getUsersFollowedByAUser(userId: userId, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
 
-    public func _getUserAccountData(userId: String, completion: ((UserAccountDetails?, NSError?) -> (Void))?)
+    public func _getUserAccountData(userId: String, completion: ((UserAccountDetails?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getUserAccountData(userId: userId)
+        return getUserAccountData(userId: userId)
         {
             (userAccountDetails, error) -> (Void) in
             completion?(userAccountDetails, APIClient.errorTypeToNSError(error))
@@ -211,63 +211,63 @@ extension APIClient
     }
     
     //MARK: - Gallery handling
-    public func _getGallery(_ galleryId: String, completion: ((Gallery?, NSError?) -> (Void))?)
+    public func _getGallery(_ galleryId: String, completion: ((Gallery?, NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getGallery(galleryId: galleryId)
+        return getGallery(galleryId: galleryId)
         {
             (gallery, error) -> (Void) in
             (completion?(gallery, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _newGallery(_ galleryData: NewGalleryData, completion: ((Gallery?, NSError?) -> (Void))?)
+    public func _newGallery(_ galleryData: NewGalleryData, completion: ((Gallery?, NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = newGallery(data: galleryData)
+        return newGallery(data: galleryData)
         {
             (gallery, error) -> (Void) in
             (completion?(gallery, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getGalleries(_ userId: String?, pagingData: PagingData?, sort: SortOrder, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getGalleries(_ userId: String?, pagingData: PagingData?, sort: SortOrder, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getGalleries(userId: userId, pagingData: pagingData, sort: sort)
+        return getGalleries(userId: userId, pagingData: pagingData, sort: sort)
         {
             (galleries, pInfo, error) -> (Void) in
             (completion?(galleries, pInfo, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getGalleries(creationId: String, pagingData: PagingData?, sort: SortOrder?, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getGalleries(creationId: String, pagingData: PagingData?, sort: SortOrder?, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getGalleries(creationId: creationId, pagingData: pagingData, sort: sort)
+        return getGalleries(creationId: creationId, pagingData: pagingData, sort: sort)
         {
             (galleries, pInfo, error) -> (Void) in
             completion?(galleries, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getMyGalleries(pagingData: PagingData?,  completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getMyGalleries(pagingData: PagingData?,  completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getMyGalleries(pagingData)
+        return getMyGalleries(pagingData)
         {
             (galleries, pInfo, error) -> (Void) in
             completion?(galleries, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getMyOwnedGalleries(pagingData: PagingData?, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getMyOwnedGalleries(pagingData: PagingData?, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getMyOwnedGalleries(pagingData)
+        return getMyOwnedGalleries(pagingData)
         {
             (galleries, pInfo, error) -> (Void) in
             completion?(galleries, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getMySharedGalleries(pagingData: PagingData?,  completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getMySharedGalleries(pagingData: PagingData?,  completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getMySharedGalleries(pagingData)
+        return getMySharedGalleries(pagingData)
         {
             (galleries, pInfo, error) -> (Void) in
             completion?(galleries, pInfo, APIClient.errorTypeToNSError(error))
@@ -275,90 +275,90 @@ extension APIClient
     }
 
 
-    public func _getMyFavoriteGalleries(pagingData: PagingData?, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getMyFavoriteGalleries(pagingData: PagingData?, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getMyFavoriteGalleries(pagingData)
+        return getMyFavoriteGalleries(pagingData)
         {
             (galleries, pInfo, error) -> (Void) in
             completion?(galleries, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getFeaturedGalleries(pagingData: PagingData?, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getFeaturedGalleries(pagingData: PagingData?, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getFeaturedGalleries(pagingData)
+        return getFeaturedGalleries(pagingData)
         {
             (galleries, pInfo, error) -> (Void) in
             completion?(galleries, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getMyGalleriesInBatchMode(completion: ((Array<Gallery>?, NSError?) -> (Void))?)
+    public func _getMyGalleriesInBatchMode(completion: ((Array<Gallery>?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getMyGalleriesInBatchMode()
+        return getMyGalleriesInBatchMode()
         {
             (galleries, error) -> (Void) in
             completion?(galleries, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getOwnedGalleriesInBatchMode(completion: ((Array<Gallery>?, NSError?) -> (Void))?)
+    public func _getOwnedGalleriesInBatchMode(completion: ((Array<Gallery>?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getOwnedGalleriesInBatchMode()
+        return getOwnedGalleriesInBatchMode()
         {
             (galleries, error) -> (Void) in
             completion?(galleries, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getSharedGalleriesInBatchMode(completion: ((Array<Gallery>?, NSError?) -> (Void))?)
+    public func _getSharedGalleriesInBatchMode(completion: ((Array<Gallery>?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getSharedGalleriesInBatchMode()
+        return getSharedGalleriesInBatchMode()
         {
             (galleries, error) -> (Void) in
             completion?(galleries, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getFavoriteGalleriesInBatchMode(completion: ((Array<Gallery>?, NSError?) -> (Void))?)
+    public func _getFavoriteGalleriesInBatchMode(completion: ((Array<Gallery>?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getFavoriteGalleriesInBatchMode()
+        return getFavoriteGalleriesInBatchMode()
         {
             (galleries, error) -> (Void) in
             completion?(galleries, APIClient.errorTypeToNSError(error))
         }
     }
 
-    public func _getFeaturedGalleriesInBatchMode(completion: ((Array<Gallery>?, NSError?) -> (Void))?)
+    public func _getFeaturedGalleriesInBatchMode(completion: ((Array<Gallery>?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getFeaturedGalleriesInBatchMode()
+        return getFeaturedGalleriesInBatchMode()
         {
             (galleries, error) -> (Void) in
             completion?(galleries, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _updateGallery(data: UpdateGalleryData, completion:  ((NSError?) -> (Void))?)
+    public func _updateGallery(data: UpdateGalleryData, completion:  ((NSError?) -> (Void))?) -> RequestHandler
     {
-        updateGallery(data: data)
+        return updateGallery(data: data)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
         }
     }
  
-    public func _reportGallery(galleryId: String, message: String, completion: ((NSError?) -> (Void))?)
+    public func _reportGallery(galleryId: String, message: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        reportGallery(galleryId: galleryId, message: message)
+        return reportGallery(galleryId: galleryId, message: message)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
         }
     }
 
-    public func _submitCreationToGallery(galleryId: String, creationId: String, completion: ((NSError?) -> (Void))?)
+    public func _submitCreationToGallery(galleryId: String, creationId: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        submitCreationToGallery(galleryId: galleryId, creationId: creationId)
+        return submitCreationToGallery(galleryId: galleryId, creationId: creationId)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
@@ -366,73 +366,73 @@ extension APIClient
     }
     
     //MARK: - Creation handling
-    public func _getCreation(_ creationId: String, completion: ((Creation?, NSError?) -> (Void))?)
+    public func _getCreation(_ creationId: String, completion: ((Creation?, NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getCreation(creationId: creationId)
+        return getCreation(creationId: creationId)
         {
             (creation, error) -> (Void) in
             (completion?(creation, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getCreations(_ galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getCreations(_ galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getCreations(galleryId: galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, onlyPublic: onlyPublic)
+        return getCreations(galleryId: galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, onlyPublic: onlyPublic)
         {
             (creations, pInfo, error) -> (Void) in
             (completion?(creations, pInfo, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _newCreation(_ creationData: NewCreationData, completion: ((Creation?, NSError?) -> (Void))?)
+    public func _newCreation(_ creationData: NewCreationData, completion: ((Creation?, NSError?) -> (Void))?) -> CreationUploadSessionPublicData
     {
-       _ = newCreation(data: creationData)
+        return newCreation(data: creationData)
         {
             (creation, error) -> (Void) in
             (completion?(creation, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _reportCreation(creationId: String, message: String, completion: ((NSError?) -> (Void))?)
+    public func _reportCreation(creationId: String, message: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        reportCreation(creationId: creationId, message: message)
+        return reportCreation(creationId: creationId, message: message)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
         }
     }
 
-    public func _getRecommendedCreationsByUser(userId: String, pagingData: PagingData?, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getRecommendedCreationsByUser(userId: String, pagingData: PagingData?, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getRecomendedCreationsByUser(userId: userId, pagingData: pagingData)
+        return getRecomendedCreationsByUser(userId: userId, pagingData: pagingData)
         {
             (creations, pInfo, error) -> (Void) in
             completion?(creations, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getRecommendedCreationsByCreation(creationId: String, pagingData: PagingData?, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getRecommendedCreationsByCreation(creationId: String, pagingData: PagingData?, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getRecomendedCreationsByCreation(creationId: creationId, pagingData: pagingData)
+        return getRecomendedCreationsByCreation(creationId: creationId, pagingData: pagingData)
         {
             (creations, pInfo, error) -> (Void) in
             completion?(creations, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
 
-    public func _editCreation(creationId: String, data: EditCreationData, completion: ((NSError?) -> (Void))?)
+    public func _editCreation(creationId: String, data: EditCreationData, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        editCreation(creationId: creationId, data: data)
+        return editCreation(creationId: creationId, data: data)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _removeCreation(creationId: String, completion: ((NSError?) -> (Void))?)
+    public func _removeCreation(creationId: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
 
     {
-        removeCreation(creationId: creationId)
+        return removeCreation(creationId: creationId)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
@@ -440,36 +440,36 @@ extension APIClient
     }
     
     //MARK: - Batch fetching
-    public func _getCreationsInBatchMode(_ galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, NSError?) -> (Void))?)
+    public func _getCreationsInBatchMode(_ galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getCreationsInBatchMode(galleryId: galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic)
+        return getCreationsInBatchMode(galleryId: galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic)
         {
             (creations, error) -> (Void) in
             (completion?(creations, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getGalleriesInBatchMode(_ userId: String?, sort: SortOrder, completion: ((Array<Gallery>?, NSError?) -> (Void))?)
+    public func _getGalleriesInBatchMode(_ userId: String?, sort: SortOrder, completion: ((Array<Gallery>?, NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getGalleriesInBatchMode(userId: userId, sort: sort)
+        return getGalleriesInBatchMode(userId: userId, sort: sort)
         {
             (galleries, error) -> (Void) in
             (completion?(galleries, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getCreatorsInBatchMode(_ userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
+    public func _getCreatorsInBatchMode(_ userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getCreatorsInBatchMode(userId: userId)
+        return getCreatorsInBatchMode(userId: userId)
         {
             (users, error) -> (Void) in
             (completion?(users, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getManagersInBatchMode(_ userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?)
+    public func _getManagersInBatchMode(_ userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getManagersInBatchMode(userId: userId)
+        return getManagersInBatchMode(userId: userId)
         {
             (users, error) -> (Void) in
             (completion?(users, APIClient.errorTypeToNSError(error)))!
@@ -496,54 +496,54 @@ extension APIClient
     }
     
     //MARK: - Bubbles
-    public func _getBubblesForCreationWithIdentifier(_ identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getBubblesForCreationWithIdentifier(_ identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getBubbles(creationId: identifier, pagingData: pagingData)
+        return getBubbles(creationId: identifier, pagingData: pagingData)
         {
             (bubbles, pInfo, error) -> (Void) in
             (completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _getBubblesForUserWithIdentifier(_ identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?,PagingInfo?, NSError?) -> (Void))?)
+    public func _getBubblesForUserWithIdentifier(_ identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?,PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = getBubbles(userId: identifier, pagingData: pagingData)
+        return getBubbles(userId: identifier, pagingData: pagingData)
         {
             (bubbles, pInfo, error) -> (Void) in
             (completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error as Error?)))!
         }
     }
     
-    public func _getBubblesForGalleryWithIdentifier(_ identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getBubblesForGalleryWithIdentifier(_ identifier: String, pagingData: PagingData?, completion: ((Array<Bubble>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        _ = getBubbles(galleryId: identifier, pagingData: pagingData)
+        return getBubbles(galleryId: identifier, pagingData: pagingData)
         {
             (bubbles, pInfo, error) -> (Void) in
             (completion?(bubbles, pInfo, APIClient.errorTypeToNSError(error as Error?)))!
         }
     }
     
-    public func _newBubble(_ data: NewBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
+    public func _newBubble(_ data: NewBubbleData, completion: ((Bubble?, NSError?) -> (Void))?) -> RequestHandler
     {
-       _ = newBubble(data: data)
+        return newBubble(data: data)
         {
             (bubble, error) -> (Void) in
             (completion?(bubble, APIClient.errorTypeToNSError(error)))!
         }
     }
     
-    public func _updateBubble(data: UpdateBubbleData, completion: ((Bubble?, NSError?) -> (Void))?)
+    public func _updateBubble(data: UpdateBubbleData, completion: ((Bubble?, NSError?) -> (Void))?) -> RequestHandler
     {
-        updateBubble(data: data)
+        return updateBubble(data: data)
         {
             (bubble, error) -> (Void) in
             completion?(bubble, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _deleteBubble(bubbleId: String, completion: ((NSError?) -> (Void))?)
+    public func _deleteBubble(bubbleId: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        deleteBubble(bubbleId: bubbleId)
+        return deleteBubble(bubbleId: bubbleId)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
@@ -551,9 +551,9 @@ extension APIClient
     }
     
     //MARK: - Toyboo Creation
-    public func _getToybooCreation(creationId: String, completion: ((ToybooCreation?, NSError?) -> (Void))?)
+    public func _getToybooCreation(creationId: String, completion: ((ToybooCreation?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getToybooCreation(creationId: creationId)
+        return getToybooCreation(creationId: creationId)
         {
             (toybooCreation, error) -> (Void) in
             completion?(toybooCreation, APIClient.errorTypeToNSError(error) )
@@ -561,45 +561,45 @@ extension APIClient
     }
     
     //MARK: - Groups
-    public func _fetchGroup(groupId: String, completion: ((Group?, NSError?) -> (Void))?)
+    public func _fetchGroup(groupId: String, completion: ((Group?, NSError?) -> (Void))?) -> RequestHandler
     {
-        fetchGroup(groupId: groupId)
+        return fetchGroup(groupId: groupId)
         {
             (group, error) -> (Void) in
             completion?(group, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _fetchGroups(completion: ((Array<Group>?, NSError?) -> (Void))?)
+    public func _fetchGroups(completion: ((Array<Group>?, NSError?) -> (Void))?) -> RequestHandler
     {
-        fetchGroups()
+        return fetchGroups()
         {
             (groups, errors) -> (Void) in
             completion?(groups, APIClient.errorTypeToNSError(errors))
         }
     }
     
-    public func _newGroup(data: NewGroupData, completion: ((Group?, NSError?) -> (Void))?)
+    public func _newGroup(data: NewGroupData, completion: ((Group?, NSError?) -> (Void))?) -> RequestHandler
     {
-        newGroup(data: data)
+        return newGroup(data: data)
         {
             (group, error) -> (Void) in
             completion?(group, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _editGroup(groupId: String, data: EditGroupData, completion: ((NSError?) -> (Void))?)
+    public func _editGroup(groupId: String, data: EditGroupData, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        editGroup(groupId: groupId, data: data)
+        return editGroup(groupId: groupId, data: data)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
         }
     }
 
-    public func _deleteGroup(groupId: String, completion: ((NSError?) -> (Void))?)
+    public func _deleteGroup(groupId: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        deleteGroup(groupId: groupId)
+        return deleteGroup(groupId: groupId)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
@@ -607,45 +607,45 @@ extension APIClient
     }
     
     //MARK: - Comments
-    public func _addComment(data: NewCommentData, completion: ((NSError?) -> (Void))?)
+    public func _addComment(data: NewCommentData, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        addComment(data: data)
+        return addComment(data: data)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _reportComment(commentId: String, message: String, completion: ((NSError?) -> (Void))?)
+    public func _reportComment(commentId: String, message: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        reportComment(commentId: commentId, message: message)
+        return reportComment(commentId: commentId, message: message)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
         }
     }
 
-    public func _getComments(creationId creationId: String, pagingData: PagingData?, completion: ((Array<Comment>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getComments(creationId: String, pagingData: PagingData?, completion: ((Array<Comment>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getComments(creationId: creationId, pagingData: pagingData)
+        return getComments(creationId: creationId, pagingData: pagingData)
         {
             (comments, pInfo, error) -> (Void) in
             completion?(comments, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
 
-    public func _getComments(userId userId: String, pagingData: PagingData?, completion: ((Array<Comment>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getComments(userId: String, pagingData: PagingData?, completion: ((Array<Comment>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getComments(userId: userId, pagingData: pagingData)
+        return getComments(userId: userId, pagingData: pagingData)
         {
             (comments, pInfo, error) -> (Void) in
             completion?(comments, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
 
-    public func _getComments(galleryId galleryId: String, pagingData: PagingData?, completion: ((Array<Comment>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getComments(galleryId: String, pagingData: PagingData?, completion: ((Array<Comment>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getComments(galleryId: galleryId, pagingData: pagingData)
+        return getComments(galleryId: galleryId, pagingData: pagingData)
         {
             (comments, pInfo, error) -> (Void) in
             completion?(comments, pInfo, APIClient.errorTypeToNSError(error))
@@ -653,63 +653,63 @@ extension APIClient
     }
     
     //MARK: - Contents
-    public func _getTrendingContent(pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?)
+    public func _getTrendingContent(pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?) -> RequestHandler
     {
-        getTrendingContent(pagingData: pagingData)
+        return getTrendingContent(pagingData: pagingData)
         {
             (contentEntries) -> (Void) in
             completion?(contentEntries)
         }
     }
     
-    public func _getRecentContent(pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?)
+    public func _getRecentContent(pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?) -> RequestHandler
     {
-        getRecentContent(pagingData: pagingData)
+        return getRecentContent(pagingData: pagingData)
         {
             (contentEntries) -> (Void) in
             completion?(contentEntries)
         }
     }
     
-    public func _getBubbledContent(userId: String, pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?)
+    public func _getBubbledContent(userId: String, pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?) -> RequestHandler
     {
-        getBubbledContent(userId: userId, pagingData: pagingData)
+        return getBubbledContent(userId: userId, pagingData: pagingData)
         {
             (contentEntries) -> (Void) in
             completion?(contentEntries)
         }
     }
 
-    public func _getMyConnectionsContent(pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?)
+    public func _getMyConnectionsContent(pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?) -> RequestHandler
     {
-        getMyConnectionsContent(pagingData: pagingData)
+        return getMyConnectionsContent(pagingData: pagingData)
         {
             (contentEntries) -> (Void) in
             completion?(contentEntries)
         }
     }
     
-    public func _getContentsByUser(userId: String, pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?)
+    public func _getContentsByUser(userId: String, pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?) -> RequestHandler
     {
-        getContentsByAUser(userId: userId, pagingData: pagingData)
+        return getContentsByAUser(userId: userId, pagingData: pagingData)
         {
             (contentEntries) -> (Void) in
             completion?(contentEntries)
         }
     }
     
-    public func _getFollowedContents(pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?)
+    public func _getFollowedContents(pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?) -> RequestHandler
     {
-        getFollowedContents(pagingData)
+        return getFollowedContents(pagingData)
         {
             (contentEntries) -> (Void) in
             completion?(contentEntries)
         }
     }
  
-    public func _getSearchedContents(query: String, pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?)
+    public func _getSearchedContents(query: String, pagingData: PagingData?, completion: ((ResponseData<ContentEntry>) -> (Void))?) -> RequestHandler
     {
-        getSearchedContents(query: query, pagingData: pagingData)
+        return getSearchedContents(query: query, pagingData: pagingData)
         {
             (contentEntries) -> (Void) in
             completion?(contentEntries)
@@ -717,18 +717,18 @@ extension APIClient
     }
     
     //Mark: - Custom Style
-    public func _fetchCustomStyleForUser(userId: String, completion: ((CustomStyle?, NSError?) -> (Void))?)
+    public func _fetchCustomStyleForUser(userId: String, completion: ((CustomStyle?, NSError?) -> (Void))?) -> RequestHandler
     {
-        fetchCustomStyleForUser(userId: userId)
+        return fetchCustomStyleForUser(userId: userId)
         {
             (customStyle, error) -> (Void) in
             completion?(customStyle, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _editCustomStyleForUser(userId: String, data: CustomStyleEditData, completion: ((CustomStyle?, NSError?) -> (Void))?)
+    public func _editCustomStyleForUser(userId: String, data: CustomStyleEditData, completion: ((CustomStyle?, NSError?) -> (Void))?) -> RequestHandler
     {
-        editCustomStyleForUser(userId: userId, withData: data)
+        return editCustomStyleForUser(userId: userId, withData: data)
         {
             (customStyle, error) -> (Void) in
             completion?(customStyle, APIClient.errorTypeToNSError(error))
@@ -736,9 +736,9 @@ extension APIClient
     }
     
     // MARK: - Activities
-    public func _getActivities(pagingData: PagingData?, completion: ((Array<Activity>?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getActivities(pagingData: PagingData?, completion: ((Array<Activity>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getActivities(pagingData: pagingData)
+        return getActivities(pagingData: pagingData)
         {
             (activities, pInfo, error) -> (Void) in
             completion?(activities, pInfo, APIClient.errorTypeToNSError(error))
@@ -746,27 +746,27 @@ extension APIClient
     }
     
     //MARK: - Notifications
-    public func _getNotifications(pagingdata: PagingData?, completion: ((Array<Notification>?, _ unreadNotificationsCount: Int?, PagingInfo?, NSError?) -> (Void))?)
+    public func _getNotifications(pagingdata: PagingData?, completion: ((Array<Notification>?, _ unreadNotificationsCount: Int?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getNotifications(pagingData: pagingdata)
+        return getNotifications(pagingData: pagingdata)
         {
             (notifications, unreadNotificationsCount, pInfo, error) -> (Void) in
-            completion?(notifications, unreadNotificationsCount: unreadNotificationsCount, pInfo, APIClient.errorTypeToNSError(error))
+            completion?(notifications, unreadNotificationsCount, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _markNotificationAsRead(notificationId: String, completion: ((NSError?) -> (Void))?)
+    public func _markNotificationAsRead(notificationId: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        markNotificationAsRead(notificationId: notificationId)
+        return markNotificationAsRead(notificationId: notificationId)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
         }
     }
 
-    public func _trackWhenNotificationsWereViewed(completion: ((NSError?) -> (Void))?)
+    public func _trackWhenNotificationsWereViewed(completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        trackWhenNotificationsWereViewed()
+        return trackWhenNotificationsWereViewed()
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
@@ -774,18 +774,18 @@ extension APIClient
     }
     
     //MARK: - User Followings
-    public func _createUserFollowing(userId: String, completion: ((NSError?) -> (Void))?)
+    public func _createUserFollowing(userId: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        createUserFollowing(userId: userId)
+        return createUserFollowing(userId: userId)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _deleteUserFollowing(userId: String, completion: ((NSError?) -> (Void))?)
+    public func _deleteUserFollowing(userId: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        deleteAUserFollowing(userId: userId)
+        return deleteAUserFollowing(userId: userId)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))
@@ -793,18 +793,18 @@ extension APIClient
     }
     
     //MARK: - Partner Applications
-    public func _getPartnerApplication(id: String, completion: ((PartnerApplication?, NSError?) -> (Void))?)
+    public func _getPartnerApplication(id: String, completion: ((PartnerApplication?, NSError?) -> (Void))?) -> RequestHandler
     {
-        getPartnerApplication(id)
+        return getPartnerApplication(id)
         {
             (partnerApplication, error) -> (Void) in
             completion?(partnerApplication, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _searchPartnerApplications(query: String, completion: ((Array<PartnerApplication>?, NSError?) -> (Void))?)
+    public func _searchPartnerApplications(query: String, completion: ((Array<PartnerApplication>?, NSError?) -> (Void))?) -> RequestHandler
     {
-        searchPartnerApplications(query)
+        return searchPartnerApplications(query)
         {
             (partnerApplications, error) -> (Void) in
             completion?(partnerApplications, APIClient.errorTypeToNSError(error))

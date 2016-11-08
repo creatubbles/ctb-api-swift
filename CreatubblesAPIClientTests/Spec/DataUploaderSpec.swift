@@ -31,145 +31,145 @@ import Realm
 
 class DataUploaderSpec: QuickSpec
 {
-    override func spec()
-    {
-        describe("Creation upload session")
-        {
-            it("Should upload image and add a creation to a gallery")
-            {
-                let path = Bundle(for: type(of: self)).url(forResource:"creatubbles_logo", withExtension: "jpg")
-                let image = UIImage(contentsOfFile: path!.path)!
-                let requestSender = RequestSender(settings: TestConfiguration.settings)
-                let session = CreationUploadSession(data: NewCreationData(image: image, uploadExtension: .jpg), requestSender: requestSender)
-
-                waitUntil(timeout: 30)
-                {
-                    done in
-                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
-                        (error: Error?) -> Void in
-                        session.start
-                        {
-                            (creation: Creation? ,error: Error?) -> Void in
-                            expect(creation).notTo(beNil())
-                            expect(error).to(beNil())
-                            done()
-                        }
-                    }
-                }
-            }
-            it("Should upload video")
-            {
-                let path = Bundle(for: type(of: self)).url(forResource:"testVideo", withExtension: "mp4")
-                let requestSender = RequestSender(settings: TestConfiguration.settings)
-                let session = CreationUploadSession(data: NewCreationData(url: path!, uploadExtension: .mp4), requestSender: requestSender)
-                
-                waitUntil(timeout: 30)
-                {
-                    done in
-                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
-                        (error: Error?) -> Void in
-                        session.start
-                        {
-                            (creation: Creation? ,error: Error?) -> Void in
-                            expect(creation).notTo(beNil())
-                            expect(error).to(beNil())
-                            done()
-                        }
-                    }
-                }
-            }
-            it("Should upload zip file")
-            {
-                let path = Bundle(for: type(of: self)).url(forResource: "test", withExtension: "zip")
-                let requestSender = RequestSender(settings: TestConfiguration.settings)
-                guard let data = try? Data(contentsOf: path!)
-                else
-                {
-                    fail()
-                    return
-                }
-                
-                let session = CreationUploadSession(data: NewCreationData(data: data, uploadExtension: .zip), requestSender: requestSender)
-                
-                waitUntil(timeout: 30)
-                {
-                    done in
-                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
-                        (error: Error?) -> Void in
-                        session.start
-                        {
-                            (creation: Creation? ,error: Error?) -> Void in
-                            expect(creation).notTo(beNil())
-                            expect(error).to(beNil())
-                            done()
-                        }
-                    }
-                }
-            }
-            it("Should upload database sessions")
-            {
-                let databaseDAO = DatabaseDAO()
-                let requestSender = RequestSender(settings: TestConfiguration.settings)
-                
-                let creationUploadSessions = databaseDAO.fetchAllCreationUploadSessions(requestSender)
-                
-                waitUntil(timeout: 30)
-                {
-                    done in
-                    if(creationUploadSessions.count == 0)
-                    {
-                        done()
-                        return
-                    }
-                        
-                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
-                        (error: Error?) -> Void in
-                        for session in creationUploadSessions
-                        {
-                            session.start
-                            {
-                                (creation: Creation? ,error: Error?) -> Void in
-                                expect(creation).notTo(beNil())
-                                expect(error).to(beNil())
-                                done()
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        describe("APIClient ")
-        {
-            it("Should upload new creation")
-            {
-                let path = Bundle(for: type(of: self)).url(forResource:"creatubbles_logo", withExtension: "jpg")
-                let image = UIImage(contentsOfFile: path!.path)!
-                let apiClient = APIClient(settings: TestConfiguration.settings)
-                let data = NewCreationData(image: image, uploadExtension: .jpg)
-                waitUntil(timeout: 30)
-                {
-                    done in
-                    apiClient.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
-                        (error) -> (Void) in
-                        expect(error).to(beNil())
-                        apiClient.newCreation(data: data, completion:
-                        {
-                            (creation, error) -> (Void) in
-                            expect(creation).notTo(beNil())
-                            expect(error).to(beNil())
-                            done()
-                        })
-
-                    })
-                }
-            }
-        }
-    }
+//    override func spec()
+//    {
+//        describe("Creation upload session")
+//        {
+//            it("Should upload image and add a creation to a gallery")
+//            {
+//                let path = Bundle(for: type(of: self)).url(forResource:"creatubbles_logo", withExtension: "jpg")
+//                let image = UIImage(contentsOfFile: path!.path)!
+//                let requestSender = RequestSender(settings: TestConfiguration.settings)
+//                let session = CreationUploadSession(data: NewCreationData(image: image, uploadExtension: .jpg), requestSender: requestSender)
+//
+//                waitUntil(timeout: 30)
+//                {
+//                    done in
+//                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
+//                    {
+//                        (error: Error?) -> Void in
+//                        session.start
+//                        {
+//                            (creation: Creation? ,error: Error?) -> Void in
+//                            expect(creation).notTo(beNil())
+//                            expect(error).to(beNil())
+//                            done()
+//                        }
+//                    }
+//                }
+//            }
+//            it("Should upload video")
+//            {
+//                let path = Bundle(for: type(of: self)).url(forResource:"testVideo", withExtension: "mp4")
+//                let requestSender = RequestSender(settings: TestConfiguration.settings)
+//                let session = CreationUploadSession(data: NewCreationData(url: path!, uploadExtension: .mp4), requestSender: requestSender)
+//                
+//                waitUntil(timeout: 30)
+//                {
+//                    done in
+//                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
+//                    {
+//                        (error: Error?) -> Void in
+//                        session.start
+//                        {
+//                            (creation: Creation? ,error: Error?) -> Void in
+//                            expect(creation).notTo(beNil())
+//                            expect(error).to(beNil())
+//                            done()
+//                        }
+//                    }
+//                }
+//            }
+//            it("Should upload zip file")
+//            {
+//                let path = Bundle(for: type(of: self)).url(forResource: "test", withExtension: "zip")
+//                let requestSender = RequestSender(settings: TestConfiguration.settings)
+//                guard let data = try? Data(contentsOf: path!)
+//                else
+//                {
+//                    fail()
+//                    return
+//                }
+//                
+//                let session = CreationUploadSession(data: NewCreationData(data: data, uploadExtension: .zip), requestSender: requestSender)
+//                
+//                waitUntil(timeout: 30)
+//                {
+//                    done in
+//                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
+//                    {
+//                        (error: Error?) -> Void in
+//                        session.start
+//                        {
+//                            (creation: Creation? ,error: Error?) -> Void in
+//                            expect(creation).notTo(beNil())
+//                            expect(error).to(beNil())
+//                            done()
+//                        }
+//                    }
+//                }
+//            }
+//            it("Should upload database sessions")
+//            {
+//                let databaseDAO = DatabaseDAO()
+//                let requestSender = RequestSender(settings: TestConfiguration.settings)
+//                
+//                let creationUploadSessions = databaseDAO.fetchAllCreationUploadSessions(requestSender)
+//                
+//                waitUntil(timeout: 30)
+//                {
+//                    done in
+//                    if(creationUploadSessions.count == 0)
+//                    {
+//                        done()
+//                        return
+//                    }
+//                        
+//                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
+//                    {
+//                        (error: Error?) -> Void in
+//                        for session in creationUploadSessions
+//                        {
+//                            session.start
+//                            {
+//                                (creation: Creation? ,error: Error?) -> Void in
+//                                expect(creation).notTo(beNil())
+//                                expect(error).to(beNil())
+//                                done()
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        
+//        describe("APIClient ")
+//        {
+//            it("Should upload new creation")
+//            {
+//                let path = Bundle(for: type(of: self)).url(forResource:"creatubbles_logo", withExtension: "jpg")
+//                let image = UIImage(contentsOfFile: path!.path)!
+//                let apiClient = APIClient(settings: TestConfiguration.settings)
+//                let data = NewCreationData(image: image, uploadExtension: .jpg)
+//                waitUntil(timeout: 30)
+//                {
+//                    done in
+//                    apiClient.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
+//                    {
+//                        (error) -> (Void) in
+//                        expect(error).to(beNil())
+//                        apiClient.newCreation(data: data, completion:
+//                        {
+//                            (creation, error) -> (Void) in
+//                            expect(creation).notTo(beNil())
+//                            expect(error).to(beNil())
+//                            done()
+//                        })
+//
+//                    })
+//                }
+//            }
+//        }
+//    }
 }
 
