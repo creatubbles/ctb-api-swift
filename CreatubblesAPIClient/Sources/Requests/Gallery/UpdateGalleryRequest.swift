@@ -9,10 +9,10 @@
 import UIKit
 
 class UpdateGalleryRequest: Request {
-    override var method: RequestMethod   { return .PUT }
+    override var method: RequestMethod   { return .put }
     override var endpoint: String { return "galleries/\(data.identifier)" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
-    private let data: UpdateGalleryData
+    fileprivate let data: UpdateGalleryData
     
     init(data: UpdateGalleryData)
     {
@@ -23,18 +23,19 @@ class UpdateGalleryRequest: Request {
     {
         var params = Dictionary<String, AnyObject>()
         
-        if let name = data.name
-        {
-            params["name"] = name
+        if let name = data.name {
+            params["name"] = name as AnyObject?
         }
-        if let galleryDescription = data.galleryDescription
-        {
-            params["description"] = galleryDescription
+        
+        if let galleryDescription = data.galleryDescription {
+            params["description"] = galleryDescription as AnyObject?
+
         }
         if let openForAll = data.openForAll
         {
-            params["open_for_all"] = openForAll
+            params["open_for_all"] = openForAll as AnyObject?
         }
         return params
     }
 }
+

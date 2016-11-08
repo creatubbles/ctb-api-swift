@@ -9,7 +9,7 @@
 import UIKit
 
 @objc
-public class EditGroupData: NSObject
+open class EditGroupData: NSObject
 {
     var name: String?
     var avatarCreationIdentifier: String?

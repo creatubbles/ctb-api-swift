@@ -22,7 +22,7 @@ class Metadata: NSObject
         bubbledCreationIdentifiers = mapper.bubbledCreationIdentifiers ?? []
         bubbledUserIdentifiers = mapper.bubbledUserIdentifiers ?? []
         bubbledGalleryIdentifiers = mapper.bubbledGalleryIdentifiers ?? []
-        abilities = mapper.abilityMappers?.map({ Ability(mapper: $0)}).filter({ $0.operation != .Unknown }) ?? []
+        abilities = mapper.abilityMappers?.map({ Ability(mapper: $0)}).filter({ $0.operation != .unknown }) ?? []
         
         userFollowedUsersIdentifiers = mapper.userFollowedUsersIdentifiers ?? []
     }

@@ -9,41 +9,41 @@
 import UIKit
 
 enum MyGalleriesRequestFilter {
-    case None
-    case Owned
-    case Shared
+    case none
+    case owned
+    case shared
 }
 
 class MyGalleriesRequest  : Request {
-    override var method: RequestMethod { return .GET }
+    override var method: RequestMethod { return .get }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
     override var endpoint: String       { return "users/me/galleries" }
     
-    private let page: Int?
-    private let perPage: Int?
-    private let filter: MyGalleriesRequestFilter
+    fileprivate let page: Int?
+    fileprivate let perPage: Int?
+    fileprivate let filter: MyGalleriesRequestFilter
     
     init(page: Int?, perPage: Int?, filter: MyGalleriesRequestFilter?) {
         self.page = page
         self.perPage = perPage
-        self.filter = filter ?? .None
+        self.filter = filter ?? .none
     }
     
-    private func prepareParameters() -> Dictionary<String,AnyObject> {
+    fileprivate func prepareParameters() -> Dictionary<String,AnyObject> {
         var params = Dictionary<String,AnyObject>()
         if let page = page {
-            params["page"] = page
+            params["page"] = page as AnyObject?
         }
         
         if let perPage = perPage {
-            params["per_page"] = perPage
+            params["per_page"] = perPage as AnyObject?
         }
         
         switch filter {
-        case .Owned:
-            params["gallery_filter"] = "only_owned"
-        case .Shared:
-            params["gallery_filter"] = "only_shared"
+        case .owned:
+            params["gallery_filter"] = "only_owned" as AnyObject?
+        case .shared:
+            params["gallery_filter"] = "only_shared" as AnyObject?
         default: break
         }
         

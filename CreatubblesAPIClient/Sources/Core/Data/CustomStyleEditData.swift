@@ -8,16 +8,16 @@
 
 import UIKit
 
-public class CustomStyleEditData: NSObject
+open class CustomStyleEditData: NSObject
 {
-    public var headerBackgroundIndex: Int?
-    public var bodyBackgroundIndex: Int?
-    public var fontName: String?
-    public var bio: String?
-    public var bodyColors: Array<UIColor>?
-    public var headerColors: Array<UIColor>?
-    public var headerCreationIdentifier: String?
-    public var bodyCreationIdentifier: String?    
+    open var headerBackgroundIndex: Int?
+    open var bodyBackgroundIndex: Int?
+    open var fontName: String?
+    open var bio: String?
+    open var bodyColors: Array<UIColor>?
+    open var headerColors: Array<UIColor>?
+    open var headerCreationIdentifier: String?
+    open var bodyCreationIdentifier: String?    
     
     //Computed properties
     var headerBackgroundIdentifier: String?

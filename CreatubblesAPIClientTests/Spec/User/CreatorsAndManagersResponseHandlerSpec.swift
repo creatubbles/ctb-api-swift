@@ -22,13 +22,13 @@ class CreatorsAndManagersResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(CreatorsAndManagersRequest(), withResponseHandler:CreatorsAndManagersResponseHandler()
+                        _ = sender.send(CreatorsAndManagersRequest(), withResponseHandler:CreatorsAndManagersResponseHandler()
                             {
-                                (users: Array<User>?,pageInfo: PagingInfo?, error: ErrorType?) -> Void in
+                                (users: Array<User>?,pageInfo: PagingInfo?, error: Error?) -> Void in
                                 expect(error).to(beNil())
                                 expect(users).notTo(beNil())
                                 expect(pageInfo).notTo(beNil())
@@ -45,9 +45,9 @@ class CreatorsAndManagersResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.send(CreatorsAndManagersRequest(), withResponseHandler:CreatorsAndManagersResponseHandler()
+                    _ = sender.send(CreatorsAndManagersRequest(), withResponseHandler:CreatorsAndManagersResponseHandler()
                         {
-                            (users: Array<User>?, pageInfo: PagingInfo?, error: ErrorType?) -> Void in
+                            (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                             expect(error).notTo(beNil())
                             expect(users).to(beNil())
                             expect(pageInfo).to(beNil())

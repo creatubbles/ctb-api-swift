@@ -9,32 +9,32 @@
 import UIKit
 
 @objc
-public class Bubble: NSObject, Identifiable
+open class Bubble: NSObject, Identifiable
 {
-    public let identifier: String
-    public let xPosition: Float?
-    public let yPosition: Float?
-    public let colorName: String?
-    public let colorHex: String?
-    public let createdAt: NSDate
-    public let bubblerId: String
-    public let isPositionRandom: Bool
+    open let identifier: String
+    open let xPosition: Float?
+    open let yPosition: Float?
+    open let colorName: String?
+    open let colorHex: String?
+    open let createdAt: Date
+    open let bubblerId: String
+    open let isPositionRandom: Bool
     
-    public let bubbledUserId: String?
-    public let bubbledCreationId: String?
-    public let bubbledGalleryId: String?
+    open let bubbledUserId: String?
+    open let bubbledCreationId: String?
+    open let bubbledGalleryId: String?
     
-    public let bubbler: User?
-    public let bubbledCreation: Creation?
-    public let bubbledGallery: Gallery?
-    public let bubbledUser: User?
+    open let bubbler: User?
+    open let bubbledCreation: Creation?
+    open let bubbledGallery: Gallery?
+    open let bubbledUser: User?
     
-    public let bubblerRelationship: Relationship?
-    public let bubbledCreationRelationship: Relationship?
-    public let bubbledGalleryRelationship: Relationship?
-    public let bubbledUserRelationship: Relationship?
+    open let bubblerRelationship: Relationship?
+    open let bubbledCreationRelationship: Relationship?
+    open let bubbledGalleryRelationship: Relationship?
+    open let bubbledUserRelationship: Relationship?
     
-    public let abilities: Array<Ability>
+    open let abilities: Array<Ability>
     
     init(mapper: BubbleMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
@@ -42,7 +42,7 @@ public class Bubble: NSObject, Identifiable
         xPosition = mapper.xPosition
         yPosition = mapper.yPosition
         colorName = mapper.colorName
-        createdAt = mapper.createdAt!
+        createdAt = mapper.createdAt! as Date
         bubblerId = mapper.bubblerId!
         isPositionRandom = mapper.isPositionRandom ?? false
         colorHex = mapper.colorHex

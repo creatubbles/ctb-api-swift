@@ -25,14 +25,14 @@
 import UIKit
 
 @objc
-public class NewCreatorData: NSObject
+open class NewCreatorData: NSObject
 {
-    public let name: String
-    public let displayName: String?
-    public let birthYear: Int?
-    public let birthMonth: Int?
-    public let countryCode: String?
-    public let gender: Gender?
+    open let name: String
+    open let displayName: String?
+    open let birthYear: Int?
+    open let birthMonth: Int?
+    open let countryCode: String?
+    open let gender: Gender?
     
     public init(name: String, displayName: String? = nil, birthYear: Int? = nil, birthMonth: Int? = nil,
                 countryCode: String? = nil, gender: Gender? = nil)

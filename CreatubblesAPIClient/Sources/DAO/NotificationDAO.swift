@@ -10,14 +10,14 @@ import UIKit
 
 class NotificationDAO: NSObject
 {
-    private let requestSender: RequestSender
+    fileprivate let requestSender: RequestSender
     
     init(requestSender: RequestSender)
     {
         self.requestSender = requestSender
     }
  
-    func getNotifications(pagingData pagingData: PagingData?, completion: NotificationsClosure?) -> RequestHandler
+    func getNotifications(pagingData: PagingData?, completion: NotificationsClosure?) -> RequestHandler
     {
         let request = NotificationsFetchRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = NotificationsFetchResponseHandler(completion: completion)

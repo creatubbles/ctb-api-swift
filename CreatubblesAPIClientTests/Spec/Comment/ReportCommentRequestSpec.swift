@@ -27,7 +27,7 @@ class ReportCommentRequestSpec: QuickSpec {
                 let commentId = "commentId"
                 let message = "message"
                 let request = ReportCommentRequest(commentId: commentId, message: message)
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper parameters set") {

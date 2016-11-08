@@ -26,63 +26,63 @@ import UIKit
 
 @objc public enum Role: Int
 {
-    case Parent
-    case Instructor
-    case Creator        
+    case parent
+    case instructor
+    case creator        
     
     public var stringValue: String
     {
         switch self
         {
-            case .Parent:   return "parent"
-            case .Instructor:  return "instructor"
-            case .Creator:  return "creator"
+            case .parent:   return "parent"
+            case .instructor:  return "instructor"
+            case .creator:  return "creator"
         }
     }
 }
 
 @objc
-public class User: NSObject, Identifiable
+open class User: NSObject, Identifiable
 {
-    public let identifier: String
-    public let username: String
-    public let displayName: String
-    public let listName: String
-    public let name: String
-    public let role: Role
-    public let lastBubbledAt: NSDate?
-    public let lastCommentedAt: NSDate?
-    public let createdAt: NSDate
-    public let updatedAt: NSDate
-    public let avatarUrl: String
-    public let countryCode: String
-    public let countryName: String
-    public let age: String?
-    public let gender: Gender
-    public let shortUrl: String
+    open let identifier: String
+    open let username: String
+    open let displayName: String
+    open let listName: String
+    open let name: String
+    open let role: Role
+    open let lastBubbledAt: Date?
+    open let lastCommentedAt: Date?
+    open let createdAt: Date
+    open let updatedAt: Date
+    open let avatarUrl: String
+    open let countryCode: String
+    open let countryName: String
+    open let age: String?
+    open let gender: Gender
+    open let shortUrl: String
     
-    public let bubblesCount: Int
-    public let addedBubblesCount: Int
-    public let activitiesCount: Int
-    public let commentsCount: Int
-    public let creationsCount: Int
-    public let creatorsCount: Int
-    public let galleriesCount: Int
-    public let managersCount: Int
+    open let bubblesCount: Int
+    open let addedBubblesCount: Int
+    open let activitiesCount: Int
+    open let commentsCount: Int
+    open let creationsCount: Int
+    open let creatorsCount: Int
+    open let galleriesCount: Int
+    open let managersCount: Int
     
-    public let homeSchooling: Bool
-    public let signedUpAsInstructor: Bool
-    public let whatDoYouTeach: String?
-    public let interests: String?
+    open let homeSchooling: Bool
+    open let signedUpAsInstructor: Bool
+    open let whatDoYouTeach: String?
+    open let interests: String?
     
     //MARK: - Metadata
-    public let isBubbled: Bool
-    public let abilities: Array<Ability>
+    open let isBubbled: Bool
+    open let abilities: Array<Ability>
     
-    public let customStyleRelationship: Relationship?
-    public let customStyle: CustomStyle?
+    open let customStyleRelationship: Relationship?
+    open let customStyle: CustomStyle?
     
-    public let isFollowed: Bool
+    open let isFollowed: Bool
     
     init(mapper: UserMapper, dataMapper: DataIncludeMapper?, metadata: Metadata? = nil)
     {
@@ -92,10 +92,10 @@ public class User: NSObject, Identifiable
         listName = mapper.listName!
         name = mapper.name!
         role = mapper.parseRole()
-        lastBubbledAt = mapper.lastBubbledAt
-        lastCommentedAt = mapper.lastCommentedAt
-        createdAt = mapper.createdAt!
-        updatedAt = mapper.updatedAt!
+        lastBubbledAt = mapper.lastBubbledAt as Date?
+        lastCommentedAt = mapper.lastCommentedAt as Date?
+        createdAt = mapper.createdAt! as Date
+        updatedAt = mapper.updatedAt! as Date
         avatarUrl = mapper.avatarUrl!
         countryCode = mapper.countryCode!
         countryName = mapper.countryName!

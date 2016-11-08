@@ -26,7 +26,7 @@ class UserAccountDetailsRequestSpec: QuickSpec
             it("Should have a GET method")
             {
                 let request = UserAccountDetailsRequest(userId: "")
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have no parameters set")

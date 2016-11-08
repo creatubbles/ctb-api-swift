@@ -26,16 +26,16 @@ import UIKit
 
 class UsersBatchFetcher: BatchFetcher
 {
-    private var userId: String?
-    private var scope: CreatorsAndManagersScopeElement?
-    private var allUsers = Array<User>()
+    fileprivate var userId: String?
+    fileprivate var scope: CreatorsAndManagersScopeElement?
+    fileprivate var allUsers = Array<User>()
     
-    private var currentRequest: CreatorsAndManagersRequest
+    fileprivate var currentRequest: CreatorsAndManagersRequest
     {
         return CreatorsAndManagersRequest(userId: userId, page: page, perPage: perPage, scope: scope)
     }
     
-    private func responseHandler(completion: UsersBatchClosure?) -> CreatorsAndManagersResponseHandler
+    fileprivate func responseHandler(_ completion: UsersBatchClosure?) -> CreatorsAndManagersResponseHandler
     {
         return CreatorsAndManagersResponseHandler()
         {
@@ -48,14 +48,14 @@ class UsersBatchFetcher: BatchFetcher
             {
                 if let users = users
                 {
-                    self.allUsers.appendContentsOf(users)
+                    self.allUsers.append(contentsOf: users)
                 }
                 if let pInfo = pInfo
                 {
                     if(pInfo.totalPages > self.page && self.page < self.maxPageCount)
                     {
                         self.page += 1
-                        self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
+                        _ = self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
                     }
                     else
                     {
@@ -66,7 +66,7 @@ class UsersBatchFetcher: BatchFetcher
         }
     }
     
-    func fetch(userId: String?, scope:CreatorsAndManagersScopeElement?, completion: UsersBatchClosure?) -> RequestHandler
+    func fetch(_ userId: String?, scope:CreatorsAndManagersScopeElement?, completion: UsersBatchClosure?) -> RequestHandler
     {
         self.userId = userId
         self.scope = scope

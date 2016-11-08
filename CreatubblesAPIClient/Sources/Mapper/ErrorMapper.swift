@@ -32,7 +32,7 @@ class ErrorMapper: Mappable
     var title: String?
     var detail: String?
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

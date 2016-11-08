@@ -26,7 +26,7 @@ import UIKit
 
 class GalleriesRequest: Request
 {
-    override var method: RequestMethod   { return .GET }
+    override var method: RequestMethod   { return .get }
     override var parameters: Dictionary<String, AnyObject> { return prepareParametersDict() }
     override var endpoint: String
     {
@@ -36,13 +36,13 @@ class GalleriesRequest: Request
         return "galleries"
     }
     
-    private let galleryId: String?
-    private let userId: String?
-    private let creationId: String?
+    fileprivate let galleryId: String?
+    fileprivate let userId: String?
+    fileprivate let creationId: String?
     
-    private let page: Int?
-    private let perPage: Int?
-    private let sort: SortOrder?
+    fileprivate let page: Int?
+    fileprivate let perPage: Int?
+    fileprivate let sort: SortOrder?
     
     
     init(galleryId: String)
@@ -75,7 +75,7 @@ class GalleriesRequest: Request
         self.userId = nil
     }
     
-    private func prepareParametersDict() -> Dictionary<String, AnyObject>
+    fileprivate func prepareParametersDict() -> Dictionary<String, AnyObject>
     {
         if let _ = galleryId
         {
@@ -86,15 +86,15 @@ class GalleriesRequest: Request
             var dict = Dictionary<String, AnyObject>()
             if let page = page
             {
-                dict["page"] = page
+                dict["page"] = page as AnyObject?
             }
             if let perPage = perPage
             {
-                dict["per_page"] = perPage
+                dict["per_page"] = perPage as AnyObject?
             }
             if let sort = sort
             {
-                dict["sort"] = Request.sortOrderStringValue(sort)
+                dict["sort"] = Request.sortOrderStringValue(sort) as AnyObject?
             }
             
             return dict

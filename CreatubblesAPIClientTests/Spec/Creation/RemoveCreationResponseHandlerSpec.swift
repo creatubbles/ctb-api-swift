@@ -29,7 +29,7 @@ class RemoveCreationResponseHandlerSpec: QuickSpec
                     done in
                     sender.send(request, withResponseHandler: RemoveCreationResponseHandler()
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).notTo(beNil())
                         done()
                     })
@@ -47,11 +47,12 @@ class RemoveCreationResponseHandlerSpec: QuickSpec
                 done in
                 sender.login(TestConfiguration.username, password: TestConfiguration.password)
                 {
-                    (error: ErrorType?) -> Void in
+                    (error: Error?) -> Void in
                     expect(error).to(beNil())
                     sender.send(request, withResponseHandler:RemoveCreationResponseHandler()
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
+
                         expect(error).notTo(beNil())
                         done()
                     })

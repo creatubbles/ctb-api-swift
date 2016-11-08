@@ -10,7 +10,7 @@ import UIKit
 
 class GroupDAO: NSObject
 {
-    private let requestSender: RequestSender
+    fileprivate let requestSender: RequestSender
     
     init(requestSender: RequestSender)
     {
@@ -24,7 +24,7 @@ class GroupDAO: NSObject
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func fetchGroups(completion: GroupsClosure?) -> RequestHandler
+    func fetchGroups(_ completion: GroupsClosure?) -> RequestHandler
     {
         let request = GroupsRequest()
         let handler = GroupsResponseHandler(completion: completion)

@@ -18,7 +18,7 @@ class MetadataMapper: Mappable
     
     var userFollowedUsersIdentifiers: Array<String>?
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

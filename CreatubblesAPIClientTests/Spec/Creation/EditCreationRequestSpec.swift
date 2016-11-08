@@ -20,7 +20,7 @@ class EditCreationRequestSpec: QuickSpec
             it("Should use PUT method")
             {
                 let request = EditCreationRequest(identifier: "", data: EditCreationData())
-                expect(request.method).to(equal(RequestMethod.PUT))
+                expect(request.method).to(equal(RequestMethod.put))
             }
             
             it("Should use 'creations/IDENTIFIER endpoint")

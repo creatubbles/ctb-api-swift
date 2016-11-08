@@ -10,21 +10,21 @@ import UIKit
 
 class ReportGalleryRequest: Request {
     
-    override var method: RequestMethod  { return .POST }
+    override var method: RequestMethod  { return .post }
     override var endpoint: String       { return "galleries/\(galleryId)/report" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
     
-    private let galleryId: String
-    private let message: String
+    fileprivate let galleryId: String
+    fileprivate let message: String
     
     init(galleryId: String, message: String) {
         self.galleryId = galleryId
         self.message = message
     }
     
-    private func prepareParameters() -> Dictionary<String,AnyObject> {
+    fileprivate func prepareParameters() -> Dictionary<String,AnyObject> {
         var params = Dictionary<String,AnyObject>()
-        params["message"] = message
+        params["message"] = message as AnyObject?
         
         return params
     }

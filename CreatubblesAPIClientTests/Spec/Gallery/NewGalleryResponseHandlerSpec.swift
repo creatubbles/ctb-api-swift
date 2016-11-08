@@ -16,7 +16,7 @@ class NewGalleryResponseHandlerSpec: QuickSpec
     {
         describe("New Gallery response handler")
         {
-            let timestamp = String(Int(round(NSDate().timeIntervalSince1970 % 1000)))
+            let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(dividingBy: 1000))))
             let name = "MMGallery"+timestamp
             let galleryDescription = "MMGallery"+timestamp
             let openForAll = false
@@ -31,11 +31,11 @@ class NewGalleryResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:NewGalleryResponseHandler
                             {
-                                (gallery: Gallery?, error:ErrorType?) -> Void in
+                                (gallery: Gallery?, error:Error?) -> Void in
                                 expect(error).to(beNil())
                                 expect(gallery).notTo(beNil())
                                 done()
@@ -46,7 +46,7 @@ class NewGalleryResponseHandlerSpec: QuickSpec
             
             it("Should return error when not logged in")
             {
-                let request = GalleriesRequest(page: 0, perPage: 20, sort: .Recent, userId: nil)
+                let request = GalleriesRequest(page: 0, perPage: 20, sort: .recent, userId: nil)
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 waitUntil(timeout: 10)
@@ -54,7 +54,7 @@ class NewGalleryResponseHandlerSpec: QuickSpec
                     done in
                     sender.send(request, withResponseHandler:NewGalleryResponseHandler
                         {
-                            (gallery: Gallery?, error:ErrorType?) -> Void in
+                            (gallery: Gallery?, error:Error?) -> Void in
                             expect(error).notTo(beNil())
                             expect(gallery).to(beNil())
                             done()

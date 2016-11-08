@@ -12,9 +12,9 @@ import Nimble
 
 class UsersFollowedByAUserRequestSpec: QuickSpec
 {
-    private let page = 1
-    private let pageCount = 10
-    private let userId = "TestUserId"
+    fileprivate let page = 1
+    fileprivate let pageCount = 10
+    fileprivate let userId = "TestUserId"
     
     override func spec()
     {
@@ -29,7 +29,7 @@ class UsersFollowedByAUserRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = UsersFollowedByAUserRequest(userId: self.userId)
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have proper parameters set")

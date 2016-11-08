@@ -9,26 +9,26 @@
 import UIKit
 
 class GroupUsersBatchFetcher: BatchFetcher {
-    private var groupId: String!
-    private var users = Array<User>()
+    fileprivate var groupId: String!
+    fileprivate var users = Array<User>()
     
-    private var currentRequest: GroupCreatorsRequest {
+    fileprivate var currentRequest: GroupCreatorsRequest {
         return GroupCreatorsRequest(groupId: groupId, page: page, perPage: perPage)
     }
     
-    private func responseHandler(completion: UsersBatchClosure?) -> GroupCreatorsResponseHandler {
+    fileprivate func responseHandler(_ completion: UsersBatchClosure?) -> GroupCreatorsResponseHandler {
         return GroupCreatorsResponseHandler() { (users, pagingInfo, error) -> (Void) in
                 if let error = error {
                     completion?(self.users, error)
                 } else {
                     if let users = users {
-                        self.users.appendContentsOf(users)
+                        self.users.append(contentsOf: users)
                     }
                     
                     if let pagingInfo = pagingInfo {
                         if(pagingInfo.totalPages > self.page && self.page < self.maxPageCount) {
                             self.page += 1
-                            self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
+                            _ = self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
                         } else {
                             completion?(self.users, error)
                         }
@@ -37,7 +37,7 @@ class GroupUsersBatchFetcher: BatchFetcher {
         }
     }
     
-    func fetch(groupId: String, completion: UsersBatchClosure?) -> RequestHandler {
+    func fetch(_ groupId: String, completion: UsersBatchClosure?) -> RequestHandler {
         self.groupId = groupId
         return requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
     }

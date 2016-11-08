@@ -13,7 +13,7 @@ class NotificationMetadataMapper: Mappable
 {
     var totalUnreadCount: Int?
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

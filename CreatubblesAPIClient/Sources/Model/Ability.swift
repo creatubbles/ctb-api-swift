@@ -12,32 +12,32 @@ import UIKit
 //See https://partners.creatubbles.com/api/#ability-details for details.
 public enum AbilityOperation: Int
 {
-    case Unknown
-    case Edit
-    case Report
-    case SeeReflectionText
-    case SeeReflectionVideo
-    case Share
-    case ShareFully
-    case Switch
-    case Customize
-    case SwitchWithoutPassword
-    case Decline
-    case Approve
-    case Delete
-    case SubmitTo
-    case Destroy
+    case unknown
+    case edit
+    case report
+    case seeReflectionText
+    case seeReflectionVideo
+    case share
+    case shareFully
+    case `switch`
+    case customize
+    case switchWithoutPassword
+    case decline
+    case approve
+    case delete
+    case submitTo
+    case destroy
 }
 
 @objc
-public class Ability: NSObject
+open class Ability: NSObject
 {
-    public let identifier: String
-    public let type: String
-    public let resourceType: String
-    public let resourceIdentifier: String
-    public let operation: AbilityOperation
-    public let permission: Bool
+    open let identifier: String
+    open let type: String
+    open let resourceType: String
+    open let resourceIdentifier: String
+    open let operation: AbilityOperation
+    open let permission: Bool
     
     init(mapper: AbilityMapper)
     {
@@ -49,27 +49,27 @@ public class Ability: NSObject
         permission = mapper.permission!
     }
     
-    private static func parseOperation(operationString: String) -> AbilityOperation
+    fileprivate static func parseOperation(_ operationString: String) -> AbilityOperation
     {
         switch operationString {
-            case "edit":                    return .Edit
-            case "report":                  return .Report
-            case "see_reflection_text":     return .SeeReflectionText
-            case "see_reflection_video":    return .SeeReflectionVideo
-            case "share":                   return .Share
-            case "share_fully":             return .ShareFully
-            case "switch":                  return .Switch
-            case "customize":               return .Customize
-            case "switch_without_password": return .SwitchWithoutPassword
-            case "decline":                 return .Decline
-            case "approve":                 return .Approve
-            case "delete":                  return .Delete
-            case "submit_to":               return .SubmitTo
-            case "destroy":                 return .Destroy
+            case "edit":                    return .edit
+            case "report":                  return .report
+            case "see_reflection_text":     return .seeReflectionText
+            case "see_reflection_video":    return .seeReflectionVideo
+            case "share":                   return .share
+            case "share_fully":             return .shareFully
+            case "switch":                  return .switch
+            case "customize":               return .customize
+            case "switch_without_password": return .switchWithoutPassword
+            case "decline":                 return .decline
+            case "approve":                 return .approve
+            case "delete":                  return .delete
+            case "submit_to":               return .submitTo
+            case "destroy":                 return .destroy
             
             default:
                 Logger.log.error("Unknown operation type: \(operationString)")
-                return .Unknown
+                return .unknown
             
         }
     }

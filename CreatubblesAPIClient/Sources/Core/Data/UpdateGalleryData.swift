@@ -8,11 +8,12 @@
 
 import UIKit
 
+
 @objc public class UpdateGalleryData: NSObject {
-    public let identifier: String
-    public let name: String?
-    public let galleryDescription: String?
-    public let openForAll: Bool?
+    open let identifier: String
+    open let name: String?
+    open let galleryDescription: String?
+    open let openForAll: Bool?
     
     public init(galleryId: String, name: String?, galleryDescription: String?, openForAll: Bool?)
     {

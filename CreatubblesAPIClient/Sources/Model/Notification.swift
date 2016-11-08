@@ -9,36 +9,36 @@
 import UIKit
 
 @objc
-public class Notification: NSObject, Identifiable
+open class Notification: NSObject, Identifiable
 {
-    public let identifier: String
-    public let type: NotificationType
-    public let createdAt: NSDate
+    open let identifier: String
+    open let type: NotificationType
+    open let createdAt: Date
     
-    public let text: String
-    public let shortText: String
-    public let isNew: Bool
+    open let text: String
+    open let shortText: String
+    open let isNew: Bool
     
-    public let creation: Creation?
-    public let user: User?
-    public let gallery: Gallery?
-    public let comment: Comment?
-    public let gallerySubmission: GallerySubmission?
-    public let userEntities:     Array<NotificationTextEntity>?
-    public let creationEntities: Array<NotificationTextEntity>?
-    public let galleryEntities:  Array<NotificationTextEntity>?
+    open let creation: Creation?
+    open let user: User?
+    open let gallery: Gallery?
+    open let comment: Comment?
+    open let gallerySubmission: GallerySubmission?
+    open let userEntities:     Array<NotificationTextEntity>?
+    open let creationEntities: Array<NotificationTextEntity>?
+    open let galleryEntities:  Array<NotificationTextEntity>?
     
-    public let creationRelationship: Relationship?
-    public let userRelationship: Relationship?
-    public let galleryRelationship: Relationship?
-    public let commentRelationship: Relationship?
-    public let gallerySubmissionRelationship: Relationship?
-    public let userEntitiesRelationships:     Array<Relationship>?
-    public let creationEntitiesRelationships: Array<Relationship>?
-    public let galleryEntitiesRelationships:  Array<Relationship>?
+    open let creationRelationship: Relationship?
+    open let userRelationship: Relationship?
+    open let galleryRelationship: Relationship?
+    open let commentRelationship: Relationship?
+    open let gallerySubmissionRelationship: Relationship?
+    open let userEntitiesRelationships:     Array<Relationship>?
+    open let creationEntitiesRelationships: Array<Relationship>?
+    open let galleryEntitiesRelationships:  Array<Relationship>?
     
-    public let bubbleRelationship: Relationship?
-    public let bubble: Bubble?
+    open let bubbleRelationship: Relationship?
+    open let bubble: Bubble?
     
     init(mapper: NotificationMapper, dataMapper: DataIncludeMapper? = nil)
     {
@@ -46,7 +46,7 @@ public class Notification: NSObject, Identifiable
         text = mapper.text!
         shortText = mapper.shortText!
         isNew = mapper.isNew!
-        createdAt = mapper.createdAt!
+        createdAt = mapper.createdAt! as Date
         type = mapper.parseType()        
         
         creationRelationship = MappingUtils.relationshipFromMapper(mapper.creationRelationship)
@@ -65,9 +65,9 @@ public class Notification: NSObject, Identifiable
         comment = MappingUtils.objectFromMapper(dataMapper, relationship: commentRelationship, type: Comment.self)
         gallerySubmission = MappingUtils.objectFromMapper(dataMapper, relationship: gallerySubmissionRelationship, type: GallerySubmission.self)
         
-        userEntities = userEntitiesRelationships?.flatMap({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: NotificationTextEntity.self) }).filter({ $0.type != .Unknown })
-        creationEntities = creationEntitiesRelationships?.flatMap({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: NotificationTextEntity.self) }).filter({ $0.type != .Unknown })
-        galleryEntities = galleryEntitiesRelationships?.flatMap({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: NotificationTextEntity.self) }).filter({ $0.type != .Unknown })
+        userEntities = userEntitiesRelationships?.flatMap({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: NotificationTextEntity.self) }).filter({ $0.type != .unknown })
+        creationEntities = creationEntitiesRelationships?.flatMap({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: NotificationTextEntity.self) }).filter({ $0.type != .unknown })
+        galleryEntities = galleryEntitiesRelationships?.flatMap({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: NotificationTextEntity.self) }).filter({ $0.type != .unknown })
         
         //Not sure if we still need this?
         bubbleRelationship = MappingUtils.relationshipFromMapper(mapper.bubbleRelationship)

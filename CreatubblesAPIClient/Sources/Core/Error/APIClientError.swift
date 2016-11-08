@@ -49,23 +49,23 @@ extension APIClientError
 //  For error documentation, please check:
 //  https://partners.creatubbles.com/api/#errors
 //  http://jsonapi.org/format/#error-objects
-public class APIClientError: ErrorType
+open class APIClientError: Error
 {    
-    public let status: Int
-    public let code: String
-    public let title: String
-    public let source: String
-    public let detail: String
-    public let domain: String
+    open let status: Int
+    open let code: String
+    open let title: String
+    open let source: String
+    open let detail: String
+    open let domain: String
     
-    init(status: Int, code: String, title: String, source: String, detail: String, domain: String = APIClientError.DefaultDomain)
+    init(status: Int?, code: String?, title: String?, source: String?, detail: String?, domain: String? = APIClientError.DefaultDomain)
     {
-        self.status = status
-        self.code = code
-        self.title = title
-        self.source = source
-        self.detail = detail
-        self.domain = domain
+        self.status = status ?? APIClientError.DefaultStatus
+        self.code   = code   ?? APIClientError.DefaultCode
+        self.title  = title  ?? APIClientError.DefaultTitle
+        self.source = source ?? APIClientError.DefaultSource
+        self.detail = detail ?? APIClientError.DefaultDetail
+        self.domain = APIClientError.DefaultDomain
     }
     
     init(mapper: ErrorMapper)
@@ -99,7 +99,7 @@ extension APIClientError
                               detail: "Your creation upload was cancelled. Please re-upload again, or add new creation.")
     }
     
-    static func genericError(status: Int? = nil, code: String? = nil, title: String? = nil, source: String? = nil, detail: String? = nil, domain: String? = nil) -> APIClientError
+    static func genericError(_ status: Int? = nil, code: String? = nil, title: String? = nil, source: String? = nil, detail: String? = nil, domain: String? = nil) -> APIClientError
     {
         return APIClientError(status: status ?? APIClientError.UnknownStatus,
                               code: code ?? APIClientError.DefaultCode,

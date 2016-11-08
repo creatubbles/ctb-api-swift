@@ -11,17 +11,18 @@ import ObjectMapper
 
 class CommentsResponseHandler: ResponseHandler
 {
-    private let completion: CommentsClosure?
+    fileprivate let completion: CommentsClosure?
     
     init(completion: CommentsClosure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let mappers = Mapper<CommentMapper>().mapArray(response["data"])
+            let mappers = Mapper<CommentMapper>().mapArray(JSONObject: response["data"])
+
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)

@@ -23,274 +23,138 @@
 //  THE SOFTWARE.
 
 import UIKit
-import Alamofire
-import p2_OAuth2
-
 
 class RequestSender: NSObject
 {
-    private let uploadManager: Alamofire.Manager
-    private let settings: APIClientSettings
-    private let oauth2PrivateClient: OAuth2PasswordGrant
-    private let oauth2PublicClient: OAuth2ClientCredentials
-    private var oauth2: OAuth2
-    {
-        let clientType = oauth2PrivateClient.hasUnexpiredAccessToken() ? "private" : "public"
-        Logger.log.verbose("Using \(clientType) OAuth client")
-        return oauth2PrivateClient.hasUnexpiredAccessToken() ? oauth2PrivateClient : oauth2PublicClient
-    }
+    fileprivate var networkManager: NetworkManager
+    fileprivate var uploadManager: UploadManager
+    fileprivate let settings: APIClientSettings
     
     init(settings: APIClientSettings)
     {
         self.settings = settings
-        self.oauth2PrivateClient = RequestSender.prepareOauthPrivateClient(settings)
-        self.oauth2PublicClient  = RequestSender.prepareOauthPublicClient(settings)
-        self.uploadManager       = RequestSender.prepareUploadManager(settings)
+        self.networkManager = NetworkManager(settings: settings)
+        self.uploadManager = UploadManager(settings: settings)
         super.init()
     }
     
-    private static func prepareUploadManager(settings: APIClientSettings) -> Alamofire.Manager
-    {
-        if let identifier = settings.backgroundSessionConfigurationIdentifier
-        {
-            let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier(identifier)
-            return Alamofire.Manager(configuration: configuration)
+    // MARK: - Authentication
+    
+    var authenticationToken: String? {
+        get {
+            return networkManager.authClient.accessToken
         }
-        else
-        {
-            let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-            return Alamofire.Manager(configuration: configuration)
+        set {
+            networkManager.authClient.accessToken = newValue
         }
     }
     
-    private static func prepareOauthPrivateClient(settings: APIClientSettings) -> OAuth2PasswordGrant
+    @discardableResult
+    func login(_ username: String, password: String, completion: ErrorClosure?) -> RequestHandler
     {
-        let oauthSettings =
-        [
-            "client_id": settings.appId,
-            "client_secret": settings.appSecret,
-            "authorize_uri": settings.authorizeUri,
-            "token_uri":     settings.tokenUri,
-        ] as OAuth2JSON
+        let request = AuthenticationRequest(username: username, password: password, settings: settings)
         
-        let client = OAuth2PasswordGrant(settings: oauthSettings)
-        client.verbose = false
-        return client
-    }
-    
-    private static func prepareOauthPublicClient(settings: APIClientSettings) -> OAuth2ClientCredentials
-    {
-        let oauthSettings =
-        [
-            "client_id": settings.appId,
-            "client_secret": settings.appSecret,
-            "authorize_uri": settings.authorizeUri,
-            "token_uri":     settings.tokenUri,
-            "keychain": false
-        ]
-        as OAuth2JSON
+        self.networkManager.dataTask(request: request) { (success, response) in
+            DispatchQueue.main.async {
+                if !success {
+                    Logger.log.error("Error while login:\(response)")
+                    self.networkManager.authClient.accessToken = nil
+                    if let err_msg = response?["error_description"] as? String {
+                        completion?(RequestSender.errorFromLoginError(AuthenticationError.responseError(err_msg)))
+                    } else if let err_code = response?["error"] as? String {
+                        completion?(RequestSender.errorFromLoginError(AuthenticationError.fromResponseError(err_code)))
+                    }
+                    
+                    return
+                }
+                
+                if let accessToken = response?["access_token"] as? String {
+                    self.networkManager.authClient.accessToken = accessToken
+                }
+                completion?(nil)
+            }
+        }
         
-        let client = OAuth2ClientCredentials(settings: oauthSettings)
-        client.verbose = false
-        client.authorize()
-        client.onFailure =
-        {
-            (error: ErrorType?) -> Void in
-            Logger.log.error("Cannot login as Public Client! Error: \(error)")
-        }
-        return client
+        return RequestHandler(object: request as Cancelable)
     }
     
-    //MARK: - Authentication
-    
-    var authenticationToken: String? { return oauth2PrivateClient.accessToken }
-    
-    func login(username: String, password: String, completion: ErrorClosure?) -> RequestHandler
-    {
-        oauth2PrivateClient.username = username
-        oauth2PrivateClient.password = password
-        oauth2PrivateClient.onAuthorize =
-        {
-            [weak self](parameters: OAuth2JSON) -> Void in
-            if let weakSelf = self
-            {
-                weakSelf.oauth2PrivateClient.onAuthorize = nil
-            }
-            Logger.log.debug("User logged in successfully")
-            completion?(nil)
-        }        
-        oauth2PrivateClient.onFailure =
-        {
-            [weak self](error: ErrorType?) -> Void in
-            if let weakSelf = self
-            {
-                weakSelf.oauth2PrivateClient.onFailure = nil
-            }
-            Logger.log.error("Error while login:\(error)")
-            completion?(RequestSender.errorFromLoginError(error))
+    fileprivate class func errorFromLoginError(_ error: Error?) -> APIClientError {
+        if let err = error as? AuthenticationError {
+            return ErrorTransformer.errorFromAuthenticationError(err)
         }
-        oauth2PrivateClient.authorize()
-        return RequestHandler(object: oauth2PrivateClient)
-    }
-    
-    private class func errorFromLoginError(error: ErrorType?) -> APIClientError
-    {
-        if let err = error as? OAuth2Error
-        {
-            return ErrorTransformer.errorFromOAuthError(err)
-        }
-        if let err = error as? NSError
-        {
+        
+        if let err = error as? NSError {
             return ErrorTransformer.errorFromNSError(err)
         }
         
         return APIClientError.genericLoginError
     }
     
-    func currentSessionData() -> SessionData {
-        return SessionData(accessToken: oauth2PrivateClient.accessToken, idToken: oauth2PrivateClient.idToken, accessTokenExpiry: oauth2PrivateClient.accessTokenExpiry, refreshToken: oauth2PrivateClient.refreshToken)
+    func logout() {
+        networkManager.authClient.logout()
     }
     
-    func setSessionData(sessionData: SessionData) {
-        oauth2PrivateClient.idToken = sessionData.idToken
-        oauth2PrivateClient.accessToken = sessionData.accessToken
-        oauth2PrivateClient.accessTokenExpiry = sessionData.accessTokenExpiry
-        oauth2PrivateClient.refreshToken = sessionData.refreshToken
+    func isLoggedIn() -> Bool {
+        return networkManager.authClient.accessToken != nil
     }
     
-    func invalidateTokens() {
-        oauth2PrivateClient.forgetTokens()
-    }
+    // MARK: - Request sending
     
-    func logout()
-    {
-        invalidateTokens()
-    }
-    
-    func isLoggedIn() -> Bool
-    {
-        return oauth2PrivateClient.hasUnexpiredAccessToken()
-    }
-    
-    //MARK: - Request sending
-    func send(request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
-    {
-        Logger.log.debug("Sending request: \(request.dynamicType)")
-        let headers: Dictionary<String, String>? = settings.locale == nil ? nil : ["Accept-Language" : settings.locale!]
-        let request = oauth2.request(alamofireMethod(request.method), urlStringWithRequest(request), parameters:request.parameters, headers: headers)
-        .responseString
-        {
-            (response) -> Void in
-            if let err = response.result.error
-            {
-                Logger.log.error("Error while sending request:\(request.dynamicType) \nError:\n \(err) \nResponse:\n \(response.result.value)")
+    @discardableResult
+    func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler {
+        Logger.log.debug("Sending request: \(type(of: request))")
+        
+        self.networkManager.dataTask(request: request) { (success, response) in
+            if !success {
+                Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
+                handler.handleResponse(nil, error: ErrorTransformer.errorsFromResponse(response as? Dictionary<String, AnyObject>).first)
+            } else {
+                DispatchQueue.global().async {
+                    handler.handleResponse((response as? Dictionary<String, AnyObject>),error: nil)
+                }
             }
         }
-        .responseJSON
-        {
-            response -> Void in
-            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-            dispatch_async(dispatch_get_global_queue(priority, 0)) {
-                handler.handleResponse((response.result.value as? Dictionary<String, AnyObject>),error: response.result.error)
-            }
-        }
-        return RequestHandler(object: request)
+        
+        return RequestHandler(object: request as Cancelable)
     }
     
-    //MARK: - Creation sending
-    func send(creationData: NewCreationData, uploadData: CreationUpload, progressChanged: (bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int) -> Void, completion: (error: ErrorType?) -> Void) -> RequestHandler
-    {
-        if(creationData.dataType == .Image)
-        {
-            Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
-            
-            let request = Alamofire.upload(.PUT, uploadData.uploadUrl, headers:  ["Content-Type":uploadData.contentType], data: UIImagePNGRepresentation(creationData.image!)!)
-            .progress(
-            {
-                (written, totalWritten, totalExpected) -> Void in
-                Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(totalWritten)/\(totalExpected)")
-                
-                progressChanged(bytesWritten: Int(written), totalBytesWritten: Int(totalWritten), totalBytesExpectedToWrite: Int(totalExpected))
-            })
-            .responseString(completionHandler: { (response) -> Void in
-                Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
-                completion(error: response.result.error)
-            })
-            
-            return RequestHandler(object: request)
+    // MARK: - Creation sending
+    
+    func send(_ creationData: NewCreationData, uploadData: CreationUpload, progressChanged: @escaping (_ completedUnitCount: Int64, _ totalUnitCount: Int64, _ fractionCompleted: Double) -> Void, completion: @escaping (_ error: Error?) -> Void) -> RequestHandler {
+        
+        var request = URLRequest(url: URL(string: uploadData.uploadUrl)!)
+        request.httpMethod = "PUT"
+        request.setValue(uploadData.contentType, forHTTPHeaderField: "Content-Type")
+        
+        let uploadTask: UploadTask!
+        switch creationData.dataType {
+        case .image:
+            uploadTask = uploadManager.upload(request: request, fromData: UIImagePNGRepresentation(creationData.image!)!)
+        case .data:
+            uploadTask = uploadManager.upload(request: request, fromData: creationData.data!)
+        case .url:
+            uploadTask = uploadManager.upload(request: request, fromFile: creationData.url!)
         }
-        else if(creationData.dataType == .Url)
-        {
-            Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
-            let request = Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], file: creationData.url!)
-            .progress(
-            {
-                (written, totalWritten, totalExpected) -> Void in
-                Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(totalWritten)/\(totalExpected)")
-                
-                progressChanged(bytesWritten: Int(written), totalBytesWritten: Int(totalWritten), totalBytesExpectedToWrite: Int(totalExpected))
-            })
-            .responseString(completionHandler: { (response) -> Void in
-                Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
-                completion(error: response.result.error)
-            })
-            
-            return RequestHandler(object: request)
+        
+        uploadTask.uploadProgressHandler = { progress in
+            Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(progress.fractionCompleted)")
+            progressChanged(progress.completedUnitCount, progress.totalUnitCount, progress.fractionCompleted)
         }
-        else
-        {
-            assert(creationData.dataType == .Data)
-            Logger.log.debug("Uploading data with identifier:\(uploadData.identifier) to:\(uploadData.uploadUrl)")
-            let request = Alamofire.upload(.PUT, uploadData.uploadUrl, headers: ["Content-Type":uploadData.contentType], data: creationData.data!)
-            .progress(
-            {
-                (written, totalWritten, totalExpected) -> Void in
-                Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(totalWritten)/\(totalExpected)")
-                
-                progressChanged(bytesWritten: Int(written), totalBytesWritten: Int(totalWritten), totalBytesExpectedToWrite: Int(totalExpected))
-            })
-            .responseString(completionHandler: { (response) -> Void in
-                Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
-                completion(error: response.result.error)
-            })
-            
-            return RequestHandler(object: request)
+        
+        uploadTask.completionHandler = { error in
+            Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
+            completion(error)
         }
+        
+        return RequestHandler(object: uploadTask)
     }
     
-    
-    //MARK: - Background session
-    var backgroundCompletionHandler: (() -> Void)?
-    {
-        get
-        {
+    var backgroundCompletionHandler: (() -> Void)? {
+        get {
             return uploadManager.backgroundCompletionHandler
         }
-        set
-        {
+        set {
             uploadManager.backgroundCompletionHandler = newValue
-        }
-    }
-    
-    //MARK: - Utils
-    private func urlStringWithRequest(request: Request) -> String
-    {
-        return String(format: "%@/%@/%@", arguments: [settings.baseUrl, settings.apiVersion, request.endpoint])
-    }
-    
-    private func alamofireMethod(method: RequestMethod) -> Alamofire.Method
-    {
-        switch method
-        {
-            case .OPTIONS:  return .OPTIONS
-            case .GET:      return .GET
-            case .HEAD:     return .HEAD
-            case .POST:     return .POST
-            case .PUT:      return .PUT
-            case .PATCH:    return .PATCH
-            case .DELETE:   return .DELETE
-            case .TRACE:    return .TRACE
-            case .CONNECT:  return .CONNECT
         }
     }
 }

@@ -26,14 +26,14 @@ import UIKit
 
 class GalleryDAO
 {
-    private let requestSender: RequestSender
+    fileprivate let requestSender: RequestSender
     
     init(requestSender: RequestSender)
     {
         self.requestSender = requestSender
     }
     
-    func submitCreationToGallery(galleryIdentifier galleryId: String, creationId: String, completion: ErrorClosure) -> RequestHandler
+    func submitCreationToGallery(galleryIdentifier galleryId: String, creationId: String, completion: @escaping ErrorClosure) -> RequestHandler
     {
         let request = GallerySubmissionRequest(galleryId: galleryId, creationId: creationId)
         let handler = GallerySubmissionResponseHandler(completion: completion)
@@ -51,7 +51,7 @@ class GalleryDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func updateGallery(data data: UpdateGalleryData, completion: ErrorClosure?) -> RequestHandler
+    func updateGallery(data: UpdateGalleryData, completion: ErrorClosure?) -> RequestHandler
     {
         let request = UpdateGalleryRequest(data: data)
         let handler = UpdateGalleryResponseHandler(completion: completion)
@@ -79,35 +79,35 @@ class GalleryDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getMyGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    func getMyGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
-        let request = MyGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, filter: .None)
+        let request = MyGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, filter: .none)
         let handler = GalleriesResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getMyOwnedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    func getMyOwnedGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
-        let request = MyGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, filter: .Owned)
+        let request = MyGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, filter: .owned)
         let handler = GalleriesResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getMySharedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    func getMySharedGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
-        let request = MyGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, filter: .Shared )
+        let request = MyGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, filter: .shared )
         let handler = GalleriesResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getMyFavoriteGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    func getMyFavoriteGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
         let request = FavoriteGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = GalleriesResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getFeaturedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    func getFeaturedGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
         let request = FeaturedGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = GalleriesResponseHandler(completion: completion)
@@ -128,31 +128,31 @@ class GalleryDAO
         return fetcher.fetch(userId, sort: sort, completion: completion)
     }
     
-    func getMyGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    func getMyGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
         let fetcher = MyGalleriesBatchFetcher(requestSender: requestSender)
-        return fetcher.fetch(.None, completion: completion)
+        return fetcher.fetch(.none, completion: completion)
     }
     
-    func getMyOwnedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    func getMyOwnedGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
         let fetcher = MyGalleriesBatchFetcher(requestSender: requestSender)
-        return fetcher.fetch(.Owned, completion: completion)
+        return fetcher.fetch(.owned, completion: completion)
     }
     
-    func getMySharedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    func getMySharedGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
         let fetcher = MyGalleriesBatchFetcher(requestSender: requestSender)
-        return fetcher.fetch(.Shared, completion: completion)
+        return fetcher.fetch(.shared, completion: completion)
     }
     
-    func getFavoriteGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    func getFavoriteGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
         let fetcher = FavoriteGalleriesBatchFetcher(requestSender: requestSender)
         return fetcher.fetch(completion)
     }
     
-    func getFeaturedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    func getFeaturedGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
         let fetcher = FeaturedGalleriesBatchFetcher(requestSender: requestSender)
         return fetcher.fetch(completion)

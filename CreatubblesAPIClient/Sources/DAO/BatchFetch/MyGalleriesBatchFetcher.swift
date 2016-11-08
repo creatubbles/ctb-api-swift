@@ -9,26 +9,26 @@
 import UIKit
 
 class MyGalleriesBatchFetcher: BatchFetcher {
-    private var filter: MyGalleriesRequestFilter = .None
-    private var galleries = Array<Gallery>()
+    fileprivate var filter: MyGalleriesRequestFilter = .none
+    fileprivate var galleries = Array<Gallery>()
     
-    private var currentRequest: MyGalleriesRequest {
+    fileprivate var currentRequest: MyGalleriesRequest {
         return MyGalleriesRequest(page: page, perPage: perPage, filter: filter)
     }
     
-    private func responseHandler(completion: GalleriesBatchClosure?) -> GalleriesResponseHandler {
+    fileprivate func responseHandler(_ completion: GalleriesBatchClosure?) -> GalleriesResponseHandler {
         return GalleriesResponseHandler() { (galleries, pagingInfo, error) -> (Void) in
             if let error = error {
                 completion?(self.galleries, error)
             } else {
                 if let galleries = galleries {
-                    self.galleries.appendContentsOf(galleries)
+                    self.galleries.append(contentsOf: galleries)
                 }
                 
                 if let pagingInfo = pagingInfo {
                     if(pagingInfo.totalPages > self.page && self.page < self.maxPageCount) {
                         self.page += 1
-                        self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
+                       _ = self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
                     } else {
                         completion?(self.galleries, error)
                     }
@@ -37,7 +37,7 @@ class MyGalleriesBatchFetcher: BatchFetcher {
         }
     }
     
-    func fetch(filter: MyGalleriesRequestFilter, completion: GalleriesBatchClosure?) -> RequestHandler {
+    func fetch(_ filter: MyGalleriesRequestFilter, completion: GalleriesBatchClosure?) -> RequestHandler {
         self.filter = filter
         return requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
     }

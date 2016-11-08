@@ -8,11 +8,11 @@
 
 import UIKit
 @objc
-public class NameTranslationObject: NSObject
+open class NameTranslationObject: NSObject
 {
-    public let code: String?
-    public let name: String?
-    public let original: Bool?
+    open let code: String?
+    open let name: String?
+    open let original: Bool?
     
     init(mapper: NameTranslationObjectMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
