@@ -10,7 +10,7 @@ import UIKit
 
 class GroupsRequest: Request
 {
-    override var method: RequestMethod   { return .GET }
+    override var method: RequestMethod   { return .get }
     override var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
     override var endpoint: String
     {

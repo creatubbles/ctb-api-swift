@@ -16,16 +16,16 @@ class NewGalleryRequestSpec: QuickSpec
     {
         describe("New Gallery request")
         {
-            let timestamp = String(Int(round(NSDate().timeIntervalSince1970 % 1000)))
+            let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(dividingBy: 1000))))
             let name = "MMGallery"+timestamp
             let galleryDescription = "MMGallery"+timestamp
             let openForAll = false
-            let ownerId = "B0SwCGhR"
+            let ownerId = "dSPX04ab"
             let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: ownerId)
             
             it("Should have proper method")
             {
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper endpoint")
@@ -45,21 +45,21 @@ class NewGalleryRequestSpec: QuickSpec
             it("Should return correct value after login")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 20)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler: DummyResponseHandler()
-                            {
-                                (response, error) -> Void in
-                                expect(response).notTo(beNil())
-                                expect(error).to(beNil())
-                                sender.logout()
-                                done()
-                            })
+                        {
+                            (response, error) -> Void in
+                            expect(response).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
                     }
                 }
             }

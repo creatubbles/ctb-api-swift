@@ -31,7 +31,7 @@ class ProfileRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = ProfileRequest()
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should return correct value after login")
@@ -42,7 +42,7 @@ class ProfileRequestSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(ProfileRequest(), withResponseHandler: DummyResponseHandler()
                             {

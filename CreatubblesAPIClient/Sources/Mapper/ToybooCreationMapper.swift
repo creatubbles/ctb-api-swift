@@ -16,7 +16,7 @@ class ToybooCreationMapper: Mappable
     var contentUrl: String?
     
     //MARK: - Mappable
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

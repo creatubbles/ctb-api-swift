@@ -10,11 +10,11 @@ import UIKit
 
 class NotificationReadRequest: Request
 {
-    override var method: RequestMethod { return .POST }
+    override var method: RequestMethod { return .post }
     override var endpoint: String { return "notifications/\(notificationIdentifier)/read" }
     override var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
     
-    private let notificationIdentifier: String
+    fileprivate let notificationIdentifier: String
     
     init(notificationIdentifier: String)
     {

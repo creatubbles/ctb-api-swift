@@ -10,12 +10,12 @@ import UIKit
 
 class NotificationsFetchRequest: Request
 {
-    override var method: RequestMethod  { return .GET }
+    override var method: RequestMethod  { return .get }
     override var endpoint: String       { return "notifications" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParams() }
     
-    private let page: Int?
-    private let perPage: Int?
+    fileprivate let page: Int?
+    fileprivate let perPage: Int?
     
     init(page: Int? = nil, perPage: Int? = nil)
     {
@@ -29,11 +29,11 @@ class NotificationsFetchRequest: Request
         
         if let page = page
         {
-            params["page"] = page
+            params["page"] = page as AnyObject?
         }
         if let perPage = perPage
         {
-            params["per_page"] = perPage
+            params["per_page"] = perPage as AnyObject?
         }
         
         return params

@@ -29,7 +29,7 @@ class CommentsResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:CommentsResponseHandler()
                             {
@@ -58,17 +58,17 @@ class CommentsResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:CommentsResponseHandler()
-                            {
-                                (comments, pageInfo, error) -> (Void) in
-                                expect(error).to(beNil())
-                                expect(comments).notTo(beNil())
-                                expect(pageInfo).notTo(beNil())
-                                sender.logout()
-                                done()
-                            })
+                        {
+                            (comments, pageInfo, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(comments).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
                     }
                 }
             }
@@ -87,7 +87,7 @@ class CommentsResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:CommentsResponseHandler()
                             {

@@ -23,7 +23,7 @@ class SwitchUserRequestSpec: QuickSpec {
             
             it("Should have proper method") {
                 let request = SwitchUserRequest()
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper parameters set") {
@@ -48,7 +48,7 @@ class SwitchUserRequestSpec: QuickSpec {
                 
                 waitUntil(timeout: 10) { done in
                     sender.login(teacherUsername, password: teacherPassword) {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(SwitchUserRequest(targetUserId: studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler()
                             {

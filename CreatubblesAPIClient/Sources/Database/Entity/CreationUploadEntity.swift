@@ -31,5 +31,5 @@ class CreationUploadEntity: Object
     dynamic var uploadUrl: String?
     dynamic var contentType: String?
     dynamic var pingUrl: String?
-    dynamic var completedAt: NSDate?
+    dynamic var completedAt: Date?
 }

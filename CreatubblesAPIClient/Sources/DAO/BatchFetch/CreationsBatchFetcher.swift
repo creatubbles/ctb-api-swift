@@ -26,21 +26,21 @@ import UIKit
 
 class CreationsBatchFetcher: BatchFetcher
 {
-    private var userId: String?
-    private var galleryId: String?
+    fileprivate var userId: String?
+    fileprivate var galleryId: String?
 
-    private var sort: SortOrder?
-    private var keyword: String?
-    private var onlyPublic: Bool = true
+    fileprivate var sort: SortOrder?
+    fileprivate var keyword: String?
+    fileprivate var onlyPublic: Bool = true
     
-    private var allCreations = Array<Creation>()
+    fileprivate var allCreations = Array<Creation>()
     
-    private var currentRequest: FetchCreationsRequest
+    fileprivate var currentRequest: FetchCreationsRequest
     {
         return FetchCreationsRequest(page: page, perPage: perPage, galleryId: galleryId, userId: userId, sort: sort, keyword: keyword, onlyPublic: onlyPublic)
     }
     
-    private func responseHandler(completion: CreationsBatchClosure?) -> FetchCreationsResponseHandler
+    fileprivate func responseHandler(_ completion: CreationsBatchClosure?) -> FetchCreationsResponseHandler
     {
         return FetchCreationsResponseHandler()
         {
@@ -53,14 +53,14 @@ class CreationsBatchFetcher: BatchFetcher
             {
                 if let creations = creations
                 {
-                    self.allCreations.appendContentsOf(creations)
+                    self.allCreations.append(contentsOf: creations)
                 }
                 if let pInfo = pInfo
                 {
                     if(pInfo.totalPages > self.page && self.page < self.maxPageCount)
                     {
                         self.page += 1
-                        self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
+                       _ = self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
                     }
                     else
                     {
@@ -71,7 +71,7 @@ class CreationsBatchFetcher: BatchFetcher
         }
     }
     
-    func fetch(userId: String?, galleryId: String?, keyword: String?, sort:SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
+    func fetch(_ userId: String?, galleryId: String?, keyword: String?, sort:SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
     {
         self.userId = userId
         self.galleryId = galleryId

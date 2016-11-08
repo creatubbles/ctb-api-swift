@@ -19,7 +19,7 @@ class CreationPingRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = NewCreationPingRequest(uploadId: "12345")
-                expect(request.method).to(equal(RequestMethod.PUT))
+                expect(request.method).to(equal(RequestMethod.put))
             }
             
             it("Should have proper endpoint")

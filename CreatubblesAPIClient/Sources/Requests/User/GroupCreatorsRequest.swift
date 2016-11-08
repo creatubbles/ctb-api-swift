@@ -9,13 +9,13 @@
 import UIKit
 
 class GroupCreatorsRequest: Request {
-    override var method: RequestMethod  { return .GET }
+    override var method: RequestMethod  { return .get }
     override var endpoint: String       { return "groups/\(groupId)/creators" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
     
-    private let groupId: String
-    private let page: Int?
-    private let perPage: Int?
+    fileprivate let groupId: String
+    fileprivate let page: Int?
+    fileprivate let perPage: Int?
     
     init(groupId: String, page: Int? = nil, perPage: Int? = nil) {
         self.groupId = groupId
@@ -23,15 +23,15 @@ class GroupCreatorsRequest: Request {
         self.perPage = perPage
     }
     
-    private func prepareParameters() -> Dictionary<String, AnyObject> {
+    fileprivate func prepareParameters() -> Dictionary<String, AnyObject> {
         var params = Dictionary<String, AnyObject>()
         
         if let page = page {
-            params["page"] = page
+            params["page"] = page as AnyObject?
         }
         
         if let perPage = perPage {
-            params["per_page"] = perPage
+            params["per_page"] = perPage as AnyObject?
         }
         
         return params

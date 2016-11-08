@@ -36,8 +36,8 @@ class CreationEntity: Object
     dynamic var identifier: String?
     dynamic var name: String?
     var translatedNameEntities = List<NameTranslationObjectEntity>()
-    dynamic var createdAt: NSDate?
-    dynamic var updatedAt: NSDate?
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
     
     dynamic var imageOriginalUrl: String?
     dynamic var imageFullViewUrl: String?
@@ -59,9 +59,9 @@ class CreationEntity: Object
     var viewsCount = RealmOptional<Int>()
     var createdAtAgePerCreatorDict: List<CreatedAtAgePerCreatorDict>?
     
-    dynamic var lastBubbledAt: NSDate?
-    dynamic var lastCommentedAt: NSDate?
-    dynamic var lastSubmittedAt: NSDate?
+    dynamic var lastBubbledAt: Date?
+    dynamic var lastCommentedAt: Date?
+    dynamic var lastSubmittedAt: Date?
     
     var approved = RealmOptional<Bool>()
     dynamic var shortUrl: String?

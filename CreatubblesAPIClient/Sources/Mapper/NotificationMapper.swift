@@ -18,7 +18,7 @@ class NotificationMapper: Mappable
     var shortText: String?
     var isNew: Bool?
     
-    var createdAt: NSDate?
+    var createdAt: Date?
     
     var creationRelationship: RelationshipMapper?
     var userRelationship: RelationshipMapper?
@@ -33,7 +33,7 @@ class NotificationMapper: Mappable
     var bubbleRelationship: RelationshipMapper?
     
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
@@ -61,16 +61,16 @@ class NotificationMapper: Mappable
     
     func parseType() -> NotificationType
     {
-        if type == "new_submission"   { return .NewGallerySubmission }
-        if type == "new_creation"     { return .NewCreation }
-        if type == "new_comment"      { return .NewComment }
-        if type == "bubbled_creation" { return .BubbledCreation }
-        if type == "followed_creator" { return .FollowedCreator }
-        if type == "another_comment"  { return .AnotherComment }
-        if type == "new_comment_for_creation_users" { return .NewCommentForCreationUsers }
-        if type == "multiple_creators_created" { return .MultipleCreatorsCreated }
+        if type == "new_submission"   { return .newGallerySubmission }
+        if type == "new_creation"     { return .newCreation }
+        if type == "new_comment"      { return .newComment }
+        if type == "bubbled_creation" { return .bubbledCreation }
+        if type == "followed_creator" { return .followedCreator }
+        if type == "another_comment"  { return .anotherComment }
+        if type == "new_comment_for_creation_users" { return .newCommentForCreationUsers }
+        if type == "multiple_creators_created" { return .multipleCreatorsCreated }
         
-        Logger.log.warning("Unknown notification type: \(type)")
-        return .Unknown
+        Logger.log.warning("Unknown notification type: \(self.type)")
+        return .unknown
     }
 }

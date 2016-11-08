@@ -25,10 +25,10 @@
 import UIKit
 
 @objc
-public class LandingURL: NSObject
+open class LandingURL: NSObject
 {
-    public let destination: String
-    public let type: LandingURLType
+    open let destination: String
+    open let type: LandingURLType
     
  
     init(mapper: LandingURLMapper)

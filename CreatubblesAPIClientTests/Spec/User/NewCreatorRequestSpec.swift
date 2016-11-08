@@ -16,13 +16,13 @@ class NewCreatorRequestSpec: QuickSpec
     {
         describe("New creator request")
         {
-            let timestamp = String(Int(round(NSDate().timeIntervalSince1970 % 1000)))
+            let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(dividingBy: 1000))))
             let name = "MMCreator"+timestamp
             let displayName = "MMCreator"+timestamp
             let birthYear = 2000
             let birthMonth = 10
             let countryCode = "PL"
-            let gender = Gender.Male
+            let gender = Gender.male
             var creatorRequest: NewCreatorRequest
             {
                 return NewCreatorRequest(name: name, displayName: displayName,
@@ -39,7 +39,7 @@ class NewCreatorRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = creatorRequest
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper parameters")
@@ -62,7 +62,7 @@ class NewCreatorRequestSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(creatorRequest, withResponseHandler: DummyResponseHandler()
                             {

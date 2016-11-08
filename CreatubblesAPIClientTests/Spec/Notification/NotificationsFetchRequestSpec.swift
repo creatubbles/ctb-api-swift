@@ -19,7 +19,7 @@ class NotificationsFetchRequestSpec: QuickSpec
             it("Should use GET method")
             {
                 let request = NotificationsFetchRequest()
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have 'notifications' endpoint")

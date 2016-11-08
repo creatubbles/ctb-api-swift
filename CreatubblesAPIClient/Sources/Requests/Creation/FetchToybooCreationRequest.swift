@@ -10,7 +10,7 @@ import UIKit
 
 class FetchToybooCreationRequest: Request
 {
-    override var method: RequestMethod   { return .GET }
+    override var method: RequestMethod   { return .get }
     override var endpoint: String        { return "creations/\(creationId)/toyboo_details" }
     
     private let creationId: String

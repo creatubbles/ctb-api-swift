@@ -10,9 +10,8 @@ import UIKit
 
 class RemoveCreationRequest: Request
 {
-    override var method: RequestMethod  { return .DELETE }
+    override var method: RequestMethod  { return .delete }
     override var endpoint: String       { return "creations/\(creationId)" }
-    
     private let creationId: String
     
     init(creationId: String)

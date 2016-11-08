@@ -18,7 +18,7 @@ class UpdateGalleryRequestSpec: QuickSpec {
             it("Should have proper method") {
                 let data = UpdateGalleryData(galleryId: "12345", name: nil, galleryDescription: nil, openForAll: nil)
                 let request = UpdateGalleryRequest(data: data)
-                expect(request.method).to(equal(RequestMethod.PUT))
+                expect(request.method).to(equal(RequestMethod.put))
             }
             
             it("Should have proper endpoint") {
@@ -45,12 +45,12 @@ class UpdateGalleryRequestSpec: QuickSpec {
                 guard let galleryIdentifier = TestConfiguration.testGalleryIdentifier else { return }
                 
                 waitUntil(timeout: 10) { done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)  { (error: ErrorType?) -> Void in
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)  { (error: Error?) -> Void in
                         expect(error).to(beNil())
                         
                         let data = UpdateGalleryData(galleryId: galleryIdentifier, name: "Sample", galleryDescription: "Sample", openForAll: true)
                         let request = UpdateGalleryRequest(data: data)
-                        sender.send(request, withResponseHandler: DummyResponseHandler() { (response, error) -> Void in
+                        _ = sender.send(request, withResponseHandler: DummyResponseHandler() { (response, error) -> Void in
                                 expect(response).to(beNil())
                                 expect(error).to(beNil())
                                 sender.logout()

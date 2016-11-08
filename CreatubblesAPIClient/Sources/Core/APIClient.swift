@@ -52,7 +52,7 @@ public typealias BubblesClousure = (Array<Bubble>?, PagingInfo?, APIClientError?
 
 public typealias ContentEntryClosure = (ResponseData<ContentEntry>) -> (Void)
 public typealias CustomStyleClosure = (CustomStyle?, APIClientError?) -> (Void)
-public typealias NotificationsClosure = (Array<Notification>?, unreadNotificationsCount: Int?, PagingInfo?, APIClientError?) -> (Void)
+public typealias NotificationsClosure = (Array<Notification>?, _ unreadNotificationsCount: Int?, PagingInfo?, APIClientError?) -> (Void)
 
 public typealias SwitchUserClosure = (String?, APIClientError?) -> (Void)
 public typealias UserAccountDetailsClosure = (UserAccountDetails?, APIClientError?) -> (Void)
@@ -60,11 +60,11 @@ public typealias UserAccountDetailsClosure = (UserAccountDetails?, APIClientErro
 public typealias PartnerApplicationsClosure = (Array<PartnerApplication>?, APIClientError?) -> (Void)
 public typealias PartnerApplicationClosure = (PartnerApplication?, APIClientError?) -> (Void)
 
-public class ResponseData<T> {
-    public let objects: Array<T>?
-    public let rejectedObjects: Array<T>?
-    public let pagingInfo: PagingInfo?
-    public let error: APIClientError?
+open class ResponseData<T> {
+    open let objects: Array<T>?
+    open let rejectedObjects: Array<T>?
+    open let pagingInfo: PagingInfo?
+    open let error: APIClientError?
     
     init(objects: Array<T>?, rejectedObjects: Array<T>?, pagingInfo: PagingInfo?, error: APIClientError?) {
         self.objects = objects
@@ -77,74 +77,74 @@ public class ResponseData<T> {
 //MARK: - Enums
 @objc public enum Gender: Int
 {
-    case Unknown = 0
-    case Male = 1
-    case Female = 2
+    case unknown = 0
+    case male = 1
+    case female = 2
 }
 
 @objc public enum SortOrder: Int
 {
-    case Popular
-    case Recent
+    case popular
+    case recent
 }
 
 @objc public enum LandingURLType: Int
 {
-    case Unknown //Read only
-    case AboutUs
-    case TermsOfUse
-    case PrivacyPolicy
-    case Registration
-    case UserProfile
-    case Explore
-    case Creation
-    case ForgotPassword
-    case UploadGuidelines
-    case AccountDashboard
+    case unknown //Read only
+    case aboutUs
+    case termsOfUse
+    case privacyPolicy
+    case registration
+    case userProfile
+    case explore
+    case creation
+    case forgotPassword
+    case uploadGuidelines
+    case accountDashboard
 }
 
 @objc public enum ApprovalStatus: Int
 {
-    case Unknown
-    case Approved
-    case Unapproved
-    case Rejected
+    case unknown
+    case approved
+    case unapproved
+    case rejected
 }
 
 @objc public enum NotificationType: Int
 {
-    case Unknown
-    case NewComment
-    case NewCreation
-    case NewGallerySubmission
-    case BubbledCreation
-    case FollowedCreator
-    case AnotherComment
-    case NewCommentForCreationUsers
-    case MultipleCreatorsCreated
+    case unknown
+    case newComment
+    case newCreation
+    case newGallerySubmission
+    case bubbledCreation
+    case followedCreator
+    case anotherComment
+    case newCommentForCreationUsers
+    case multipleCreatorsCreated
 }
 
 @objc public enum ActivityType: Int
 {
-    case Unknown
-    case CreationBubbled
-    case CreationCommented
-    case CreationPublished
-    case GalleryBubbled
-    case GalleryCommented
-    case GalleryCreationAdded
-    case UserBubbled
-    case UserCommented
+    case unknown
+    case creationBubbled
+    case creationCommented
+    case creationPublished
+    case galleryBubbled
+    case galleryCommented
+    case galleryCreationAdded
+    case userBubbled
+    case userCommented
 }
 
 @objc
 public protocol APIClientDelegate
 {
-    func creatubblesAPIClientNewImageUpload(apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData)
-    func creatubblesAPIClientImageUploadFinished(apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData)
-    func creatubblesAPIClientImageUploadFailed(apiClient: APIClient,  uploadSessionData: CreationUploadSessionPublicData, error: NSError)
-    func creatubblesAPIClientImageUploadProcessChanged(apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData, bytesUploaded: Int, bytesExpectedToUpload: Int)
-    func creatubblesAPIClientUserChanged(apiClient: APIClient)
+    func creatubblesAPIClientNewImageUpload(_ apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData)
+    func creatubblesAPIClientImageUploadFinished(_ apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData)
+    func creatubblesAPIClientImageUploadFailed(_ apiClient: APIClient,  uploadSessionData: CreationUploadSessionPublicData, error: NSError)
+    func creatubblesAPIClientImageUploadProcessChanged(_ apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData, completedUnitCount: Int64, _ totalUnitCount: Int64, _ fractionCompleted: Double)
+    func creatubblesAPIClientUserChanged(_ apiClient: APIClient)
 }
 
 public protocol Cancelable
@@ -153,27 +153,27 @@ public protocol Cancelable
 }
 
 @objc
-public class APIClient: NSObject, CreationUploadServiceDelegate
+open class APIClient: NSObject, CreationUploadServiceDelegate
 {
     //MARK: - Internal
-    private let settings: APIClientSettings
-    private let requestSender: RequestSender
+    fileprivate let settings: APIClientSettings
+    fileprivate let requestSender: RequestSender
     
-    private let creationsDAO: CreationsDAO
-    private let userDAO: UserDAO
-    private let galleryDAO: GalleryDAO
-    private let creationUploadService: CreationUploadService
-    private let bubbleDAO: BubbleDAO
-    private let commentsDAO: CommentsDAO
-    private let contentDAO: ContentDAO
-    private let customStyleDAO: CustomStyleDAO
-    private let notificationDAO: NotificationDAO
-    private let groupDAO: GroupDAO
-    private let userFollowingsDAO: UserFollowingsDAO
-    private let activitiesDAO: ActivitiesDAO
-    private let partnerApplicationDAO: PartnerApplicationDAO
+    fileprivate let creationsDAO: CreationsDAO
+    fileprivate let userDAO: UserDAO
+    fileprivate let galleryDAO: GalleryDAO
+    fileprivate let creationUploadService: CreationUploadService
+    fileprivate let bubbleDAO: BubbleDAO
+    fileprivate let commentsDAO: CommentsDAO
+    fileprivate let contentDAO: ContentDAO
+    fileprivate let customStyleDAO: CustomStyleDAO
+    fileprivate let notificationDAO: NotificationDAO
+    fileprivate let groupDAO: GroupDAO
+    fileprivate let userFollowingsDAO: UserFollowingsDAO
+    fileprivate let activitiesDAO: ActivitiesDAO
+    fileprivate let partnerApplicationDAO: PartnerApplicationDAO
     
-    public weak var delegate: APIClientDelegate?
+    open weak var delegate: APIClientDelegate?
     
     public init(settings: APIClientSettings)
     {
@@ -199,334 +199,329 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     }
     
     //MARK: - Authentication
-    public func authenticationToken() -> String?
-    {
-        return requestSender.authenticationToken;
+    
+    open var authenticationToken: String? {
+        get {
+            return requestSender.authenticationToken
+        }
+        set {
+            requestSender.authenticationToken = newValue
+        }
     }
     
-    public func login(username username: String, password: String, completion:ErrorClosure?) -> RequestHandler
+    @discardableResult
+    open func login(username: String, password: String, completion:ErrorClosure?) -> RequestHandler
     {
         
         return requestSender.login(username, password: password)
         {
             [weak self](error) -> (Void) in
             completion?(error)
-            if let weakSelf = self where error == nil
+            if let weakSelf = self , error == nil
             {
                 weakSelf.delegate?.creatubblesAPIClientUserChanged(weakSelf)
             }
         }
-    }
+    }   
     
-    public func invalidateSession() {
-        requestSender.invalidateTokens()
-    }
-    
-    public func currentSessionData() -> SessionData {
-        return requestSender.currentSessionData()
-    }
-    
-    public func setSessionData(data sessionData: SessionData) {
-        requestSender.setSessionData(sessionData)
-    }
-    
-    public func logout()
+    open func logout()
     {
         requestSender.logout()
         delegate?.creatubblesAPIClientUserChanged(self)
     }
     
-    public func isLoggedIn() -> Bool
+    open func isLoggedIn() -> Bool
     {
         return requestSender.isLoggedIn()
     }
     
-    public func getLandingURL(type type: LandingURLType?, completion: LandingURLClosure?) -> RequestHandler
+    open func getLandingURL(type: LandingURLType?, completion: LandingURLClosure?) -> RequestHandler
     {
         return userDAO.getLandingURL(type: type, completion: completion)
     }
 
-    public func getLandingURL(creationId creationId: String, completion: LandingURLClosure?) -> RequestHandler
+    open func getLandingURL(creationId: String, completion: LandingURLClosure?) -> RequestHandler
     {
         return userDAO.getLandingURL(creationId: creationId, completion: completion)
     }
     
     //MARK: - Creators managment
-    public func getUser(userId userId: String, completion: UserClosure?) -> RequestHandler
+    open func getUser(userId: String, completion: UserClosure?) -> RequestHandler
     {
         return userDAO.getUser(userId, completion: completion)
     }
     
-    public func getCurrentUser(completion: UserClosure?) -> RequestHandler
+    open func getCurrentUser(_ completion: UserClosure?) -> RequestHandler
     {
         return userDAO.getCurrentUser(completion)
     }
     
-    public func switchUser(targetUserId targetUserId: String, accessToken: String, completion: SwitchUserClosure?) -> RequestHandler
+    open func switchUser(targetUserId: String, accessToken: String, completion: SwitchUserClosure?) -> RequestHandler
     {
         return userDAO.switchUser(targetUserId, accessToken: accessToken) { [weak self] (accessToken, error) in completion?(accessToken, error)
-            if let strongSelf = self where error == nil {
+            if let strongSelf = self , error == nil {
                 strongSelf.delegate?.creatubblesAPIClientUserChanged(strongSelf)
             }
         }
     }
     
-    public func reportUser(userId userId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    open func reportUser(userId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
         return userDAO.reportUser(userId, message: message, completion: completion)
     }
     
-    public func getCreators(userId userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    open func getCreators(userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getCreators(userId, pagingData: pagingData, completion: completion)
     }
     
-    public func getCreators(groupId groupId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    open func getCreators(groupId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getCreators(groupId: groupId, pagingData: pagingData, completion: completion)
     }
     
-    public func getSwitchUsers(pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    open func getSwitchUsers(_ pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getSwitchUsers(pagingData, completion: completion)
     }
     
-    public func getManagers(userId userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    open func getManagers(userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getManagers(userId, pagingData: pagingData, completion: completion)
     }
 
-    public func getCreatorsInBatchMode(userId userId: String?, completion: UsersBatchClosure?) -> RequestHandler
+    open func getCreatorsInBatchMode(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
         return userDAO.getCreatorsInBatchMode(userId, completion: completion)
     }
     
-    public func getGroupCreatorsInBatchMode(groupId groupId: String, completion: UsersBatchClosure?) -> RequestHandler
+    open func getGroupCreatorsInBatchMode(groupId: String, completion: UsersBatchClosure?) -> RequestHandler
     {
         return userDAO.getGroupCreatorsInBatchMode(groupId, completion: completion)
     }
     
-    public func getManagersInBatchMode(userId userId: String?, completion: UsersBatchClosure?) -> RequestHandler
+    open func getManagersInBatchMode(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
         return userDAO.getManagersInBatchMode(userId, completion: completion)
     }
     
-    public func newCreator(data creatorData: NewCreatorData,completion: UserClosure?) -> RequestHandler
+    open func newCreator(data creatorData: NewCreatorData,completion: UserClosure?) -> RequestHandler
     {
         return userDAO.newCreator(creatorData, completion: completion)
     }
     
-    public func editProfile(userId identifier: String, data: EditProfileData, completion: ErrorClosure?) -> RequestHandler
+    open func editProfile(userId identifier: String, data: EditProfileData, completion: ErrorClosure?) -> RequestHandler
     {
         return userDAO.editProfile(identifier, data: data, completion: completion)
     }
     
-    public func createMultipleCreators(data data: CreateMultipleCreatorsData, completion: ErrorClosure?) -> RequestHandler
+    open func createMultipleCreators(data: CreateMultipleCreatorsData, completion: ErrorClosure?) -> RequestHandler
     {
         return userDAO.createMultipleCreators(data, completion: completion)
     }
     
-    public func getMyConnections(pagingData pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    open func getMyConnections(pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getMyConnections(pagingData, completion: completion)
     }
     
-    public func getOtherUsersMyConnections(userId userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    open func getOtherUsersMyConnections(userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getOtherUsersMyConnections(userId, pagingData: pagingData, completion: completion)
     }
     
-    public func getUsersFollowedByAUser(userId userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    open func getUsersFollowedByAUser(userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getUsersFollowedByAUser(userId, pagingData: pagingData, completion: completion)
     }
     
-    public func getUserAccountData(userId userId: String, completion: UserAccountDetailsClosure?) -> RequestHandler
+    open func getUserAccountData(userId: String, completion: UserAccountDetailsClosure?) -> RequestHandler
     {
         return userDAO.getUserAccountData(userId: userId, completion: completion)
     }
 
     //MARK: - Gallery managment
-    public func getGallery(galleryId galleryId: String, completion: GalleryClosure?) -> RequestHandler
+    open func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler
     {
         return galleryDAO.getGallery(galleryIdentifier: galleryId, completion: completion)
     }
     
-    public func getGalleries(creationId creationId: String, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
+    open func getGalleries(creationId: String, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
     {
         return galleryDAO.getGalleries(creationIdentifier: creationId, pagingData: pagingData, sort: sort, completion: completion)
     }
 
-    public func getGalleries(userId userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
+    open func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
     {
         return galleryDAO.getGalleries(userIdentifier: userId, pagingData: pagingData, sort: sort, completion: completion)
     }
     
-    public func getGalleriesInBatchMode(userId userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
+    open func getGalleriesInBatchMode(userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
     {
         return galleryDAO.getGalleriesInBatchMode(userIdentifier: userId, sort: sort, completion: completion)
     }
     
-    public func getMyGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    open func getMyGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
         return galleryDAO.getMyGalleries(pagingData, completion: completion)
     }
     
-    public func getMyOwnedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    open func getMyOwnedGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
         return galleryDAO.getMyOwnedGalleries(pagingData, completion: completion)
     }
     
-    public func getMySharedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    open func getMySharedGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
         return galleryDAO.getMySharedGalleries(pagingData, completion: completion)
     }
     
-    public func getMyFavoriteGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    open func getMyFavoriteGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
         return galleryDAO.getMyFavoriteGalleries(pagingData, completion: completion)
     }
     
-    public func getFeaturedGalleries(pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
+    open func getFeaturedGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
         return galleryDAO.getFeaturedGalleries(pagingData, completion: completion)
     }
     
-    public func getMyGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    open func getMyGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
         return galleryDAO.getMyGalleriesInBatchMode(completion)
     }
     
-    public func getOwnedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    open func getOwnedGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
         return galleryDAO.getMyOwnedGalleriesInBatchMode(completion)
     }
     
-    public func getSharedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    open func getSharedGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
         return galleryDAO.getMySharedGalleriesInBatchMode(completion)
     }
     
-    public func getFavoriteGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    open func getFavoriteGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
         return galleryDAO.getFavoriteGalleriesInBatchMode(completion)
     }
     
-    public func getFeaturedGalleriesInBatchMode(completion: GalleriesBatchClosure?) -> RequestHandler
+    open func getFeaturedGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
         return galleryDAO.getFeaturedGalleriesInBatchMode(completion)
     }
     
-    public func newGallery(data galleryData: NewGalleryData, completion: GalleryClosure?) -> RequestHandler
+    open func newGallery(data galleryData: NewGalleryData, completion: GalleryClosure?) -> RequestHandler
     {
         return galleryDAO.newGallery(data: galleryData, completion: completion)
     }
     
-    public func updateGallery(data data: UpdateGalleryData, completion: ErrorClosure?) -> RequestHandler
+    open func updateGallery(data: UpdateGalleryData, completion: ErrorClosure?) -> RequestHandler
     {
         return galleryDAO.updateGallery(data: data, completion: completion)
     }
     
-    public func reportGallery(galleryId galleryId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    open func reportGallery(galleryId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
         return galleryDAO.reportGallery(galleryIdentifier: galleryId, message: message, completion: completion)
     }
     
-    public func submitCreationToGallery(galleryId galleryId: String, creationId: String, completion: ErrorClosure) -> RequestHandler
+    open func submitCreationToGallery(galleryId: String, creationId: String, completion: @escaping ErrorClosure) -> RequestHandler
     {
         return galleryDAO.submitCreationToGallery(galleryIdentifier: galleryId, creationId: creationId, completion: completion)
     }
     
     //MARK: - Creation managment
-    public func getCreation(creationId creationId: String, completion: CreationClosure?) -> RequestHandler
+    open func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler
     {
         return creationsDAO.getCreation(creationIdentifier: creationId, completion: completion)
     }
     
-    public func reportCreation(creationId creationId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    open func reportCreation(creationId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
         return creationsDAO.reportCreation(creationIdentifier: creationId, message: message, completion: completion)
     }
     
-    public func getCreations(galleryId galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsClosure?) -> RequestHandler
+    open func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsClosure?) -> RequestHandler
     {
         return creationsDAO.getCreations(galleryIdentifier: galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, onlyPublic: onlyPublic, completion: completion)
     }
     
-    public func getRecomendedCreationsByUser(userId userId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
+    open func getRecomendedCreationsByUser(userId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
     {
         return creationsDAO.getRecomendedCreationsByUser(userIdentifier: userId, pagingData: pagingData, completon: completon)
     }
     
-    public func getRecomendedCreationsByCreation(creationId creationId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
+    open func getRecomendedCreationsByCreation(creationId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
     {
         return creationsDAO.getRecomendedCreationsByCreation(creationIdentifier: creationId, pagingData: pagingData, completon: completon)
     }
     
-    public func editCreation(creationId creationId: String, data: EditCreationData, completion: ErrorClosure?) -> RequestHandler
+    open func editCreation(creationId: String, data: EditCreationData, completion: ErrorClosure?) -> RequestHandler
     {
         return creationsDAO.editCreation(creationIdentifier: creationId, data: data, completion: completion)
     }
     
-    public func getCreationsInBatchMode(galleryId galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
+    open func getCreationsInBatchMode(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
     {
         return creationsDAO.getCreationsInBatchMode(galleryIdentifier: galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic, completion: completion)
     }
     
-    public func removeCreation(creationId creationId: String, completion: ErrorClosure?) -> RequestHandler
+
+    open func removeCreation(creationId: String, completion: ErrorClosure?) -> RequestHandler
     {
         return creationsDAO.removeCreation(creationIdentifier: creationId, completion: completion)
     }
     
-    public func getToybooCreation(creationId creationId: String, completion: ToybooCreationClosure) -> RequestHandler
+    open func getToybooCreation(creationId: String, completion: ToybooCreationClosure?) -> RequestHandler
     {
         return creationsDAO.getToybooCreation(creationIdentifier: creationId, completion: completion)
     }
     
     //MARK: - Upload Sessions
-    public func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
+    open func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
         return creationUploadService.getAllActiveUploadSessionsPublicData()
     }
     
-    public func getAllFinishedUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
+    open func getAllFinishedUploadSessionPublicData() -> Array<CreationUploadSessionPublicData>
     {
         return creationUploadService.getAllFinishedUploadSessionPublicData()
     }
     
-    public func getAllNotFinishedUploadSessionsPublicData() ->  Array<CreationUploadSessionPublicData>
+    open func getAllNotFinishedUploadSessionsPublicData() ->  Array<CreationUploadSessionPublicData>
     {
         return creationUploadService.getAllNotFinishedUploadSessionsPublicData()
     }    
     
-    public func startAllNotFinishedUploadSessions(completion: CreationClosure?)
+    open func startAllNotFinishedUploadSessions(_ completion: CreationClosure?)
     {
         creationUploadService.startAllNotFinishedUploadSessions(completion)
     }
     
-    public func cancelUploadSession(sessionId sessionId: String)
+    open func cancelUploadSession(sessionId: String)
     {
         creationUploadService.removeUploadSession(sessionIdentifier: sessionId)
     }
     
-    public func removeAllUploadSessions()
+    open func removeAllUploadSessions()
     {
         creationUploadService.removeAllUploadSessions()
     }
     
-    public func startUploadSession(sessionId sessionId: String)
+    open func startUploadSession(sessionId: String)
     {
         creationUploadService.startUploadSession(sessionIdentifier: sessionId)
     }
     
     //MARK: - Creation flow
-    public func newCreation(data creationData: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData
+    open func newCreation(data creationData: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData
     {
         return creationUploadService.uploadCreation(data: creationData, completion: completion)
     }
     
     //MARK: - Background session
-    public var backgroundCompletionHandler: (() -> Void)?
+    open var backgroundCompletionHandler: (() -> Void)?
     {
         get
         {
@@ -539,201 +534,201 @@ public class APIClient: NSObject, CreationUploadServiceDelegate
     }
     
     //MARK: - Bubbles
-    public func getBubbles(creationId identifier: String, pagingData: PagingData?, completion: BubblesClousure?) -> RequestHandler
+    open func getBubbles(creationId identifier: String, pagingData: PagingData?, completion: BubblesClousure?) -> RequestHandler
     {
         return bubbleDAO.getBubbles(creationIdentifier: identifier, pagingData: pagingData, completion: completion)
     }
     
-    public func getBubbles(userId identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
+    open func getBubbles(userId identifier: String, pagingData: PagingData?, completion: @escaping BubblesClousure) -> RequestHandler
     {
         return bubbleDAO.getBubbles(userIdentifier: identifier, pagingData: pagingData, completion: completion)
     }
     
-    public func getBubbles(galleryId identifier: String, pagingData: PagingData?, completion: BubblesClousure) -> RequestHandler
+    open func getBubbles(galleryId identifier: String, pagingData: PagingData?, completion: @escaping BubblesClousure) -> RequestHandler
     {
         return bubbleDAO.getBubbles(galleryIdentifier: identifier, pagingData: pagingData, completion: completion)
     }
     
-    public func newBubble(data data: NewBubbleData, completion: BubbleClousure?) -> RequestHandler
+    open func newBubble(data: NewBubbleData, completion: BubbleClousure?) -> RequestHandler
     {
         return bubbleDAO.newBubble(data: data, completion: completion)
     }
     
-    public func updateBubble(data data: UpdateBubbleData, completion: BubbleClousure?) -> RequestHandler
+    open func updateBubble(data: UpdateBubbleData, completion: BubbleClousure?) -> RequestHandler
     {
         return bubbleDAO.updateBubble(data: data, completion: completion)
     }
     
-    public func deleteBubble(bubbleId bubbleId: String, completion: ErrorClosure?) -> RequestHandler
+    open func deleteBubble(bubbleId: String, completion: ErrorClosure?) -> RequestHandler
     {
         return bubbleDAO.deleteBubble(bubbleIdentifier: bubbleId, completion: completion)
     }
     //MARK: - Groups
     
-    public func fetchGroup(groupId identifier: String, completion: GroupClosure?) -> RequestHandler
+    open func fetchGroup(groupId identifier: String, completion: GroupClosure?) -> RequestHandler
     {
         return groupDAO.fetchGroup(groupIdentifier: identifier, completion: completion)
     }
     
-    public func fetchGroups(completion: GroupsClosure?) -> RequestHandler
+    open func fetchGroups(_ completion: GroupsClosure?) -> RequestHandler
     {
         return groupDAO.fetchGroups(completion)
     }
     
-    public func newGroup(data data: NewGroupData, completion: GroupClosure?) -> RequestHandler
+    open func newGroup(data: NewGroupData, completion: GroupClosure?) -> RequestHandler
     {
         return groupDAO.newGroup(newGroupData: data, completion: completion)
     }
     
-    public func editGroup(groupId identifier: String, data: EditGroupData, completion: ErrorClosure?) -> RequestHandler
+    open func editGroup(groupId identifier: String, data: EditGroupData, completion: ErrorClosure?) -> RequestHandler
     {
         return groupDAO.editGroup(groupIdentifier: identifier, data: data, completion: completion)
     }
     
-    public func deleteGroup(groupId identifier: String, completion: ErrorClosure?) -> RequestHandler
+    open func deleteGroup(groupId identifier: String, completion: ErrorClosure?) -> RequestHandler
     {
         return groupDAO.deleteGroup(groupIdentifier: identifier, completion: completion)        
     }
 
     //MARK: - Comments
-    public func addComment(data data: NewCommentData, completion: ErrorClosure?) -> RequestHandler
+    open func addComment(data: NewCommentData, completion: ErrorClosure?) -> RequestHandler
     {
         return commentsDAO.addComment(commendData: data, completion: completion)
     }
     
-    public func reportComment(commentId commentId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    open func reportComment(commentId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
         return commentsDAO.reportComment(commentIdentifier: commentId, message: message, completion: completion)
     }
     
-    public func getComments(creationId creationId: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
+    open func getComments(creationId: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
     {
         return commentsDAO.getComments(creationIdentifier: creationId, pagingData: pagingData, completion: completion)
     }
     
-    public func getComments(userId userId: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
+    open func getComments(userId: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
     {
         return commentsDAO.getComments(userIdentifier: userId, pagingData: pagingData, completion: completion)
     }
     
-    public func getComments(galleryId galleryId: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
+    open func getComments(galleryId: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
     {
         return commentsDAO.getComments(galleryIdentifier: galleryId, pagingData: pagingData, completion: completion)
     }
     
     //MARK: - Content
-    public func getTrendingContent(pagingData pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    open func getTrendingContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
         return contentDAO.getTrendingContent(pagingData: pagingData, completion: completion)
     }
     
-    public func getRecentContent(pagingData pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    open func getRecentContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
         return contentDAO.getRecentContent(pagingData: pagingData, completion: completion)
     }
     
-    public func getBubbledContent(userId userId: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    open func getBubbledContent(userId: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
         return contentDAO.getUserBubbledContent(userIdentifier: userId, pagingData: pagingData, completion: completion)
     }
     
-    public func getMyConnectionsContent(pagingData pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    open func getMyConnectionsContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
         return contentDAO.getMyConnectionsContent(pagingData: pagingData, completion: completion)
     }
     
-    public func getContentsByAUser(userId userId: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    open func getContentsByAUser(userId: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
         return contentDAO.getContentsByAUser(userIdentfier: userId, pagingData: pagingData, completion: completion)
     }
     
-    public func getFollowedContents(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    open func getFollowedContents(_ pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
         return contentDAO.getFollowedContents(pagingData, completion: completion)
     }
     
-    public func getSearchedContents(query query: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
+    open func getSearchedContents(query: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
     {
         return contentDAO.getSearchedContents(query: query, pagingData: pagingData, completion: completion)
     }
     
     //MARK: - CustomStyle
-    public func fetchCustomStyleForUser(userId identifier: String, completion: CustomStyleClosure?) -> RequestHandler
+    open func fetchCustomStyleForUser(userId identifier: String, completion: CustomStyleClosure?) -> RequestHandler
     {
         return customStyleDAO.fetchCustomStyleForUser(userIdentifier: identifier, completion: completion)
     }
     
-    public func editCustomStyleForUser(userId identifier: String, withData data: CustomStyleEditData, completion: CustomStyleClosure?) -> RequestHandler
+    open func editCustomStyleForUser(userId identifier: String, withData data: CustomStyleEditData, completion: CustomStyleClosure?) -> RequestHandler
     {
         return customStyleDAO.editCustomStyleForUser(userIdentifier: identifier, withData: data, completion: completion)
     }
     
     // MARK: - Activities
     
-    public func getActivities(pagingData pagingData: PagingData?, completion: ActivitiesClosure?) -> RequestHandler
+    open func getActivities(pagingData: PagingData?, completion: ActivitiesClosure?) -> RequestHandler
     {
         return activitiesDAO.getActivities(pagingData, completion: completion)
     }
     
     //MARK: - Notifications
     
-    public func getNotifications(pagingData pagingData: PagingData?, completion: NotificationsClosure?) -> RequestHandler
+    open func getNotifications(pagingData: PagingData?, completion: NotificationsClosure?) -> RequestHandler
     {        
         return notificationDAO.getNotifications(pagingData: pagingData, completion: completion)
     }
     
-    public func markNotificationAsRead(notificationId notificationId: String, completion: ErrorClosure?) -> RequestHandler
+    open func markNotificationAsRead(notificationId: String, completion: ErrorClosure?) -> RequestHandler
     {
         return notificationDAO.markNotificationAsRead(notificationIdentifier: notificationId, completion: completion)
     }
     
-    public func trackWhenNotificationsWereViewed(completion: ErrorClosure?) -> RequestHandler
+    open func trackWhenNotificationsWereViewed(completion: ErrorClosure?) -> RequestHandler
     {
-        return notificationDAO.trackWhenNotificationsWereViewed(completion)
+        return notificationDAO.trackWhenNotificationsWereViewed(completion: completion)
     }
-    
+
     //MARK: - User Followings
-    public func createUserFollowing(userId userId: String, completion: ErrorClosure?) -> RequestHandler
+    open func createUserFollowing(userId: String, completion: ErrorClosure?) -> RequestHandler
     {
         return userFollowingsDAO.createAUserFollowing(userId, completion: completion)
     }
     
-    public func deleteAUserFollowing(userId userId: String, completion: ErrorClosure?) -> RequestHandler
+    open func deleteAUserFollowing(userId: String, completion: ErrorClosure?) -> RequestHandler
     {
         return userFollowingsDAO.deleteAUserFollowing(userId, completion: completion)
     }
     
     //MARK: - Partner Applications
-    public func getPartnerApplication(id: String, completion: PartnerApplicationClosure?) -> RequestHandler
+    open func getPartnerApplication(_ id: String, completion: PartnerApplicationClosure?) -> RequestHandler
     {
         return partnerApplicationDAO.getPartnerApplication(id, completion: completion)
     }
     
-    public func searchPartnerApplications(query: String, completion: PartnerApplicationsClosure?) -> RequestHandler
+    open func searchPartnerApplications(_ query: String, completion: PartnerApplicationsClosure?) -> RequestHandler
     {
         return partnerApplicationDAO.searchPartnerApplications(query, completion: completion)
     }
     
     //MARK: - Delegate
-    func creationUploadService(sender: CreationUploadService, newSessionAdded session: CreationUploadSession)
+    func creationUploadService(_ sender: CreationUploadService, newSessionAdded session: CreationUploadSession)
     {
         let data = CreationUploadSessionPublicData(creationUploadSession: session)
         delegate?.creatubblesAPIClientNewImageUpload(self, uploadSessionData: data)                
     }
     
-    func creationUploadService(sender: CreationUploadService, uploadFinished session: CreationUploadSession)
+    func creationUploadService(_ sender: CreationUploadService, uploadFinished session: CreationUploadSession)
     {
         let data = CreationUploadSessionPublicData(creationUploadSession: session)
         delegate?.creatubblesAPIClientImageUploadFinished(self, uploadSessionData: data)
     }
     
-    func creationUploadService(sender: CreationUploadService, progressChanged session: CreationUploadSession, bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int)
+    func creationUploadService(_ sender: CreationUploadService, progressChanged session: CreationUploadSession, completedUnitCount: Int64, totalUnitcount: Int64, fractionCompleted: Double)
     {
         let data = CreationUploadSessionPublicData(creationUploadSession: session)
-        delegate?.creatubblesAPIClientImageUploadProcessChanged(self, uploadSessionData: data, bytesUploaded: totalBytesWritten, bytesExpectedToUpload: totalBytesExpectedToWrite)
+        delegate?.creatubblesAPIClientImageUploadProcessChanged(self, uploadSessionData: data, completedUnitCount: completedUnitCount, totalUnitcount, fractionCompleted)
     }
     
-    func creationUploadService(sender: CreationUploadService, uploadFailed session: CreationUploadSession, withError error: ErrorType)
+    func creationUploadService(_ sender: CreationUploadService, uploadFailed session: CreationUploadSession, withError error: Error)
     {
         let data = CreationUploadSessionPublicData(creationUploadSession: session)
         delegate?.creatubblesAPIClientImageUploadFailed(self, uploadSessionData: data, error: APIClient.errorTypeToNSError(error)!)

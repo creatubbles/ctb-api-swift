@@ -19,7 +19,7 @@ class ContentRequestSpec: QuickSpec
             it("Should have a proper method")
             {
                 let request = ContentRequest(type: .Recent, page: nil, perPage: nil, userId: nil)
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have a proper endpoint when fetching Recent content")

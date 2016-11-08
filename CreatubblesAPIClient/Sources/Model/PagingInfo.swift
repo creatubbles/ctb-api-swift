@@ -25,10 +25,10 @@
 import UIKit
 
 @objc
-public class PagingInfo: NSObject
+open class PagingInfo: NSObject
 {
-    public let totalPages: Int
-    public let totalCount: Int
+    open let totalPages: Int
+    open let totalCount: Int
 
     
     init(totalPages: Int, totalCount: Int)

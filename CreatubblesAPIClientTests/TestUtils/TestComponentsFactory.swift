@@ -27,8 +27,8 @@ import UIKit
 
 class TestComponentsFactory: NSObject
 {
-    private static let useMockSender = false
-    private static let settings = TestConfiguration.settings
+    fileprivate static let useMockSender = false
+    fileprivate static let settings = TestConfiguration.settings
     
     static var requestSender: RequestSender
     {

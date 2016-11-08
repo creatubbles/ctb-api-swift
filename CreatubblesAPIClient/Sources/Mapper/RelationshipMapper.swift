@@ -11,7 +11,7 @@ class RelationshipMapper: Mappable
     var type: String?
     var identifier: String?
 
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
 
     func mapping(map: Map)
     {

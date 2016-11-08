@@ -9,11 +9,11 @@
 import UIKit
 
 @objc
-public class CreateMultipleCreatorsData: NSObject
+open class CreateMultipleCreatorsData: NSObject
 {
-    public let amount: Int
-    public let birthYear: Int
-    public let groupName: String?
+    open let amount: Int
+    open let birthYear: Int
+    open let groupName: String?
     
     public init(amount: Int, birthYear: Int, groupName: String? = nil)
     {

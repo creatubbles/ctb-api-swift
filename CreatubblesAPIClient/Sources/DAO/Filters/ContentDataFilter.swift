@@ -9,15 +9,15 @@
 import UIKit
 
 protocol Validatable {
-    func isValid(object: AnyObject) -> Bool
+    func isValid(_ object: AnyObject) -> Bool
 }
 
 class ContentDataFilter: NSObject, Validatable {
     
-    func isValid(object: AnyObject) -> Bool {
+    func isValid(_ object: AnyObject) -> Bool {
         guard let contentEntry = object as? ContentEntry else { return false }
         
-        if contentEntry.type == .None {
+        if contentEntry.type == .none {
             return false
         }
         

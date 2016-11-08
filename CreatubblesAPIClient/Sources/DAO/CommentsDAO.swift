@@ -10,7 +10,7 @@ import UIKit
 
 class CommentsDAO: NSObject
 {
-    private let requestSender: RequestSender
+    fileprivate let requestSender: RequestSender
     
     init(requestSender: RequestSender)
     {

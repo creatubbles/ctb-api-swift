@@ -15,8 +15,8 @@ class ActivityMapper: Mappable {
     var count: Int?
     var itemsCount: Int?
     
-    var createdAt: NSDate?
-    var lastUpdatedAt: NSDate?
+    var createdAt: Date?
+    var lastUpdatedAt: Date?
     
     var ownersRelationships: Array<RelationshipMapper>?
     var creationRelationship: RelationshipMapper?
@@ -25,7 +25,7 @@ class ActivityMapper: Mappable {
     var relatedCreationsRelationships: Array<RelationshipMapper>?
     var relatedCommentsRelationships: Array<RelationshipMapper>?
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map) {
         identifier <- map["id"]
@@ -46,16 +46,16 @@ class ActivityMapper: Mappable {
     }
     
     func parseType() -> ActivityType {
-        if type == "creation.bubbled" { return .CreationBubbled }
-        if type == "creation.commented" { return .CreationCommented }
-        if type == "creation.published" { return .CreationPublished }
-        if type == "gallery.bubbled" { return .GalleryBubbled }
-        if type == "gallery.commented" { return .GalleryCommented }
-        if type == "gallery.creation_added" { return .GalleryCreationAdded }
-        if type == "user.bubbled" { return .UserBubbled }
-        if type == "user.commented" { return .UserCommented }
+        if type == "creation.bubbled" { return .creationBubbled }
+        if type == "creation.commented" { return .creationCommented }
+        if type == "creation.published" { return .creationPublished }
+        if type == "gallery.bubbled" { return .galleryBubbled }
+        if type == "gallery.commented" { return .galleryCommented }
+        if type == "gallery.creation_added" { return .galleryCreationAdded }
+        if type == "user.bubbled" { return .userBubbled }
+        if type == "user.commented" { return .userCommented }
         
-        Logger.log.warning("Unknown activity type: \(type)")
-        return .Unknown
+        Logger.log.warning("Unknown activity type: \(self.type)")
+        return .unknown
     }
 }

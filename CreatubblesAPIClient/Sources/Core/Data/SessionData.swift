@@ -8,13 +8,13 @@
 
 import UIKit
 
-@objc public class SessionData: NSObject {
-    public var accessToken: String?
+@objc open class SessionData: NSObject {
+    open var accessToken: String?
     let idToken: String?
-    let accessTokenExpiry: NSDate?
+    let accessTokenExpiry: Date?
     let refreshToken: String?
     
-    init(accessToken: String?, idToken: String?, accessTokenExpiry: NSDate?, refreshToken: String?) {
+    init(accessToken: String?, idToken: String?, accessTokenExpiry: Date?, refreshToken: String?) {
         self.accessToken = accessToken
         self.idToken = idToken
         self.accessTokenExpiry = accessTokenExpiry

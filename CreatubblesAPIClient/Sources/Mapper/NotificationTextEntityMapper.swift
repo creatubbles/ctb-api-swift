@@ -20,7 +20,7 @@ class NotificationTextEntityMapper: Mappable
     var creationRelationship: RelationshipMapper?
     var galleryRelationship: RelationshipMapper?
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
@@ -36,9 +36,9 @@ class NotificationTextEntityMapper: Mappable
     
     func parseType() -> NotificationTextEntityType
     {
-        if (type == "creation_entities")    { return .Creation }
-        if (type == "user_entities")        { return .User}
-        if (type == "gallery_entities")     { return .Gallery }
-        return .Unknown
+        if (type == "creation_entities")    { return .creation }
+        if (type == "user_entities")        { return .user}
+        if (type == "gallery_entities")     { return .gallery }
+        return .unknown
     }
 }

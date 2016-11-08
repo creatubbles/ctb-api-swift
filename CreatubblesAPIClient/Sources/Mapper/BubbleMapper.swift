@@ -16,7 +16,7 @@ class BubbleMapper: Mappable
     var yPosition: Float?
     var colorName: String?
     var colorHex: String?
-    var createdAt: NSDate?
+    var createdAt: Date?
     var bubblerId: String?
     var isPositionRandom: Bool?
     var bubbledUserId: String?
@@ -28,7 +28,7 @@ class BubbleMapper: Mappable
     var bubbledGalleryRelationship: RelationshipMapper?
     var bubbledUserRelationship: RelationshipMapper?
         
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

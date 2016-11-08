@@ -28,11 +28,11 @@ class EditGroupResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(EditGroupRequest(identifier: identifier, data:data), withResponseHandler: EditGroupResponseHandler()
+                        _ = sender.send(EditGroupRequest(identifier: identifier, data:data), withResponseHandler: EditGroupResponseHandler()
                         {
                             (error) -> (Void) in
                             expect(error).to(beNil())
@@ -57,11 +57,11 @@ class EditGroupResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(EditGroupRequest(identifier: groupIdentifier, data:data), withResponseHandler: EditGroupResponseHandler()
+                        _ = sender.send(EditGroupRequest(identifier: groupIdentifier, data:data), withResponseHandler: EditGroupResponseHandler()
                         {
                             (error) -> (Void) in
                             expect(error).to(beNil())

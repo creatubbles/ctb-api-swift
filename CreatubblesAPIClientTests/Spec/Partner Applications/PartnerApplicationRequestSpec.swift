@@ -26,7 +26,7 @@ class PartnerApplicationRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = PartnerApplicationRequest(id: self.id)
-                expect(request.method).to(equal(RequestMethod.GET))
+                expect(request.method).to(equal(RequestMethod.get))
             }
         }
     }

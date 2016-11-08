@@ -37,22 +37,20 @@ class DataUploaderSpec: QuickSpec
 //        {
 //            it("Should upload image and add a creation to a gallery")
 //            {
-//                let path = NSBundle(forClass: self.dynamicType).URLForResource("creatubbles_logo", withExtension: "jpg")
-//                let image = UIImage(contentsOfFile: path!.path!)!
+//                let path = Bundle(for: type(of: self)).url(forResource:"creatubbles_logo", withExtension: "jpg")
+//                let image = UIImage(contentsOfFile: path!.path)!
 //                let requestSender = RequestSender(settings: TestConfiguration.settings)
-//                let data = NewCreationData(image: image, uploadExtension: .JPG)
-//                data.galleryId = "OLhco6SA"
-//                let session = CreationUploadSession(data: data, requestSender: requestSender)
-//                
-//                waitUntil(timeout: 300)
+//                let session = CreationUploadSession(data: NewCreationData(image: image, uploadExtension: .jpg), requestSender: requestSender)
+//
+//                waitUntil(timeout: 30)
 //                {
 //                    done in
 //                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
 //                    {
-//                        (error: ErrorType?) -> Void in
+//                        (error: Error?) -> Void in
 //                        session.start
 //                        {
-//                            (creation: Creation? ,error: ErrorType?) -> Void in
+//                            (creation: Creation? ,error: Error?) -> Void in
 //                            expect(creation).notTo(beNil())
 //                            expect(error).to(beNil())
 //                            done()
@@ -62,19 +60,19 @@ class DataUploaderSpec: QuickSpec
 //            }
 //            it("Should upload video")
 //            {
-//                let path = NSBundle(forClass: self.dynamicType).URLForResource("testVideo", withExtension: "mp4")
+//                let path = Bundle(for: type(of: self)).url(forResource:"testVideo", withExtension: "mp4")
 //                let requestSender = RequestSender(settings: TestConfiguration.settings)
-//                let session = CreationUploadSession(data: NewCreationData(url: path!, uploadExtension: .MP4), requestSender: requestSender)
+//                let session = CreationUploadSession(data: NewCreationData(url: path!, uploadExtension: .mp4), requestSender: requestSender)
 //                
-//                waitUntil(timeout: 10000)
+//                waitUntil(timeout: 30)
 //                {
 //                    done in
 //                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
 //                    {
-//                        (error: ErrorType?) -> Void in
+//                        (error: Error?) -> Void in
 //                        session.start
 //                        {
-//                            (creation: Creation? ,error: ErrorType?) -> Void in
+//                            (creation: Creation? ,error: Error?) -> Void in
 //                            expect(creation).notTo(beNil())
 //                            expect(error).to(beNil())
 //                            done()
@@ -82,22 +80,28 @@ class DataUploaderSpec: QuickSpec
 //                    }
 //                }
 //            }
-//        }
 //            it("Should upload zip file")
 //            {
-//                let path = NSBundle(forClass: self.dynamicType).URLForResource("test", withExtension: "zip")
+//                let path = Bundle(for: type(of: self)).url(forResource: "test", withExtension: "zip")
 //                let requestSender = RequestSender(settings: TestConfiguration.settings)
-//                let session = CreationUploadSession(data: NewCreationData(data: NSData(contentsOfURL: path!)!, uploadExtension: .ZIP), requestSender: requestSender)
+//                guard let data = try? Data(contentsOf: path!)
+//                else
+//                {
+//                    fail()
+//                    return
+//                }
 //                
-//                waitUntil(timeout: 10000)
+//                let session = CreationUploadSession(data: NewCreationData(data: data, uploadExtension: .zip), requestSender: requestSender)
+//                
+//                waitUntil(timeout: 30)
 //                {
 //                    done in
 //                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
 //                    {
-//                        (error: ErrorType?) -> Void in
+//                        (error: Error?) -> Void in
 //                        session.start
 //                        {
-//                            (creation: Creation? ,error: ErrorType?) -> Void in
+//                            (creation: Creation? ,error: Error?) -> Void in
 //                            expect(creation).notTo(beNil())
 //                            expect(error).to(beNil())
 //                            done()
@@ -105,8 +109,6 @@ class DataUploaderSpec: QuickSpec
 //                    }
 //                }
 //            }
-            
-
 //            it("Should upload database sessions")
 //            {
 //                let databaseDAO = DatabaseDAO()
@@ -125,12 +127,12 @@ class DataUploaderSpec: QuickSpec
 //                        
 //                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
 //                    {
-//                        (error: ErrorType?) -> Void in
+//                        (error: Error?) -> Void in
 //                        for session in creationUploadSessions
 //                        {
 //                            session.start
 //                            {
-//                                (creation: Creation? ,error: ErrorType?) -> Void in
+//                                (creation: Creation? ,error: Error?) -> Void in
 //                                expect(creation).notTo(beNil())
 //                                expect(error).to(beNil())
 //                                done()
@@ -140,41 +142,16 @@ class DataUploaderSpec: QuickSpec
 //                }
 //            }
 //        }
-        
+//        
 //        describe("APIClient ")
 //        {
 //            it("Should upload new creation")
 //            {
-//                let path = NSBundle(forClass: self.dynamicType).URLForResource("creatubbles_logo", withExtension: "jpg")
-//                let image = UIImage(contentsOfFile: path!.path!)!
+//                let path = Bundle(for: type(of: self)).url(forResource:"creatubbles_logo", withExtension: "jpg")
+//                let image = UIImage(contentsOfFile: path!.path)!
 //                let apiClient = APIClient(settings: TestConfiguration.settings)
-//                let data = NewCreationData(image: image, uploadExtension: .JPG)
-//                waitUntil(timeout: 60)
-//                {
-//                    done in
-//                    apiClient.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
-//                    {
-//                        (error) -> (Void) in
-//                        expect(error).to(beNil())
-//                        apiClient.newCreation(data: data, completion:
-//                        {
-//                            (creation, error) -> (Void) in
-//                            expect(creation).notTo(beNil())
-//                            expect(error).to(beNil())
-//                            done()
-//                        })
-//
-//                    })
-//                }
-//            }
-//        
-//            it("Should upload .uzpb creation")
-//            {
-//                let path = NSBundle(forClass: self.dynamicType).URLForResource("test", withExtension: "uzpb")!
-//                let blob = NSData(contentsOfURL: path)!
-//                let apiClient = APIClient(settings: TestConfiguration.settings)
-//                let data = NewCreationData(data: blob, uploadExtension: .UZPB)
-//                waitUntil(timeout: 60)
+//                let data = NewCreationData(image: image, uploadExtension: .jpg)
+//                waitUntil(timeout: 30)
 //                {
 //                    done in
 //                    apiClient.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -195,3 +172,4 @@ class DataUploaderSpec: QuickSpec
 //        }
 //    }
 }
+

@@ -27,17 +27,17 @@ import ObjectMapper
 
 class ProfileResponseHandler: ResponseHandler
 {
-    private let completion: UserClosure?
+    fileprivate let completion: UserClosure?
     
     init(completion: UserClosure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let userMapper = Mapper<UserMapper>().map(response["data"])
+            let userMapper = Mapper<UserMapper>().map(JSONObject: response["data"])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)

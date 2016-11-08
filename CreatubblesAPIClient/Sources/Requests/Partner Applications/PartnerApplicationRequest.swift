@@ -10,11 +10,11 @@ import UIKit
 
 class PartnerApplicationRequest: Request
 {
-    override var method: RequestMethod   { return .GET }
+    override var method: RequestMethod   { return .get }
     override var endpoint: String        { return "partner_applications/\(id)" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
     
-    private let id: String
+    fileprivate let id: String
     
     init(id: String)
     {
@@ -25,7 +25,7 @@ class PartnerApplicationRequest: Request
     {
         var params = Dictionary<String, AnyObject>()
 
-        params["id"] = id
+        params["id"] = id as AnyObject?
         return params
     }
 

@@ -18,7 +18,7 @@ class AbilityMapper: Mappable
     var operation: String?
     var permission: Bool?    
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
