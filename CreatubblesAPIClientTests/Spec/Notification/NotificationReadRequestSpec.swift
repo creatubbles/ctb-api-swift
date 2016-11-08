@@ -19,7 +19,7 @@ class NotificationReadRequestSpec: QuickSpec
             it("Should use POST method")
             {
                 let request = NotificationReadRequest(notificationIdentifier: "")
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have 'notifications/IDENTIFIER/read' endpoint")

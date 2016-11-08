@@ -56,8 +56,8 @@ class PartnerApplicationsMapper: Mappable
     var metaOgType: String?
     var metaOgImage: String?
     var avatarUrl: String?
-    var createdAt: NSDate?
-    var updatedAt: NSDate?
+    var createdAt: Date?
+    var updatedAt: Date?
     
     //MARK: Relationships
     var galleryRelationship: RelationshipMapper?
@@ -69,7 +69,7 @@ class PartnerApplicationsMapper: Mappable
     //let appScreenshots: Array<AppScreenshot>
     
     //MARK: - Mappable
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

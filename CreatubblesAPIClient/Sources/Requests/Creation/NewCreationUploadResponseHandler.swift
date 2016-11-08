@@ -27,23 +27,23 @@ import ObjectMapper
 
 class NewCreationUploadResponseHandler: ResponseHandler
 {
-    private let completion: (creationUpload: CreationUpload?, error: ErrorType?) -> Void
-    init(completion: (creationUpload: CreationUpload?, error: ErrorType?) -> Void)
+    fileprivate let completion: (_ creationUpload: CreationUpload?, _ error: Error?) -> Void
+    init(completion: @escaping (_ creationUpload: CreationUpload?, _ error: Error?) -> Void)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let mapper = Mapper<CreationUploadMapper>().map(response["data"])
+            let mapper = Mapper<CreationUploadMapper>().map(JSON: response["data"] as! [String : Any])
         {
             let creationUpload = CreationUpload(mapper: mapper)
-            executeOnMainQueue { self.completion(creationUpload: creationUpload, error: error) }
+            executeOnMainQueue { self.completion(creationUpload, error) }
         }
         else
         {
-            executeOnMainQueue { self.completion(creationUpload: nil, error: ErrorTransformer.errorFromResponse(response, error: error)) }
+            executeOnMainQueue { self.completion(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
 }

@@ -26,7 +26,7 @@ class ContentResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:ContentResponseHandler()
                             {
@@ -51,7 +51,7 @@ class ContentResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:ContentResponseHandler()
                         {
@@ -76,7 +76,7 @@ class ContentResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:ContentResponseHandler()
                         {
@@ -102,7 +102,7 @@ class ContentResponseHandlerSpec: QuickSpec
                 done in
                 sender.login(TestConfiguration.username, password: TestConfiguration.password)
                 {
-                    (error: ErrorType?) -> Void in
+                    (error: Error?) -> Void in
                     expect(error).to(beNil())
                     sender.send(request, withResponseHandler: ContentResponseHandler()
                     {
@@ -126,7 +126,7 @@ class ContentResponseHandlerSpec: QuickSpec
                 done in
                 sender.login(TestConfiguration.username, password: TestConfiguration.password)
                 {
-                    (error: ErrorType?) -> Void in
+                    (error: Error?) -> Void in
                     expect(error).to(beNil())
                     sender.send(request, withResponseHandler: ContentResponseHandler()
                     {
@@ -150,7 +150,7 @@ class ContentResponseHandlerSpec: QuickSpec
                 done in
                 sender.login(TestConfiguration.username, password: TestConfiguration.password)
                 {
-                    (error: ErrorType?) -> Void in
+                    (error: Error?) -> Void in
                     expect(error).to(beNil())
                     sender.send(request, withResponseHandler: ContentResponseHandler()
                     {

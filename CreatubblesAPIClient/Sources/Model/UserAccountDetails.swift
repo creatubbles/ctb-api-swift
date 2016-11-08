@@ -9,32 +9,32 @@
 import UIKit
 
 @objc
-public class UserAccountDetails: NSObject
+open class UserAccountDetails: NSObject
 {
-    public let identifier: String
-    public let username: String
-    public let displayName: String
-    public let email: String
-    public let role: Role
-    public let birthYear: Int?
-    public let birthMonth: Int?
-    public let ageDisplayType: String
-    public let gender: Gender
-    public let uiLocale: String?
-    public let pendingAvatarUrl: String?
-    public let groupList: Array<String>?
-    public let ownedGroups: Array<String>?
-    public let preapproveComments: Bool
-    public let whatDoYouTeach: String?
-    public let interests: String?
-    public let managedCreatorsCount: Int
-    public let countryCode: String?
-    public let receiveNotifications: Bool
-    public let receiveNewsletter: Bool
-    public let passwordUpdatedAt: NSDate?
-    public let currentSignInAt: NSDate?
-    public let createdAt: NSDate
-    public let updatedAt: NSDate
+    open let identifier: String
+    open let username: String
+    open let displayName: String
+    open let email: String
+    open let role: Role
+    open let birthYear: Int?
+    open let birthMonth: Int?
+    open let ageDisplayType: String
+    open let gender: Gender
+    open let uiLocale: String?
+    open let pendingAvatarUrl: String?
+    open let groupList: Array<String>?
+    open let ownedGroups: Array<String>?
+    open let preapproveComments: Bool
+    open let whatDoYouTeach: String?
+    open let interests: String?
+    open let managedCreatorsCount: Int
+    open let countryCode: String?
+    open let receiveNotifications: Bool
+    open let receiveNewsletter: Bool
+    open let passwordUpdatedAt: Date?
+    open let currentSignInAt: Date?
+    open let createdAt: Date
+    open let updatedAt: Date
     
     init(mapper: UserAccountDetailsMapper)
     {
@@ -59,9 +59,9 @@ public class UserAccountDetails: NSObject
         countryCode = mapper.countryCode
         receiveNotifications = mapper.receiveNotifications!
         receiveNewsletter = mapper.receiveNewsletter!
-        passwordUpdatedAt = mapper.passwordUpdatedAt
-        currentSignInAt = mapper.currentSignInAt
-        createdAt = mapper.createdAt!
-        updatedAt = mapper.updatedAt!
+        passwordUpdatedAt = mapper.passwordUpdatedAt as Date?
+        currentSignInAt = mapper.currentSignInAt as Date?
+        createdAt = mapper.createdAt! as Date
+        updatedAt = mapper.updatedAt! as Date
     }
 }

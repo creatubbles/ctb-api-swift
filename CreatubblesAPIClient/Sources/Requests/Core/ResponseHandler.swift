@@ -27,13 +27,13 @@ import ObjectMapper
 
 class ResponseHandler: NSObject
 {
-    func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         
     }
     
-    func executeOnMainQueue(closure: () -> ()) {
-        dispatch_async(dispatch_get_main_queue()) { 
+    func executeOnMainQueue(_ closure: @escaping () -> ()) {
+        DispatchQueue.main.async { 
             closure()
         }
     }

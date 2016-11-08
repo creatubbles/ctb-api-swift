@@ -10,11 +10,11 @@ import UIKit
 
 class CustomStyleFetchRequest: Request
 {
-    override var method: RequestMethod   { return .GET }
+    override var method: RequestMethod   { return .get }
     override var endpoint: String        { return "users/\(userIdentifier)/custom_style" }
     override var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
     
-    private let userIdentifier: String
+    fileprivate let userIdentifier: String
     init(userIdentifier: String)
     {
         self.userIdentifier = userIdentifier

@@ -31,9 +31,9 @@ class CreationUploadMapper: NSObject, Mappable
     var uploadUrl: String?
     var contentType: String?
     var pingUrl: String?
-    var completedAt: NSDate?
+    var completedAt: Date?
         
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {

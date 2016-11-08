@@ -9,25 +9,25 @@
 import UIKit
 
 class FavoriteGalleriesBatchFetcher: BatchFetcher {
-    private var galleries = Array<Gallery>()
+    fileprivate var galleries = Array<Gallery>()
     
-    private var currentRequest: FavoriteGalleriesRequest {
+    fileprivate var currentRequest: FavoriteGalleriesRequest {
         return FavoriteGalleriesRequest(page: page, perPage: perPage)
     }
     
-    private func responseHandler(completion: GalleriesBatchClosure?) -> GalleriesResponseHandler {
+    fileprivate func responseHandler(_ completion: GalleriesBatchClosure?) -> GalleriesResponseHandler {
         return GalleriesResponseHandler() { (galleries, pagingInfo, error) -> (Void) in
             if let error = error {
                 completion?(self.galleries, error)
             } else {
                 if let galleries = galleries {
-                    self.galleries.appendContentsOf(galleries)
+                    self.galleries.append(contentsOf: galleries)
                 }
                 
                 if let pagingInfo = pagingInfo {
                     if(pagingInfo.totalPages > self.page && self.page < self.maxPageCount) {
                         self.page += 1
-                        self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
+                        _ = self.requestSender.send(self.currentRequest, withResponseHandler: self.responseHandler(completion))
                     } else {
                         completion?(self.galleries, error)
                     }
@@ -36,7 +36,7 @@ class FavoriteGalleriesBatchFetcher: BatchFetcher {
         }
     }
     
-    func fetch(completion: GalleriesBatchClosure?) -> RequestHandler {
+    func fetch(_ completion: GalleriesBatchClosure?) -> RequestHandler {
         return requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
     }
 }

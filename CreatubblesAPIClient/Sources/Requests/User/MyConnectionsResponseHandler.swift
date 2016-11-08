@@ -11,16 +11,16 @@ import ObjectMapper
 
 class MyConnectionsResponseHandler: ResponseHandler
 {
-    private let completion: UsersClosure?
+    fileprivate let completion: UsersClosure?
     init(completion: UsersClosure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         if  let response = response,
-            let usersMapper = Mapper<UserMapper>().mapArray(response["data"])
+            let usersMapper = Mapper<UserMapper>().mapArray(JSONObject: response["data"])
         {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)

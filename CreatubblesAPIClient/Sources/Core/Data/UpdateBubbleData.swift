@@ -10,10 +10,10 @@ import UIKit
 
 
 @objc
-public class UpdateBubbleData: NSObject
+open class UpdateBubbleData: NSObject
 {
-    public let identifier: String
-    public let colorName: String?
+    open let identifier: String
+    open let colorName: String?
 
     public init(bubbleId: String, colorName: String?)
     {

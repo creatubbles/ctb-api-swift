@@ -27,7 +27,7 @@ class ReportUserRequestSpec: QuickSpec {
                 let userId = "userId"
                 let message = "message"
                 let request = ReportUserRequest(userId: userId, message: message)
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
             
             it("Should have proper parameters set") {

@@ -8,63 +8,63 @@
 import UIKit
 
 @objc
-public class PartnerApplication: NSObject, Identifiable
+open class PartnerApplication: NSObject, Identifiable
 {
-    public let identifier: String
-    public let name: String
-    public let slug: String
-    public let shorturl: String
+    open let identifier: String
+    open let name: String
+    open let slug: String
+    open let shorturl: String
     
-    public let headerBgLinksOriginal: String?
-    public let headerBgLinksListViewRetina: String?
-    public let headerBgLinksListview: String?
-    public let headerBgLinksMagrixViewRetina: String?
-    public let headerBgLinksMatrixView: String?
-    public let headerBgLinksExploreMobile: String?
+    open let headerBgLinksOriginal: String?
+    open let headerBgLinksListViewRetina: String?
+    open let headerBgLinksListview: String?
+    open let headerBgLinksMagrixViewRetina: String?
+    open let headerBgLinksMatrixView: String?
+    open let headerBgLinksExploreMobile: String?
     
-    public let bodyBgLinksOriginal: String?
-    public let bodyBgLinksListViewRetina: String?
-    public let bodyBgLinksListView: String?
-    public let bodyBgLinksMatrixViewRetina: String?
-    public let bodyBgLinksMatrixView: String?
-    public let bodyBgLinksExploreMobile: String?
+    open let bodyBgLinksOriginal: String?
+    open let bodyBgLinksListViewRetina: String?
+    open let bodyBgLinksListView: String?
+    open let bodyBgLinksMatrixViewRetina: String?
+    open let bodyBgLinksMatrixView: String?
+    open let bodyBgLinksExploreMobile: String?
     
-    public let ownerName: String?
-    public let partnerDescription: String?
+    open let ownerName: String?
+    open let partnerDescription: String?
     
-    public let ctaLoggedInLabel: String?
-    public let ctaLoggedOutLabel: String?
-    public let requestCtaForYoungsters: Bool
-    public let ctaForYoungsters: String?
-    public let ctaHref: String?
+    open let ctaLoggedInLabel: String?
+    open let ctaLoggedOutLabel: String?
+    open let requestCtaForYoungsters: Bool
+    open let ctaForYoungsters: String?
+    open let ctaHref: String?
     
-    public let categories: String?
-    public let age: String?
-    public let languages: String?
-    public let support: String?
-    public let developers: String?
-    public let platforms: String?
-    public let showOtherApps: Bool
-    public let displayCreationsNr: Int?
-    public let aboutCardText: String?
+    open let categories: String?
+    open let age: String?
+    open let languages: String?
+    open let support: String?
+    open let developers: String?
+    open let platforms: String?
+    open let showOtherApps: Bool
+    open let displayCreationsNr: Int?
+    open let aboutCardText: String?
     
-    public let metaTitle: String?
-    public let metaDescription: String?
-    public let metaKeywords: String?
-    public let metaOgTitle: String?
-    public let metaOgDescription: String?
-    public let metaOgType: String?
-    public let metaOgImage: String?
+    open let metaTitle: String?
+    open let metaDescription: String?
+    open let metaKeywords: String?
+    open let metaOgTitle: String?
+    open let metaOgDescription: String?
+    open let metaOgType: String?
+    open let metaOgImage: String?
     
-    public let avatarUrl: String?
-    public let createdAt: NSDate
-    public let updatedAt: NSDate
+    open let avatarUrl: String?
+    open let createdAt: Date
+    open let updatedAt: Date
     
     //MARK: Relationships
-    public let galleryRelationship: Relationship
-    public let gallery: Gallery
-    public let relatedAppsRelationships: Array<Relationship>?
-    public let relatedApps: Array<PartnerApplication>?
+    open let galleryRelationship: Relationship
+    open let gallery: Gallery
+    open let relatedAppsRelationships: Array<Relationship>?
+    open let relatedApps: Array<PartnerApplication>?
     
     //Mark: TODO: implement when api is ready
     //public let appScreenshots: Array<AppScreenshot>
@@ -118,8 +118,8 @@ public class PartnerApplication: NSObject, Identifiable
         metaOgImage = mapper.metaOgImage
         
         avatarUrl = mapper.avatarUrl
-        createdAt = mapper.createdAt!
-        updatedAt = mapper.updatedAt!
+        createdAt = mapper.createdAt! as Date
+        updatedAt = mapper.updatedAt! as Date
         
         galleryRelationship = mapper.parseGalleryRelationship()!
         gallery = MappingUtils.objectFromMapper(dataMapper, relationship: galleryRelationship, type: Gallery.self)!

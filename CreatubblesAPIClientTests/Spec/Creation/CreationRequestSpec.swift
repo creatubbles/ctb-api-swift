@@ -18,13 +18,13 @@ class CreationRequestSpec: QuickSpec
         {
             it("Should have a proper method")
             {
-                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, keyword: nil, onlyPublic: true)
-                expect(request.method).to(equal(RequestMethod.GET))
+                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .recent, keyword: nil, onlyPublic: true)
+                expect(request.method).to(equal(RequestMethod.get))
             }
             
             it("Should have a proper endpoint")
             {
-                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .Recent, keyword: nil, onlyPublic: true)
+                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .recent, keyword: nil, onlyPublic: true)
                 expect(request.endpoint).to(equal("creations"))
             }
             
@@ -33,7 +33,7 @@ class CreationRequestSpec: QuickSpec
                 let testGalleryIdentifier = "TestGalleryIdentifier"
                 let testUserIdentifier = "TestUserIdentifier"
                 let testKeyword = "TestKeyword"
-                let sortType = SortOrder.Recent
+                let sortType = SortOrder.recent
                 
                 let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: testGalleryIdentifier, userId: testUserIdentifier, sort: sortType, keyword: testKeyword, onlyPublic: true)
                 

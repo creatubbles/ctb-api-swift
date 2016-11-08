@@ -25,54 +25,54 @@
 import UIKit
 
 @objc
-public class Gallery: NSObject, Identifiable
+open class Gallery: NSObject, Identifiable
 {
-    public let identifier: String
-    public let name: String
-    public let createdAt: NSDate
-    public let updatedAt: NSDate
-    public let creationsCount: Int
-    public let bubblesCount: Int
-    public let commentsCount: Int
-    public let shortUrl: String
-    public let previewImageUrls: Array<String>
+    open let identifier: String
+    open let name: String
+    open let createdAt: Date
+    open let updatedAt: Date
+    open let creationsCount: Int
+    open let bubblesCount: Int
+    open let commentsCount: Int
+    open let shortUrl: String
+    open let previewImageUrls: Array<String>
     
-    public let lastBubbledAt: NSDate?
-    public let lastCommentedAt: NSDate?
-    public let galleryDescription: String?
+    open let lastBubbledAt: Date?
+    open let lastCommentedAt: Date?
+    open let galleryDescription: String?
     
-    public let openForAll: Bool
+    open let openForAll: Bool
     
-    public let bannerOriginalUrl: String?
-    public let bannerListViewUrl: String?
-    public let bannerListViewRetinaUrl: String?
-    public let bannerMatrixViewUrl: String?
-    public let bannerMatrixViewRetinaUrl: String?
-    public let bannerExploreMobileUrl: String?
+    open let bannerOriginalUrl: String?
+    open let bannerListViewUrl: String?
+    open let bannerListViewRetinaUrl: String?
+    open let bannerMatrixViewUrl: String?
+    open let bannerMatrixViewRetinaUrl: String?
+    open let bannerExploreMobileUrl: String?
     
     
     //MARK: - Relationships
-    public let owner: User?
-    public let ownerRelationship: Relationship?
+    open let owner: User?
+    open let ownerRelationship: Relationship?
     
     //MARK: - Metadata
-    public let isBubbled: Bool
-    public let abilities: Array<Ability>
+    open let isBubbled: Bool
+    open let abilities: Array<Ability>
     
     init(mapper: GalleryMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
         identifier = mapper.identifier!
         name = mapper.name!
-        createdAt = mapper.createdAt!
-        updatedAt = mapper.updatedAt!
+        createdAt = mapper.createdAt! as Date
+        updatedAt = mapper.updatedAt! as Date
         creationsCount = mapper.creationsCount!
         bubblesCount = mapper.bubblesCount!
         commentsCount = mapper.commentsCount!
         shortUrl = mapper.shortUrl!
         previewImageUrls = mapper.previewImageUrls!
         
-        lastBubbledAt = mapper.lastBubbledAt
-        lastCommentedAt = mapper.lastCommentedAt
+        lastBubbledAt = mapper.lastBubbledAt as Date?
+        lastCommentedAt = mapper.lastCommentedAt as Date?
         galleryDescription = mapper.galleryDescription
         
         openForAll = mapper.openForAll!

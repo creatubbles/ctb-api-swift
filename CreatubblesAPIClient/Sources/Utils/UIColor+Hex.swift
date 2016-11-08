@@ -17,12 +17,12 @@ extension String
     
     func isRGBColorString() -> Bool
     {
-        return  self.lowercaseString.hasPrefix("rgb")
+        return  self.lowercased().hasPrefix("rgb")
     }
     
     func isRGBAColorString() -> Bool
     {
-        return  self.lowercaseString.hasPrefix("rgba")
+        return  self.lowercased().hasPrefix("rgba")
     }
     
     //rgb(XX,XX,XX) or rgba(X,X,X,X) to #XXXXXX or #XXXXXXXX
@@ -31,16 +31,16 @@ extension String
         guard self.isRGBColorString()
         else { return nil }
                 
-        let valueString = stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "rgbaRGBA() "))
-                         .stringByReplacingOccurrencesOfString(" ", withString: "")
-        var values: Array<Float> = valueString.componentsSeparatedByString(",").map({ Float($0)! })
+        let valueString = trimmingCharacters(in: CharacterSet(charactersIn: "rgbaRGBA() "))
+                         .replacingOccurrences(of: " ", with: "")
+        var values: Array<Float> = valueString.components(separatedBy: ",").map({ Float($0)! })
         if values.count == 4 //RGBA
         {
             values[3] = values[3] * 255
         }
         
         var finalString = "#"
-        values.forEach({ finalString = finalString.stringByAppendingString(String(format: "%02X", Int($0))) })
+        values.forEach({ finalString = finalString + String(format: "%02X", Int($0)) })
         
         return finalString
     }
@@ -48,7 +48,7 @@ extension String
 
 extension UIColor
 {
-    func hexValue(includeAlpha: Bool = false) -> String
+    func hexValue(_ includeAlpha: Bool = false) -> String
     {
         var r: CGFloat = 0
         var g: CGFloat = 0

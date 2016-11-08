@@ -26,7 +26,7 @@ import UIKit
 
 class CreationsDAO
 {
-    private let requestSender: RequestSender
+    fileprivate let requestSender: RequestSender
     
     init(requestSender: RequestSender)
     {
@@ -81,12 +81,13 @@ class CreationsDAO
     
     func removeCreation(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler
     {
+
         let request = RemoveCreationRequest(creationId: creationId)
         let handler = RemoveCreationResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getToybooCreation(creationIdentifier creationId: String, completion: ToybooCreationClosure) -> RequestHandler
+    func getToybooCreation(creationIdentifier creationId: String, completion: ToybooCreationClosure?) -> RequestHandler
     {
         let request = FetchToybooCreationRequest(creationId: creationId)
         let handler = FetchToybooCreationResponseHandler(completion: completion)

@@ -10,7 +10,7 @@ import UIKit
 
 class BubblesFetchReqest: Request
 {
-    override var method: RequestMethod  { return .GET }
+    override var method: RequestMethod  { return .get }
     override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
     override var endpoint: String
     {
@@ -26,11 +26,11 @@ class BubblesFetchReqest: Request
         return ""
     }
     
-    private let creationId: String?
-    private let galleryId: String?
-    private let userId: String?
-    private let page: Int?
-    private let perPage: Int?
+    fileprivate let creationId: String?
+    fileprivate let galleryId: String?
+    fileprivate let userId: String?
+    fileprivate let page: Int?
+    fileprivate let perPage: Int?
     
     init(creationId: String, page: Int?, perPage: Int?)
     {
@@ -68,11 +68,11 @@ class BubblesFetchReqest: Request
         
         if let page = page
         {
-            params["page"] = page
+            params["page"] = page as AnyObject?
         }
         if let perPage = perPage
         {
-            params["per_page"] = perPage
+            params["per_page"] = perPage as AnyObject?
         }
         return params
     }

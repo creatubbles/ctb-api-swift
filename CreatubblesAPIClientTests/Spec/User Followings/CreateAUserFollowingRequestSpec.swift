@@ -12,7 +12,7 @@ import Nimble
 
 class CreateAUserFollowingRequestSpec: QuickSpec
 {
-    private let userId = "TestUserId"
+    fileprivate let userId = "TestUserId"
 
     override func spec()
     {
@@ -29,7 +29,7 @@ class CreateAUserFollowingRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = createUserFollowingRequest
-                expect(request.method).to(equal(RequestMethod.POST))
+                expect(request.method).to(equal(RequestMethod.post))
             }
         }
     }

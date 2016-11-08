@@ -12,7 +12,7 @@ import Nimble
 
 class DeleteAUserFollowingRequestSpec: QuickSpec
 {
-    private let userId = "TestUserId"
+    fileprivate let userId = "TestUserId"
     
     override func spec()
     {
@@ -29,7 +29,7 @@ class DeleteAUserFollowingRequestSpec: QuickSpec
             it("Should have proper method")
             {
                 let request = deleteUserFollowingRequest
-                expect(request.method).to(equal(RequestMethod.DELETE))
+                expect(request.method).to(equal(RequestMethod.delete))
             }
         }
     }

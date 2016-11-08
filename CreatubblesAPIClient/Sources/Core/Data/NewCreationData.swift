@@ -26,52 +26,52 @@ import UIKit
 
 enum CreationDataType: Int
 {
-    case Image = 0
-    case Url = 1
-    case Data = 2
+    case image = 0
+    case url = 1
+    case data = 2
 }
 
 @objc
-public class NewCreationData: NSObject
+open class NewCreationData: NSObject
 {
-    public let uploadExtension: UploadExtension
+    open let uploadExtension: UploadExtension
     
-    public var data: NSData?
-    public var image: UIImage?
-    public var url: NSURL?
-    public var creationIdentifier: String?
+    open var data: Data?
+    open var image: UIImage?
+    open var url: URL?
+    open var creationIdentifier: String?
     
     
-    public var name: String? = nil
-    public var reflectionText: String? = nil
-    public var reflectionVideoUrl: String? = nil
-    public var galleryId: String? = nil
-    public var creatorIds: Array<String>? = nil
-    public var creationYear: Int? = nil
-    public var creationMonth: Int? = nil
+    open var name: String? = nil
+    open var reflectionText: String? = nil
+    open var reflectionVideoUrl: String? = nil
+    open var galleryId: String? = nil
+    open var creatorIds: Array<String>? = nil
+    open var creationYear: Int? = nil
+    open var creationMonth: Int? = nil
     
     let dataType: CreationDataType
     
-    public init(data: NSData, uploadExtension: UploadExtension)
+    public init(data: Data, uploadExtension: UploadExtension)
     {
         self.data = data
-        self.dataType = .Data
+        self.dataType = .data
         self.uploadExtension = uploadExtension
     }
     public init(image: UIImage, uploadExtension: UploadExtension)
     {
         self.image = image
-        self.dataType = .Image
+        self.dataType = .image
         self.uploadExtension = uploadExtension
     }
-    public init(url: NSURL, uploadExtension: UploadExtension)
+    public init(url: URL, uploadExtension: UploadExtension)
     {
         self.url = url
-        self.dataType = .Url
+        self.dataType = .url
         self.uploadExtension = uploadExtension
     }
     
-    init(creationDataEntity: NewCreationDataEntity, url: NSURL)
+    init(creationDataEntity: NewCreationDataEntity, url: URL)
     {
         self.creationIdentifier = creationDataEntity.creationIdentifier
         self.name = creationDataEntity.name
@@ -91,7 +91,7 @@ public class NewCreationData: NSObject
         
         if(dataType.rawValue == 0)
         {
-            self.image = UIImage(contentsOfFile: url.path!)
+            self.image = UIImage(contentsOfFile: url.path)
         }
         else if(dataType.rawValue == 1)
         {
@@ -99,42 +99,42 @@ public class NewCreationData: NSObject
         }
         else if(dataType.rawValue == 2)
         {
-            self.data = NSData(contentsOfFile: "\(url)")
+            self.data = try? Data(contentsOf: URL(fileURLWithPath: "\(url)"))
         }
     }
     
     //MARK: objc compability
-    public func getCreationYear() -> NSNumber?
+    open func getCreationYear() -> NSNumber?
     {
         if let year = creationYear
         {
-            return NSNumber(integer: year)
+            return NSNumber(value: year as Int)
         }
         return nil
     }
     
-    public func getCreationMonth() -> NSNumber?
+    open func getCreationMonth() -> NSNumber?
     {
         if let month = creationMonth
         {
-            return NSNumber(integer: month)
+            return NSNumber(value: month as Int)
         }
         return nil
     }
     
-    public func setCreationYear(year: NSNumber?)
+    open func setCreationYear(_ year: NSNumber?)
     {
         if let year = year
         {
-            creationYear = year.integerValue;
+            creationYear = year.intValue;
         }
     }
     
-    public func setCreationMonth(month: NSNumber?)
+    open func setCreationMonth(_ month: NSNumber?)
     {
         if let month = month
         {
-            creationMonth = month.integerValue
+            creationMonth = month.intValue
         }
     }
 }

@@ -10,13 +10,13 @@ import UIKit
 
 class ContentSearchRequest: Request
 {
-    override var method: RequestMethod   { return .GET }
+    override var method: RequestMethod   { return .get }
     override var endpoint: String        { return "contents" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
 
-    private let query: String
-    private let page: Int?
-    private let perPage: Int?
+    fileprivate let query: String
+    fileprivate let page: Int?
+    fileprivate let perPage: Int?
     
     init(query: String, page: Int?, perPage: Int?)
     {
@@ -31,13 +31,13 @@ class ContentSearchRequest: Request
         
         if let page = page
         {
-            params["page"] = page
+            params["page"] = page as AnyObject?
         }
         if let perPage = perPage
         {
-            params["per_page"] = perPage
+            params["per_page"] = perPage as AnyObject?
         }
-            params["query"] = query
+            params["query"] = query as AnyObject?
         
         return params
     }

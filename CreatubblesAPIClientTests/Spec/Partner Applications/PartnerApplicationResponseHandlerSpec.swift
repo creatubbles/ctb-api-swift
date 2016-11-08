@@ -9,7 +9,6 @@
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
-import Alamofire
 
 class PartnerApplicationsResponseHandlerSpec: QuickSpec
 {
@@ -27,11 +26,11 @@ class PartnerApplicationsResponseHandlerSpec: QuickSpec
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
                     {
-                        (error: ErrorType?) -> Void in
+                        (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler: PartnerApplicationResponseHandler()
                         {
-                            (partnerApplication: PartnerApplication?, error: ErrorType?) -> Void in
+                            (partnerApplication: PartnerApplication?, error: Error?) -> Void in
                             expect(error).to(beNil())
                             expect(partnerApplication).notTo(beNil())
                             done()
@@ -49,7 +48,7 @@ class PartnerApplicationsResponseHandlerSpec: QuickSpec
                     done in
                     sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler:PartnerApplicationResponseHandler()
                     {
-                        (partnerApplication: PartnerApplication?, error: ErrorType?) -> Void in
+                        (partnerApplication: PartnerApplication?, error: Error?) -> Void in
                         expect(error).notTo(beNil())
                         expect(partnerApplication).to(beNil())
                         done()

@@ -5,10 +5,10 @@
 
 import Foundation
 
-public class Relationship
+open class Relationship
 {
-    public let type: String
-    public let identifier: String
+    open let type: String
+    open let identifier: String
 
     init(mapper: RelationshipMapper)
     {

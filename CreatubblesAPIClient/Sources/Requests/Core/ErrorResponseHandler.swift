@@ -10,14 +10,14 @@ import UIKit
 
 class ErrorResponseHandler: ResponseHandler
 {
-    private let completion: ErrorClosure?
+    fileprivate let completion: ErrorClosure?
     
     init(completion: ErrorClosure?)
     {
         self.completion = completion
     }
     
-    override func handleResponse(response: Dictionary<String, AnyObject>?, error: ErrorType?)
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         executeOnMainQueue { self.completion?( ErrorTransformer.errorFromResponse(response, error: error)) }
     }

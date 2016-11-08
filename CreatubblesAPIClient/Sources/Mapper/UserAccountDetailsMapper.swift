@@ -31,12 +31,12 @@ class UserAccountDetailsMapper: Mappable
     var countryCode: String?
     var receiveNotifications: Bool?
     var receiveNewsletter: Bool?
-    var passwordUpdatedAt: NSDate?
-    var currentSignInAt: NSDate?
-    var createdAt: NSDate?
-    var updatedAt: NSDate?
+    var passwordUpdatedAt: Date?
+    var currentSignInAt: Date?
+    var createdAt: Date?
+    var updatedAt: Date?
     
-    required init?(_ map: Map) { /* Intentionally left empty  */ }
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
@@ -69,18 +69,18 @@ class UserAccountDetailsMapper: Mappable
     
     var role: Role
     {
-        if roleString == "parent"     { return .Parent }
-        if roleString == "instructor" { return .Instructor }
-        if roleString == "creator"    { return .Creator }
+        if roleString == "parent"     { return .parent }
+        if roleString == "instructor" { return .instructor }
+        if roleString == "creator"    { return .creator }
         
         Logger.log.warning("Unkown or missing role string in user account detail")
-        return Role.Creator
+        return Role.creator
     }
     
     var gender: Gender
     {
-        if genderString == "male"   { return .Male }
-        if genderString == "female" { return .Female }
-        return .Unknown
+        if genderString == "male"   { return .male }
+        if genderString == "female" { return .female }
+        return .unknown
     }
 }
