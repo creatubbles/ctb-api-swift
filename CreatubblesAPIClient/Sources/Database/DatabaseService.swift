@@ -321,6 +321,8 @@ class DatabaseService: NSObject
         creationEntity.objFileUrl = creation.objFileUrl
         creationEntity.playIFrameUrl = creation.playIFrameUrl
         
+        creationEntity.contentType = creation.contentType
+        
         return creationEntity
     }
     
