@@ -419,6 +419,15 @@ extension APIClient
             completion?(creations, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
+    
+    public func _getCreationsByPartnerApplication(partnerApplicationId: String, pagingData: PagingData?, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
+    {
+        return getCreationsByPartnerApplication(partnerApplicationId: partnerApplicationId, pagingData: pagingData)
+        {
+            (creations, pInfo, error) -> (Void) in
+            completion?(creations, pInfo, APIClient.errorTypeToNSError(error))
+        }
+    }
 
     public func _editCreation(creationId: String, data: EditCreationData, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
