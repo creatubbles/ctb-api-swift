@@ -41,6 +41,7 @@ class FetchCreationsRequest: Request
         {
             return "creations/\(recommendedCreationId)/recommended_creations"
         }
+        //when listed by: partner_application, user, submitted to gallery, recent, by name and only public should return "creations"
         return "creations"
     }
     
@@ -57,6 +58,7 @@ class FetchCreationsRequest: Request
     fileprivate let creationId: String?
     fileprivate let recommendedCreationId: String?
     fileprivate let recommendedUserId: String?
+    fileprivate let partnerApplicationId: String?
     
     init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: SortOrder?, keyword: String?, onlyPublic: Bool)
     {
@@ -70,6 +72,7 @@ class FetchCreationsRequest: Request
         self.creationId = nil
         self.recommendedUserId = nil
         self.recommendedCreationId = nil
+        self.partnerApplicationId = nil
     }
     
     init(creationId: String)
@@ -84,6 +87,7 @@ class FetchCreationsRequest: Request
         self.creationId = creationId
         self.recommendedUserId = nil
         self.recommendedCreationId = nil
+        self.partnerApplicationId = nil
     }
     
     init(page: Int?, perPage: Int?, recommendedCreationId: String)
@@ -98,6 +102,7 @@ class FetchCreationsRequest: Request
         self.creationId = nil
         self.recommendedUserId = nil
         self.recommendedCreationId = recommendedCreationId
+        self.partnerApplicationId = nil
     }
     
     init(page: Int?, perPage: Int?, recommendedUserId: String)
@@ -112,6 +117,22 @@ class FetchCreationsRequest: Request
         self.creationId = nil
         self.recommendedUserId = recommendedUserId
         self.recommendedCreationId = nil
+        self.partnerApplicationId = nil
+    }
+    
+    init(page: Int?, perPage: Int?, partnerApplicationId: String)
+    {
+        self.page = page
+        self.perPage = perPage
+        self.galleryId = nil
+        self.userId = nil
+        self.sort = nil
+        self.keyword = nil
+        self.onlyPublic = true
+        self.creationId = nil
+        self.recommendedUserId = nil
+        self.recommendedCreationId = nil
+        self.partnerApplicationId = partnerApplicationId
     }
     
     func prepareParametersDictionary() -> Dictionary<String, AnyObject>
@@ -145,6 +166,10 @@ class FetchCreationsRequest: Request
         if let keyword = keyword
         {
             params["search"] = keyword as AnyObject?
+        }
+        if let partnerApplicationId = partnerApplicationId as AnyObject?
+        {
+            params["partner_application_id"] = partnerApplicationId
         }
         return params
     }

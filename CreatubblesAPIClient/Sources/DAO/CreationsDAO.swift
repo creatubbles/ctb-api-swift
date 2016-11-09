@@ -65,6 +65,13 @@ class CreationsDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getCreationsByPartnerApplication(partnerApplicationId: String, pagingData: PagingData?, completion: CreationsClosure?) -> RequestHandler
+    {
+        let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, partnerApplicationId: partnerApplicationId)
+        let handler = FetchCreationsResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getCreations(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsClosure?) -> RequestHandler
     {
         let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, galleryId: galleryId, userId: userId, sort: sortOrder, keyword: keyword, onlyPublic: onlyPublic)
