@@ -457,6 +457,11 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return creationsDAO.getRecomendedCreationsByCreation(creationIdentifier: creationId, pagingData: pagingData, completon: completon)
     }
     
+    open func getCreationsByPartnerApplication(partnerApplicationId: String, pagingData: PagingData?, completion: CreationsClosure?) -> RequestHandler
+    {
+        return creationsDAO.getCreationsByPartnerApplication(partnerApplicationId: partnerApplicationId, pagingData: pagingData, completion: completion)
+    }
+    
     open func editCreation(creationId: String, data: EditCreationData, completion: ErrorClosure?) -> RequestHandler
     {
         return creationsDAO.editCreation(creationIdentifier: creationId, data: data, completion: completion)
