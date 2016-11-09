@@ -96,6 +96,35 @@ class CreationResponseHandlerSpec: QuickSpec
                 }
             }
             
+            it("Should return a correct value for partner application after login")
+            {
+                guard let userId = TestConfiguration.testUserIdentifier,
+                let partnerApplicationId = TestConfiguration.partnerApplicationId
+                else { return }
+                
+                let request = FetchCreationsRequest(page: 1, perPage: 10, partnerApplicationId: partnerApplicationId)
+                let sender =  TestComponentsFactory.requestSender
+                waitUntil(timeout: 10)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: Error?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:FetchCreationsResponseHandler
+                        {
+                            (creations: Array<Creation>?,pageInfo: PagingInfo?, error: Error?) -> Void in
+                            expect(creations).notTo(beNil())
+                            expect(error).to(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+
+            }
+            
             it("Should return a correct value for single creation after login")
             {
                 guard let creationId = TestConfiguration.testCreationIdentifier
