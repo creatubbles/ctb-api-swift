@@ -442,9 +442,9 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return creationsDAO.reportCreation(creationIdentifier: creationId, message: message, completion: completion)
     }
     
-    open func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsClosure?) -> RequestHandler
+    open func getCreations(galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, partnerApplicationId: String?, onlyPublic: Bool,  completion: CreationsClosure?) -> RequestHandler
     {
-        return creationsDAO.getCreations(galleryIdentifier: galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, onlyPublic: onlyPublic, completion: completion)
+        return creationsDAO.getCreations(galleryIdentifier: galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, partnerApplicationId: partnerApplicationId, onlyPublic: onlyPublic, completion: completion)
     }
     
     open func getRecomendedCreationsByUser(userId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
@@ -457,21 +457,15 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return creationsDAO.getRecomendedCreationsByCreation(creationIdentifier: creationId, pagingData: pagingData, completon: completon)
     }
     
-    open func getCreationsByPartnerApplication(partnerApplicationId: String, pagingData: PagingData?, completion: CreationsClosure?) -> RequestHandler
-    {
-        return creationsDAO.getCreationsByPartnerApplication(partnerApplicationId: partnerApplicationId, pagingData: pagingData, completion: completion)
-    }
-    
     open func editCreation(creationId: String, data: EditCreationData, completion: ErrorClosure?) -> RequestHandler
     {
         return creationsDAO.editCreation(creationIdentifier: creationId, data: data, completion: completion)
     }
     
-    open func getCreationsInBatchMode(galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
+    open func getCreationsInBatchMode(galleryId: String?, userId: String?, keyword: String?, partnerApplicationId: String?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
     {
-        return creationsDAO.getCreationsInBatchMode(galleryIdentifier: galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic, completion: completion)
+        return creationsDAO.getCreationsInBatchMode(galleryIdentifier: galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, partnerApplicationId: partnerApplicationId, onlyPublic: onlyPublic, completion: completion)
     }
-    
 
     open func removeCreation(creationId: String, completion: ErrorClosure?) -> RequestHandler
     {
