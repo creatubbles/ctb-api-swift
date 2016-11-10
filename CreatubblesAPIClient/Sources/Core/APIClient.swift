@@ -174,6 +174,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     fileprivate let userFollowingsDAO: UserFollowingsDAO
     fileprivate let activitiesDAO: ActivitiesDAO
     fileprivate let partnerApplicationDAO: PartnerApplicationDAO
+    fileprivate let avatarDAO: AvatarDAO
     
     open weak var delegate: APIClientDelegate?
     
@@ -194,6 +195,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         self.userFollowingsDAO = UserFollowingsDAO(requestSender: requestSender)
         self.activitiesDAO = ActivitiesDAO(requestSender: requestSender)
         self.partnerApplicationDAO = PartnerApplicationDAO(requestSender: requestSender)
+        self.avatarDAO = AvatarDAO(requestSender: requestSender)
         
         Logger.setup()
         super.init()
@@ -341,6 +343,8 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     {
         return userDAO.getUserAccountData(userId: userId, completion: completion)
     }
+    
+    
 
     //MARK: - Gallery managment
     open func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler
@@ -714,6 +718,18 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     open func searchPartnerApplications(_ query: String, completion: PartnerApplicationsClosure?) -> RequestHandler
     {
         return partnerApplicationDAO.searchPartnerApplications(query, completion: completion)
+    }
+    
+    //MARK: - Avatar
+    
+    open func getSuggestedAvatars(completion: AvatarSuggestionsClosure?) -> RequestHandler
+    {
+        return avatarDAO.getSuggestedAvatars(completion: completion)
+    }
+    
+    open func userAvatarUpdate(userId: String, data: UpdateAvatarData, completion: ErrorClosure?) -> RequestHandler
+    {
+        return avatarDAO.updateUserAvatar(userId: userId, data: data, completion: completion)
     }
     
     //MARK: - Delegate
