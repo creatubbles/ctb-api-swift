@@ -60,6 +60,8 @@ public typealias UserAccountDetailsClosure = (UserAccountDetails?, APIClientErro
 public typealias PartnerApplicationsClosure = (Array<PartnerApplication>?, APIClientError?) -> (Void)
 public typealias PartnerApplicationClosure = (PartnerApplication?, APIClientError?) -> (Void)
 
+public typealias AvatarSuggestionsClosure = (Array<AvatarSuggestion>?, APIClientError?) -> (Void)
+
 open class ResponseData<T> {
     open let objects: Array<T>?
     open let rejectedObjects: Array<T>?
