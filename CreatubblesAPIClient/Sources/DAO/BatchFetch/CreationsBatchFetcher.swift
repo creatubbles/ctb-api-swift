@@ -31,13 +31,14 @@ class CreationsBatchFetcher: BatchFetcher
 
     fileprivate var sort: SortOrder?
     fileprivate var keyword: String?
+    fileprivate var partnerApplicationId: String?
     fileprivate var onlyPublic: Bool = true
     
     fileprivate var allCreations = Array<Creation>()
     
     fileprivate var currentRequest: FetchCreationsRequest
     {
-        return FetchCreationsRequest(page: page, perPage: perPage, galleryId: galleryId, userId: userId, sort: sort, keyword: keyword, onlyPublic: onlyPublic)
+        return FetchCreationsRequest(page: page, perPage: perPage, galleryId: galleryId, userId: userId, sort: sort, keyword: keyword, partnerApplicationId: partnerApplicationId, onlyPublic: onlyPublic)
     }
     
     fileprivate func responseHandler(_ completion: CreationsBatchClosure?) -> FetchCreationsResponseHandler
@@ -71,12 +72,13 @@ class CreationsBatchFetcher: BatchFetcher
         }
     }
     
-    func fetch(_ userId: String?, galleryId: String?, keyword: String?, sort:SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
+    func fetch(_ userId: String?, galleryId: String?, keyword: String?, partnerApplicationId: String?, sort:SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
     {
         self.userId = userId
         self.galleryId = galleryId
         self.keyword = keyword
         self.sort = sort
+        self.partnerApplicationId = partnerApplicationId
         self.onlyPublic = onlyPublic
         return requestSender.send(currentRequest, withResponseHandler: responseHandler(completion))
     }
