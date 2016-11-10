@@ -328,6 +328,7 @@
 		217745021DD4B2D60012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217745001DD4B2D60012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift */; };
 		217745041DD4B2F40012FFDC /* UserAvatarUpdateRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217745031DD4B2F40012FFDC /* UserAvatarUpdateRequestSpec.swift */; };
 		217745061DD4B3E30012FFDC /* UserAvatarUpdateResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217745051DD4B3E30012FFDC /* UserAvatarUpdateResponseHandlerSpec.swift */; };
+		217745081DD4C2B00012FFDC /* AvatarDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217745071DD4C2B00012FFDC /* AvatarDAO.swift */; };
 		2178B72F1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B72D1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift */; };
 		2178B7301D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */; };
 		2178B7321D3797840013C251 /* CreateMultipleCreatorsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */; };
@@ -691,6 +692,7 @@
 		217745001DD4B2D60012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AvatarSuggestionsFetchResponseHandlerSpec.swift; path = CreatubblesAPIClientTests/Spec/Avatar/AvatarSuggestionsFetchResponseHandlerSpec.swift; sourceTree = SOURCE_ROOT; };
 		217745031DD4B2F40012FFDC /* UserAvatarUpdateRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAvatarUpdateRequestSpec.swift; path = CreatubblesAPIClient/Sources/Core/Data/UserAvatarUpdateRequestSpec.swift; sourceTree = SOURCE_ROOT; };
 		217745051DD4B3E30012FFDC /* UserAvatarUpdateResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAvatarUpdateResponseHandlerSpec.swift; path = CreatubblesAPIClient/Sources/Core/Data/UserAvatarUpdateResponseHandlerSpec.swift; sourceTree = SOURCE_ROOT; };
+		217745071DD4C2B00012FFDC /* AvatarDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarDAO.swift; sourceTree = "<group>"; };
 		2178B72D1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsRequest.swift; sourceTree = "<group>"; };
 		2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsResponseHandler.swift; sourceTree = "<group>"; };
 		2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsData.swift; sourceTree = "<group>"; };
@@ -1008,6 +1010,7 @@
 				2152795E1D3F7F7800B67313 /* UserFollowingsDAO.swift */,
 				08AC6A5C1D424A5F004A35C3 /* ActivitiesDAO.swift */,
 				212A12291D537213001BA35A /* PartnerApplicationDAO.swift */,
+				217745071DD4C2B00012FFDC /* AvatarDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -1920,6 +1923,7 @@
 				18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */,
 				183635441CB5013900ED778A /* Relationship.swift in Sources */,
 				1859FAA61D39052F0023A6B6 /* EditGroupRequest.swift in Sources */,
+				217745081DD4C2B00012FFDC /* AvatarDAO.swift in Sources */,
 				18F6E8B11D0222AD00AAC5FB /* CustomStyleFetchRequest.swift in Sources */,
 				18467F631D02E9E1005CE5DD /* UIColor+Hex.swift in Sources */,
 				1815D5651C638BD200EF4C38 /* User.swift in Sources */,

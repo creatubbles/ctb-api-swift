@@ -820,6 +820,25 @@ extension APIClient
         }
     }
     
+    //MARK: - Avatar
+    public func _getSuggestedAvatars(completion: ((Array<AvatarSuggestion>?, NSError?) -> (Void))?) -> RequestHandler
+    {
+        return getSuggestedAvatars()
+        {
+            (suggestedAvatars, error) -> (Void) in
+            completion?(suggestedAvatars, APIClient.errorTypeToNSError(error))
+        }
+    }
+    
+    public func _userAvatarUpdate(userId: String, data: UpdateAvatarData, completion: ((NSError?) -> (Void))?) -> RequestHandler
+    {
+        return userAvatarUpdate(userId: userId, data: data)
+        {
+            (error) -> (Void) in
+            completion?(APIClient.errorTypeToNSError(error))
+        }
+    }
+
     //MARK: - Utils
     static func errorTypeToNSError(_ error: Error?) -> NSError?
     {
