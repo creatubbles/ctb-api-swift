@@ -22,7 +22,7 @@
 "error_auth_noTokenType" = "No token type received, will not use the token";
 "error_auth_noDataInResponse" = "No data in the response";
 "error_auth_missingState" = "The state parameter was missing in the response";
-"error_auth_invalidState" = "The state parameter did not check out";
+"error_auth_invalidState" = "Invalid value of the state parameter";
 "error_auth_jsonParserError" = "Error parsing JSON";
 "error_auth_utf8EncodeError" = "Failed to UTF-8 encode the given string";
 "error_auth_utf8DecodeError" = "Failed to decode given data as a UTF-8 string";
