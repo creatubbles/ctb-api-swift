@@ -85,18 +85,18 @@ extension APIClientError
     {
         return APIClientError(status: APIClientError.LoginStatus,
                               code:   APIClientError.DefaultAuthenticationCode,
-                              title:  "Authentication failed",
+                              title:  "error_auth_failed_title".localized,
                               source: "https://www.creatubbles.com/api/v2/users",
-                              detail: "No more details are available at the moment. Please try again.")
+                              detail: "error_auth_failed_detail".localized)
     }
     
     class var genericUploadCancelledError: APIClientError
     {
         return APIClientError(status: APIClientError.UploadCancelledStatus,
                               code:   "upload-cancelled",
-                              title:  "Upload cancelled",
+                              title:  "error_upload_cancelled_title".localized,
                               source: APIClientError.DefaultSource,
-                              detail: "Your creation upload was cancelled. Please re-upload again, or add new creation.")
+                              detail: "error_upload_cancelled_detail".localized)
     }
     
     static func genericError(_ status: Int? = nil, code: String? = nil, title: String? = nil, source: String? = nil, detail: String? = nil, domain: String? = nil) -> APIClientError
