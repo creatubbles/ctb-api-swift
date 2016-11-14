@@ -339,6 +339,8 @@
 		218A0D571DA71B3C006B6A16 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A0D561DA71B3C006B6A16 /* TestConfiguration.swift */; };
 		219121941D2D1F510039FA94 /* MyConnectionsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */; };
 		219121961D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */; };
+		21A09E5B1DD9E57D006CEF75 /* UpdateUserAvatarRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A09E591DD9E57D006CEF75 /* UpdateUserAvatarRequestSpec.swift */; };
+		21A09E5C1DD9E57D006CEF75 /* UpdateUserAvatarResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A09E5A1DD9E57D006CEF75 /* UpdateUserAvatarResponseHandlerSpec.swift */; };
 		21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F661C81E6A2009E95D1 /* PagingInfo.swift */; };
 		21A79F6F1C81E6C5009E95D1 /* BatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */; };
 		21A79F701C81E6C5009E95D1 /* CreationsBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */; };
@@ -703,6 +705,8 @@
 		218A0D561DA71B3C006B6A16 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		219121931D2D1F510039FA94 /* MyConnectionsRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsRequestSpec.swift; sourceTree = "<group>"; };
 		219121951D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		21A09E591DD9E57D006CEF75 /* UpdateUserAvatarRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUserAvatarRequestSpec.swift; sourceTree = "<group>"; };
+		21A09E5A1DD9E57D006CEF75 /* UpdateUserAvatarResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUserAvatarResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		21A79F661C81E6A2009E95D1 /* PagingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfo.swift; sourceTree = "<group>"; };
 		21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchFetcher.swift; sourceTree = "<group>"; };
 		21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsBatchFetcher.swift; sourceTree = "<group>"; };
@@ -1505,6 +1509,8 @@
 		217745121DD9C9940012FFDC /* Avatar */ = {
 			isa = PBXGroup;
 			children = (
+				21A09E591DD9E57D006CEF75 /* UpdateUserAvatarRequestSpec.swift */,
+				21A09E5A1DD9E57D006CEF75 /* UpdateUserAvatarResponseHandlerSpec.swift */,
 				217745131DD9C9940012FFDC /* AvatarSuggestionsFetchRequestSpec.swift */,
 				217745141DD9C9940012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift */,
 			);
@@ -2019,6 +2025,7 @@
 				1895D3671D11F0A3009B7271 /* EditCreationResponseHandlerSpec.swift in Sources */,
 				21297EB21DAFACD8003CCF75 /* RemoveCreationResponseHandlerSpec.swift in Sources */,
 				18467F681D02ED98005CE5DD /* CustomStyleEditResponseHandlerSpec.swift in Sources */,
+				21A09E5C1DD9E57D006CEF75 /* UpdateUserAvatarResponseHandlerSpec.swift in Sources */,
 				18F6E81D1D02132F00AAC5FB /* NewCreationResponseHandlerSpec.swift in Sources */,
 				18F6E8251D02146100AAC5FB /* CreationPingResponseHandlerSpec.swift in Sources */,
 				18F6E8291D02158F00AAC5FB /* GalleriesResponseHandlerSpec.swift in Sources */,
@@ -2079,6 +2086,7 @@
 				212A121E1D522374001BA35A /* PartnerApplicationRequestSpec.swift in Sources */,
 				18F6E82B1D02159800AAC5FB /* NewGalleryRequestSpec.swift in Sources */,
 				1859FABE1D39053D0023A6B6 /* NewGroupRequestSpec.swift in Sources */,
+				21A09E5B1DD9E57D006CEF75 /* UpdateUserAvatarRequestSpec.swift in Sources */,
 				18467F5D1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift in Sources */,
 				18F6E8401D02182000AAC5FB /* LandingURLRequestSpec.swift in Sources */,
 				18F6E8B41D0222DF00AAC5FB /* CustomStyleFetchRequestSpec.swift in Sources */,
