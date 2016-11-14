@@ -321,14 +321,16 @@
 		215279771D464F2600B67313 /* ContentSearchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279761D464F2600B67313 /* ContentSearchResponseHandler.swift */; };
 		215279791D46513200B67313 /* ContentSearchRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279781D46513200B67313 /* ContentSearchRequestSpec.swift */; };
 		2152797B1D4652B700B67313 /* ContentSearchResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152797A1D4652B700B67313 /* ContentSearchResponseHandlerSpec.swift */; };
-		217744FA1DD49C800012FFDC /* UpdateUserAvatarRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217744F91DD49C800012FFDC /* UpdateUserAvatarRequest.swift */; };
-		217744FC1DD49C950012FFDC /* UpdateUserAvatarResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217744FB1DD49C950012FFDC /* UpdateUserAvatarResponseHandler.swift */; };
-		217744FE1DD4A3450012FFDC /* UpdateAvatarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217744FD1DD4A3450012FFDC /* UpdateAvatarData.swift */; };
-		217745011DD4B2D60012FFDC /* AvatarSuggestionsFetchRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217744FF1DD4B2D60012FFDC /* AvatarSuggestionsFetchRequestSpec.swift */; };
-		217745021DD4B2D60012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217745001DD4B2D60012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift */; };
-		217745041DD4B2F40012FFDC /* UpdateUserAvatarRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217745031DD4B2F40012FFDC /* UpdateUserAvatarRequestSpec.swift */; };
-		217745061DD4B3E30012FFDC /* UpdateUserAvatarResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217745051DD4B3E30012FFDC /* UpdateUserAvatarResponseHandlerSpec.swift */; };
-		217745081DD4C2B00012FFDC /* AvatarDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217745071DD4C2B00012FFDC /* AvatarDAO.swift */; };
+		2177450E1DD9C9880012FFDC /* AvatarSuggestionsFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2177450A1DD9C9880012FFDC /* AvatarSuggestionsFetchRequest.swift */; };
+		2177450F1DD9C9880012FFDC /* AvatarSuggestionsFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2177450B1DD9C9880012FFDC /* AvatarSuggestionsFetchResponseHandler.swift */; };
+		217745101DD9C9880012FFDC /* UpdateUserAvatarRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2177450C1DD9C9880012FFDC /* UpdateUserAvatarRequest.swift */; };
+		217745111DD9C9880012FFDC /* UpdateUserAvatarResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2177450D1DD9C9880012FFDC /* UpdateUserAvatarResponseHandler.swift */; };
+		217745151DD9C9940012FFDC /* AvatarSuggestionsFetchRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217745131DD9C9940012FFDC /* AvatarSuggestionsFetchRequestSpec.swift */; };
+		217745161DD9C9940012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217745141DD9C9940012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift */; };
+		217745181DD9C9C70012FFDC /* AvatarSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217745171DD9C9C70012FFDC /* AvatarSuggestion.swift */; };
+		2177451A1DD9C9D10012FFDC /* AvatarSuggestionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217745191DD9C9D10012FFDC /* AvatarSuggestionMapper.swift */; };
+		2177451C1DD9C9E60012FFDC /* AvatarDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2177451B1DD9C9E60012FFDC /* AvatarDAO.swift */; };
+		2177451E1DD9CA040012FFDC /* UpdateAvatarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2177451D1DD9CA040012FFDC /* UpdateAvatarData.swift */; };
 		2178B72F1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B72D1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift */; };
 		2178B7301D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */; };
 		2178B7321D3797840013C251 /* CreateMultipleCreatorsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */; };
@@ -348,10 +350,8 @@
 		21BF68D81C91CDF600BBAB11 /* test.zip in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D61C91CDF600BBAB11 /* test.zip */; };
 		21BF68D91C91CDF600BBAB11 /* testVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */; };
 		21C349931C904B38002972EC /* NewCreationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C349921C904B38002972EC /* NewCreationData.swift */; };
-		21FBA3871DD48B4B0083DAAF /* AvatarSuggestionsFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FBA3861DD48B4B0083DAAF /* AvatarSuggestionsFetchRequest.swift */; };
-		21FBA3891DD48BA70083DAAF /* AvatarSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FBA3881DD48BA70083DAAF /* AvatarSuggestion.swift */; };
-		21FBA38B1DD48C970083DAAF /* AvatarSuggestionsFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FBA38A1DD48C970083DAAF /* AvatarSuggestionsFetchResponseHandler.swift */; };
-		21FBA38D1DD48DB00083DAAF /* AvatarSuggestionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FBA38C1DD48DB00083DAAF /* AvatarSuggestionMapper.swift */; };
+		445A3A5B1DD29F7400986BBB /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A3A5A1DD29F7400986BBB /* String+Localized.swift */; };
+		445A3A5C1DD2A8CD00986BBB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 445A3A5E1DD2A8CD00986BBB /* Localizable.strings */; };
 		DF413EEFCF6E24450841A6BB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D5DF300DAE4BC13E0AD21 /* Pods_CreatubblesAPIClient.framework */; };
 		E4B817A3F6801889CE0CF655 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EC80FB40DC05B38396DFBE /* Pods_CreatubblesAPIClientTests.framework */; };
 /* End PBXBuildFile section */
@@ -685,14 +685,16 @@
 		215279761D464F2600B67313 /* ContentSearchResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentSearchResponseHandler.swift; sourceTree = "<group>"; };
 		215279781D46513200B67313 /* ContentSearchRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentSearchRequestSpec.swift; sourceTree = "<group>"; };
 		2152797A1D4652B700B67313 /* ContentSearchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentSearchResponseHandlerSpec.swift; sourceTree = "<group>"; };
-		217744F91DD49C800012FFDC /* UpdateUserAvatarRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUserAvatarRequest.swift; sourceTree = "<group>"; };
-		217744FB1DD49C950012FFDC /* UpdateUserAvatarResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUserAvatarResponseHandler.swift; sourceTree = "<group>"; };
-		217744FD1DD4A3450012FFDC /* UpdateAvatarData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAvatarData.swift; sourceTree = "<group>"; };
-		217744FF1DD4B2D60012FFDC /* AvatarSuggestionsFetchRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AvatarSuggestionsFetchRequestSpec.swift; path = CreatubblesAPIClientTests/Spec/Avatar/AvatarSuggestionsFetchRequestSpec.swift; sourceTree = SOURCE_ROOT; };
-		217745001DD4B2D60012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AvatarSuggestionsFetchResponseHandlerSpec.swift; path = CreatubblesAPIClientTests/Spec/Avatar/AvatarSuggestionsFetchResponseHandlerSpec.swift; sourceTree = SOURCE_ROOT; };
-		217745031DD4B2F40012FFDC /* UpdateUserAvatarRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdateUserAvatarRequestSpec.swift; path = CreatubblesAPIClient/Sources/Core/Data/UpdateUserAvatarRequestSpec.swift; sourceTree = SOURCE_ROOT; };
-		217745051DD4B3E30012FFDC /* UpdateUserAvatarResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdateUserAvatarResponseHandlerSpec.swift; path = CreatubblesAPIClient/Sources/Core/Data/UpdateUserAvatarResponseHandlerSpec.swift; sourceTree = SOURCE_ROOT; };
-		217745071DD4C2B00012FFDC /* AvatarDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarDAO.swift; sourceTree = "<group>"; };
+		2177450A1DD9C9880012FFDC /* AvatarSuggestionsFetchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarSuggestionsFetchRequest.swift; sourceTree = "<group>"; };
+		2177450B1DD9C9880012FFDC /* AvatarSuggestionsFetchResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarSuggestionsFetchResponseHandler.swift; sourceTree = "<group>"; };
+		2177450C1DD9C9880012FFDC /* UpdateUserAvatarRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUserAvatarRequest.swift; sourceTree = "<group>"; };
+		2177450D1DD9C9880012FFDC /* UpdateUserAvatarResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUserAvatarResponseHandler.swift; sourceTree = "<group>"; };
+		217745131DD9C9940012FFDC /* AvatarSuggestionsFetchRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarSuggestionsFetchRequestSpec.swift; sourceTree = "<group>"; };
+		217745141DD9C9940012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarSuggestionsFetchResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		217745171DD9C9C70012FFDC /* AvatarSuggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarSuggestion.swift; sourceTree = "<group>"; };
+		217745191DD9C9D10012FFDC /* AvatarSuggestionMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarSuggestionMapper.swift; sourceTree = "<group>"; };
+		2177451B1DD9C9E60012FFDC /* AvatarDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarDAO.swift; sourceTree = "<group>"; };
+		2177451D1DD9CA040012FFDC /* UpdateAvatarData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAvatarData.swift; sourceTree = "<group>"; };
 		2178B72D1D37973F0013C251 /* CreateMultipleCreatorsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsRequest.swift; sourceTree = "<group>"; };
 		2178B72E1D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsResponseHandler.swift; sourceTree = "<group>"; };
 		2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMultipleCreatorsData.swift; sourceTree = "<group>"; };
@@ -712,11 +714,11 @@
 		21BF68D61C91CDF600BBAB11 /* test.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = test.zip; sourceTree = "<group>"; };
 		21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = testVideo.mp4; sourceTree = "<group>"; };
 		21C349921C904B38002972EC /* NewCreationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationData.swift; sourceTree = "<group>"; };
-		21FBA3861DD48B4B0083DAAF /* AvatarSuggestionsFetchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarSuggestionsFetchRequest.swift; sourceTree = "<group>"; };
-		21FBA3881DD48BA70083DAAF /* AvatarSuggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarSuggestion.swift; sourceTree = "<group>"; };
-		21FBA38A1DD48C970083DAAF /* AvatarSuggestionsFetchResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarSuggestionsFetchResponseHandler.swift; sourceTree = "<group>"; };
-		21FBA38C1DD48DB00083DAAF /* AvatarSuggestionMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarSuggestionMapper.swift; sourceTree = "<group>"; };
 		40A50E16F47F77C926108587 /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
+		445A3A5A1DD29F7400986BBB /* String+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
+		445A3A5D1DD2A8CD00986BBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		445A3A5F1DD2A8DA00986BBB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		445A3A601DD2A8E100986BBB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		52EC80FB40DC05B38396DFBE /* Pods_CreatubblesAPIClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D304F60C707EA93E6195508E /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
 		EF9D5DF300DAE4BC13E0AD21 /* Pods_CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -815,6 +817,7 @@
 		1815D5441C63658000EF4C38 /* CreatubblesAPIClient */ = {
 			isa = PBXGroup;
 			children = (
+				445A3A561DD297E300986BBB /* Resources */,
 				1815D55C1C6383CF00EF4C38 /* Sources */,
 				1815D55E1C6383CF00EF4C38 /* Supporting Files */,
 			);
@@ -860,7 +863,7 @@
 		1815D5621C63854300EF4C38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				21FBA3881DD48BA70083DAAF /* AvatarSuggestion.swift */,
+				217745171DD9C9C70012FFDC /* AvatarSuggestion.swift */,
 				181E76CE1CC5351300A1546A /* Bubble.swift */,
 				183728E91CEDC835008784C7 /* ContentEntry.swift */,
 				181E76ED1CC547E900A1546A /* Comment.swift */,
@@ -894,7 +897,7 @@
 		1815D5631C638B9C00EF4C38 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				21FBA3851DD48B180083DAAF /* Avatar */,
+				217745091DD9C9880012FFDC /* Avatar */,
 				08B4DD601DC0BD6C00EF6D67 /* Authentication */,
 				08AC6A5E1D424F5F004A35C3 /* Activities */,
 				18F6E8621D021B6500AAC5FB /* Core */,
@@ -973,7 +976,7 @@
 				08BB575E1D253ED700E2E297 /* SessionData.swift */,
 				2178B7311D3797840013C251 /* CreateMultipleCreatorsData.swift */,
 				08F5807A1D3FAC1700EDCEE2 /* UpdateGalleryData.swift */,
-				217744FD1DD4A3450012FFDC /* UpdateAvatarData.swift */,
+				2177451D1DD9CA040012FFDC /* UpdateAvatarData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -997,6 +1000,7 @@
 			children = (
 				08E52DF61D6C41FB00262672 /* Filters */,
 				1859FA941D3905180023A6B6 /* GroupDAO.swift */,
+				2177451B1DD9C9E60012FFDC /* AvatarDAO.swift */,
 				21A79F6A1C81E6C5009E95D1 /* BatchFetch */,
 				181E76E31CC5353600A1546A /* BubbleDAO.swift */,
 				181E76EB1CC547C000A1546A /* CommentsDAO.swift */,
@@ -1010,7 +1014,6 @@
 				2152795E1D3F7F7800B67313 /* UserFollowingsDAO.swift */,
 				08AC6A5C1D424A5F004A35C3 /* ActivitiesDAO.swift */,
 				212A12291D537213001BA35A /* PartnerApplicationDAO.swift */,
-				217745071DD4C2B00012FFDC /* AvatarDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -1050,10 +1053,11 @@
 		188ECF711C747E1F00AFEE4F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				188ECF721C747FDE00AFEE4F /* String+Path.swift */,
-				1847FBEF1C76024300FE5FF3 /* Logger.swift */,
 				18DB8EB51CE3EF29008B5F52 /* APIClientDateFormatter.swift */,
+				1847FBEF1C76024300FE5FF3 /* Logger.swift */,
 				18A7DCE51CEE33CC008EBDDF /* MappingUtils.swift */,
+				445A3A5A1DD29F7400986BBB /* String+Localized.swift */,
+				188ECF721C747FDE00AFEE4F /* String+Path.swift */,
 				18467F621D02E9E1005CE5DD /* UIColor+Hex.swift */,
 			);
 			path = Utils;
@@ -1071,7 +1075,7 @@
 		189D9F541C84B36100857CC6 /* Mapper */ = {
 			isa = PBXGroup;
 			children = (
-				21FBA38C1DD48DB00083DAAF /* AvatarSuggestionMapper.swift */,
+				217745191DD9C9D10012FFDC /* AvatarSuggestionMapper.swift */,
 				181E76EF1CC547FF00A1546A /* CommentMapper.swift */,
 				18E6E86E1CFF2E1D008D7B89 /* AbilityMapper.swift */,
 				183728EB1CEDC93D008784C7 /* ContentEntryMapper.swift */,
@@ -1151,8 +1155,8 @@
 		18EFFF6A1C772A4E00BE0B70 /* Spec */ = {
 			isa = PBXGroup;
 			children = (
-				21650C4C1DD49580005004B5 /* Avatar */,
 				08AC6A671D425CFC004A35C3 /* Activity */,
+				217745121DD9C9940012FFDC /* Avatar */,
 				18F6E80C1D020F0A00AAC5FB /* Bubble */,
 				18F6E8431D02188300AAC5FB /* Comment */,
 				18F6E8441D02188300AAC5FB /* Content */,
@@ -1487,16 +1491,24 @@
 			path = "User Followings";
 			sourceTree = "<group>";
 		};
-		21650C4C1DD49580005004B5 /* Avatar */ = {
+		217745091DD9C9880012FFDC /* Avatar */ = {
 			isa = PBXGroup;
 			children = (
-				217744FF1DD4B2D60012FFDC /* AvatarSuggestionsFetchRequestSpec.swift */,
-				217745001DD4B2D60012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift */,
-				217745031DD4B2F40012FFDC /* UpdateUserAvatarRequestSpec.swift */,
-				217745051DD4B3E30012FFDC /* UpdateUserAvatarResponseHandlerSpec.swift */,
+				2177450A1DD9C9880012FFDC /* AvatarSuggestionsFetchRequest.swift */,
+				2177450B1DD9C9880012FFDC /* AvatarSuggestionsFetchResponseHandler.swift */,
+				2177450C1DD9C9880012FFDC /* UpdateUserAvatarRequest.swift */,
+				2177450D1DD9C9880012FFDC /* UpdateUserAvatarResponseHandler.swift */,
 			);
-			name = Avatar;
-			path = "Avatar Suggestions";
+			path = Avatar;
+			sourceTree = "<group>";
+		};
+		217745121DD9C9940012FFDC /* Avatar */ = {
+			isa = PBXGroup;
+			children = (
+				217745131DD9C9940012FFDC /* AvatarSuggestionsFetchRequestSpec.swift */,
+				217745141DD9C9940012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift */,
+			);
+			path = Avatar;
 			sourceTree = "<group>";
 		};
 		21A79F6A1C81E6C5009E95D1 /* BatchFetch */ = {
@@ -1514,15 +1526,20 @@
 			path = BatchFetch;
 			sourceTree = "<group>";
 		};
-		21FBA3851DD48B180083DAAF /* Avatar */ = {
+		445A3A561DD297E300986BBB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				21FBA3861DD48B4B0083DAAF /* AvatarSuggestionsFetchRequest.swift */,
-				21FBA38A1DD48C970083DAAF /* AvatarSuggestionsFetchResponseHandler.swift */,
-				217744F91DD49C800012FFDC /* UpdateUserAvatarRequest.swift */,
-				217744FB1DD49C950012FFDC /* UpdateUserAvatarResponseHandler.swift */,
+				445A3A571DD297E300986BBB /* Localizations */,
 			);
-			path = Avatar;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		445A3A571DD297E300986BBB /* Localizations */ = {
+			isa = PBXGroup;
+			children = (
+				445A3A5E1DD2A8CD00986BBB /* Localizable.strings */,
+			);
+			path = Localizations;
 			sourceTree = "<group>";
 		};
 		6AB953E267D86E525BC876CD /* Frameworks */ = {
@@ -1626,6 +1643,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ja,
+				it,
 			);
 			mainGroup = 1815D5381C63658000EF4C38;
 			productRefGroup = 1815D5431C63658000EF4C38 /* Products */;
@@ -1643,6 +1662,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				445A3A5C1DD2A8CD00986BBB /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1749,10 +1769,10 @@
 				18F6E8B61D0224EE00AAC5FB /* CustomStyleFetchResponseHandler.swift in Sources */,
 				18F6E8AC1D021C2900AAC5FB /* CustomStyle.swift in Sources */,
 				08BBFE3A1D7EB256005F1F11 /* FavoriteGalleriesBatchFetcher.swift in Sources */,
-				21FBA38B1DD48C970083DAAF /* AvatarSuggestionsFetchResponseHandler.swift in Sources */,
 				1859FAA51D39052F0023A6B6 /* DeleteGroupResponseHandler.swift in Sources */,
 				18F6E88E1D021B6500AAC5FB /* ContentRequest.swift in Sources */,
 				18467F611D02E486005CE5DD /* CustomStyleEditData.swift in Sources */,
+				2177451A1DD9C9D10012FFDC /* AvatarSuggestionMapper.swift in Sources */,
 				181E76E81CC5358E00A1546A /* UpdateBubbleData.swift in Sources */,
 				0816F3A81D587CDA0026A40E /* SwitchUsersRequest.swift in Sources */,
 				18F6E8871D021B6500AAC5FB /* NewBubbleResponseHandler.swift in Sources */,
@@ -1760,11 +1780,13 @@
 				18C744FD1C84611600A07E4C /* CreationUploadSessionEntity.swift in Sources */,
 				21A79F721C81E6C5009E95D1 /* UsersBatchFetcher.swift in Sources */,
 				08A75AA01DC238EA007F546D /* AuthenticationError.swift in Sources */,
+				217745181DD9C9C70012FFDC /* AvatarSuggestion.swift in Sources */,
 				18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */,
 				18F6E88D1D021B6500AAC5FB /* NewCommentResponseHandler.swift in Sources */,
 				18F6E8AE1D021C3400AAC5FB /* CustomStyleMapper.swift in Sources */,
 				1847FBEE1C75EAF900FE5FF3 /* CreationUploadService.swift in Sources */,
 				18F6E8A71D021B6500AAC5FB /* NewCreatorRequest.swift in Sources */,
+				2177451E1DD9CA040012FFDC /* UpdateAvatarData.swift in Sources */,
 				18467F6C1D02F2DA005CE5DD /* CustomStyleDAO.swift in Sources */,
 				18467F6A1D02EDE9005CE5DD /* CustomStyleEditResponseHandler.swift in Sources */,
 				183635431CB5013900ED778A /* Identifiable.swift in Sources */,
@@ -1782,14 +1804,12 @@
 				08AC6A601D424F89004A35C3 /* ActivitiesRequest.swift in Sources */,
 				18F6E8A01D021B6500AAC5FB /* NewGalleryResponseHandler.swift in Sources */,
 				189D9F5D1C84B36100857CC6 /* CreationUploadMapper.swift in Sources */,
-				217744FE1DD4A3450012FFDC /* UpdateAvatarData.swift in Sources */,
 				182A36C31D4094DF005E01DC /* UserAccountDetailsResponseHandler.swift in Sources */,
 				0837858B1D378A85006EF69E /* ReportCreationRequest.swift in Sources */,
 				189D9F5C1C84B36100857CC6 /* CreationMapper.swift in Sources */,
 				18F6E89F1D021B6500AAC5FB /* NewGalleryRequest.swift in Sources */,
 				2178B7301D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift in Sources */,
 				189D9F611C84B36100857CC6 /* PagingInfoMapper.swift in Sources */,
-				21FBA3871DD48B4B0083DAAF /* AvatarSuggestionsFetchRequest.swift in Sources */,
 				1895D3691D11F204009B7271 /* EditCreationResponseHandler.swift in Sources */,
 				2110E0501D742C0E00B62156 /* NameTranslationObjectMapper.swift in Sources */,
 				187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */,
@@ -1840,6 +1860,7 @@
 				18E9D18F1D117812006F2BAB /* EditCreationRequest.swift in Sources */,
 				08B7E90E1D52302D007A30F3 /* GroupCreatorsResponseHandler.swift in Sources */,
 				183B5BBF1D8BDDD200A19298 /* APIClient_ObjC.swift in Sources */,
+				217745111DD9C9880012FFDC /* UpdateUserAvatarResponseHandler.swift in Sources */,
 				18F6E89E1D021B6500AAC5FB /* GallerySubmissionResponseHandler.swift in Sources */,
 				08AC6A621D42504A004A35C3 /* ActivitiesResponseHandler.swift in Sources */,
 				18F6E89C1D021B6500AAC5FB /* GalleriesResponseHandler.swift in Sources */,
@@ -1847,7 +1868,6 @@
 				08E52DF81D6C422300262672 /* ContentDataFilter.swift in Sources */,
 				18DB8EB61CE3EF29008B5F52 /* APIClientDateFormatter.swift in Sources */,
 				2117F8C11D3520B800304D79 /* NotificationMetadata.swift in Sources */,
-				217744FC1DD49C950012FFDC /* UpdateUserAvatarResponseHandler.swift in Sources */,
 				18F6E88B1D021B6500AAC5FB /* CommentsResponseHandler.swift in Sources */,
 				18F6E8921D021B6500AAC5FB /* ResponseHandler.swift in Sources */,
 				1895D36D1D11F81B009B7271 /* EditProfileData.swift in Sources */,
@@ -1865,7 +1885,6 @@
 				18F6E89A1D021B6500AAC5FB /* NewCreationUploadResponseHandler.swift in Sources */,
 				181E76F01CC547FF00A1546A /* CommentMapper.swift in Sources */,
 				18F6E8901D021B6500AAC5FB /* ErrorResponseHandler.swift in Sources */,
-				21FBA3891DD48BA70083DAAF /* AvatarSuggestion.swift in Sources */,
 				183635481CB5014700ED778A /* RelationshipMapper.swift in Sources */,
 				213B29F91DCA3946003E7314 /* FetchToybooCreationResponseHandler.swift in Sources */,
 				1859FAAB1D39052F0023A6B6 /* NewGroupRequest.swift in Sources */,
@@ -1905,8 +1924,8 @@
 				18F6E8A91D021B6500AAC5FB /* ProfileRequest.swift in Sources */,
 				2152794F1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift in Sources */,
 				18E30BEC1C8DAAE0000794B6 /* LandingURLMapper.swift in Sources */,
-				217744FA1DD49C800012FFDC /* UpdateUserAvatarRequest.swift in Sources */,
 				21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */,
+				445A3A5B1DD29F7400986BBB /* String+Localized.swift in Sources */,
 				21297EAE1DAFACA8003CCF75 /* RemoveCreationRequest.swift in Sources */,
 				2152795F1D3F7F7800B67313 /* UserFollowingsDAO.swift in Sources */,
 				213B29F11DCA3918003E7314 /* ToybooCreationMapper.swift in Sources */,
@@ -1923,12 +1942,14 @@
 				18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */,
 				183635441CB5013900ED778A /* Relationship.swift in Sources */,
 				1859FAA61D39052F0023A6B6 /* EditGroupRequest.swift in Sources */,
-				217745081DD4C2B00012FFDC /* AvatarDAO.swift in Sources */,
+				2177450E1DD9C9880012FFDC /* AvatarSuggestionsFetchRequest.swift in Sources */,
 				18F6E8B11D0222AD00AAC5FB /* CustomStyleFetchRequest.swift in Sources */,
+				2177451C1DD9C9E60012FFDC /* AvatarDAO.swift in Sources */,
 				18467F631D02E9E1005CE5DD /* UIColor+Hex.swift in Sources */,
 				1815D5651C638BD200EF4C38 /* User.swift in Sources */,
 				212A122A1D537213001BA35A /* PartnerApplicationDAO.swift in Sources */,
 				18E6E8731CFF2F39008D7B89 /* Ability.swift in Sources */,
+				2177450F1DD9C9880012FFDC /* AvatarSuggestionsFetchResponseHandler.swift in Sources */,
 				183728EA1CEDC835008784C7 /* ContentEntry.swift in Sources */,
 				182FB8B81D1293D7004495CB /* EditProfileResponseHandler.swift in Sources */,
 				18E4354C1D04287600B728C6 /* Notification.swift in Sources */,
@@ -1948,7 +1969,6 @@
 				189D9F5E1C84B36100857CC6 /* ErrorMapper.swift in Sources */,
 				0816F3AA1D587CEB0026A40E /* SwitchUsersResponseHandler.swift in Sources */,
 				08A587411DC34BE100F570C4 /* UploadManager.swift in Sources */,
-				21FBA38D1DD48DB00083DAAF /* AvatarSuggestionMapper.swift in Sources */,
 				0801353B1D353FF90054DAB0 /* SwitchUserResponseHandler.swift in Sources */,
 				083785891D37872C006EF69E /* ReportCommentResponseHandler.swift in Sources */,
 				183635471CB5014700ED778A /* DataIncludeMapper.swift in Sources */,
@@ -1956,6 +1976,7 @@
 				18C744FB1C84611600A07E4C /* CreationEntity.swift in Sources */,
 				083785911D378B28006EF69E /* ReportGalleryResponseHandler.swift in Sources */,
 				181E76FB1CC5485100A1546A /* NewCommentData.swift in Sources */,
+				217745101DD9C9880012FFDC /* UpdateUserAvatarRequest.swift in Sources */,
 				18F6E89B1D021B6500AAC5FB /* GalleriesRequest.swift in Sources */,
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,
 				1859FA981D3905210023A6B6 /* EditGroupData.swift in Sources */,
@@ -1994,7 +2015,6 @@
 				18290AE91D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift in Sources */,
 				08AC6A691D425DAB004A35C3 /* ActivitiesRequestSpec.swift in Sources */,
 				1859FABA1D39053D0023A6B6 /* EditGroupResponseHandlerSpec.swift in Sources */,
-				217745061DD4B3E30012FFDC /* UpdateUserAvatarResponseHandlerSpec.swift in Sources */,
 				18F6E8421D02182A00AAC5FB /* LandingURLResponseHandlerSpec.swift in Sources */,
 				1895D3671D11F0A3009B7271 /* EditCreationResponseHandlerSpec.swift in Sources */,
 				21297EB21DAFACD8003CCF75 /* RemoveCreationResponseHandlerSpec.swift in Sources */,
@@ -2002,7 +2022,6 @@
 				18F6E81D1D02132F00AAC5FB /* NewCreationResponseHandlerSpec.swift in Sources */,
 				18F6E8251D02146100AAC5FB /* CreationPingResponseHandlerSpec.swift in Sources */,
 				18F6E8291D02158F00AAC5FB /* GalleriesResponseHandlerSpec.swift in Sources */,
-				217745041DD4B2F40012FFDC /* UpdateUserAvatarRequestSpec.swift in Sources */,
 				18F6E8271D02158400AAC5FB /* GalleriesRequestSpec.swift in Sources */,
 				18EFFF711C772A4E00BE0B70 /* DataUploaderSpec.swift in Sources */,
 				18F6E8331D0216E300AAC5FB /* ProfileRequestSpec.swift in Sources */,
@@ -2025,6 +2044,7 @@
 				0837859D1D379A8C006EF69E /* ReportCreationResponseHandlerSpec.swift in Sources */,
 				1859FABD1D39053D0023A6B6 /* GroupsResponseHandlerSpec.swift in Sources */,
 				18F6E8151D020F3D00AAC5FB /* BubbleResponseHandlerSpec.swift in Sources */,
+				217745151DD9C9940012FFDC /* AvatarSuggestionsFetchRequestSpec.swift in Sources */,
 				083785A51D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift in Sources */,
 				0837859F1D379AAD006EF69E /* ReportGalleryRequestSpec.swift in Sources */,
 				18290AF71D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift in Sources */,
@@ -2072,7 +2092,6 @@
 				21297EB11DAFACD8003CCF75 /* RemoveCreationRequestSpec.swift in Sources */,
 				08BBFE3E1D7EB474005F1F11 /* FavoriteGalleriesRequestSpec.swift in Sources */,
 				18F6E8351D0216EE00AAC5FB /* ProfileResponseHandlerSpec.swift in Sources */,
-				217745011DD4B2D60012FFDC /* AvatarSuggestionsFetchRequestSpec.swift in Sources */,
 				0837859B1D379A7E006EF69E /* ReportCreationRequestSpec.swift in Sources */,
 				1859FABF1D39053D0023A6B6 /* NewGroupResponseHandlerSpec.swift in Sources */,
 				1859FABB1D39053D0023A6B6 /* GroupResponseHandlerSpec.swift in Sources */,
@@ -2081,8 +2100,8 @@
 				218A0D571DA71B3C006B6A16 /* TestConfiguration.swift in Sources */,
 				18779DBE1C68DFCB000BFB57 /* DummyResponseHandler.swift in Sources */,
 				083785971D379A47006EF69E /* ReportCommentRequestSpec.swift in Sources */,
+				217745161DD9C9940012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift in Sources */,
 				18F6E8231D02145600AAC5FB /* CreationPingRequestSpec.swift in Sources */,
-				217745021DD4B2D60012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift in Sources */,
 				08BBFE401D7EB491005F1F11 /* FeaturedGalleriesRequestSpec.swift in Sources */,
 				18F6E8131D020F3200AAC5FB /* BubbleRequestSpec.swift in Sources */,
 				083785A11D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift in Sources */,
@@ -2101,11 +2120,25 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		445A3A5E1DD2A8CD00986BBB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				445A3A5D1DD2A8CD00986BBB /* en */,
+				445A3A5F1DD2A8DA00986BBB /* ja */,
+				445A3A601DD2A8E100986BBB /* it */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		1815D5541C63658000EF4C38 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2156,6 +2189,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

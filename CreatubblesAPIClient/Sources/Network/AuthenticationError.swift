@@ -175,72 +175,72 @@ public enum AuthenticationError: Error, CustomStringConvertible {
             return "Failed to create URL from components: \(components)"
             
         case .noClientId:
-            return "Client id not set"
+            return "error_auth_noClientId".localized
         case .noClientSecret:
-            return "Client secret not set"
+            return "error_auth_noClientSecret".localized
         case .noRedirectURL:
-            return "Redirect URL not set"
+            return "error_auth_noRedirectURL".localized
         case .noUsername:
-            return "No username"
+            return "error_auth_noUsername".localized
         case .noPassword:
-            return "No password"
+            return "error_auth_noPassword".localized
         case .alreadyAuthorizing:
-            return "The client is already authorizing, wait for it to finish or abort authorization before trying again"
+            return "error_auth_alreadyAuthorizing".localized
         case .noAuthorizationContext:
-            return "No authorization context present"
+            return "error_auth_noAuthorizationContext".localized
         case .invalidAuthorizationContext:
-            return "Invalid authorization context"
+            return "error_auth_invalidAuthorizationContext".localized
         case .invalidRedirectURL(let url):
-            return "Invalid redirect URL: \(url)"
+            return String(format: "error_auth_invalidRedirectURL".localized, url)
         case .noRefreshToken:
-            return "I don't have a refresh token, not trying to refresh"
+            return "error_auth_noRefreshToken".localized
             
         case .noRegistrationURL:
-            return "No registration URL defined"
+            return "error_auth_noRegistrationURL".localized
             
         case .notUsingTLS:
-            return "You MUST use HTTPS/SSL/TLS"
+            return "error_auth_notUsingTLS".localized
         case .unableToOpenAuthorizeURL:
-            return "Cannot open authorize URL"
+            return "error_auth_unableToOpenAuthorizeURL".localized
         case .invalidRequest:
-            return "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed."
+            return "error_auth_invalidRequest".localized
         case .requestCancelled:
-            return "The request has been cancelled"
+            return "error_auth_requestCancelled".localized
         case .noTokenType:
-            return "No token type received, will not use the token"
+            return "error_auth_noTokenType".localized
         case .unsupportedTokenType(let message):
             return message
         case .noDataInResponse:
-            return "No data in the response"
+            return "error_auth_noDataInResponse".localized
         case .prerequisiteFailed(let message):
             return message
         case .missingState:
-            return "The state parameter was missing in the response"
+            return "error_auth_missingState".localized
         case .invalidState:
-            return "The state parameter did not check out"
+            return "error_auth_invalidState".localized
         case .jsonParserError:
-            return "Error parsing JSON"
+            return "error_auth_jsonParserError".localized
         case .utf8EncodeError:
-            return "Failed to UTF-8 encode the given string"
+            return "error_auth_utf8EncodeError".localized
         case .utf8DecodeError:
-            return "Failed to decode given data as a UTF-8 string"
+            return "error_auth_utf8DecodeError".localized
             
         case .unauthorizedClient:
-            return "The client is not authorized to request an access token using this method."
+            return "error_auth_unauthorizedClient".localized
         case .forbidden:
-            return "Forbidden"
+            return "error_auth_forbidden".localized
         case .wrongUsernamePassword:
-            return "The username or password is incorrect"
+            return "error_auth_wrongUsernamePassword".localized
         case .accessDenied:
-            return "The resource owner or authorization server denied the request."
+            return "error_auth_accessDenied".localized
         case .unsupportedResponseType:
-            return "The authorization server does not support obtaining an access token using this method."
+            return "error_auth_unsupportedResponseType".localized
         case .invalidScope:
-            return "The requested scope is invalid, unknown, or malformed."
+            return "error_auth_invalidScope".localized
         case .serverError:
-            return "The authorization server encountered an unexpected condition that prevented it from fulfilling the request."
+            return "error_auth_serverError".localized
         case .temporarilyUnavailable:
-            return "The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server."
+            return "error_auth_temporarilyUnavailable".localized
         case .responseError(let message):
             return message
         }
