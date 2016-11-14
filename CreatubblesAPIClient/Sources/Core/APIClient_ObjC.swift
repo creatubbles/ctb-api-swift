@@ -830,9 +830,9 @@ extension APIClient
         }
     }
     
-    public func _userAvatarUpdate(userId: String, data: UpdateAvatarData, completion: ((NSError?) -> (Void))?) -> RequestHandler
+    public func _updateUserAvatar(userId: String, data: UpdateAvatarData, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
-        return userAvatarUpdate(userId: userId, data: data)
+        return updateUserAvatar(userId: userId, data: data)
         {
             (error) -> (Void) in
             completion?(APIClient.errorTypeToNSError(error))

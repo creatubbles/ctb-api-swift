@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserAvatarUpdateResponseHandler: ErrorResponseHandler
+class UpdateUserAvatarResponseHandler: ErrorResponseHandler
 {
 
 }

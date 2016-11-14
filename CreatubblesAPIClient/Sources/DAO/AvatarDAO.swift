@@ -27,8 +27,8 @@ class AvatarDAO: NSObject
     
     open func updateUserAvatar(userId: String, data: UpdateAvatarData, completion: ErrorClosure?) -> RequestHandler
     {
-        let request = UserAvatarUpdateRequest(userId: userId, data: data)
-        let handler = UserAvatarUpdateResponseHandler(completion: completion)
+        let request = UpdateUserAvatarRequest(userId: userId, data: data)
+        let handler = UpdateUserAvatarResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
 }

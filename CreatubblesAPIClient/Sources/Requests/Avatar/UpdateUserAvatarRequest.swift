@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserAvatarUpdateRequest: Request
+class UpdateUserAvatarRequest: Request
 {
     override var method: RequestMethod  { return .put }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }

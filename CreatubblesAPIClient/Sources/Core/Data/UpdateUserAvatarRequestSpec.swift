@@ -10,7 +10,7 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class UserAvatarUpdateRequestSpec: QuickSpec
+class UpdateUserAvatarRequestSpec: QuickSpec
 {
     override func spec()
     {
@@ -20,7 +20,7 @@ class UserAvatarUpdateRequestSpec: QuickSpec
             {
                 guard let userId = TestConfiguration.testUserIdentifier
                     else { return }
-                let request = UserAvatarUpdateRequest(userId: userId, data: UpdateAvatarData())
+                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
                 expect(request.endpoint).to(equal("users/\(userId)/user_avatar"))
             }
             
@@ -29,7 +29,7 @@ class UserAvatarUpdateRequestSpec: QuickSpec
                 guard let userId = TestConfiguration.testUserIdentifier
                     else { return }
                 
-                let request = UserAvatarUpdateRequest(userId: userId, data: UpdateAvatarData())
+                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
                 expect(request.method).to(equal(RequestMethod.put))
             }
         }
