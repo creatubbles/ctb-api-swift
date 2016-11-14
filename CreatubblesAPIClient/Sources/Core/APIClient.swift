@@ -727,7 +727,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return avatarDAO.getSuggestedAvatars(completion: completion)
     }
     
-    open func userAvatarUpdate(userId: String, data: UpdateAvatarData, completion: ErrorClosure?) -> RequestHandler
+    open func updateUserAvatar(userId: String, data: UpdateAvatarData, completion: ErrorClosure?) -> RequestHandler
     {
         return avatarDAO.updateUserAvatar(userId: userId, data: data, completion: completion)
     }

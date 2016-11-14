@@ -10,11 +10,11 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class UserAvatarUpdateResponseHandlerSpec: QuickSpec
+class UpdateUserAvatarResponseHandlerSpec: QuickSpec
 {
     override func spec()
     {
-        describe("UserAvatarUpdate response handler")
+        describe("UpdateUserAvatar response handler")
         {
             let data = UpdateAvatarData()
             data.avatarCreationIdentifier = TestConfiguration.testCreationIdentifier
@@ -23,14 +23,14 @@ class UserAvatarUpdateResponseHandlerSpec: QuickSpec
                 guard let userId = TestConfiguration.testUserIdentifier
                 else { return }
                 
-                let request = UserAvatarUpdateRequest(userId: userId, data: data)
+                let request = UpdateUserAvatarRequest(userId: userId, data: data)
                 
                 let requestSender = TestComponentsFactory.requestSender
                 requestSender.logout()
                 waitUntil(timeout: 20)
                 {
                     done in
-                    requestSender.send(request, withResponseHandler: UserAvatarUpdateResponseHandler()
+                    requestSender.send(request, withResponseHandler: UpdateUserAvatarResponseHandler()
                     {
                         (error) -> (Void) in
                         expect(error).notTo(beNil())
@@ -43,7 +43,7 @@ class UserAvatarUpdateResponseHandlerSpec: QuickSpec
                 guard let userId = TestConfiguration.testUserIdentifier
                 else { return }
 
-                let request = UserAvatarUpdateRequest(userId: userId, data: data)
+                let request = UpdateUserAvatarRequest(userId: userId, data: data)
                 
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 waitUntil(timeout: 20)
@@ -53,7 +53,7 @@ class UserAvatarUpdateResponseHandlerSpec: QuickSpec
                     {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler: UserAvatarUpdateResponseHandler()
+                        sender.send(request, withResponseHandler: UpdateUserAvatarResponseHandler()
                         {
                             (error) -> (Void) in
                             expect(error).to(beNil())
