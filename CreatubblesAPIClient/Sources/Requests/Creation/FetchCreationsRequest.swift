@@ -60,7 +60,7 @@ class FetchCreationsRequest: Request
     fileprivate let recommendedUserId: String?
     fileprivate let partnerApplicationId: String?
     
-    init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: SortOrder?, keyword: String?, partnerApplicationId: String?, onlyPublic: Bool)
+    init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: SortOrder?, keyword: String?, partnerApplicationId: String? = nil, onlyPublic: Bool)
     {
         self.page = page
         self.perPage = perPage

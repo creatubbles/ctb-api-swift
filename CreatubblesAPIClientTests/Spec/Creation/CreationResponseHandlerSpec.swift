@@ -102,7 +102,7 @@ class CreationResponseHandlerSpec: QuickSpec
                 let partnerApplicationId = TestConfiguration.partnerApplicationId
                 else { return }
                 
-                let request = FetchCreationsRequest(page: 1, perPage: 10, partnerApplicationId: partnerApplicationId)
+                let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .recent, keyword: nil, partnerApplicationId: partnerApplicationId, onlyPublic: true)
                 let sender =  TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
