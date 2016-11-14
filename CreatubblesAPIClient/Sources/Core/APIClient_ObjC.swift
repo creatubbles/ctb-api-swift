@@ -375,9 +375,9 @@ extension APIClient
         }
     }
     
-    public func _getCreations(_ galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
+    public func _getCreations(_ galleryId: String, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder, partnerApplicationId: String?, onlyPublic: Bool, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        return getCreations(galleryId: galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, onlyPublic: onlyPublic)
+        return getCreations(galleryId: galleryId, userId: userId, keyword: keyword, pagingData: pagingData, sortOrder: sortOrder, partnerApplicationId: partnerApplicationId, onlyPublic: onlyPublic)
         {
             (creations, pInfo, error) -> (Void) in
             (completion?(creations, pInfo, APIClient.errorTypeToNSError(error)))!
@@ -419,15 +419,6 @@ extension APIClient
             completion?(creations, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
-    
-    public func _getCreationsByPartnerApplication(partnerApplicationId: String, pagingData: PagingData?, completion: ((Array<Creation>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
-    {
-        return getCreationsByPartnerApplication(partnerApplicationId: partnerApplicationId, pagingData: pagingData)
-        {
-            (creations, pInfo, error) -> (Void) in
-            completion?(creations, pInfo, APIClient.errorTypeToNSError(error))
-        }
-    }
 
     public func _editCreation(creationId: String, data: EditCreationData, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
@@ -449,9 +440,9 @@ extension APIClient
     }
     
     //MARK: - Batch fetching
-    public func _getCreationsInBatchMode(_ galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, NSError?) -> (Void))?) -> RequestHandler
+    public func _getCreationsInBatchMode(_ galleryId: String?, userId: String?, keyword: String?, partnerApplicationId: String?, sortOrder: SortOrder, onlyPublic: Bool, completion: ((Array<Creation>?, NSError?) -> (Void))?) -> RequestHandler
     {
-        return getCreationsInBatchMode(galleryId: galleryId, userId: userId, keyword: keyword, sortOrder: sortOrder, onlyPublic: onlyPublic)
+        return getCreationsInBatchMode(galleryId: galleryId, userId: userId, keyword: keyword, partnerApplicationId: partnerApplicationId, sortOrder: sortOrder, onlyPublic: onlyPublic)
         {
             (creations, error) -> (Void) in
             (completion?(creations, APIClient.errorTypeToNSError(error)))!
