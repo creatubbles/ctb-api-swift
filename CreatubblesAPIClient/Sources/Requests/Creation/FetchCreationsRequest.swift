@@ -60,7 +60,7 @@ class FetchCreationsRequest: Request
     fileprivate let recommendedUserId: String?
     fileprivate let partnerApplicationId: String?
     
-    init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: SortOrder?, keyword: String?, onlyPublic: Bool)
+    init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: SortOrder?, keyword: String?, partnerApplicationId: String? = nil, onlyPublic: Bool)
     {
         self.page = page
         self.perPage = perPage
@@ -72,7 +72,7 @@ class FetchCreationsRequest: Request
         self.creationId = nil
         self.recommendedUserId = nil
         self.recommendedCreationId = nil
-        self.partnerApplicationId = nil
+        self.partnerApplicationId = partnerApplicationId
     }
     
     init(creationId: String)
@@ -118,21 +118,6 @@ class FetchCreationsRequest: Request
         self.recommendedUserId = recommendedUserId
         self.recommendedCreationId = nil
         self.partnerApplicationId = nil
-    }
-    
-    init(page: Int?, perPage: Int?, partnerApplicationId: String)
-    {
-        self.page = page
-        self.perPage = perPage
-        self.galleryId = nil
-        self.userId = nil
-        self.sort = nil
-        self.keyword = nil
-        self.onlyPublic = true
-        self.creationId = nil
-        self.recommendedUserId = nil
-        self.recommendedCreationId = nil
-        self.partnerApplicationId = partnerApplicationId
     }
     
     func prepareParametersDictionary() -> Dictionary<String, AnyObject>

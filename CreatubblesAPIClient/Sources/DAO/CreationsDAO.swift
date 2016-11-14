@@ -65,16 +65,9 @@ class CreationsDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCreationsByPartnerApplication(partnerApplicationId: String, pagingData: PagingData?, completion: CreationsClosure?) -> RequestHandler
+    func getCreations(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, partnerApplicationId: String?, onlyPublic: Bool, completion: CreationsClosure?) -> RequestHandler
     {
-        let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, partnerApplicationId: partnerApplicationId)
-        let handler = FetchCreationsResponseHandler(completion: completion)
-        return requestSender.send(request, withResponseHandler: handler)
-    }
-    
-    func getCreations(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsClosure?) -> RequestHandler
-    {
-        let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, galleryId: galleryId, userId: userId, sort: sortOrder, keyword: keyword, onlyPublic: onlyPublic)
+        let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, galleryId: galleryId, userId: userId, sort: sortOrder, keyword: keyword, partnerApplicationId: partnerApplicationId, onlyPublic: onlyPublic)
         let handler = FetchCreationsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
@@ -102,9 +95,9 @@ class CreationsDAO
     }
     
     //MARK: BatchMode
-    func getCreationsInBatchMode(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
+    func getCreationsInBatchMode(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, partnerApplicationId: String?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
     {
         let fetcher = CreationsBatchFetcher(requestSender: requestSender)
-        return fetcher.fetch(userId, galleryId: galleryId, keyword: keyword, sort: sortOrder, onlyPublic: onlyPublic, completion: completion)
+        return fetcher.fetch(userId, galleryId: galleryId, keyword: keyword, partnerApplicationId: partnerApplicationId, sort: sortOrder, onlyPublic: onlyPublic, completion: completion)
     }
 }
