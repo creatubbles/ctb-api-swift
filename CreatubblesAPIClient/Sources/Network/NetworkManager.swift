@@ -22,15 +22,19 @@ class NetworkManager: NSObject {
         self.settings = settings
     }
     
-    func dataTask(request: Request, completion: @escaping (_ success: Bool, _ object: AnyObject?) -> ()) {
+    func dataTask(request: Request, completion: @escaping (_ response: AnyObject?, _ error: Error?) -> ()) {
         session.dataTask(with: clientURLRequest(request: request)) { (data, response, error) -> Void in
             if let data = data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])
                 if let response = response as? HTTPURLResponse , 200...299 ~= response.statusCode {
-                    completion(true, json as AnyObject?)
+                    completion(json as AnyObject?, nil)
                 } else {
-                    completion(false, json as AnyObject?)
+                    let error = APIClientError.invalidServerResponseError
+                    completion(json as AnyObject?, error)
                 }
+            } else {
+                let error = APIClientError.missingServerResponseError
+                completion(nil, error)
             }
         }.resume()
     }
