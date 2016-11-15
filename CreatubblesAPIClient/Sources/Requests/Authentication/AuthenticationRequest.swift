@@ -34,7 +34,11 @@ class AuthenticationRequest: Request {
             params["password"] = password as AnyObject?
         }
         
-        params["grant_type"] = "password" as AnyObject?
+        if username != nil && password != nil {
+            params["grant_type"] = "password" as AnyObject?
+        } else {
+            params["grant_type"] = "client_credentials" as AnyObject?
+        }
         params["client_id"] = settings.appId as AnyObject?
         params["client_secret"] = settings.appSecret as AnyObject?
         
