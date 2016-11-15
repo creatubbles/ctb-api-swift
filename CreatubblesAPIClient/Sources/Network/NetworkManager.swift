@@ -22,15 +22,25 @@ class NetworkManager: NSObject {
         self.settings = settings
     }
     
-    func dataTask(request: Request, completion: @escaping (_ success: Bool, _ object: AnyObject?) -> ()) {
-        session.dataTask(with: clientURLRequest(request: request)) { (data, response, error) -> Void in
+    func dataTask(request: Request, completion: @escaping (_ response: AnyObject?, _ error: APIClientError?) -> ()) {
+        let urlRequest = clientURLRequest(request: request)
+        
+        Logger.log.debug("cURL: \(urlRequest.cURLRepresentation(session: self.session))")
+        session.dataTask(with: urlRequest) { (data, response, error) -> Void in
             if let data = data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])
                 if let response = response as? HTTPURLResponse , 200...299 ~= response.statusCode {
-                    completion(true, json as AnyObject?)
+                    
+                    let err: APIClientError? = error == nil ? nil : ErrorTransformer.errorFromNSError(error! as NSError)
+                    completion(json as AnyObject?, err)
                 } else {
-                    completion(false, json as AnyObject?)
+                    
+                    let err: APIClientError? = error == nil ? APIClientError.invalidServerResponseError : ErrorTransformer.errorFromNSError(error! as NSError)
+                    completion(json as AnyObject?, err)
                 }
+            } else {
+                let err: APIClientError? = error == nil ? APIClientError.missingServerResponseError : ErrorTransformer.errorFromNSError(error! as NSError)
+                completion(nil, err)
             }
         }.resume()
     }

@@ -36,6 +36,8 @@ extension APIClientError
     public static let DefaultSource: String = "creatubbles-apiclient-default-source"
     public static let DefaultDetail: String = "creatubbles-apiclient-default-detail"
     public static let DefaultAuthenticationCode:   String = "authentication-error"
+    public static let InvalidResponseDataCode:   String = "invalid-response-error"
+    public static let MissingResponseDataCode:   String = "missing-response-error"
 }
 
 //MARK: Error codes
@@ -44,6 +46,8 @@ extension APIClientError
     public static let UnknownStatus: Int = -6001
     public static let LoginStatus: Int = -6002
     public static let UploadCancelledStatus: Int = -6003
+    public static let MissingResponseDataStatus: Int = -6004
+    public static let InvalidResponseDataStatus: Int = -6005
 }
 
 //  For error documentation, please check:
@@ -97,6 +101,24 @@ extension APIClientError
                               title:  "error_upload_cancelled_title".localized,
                               source: APIClientError.DefaultSource,
                               detail: "error_upload_cancelled_detail".localized)
+    }
+    
+    class var missingServerResponseError: APIClientError
+    {
+        return APIClientError(status: APIClientError.MissingResponseDataStatus,
+                              code:   APIClientError.MissingResponseDataCode,
+                              title:  "error_missing_response_title".localized,
+                              source: APIClientError.DefaultSource,
+                              detail: "error_missing_response_detail".localized)
+    }
+    
+    class var invalidServerResponseError: APIClientError
+    {
+        return APIClientError(status: APIClientError.InvalidResponseDataStatus,
+                              code:   APIClientError.InvalidResponseDataCode,
+                              title:  "error_invalid_response_title".localized,
+                              source: APIClientError.DefaultSource,
+                              detail: "error_invalid_response_detail".localized)
     }
     
     static func genericError(_ status: Int? = nil, code: String? = nil, title: String? = nil, source: String? = nil, detail: String? = nil, domain: String? = nil) -> APIClientError
