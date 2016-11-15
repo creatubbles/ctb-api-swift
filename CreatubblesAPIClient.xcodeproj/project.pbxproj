@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		080135391D353F9A0054DAB0 /* SwitchUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080135381D353F9A0054DAB0 /* SwitchUserRequest.swift */; };
 		0801353B1D353FF90054DAB0 /* SwitchUserResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0801353A1D353FF90054DAB0 /* SwitchUserResponseHandler.swift */; };
+		081024CC1DDB24A9001A2CF8 /* URLRequest+CURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081024CB1DDB24A9001A2CF8 /* URLRequest+CURL.swift */; };
 		0816F3A81D587CDA0026A40E /* SwitchUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816F3A71D587CDA0026A40E /* SwitchUsersRequest.swift */; };
 		0816F3AA1D587CEB0026A40E /* SwitchUsersResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816F3A91D587CEB0026A40E /* SwitchUsersResponseHandler.swift */; };
 		0816F3AC1D587FC60026A40E /* SwitchUsersRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816F3AB1D587FC60026A40E /* SwitchUsersRequestSpec.swift */; };
@@ -371,6 +372,7 @@
 /* Begin PBXFileReference section */
 		080135381D353F9A0054DAB0 /* SwitchUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserRequest.swift; sourceTree = "<group>"; };
 		0801353A1D353FF90054DAB0 /* SwitchUserResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserResponseHandler.swift; sourceTree = "<group>"; };
+		081024CB1DDB24A9001A2CF8 /* URLRequest+CURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+CURL.swift"; sourceTree = "<group>"; };
 		0816F3A71D587CDA0026A40E /* SwitchUsersRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUsersRequest.swift; sourceTree = "<group>"; };
 		0816F3A91D587CEB0026A40E /* SwitchUsersResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUsersResponseHandler.swift; sourceTree = "<group>"; };
 		0816F3AB1D587FC60026A40E /* SwitchUsersRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUsersRequestSpec.swift; sourceTree = "<group>"; };
@@ -760,6 +762,7 @@
 				08A75A9F1DC238EA007F546D /* AuthenticationError.swift */,
 				08A587401DC34BE100F570C4 /* UploadManager.swift */,
 				08A587421DC34E0200F570C4 /* HTTPHeadersBuilder.swift */,
+				081024CB1DDB24A9001A2CF8 /* URLRequest+CURL.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1855,6 +1858,7 @@
 				18F6E8831D021B6500AAC5FB /* BubblesFetchResponseHandler.swift in Sources */,
 				18290AED1D06E44B000EA216 /* NotificationTextEntity.swift in Sources */,
 				180C97B11C6DEA4100BC682D /* Creation.swift in Sources */,
+				081024CC1DDB24A9001A2CF8 /* URLRequest+CURL.swift in Sources */,
 				18779DF91C69F39D000BFB57 /* Group.swift in Sources */,
 				182A36C71D409602005E01DC /* UserAccountDetails.swift in Sources */,
 				18E6E8711CFF2F24008D7B89 /* Metadata.swift in Sources */,
