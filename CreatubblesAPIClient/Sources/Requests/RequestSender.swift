@@ -54,9 +54,9 @@ class RequestSender: NSObject
     {
         let request = AuthenticationRequest(username: username, password: password, settings: settings)
         
-        self.networkManager.dataTask(request: request) { (success, response) in
+        self.networkManager.dataTask(request: request) { (response, error) in
             DispatchQueue.main.async {
-                if !success {
+                if error != nil {
                     Logger.log.error("Error while login:\(response)")
                     self.networkManager.authClient.accessToken = nil
                     if let err_msg = response?["error_description"] as? String {

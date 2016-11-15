@@ -2,6 +2,10 @@
 "error_auth_failed_detail" = "No more details are available at the moment. Please try again.";
 "error_upload_cancelled_title" = "Upload cancelled";
 "error_upload_cancelled_detail" = "Your creation upload was cancelled. Please re-upload again or add a new creation.";
+"error_invalid_response_title" = "Invalid response";
+"error_invalid_response_detail" = "Response from the server is invalid.";
+"error_missing_response_title" = "Missing response";
+"error_missing_response_detail" = "Response from the server is missing or cannot be parsed.";
 
 "error_auth_invalidURLComponents" = "Failed to create URL from components: %@";
 "error_auth_noClientId" = "Client id not set";
