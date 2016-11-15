@@ -22,8 +22,11 @@ class NetworkManager: NSObject {
         self.settings = settings
     }
     
-    func dataTask(request: Request, completion: @escaping (_ response: AnyObject?, _ error: Error?) -> ()) {
-        session.dataTask(with: clientURLRequest(request: request)) { (data, response, error) -> Void in
+    func dataTask(request: Request, completion: @escaping (_ response: AnyObject?, _ error: APIClientError?) -> ()) {
+        let urlRequest = clientURLRequest(request: request)
+        
+        Logger.log.debug("cURL: \(urlRequest.cURLRepresentation(session: self.session))")
+        session.dataTask(with: urlRequest) { (data, response, error) -> Void in
             if let data = data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])
                 if let response = response as? HTTPURLResponse , 200...299 ~= response.statusCode {
