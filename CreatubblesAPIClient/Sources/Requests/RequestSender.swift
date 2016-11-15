@@ -56,12 +56,18 @@ class RequestSender: NSObject
         
         self.networkManager.dataTask(request: request) { (response, error) in
             DispatchQueue.main.async {
-                if error != nil {
+                if let error = error {
                     Logger.log.error("Error while login:\(response)")
                     self.networkManager.authClient.accessToken = nil
-                    if let err_msg = response?["error_description"] as? String {
+                    
+                    guard let response = response else {
+                        completion?(error)
+                        return
+                    }
+                    
+                    if let err_msg = response["error_description"] as? String {
                         completion?(RequestSender.errorFromLoginError(AuthenticationError.responseError(err_msg)))
-                    } else if let err_code = response?["error"] as? String {
+                    } else if let err_code = response["error"] as? String {
                         completion?(RequestSender.errorFromLoginError(AuthenticationError.fromResponseError(err_code)))
                     }
                     
@@ -104,8 +110,13 @@ class RequestSender: NSObject
     func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler {
         Logger.log.debug("Sending request: \(type(of: request))")
         
-        self.networkManager.dataTask(request: request) { (success, response) in
-            if !success {
+        self.networkManager.dataTask(request: request) { (response, error) in
+            if let error = error {
+                guard let response = response else {
+                    handler.handleResponse(nil, error: error)
+                    return
+                }
+                
                 Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
                 handler.handleResponse(nil, error: ErrorTransformer.errorsFromResponse(response as? Dictionary<String, AnyObject>).first)
             } else {
