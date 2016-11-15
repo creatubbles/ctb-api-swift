@@ -30,14 +30,17 @@ class NetworkManager: NSObject {
             if let data = data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])
                 if let response = response as? HTTPURLResponse , 200...299 ~= response.statusCode {
-                    completion(json as AnyObject?, nil)
+                    
+                    let err: APIClientError? = error == nil ? nil : ErrorTransformer.errorFromNSError(error! as NSError)
+                    completion(json as AnyObject?, err)
                 } else {
-                    let error = APIClientError.invalidServerResponseError
-                    completion(json as AnyObject?, error)
+                    
+                    let err: APIClientError? = error == nil ? APIClientError.invalidServerResponseError : ErrorTransformer.errorFromNSError(error! as NSError)
+                    completion(json as AnyObject?, err)
                 }
             } else {
-                let error = APIClientError.missingServerResponseError
-                completion(nil, error)
+                let err: APIClientError? = error == nil ? APIClientError.missingServerResponseError : ErrorTransformer.errorFromNSError(error! as NSError)
+                completion(nil, err)
             }
         }.resume()
     }
