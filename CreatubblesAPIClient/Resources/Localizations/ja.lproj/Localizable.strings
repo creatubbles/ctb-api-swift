@@ -1,8 +1,11 @@
+"error_invalid_response_detail" = "サーバーからの応答が無効です。";
+"error_missing_response_detail" = "サーバーからの応答がないか、サーバーからの応答をパースできません。";
+"error_missing_response_title" = "応答がありません";
+"error_invalid_response_title" = "無効な応答";
 "error_auth_failed_title" = "認証に失敗しました";
 "error_auth_failed_detail" = "現在その他の詳細情報はご利用いただけません。もう一度お試しください。";
 "error_upload_cancelled_title" = "アップロードがキャンセルされました";
 "error_upload_cancelled_detail" = "あなたの作品のアップロードがキャンセルされました。再度アップロードするか、新しい作品を追加してください。";
-
 "error_auth_invalidURLComponents" = "次のコンポーネントからのURL作成に失敗しました: %@";
 "error_auth_noClientId" = "クライアントIDが設定されていません";
 "error_auth_noClientSecret" = "クライアントの秘密が設定されていません";
@@ -22,7 +25,7 @@
 "error_auth_noTokenType" = "受信されたトークンタイプはありません。トークンを使用しません";
 "error_auth_noDataInResponse" = "応答にデータがありません";
 "error_auth_missingState" = "応答にステートパラメータがありませんでした";
-"error_auth_invalidState" = "ステートパラメータが合致しませんでした";
+"error_auth_invalidState" = "無効なステートパラメータ値";
 "error_auth_jsonParserError" = "JSONのパース中にエラーが発生しました";
 "error_auth_utf8EncodeError" = "指定された文字列のUTF-8暗号化に失敗しました";
 "error_auth_utf8DecodeError" = "指定されたデータをUTF-8文字列として暗号化できませんでした";

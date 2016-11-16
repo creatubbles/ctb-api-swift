@@ -1,8 +1,11 @@
+"error_invalid_response_detail" = "Risposta del server non valida.";
+"error_missing_response_detail" = "Risposta del server mancante o non analizzabile.";
+"error_missing_response_title" = "Risposta mancante";
+"error_invalid_response_title" = "Risposta non valida";
 "error_auth_failed_title" = "Autenticazione non riuscita";
 "error_auth_failed_detail" = "Nessun ulteriore dettaglio disponibile al momento. Riprova.";
 "error_upload_cancelled_title" = "Caricamento annullato";
 "error_upload_cancelled_detail" = "Il caricamento della tua creazione è stato annullato. Riprova o aggiungi una nuova creazione.";
-
 "error_auth_invalidURLComponents" = "Impossibile creare URL dai componenti: %@";
 "error_auth_noClientId" = "ID client non impostato";
 "error_auth_noClientSecret" = "Segreto client non impostato";
