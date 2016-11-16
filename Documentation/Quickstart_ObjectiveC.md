@@ -48,6 +48,19 @@ APIClient *client = [[APIClient alloc] initWithSettings:settings];
 }];
 ```
 
+### Authentication
+To be able to fetch some relevant data you will have to complete authentication process before you execute any other request. You can use a login method described above to achieve it. There is also alternative way to get an access to resources (without passing a username and password) by invoking a `[client _authenticateWithCompletion:...]` method:
+```ObjectiveC
+[client _authenticateWithCompletion:
+^(NSError* error)
+{
+ if(!error)
+ {
+   NSLog(@"Wohoo! We're authorized from Objective-C code!");
+ }
+}];
+```
+
 ### Fetching creators
 To fetch user's creators, use a `[client _getCreators:...]` method:
 ```ObjectiveC

@@ -35,6 +35,14 @@ extension APIClient
         }
     }
     
+    public func _authenticate(completion: ((NSError?) -> (Void))?) -> RequestHandler
+    {
+        return authenticate {
+            (error) -> (Void) in
+            completion?(APIClient.errorTypeToNSError(error))
+        }
+    }
+    
     public func _logout()
     {
         logout()
