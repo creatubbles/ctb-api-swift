@@ -226,7 +226,21 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
                 weakSelf.delegate?.creatubblesAPIClientUserChanged(weakSelf)
             }
         }
-    }   
+    }
+    
+    @discardableResult
+    open func authenticate(completion:ErrorClosure?) -> RequestHandler
+    {
+        
+        return requestSender.authenticate {
+            [weak self](error) -> (Void) in
+            completion?(error)
+            if let weakSelf = self , error == nil
+            {
+                weakSelf.delegate?.creatubblesAPIClientUserChanged(weakSelf)
+            }
+        }
+    }
     
     open func logout()
     {

@@ -49,6 +49,19 @@ client.login("username", password: "password")
 }
 ```
 
+### Authentication
+To be able to fetch some relevant data you will have to complete authentication process before you execute any other request. You can use a login method described above to achieve it. There is also alternative way to get an access to resources (without passing a username and password) by invoking a `authenticate(...)` method:
+```Swift
+client.authenticate
+{
+  (error) -> (Void) in
+  if error != nil
+  {
+    print("Wohoo! We're authorized!")
+  }
+}
+```
+
 ### Fetching creators
 To fetch user’s creators, use the `getCreators(...)` method:
 ```Swift
