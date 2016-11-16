@@ -54,6 +54,18 @@ class RequestSender: NSObject
     {
         let request = AuthenticationRequest(username: username, password: password, settings: settings)
         
+        return excuteAuthenticationRequest(request: request, completion: completion)
+    }
+    
+    @discardableResult
+    func authenticate(completion: ErrorClosure?) -> RequestHandler
+    {
+        let request = AuthenticationRequest(username: nil, password: nil, settings: settings)
+        
+        return excuteAuthenticationRequest(request: request, completion: completion)
+    }
+    
+    fileprivate func excuteAuthenticationRequest(request: AuthenticationRequest, completion: ErrorClosure?) -> RequestHandler {
         self.networkManager.dataTask(request: request) { (response, error) in
             DispatchQueue.main.async {
                 if let error = error {
