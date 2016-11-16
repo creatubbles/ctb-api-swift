@@ -42,10 +42,10 @@ class RequestSender: NSObject
     
     var authenticationToken: String? {
         get {
-            return networkManager.authClient.accessToken
+            return networkManager.authClient.privateAccessToken
         }
         set {
-            networkManager.authClient.accessToken = newValue
+            networkManager.authClient.privateAccessToken = newValue
         }
     }
     
@@ -54,23 +54,32 @@ class RequestSender: NSObject
     {
         let request = AuthenticationRequest(username: username, password: password, settings: settings)
         
-        return excuteAuthenticationRequest(request: request, completion: completion)
+        return excuteAuthenticationRequest(request: request, isPublicAuthentication: false,  completion: completion)
     }
     
     @discardableResult
     func authenticate(completion: ErrorClosure?) -> RequestHandler
     {
-        let request = AuthenticationRequest(username: nil, password: nil, settings: settings)
+        let request = AuthenticationRequest(username: nil,password: nil,settings: settings)
         
-        return excuteAuthenticationRequest(request: request, completion: completion)
+        return excuteAuthenticationRequest(request: request, isPublicAuthentication: true, completion: completion)
     }
     
-    fileprivate func excuteAuthenticationRequest(request: AuthenticationRequest, completion: ErrorClosure?) -> RequestHandler {
+    fileprivate func excuteAuthenticationRequest(request: AuthenticationRequest, isPublicAuthentication: Bool, completion: ErrorClosure?) -> RequestHandler {
         self.networkManager.dataTask(request: request) { (response, error) in
             DispatchQueue.main.async {
                 if let error = error {
                     Logger.log.error("Error while login:\(response)")
-                    self.networkManager.authClient.accessToken = nil
+                    
+                    if isPublicAuthentication
+                    {
+                        self.networkManager.authClient.publicAccessToken = nil
+                    }
+                    else
+                    {
+                        self.networkManager.authClient.privateAccessToken = nil
+                    }
+                    
                     
                     guard let response = response else {
                         completion?(error)
@@ -87,7 +96,15 @@ class RequestSender: NSObject
                 }
                 
                 if let accessToken = response?["access_token"] as? String {
-                    self.networkManager.authClient.accessToken = accessToken
+                    
+                    if isPublicAuthentication
+                    {
+                        self.networkManager.authClient.publicAccessToken = accessToken
+                    }
+                    else
+                    {
+                        self.networkManager.authClient.privateAccessToken = accessToken
+                    }
                 }
                 completion?(nil)
             }
@@ -112,8 +129,9 @@ class RequestSender: NSObject
         networkManager.authClient.logout()
     }
     
-    func isLoggedIn() -> Bool {
-        return networkManager.authClient.accessToken != nil
+    func isLoggedIn() -> Bool
+    {
+        return networkManager.authClient.privateAccessToken != nil
     }
     
     // MARK: - Request sending
