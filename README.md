@@ -34,6 +34,9 @@ or to use development version:
 ```Ruby
  pod 'CreatubblesAPIClient', :git => 'https://github.com/creatubbles/ctb-api-swift.git', :branch => 'develop'
 ```
+## Migration to 0.2.0
+
+Please check out our [Migration Guide](Documentation/Migration_Guide_0.2.0.md) to get more information.
 
 ## QuickStart
 After installation you can start using APIClient. See QuickStart for [Swift](Documentation/Quickstart_Swift.md) or [Objective-C](Documentation/Quickstart_ObjectiveC.md) for first steps with library.
