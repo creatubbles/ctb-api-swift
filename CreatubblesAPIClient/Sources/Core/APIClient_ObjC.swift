@@ -820,9 +820,9 @@ extension APIClient
     }
     
     //MARK: - Avatar
-    public func _getSuggestedAvatars(pagingData: PagingData?, completion: ((Array<AvatarSuggestion>?, NSError?) -> (Void))?) -> RequestHandler
+    public func _getSuggestedAvatars(completion: ((Array<AvatarSuggestion>?, NSError?) -> (Void))?) -> RequestHandler
     {
-        return getSuggestedAvatars(pagingData: pagingData)
+        return getSuggestedAvatars()
             {
                 (suggestedAvatars, error) -> (Void) in
                 completion?(suggestedAvatars, APIClient.errorTypeToNSError(error))
