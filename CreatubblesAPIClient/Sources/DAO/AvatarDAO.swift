@@ -34,9 +34,9 @@ class AvatarDAO: NSObject
         self.requestSender = requestSender
     }
     
-    open func getSuggestedAvatars(pagingData: PagingData?, completion: AvatarSuggestionsClosure?) -> RequestHandler
+    open func getSuggestedAvatars(completion: AvatarSuggestionsClosure?) -> RequestHandler
     {
-        let request = AvatarSuggestionsFetchRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
+        let request = AvatarSuggestionsFetchRequest()
         let handler = AvatarSuggestionsFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }

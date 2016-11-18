@@ -18,7 +18,7 @@ class AvatarSuggestionsFetchResponseHandlerSpec: QuickSpec
         {
             it("Should return error when not logged in")
             {
-                let request = AvatarSuggestionsFetchRequest(page: 1, perPage: 10)
+                let request = AvatarSuggestionsFetchRequest()
                 
                 let requestSender = TestComponentsFactory.requestSender
                 requestSender.logout()
@@ -36,7 +36,8 @@ class AvatarSuggestionsFetchResponseHandlerSpec: QuickSpec
             }
             it("Should return an array of AvatarSuggestion when logged in")
             {
-                let request = AvatarSuggestionsFetchRequest(page: 1, perPage: 10)
+                let request = AvatarSuggestionsFetchRequest()
+
                 let sender = RequestSender(settings: TestConfiguration.settings)
                 waitUntil(timeout: 20)
                 {
