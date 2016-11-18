@@ -18,13 +18,13 @@ class AvatarSuggestionsFetchRequestSpec: QuickSpec
         {
             it("Should have a proper endpoint")
             {
-                let request = AvatarSuggestionsFetchRequest()
+                let request = AvatarSuggestionsFetchRequest(page: 1, perPage: 10)
                 expect(request.endpoint).to(equal("avatar_suggestions"))
             }
             
             it("Should have a proper method")
             {
-                let request = AvatarSuggestionsFetchRequest()
+                let request = AvatarSuggestionsFetchRequest(page: 1, perPage: 10)
                 expect(request.method).to(equal(RequestMethod.get))
             }
         }
