@@ -21,7 +21,6 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
 
 import UIKit
 
@@ -71,7 +70,7 @@ class CreationUploadSession: NSObject, Cancelable
         self.requestSender = requestSender
         self.creationData = data
         self.imageFileName = localIdentifier+"_creation"
-        self.relativeImageFilePath = "creations/"+imageFileName        
+        self.relativeImageFilePath = "creations/"+imageFileName
     }
     
     init(creationUploadSessionEntity: CreationUploadSessionEntity, requestSender: RequestSender)
@@ -118,7 +117,7 @@ class CreationUploadSession: NSObject, Cancelable
             return
         }
         
-        self.error = nil        //MM: Should we clear error when we restart session? 
+        self.error = nil        //MM: Should we clear error when we restart session?
         self.isActive = true
         saveImageOnDisk(nil) { [weak self](error) -> Void in
             if let weakSelf = self {
@@ -134,12 +133,12 @@ class CreationUploadSession: NSObject, Cancelable
                                 
                                 weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                                 
-
-                                    weakSelf.uploadToGallery(error: error, completion: { (error) in
-                                        
+                                
+                                weakSelf.uploadToGallery(error: error, completion: { (error) in
+                                    
                                     weakSelf.error = error
                                     weakSelf.isActive = false
-
+                                    
                                     if let error = error
                                     {
                                         Logger.log.error("Upload \(weakSelf.localIdentifier) finished with error: \(error)")
@@ -157,7 +156,7 @@ class CreationUploadSession: NSObject, Cancelable
                     })
                 })
             }
-        }        
+        }
     }
     
     //MARK: Upload Flow
@@ -173,17 +172,17 @@ class CreationUploadSession: NSObject, Cancelable
             completion(nil)
             return
         }
-        saveCurrentImage()
-        {
-            [weak self](error: Error?) -> Void in
-            if let weakSelf = self
+        storeCreation()
             {
-                if error == nil
+                [weak self](error: Error?) -> Void in
+                if let weakSelf = self
                 {
-                    weakSelf.state = .imageSavedOnDisk
+                    if error == nil
+                    {
+                        weakSelf.state = .imageSavedOnDisk
+                    }
                 }
-            }
-            completion(error)
+                completion(error)
         }
     }
     
@@ -271,29 +270,29 @@ class CreationUploadSession: NSObject, Cancelable
             completion(nil)
             return
         }
-
+        
         currentRequest =  requestSender.send(creationData, uploadData: creationUpload!,
-        progressChanged:
-        {
-            (completedUnitCount, totalUnitCount, fractionCompleted) -> Void in
-            self.delegate?.creationUploadSessionChangedProgress(self, completedUnitCount: completedUnitCount, totalUnitcount: totalUnitCount, fractionCompleted: fractionCompleted)
-        },
-        completion:
-        {
-            [weak self](error) -> Void in
-            if  let weakSelf = self
+                                             progressChanged:
             {
-                if error == nil
+                (completedUnitCount, totalUnitCount, fractionCompleted) -> Void in
+                self.delegate?.creationUploadSessionChangedProgress(self, completedUnitCount: completedUnitCount, totalUnitcount: totalUnitCount, fractionCompleted: fractionCompleted)
+        },
+                                             completion:
+            {
+                [weak self](error) -> Void in
+                if  let weakSelf = self
                 {
-                    weakSelf.state = .imageUploaded
+                    if error == nil
+                    {
+                        weakSelf.state = .imageUploaded
+                    }
+                    else
+                    {
+                        //MM: Failure can be related to expired AWS token. Will update token for safety.
+                        weakSelf.state = .creationAllocated
+                    }
+                    completion(error)
                 }
-                else
-                {
-                    //MM: Failure can be related to expired AWS token. Will update token for safety.
-                    weakSelf.state = .creationAllocated
-                }
-                completion(error)
-            }
         })
     }
     
@@ -349,16 +348,16 @@ class CreationUploadSession: NSObject, Cancelable
         
         let request = GallerySubmissionRequest(galleryId: galleryId, creationId: creation!.identifier)
         let handler = GallerySubmissionResponseHandler()
-        {
-            [weak self](error) -> Void in
-            if let weakSelf = self
             {
-                if error == nil
+                [weak self](error) -> Void in
+                if let weakSelf = self
                 {
-                    weakSelf.state = .submittedToGallery
+                    if error == nil
+                    {
+                        weakSelf.state = .submittedToGallery
+                    }
                 }
-            }
-            completion(error)
+                completion(error)
         }
         currentRequest = requestSender.send(request, withResponseHandler: handler)
     }
@@ -370,15 +369,14 @@ class CreationUploadSession: NSObject, Cancelable
         return paths.first!
     }
     
-    fileprivate func saveCurrentImage(_ completion: (Error?) -> Void)
+    fileprivate func storeCreation(_ completion: ((Error?) -> Void) )
     {
-        if(creationData.dataType != .image)
-        {
-            completion(nil)
-            return
-        }
+        var data: Data!
         
-        let data = UIImageJPEGRepresentation(creationData.image!, 1)!
+        if let creationData = self.creationData.data  { data = creationData }
+        else if let image   = self.creationData.image { data = UIImageJPEGRepresentation(image, 1)! }
+        else if let url     = self.creationData.url   { data = try? Data(contentsOf: url) }
+        
         let url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
         let fileManager = FileManager.default
         
@@ -395,18 +393,25 @@ class CreationUploadSession: NSObject, Cancelable
         }
         if fileManager.fileExists(atPath: url.path)
         {
-            do
-            {
-                try fileManager.removeItem(atPath: url.path)
-            }
+            do { try fileManager.removeItem(atPath: url.path) }
             catch let error
             {
                 completion(error)
             }
         }
-        try? data.write(to: url, options: [.atomic])
-        completion(nil)
+        
+        do
+        {
+            try data.write(to: url, options: [.atomic])
+            completion(nil)
+        }
+        catch let error
+        {
+            print("File save error: \(error)")
+            completion(APIClientError.genericUploadCancelledError as Error)
+        }        
     }
+    
     
     fileprivate func notifyDelegateSessionChanged()
     {
