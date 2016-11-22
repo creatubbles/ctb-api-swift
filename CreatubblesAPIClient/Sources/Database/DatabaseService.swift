@@ -225,7 +225,7 @@ class DatabaseService: NSObject
         
         creationUploadSessionEntity.stateRaw.value = creationUploadSession.state.rawValue
         creationUploadSessionEntity.imageFileName = creationUploadSession.imageFileName
-        creationUploadSessionEntity.relativeImageFilePath = creationUploadSession.relativeImageFilePath
+        creationUploadSessionEntity.relativeImageFilePath = creationUploadSession.relativeFilePath
         creationUploadSessionEntity.creationDataEntity = getNewCreationDataEntityFromCreationData(creationUploadSession.creationData)
         creationUploadSessionEntity.localIdentifier = creationUploadSession.localIdentifier
         

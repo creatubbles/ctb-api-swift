@@ -44,6 +44,9 @@ After installation you can start using APIClient. See QuickStart for [Swift](Doc
 ## Objective-C API Client
 Feel free to use our own CTAPIClient wrapper for your Objective-C projects. You can check it out [here](https://github.com/creatubbles/ctb-api-swift/tree/develop/ObjectiveC_APIClient)
 
+## Changelog
+Detailed information about changes in APIClient are available [here](Documentation/Changelog.md)
+
 ## Contact
 In order to receive your AppId and AppSecret please contact us at <support@creatubbles.com>.
 
