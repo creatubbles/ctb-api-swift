@@ -99,7 +99,7 @@ open class NewCreationData: NSObject
         }
         else if(dataType.rawValue == 2)
         {
-            self.data = try? Data(contentsOf: URL(fileURLWithPath: "\(url)"))
+            self.data = try? Data(contentsOf: url)
         }
     }
     
