@@ -49,7 +49,7 @@ class CreationUploadSession: NSObject, Cancelable
     let localIdentifier: String
     let creationData: NewCreationData
     let imageFileName: String
-    let relativeImageFilePath: String
+    let relativeFilePath: String
     
     fileprivate (set) var state: CreationUploadSessionState
     fileprivate (set) var isActive: Bool
@@ -70,7 +70,7 @@ class CreationUploadSession: NSObject, Cancelable
         self.requestSender = requestSender
         self.creationData = data
         self.imageFileName = localIdentifier+"_creation"
-        self.relativeImageFilePath = "creations/"+imageFileName
+        self.relativeFilePath = "creations/"+imageFileName
     }
     
     init(creationUploadSessionEntity: CreationUploadSessionEntity, requestSender: RequestSender)
@@ -80,14 +80,14 @@ class CreationUploadSession: NSObject, Cancelable
         self.state = creationUploadSessionEntity.state
         self.requestSender = requestSender
         self.imageFileName = creationUploadSessionEntity.imageFileName!
-        self.relativeImageFilePath = creationUploadSessionEntity.relativeImageFilePath!
+        self.relativeFilePath = creationUploadSessionEntity.relativeImageFilePath!
         
         if let creationUploadEntity = creationUploadSessionEntity.creationUploadEntity
         {
             self.creationUpload = CreationUpload(creationUploadEntity: creationUploadEntity)
         }
         
-        let url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
+        let url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
         
         self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, url: url)
         
@@ -377,7 +377,7 @@ class CreationUploadSession: NSObject, Cancelable
         else if let image   = self.creationData.image { data = UIImageJPEGRepresentation(image, 1)! }
         else if let url     = self.creationData.url   { data = try? Data(contentsOf: url) }
         
-        let url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeImageFilePath))
+        let url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
         let fileManager = FileManager.default
         
         if !fileManager.fileExists(atPath: url.path.stringByDeletingLastPathComponent)
