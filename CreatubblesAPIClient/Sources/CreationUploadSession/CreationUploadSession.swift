@@ -64,7 +64,7 @@ class CreationUploadSession: NSObject, Cancelable
     
     init(data: NewCreationData, requestSender: RequestSender)
     {
-        self.localIdentifier = UUID().uuidString;
+        self.localIdentifier = data.localIdentifier ?? UUID().uuidString;
         self.isActive = false
         self.state = .initialized
         self.requestSender = requestSender

@@ -246,6 +246,7 @@ class DatabaseService: NSObject
     {
         let newCreationDataEntity = NewCreationDataEntity()
         
+        newCreationDataEntity.localIdentifier = newCreationData.localIdentifier
         newCreationDataEntity.reflectionText = newCreationData.reflectionText
         newCreationDataEntity.reflectionVideoUrl = newCreationData.reflectionVideoUrl
         newCreationDataEntity.galleryId = newCreationData.galleryId

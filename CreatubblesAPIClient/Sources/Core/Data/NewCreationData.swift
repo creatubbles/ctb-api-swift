@@ -40,7 +40,7 @@ open class NewCreationData: NSObject
     open var image: UIImage?
     open var url: URL?
     open var creationIdentifier: String?
-    
+    open var localIdentifier: String?
     
     open var name: String? = nil
     open var reflectionText: String? = nil
@@ -74,6 +74,7 @@ open class NewCreationData: NSObject
     init(creationDataEntity: NewCreationDataEntity, url: URL)
     {
         self.creationIdentifier = creationDataEntity.creationIdentifier
+        self.localIdentifier = creationDataEntity.localIdentifier
         self.name = creationDataEntity.name
         self.reflectionText = creationDataEntity.reflectionText
         self.reflectionVideoUrl = creationDataEntity.reflectionVideoUrl
