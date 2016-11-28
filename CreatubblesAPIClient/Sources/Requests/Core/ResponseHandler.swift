@@ -27,6 +27,9 @@ import ObjectMapper
 
 class ResponseHandler: NSObject
 {
+    var shouldRecordResponseToFile: Bool?
+    var outputFileName: String?
+    
     func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         
@@ -35,6 +38,28 @@ class ResponseHandler: NSObject
     func executeOnMainQueue(_ closure: @escaping () -> ()) {
         DispatchQueue.main.async { 
             closure()
+        }
+    }
+    
+    func saveResponseToFile(_ response: Dictionary<String, AnyObject>?, error: Error?)
+    {
+        if let shouldRecordResponseToFile = shouldRecordResponseToFile, shouldRecordResponseToFile == true
+        {
+            let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+            let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
+            let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+            if let dirPath          = paths.first
+            {
+                let path = dirPath.stringByAppendingPathComponent(outputFileName!)
+                if let response = response
+                {
+                    NSKeyedArchiver.archiveRootObject(response, toFile: path)
+                }
+                else if let error = error
+                {
+                    NSKeyedArchiver.archiveRootObject(error, toFile: path)
+                }
+            }
         }
     }
 }
