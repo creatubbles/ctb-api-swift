@@ -97,12 +97,12 @@ class BubbleResponseHandlerSpec: QuickSpec
                 {
                     done in
                     requestSender.send(request, withResponseHandler: UpdateBubbleResponseHandler()
-                        {
-                            (bubble, error) -> (Void) in
-                            expect(bubble).to(beNil())
-                            expect(error).notTo(beNil())
-                            done()
-                        })
+                    {
+                        (bubble, error) -> (Void) in
+                        expect(bubble).to(beNil())
+                        expect(error).notTo(beNil())
+                        done()
+                    })
                 }
             }
             

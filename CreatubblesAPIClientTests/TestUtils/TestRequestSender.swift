@@ -30,7 +30,7 @@ class TestRequestSender: RequestSender
     fileprivate let settings: APIClientSettings
     fileprivate var isLoggedIn = false
     
-    override init(settings: APIClientSettings)
+    override init(settings: APIClientSettings, inputFileName: String? = nil)
     {
         self.settings = settings
         super.init(settings: settings)

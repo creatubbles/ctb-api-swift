@@ -30,11 +30,17 @@ class RequestSender: NSObject
     fileprivate var uploadManager: UploadManager
     fileprivate let settings: APIClientSettings
     
-    init(settings: APIClientSettings)
+    fileprivate let shouldUseRecordedResponses = false
+    fileprivate let shouldRecordResponseToFile = true
+    
+    let inputFileName: String?
+    
+    init(settings: APIClientSettings, inputFileName: String? = nil)
     {
         self.settings = settings
         self.networkManager = NetworkManager(settings: settings)
         self.uploadManager = UploadManager(settings: settings)
+        self.inputFileName = inputFileName
         super.init()
     }
     
@@ -140,23 +146,73 @@ class RequestSender: NSObject
     func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler {
         Logger.log.debug("Sending request: \(type(of: request))")
         
-        self.networkManager.dataTask(request: request) { (response, error) in
-            if let error = error {
-                guard let response = response else {
+        handler.shouldRecordResponseToFile = self.shouldRecordResponseToFile
+        
+        if shouldUseRecordedResponses == true
+        {
+            guard let inputFilePath = getInputFilePath()
+            else
+            {
+                let error = APIClientError(status: -6004, code: nil, title: "Missing Response", source: nil, detail: "Response file was not found.")
+                handler.handleResponse(nil, error: error)
+                return RequestHandler(object: request as Cancelable)
+            }
+            
+            if let response = NSKeyedUnarchiver.unarchiveObject(withFile: inputFilePath)
+            {
+                if let error = ErrorTransformer.errorsFromResponse(response as? Dictionary<String, AnyObject>).first
+                {
+                    Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
                     handler.handleResponse(nil, error: error)
-                    return
                 }
-                
-                Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
-                handler.handleResponse(nil, error: ErrorTransformer.errorsFromResponse(response as? Dictionary<String, AnyObject>).first)
-            } else {
-                DispatchQueue.global().async {
-                    handler.handleResponse((response as? Dictionary<String, AnyObject>),error: nil)
+                else
+                {
+                    DispatchQueue.global().async
+                    {
+                        handler.handleResponse((response as? Dictionary<String, AnyObject>),error: nil)
+                    }
+                }
+            }
+
+            
+        }
+        else
+        {
+            self.networkManager.dataTask(request: request) { (response, error) in
+                if let error = error
+                {
+                    guard let response = response else
+                    {
+                        handler.handleResponse(nil, error: error)
+                        return
+                    }
+                    
+                    Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
+                    handler.handleResponse(nil, error: ErrorTransformer.errorsFromResponse(response as? Dictionary<String, AnyObject>).first)
+                }
+                else
+                {
+                    DispatchQueue.global().async {
+                        handler.handleResponse((response as? Dictionary<String, AnyObject>),error: nil)
+                    }
                 }
             }
         }
         
         return RequestHandler(object: request as Cancelable)
+    }
+    
+    func getInputFilePath() -> String?
+    {
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
+        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        if let dirPath          = paths.first,
+           let inputFileName = inputFileName
+        {
+            return dirPath.stringByAppendingPathComponent(inputFileName)
+        }
+        return nil
     }
     
     // MARK: - Creation sending

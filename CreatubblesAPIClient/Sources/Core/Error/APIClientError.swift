@@ -53,14 +53,14 @@ extension APIClientError
 //  For error documentation, please check:
 //  https://partners.creatubbles.com/api/#errors
 //  http://jsonapi.org/format/#error-objects
-open class APIClientError: Error
+open class APIClientError: NSObject, Error, NSCoding
 {    
-    open let status: Int
-    open let code: String
-    open let title: String
-    open let source: String
-    open let detail: String
-    open let domain: String
+    open let status: Int?
+    open let code: String?
+    open let title: String?
+    open let source: String?
+    open let detail: String?
+    open let domain: String?
     
     init(status: Int?, code: String?, title: String?, source: String?, detail: String?, domain: String? = APIClientError.DefaultDomain)
     {
@@ -70,6 +70,7 @@ open class APIClientError: Error
         self.source = source ?? APIClientError.DefaultSource
         self.detail = detail ?? APIClientError.DefaultDetail
         self.domain = APIClientError.DefaultDomain
+        super.init()
     }
     
     init(mapper: ErrorMapper)
@@ -80,6 +81,28 @@ open class APIClientError: Error
         self.source = mapper.source ?? APIClientError.DefaultSource
         self.detail = mapper.detail ?? APIClientError.DefaultDetail
         self.domain = APIClientError.DefaultDomain
+        super.init()
+
+    }
+    
+    public func encode(with aCoder: NSCoder)
+    {
+        aCoder.encode(status, forKey: "nonce")
+        aCoder.encode(code, forKey: "code")
+        aCoder.encode(title, forKey: "title")
+        aCoder.encode(source, forKey: "source")
+        aCoder.encode(detail, forKey: "detail")
+        aCoder.encode(domain, forKey: "domain")
+    }
+    
+    public required init?(coder aDecoder: NSCoder)
+    {
+        self.status = aDecoder.decodeInteger(forKey: "status")
+        self.code = aDecoder.decodeObject(forKey: "code") as? String
+        self.title = aDecoder.decodeObject(forKey: "title") as? String
+        self.source = aDecoder.decodeObject(forKey: "source") as? String
+        self.detail = aDecoder.decodeObject(forKey: "detail") as? String
+        self.domain = aDecoder.decodeObject(forKey: "domain") as? String
     }
 }
 
