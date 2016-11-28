@@ -75,7 +75,9 @@ class RecorderTestSender: RequestSender
         nameComponents.append(contentsOf: request.parameters.map({ "\($0):\($1)"}))
         nameComponents.append("loggedIn:\(isLoggedIn())")
         
-        return nameComponents.joined(separator: "_")
+        nameComponents = [nameComponents.joined(separator: "_")]
+        
+        return String(nameComponents.first!.characters.map { $0 == "/" ? "\\" : $0 })
     }
     
     func getInputFilePathForFileName(fileName: String) -> String?
