@@ -36,31 +36,27 @@ class AvatarSuggestionsFetchResponseHandlerSpec: QuickSpec
         {
             it("Should return error when not logged in")
             {
-                let fileName = "FetchArraySuggestionsRsponseWithoutLogin"
                 let request = AvatarSuggestionsFetchRequest()
                 
-                let requestSender = RequestSender(settings: TestConfiguration.settings, inputFileName: fileName)
+                let requestSender = TestComponentsFactory.requestSender
                 requestSender.logout()
                 waitUntil(timeout: 200)
                 {
                     done in
-                    let responseHandler = AvatarSuggestionsFetchResponseHandler()
+                    requestSender.send(request, withResponseHandler: AvatarSuggestionsFetchResponseHandler()
                     {
                         (avatarSuggestions, error) -> (Void) in
                         expect(avatarSuggestions).to(beNil())
                         expect(error).notTo(beNil())
                         done()
-                    }
-                    responseHandler.outputFileName = fileName
-                    
-                    requestSender.send(request, withResponseHandler: responseHandler)
+                    })
                 }
             }
             it("Should return an array of AvatarSuggestion when logged in")
             {
-                let fileName = "FetchArraySuggestionsRsponseWithLogin"
                 let request = AvatarSuggestionsFetchRequest()
-                let sender = RequestSender(settings: TestConfiguration.settings, inputFileName: fileName)
+                
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 200)
                 {
                     done in
@@ -68,17 +64,14 @@ class AvatarSuggestionsFetchResponseHandlerSpec: QuickSpec
                     {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        
-                        let responseHandler = AvatarSuggestionsFetchResponseHandler()
+                        sender.send(request, withResponseHandler:AvatarSuggestionsFetchResponseHandler()
                         {
                             (avatarSuggestions, error) -> (Void) in
                             expect(avatarSuggestions).notTo(beNil())
                             expect(error).to(beNil())
                             sender.logout()
                             done()
-                        }
-                        responseHandler.outputFileName = fileName
-                        sender.send(request, withResponseHandler:responseHandler)
+                        })
                     }
                 }
             }
