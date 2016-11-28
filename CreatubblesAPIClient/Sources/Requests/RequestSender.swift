@@ -30,8 +30,8 @@ class RequestSender: NSObject
     fileprivate var uploadManager: UploadManager
     fileprivate let settings: APIClientSettings
     
-    fileprivate let shouldUseRecordedResponses = false
-    fileprivate let shouldRecordResponseToFile = true
+    fileprivate let shouldUseRecordedResponses = true
+    fileprivate let shouldRecordResponseToFile = false
     
     let inputFileName: String?
     
@@ -161,6 +161,11 @@ class RequestSender: NSObject
             if let response = NSKeyedUnarchiver.unarchiveObject(withFile: inputFilePath)
             {
                 if let error = ErrorTransformer.errorsFromResponse(response as? Dictionary<String, AnyObject>).first
+                {
+                    Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
+                    handler.handleResponse(nil, error: error)
+                }
+                else if let error = response as? Error
                 {
                     Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
                     handler.handleResponse(nil, error: error)
