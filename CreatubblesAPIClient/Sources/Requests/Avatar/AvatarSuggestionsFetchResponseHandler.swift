@@ -47,13 +47,6 @@ class AvatarSuggestionsFetchResponseHandler: ResponseHandler
         {
             executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
-        
-        if let shouldRecordResponseToFile = shouldRecordResponseToFile,
-            let _ = outputFileName,
-            shouldRecordResponseToFile == true
-        {
-            saveResponseToFile(response, error: error)
-        }
     }
 
 }

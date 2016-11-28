@@ -30,8 +30,18 @@ class TestComponentsFactory: NSObject
     fileprivate static let useMockSender = false
     fileprivate static let settings = TestConfiguration.settings
     
+    fileprivate static let shouldUseRecordedResponses = false
+    fileprivate static  let shouldRecordResponseToFile = true
+    
     static var requestSender: RequestSender
     {
+        if !shouldUseRecordedResponses && !shouldRecordResponseToFile
+        {
+            return RequestSender(settings: settings)
+        }
+        
+        
+        
         if(useMockSender)
         {
             return TestRequestSender(settings: settings)

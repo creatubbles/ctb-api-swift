@@ -30,8 +30,8 @@ class RequestSender: NSObject
     fileprivate var uploadManager: UploadManager
     fileprivate let settings: APIClientSettings
     
-    fileprivate let shouldUseRecordedResponses = true
-    fileprivate let shouldRecordResponseToFile = false
+    fileprivate let shouldUseRecordedResponses = false
+    fileprivate let shouldRecordResponseToFile = true
     
     let inputFileName: String?
     
