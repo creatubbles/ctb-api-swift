@@ -37,13 +37,6 @@ class ErrorResponseHandler: ResponseHandler
     
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
-        if let shouldRecordResponseToFile = shouldRecordResponseToFile,
-            let _ = outputFileName,
-            shouldRecordResponseToFile == true
-        {
-            saveResponseToFile(response, error: error)
-        }
-        
         executeOnMainQueue { self.completion?( ErrorTransformer.errorFromResponse(response, error: error)) }
     }
 }
