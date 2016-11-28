@@ -26,10 +26,7 @@ import UIKit
 import ObjectMapper
 
 class ResponseHandler: NSObject
-{
-    var shouldRecordResponseToFile: Bool?
-    var outputFileName: String?
-    
+{    
     func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         

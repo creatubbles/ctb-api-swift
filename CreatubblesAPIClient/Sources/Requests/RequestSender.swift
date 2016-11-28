@@ -30,17 +30,11 @@ class RequestSender: NSObject
     fileprivate var uploadManager: UploadManager
     fileprivate let settings: APIClientSettings
     
-    fileprivate let shouldUseRecordedResponses = false
-    fileprivate let shouldRecordResponseToFile = true
-    
-    let inputFileName: String?
-    
-    init(settings: APIClientSettings, inputFileName: String? = nil)
+    init(settings: APIClientSettings)
     {
         self.settings = settings
         self.networkManager = NetworkManager(settings: settings)
         self.uploadManager = UploadManager(settings: settings)
-        self.inputFileName = inputFileName
         super.init()
     }
     
@@ -164,19 +158,6 @@ class RequestSender: NSObject
         }
         
         return RequestHandler(object: request as Cancelable)
-    }
-
-    func getInputFilePath() -> String?
-    {
-        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
-        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
-        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
-        if let dirPath          = paths.first,
-           let inputFileName = inputFileName
-        {
-            return dirPath.stringByAppendingPathComponent(inputFileName)
-        }
-        return nil
     }
     
     // MARK: - Creation sending

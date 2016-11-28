@@ -39,16 +39,9 @@ class TestComponentsFactory: NSObject
         {
             return RequestSender(settings: settings)
         }
-        
-        
-        
-        if(useMockSender)
-        {
-            return TestRequestSender(settings: settings)
-        }
         else
         {
-            return RequestSender(settings: settings)
+            return RecorderTestSender(settings: settings, shouldRecordResponseToFile: shouldRecordResponseToFile, shouldUseRecordedResponses: shouldUseRecordedResponses)
         }
     }
 }

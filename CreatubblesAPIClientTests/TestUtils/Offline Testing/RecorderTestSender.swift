@@ -11,18 +11,28 @@ import UIKit
 
 class RecorderTestSender: RequestSender
 {
-    override func send(_ request: Request, withResponseHandler handler: ResponseHandler, shouldUseRecordedResponses: Bool? = nil, shouldRecordResponseToFile: Bool? = nil) -> RequestHandler
+    let shouldRecordResponseToFile: Bool
+    let shouldUseRecordedResponses: Bool
+    
+    init(settings: APIClientSettings, shouldRecordResponseToFile: Bool, shouldUseRecordedResponses: Bool)
     {
-        let recorderHandler = RecorderResponseHandler(orignalHandler: handler, filenameToSave: filenameForRequest(request: request))
+        self.shouldUseRecordedResponses = shouldUseRecordedResponses
+        self.shouldRecordResponseToFile = shouldRecordResponseToFile
         
-        recorderHandler.shouldRecordResponseToFile = self.shouldRecordResponseToFile
-
+        super.init(settings: settings)
+    }
+    
+    override func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
+    {
+        let fileName = filenameForRequest(request: request)
+        let recorderHandler = RecorderResponseHandler(originalHandler: handler, filenameToSave: fileName, shouldRecordResponseToFile: shouldRecordResponseToFile)
+        
         if shouldUseRecordedResponses == true
         {
-            guard let inputFilePath = getInputFilePath() else
+            guard let inputFilePath = getInputFilePathForFileName(fileName: fileName) else
             {
                 let error = APIClientError(status: -6004, code: nil, title: "Missing Response", source: nil, detail: "Response file was not found.")
-                handler.handleResponse(nil, error: error)
+                recorderHandler.handleResponse(nil, error: error)
                 return RequestHandler(object: request as Cancelable)
             }
 
@@ -31,23 +41,30 @@ class RecorderTestSender: RequestSender
                 if let error = ErrorTransformer.errorsFromResponse(response as? Dictionary<String, AnyObject>).first
                 {
                     Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
-                    handler.handleResponse(nil, error: error)
+                    recorderHandler.handleResponse(nil, error: error)
                 }
                 else if let error = response as? Error
                 {
                     Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
-                    handler.handleResponse(nil, error: error)
+                    recorderHandler.handleResponse(nil, error: error)
                 }
                 else
                 {
                     DispatchQueue.global().async
-                        {
-                            handler.handleResponse((response as? Dictionary<String, AnyObject>),error: nil)
+                    {
+                        recorderHandler.handleResponse((response as? Dictionary<String, AnyObject>),error: nil)
                     }
                 }
             }
         }
-        return super.send(request, withResponseHandler: handler)
+        if shouldRecordResponseToFile == true
+        {
+            return super.send(request, withResponseHandler: recorderHandler)
+        }
+        else
+        {
+            return super.send(request, withResponseHandler: handler)
+        }
     }
     
     private func filenameForRequest(request: Request) -> String
@@ -59,5 +76,17 @@ class RecorderTestSender: RequestSender
         nameComponents.append("loggedIn:\(isLoggedIn())")
         
         return nameComponents.joined(separator: "_")
+    }
+    
+    func getInputFilePathForFileName(fileName: String) -> String?
+    {
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
+        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        if let dirPath          = paths.first
+        {
+            return dirPath.stringByAppendingPathComponent(fileName)
+        }
+        return nil
     }
 }
