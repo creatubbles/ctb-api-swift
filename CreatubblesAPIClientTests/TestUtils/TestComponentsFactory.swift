@@ -31,7 +31,7 @@ class TestComponentsFactory: NSObject
     fileprivate static let settings = TestConfiguration.settings
     
     fileprivate static let shouldUseRecordedResponses = false
-    fileprivate static  let shouldRecordResponseToFile = true
+    fileprivate static let shouldRecordResponseToFile = true
     
     static var requestSender: RequestSender
     {
