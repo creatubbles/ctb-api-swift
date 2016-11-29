@@ -48,7 +48,7 @@ class EditCreationResponseHandlerSpec: QuickSpec
                 let request = EditCreationRequest(identifier: identifier, data: data)
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 20)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)

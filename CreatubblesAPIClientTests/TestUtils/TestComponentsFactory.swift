@@ -29,19 +29,15 @@ class TestComponentsFactory: NSObject
 {
     fileprivate static let settings = TestConfiguration.settings
     
-    //at least one should be false
-    fileprivate static let shouldUseRecordedResponses = true
-    fileprivate static let shouldRecordResponseToFile = false
-    
     static var requestSender: RequestSender
     {
-        if !shouldUseRecordedResponses && !shouldRecordResponseToFile
+        if TestConfiguration.mode == .useAPI
         {
             return RequestSender(settings: settings)
         }
         else
         {
-            return RecorderTestSender(settings: settings, shouldRecordResponseToFile: shouldRecordResponseToFile, shouldUseRecordedResponses: shouldUseRecordedResponses)
+            return RecorderTestSender(settings: settings, shouldRecordResponseToFile: TestConfiguration.mode == .useAPIAndRecord, shouldUseRecordedResponses: TestConfiguration.mode == .useRecordedResponses)
         }
     }
 }

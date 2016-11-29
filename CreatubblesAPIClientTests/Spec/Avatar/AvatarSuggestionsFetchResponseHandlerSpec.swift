@@ -40,7 +40,7 @@ class AvatarSuggestionsFetchResponseHandlerSpec: QuickSpec
                 
                 let requestSender = TestComponentsFactory.requestSender
                 requestSender.logout()
-                waitUntil(timeout: 200)
+                waitUntil(timeout: 20)
                 {
                     done in
                     requestSender.send(request, withResponseHandler: AvatarSuggestionsFetchResponseHandler()
@@ -57,7 +57,7 @@ class AvatarSuggestionsFetchResponseHandlerSpec: QuickSpec
                 let request = AvatarSuggestionsFetchRequest()
                 
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 200)
+                waitUntil(timeout: 20)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
