@@ -36,7 +36,8 @@ class EditGroupResponseHandlerSpec: QuickSpec
         {
             it("Should Edit group when only name is passed")
             {
-                guard let identifier = TestConfiguration.testGroupIdentifier
+                guard let identifier = TestConfiguration.testGroupIdentifier,
+                      let name = TestConfiguration.testEditGroupName
                 else { return }
                 
                 let data = EditGroupData()

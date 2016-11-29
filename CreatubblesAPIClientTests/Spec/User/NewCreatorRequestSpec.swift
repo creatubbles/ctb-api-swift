@@ -75,7 +75,7 @@ class NewCreatorRequestSpec: QuickSpec
             it("Should return correct value after login")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 20)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)

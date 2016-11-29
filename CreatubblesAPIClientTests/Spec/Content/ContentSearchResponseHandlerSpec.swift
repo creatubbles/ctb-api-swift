@@ -73,7 +73,7 @@ class ContentSearchResponseHandlerSpec: QuickSpec
                 {
                     (responseData) -> (Void) in
                     expect(responseData.error).notTo(beNil())
-                    expect(responseData.objects).to(beNil())
+                    expect(responseData.objects).to(beEmpty())
                     expect(responseData.pagingInfo).to(beNil())
                     done()
                 })

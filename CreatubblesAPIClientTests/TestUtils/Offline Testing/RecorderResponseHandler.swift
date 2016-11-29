@@ -12,20 +12,20 @@ import UIKit
 class RecorderResponseHandler: ResponseHandler
 {
     private let originalResponseHandler: ResponseHandler
-    private let outputFileName: String?
+    private let fileToSavePath: String?
     private let shouldRecordResponseToFile: Bool
     
-    init(originalHandler: ResponseHandler, filenameToSave:String, shouldRecordResponseToFile: Bool)
+    init(originalHandler: ResponseHandler, fileToSavePath: String?, shouldRecordResponseToFile: Bool)
     {
         self.originalResponseHandler = originalHandler
-        self.outputFileName = filenameToSave
+        self.fileToSavePath = fileToSavePath
         self.shouldRecordResponseToFile = shouldRecordResponseToFile
     }
     
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
     
-        if let _ = outputFileName,
+        if let _ = fileToSavePath,
            shouldRecordResponseToFile == true
         {
             saveResponseToFile(response, error: error)
@@ -34,28 +34,27 @@ class RecorderResponseHandler: ResponseHandler
         originalResponseHandler.handleResponse(response, error: error)
     }
     
-    func saveResponseToFile(_ response: Dictionary<String, AnyObject>?, error: Error?)
+    private func saveResponseToFile(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
-        if shouldRecordResponseToFile == true
-        {
-            let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
-            let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
-            let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
-            if let dirPath          = paths.first
-            {
-                let path = dirPath.stringByAppendingPathComponent(outputFileName!)
-                if let response = response
-                {
-                    NSKeyedArchiver.archiveRootObject(response, toFile: path)
-                }
-                else if let error = error
-                {
-                    NSKeyedArchiver.archiveRootObject(error, toFile: path)
-                }
-            }
-        }
-    }
-    
-    
+        guard shouldRecordResponseToFile,
+              let path = fileToSavePath
+        else { return }
+        let response: Any = (response ?? error) ?? ""
+        NSKeyedArchiver.archiveRootObject(response, toFile: path)
 
+//        if shouldRecordResponseToFile == true
+//        {
+//            if let response = response,
+//                let fileToSavePath = fileToSavePath
+//            {
+//                NSKeyedArchiver.archiveRootObject(response, toFile: fileToSavePath)
+//            }
+//            else if let error = error,
+//                let fileToSavePath = fileToSavePath
+//            {
+//                NSKeyedArchiver.archiveRootObject(error, toFile: fileToSavePath)
+//            }
+//            else { print("\n\n\n\n\n\n\n\nINVALID PATH IN HANDLER! \n\n\n\n\n\n\n\n\n\n") }
+//        }
+    }
 }

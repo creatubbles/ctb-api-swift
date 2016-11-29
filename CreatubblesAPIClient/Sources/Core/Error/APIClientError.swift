@@ -104,6 +104,8 @@ open class APIClientError: NSObject, Error, NSCoding
         self.detail = aDecoder.decodeObject(forKey: "detail") as? String
         self.domain = aDecoder.decodeObject(forKey: "domain") as? String
     }
+    
+    open override var description: String { return "<APIClienError> Code:\(code); Status:\(status); Detail: \(detail); Title: \(title)" }
 }
 
 extension APIClientError

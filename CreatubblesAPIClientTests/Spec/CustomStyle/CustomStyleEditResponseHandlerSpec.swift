@@ -49,7 +49,7 @@ class CustomStyleEditResponseHandlerSpec: QuickSpec
                 let request = CustomStyleEditRequest(userIdentifier: identifier, data: data)
                 
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 20)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)

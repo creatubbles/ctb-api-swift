@@ -25,18 +25,26 @@ class RecorderTestSender: RequestSender
     override func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
     {
         let fileName = filenameForRequest(request: request)
-        let recorderHandler = RecorderResponseHandler(originalHandler: handler, filenameToSave: fileName, shouldRecordResponseToFile: shouldRecordResponseToFile)
+        let filePath = getInputFilePathForFileName(fileName: fileName)
+        
+        let recorderHandler = RecorderResponseHandler(originalHandler: handler, fileToSavePath: filePath, shouldRecordResponseToFile: shouldRecordResponseToFile)
         
         if shouldUseRecordedResponses == true
         {
-            guard let inputFilePath = getInputFilePathForFileName(fileName: fileName) else
+            let fileManager = FileManager.default
+            
+            //Error when file doesn't exist - otherwise NSKeyedUnarchiver "unarchives" forever
+            
+            guard let filePath = filePath,
+                      fileManager.fileExists(atPath: filePath)
+            else
             {
                 let error = APIClientError(status: -6004, code: nil, title: "Missing Response", source: nil, detail: "Response file was not found.")
                 recorderHandler.handleResponse(nil, error: error)
                 return RequestHandler(object: request as Cancelable)
             }
-
-            if let response = NSKeyedUnarchiver.unarchiveObject(withFile: inputFilePath)
+            
+            if let response = NSKeyedUnarchiver.unarchiveObject(withFile: filePath)
             {
                 if let error = ErrorTransformer.errorsFromResponse(response as? Dictionary<String, AnyObject>).first
                 {
@@ -73,12 +81,13 @@ class RecorderTestSender: RequestSender
         var nameComponents = Array<String>()
         nameComponents.append(request.endpoint)
         nameComponents.append(request.method.rawValue)
-        nameComponents.append(contentsOf: request.parameters.map({ "\($0):\($1)"}))
-        nameComponents.append("loggedIn:\(isLoggedIn())")
+        nameComponents.append(String(String(describing: request.parameters).hashValue))
+        nameComponents.append("loggedIn;\(isLoggedIn())")
         
         nameComponents = [nameComponents.joined(separator: "_")]
         
-        return String(nameComponents.first!.characters.map { $0 == "/" ? "\\" : $0 })
+        var name =  String(nameComponents.first!.characters.map { $0 == "/" ? "." : $0 })
+        return name.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
     func getInputFilePathForFileName(fileName: String) -> String?
@@ -90,6 +99,7 @@ class RecorderTestSender: RequestSender
         {
             return dirPath.stringByAppendingPathComponent(fileName)
         }
+        else { print("\n\n\n\n\n\n\n\nINVALID PATH IN SENDER! \n\n\n\n\n\n\n\n\n\n") }
         return nil
     }
 }
