@@ -36,7 +36,7 @@ class GroupsResponseHandlerSpec: QuickSpec
         {
             it("Should return proper value after logging in")
             {
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in

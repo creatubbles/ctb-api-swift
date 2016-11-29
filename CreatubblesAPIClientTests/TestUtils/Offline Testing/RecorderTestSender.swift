@@ -56,6 +56,7 @@ class RecorderTestSender: RequestSender
                     }
                 }
             }
+            return RequestHandler(object: request as Cancelable)
         }
         if shouldRecordResponseToFile == true
         {

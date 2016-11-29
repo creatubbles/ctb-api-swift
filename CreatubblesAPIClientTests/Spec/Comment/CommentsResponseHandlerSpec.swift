@@ -40,7 +40,7 @@ class CommentsResponseHandlerSpec: QuickSpec
                     else { return }
                 
                 let request = CommentsRequest(creationId: creationId, page: nil, perPage: nil)
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 10)
                 {
@@ -68,8 +68,7 @@ class CommentsResponseHandlerSpec: QuickSpec
                     else { return }
                 
                 let request = CommentsRequest(galleryId: galleryId, page: nil, perPage: nil)
-                //                let sender = TestComponentsFactory.requestSender
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 10)
                 {
@@ -97,8 +96,7 @@ class CommentsResponseHandlerSpec: QuickSpec
                     else { return }
                 
                 let request = CommentsRequest(userId: userId, page: nil, perPage: nil)
-                //                let sender = TestComponentsFactory.requestSender
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 10)
                 {

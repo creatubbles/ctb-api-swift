@@ -39,7 +39,7 @@ class DataUploaderSpec: QuickSpec
 //            {
 //                let path = Bundle(for: type(of: self)).url(forResource:"creatubbles_logo", withExtension: "jpg")
 //                let image = UIImage(contentsOfFile: path!.path)!
-//                let requestSender = RequestSender(settings: TestConfiguration.settings)
+//                let requestSender = TestComponentsFactory.requestSender
 //                let session = CreationUploadSession(data: NewCreationData(image: image, uploadExtension: .jpg), requestSender: requestSender)
 //
 //                waitUntil(timeout: 30)
@@ -61,7 +61,7 @@ class DataUploaderSpec: QuickSpec
 //            it("Should upload video")
 //            {
 //                let path = Bundle(for: type(of: self)).url(forResource:"testVideo", withExtension: "mp4")
-//                let requestSender = RequestSender(settings: TestConfiguration.settings)
+//                let requestSender = TestComponentsFactory.requestSender
 //                let session = CreationUploadSession(data: NewCreationData(url: path!, uploadExtension: .mp4), requestSender: requestSender)
 //                
 //                waitUntil(timeout: 30)
@@ -83,7 +83,7 @@ class DataUploaderSpec: QuickSpec
 //            it("Should upload zip file")
 //            {
 //                let path = Bundle(for: type(of: self)).url(forResource: "test", withExtension: "zip")
-//                let requestSender = RequestSender(settings: TestConfiguration.settings)
+//                let requestSender = TestComponentsFactory.requestSender
 //                guard let data = try? Data(contentsOf: path!)
 //                else
 //                {
@@ -112,7 +112,7 @@ class DataUploaderSpec: QuickSpec
 //            it("Should upload database sessions")
 //            {
 //                let databaseDAO = DatabaseDAO()
-//                let requestSender = RequestSender(settings: TestConfiguration.settings)
+//                let requestSender = TestComponentsFactory.requestSender
 //                
 //                let creationUploadSessions = databaseDAO.fetchAllCreationUploadSessions(requestSender)
 //                
