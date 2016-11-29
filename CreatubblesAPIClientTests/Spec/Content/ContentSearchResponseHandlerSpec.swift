@@ -37,7 +37,7 @@ class ContentSearchResponseHandlerSpec: QuickSpec
             it("Should return recent content after login")
             {
                 let request = ContentSearchRequest(query: "plant", page: 1, perPage: 20)
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 10)
                 {
@@ -63,7 +63,7 @@ class ContentSearchResponseHandlerSpec: QuickSpec
         it("Should return error when not logged in")
         {
             let request = ContentSearchRequest(query: "plant", page: 1, perPage: 20)
-            let sender = RequestSender(settings: TestConfiguration.settings)
+            let sender = TestComponentsFactory.requestSender
             
             sender.logout()
             waitUntil(timeout: 10)

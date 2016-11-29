@@ -27,11 +27,11 @@ import UIKit
 
 class TestComponentsFactory: NSObject
 {
-    fileprivate static let useMockSender = false
     fileprivate static let settings = TestConfiguration.settings
     
-    fileprivate static let shouldUseRecordedResponses = false
-    fileprivate static let shouldRecordResponseToFile = true
+    //at least one should be false
+    fileprivate static let shouldUseRecordedResponses = true
+    fileprivate static let shouldRecordResponseToFile = false
     
     static var requestSender: RequestSender
     {

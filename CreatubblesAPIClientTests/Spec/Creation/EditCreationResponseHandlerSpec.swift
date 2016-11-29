@@ -46,7 +46,7 @@ class EditCreationResponseHandlerSpec: QuickSpec
                 else { return }
                 
                 let request = EditCreationRequest(identifier: identifier, data: data)
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 10)
                 {

@@ -36,7 +36,7 @@ class LandingURLResponseHandlerSpec: QuickSpec
         {
             it("Should return all basic urls when logged in")
             {
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -59,7 +59,7 @@ class LandingURLResponseHandlerSpec: QuickSpec
             
             it("Should return single value when logged in")
             {
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -83,7 +83,7 @@ class LandingURLResponseHandlerSpec: QuickSpec
             
             it("Should return landing url for creation value when logged in")
             {
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -107,7 +107,7 @@ class LandingURLResponseHandlerSpec: QuickSpec
             
             it("Should return landing url for forgotten password when not logged in")
             {
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 
                 waitUntil(timeout: 30)

@@ -38,7 +38,7 @@ class NewGroupResponseHandlerSpec: QuickSpec
             it("Should create new group when only name is passed")
             {
                 let data = NewGroupData(name: "TestAvatarGroupName_"+String(NSDate().timeIntervalSince1970))                                
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -66,7 +66,7 @@ class NewGroupResponseHandlerSpec: QuickSpec
                 let data = NewGroupData(name: "TestAvatarGroupName_"+String(NSDate().timeIntervalSince1970),
                                         avatarCreationIdentifier: creationIdentifier)
                 
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
