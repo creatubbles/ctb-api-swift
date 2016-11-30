@@ -41,20 +41,5 @@ class RecorderResponseHandler: ResponseHandler
         else { return }
         let response: Any = (response ?? error) ?? ""
         NSKeyedArchiver.archiveRootObject(response, toFile: path)
-
-//        if shouldRecordResponseToFile == true
-//        {
-//            if let response = response,
-//                let fileToSavePath = fileToSavePath
-//            {
-//                NSKeyedArchiver.archiveRootObject(response, toFile: fileToSavePath)
-//            }
-//            else if let error = error,
-//                let fileToSavePath = fileToSavePath
-//            {
-//                NSKeyedArchiver.archiveRootObject(error, toFile: fileToSavePath)
-//            }
-//            else { print("\n\n\n\n\n\n\n\nINVALID PATH IN HANDLER! \n\n\n\n\n\n\n\n\n\n") }
-//        }
     }
 }
