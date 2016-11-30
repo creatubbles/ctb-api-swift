@@ -34,8 +34,12 @@ class NewCreatorResponseHandlerSpec: QuickSpec
     {
         describe("New creator response handler")
         {
+            guard let timestamp = TestConfiguration.testTimestamp
+            else
+            {
+                return
+            }
 //            let timestamp = String(Int(round(NSDate().time)))
-            let timestamp = String(Int(round(NSDate().timeIntervalSince1970.truncatingRemainder(dividingBy: 1000))))
             let name = "MMCreator"+timestamp
             let displayName = "MMCreator"+timestamp
             let birthYear = 2000

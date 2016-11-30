@@ -41,7 +41,7 @@ class EditGroupResponseHandlerSpec: QuickSpec
                 else { return }
                 
                 let data = EditGroupData()
-                data.name =  "TestEditGroupName_"+String(NSDate().timeIntervalSince1970)
+                data.name = TestConfiguration.testEditGroupName
                 
                 let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
@@ -69,7 +69,7 @@ class EditGroupResponseHandlerSpec: QuickSpec
                 else { return }
                 
                 let data = EditGroupData()
-                data.name =  "TestEditGroupName_"+String(NSDate().timeIntervalSince1970)
+                data.name =  TestConfiguration.testEditGroupName
                 data.avatarCreationIdentifier = creationIdentifier
                 
                 let sender = TestComponentsFactory.requestSender
