@@ -37,7 +37,7 @@ class TestComponentsFactory: NSObject
         }
         else
         {
-            return RecorderTestSender(settings: settings, shouldRecordResponseToFile: TestConfiguration.mode == .useAPIAndRecord, shouldUseRecordedResponses: TestConfiguration.mode == .useRecordedResponses)
+            return RecorderTestSender(settings: settings)
         }
     }
 }
