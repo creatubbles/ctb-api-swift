@@ -34,7 +34,8 @@ class NewCreatorRequestSpec: QuickSpec
     {
         describe("New creator request")
         {
-            let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(dividingBy: 1000))))
+            guard let timestamp = TestConfiguration.testTimestamp
+            else { return }
             let name = "MMCreator"+timestamp
             let displayName = "MMCreator"+timestamp
             let birthYear = 2000
