@@ -125,7 +125,8 @@ class RequestSender: NSObject
         return APIClientError.genericLoginError
     }
     
-    func logout() {
+    func logout()
+    {
         networkManager.authClient.logout()
     }
     

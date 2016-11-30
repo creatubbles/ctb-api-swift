@@ -11,13 +11,25 @@ import UIKit
 
 class RecorderTestSender: RequestSender
 {
-    let shouldRecordResponseToFile: Bool
-    let shouldUseRecordedResponses: Bool
+    private let shouldRecordResponseToFile: Bool
+    private let shouldUseRecordedResponses: Bool
     
-    init(settings: APIClientSettings, shouldRecordResponseToFile: Bool, shouldUseRecordedResponses: Bool)
+    var isLoggedIn: Bool?
+    
+    override init(settings: APIClientSettings)
     {
-        self.shouldUseRecordedResponses = shouldUseRecordedResponses
-        self.shouldRecordResponseToFile = shouldRecordResponseToFile
+        switch TestConfiguration.mode
+        {
+        case .useAPIAndRecord :
+            self.shouldUseRecordedResponses = false
+            self.shouldRecordResponseToFile = true
+        case .useRecordedResponses :
+            self.shouldUseRecordedResponses = true
+            self.shouldRecordResponseToFile = false
+        default:
+            self.shouldUseRecordedResponses = false
+            self.shouldRecordResponseToFile = false
+        }
         
         super.init(settings: settings)
     }
@@ -82,11 +94,11 @@ class RecorderTestSender: RequestSender
         nameComponents.append(request.endpoint)
         nameComponents.append(request.method.rawValue)
         nameComponents.append(String(String(describing: request.parameters).hashValue))
-        nameComponents.append("loggedIn;\(isLoggedIn())")
+        nameComponents.append("loggedIn;\(self.isLoggedIn)")
         
         nameComponents = [nameComponents.joined(separator: "_")]
         
-        var name =  String(nameComponents.first!.characters.map { $0 == "/" ? "." : $0 })
+        let name =  String(nameComponents.first!.characters.map { $0 == "/" ? "." : $0 })
         return name.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
@@ -100,5 +112,30 @@ class RecorderTestSender: RequestSender
             return dirPath.stringByAppendingPathComponent(fileName)
         }
         return nil
+    }
+    
+    override func login(_ username: String, password: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        if shouldRecordResponseToFile == true
+        {
+            isLoggedIn = true
+        }
+        else if shouldUseRecordedResponses == true
+        {
+            isLoggedIn = true
+            let request = AuthenticationRequest(username: username, password: password, settings: TestConfiguration.settings)
+            completion?(nil)
+            return RequestHandler(object: request as Cancelable)
+        }
+        return super.login(username, password: password, completion: completion)
+    }
+    
+    override func logout()
+    {
+        if shouldRecordResponseToFile == true || shouldUseRecordedResponses == true
+        {
+            isLoggedIn = false
+        }
+        super.logout()
     }
 }

@@ -41,7 +41,7 @@ class EditGroupResponseHandlerSpec: QuickSpec
                 else { return }
                 
                 let data = EditGroupData()
-                data.name = TestConfiguration.testEditGroupName
+                data.name = name
                 
                 let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
