@@ -99,7 +99,6 @@ class RecorderTestSender: RequestSender
         {
             return dirPath.stringByAppendingPathComponent(fileName)
         }
-        else { print("\n\n\n\n\n\n\n\nINVALID PATH IN SENDER! \n\n\n\n\n\n\n\n\n\n") }
         return nil
     }
 }
