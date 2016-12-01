@@ -34,7 +34,7 @@ class NewGalleryRequestSpec: QuickSpec
     {
         describe("New Gallery request")
         {
-            guard let timestamp = TestConfiguration.testTimestamp
+            guard let timestamp = TestConfiguration.newGalleryRequestSpecTestTimestamp
             else { return }
             let name = "MMGallery"+timestamp
             let galleryDescription = "MMGallery"+timestamp

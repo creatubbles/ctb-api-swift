@@ -34,7 +34,7 @@ class NewGalleryResponseHandlerSpec: QuickSpec
     {
         describe("New Gallery response handler")
         {
-            guard let timestamp = TestConfiguration.testTimestamp
+            guard let timestamp = TestConfiguration.newGalleryResponseHandlerSpecTestTimestamp
             else
             {
                 return
