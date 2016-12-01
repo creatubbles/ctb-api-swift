@@ -34,7 +34,7 @@ class NewCreatorResponseHandlerSpec: QuickSpec
     {
         describe("New creator response handler")
         {
-            guard let timestamp = TestConfiguration.testTimestamp
+            guard let timestamp = TestConfiguration.newCreatorResponseHandlerSpecTestTimestamp
             else
             {
                 return
