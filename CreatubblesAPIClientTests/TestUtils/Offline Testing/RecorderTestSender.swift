@@ -1,9 +1,26 @@
 //
-//  RecorderTestSender.swift
+//  APIClientError.swift
 //  CreatubblesAPIClient
 //
-//  Created by Nomtek on 28.11.2016.
-//  Copyright © 2016 Nomtek. All rights reserved.
+//  Copyright (c) 2016 Creatubbles Pte. Ltd.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 //
 
 import UIKit
@@ -11,74 +28,22 @@ import UIKit
 
 class RecorderTestSender: RequestSender
 {
-    private let shouldRecordResponseToFile: Bool
-    private let shouldUseRecordedResponses: Bool
-    
     var isLoggedIn: Bool?
-    
-    override init(settings: APIClientSettings)
-    {
-        switch TestConfiguration.mode
-        {
-        case .useAPIAndRecord :
-            self.shouldUseRecordedResponses = false
-            self.shouldRecordResponseToFile = true
-        case .useRecordedResponses :
-            self.shouldUseRecordedResponses = true
-            self.shouldRecordResponseToFile = false
-        default:
-            self.shouldUseRecordedResponses = false
-            self.shouldRecordResponseToFile = false
-        }
-        
-        super.init(settings: settings)
-    }
     
     override func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
     {
-        let fileName = filenameForRequest(request: request)
-        let filePath = getInputFilePathForFileName(fileName: fileName)
+        let fileName = TestRecorderNameUtils.filenameForRequest(request: request, isLoggedIn: isLoggedIn)
+        let filePath = TestRecorderNameUtils.getInputFilePathForFileName(fileName: fileName)
         
-        let recorderHandler = RecorderResponseHandler(originalHandler: handler, fileToSavePath: filePath, shouldRecordResponseToFile: shouldRecordResponseToFile)
+        let recorderHandler = RecorderResponseHandler(originalHandler: handler, fileToSavePath: filePath, isLoggedIn: isLoggedIn)
         
-        if shouldUseRecordedResponses == true
+        if TestConfiguration.mode == .useRecordedResponses
         {
-            let fileManager = FileManager.default
-            
-            //Error when file doesn't exist - otherwise NSKeyedUnarchiver "unarchives" forever
-            
-            guard let filePath = filePath,
-                      fileManager.fileExists(atPath: filePath)
-            else
-            {
-                let error = APIClientError(status: -6004, code: nil, title: "Missing Response", source: nil, detail: "Response file was not found.")
-                recorderHandler.handleResponse(nil, error: error)
-                return RequestHandler(object: request as Cancelable)
-            }
-            
-            if let response = NSKeyedUnarchiver.unarchiveObject(withFile: filePath)
-            {
-                if let error = ErrorTransformer.errorsFromResponse(response as? Dictionary<String, AnyObject>).first
-                {
-                    Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
-                    recorderHandler.handleResponse(nil, error: error)
-                }
-                else if let error = response as? Error
-                {
-                    Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
-                    recorderHandler.handleResponse(nil, error: error)
-                }
-                else
-                {
-                    DispatchQueue.global().async
-                    {
-                        recorderHandler.handleResponse((response as? Dictionary<String, AnyObject>),error: nil)
-                    }
-                }
-            }
-            return RequestHandler(object: request as Cancelable)
+            let testRecorder = TestRecorder(isLoggedIn: isLoggedIn)
+            return testRecorder.handleRequest(request: request, recorderHandler: recorderHandler)
         }
-        if shouldRecordResponseToFile == true
+        
+        if TestConfiguration.mode == .useAPIAndRecord
         {
             return super.send(request, withResponseHandler: recorderHandler)
         }
@@ -88,39 +53,13 @@ class RecorderTestSender: RequestSender
         }
     }
     
-    private func filenameForRequest(request: Request) -> String
-    {
-        var nameComponents = Array<String>()
-        nameComponents.append(request.endpoint)
-        nameComponents.append(request.method.rawValue)
-        nameComponents.append(String(String(describing: request.parameters).hashValue))
-        nameComponents.append("loggedIn;\(self.isLoggedIn)")
-        
-        nameComponents = [nameComponents.joined(separator: "_")]
-        
-        let name =  String(nameComponents.first!.characters.map { $0 == "/" ? "." : $0 })
-        return name.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-    
-    func getInputFilePathForFileName(fileName: String) -> String?
-    {
-        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
-        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
-        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
-        if let dirPath          = paths.first
-        {
-            return dirPath.stringByAppendingPathComponent(fileName)
-        }
-        return nil
-    }
-    
     override func login(_ username: String, password: String, completion: ErrorClosure?) -> RequestHandler
     {
-        if shouldRecordResponseToFile == true
+        if TestConfiguration.mode == .useAPIAndRecord
         {
             isLoggedIn = true
         }
-        else if shouldUseRecordedResponses == true
+        else if TestConfiguration.mode == .useRecordedResponses
         {
             isLoggedIn = true
             let request = AuthenticationRequest(username: username, password: password, settings: TestConfiguration.settings)
@@ -132,8 +71,7 @@ class RecorderTestSender: RequestSender
     
     override func logout()
     {
-        if shouldRecordResponseToFile == true || shouldUseRecordedResponses == true
-        {
+        if TestConfiguration.mode == .useRecordedResponses || TestConfiguration.mode == .useRecordedResponses        {
             isLoggedIn = false
         }
         super.logout()

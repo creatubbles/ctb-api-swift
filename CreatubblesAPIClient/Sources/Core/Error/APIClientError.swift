@@ -55,12 +55,12 @@ extension APIClientError
 //  http://jsonapi.org/format/#error-objects
 open class APIClientError: NSObject, Error, NSCoding
 {    
-    open let status: Int?
-    open let code: String?
-    open let title: String?
-    open let source: String?
-    open let detail: String?
-    open let domain: String?
+    open let status: Int
+    open let code: String
+    open let title: String
+    open let source: String
+    open let detail: String
+    open let domain: String
     
     init(status: Int?, code: String?, title: String?, source: String?, detail: String?, domain: String? = APIClientError.DefaultDomain)
     {
@@ -87,7 +87,7 @@ open class APIClientError: NSObject, Error, NSCoding
     
     public func encode(with aCoder: NSCoder)
     {
-        aCoder.encode(status, forKey: "nonce")
+        aCoder.encode(status, forKey: "status")
         aCoder.encode(code, forKey: "code")
         aCoder.encode(title, forKey: "title")
         aCoder.encode(source, forKey: "source")
@@ -98,11 +98,11 @@ open class APIClientError: NSObject, Error, NSCoding
     public required init?(coder aDecoder: NSCoder)
     {
         self.status = aDecoder.decodeInteger(forKey: "status")
-        self.code = aDecoder.decodeObject(forKey: "code") as? String
-        self.title = aDecoder.decodeObject(forKey: "title") as? String
-        self.source = aDecoder.decodeObject(forKey: "source") as? String
-        self.detail = aDecoder.decodeObject(forKey: "detail") as? String
-        self.domain = aDecoder.decodeObject(forKey: "domain") as? String
+        self.code = aDecoder.decodeObject(forKey: "code") as! String
+        self.title = aDecoder.decodeObject(forKey: "title") as! String
+        self.source = aDecoder.decodeObject(forKey: "source") as! String
+        self.detail = aDecoder.decodeObject(forKey: "detail") as! String
+        self.domain = aDecoder.decodeObject(forKey: "domain") as! String
     }
     
     open override var description: String { return "<APIClienError> Code:\(code); Status:\(status); Detail: \(detail); Title: \(title)" }
