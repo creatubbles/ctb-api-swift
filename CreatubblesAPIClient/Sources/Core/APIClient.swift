@@ -534,7 +534,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     }
     
     //MARK: - Creation flow
-    open func newCreation(data creationData: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData
+    open func newCreation(data creationData: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData?
     {
         return creationUploadService.uploadCreation(data: creationData, completion: completion)
     }

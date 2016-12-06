@@ -31,7 +31,7 @@ open class PagingInfo: NSObject
     open let totalCount: Int
 
     
-    init(totalPages: Int, totalCount: Int)
+    public init(totalPages: Int, totalCount: Int)
     {
         self.totalPages = totalPages
         self.totalCount = totalCount
