@@ -119,13 +119,15 @@ class CreationUploadService: CreationUploadSessionDelegate
     
     func uploadCreation(data: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData?
     {
+        let session = CreationUploadSession(data: data, requestSender: requestSender)
         if let _ = uploadSessions.filter({ $0.localIdentifier == data.localIdentifier }).first {
-            completion?(nil, APIClientError.duplicatedUploadLocalIdentifierError)
+            let error = APIClientError.duplicatedUploadLocalIdentifierError
+            completion?(nil, error)
+            delegate?.creationUploadService(self, uploadFailed: session, withError: error)
             
             return nil
         }
         
-        let session = CreationUploadSession(data: data, requestSender: requestSender)
         uploadSessions.append(session)
         databaseDAO.saveCreationUploadSessionToDatabase(session)
         session.delegate = self
