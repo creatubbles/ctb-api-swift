@@ -141,12 +141,18 @@ NewCreationData *creationData = [[NewCreationData alloc] initWithUrl:path upload
 ```
 On `NewCreationData` object you can set:
 - name
+- creationIdentifier
+- localIdentifier
 - reflection text
 - reflection video url
 - gallery (gallery identifier)
 - creators (creator identifiers)
 - creation year
 - creation month
+
+The `creationIdentifier` property is responsible for editing an existing creation.
+
+Also please be aware of the usage of `localIdentifier`. It could be useful in you want to improve management process of creations. In this case you will need to make sure that this identifier is unique. `CreatubblesAPIClient` framework returns error if there are more than one creation with the same `localIdentifier` property.
 
 ```ObjectiveC
 NewCreationData *creationData = [[NewCreationData alloc] initWith...];
