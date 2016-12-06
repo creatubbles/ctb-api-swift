@@ -358,6 +358,8 @@
 		21BF68D81C91CDF600BBAB11 /* test.zip in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D61C91CDF600BBAB11 /* test.zip */; };
 		21BF68D91C91CDF600BBAB11 /* testVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */; };
 		21C349931C904B38002972EC /* NewCreationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C349921C904B38002972EC /* NewCreationData.swift */; };
+		21C605101DF6DAAD00BC060F /* TestRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C6050F1DF6DAAD00BC060F /* TestRecorder.swift */; };
+		21C605121DF6DEDD00BC060F /* TestRecorderNameUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C605111DF6DEDD00BC060F /* TestRecorderNameUtils.swift */; };
 		21D15F151DEC85DE00BBFA62 /* RecorderTestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D15F141DEC85DE00BBFA62 /* RecorderTestSender.swift */; };
 		21D15F171DEC866E00BBFA62 /* RecorderResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D15F161DEC866E00BBFA62 /* RecorderResponseHandler.swift */; };
 		445A3A5B1DD29F7400986BBB /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A3A5A1DD29F7400986BBB /* String+Localized.swift */; };
@@ -732,6 +734,8 @@
 		21BF68D61C91CDF600BBAB11 /* test.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = test.zip; sourceTree = "<group>"; };
 		21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = testVideo.mp4; sourceTree = "<group>"; };
 		21C349921C904B38002972EC /* NewCreationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationData.swift; sourceTree = "<group>"; };
+		21C6050F1DF6DAAD00BC060F /* TestRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRecorder.swift; sourceTree = "<group>"; };
+		21C605111DF6DEDD00BC060F /* TestRecorderNameUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRecorderNameUtils.swift; sourceTree = "<group>"; };
 		21D15F141DEC85DE00BBFA62 /* RecorderTestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderTestSender.swift; sourceTree = "<group>"; };
 		21D15F161DEC866E00BBFA62 /* RecorderResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderResponseHandler.swift; sourceTree = "<group>"; };
 		40A50E16F47F77C926108587 /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1487,6 +1491,8 @@
 			children = (
 				21D15F141DEC85DE00BBFA62 /* RecorderTestSender.swift */,
 				21D15F161DEC866E00BBFA62 /* RecorderResponseHandler.swift */,
+				21C6050F1DF6DAAD00BC060F /* TestRecorder.swift */,
+				21C605111DF6DEDD00BC060F /* TestRecorderNameUtils.swift */,
 			);
 			path = "Offline Testing";
 			sourceTree = "<group>";
@@ -2092,6 +2098,7 @@
 				2178B7361D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift in Sources */,
 				18F6E84A1D0219C800AAC5FB /* CommentsRequestSpec.swift in Sources */,
 				1859FAB81D39053D0023A6B6 /* DeleteGroupResponseHandlerSpec.swift in Sources */,
+				21C605121DF6DEDD00BC060F /* TestRecorderNameUtils.swift in Sources */,
 				21D15F171DEC866E00BBFA62 /* RecorderResponseHandler.swift in Sources */,
 				18F6E8481D0218A100AAC5FB /* ContentResponseHandlerSpec.swift in Sources */,
 				213B29F51DCA3936003E7314 /* FetchToybooCreationResponseHandlerSpec.swift in Sources */,
@@ -2159,6 +2166,7 @@
 				217745161DD9C9940012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift in Sources */,
 				18F6E8231D02145600AAC5FB /* CreationPingRequestSpec.swift in Sources */,
 				08BBFE401D7EB491005F1F11 /* FeaturedGalleriesRequestSpec.swift in Sources */,
+				21C605101DF6DAAD00BC060F /* TestRecorder.swift in Sources */,
 				18F6E8131D020F3200AAC5FB /* BubbleRequestSpec.swift in Sources */,
 				083785A11D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift in Sources */,
 				18F6E8461D02189700AAC5FB /* ContentRequestSpec.swift in Sources */,

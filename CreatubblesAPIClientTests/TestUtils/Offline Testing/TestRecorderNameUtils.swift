@@ -26,28 +26,31 @@
 import UIKit
 @testable import CreatubblesAPIClient
 
-class RecorderResponseHandler: ResponseHandler
+class TestRecorderNameUtils
 {
-    private let originalResponseHandler: ResponseHandler
-    private let fileToSavePath: String?
-    private let isLoggedIn: Bool?
-    
-    init(originalHandler: ResponseHandler, fileToSavePath: String?, isLoggedIn: Bool?)
+    class func filenameForRequest(request: Request, isLoggedIn: Bool?) -> String
     {
-        self.originalResponseHandler = originalHandler
-        self.fileToSavePath = fileToSavePath
-        self.isLoggedIn = isLoggedIn
+        var nameComponents = Array<String>()
+        nameComponents.append(request.endpoint)
+        nameComponents.append(request.method.rawValue)
+        nameComponents.append(String(String(describing: request.parameters).hashValue))
+        nameComponents.append("loggedIn;\(isLoggedIn)")
+        
+        nameComponents = [nameComponents.joined(separator: "_")]
+        
+        let name =  String(nameComponents.first!.characters.map { $0 == "/" ? "." : $0 })
+        return name.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
+    class func getInputFilePathForFileName(fileName: String) -> String?
     {
-    
-        if let _ = fileToSavePath
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
+        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        if let dirPath          = paths.first
         {
-            let testRecorder = TestRecorder(isLoggedIn: isLoggedIn)
-            testRecorder.saveResponseToFile(response, fileToSavePath: fileToSavePath, error: error)
+            return dirPath.stringByAppendingPathComponent(fileName)
         }
-        
-        originalResponseHandler.handleResponse(response, error: error)
+        return nil
     }
 }
