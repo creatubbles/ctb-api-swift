@@ -31,7 +31,7 @@ class UsersBatchFetchOperation: ConcurrentOperation
     
     let pagingData: PagingData
     private(set) var users: Array<User>?
-    private var request: CreatorsAndManagersRequest?
+    private var requestHandler: RequestHandler?
     
     init(requestSender: RequestSender,  userId: String, scope: CreatorsAndManagersScopeElement, pagingData: PagingData ,complete: OperationCompleteClosure?)
     {
@@ -47,19 +47,19 @@ class UsersBatchFetchOperation: ConcurrentOperation
     {
         guard isCancelled == false else { return }
 
-        request = CreatorsAndManagersRequest(userId: userId, page: pagingData.page, perPage: pagingData.pageSize, scope: scope)
+        let request = CreatorsAndManagersRequest(userId: userId, page: pagingData.page, perPage: pagingData.pageSize, scope: scope)
         let handler = CreatorsAndManagersResponseHandler()
         {
             [weak self](users, pagingInfo, error) -> (Void) in
             self?.users = users
             self?.finish(error)
         }
-        requestSender.send(request!, withResponseHandler: handler)
+        requestHandler = requestSender.send(request, withResponseHandler: handler)
     }
     
     override func cancel()
     {
-        request?.cancel()
+        requestHandler?.cancel()
         super.cancel()
     }
 }

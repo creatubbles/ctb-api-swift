@@ -36,7 +36,7 @@ class CreationsBatchFetchOperation: ConcurrentOperation
     
     let pagingData: PagingData
     private(set) var creations: Array<Creation>?
-    private var request: FetchCreationsRequest?
+    private var requestHandler: RequestHandler?
     
     init(requestSender: RequestSender, userId: String?, galleryId: String?, keyword: String?, partnerApplicationId: String?, sort:SortOrder?, onlyPublic: Bool, pagingData: PagingData, complete: OperationCompleteClosure?)
     {
@@ -56,19 +56,19 @@ class CreationsBatchFetchOperation: ConcurrentOperation
     {
         guard isCancelled == false else { return }
         
-        request =  FetchCreationsRequest(page: pagingData.page, perPage: pagingData.pageSize, galleryId: galleryId, userId: userId, sort: sort, keyword: keyword, partnerApplicationId: partnerApplicationId, onlyPublic: onlyPublic)
+        let request =  FetchCreationsRequest(page: pagingData.page, perPage: pagingData.pageSize, galleryId: galleryId, userId: userId, sort: sort, keyword: keyword, partnerApplicationId: partnerApplicationId, onlyPublic: onlyPublic)
         let handler = FetchCreationsResponseHandler()
         {
             [weak self](creations, pagingInfo, error) -> (Void) in
             self?.creations = creations
             self?.finish(error)
         }
-        requestSender.send(request!, withResponseHandler: handler)
+        requestHandler = requestSender.send(request, withResponseHandler: handler)
     }
     
     override func cancel()
     {
-        request?.cancel()
+        requestHandler?.cancel()
         super.cancel()
     }
 }

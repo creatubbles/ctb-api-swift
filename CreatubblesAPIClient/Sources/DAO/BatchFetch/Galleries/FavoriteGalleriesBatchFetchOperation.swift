@@ -29,7 +29,7 @@ class FavoriteGalleriesBatchFetchOperation: ConcurrentOperation
     
     let pagingData: PagingData
     private(set) var galleries: Array<Gallery>?
-    private var request: FavoriteGalleriesRequest?
+    private var requestHandler: RequestHandler?
     
     init(requestSender: RequestSender, pagingData: PagingData, complete: OperationCompleteClosure?)
     {
@@ -43,19 +43,19 @@ class FavoriteGalleriesBatchFetchOperation: ConcurrentOperation
     {
         guard isCancelled == false else { return }
 
-        request =  FavoriteGalleriesRequest(page: pagingData.page, perPage: pagingData.pageSize)
+        let request =  FavoriteGalleriesRequest(page: pagingData.page, perPage: pagingData.pageSize)
         let handler = GalleriesResponseHandler()
         {
             [weak self](galleries, pagingInfo, error) -> (Void) in
             self?.galleries = galleries
             self?.finish(error)
         }
-        requestSender.send(request!, withResponseHandler: handler)
+        requestHandler = requestSender.send(request, withResponseHandler: handler)
     }
     
     override func cancel()
     {
-        request?.cancel()
+        requestHandler?.cancel()
         super.cancel()
     }
 }

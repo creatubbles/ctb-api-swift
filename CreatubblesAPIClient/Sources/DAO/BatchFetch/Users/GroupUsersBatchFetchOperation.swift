@@ -30,7 +30,7 @@ class GroupUsersBatchFetchOperation: ConcurrentOperation
     
     let pagingData: PagingData
     private(set) var users: Array<User>?
-    private var request: GroupCreatorsRequest?
+    private var requestHandler: RequestHandler?
     
     init(requestSender: RequestSender,  groupId: String, pagingData: PagingData, complete: OperationCompleteClosure?)
     {
@@ -45,19 +45,19 @@ class GroupUsersBatchFetchOperation: ConcurrentOperation
     {
         guard isCancelled == false else { return }
 
-        request = GroupCreatorsRequest(groupId: groupId,page: pagingData.page, perPage: pagingData.pageSize)
+        let request = GroupCreatorsRequest(groupId: groupId,page: pagingData.page, perPage: pagingData.pageSize)
         let handler = GroupCreatorsResponseHandler()
         {
             [weak self](users, pagingInfo, error) -> (Void) in
             self?.users = users
             self?.finish(error)
         }
-        requestSender.send(request!, withResponseHandler: handler)
+        requestHandler = requestSender.send(request, withResponseHandler: handler)
     }
     
     override func cancel()
     {
-        request?.cancel()
+        requestHandler?.cancel()
         super.cancel()
     }
 }
