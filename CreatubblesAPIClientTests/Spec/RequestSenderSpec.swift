@@ -60,6 +60,8 @@ class RequestSenderSpec: QuickSpec
             
             it("Should throw error with wrong credentials")
             {
+                guard TestConfiguration.mode == .useAPI
+                else { return }
                 let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
