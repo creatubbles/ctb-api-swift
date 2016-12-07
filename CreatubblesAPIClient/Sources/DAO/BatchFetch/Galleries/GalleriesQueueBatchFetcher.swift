@@ -46,14 +46,17 @@ class GalleriesQueueBatchFetcher
         self.errorsByPage = Dictionary<PagingData, APIClientError>()
     }
     
-    func fetch()
+    func fetch() -> RequestHandler
     {
         guard operationQueue == nil
             else
         {
             assert(false) //Fetch should be called only once
-            return
+            return RequestHandler(object: BatchFetchDummyRequestHandler())
         }
+        
+        operationQueue = OperationQueue()
+        operationQueue.maxConcurrentOperationCount = 4
         
         let request =  GalleriesRequest(page: 1, perPage: pageSize, sort: sort, userId: userId)
         let handler = GalleriesResponseHandler()
@@ -73,14 +76,13 @@ class GalleriesQueueBatchFetcher
                 strongSelf.completion?(nil, error)
             }
         }
-        requestSender.send(request, withResponseHandler: handler)
+        
+        let requestHandler = requestSender.send(request, withResponseHandler: handler)
+        return RequestHandler(object: BatchFetchHandler(operationQueue: operationQueue, firstCallRequestHandler: requestHandler))
     }
     
     private func prepareBlockOperations(pagingInfo: PagingInfo)
     {
-        operationQueue = OperationQueue()
-        operationQueue.maxConcurrentOperationCount = 4
-        
         let finishOperation = BlockOperation()
         finishOperation.addExecutionBlock()
         {
