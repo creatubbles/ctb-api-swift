@@ -50,7 +50,8 @@ class OAuth2Client: NSObject
 //        }
 //    }
 //    
-    func logout() {
+    func logout()
+    {
         privateAccessToken = nil
     }
     

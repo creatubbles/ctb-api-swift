@@ -103,26 +103,29 @@ class CreationsQueueBatchFetcher
             }
         }
         
-        for page in 2...pagingInfo.totalPages
+        if pagingInfo.totalPages > 1
         {
-            let pagingData = PagingData(page: page, pageSize: pageSize)
-            let operation = CreationsBatchFetchOperation(requestSender: requestSender, userId: userId, galleryId: galleryId, keyword: keyword, partnerApplicationId: partnerApplicationId, sort: sort, onlyPublic: onlyPublic, pagingData: pagingData)
+            for page in 2...pagingInfo.totalPages
             {
-                [weak self](operation, error) in
-                guard let strongSelf = self,
-                      let operation = operation as? CreationsBatchFetchOperation
-                else { return }
-                if let creations = operation.creations
+                let pagingData = PagingData(page: page, pageSize: pageSize)
+                let operation = CreationsBatchFetchOperation(requestSender: requestSender, userId: userId, galleryId: galleryId, keyword: keyword, partnerApplicationId: partnerApplicationId, sort: sort, onlyPublic: onlyPublic, pagingData: pagingData)
                 {
-                    strongSelf.creationsByPage[operation.pagingData] = creations
+                    [weak self](operation, error) in
+                    guard let strongSelf = self,
+                          let operation = operation as? CreationsBatchFetchOperation
+                    else { return }
+                    if let creations = operation.creations
+                    {
+                        strongSelf.creationsByPage[operation.pagingData] = creations
+                    }
+                    if let error = error as? APIClientError
+                    {
+                        strongSelf.errorsByPage[operation.pagingData] = error
+                    }
                 }
-                if let error = error as? APIClientError
-                {
-                    strongSelf.errorsByPage[operation.pagingData] = error
-                }
+                finishOperation.addDependency(operation)
+                operationQueue.addOperation(operation)
             }
-            finishOperation.addDependency(operation)
-            operationQueue.addOperation(operation)
         }
         
         operationQueue.addOperation(finishOperation)
