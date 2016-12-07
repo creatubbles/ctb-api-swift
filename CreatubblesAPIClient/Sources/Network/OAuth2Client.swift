@@ -27,34 +27,31 @@ import KeychainAccess
 
 class OAuth2Client: NSObject
 {
-//    private let keychain = Keychain(service: "com.creatubbles.access-token")
-//    
-//    var privateAccessToken: String? {
-//        get {
-//            return keychain["access-token"]
-//        }
-//        
-//        set {
-//            keychain["access-token"] = newValue
-//        }
-//    }
-//    
-//    var publicAccessToken: String?
-//        {
-//        get {
-//            return keychain["public-access-token"]
-//        }
-//        
-//        set {
-//            keychain["public-access-token"] = newValue
-//        }
-//    }
-//    
+    private let keychain = Keychain(service: "com.creatubbles.access-token")
+    
+    var privateAccessToken: String? {
+        get {
+            return keychain["access-token"]
+        }
+        
+        set {
+            keychain["access-token"] = newValue
+        }
+    }
+    
+    var publicAccessToken: String?
+        {
+        get {
+            return keychain["public-access-token"]
+        }
+        
+        set {
+            keychain["public-access-token"] = newValue
+        }
+    }
+    
     func logout()
     {
         privateAccessToken = nil
     }
-    
-    var publicAccessToken: String?
-    var privateAccessToken: String?
 }
