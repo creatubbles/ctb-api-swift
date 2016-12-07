@@ -1,5 +1,5 @@
 //
-//  CreationsBatchFetcherSpec.swift
+//  UsersBatchFetcherSpec.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -27,20 +27,20 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class CreationsBatchFetcherSpec: QuickSpec
+class UsersBatchFetcherSpec: QuickSpec
 {
     override func spec()
     {
-        describe("CreationsBatchFetcher")
+        describe("UsersBatchFetcher")
         {
-            it("Should batch fetch creations using operation client")
+            it("Should batch fetch users using operation client")
             {
                 guard TestConfiguration.shoulTestBatchFetchers,
                       let identifier = TestConfiguration.testUserIdentifier
                 else { return }
                 
                 let sender = TestComponentsFactory.requestSender
-                var batchFetcher: CreationsQueueBatchFetcher!
+                var batchFetcher: UsersQueueBatchFetcher!
                 waitUntil(timeout: 200)
                 {
                     done in
@@ -50,19 +50,45 @@ class CreationsBatchFetcherSpec: QuickSpec
                         expect(error).to(beNil())
                         expect(sender.isLoggedIn()).to(beTrue())
                         
-                        let beginTime = CFAbsoluteTimeGetCurrent()
-                        batchFetcher = CreationsQueueBatchFetcher(requestSender: sender, userId: identifier, galleryId: nil, keyword: nil, partnerApplicationId: nil, sort: nil, onlyPublic: false)
+                        batchFetcher = UsersQueueBatchFetcher(requestSender: sender, userId: identifier, scope: .Creators)
                         {
-                            (creations, error) -> (Void) in
-                            expect(creations).notTo(beNil())
-                            expect(creations).notTo(beEmpty())
+                            (users, error) -> (Void) in
+                            expect(users).notTo(beNil())
+                            expect(users).notTo(beEmpty())
                             expect(error).to(beNil())
-                            let endTime = CFAbsoluteTimeGetCurrent()
-                            print("FETCH NEW: \(endTime - beginTime)")
                             done()
                         }
                         batchFetcher.fetch()
+                    })
+                }
+            }
+            
+            it("Should batch fetch group users using operation client")
+            {
+                guard TestConfiguration.shoulTestBatchFetchers,
+                      let identifier = TestConfiguration.testGroupIdentifier
+                else { return }
+                
+                let sender = TestComponentsFactory.requestSender
+                var batchFetcher: GroupUsersQueueBatchFetcher!
+                waitUntil(timeout: 200)
+                {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
+                    {
+                        (error) -> (Void) in
+                        expect(error).to(beNil())
+                        expect(sender.isLoggedIn()).to(beTrue())
                         
+                        batchFetcher = GroupUsersQueueBatchFetcher(requestSender: sender, groupId: identifier)
+                        {
+                            (users, error) -> (Void) in
+                            expect(users).notTo(beNil())
+                            expect(users).notTo(beEmpty())
+                            expect(error).to(beNil())
+                            done()
+                        }
+                        batchFetcher.fetch()
                     })
                 }
             }

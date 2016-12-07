@@ -94,27 +94,30 @@ class GroupUsersQueueBatchFetcher
             }
         }
         
-        for page in 2...pagingInfo.totalPages
+        if pagingInfo.totalPages > 1
         {
-            let pagingData = PagingData(page: page, pageSize: pageSize)
-            let operation = GroupUsersBatchFetchOperation(requestSender: requestSender, groupId: groupId, pagingData: pagingData)
+            for page in 2...pagingInfo.totalPages
             {
-                [weak self](operation, error) in
-                guard let strongSelf = self,
-                      let operation = operation as? GroupUsersBatchFetchOperation
-                else { return }
-                
-                if let users = operation.users
+                let pagingData = PagingData(page: page, pageSize: pageSize)
+                let operation = GroupUsersBatchFetchOperation(requestSender: requestSender, groupId: groupId, pagingData: pagingData)
                 {
-                    strongSelf.objectsByPage[operation.pagingData] = users
+                    [weak self](operation, error) in
+                    guard let strongSelf = self,
+                          let operation = operation as? GroupUsersBatchFetchOperation
+                    else { return }
+                    
+                    if let users = operation.users
+                    {
+                        strongSelf.objectsByPage[operation.pagingData] = users
+                    }
+                    if let error = error as? APIClientError
+                    {
+                        strongSelf.errorsByPage[operation.pagingData] = error
+                    }
                 }
-                if let error = error as? APIClientError
-                {
-                    strongSelf.errorsByPage[operation.pagingData] = error
-                }
+                finishOperation.addDependency(operation)
+                operationQueue.addOperation(operation)
             }
-            finishOperation.addDependency(operation)
-            operationQueue.addOperation(operation)
         }
         
         operationQueue.addOperation(finishOperation)

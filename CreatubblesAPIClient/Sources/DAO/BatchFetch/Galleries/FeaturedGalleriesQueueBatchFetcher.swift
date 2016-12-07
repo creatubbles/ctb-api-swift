@@ -28,19 +28,15 @@ class FeaturedGalleriesQueueBatchFetcher
     private let pageSize = 20
     private let requestSender: RequestSender
     
-    private let userId: String?
-    private let sort:SortOrder?
     private let completion: GalleriesBatchClosure?
     
     private var operationQueue: OperationQueue!
     private var objectsByPage: Dictionary<PagingData, Array<Gallery>>
     private var errorsByPage: Dictionary<PagingData, APIClientError>
     
-    init(requestSender: RequestSender, userId: String?, sort:SortOrder?, completion: GalleriesBatchClosure?)
+    init(requestSender: RequestSender, completion: GalleriesBatchClosure?)
     {
-        self.requestSender = requestSender
-        self.userId = userId
-        self.sort = sort
+        self.requestSender = requestSender        
         self.completion = completion
         self.objectsByPage = Dictionary<PagingData, Array<Gallery>>()
         self.errorsByPage = Dictionary<PagingData, APIClientError>()
@@ -95,27 +91,30 @@ class FeaturedGalleriesQueueBatchFetcher
             }
         }
         
-        for page in 2...pagingInfo.totalPages
+        if pagingInfo.totalPages > 1
         {
-            let pagingData = PagingData(page: page, pageSize: pageSize)
-            let operation = FeaturedGalleriesBatchFetchOperation(requestSender: requestSender, pagingData: pagingData)
+            for page in 2...pagingInfo.totalPages
             {
-                [weak self](operation, error) in
-                guard let strongSelf = self,
-                      let operation = operation as? FeaturedGalleriesBatchFetchOperation
-                else { return }
-                
-                if let galleries = operation.galleries
+                let pagingData = PagingData(page: page, pageSize: pageSize)
+                let operation = FeaturedGalleriesBatchFetchOperation(requestSender: requestSender, pagingData: pagingData)
                 {
-                    strongSelf.objectsByPage[operation.pagingData] = galleries
+                    [weak self](operation, error) in
+                    guard let strongSelf = self,
+                          let operation = operation as? FeaturedGalleriesBatchFetchOperation
+                    else { return }
+                    
+                    if let galleries = operation.galleries
+                    {
+                        strongSelf.objectsByPage[operation.pagingData] = galleries
+                    }
+                    if let error = error as? APIClientError
+                    {
+                        strongSelf.errorsByPage[operation.pagingData] = error
+                    }
                 }
-                if let error = error as? APIClientError
-                {
-                    strongSelf.errorsByPage[operation.pagingData] = error
-                }
+                finishOperation.addDependency(operation)
+                operationQueue.addOperation(operation)
             }
-            finishOperation.addDependency(operation)
-            operationQueue.addOperation(operation)
         }
         
         operationQueue.addOperation(finishOperation)

@@ -95,27 +95,30 @@ class GalleriesQueueBatchFetcher
             }
         }
         
-        for page in 2...pagingInfo.totalPages
+        if pagingInfo.totalPages > 1
         {
-            let pagingData = PagingData(page: page, pageSize: pageSize)
-            let operation = GalleriesBatchFetchOperation(requestSender: requestSender, userId: userId, sort: sort, pagingData: pagingData)
+            for page in 2...pagingInfo.totalPages
             {
-                [weak self](operation, error) in
-                guard let strongSelf = self,
-                      let operation = operation as? GalleriesBatchFetchOperation
-                else { return }
-                
-                if let galleries = operation.galleries
+                let pagingData = PagingData(page: page, pageSize: pageSize)
+                let operation = GalleriesBatchFetchOperation(requestSender: requestSender, userId: userId, sort: sort, pagingData: pagingData)
                 {
-                    strongSelf.objectsByPage[operation.pagingData] = galleries
+                    [weak self](operation, error) in
+                    guard let strongSelf = self,
+                          let operation = operation as? GalleriesBatchFetchOperation
+                    else { return }
+                    
+                    if let galleries = operation.galleries
+                    {
+                        strongSelf.objectsByPage[operation.pagingData] = galleries
+                    }
+                    if let error = error as? APIClientError
+                    {
+                        strongSelf.errorsByPage[operation.pagingData] = error
+                    }
                 }
-                if let error = error as? APIClientError
-                {
-                    strongSelf.errorsByPage[operation.pagingData] = error
-                }
+                finishOperation.addDependency(operation)
+                operationQueue.addOperation(operation)
             }
-            finishOperation.addDependency(operation)
-            operationQueue.addOperation(operation)
         }
         
         operationQueue.addOperation(finishOperation)
