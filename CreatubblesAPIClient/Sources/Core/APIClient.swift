@@ -60,6 +60,8 @@ public typealias UserAccountDetailsClosure = (UserAccountDetails?, APIClientErro
 public typealias PartnerApplicationsClosure = (Array<PartnerApplication>?, APIClientError?) -> (Void)
 public typealias PartnerApplicationClosure = (PartnerApplication?, APIClientError?) -> (Void)
 
+public typealias SearchTagsClosure = (Array<SearchTag>?, APIClientError?) -> (Void)
+
 public typealias AvatarSuggestionsClosure = (Array<AvatarSuggestion>?, APIClientError?) -> (Void)
 
 open class ResponseData<T> {
@@ -175,6 +177,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     fileprivate let activitiesDAO: ActivitiesDAO
     fileprivate let partnerApplicationDAO: PartnerApplicationDAO
     fileprivate let avatarDAO: AvatarDAO
+    fileprivate let searchTagDAO: SearchTagDAO
     
     open weak var delegate: APIClientDelegate?
     
@@ -196,6 +199,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         self.activitiesDAO = ActivitiesDAO(requestSender: requestSender)
         self.partnerApplicationDAO = PartnerApplicationDAO(requestSender: requestSender)
         self.avatarDAO = AvatarDAO(requestSender: requestSender)
+        self.searchTagDAO = SearchTagDAO(requestSender: requestSender)
         
         Logger.setup()
         super.init()
@@ -738,6 +742,12 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     open func updateUserAvatar(userId: String, data: UpdateAvatarData, completion: ErrorClosure?) -> RequestHandler
     {
         return avatarDAO.updateUserAvatar(userId: userId, data: data, completion: completion)
+    }
+    
+    //MARK: - SearchTags
+    open func getSearchTags(completion: SearchTagsClosure?) -> RequestHandler
+    {
+        return searchTagDAO.fetchSearchTags(completion: completion)
     }
     
     //MARK: - Delegate
