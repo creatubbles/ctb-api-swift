@@ -22,9 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
 
-class CreationsQueueBatchFetcher: NSObject
+class CreationsQueueBatchFetcher
 {
     private let pageSize = 20
     private let requestSender: RequestSender
