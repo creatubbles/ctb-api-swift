@@ -48,6 +48,7 @@ extension APIClientError
     public static let UploadCancelledStatus: Int = -6003
     public static let MissingResponseDataStatus: Int = -6004
     public static let InvalidResponseDataStatus: Int = -6005
+    public static let DuplicatedUploadLocalIdentifierStatus: Int = -6006
 }
 
 //  For error documentation, please check:
@@ -98,6 +99,15 @@ extension APIClientError
     {
         return APIClientError(status: APIClientError.UploadCancelledStatus,
                               code:   "upload-cancelled",
+                              title:  "error_upload_cancelled_title".localized,
+                              source: APIClientError.DefaultSource,
+                              detail: "error_upload_cancelled_detail".localized)
+    }
+    
+    class var duplicatedUploadLocalIdentifierError: APIClientError
+    {
+        return APIClientError(status: APIClientError.DuplicatedUploadLocalIdentifierStatus,
+                              code:   "duplicated-upload-local-identifier",
                               title:  "error_upload_cancelled_title".localized,
                               source: APIClientError.DefaultSource,
                               detail: "error_upload_cancelled_detail".localized)
