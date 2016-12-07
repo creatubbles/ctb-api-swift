@@ -392,7 +392,7 @@ extension APIClient
         }
     }
     
-    public func _newCreation(_ creationData: NewCreationData, completion: ((Creation?, NSError?) -> (Void))?) -> CreationUploadSessionPublicData
+    public func _newCreation(_ creationData: NewCreationData, completion: ((Creation?, NSError?) -> (Void))?) -> CreationUploadSessionPublicData?
     {
         return newCreation(data: creationData)
         {
