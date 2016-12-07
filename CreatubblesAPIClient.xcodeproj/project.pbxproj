@@ -993,11 +993,11 @@
 		1815D5631C638B9C00EF4C38 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				18F6E87A1D021B6500AAC5FB /* RequestSender.swift */,
 				217745091DD9C9880012FFDC /* Avatar */,
 				08B4DD601DC0BD6C00EF6D67 /* Authentication */,
 				08AC6A5E1D424F5F004A35C3 /* Activities */,
 				18F6E8621D021B6500AAC5FB /* Core */,
-				18F6E87A1D021B6500AAC5FB /* RequestSender.swift */,
 				18F6E8511D021B6500AAC5FB /* Bubble */,
 				18F6E85A1D021B6500AAC5FB /* Comment */,
 				18F6E85F1D021B6500AAC5FB /* Content */,
