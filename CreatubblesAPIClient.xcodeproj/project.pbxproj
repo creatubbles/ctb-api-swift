@@ -54,15 +54,11 @@
 		08BB575F1D253ED700E2E297 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BB575E1D253ED700E2E297 /* SessionData.swift */; };
 		08BBFE361D7EB120005F1F11 /* FavoriteGalleriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BBFE351D7EB120005F1F11 /* FavoriteGalleriesRequest.swift */; };
 		08BBFE381D7EB13D005F1F11 /* FeaturedGalleriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BBFE371D7EB13D005F1F11 /* FeaturedGalleriesRequest.swift */; };
-		08BBFE3A1D7EB256005F1F11 /* FavoriteGalleriesBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BBFE391D7EB256005F1F11 /* FavoriteGalleriesBatchFetcher.swift */; };
-		08BBFE3C1D7EB27F005F1F11 /* FeaturedGalleriesBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BBFE3B1D7EB27F005F1F11 /* FeaturedGalleriesBatchFetcher.swift */; };
 		08BBFE3E1D7EB474005F1F11 /* FavoriteGalleriesRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BBFE3D1D7EB474005F1F11 /* FavoriteGalleriesRequestSpec.swift */; };
 		08BBFE401D7EB491005F1F11 /* FeaturedGalleriesRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BBFE3F1D7EB491005F1F11 /* FeaturedGalleriesRequestSpec.swift */; };
 		08E52DF81D6C422300262672 /* ContentDataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E52DF71D6C422300262672 /* ContentDataFilter.swift */; };
 		08E6934F1D7C9DA0007A79B7 /* MyGalleriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E6934E1D7C9DA0007A79B7 /* MyGalleriesRequest.swift */; };
-		08E693511D7CA89E007A79B7 /* MyGalleriesBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E693501D7CA89E007A79B7 /* MyGalleriesBatchFetcher.swift */; };
 		08E693531D7CAF1B007A79B7 /* MyGalleriesRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E693521D7CAF1B007A79B7 /* MyGalleriesRequestSpec.swift */; };
-		08E6FEF81D796F3200DCAB61 /* GroupUsersBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E6FEF71D796F3200DCAB61 /* GroupUsersBatchFetcher.swift */; };
 		08F580731D3F9C1700EDCEE2 /* UpdateGalleryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F580721D3F9C1700EDCEE2 /* UpdateGalleryRequest.swift */; };
 		08F580751D3F9D4300EDCEE2 /* UpdateGalleryResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F580741D3F9D4300EDCEE2 /* UpdateGalleryResponseHandler.swift */; };
 		08F580771D3F9D7A00EDCEE2 /* UpdateGalleryRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F580761D3F9D7A00EDCEE2 /* UpdateGalleryRequestSpec.swift */; };
@@ -366,10 +362,6 @@
 		21A09E5B1DD9E57D006CEF75 /* UpdateUserAvatarRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A09E591DD9E57D006CEF75 /* UpdateUserAvatarRequestSpec.swift */; };
 		21A09E5C1DD9E57D006CEF75 /* UpdateUserAvatarResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A09E5A1DD9E57D006CEF75 /* UpdateUserAvatarResponseHandlerSpec.swift */; };
 		21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F661C81E6A2009E95D1 /* PagingInfo.swift */; };
-		21A79F6F1C81E6C5009E95D1 /* BatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */; };
-		21A79F701C81E6C5009E95D1 /* CreationsBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */; };
-		21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6D1C81E6C5009E95D1 /* GalleriesBatchFetcher.swift */; };
-		21A79F721C81E6C5009E95D1 /* UsersBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F6E1C81E6C5009E95D1 /* UsersBatchFetcher.swift */; };
 		21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A79F751C8494C4009E95D1 /* CreationUploadSessionPublicData.swift */; };
 		21B9334A1D2AEC2900FCD248 /* MyConnectionsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B933491D2AEC2900FCD248 /* MyConnectionsRequest.swift */; };
 		21B9334C1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9334B1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift */; };
@@ -440,15 +432,11 @@
 		08BB575E1D253ED700E2E297 /* SessionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
 		08BBFE351D7EB120005F1F11 /* FavoriteGalleriesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteGalleriesRequest.swift; sourceTree = "<group>"; };
 		08BBFE371D7EB13D005F1F11 /* FeaturedGalleriesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedGalleriesRequest.swift; sourceTree = "<group>"; };
-		08BBFE391D7EB256005F1F11 /* FavoriteGalleriesBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteGalleriesBatchFetcher.swift; sourceTree = "<group>"; };
-		08BBFE3B1D7EB27F005F1F11 /* FeaturedGalleriesBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedGalleriesBatchFetcher.swift; sourceTree = "<group>"; };
 		08BBFE3D1D7EB474005F1F11 /* FavoriteGalleriesRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteGalleriesRequestSpec.swift; sourceTree = "<group>"; };
 		08BBFE3F1D7EB491005F1F11 /* FeaturedGalleriesRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedGalleriesRequestSpec.swift; sourceTree = "<group>"; };
 		08E52DF71D6C422300262672 /* ContentDataFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentDataFilter.swift; sourceTree = "<group>"; };
 		08E6934E1D7C9DA0007A79B7 /* MyGalleriesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGalleriesRequest.swift; sourceTree = "<group>"; };
-		08E693501D7CA89E007A79B7 /* MyGalleriesBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGalleriesBatchFetcher.swift; sourceTree = "<group>"; };
 		08E693521D7CAF1B007A79B7 /* MyGalleriesRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGalleriesRequestSpec.swift; sourceTree = "<group>"; };
-		08E6FEF71D796F3200DCAB61 /* GroupUsersBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupUsersBatchFetcher.swift; sourceTree = "<group>"; };
 		08F580721D3F9C1700EDCEE2 /* UpdateGalleryRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryRequest.swift; sourceTree = "<group>"; };
 		08F580741D3F9D4300EDCEE2 /* UpdateGalleryResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryResponseHandler.swift; sourceTree = "<group>"; };
 		08F580761D3F9D7A00EDCEE2 /* UpdateGalleryRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryRequestSpec.swift; sourceTree = "<group>"; };
@@ -756,10 +744,6 @@
 		21A09E591DD9E57D006CEF75 /* UpdateUserAvatarRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUserAvatarRequestSpec.swift; sourceTree = "<group>"; };
 		21A09E5A1DD9E57D006CEF75 /* UpdateUserAvatarResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUserAvatarResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		21A79F661C81E6A2009E95D1 /* PagingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingInfo.swift; sourceTree = "<group>"; };
-		21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchFetcher.swift; sourceTree = "<group>"; };
-		21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsBatchFetcher.swift; sourceTree = "<group>"; };
-		21A79F6D1C81E6C5009E95D1 /* GalleriesBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleriesBatchFetcher.swift; sourceTree = "<group>"; };
-		21A79F6E1C81E6C5009E95D1 /* UsersBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersBatchFetcher.swift; sourceTree = "<group>"; };
 		21A79F751C8494C4009E95D1 /* CreationUploadSessionPublicData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadSessionPublicData.swift; sourceTree = "<group>"; };
 		21B933491D2AEC2900FCD248 /* MyConnectionsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsRequest.swift; sourceTree = "<group>"; };
 		21B9334B1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyConnectionsResponseHandler.swift; sourceTree = "<group>"; };
@@ -1632,14 +1616,6 @@
 				1814B7541DF7F026003B3C65 /* Creations */,
 				1814B75C1DF81B63003B3C65 /* Galleries */,
 				1814B75E1DF81B63003B3C65 /* Users */,
-				21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */,
-				21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */,
-				21A79F6D1C81E6C5009E95D1 /* GalleriesBatchFetcher.swift */,
-				21A79F6E1C81E6C5009E95D1 /* UsersBatchFetcher.swift */,
-				08E6FEF71D796F3200DCAB61 /* GroupUsersBatchFetcher.swift */,
-				08E693501D7CA89E007A79B7 /* MyGalleriesBatchFetcher.swift */,
-				08BBFE391D7EB256005F1F11 /* FavoriteGalleriesBatchFetcher.swift */,
-				08BBFE3B1D7EB27F005F1F11 /* FeaturedGalleriesBatchFetcher.swift */,
 			);
 			path = BatchFetch;
 			sourceTree = "<group>";
@@ -1886,7 +1862,6 @@
 				08B4DD621DC0BDA000EF6D67 /* AuthenticationRequest.swift in Sources */,
 				18F6E8B61D0224EE00AAC5FB /* CustomStyleFetchResponseHandler.swift in Sources */,
 				18F6E8AC1D021C2900AAC5FB /* CustomStyle.swift in Sources */,
-				08BBFE3A1D7EB256005F1F11 /* FavoriteGalleriesBatchFetcher.swift in Sources */,
 				1859FAA51D39052F0023A6B6 /* DeleteGroupResponseHandler.swift in Sources */,
 				18F6E88E1D021B6500AAC5FB /* ContentRequest.swift in Sources */,
 				18467F611D02E486005CE5DD /* CustomStyleEditData.swift in Sources */,
@@ -1897,7 +1872,6 @@
 				18F6E8871D021B6500AAC5FB /* NewBubbleResponseHandler.swift in Sources */,
 				18F6E88F1D021B6500AAC5FB /* ContentResponseHandler.swift in Sources */,
 				18C744FD1C84611600A07E4C /* CreationUploadSessionEntity.swift in Sources */,
-				21A79F721C81E6C5009E95D1 /* UsersBatchFetcher.swift in Sources */,
 				08A75AA01DC238EA007F546D /* AuthenticationError.swift in Sources */,
 				217745181DD9C9C70012FFDC /* AvatarSuggestion.swift in Sources */,
 				18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */,
@@ -1912,7 +1886,6 @@
 				18F6E88A1D021B6500AAC5FB /* CommentsRequest.swift in Sources */,
 				18290AEF1D06E45A000EA216 /* NotificationTextEntityMapper.swift in Sources */,
 				1859FAA91D39052F0023A6B6 /* GroupsRequest.swift in Sources */,
-				08BBFE3C1D7EB27F005F1F11 /* FeaturedGalleriesBatchFetcher.swift in Sources */,
 				1867829C1DE3AA4100823875 /* Quickstart_Swift.md in Sources */,
 				213B29EF1DCA390E003E7314 /* ToybooCreation.swift in Sources */,
 				2110E0541D7465AE00B62156 /* NameTranslationObjectEntity.swift in Sources */,
@@ -1920,7 +1893,6 @@
 				212A12171D50E37D001BA35A /* PartnerApplicationResponseHandler.swift in Sources */,
 				18F6E8A81D021B6500AAC5FB /* NewCreatorResponseHandler.swift in Sources */,
 				188BCEB01C64E19D00EA4F11 /* APIClientSettings.swift in Sources */,
-				21A79F701C81E6C5009E95D1 /* CreationsBatchFetcher.swift in Sources */,
 				08AC6A601D424F89004A35C3 /* ActivitiesRequest.swift in Sources */,
 				18F6E8A01D021B6500AAC5FB /* NewGalleryResponseHandler.swift in Sources */,
 				189D9F5D1C84B36100857CC6 /* CreationUploadMapper.swift in Sources */,
@@ -1947,7 +1919,6 @@
 				21C349931C904B38002972EC /* NewCreationData.swift in Sources */,
 				183635421CB5013900ED778A /* DataInclude.swift in Sources */,
 				1859FAA71D39052F0023A6B6 /* EditGroupResponseHandler.swift in Sources */,
-				08E693511D7CA89E007A79B7 /* MyGalleriesBatchFetcher.swift in Sources */,
 				1814B77A1DF83332003B3C65 /* GroupUsersQueueBatchFetcher.swift in Sources */,
 				1814B76A1DF825CE003B3C65 /* FavoriteGalleriesQueueBatchFetcher.swift in Sources */,
 				1814B76C1DF825CE003B3C65 /* FeaturedGalleriesQueueBatchFetcher.swift in Sources */,
@@ -2066,7 +2037,6 @@
 				2178B7321D3797840013C251 /* CreateMultipleCreatorsData.swift in Sources */,
 				1859FAAC1D39052F0023A6B6 /* NewGroupResponseHandler.swift in Sources */,
 				1859FAAA1D39052F0023A6B6 /* GroupsResponseHandler.swift in Sources */,
-				21A79F711C81E6C5009E95D1 /* GalleriesBatchFetcher.swift in Sources */,
 				21297EB51DAFADC1003CCF75 /* NotificationsViewTrackerRequest.swift in Sources */,
 				215279771D464F2600B67313 /* ContentSearchResponseHandler.swift in Sources */,
 				21297EAB1DAFAC7B003CCF75 /* RemoveCreationResponseHandler.swift in Sources */,
@@ -2118,11 +2088,9 @@
 				18F6E89B1D021B6500AAC5FB /* GalleriesRequest.swift in Sources */,
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,
 				1859FA981D3905210023A6B6 /* EditGroupData.swift in Sources */,
-				08E6FEF81D796F3200DCAB61 /* GroupUsersBatchFetcher.swift in Sources */,
 				1867829B1DE3AA4100823875 /* Quickstart_ObjectiveC.md in Sources */,
 				18C744FC1C84611600A07E4C /* CreationUploadEntity.swift in Sources */,
 				183728EE1CEDD1AC008784C7 /* ContentDAO.swift in Sources */,
-				21A79F6F1C81E6C5009E95D1 /* BatchFetcher.swift in Sources */,
 				18E6E86F1CFF2E1D008D7B89 /* AbilityMapper.swift in Sources */,
 				2117F8C31D3520CE00304D79 /* NotificationMetadataMapper.swift in Sources */,
 				18F6E8841D021B6500AAC5FB /* DeleteBubbleRequest.swift in Sources */,

@@ -28,7 +28,7 @@ class UsersQueueBatchFetcher
     private let pageSize = 20
     private let requestSender: RequestSender
     
-    private let userId: String
+    private let userId: String?
     private let scope: CreatorsAndManagersScopeElement
     private let completion: UsersBatchClosure?
     
@@ -36,7 +36,7 @@ class UsersQueueBatchFetcher
     private var objectsByPage: Dictionary<PagingData, Array<User>>
     private var errorsByPage: Dictionary<PagingData, APIClientError>
     
-    init(requestSender: RequestSender, userId: String, scope: CreatorsAndManagersScopeElement, completion: UsersBatchClosure?)
+    init(requestSender: RequestSender, userId: String?, scope: CreatorsAndManagersScopeElement, completion: UsersBatchClosure?)
     {
         self.requestSender = requestSender
         self.userId = userId

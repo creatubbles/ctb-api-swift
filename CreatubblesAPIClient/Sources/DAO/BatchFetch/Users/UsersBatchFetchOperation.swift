@@ -26,14 +26,14 @@
 class UsersBatchFetchOperation: ConcurrentOperation
 {
     private let requestSender: RequestSender
-    private let userId: String
+    private let userId: String?
     private let scope: CreatorsAndManagersScopeElement
     
     let pagingData: PagingData
     private(set) var users: Array<User>?
     private var requestHandler: RequestHandler?
     
-    init(requestSender: RequestSender,  userId: String, scope: CreatorsAndManagersScopeElement, pagingData: PagingData ,complete: OperationCompleteClosure?)
+    init(requestSender: RequestSender,  userId: String?, scope: CreatorsAndManagersScopeElement, pagingData: PagingData ,complete: OperationCompleteClosure?)
     {
         self.requestSender = requestSender
         self.userId = userId
