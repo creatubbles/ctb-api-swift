@@ -38,7 +38,12 @@ class SearchTagDAO: NSObject
         //Mock method - until it's ready on API's side, this method will return some premade mock SearchTags.
         let request = SearchTagsFetchRequest()
         
-        let objects = [SearchTag(name: "New Creations"), SearchTag(name: "Minecraft"), SearchTag(name: "Challenges"), SearchTag(name: "Rainbow Loom"), SearchTag(name: "Scratch"), SearchTag(name: "Strawbees")]
+        let objects = [SearchTag(name: "Lego", imageURL: "https://d1x1kv7c0y4dpg.cloudfront.net/assets/images/suggested-searches/lego-b8ad79890b22bee5d8c55dc4ac17a446.jpg"),
+                       SearchTag(name: "Minecraft", imageURL: "https://d1x1kv7c0y4dpg.cloudfront.net/assets/images/suggested-searches/minecraft-857ee3b90a20e1c5ac16bcd399824673.jpg"),
+                       SearchTag(name: "Characters", imageURL: "https://d1x1kv7c0y4dpg.cloudfront.net/assets/images/suggested-searches/characters-b7ab1dcd40b0682823ba0885e56532f9.jpg"),
+                       SearchTag(name: "Rainbow Loom", imageURL: "https://d1x1kv7c0y4dpg.cloudfront.net/assets/images/suggested-searches/rainbow_loom-3b41da1a4863086ccb5ed6a7da2242c3.jpg"),
+                       SearchTag(name: "Scratch", imageURL: "https://d1x1kv7c0y4dpg.cloudfront.net/assets/images/suggested-searches/scratch-f07bb305df1932ef81ccc1fe5617b04e.jpg"),
+                       SearchTag(name: "Strawbees", imageURL: "https://d1x1kv7c0y4dpg.cloudfront.net/assets/images/suggested-searches/strawbees-f1ea6ed75d6185519cea654da9667c90.jpg")]
         completion?(objects, nil)
         
         return RequestHandler(object: request as Cancelable)
