@@ -1,5 +1,5 @@
 //
-//  GalleriesQueueBatchFetcher.swift
+//  GroupUsersQueueBatchFetcher.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -23,26 +23,25 @@
 //  THE SOFTWARE.
 //
 
-class GalleriesQueueBatchFetcher
+class GroupUsersQueueBatchFetcher
 {
     private let pageSize = 20
     private let requestSender: RequestSender
     
-    private let userId: String?
-    private let sort:SortOrder?
-    private let completion: GalleriesBatchClosure?
+    private let groupId: String
+    private let completion: UsersBatchClosure?
     
     private var operationQueue: OperationQueue!
-    private var objectsByPage: Dictionary<PagingData, Array<Gallery>>
+    private var objectsByPage: Dictionary<PagingData, Array<User>>
     private var errorsByPage: Dictionary<PagingData, APIClientError>
     
-    init(requestSender: RequestSender, userId: String?, sort:SortOrder?, completion: GalleriesBatchClosure?)
+    init(requestSender: RequestSender, groupId: String, completion: UsersBatchClosure?)
     {
         self.requestSender = requestSender
-        self.userId = userId
-        self.sort = sort
+        self.groupId = groupId
+        
         self.completion = completion
-        self.objectsByPage = Dictionary<PagingData, Array<Gallery>>()
+        self.objectsByPage = Dictionary<PagingData, Array<User>>()
         self.errorsByPage = Dictionary<PagingData, APIClientError>()
     }
     
@@ -55,17 +54,17 @@ class GalleriesQueueBatchFetcher
             return
         }
         
-        let request =  GalleriesRequest(page: 1, perPage: pageSize, sort: sort, userId: userId)
-        let handler = GalleriesResponseHandler()
+        let request = GroupCreatorsRequest(groupId: groupId, page: 1, perPage: pageSize)
+        let handler = GroupCreatorsResponseHandler()
         {
-            [weak self](galleries, pagingInfo, error) -> (Void) in
+            [weak self](users, pagingInfo, error) -> (Void) in
             guard let strongSelf = self
                 else { return }
             
-            if let galleries = galleries,
+            if let users = users,
                let pagingInfo = pagingInfo
             {
-                strongSelf.objectsByPage[PagingData(page: 1, pageSize: strongSelf.pageSize)] = galleries
+                strongSelf.objectsByPage[PagingData(page: 1, pageSize: strongSelf.pageSize)] = users
                 strongSelf.prepareBlockOperations(pagingInfo: pagingInfo)
             }
             else
@@ -98,16 +97,16 @@ class GalleriesQueueBatchFetcher
         for page in 2...pagingInfo.totalPages
         {
             let pagingData = PagingData(page: page, pageSize: pageSize)
-            let operation = GalleriesBatchFetchOperation(requestSender: requestSender, userId: userId, sort: sort, pagingData: pagingData)
+            let operation = GroupUsersBatchFetchOperation(requestSender: requestSender, groupId: groupId, pagingData: pagingData)
             {
                 [weak self](operation, error) in
                 guard let strongSelf = self,
-                      let operation = operation as? GalleriesBatchFetchOperation
+                      let operation = operation as? GroupUsersBatchFetchOperation
                 else { return }
                 
-                if let galleries = operation.galleries
+                if let users = operation.users
                 {
-                    strongSelf.objectsByPage[operation.pagingData] = galleries
+                    strongSelf.objectsByPage[operation.pagingData] = users
                 }
                 if let error = error as? APIClientError
                 {

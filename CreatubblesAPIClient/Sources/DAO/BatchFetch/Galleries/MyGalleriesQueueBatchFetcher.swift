@@ -1,5 +1,5 @@
 //
-//  GalleriesQueueBatchFetcher.swift
+//  MyGalleriesQueueBatchFetcher.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -23,24 +23,23 @@
 //  THE SOFTWARE.
 //
 
-class GalleriesQueueBatchFetcher
+class MyGalleriesQueueBatchFetcher
 {
     private let pageSize = 20
     private let requestSender: RequestSender
     
-    private let userId: String?
-    private let sort:SortOrder?
+    private let filter: MyGalleriesRequestFilter
     private let completion: GalleriesBatchClosure?
     
     private var operationQueue: OperationQueue!
     private var objectsByPage: Dictionary<PagingData, Array<Gallery>>
     private var errorsByPage: Dictionary<PagingData, APIClientError>
     
-    init(requestSender: RequestSender, userId: String?, sort:SortOrder?, completion: GalleriesBatchClosure?)
+    init(requestSender: RequestSender, filter: MyGalleriesRequestFilter, completion: GalleriesBatchClosure?)
     {
         self.requestSender = requestSender
-        self.userId = userId
-        self.sort = sort
+        self.filter = filter
+        
         self.completion = completion
         self.objectsByPage = Dictionary<PagingData, Array<Gallery>>()
         self.errorsByPage = Dictionary<PagingData, APIClientError>()
@@ -55,7 +54,7 @@ class GalleriesQueueBatchFetcher
             return
         }
         
-        let request =  GalleriesRequest(page: 1, perPage: pageSize, sort: sort, userId: userId)
+        let request = MyGalleriesRequest(page: 1, perPage: pageSize, filter: filter)
         let handler = GalleriesResponseHandler()
         {
             [weak self](galleries, pagingInfo, error) -> (Void) in
@@ -98,11 +97,11 @@ class GalleriesQueueBatchFetcher
         for page in 2...pagingInfo.totalPages
         {
             let pagingData = PagingData(page: page, pageSize: pageSize)
-            let operation = GalleriesBatchFetchOperation(requestSender: requestSender, userId: userId, sort: sort, pagingData: pagingData)
+            let operation = MyGalleriesBatchFetchOperation(requestSender: requestSender, filter: filter, pagingData: pagingData)
             {
                 [weak self](operation, error) in
                 guard let strongSelf = self,
-                      let operation = operation as? GalleriesBatchFetchOperation
+                      let operation = operation as? MyGalleriesBatchFetchOperation
                 else { return }
                 
                 if let galleries = operation.galleries

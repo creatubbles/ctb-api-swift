@@ -1,5 +1,5 @@
 //
-//  GalleriesQueueBatchFetcher.swift
+//  FeaturedGalleriesQueueBatchFetcher.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-class GalleriesQueueBatchFetcher
+class FeaturedGalleriesQueueBatchFetcher
 {
     private let pageSize = 20
     private let requestSender: RequestSender
@@ -55,7 +55,7 @@ class GalleriesQueueBatchFetcher
             return
         }
         
-        let request =  GalleriesRequest(page: 1, perPage: pageSize, sort: sort, userId: userId)
+        let request = FeaturedGalleriesRequest(page: 1, perPage: pageSize)
         let handler = GalleriesResponseHandler()
         {
             [weak self](galleries, pagingInfo, error) -> (Void) in
@@ -98,11 +98,11 @@ class GalleriesQueueBatchFetcher
         for page in 2...pagingInfo.totalPages
         {
             let pagingData = PagingData(page: page, pageSize: pageSize)
-            let operation = GalleriesBatchFetchOperation(requestSender: requestSender, userId: userId, sort: sort, pagingData: pagingData)
+            let operation = FeaturedGalleriesBatchFetchOperation(requestSender: requestSender, pagingData: pagingData)
             {
                 [weak self](operation, error) in
                 guard let strongSelf = self,
-                      let operation = operation as? GalleriesBatchFetchOperation
+                      let operation = operation as? FeaturedGalleriesBatchFetchOperation
                 else { return }
                 
                 if let galleries = operation.galleries

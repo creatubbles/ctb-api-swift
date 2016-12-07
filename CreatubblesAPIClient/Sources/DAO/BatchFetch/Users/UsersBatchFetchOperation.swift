@@ -1,5 +1,5 @@
 //
-//  NotificationDAO.swift
+//  UsersBatchFetchOperation.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -23,36 +23,43 @@
 //  THE SOFTWARE.
 //
 
-
-import UIKit
-
-class NotificationDAO: NSObject
+class UsersBatchFetchOperation: ConcurrentOperation
 {
-    fileprivate let requestSender: RequestSender
+    private let requestSender: RequestSender
+    private let userId: String
+    private let scope: CreatorsAndManagersScopeElement
     
-    init(requestSender: RequestSender)
+    let pagingData: PagingData
+    private(set) var users: Array<User>?
+    private var request: CreatorsAndManagersRequest?
+    
+    init(requestSender: RequestSender,  userId: String, scope: CreatorsAndManagersScopeElement, pagingData: PagingData ,complete: OperationCompleteClosure?)
     {
         self.requestSender = requestSender
-    }
-  
-    func getNotifications(pagingData: PagingData?, completion: NotificationsClosure?) -> RequestHandler
-    {
-        let request = NotificationsFetchRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
-        let handler = NotificationsFetchResponseHandler(completion: completion)
-        return requestSender.send(request, withResponseHandler: handler)
+        self.userId = userId
+        self.scope = scope
+        self.pagingData = pagingData
+        
+        super.init(complete: complete)
     }
     
-    func markNotificationAsRead(notificationIdentifier identifier: String, completion: ErrorClosure?) -> RequestHandler
+    override func main()
     {
-        let request = NotificationReadRequest(notificationIdentifier: identifier)
-        let handler = NotificationReadResponseHandler(completion: completion)
-        return requestSender.send(request, withResponseHandler: handler)
+        guard isCancelled == false else { return }
+
+        request = CreatorsAndManagersRequest(userId: userId, page: pagingData.page, perPage: pagingData.pageSize, scope: scope)
+        let handler = CreatorsAndManagersResponseHandler()
+        {
+            [weak self](users, pagingInfo, error) -> (Void) in
+            self?.users = users
+            self?.finish(error)
+        }
+        requestSender.send(request!, withResponseHandler: handler)
     }
     
-    func trackWhenNotificationsWereViewed(completion: ErrorClosure?) -> RequestHandler
+    override func cancel()
     {
-        let request = NotificationsViewTrackerRequest()
-        let handler = NotificationsViewTrackerResponseHandler(completion: completion)
-        return requestSender.send(request, withResponseHandler: handler)
+        request?.cancel()
+        super.cancel()
     }
 }
