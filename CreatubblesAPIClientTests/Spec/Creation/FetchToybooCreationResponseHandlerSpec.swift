@@ -37,7 +37,7 @@ class FetchToybooCreationResponseHandlerSpec: QuickSpec
             it("Should return a correct creation after login")
             {
                 guard let creationId = TestConfiguration.toybooCreationIdentifier
-                    else { return }
+                else { return }
                 let request = FetchToybooCreationRequest(creationId: creationId)
                 let sender =  TestComponentsFactory.requestSender
                 waitUntil(timeout: 20)

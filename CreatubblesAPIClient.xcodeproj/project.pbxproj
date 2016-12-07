@@ -72,6 +72,7 @@
 		1814B7531DF7EE50003B3C65 /* BatchFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1814B7521DF7EE50003B3C65 /* BatchFetchOperation.swift */; };
 		1814B7561DF7F052003B3C65 /* CreationsBatchFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1814B7551DF7F052003B3C65 /* CreationsBatchFetchOperation.swift */; };
 		1814B7581DF7F082003B3C65 /* CreationsQueueBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1814B7571DF7F082003B3C65 /* CreationsQueueBatchFetcher.swift */; };
+		1814B75B1DF80048003B3C65 /* CreationsBatchFetcherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1814B75A1DF80048003B3C65 /* CreationsBatchFetcherSpec.swift */; };
 		1815D54D1C63658000EF4C38 /* CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */; };
 		1815D5601C6383CF00EF4C38 /* CreatubblesAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1815D5651C638BD200EF4C38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5641C638BD200EF4C38 /* User.swift */; };
@@ -444,6 +445,7 @@
 		1814B7521DF7EE50003B3C65 /* BatchFetchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchFetchOperation.swift; sourceTree = "<group>"; };
 		1814B7551DF7F052003B3C65 /* CreationsBatchFetchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsBatchFetchOperation.swift; sourceTree = "<group>"; };
 		1814B7571DF7F082003B3C65 /* CreationsQueueBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsQueueBatchFetcher.swift; sourceTree = "<group>"; };
+		1814B75A1DF80048003B3C65 /* CreationsBatchFetcherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsBatchFetcherSpec.swift; sourceTree = "<group>"; };
 		1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1815D54C1C63658000EF4C38 /* CreatubblesAPIClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CreatubblesAPIClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1815D5531C63658000EF4C38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -828,6 +830,14 @@
 			path = Creations;
 			sourceTree = "<group>";
 		};
+		1814B7591DF80034003B3C65 /* BatchFetch */ = {
+			isa = PBXGroup;
+			children = (
+				1814B75A1DF80048003B3C65 /* CreationsBatchFetcherSpec.swift */,
+			);
+			path = BatchFetch;
+			sourceTree = "<group>";
+		};
 		1815D5381C63658000EF4C38 = {
 			isa = PBXGroup;
 			children = (
@@ -1205,6 +1215,7 @@
 			children = (
 				08AC6A671D425CFC004A35C3 /* Activity */,
 				217745121DD9C9940012FFDC /* Avatar */,
+				1814B7591DF80034003B3C65 /* BatchFetch */,
 				18F6E80C1D020F0A00AAC5FB /* Bubble */,
 				18F6E8431D02188300AAC5FB /* Comment */,
 				18F6E8441D02188300AAC5FB /* Content */,
@@ -2109,6 +2120,7 @@
 				18F6E8151D020F3D00AAC5FB /* BubbleResponseHandlerSpec.swift in Sources */,
 				217745151DD9C9940012FFDC /* AvatarSuggestionsFetchRequestSpec.swift in Sources */,
 				083785A51D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift in Sources */,
+				1814B75B1DF80048003B3C65 /* CreationsBatchFetcherSpec.swift in Sources */,
 				0837859F1D379AAD006EF69E /* ReportGalleryRequestSpec.swift in Sources */,
 				18290AF71D07073F000EA216 /* NotificationReadResponseHandlerSpec.swift in Sources */,
 				219121961D2D232C0039FA94 /* MyConnectionsResponseHandlerSpec.swift in Sources */,
