@@ -69,6 +69,9 @@
 		08F580791D3F9DA700EDCEE2 /* UpdateGalleryResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F580781D3F9DA700EDCEE2 /* UpdateGalleryResponseHandlerSpec.swift */; };
 		08F5807B1D3FAC1700EDCEE2 /* UpdateGalleryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F5807A1D3FAC1700EDCEE2 /* UpdateGalleryData.swift */; };
 		180C97B11C6DEA4100BC682D /* Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C97B01C6DEA4100BC682D /* Creation.swift */; };
+		1814B7531DF7EE50003B3C65 /* BatchFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1814B7521DF7EE50003B3C65 /* BatchFetchOperation.swift */; };
+		1814B7561DF7F052003B3C65 /* CreationsBatchFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1814B7551DF7F052003B3C65 /* CreationsBatchFetchOperation.swift */; };
+		1814B7581DF7F082003B3C65 /* CreationsQueueBatchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1814B7571DF7F082003B3C65 /* CreationsQueueBatchFetcher.swift */; };
 		1815D54D1C63658000EF4C38 /* CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */; };
 		1815D5601C6383CF00EF4C38 /* CreatubblesAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815D55D1C6383CF00EF4C38 /* CreatubblesAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1815D5651C638BD200EF4C38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815D5641C638BD200EF4C38 /* User.swift */; };
@@ -438,6 +441,9 @@
 		08F580781D3F9DA700EDCEE2 /* UpdateGalleryResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		08F5807A1D3FAC1700EDCEE2 /* UpdateGalleryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryData.swift; sourceTree = "<group>"; };
 		180C97B01C6DEA4100BC682D /* Creation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creation.swift; sourceTree = "<group>"; };
+		1814B7521DF7EE50003B3C65 /* BatchFetchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchFetchOperation.swift; sourceTree = "<group>"; };
+		1814B7551DF7F052003B3C65 /* CreationsBatchFetchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsBatchFetchOperation.swift; sourceTree = "<group>"; };
+		1814B7571DF7F082003B3C65 /* CreationsQueueBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsQueueBatchFetcher.swift; sourceTree = "<group>"; };
 		1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1815D54C1C63658000EF4C38 /* CreatubblesAPIClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CreatubblesAPIClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1815D5531C63658000EF4C38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -811,6 +817,15 @@
 				08E52DF71D6C422300262672 /* ContentDataFilter.swift */,
 			);
 			path = Filters;
+			sourceTree = "<group>";
+		};
+		1814B7541DF7F026003B3C65 /* Creations */ = {
+			isa = PBXGroup;
+			children = (
+				1814B7551DF7F052003B3C65 /* CreationsBatchFetchOperation.swift */,
+				1814B7571DF7F082003B3C65 /* CreationsQueueBatchFetcher.swift */,
+			);
+			path = Creations;
 			sourceTree = "<group>";
 		};
 		1815D5381C63658000EF4C38 = {
@@ -1549,6 +1564,8 @@
 		21A79F6A1C81E6C5009E95D1 /* BatchFetch */ = {
 			isa = PBXGroup;
 			children = (
+				1814B7521DF7EE50003B3C65 /* BatchFetchOperation.swift */,
+				1814B7541DF7F026003B3C65 /* Creations */,
 				21A79F6B1C81E6C5009E95D1 /* BatchFetcher.swift */,
 				21A79F6C1C81E6C5009E95D1 /* CreationsBatchFetcher.swift */,
 				21A79F6D1C81E6C5009E95D1 /* GalleriesBatchFetcher.swift */,
@@ -1882,6 +1899,7 @@
 				18467F5F1D02E356005CE5DD /* CustomStyleEditRequest.swift in Sources */,
 				08A75A9E1DC219E7007F546D /* UploadTask.swift in Sources */,
 				18F6E8A41D021B6500AAC5FB /* RequestSender.swift in Sources */,
+				1814B7581DF7F082003B3C65 /* CreationsQueueBatchFetcher.swift in Sources */,
 				18F6E8AA1D021B6500AAC5FB /* ProfileResponseHandler.swift in Sources */,
 				18F6E8831D021B6500AAC5FB /* BubblesFetchResponseHandler.swift in Sources */,
 				18290AED1D06E44B000EA216 /* NotificationTextEntity.swift in Sources */,
@@ -1904,6 +1922,7 @@
 				08AC6A621D42504A004A35C3 /* ActivitiesResponseHandler.swift in Sources */,
 				18F6E89C1D021B6500AAC5FB /* GalleriesResponseHandler.swift in Sources */,
 				189D9F5F1C84B36100857CC6 /* GalleryMapper.swift in Sources */,
+				1814B7531DF7EE50003B3C65 /* BatchFetchOperation.swift in Sources */,
 				08E52DF81D6C422300262672 /* ContentDataFilter.swift in Sources */,
 				18DB8EB61CE3EF29008B5F52 /* APIClientDateFormatter.swift in Sources */,
 				2117F8C11D3520B800304D79 /* NotificationMetadata.swift in Sources */,
@@ -1985,6 +2004,7 @@
 				18F6E8B11D0222AD00AAC5FB /* CustomStyleFetchRequest.swift in Sources */,
 				186782991DE3AA4100823875 /* changelog.md in Sources */,
 				2177451C1DD9C9E60012FFDC /* AvatarDAO.swift in Sources */,
+				1814B7561DF7F052003B3C65 /* CreationsBatchFetchOperation.swift in Sources */,
 				18467F631D02E9E1005CE5DD /* UIColor+Hex.swift in Sources */,
 				1815D5651C638BD200EF4C38 /* User.swift in Sources */,
 				212A122A1D537213001BA35A /* PartnerApplicationDAO.swift in Sources */,
