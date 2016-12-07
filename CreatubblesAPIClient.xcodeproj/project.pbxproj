@@ -370,6 +370,10 @@
 		21BF68D81C91CDF600BBAB11 /* test.zip in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D61C91CDF600BBAB11 /* test.zip */; };
 		21BF68D91C91CDF600BBAB11 /* testVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */; };
 		21C349931C904B38002972EC /* NewCreationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C349921C904B38002972EC /* NewCreationData.swift */; };
+		21CC9E3E1DF833E100C6538C /* SearchTagDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC9E3D1DF833E100C6538C /* SearchTagDAO.swift */; };
+		21CC9E401DF834A100C6538C /* SearchTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC9E3F1DF834A100C6538C /* SearchTag.swift */; };
+		21CC9E431DF8361600C6538C /* SearchTagsFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC9E421DF8361600C6538C /* SearchTagsFetchRequest.swift */; };
+		21CC9E451DF8362C00C6538C /* SearchTagsFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC9E441DF8362C00C6538C /* SearchTagsFetchResponseHandler.swift */; };
 		445A3A5B1DD29F7400986BBB /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A3A5A1DD29F7400986BBB /* String+Localized.swift */; };
 		445A3A5C1DD2A8CD00986BBB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 445A3A5E1DD2A8CD00986BBB /* Localizable.strings */; };
 		DF413EEFCF6E24450841A6BB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D5DF300DAE4BC13E0AD21 /* Pods_CreatubblesAPIClient.framework */; };
@@ -754,6 +758,10 @@
 		21BF68D61C91CDF600BBAB11 /* test.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = test.zip; sourceTree = "<group>"; };
 		21BF68D71C91CDF600BBAB11 /* testVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = testVideo.mp4; sourceTree = "<group>"; };
 		21C349921C904B38002972EC /* NewCreationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCreationData.swift; sourceTree = "<group>"; };
+		21CC9E3D1DF833E100C6538C /* SearchTagDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTagDAO.swift; sourceTree = "<group>"; };
+		21CC9E3F1DF834A100C6538C /* SearchTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTag.swift; sourceTree = "<group>"; };
+		21CC9E421DF8361600C6538C /* SearchTagsFetchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTagsFetchRequest.swift; sourceTree = "<group>"; };
+		21CC9E441DF8362C00C6538C /* SearchTagsFetchResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTagsFetchResponseHandler.swift; sourceTree = "<group>"; };
 		40A50E16F47F77C926108587 /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		445A3A5A1DD29F7400986BBB /* String+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		445A3A5D1DD2A8CD00986BBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -977,6 +985,7 @@
 				212A12181D50E617001BA35A /* PartnerApplication.swift */,
 				2110E04D1D742B3F00B62156 /* NameTranslationObject.swift */,
 				213B29EE1DCA390E003E7314 /* ToybooCreation.swift */,
+				21CC9E3F1DF834A100C6538C /* SearchTag.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1001,6 +1010,7 @@
 				18F6E87B1D021B6500AAC5FB /* User */,
 				215279501D3F6F9800B67313 /* User Followings */,
 				212A12131D50DCF3001BA35A /* Partner Applications */,
+				21CC9E411DF835EF00C6538C /* SearchTag */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -1113,6 +1123,7 @@
 				2152795E1D3F7F7800B67313 /* UserFollowingsDAO.swift */,
 				08AC6A5C1D424A5F004A35C3 /* ActivitiesDAO.swift */,
 				212A12291D537213001BA35A /* PartnerApplicationDAO.swift */,
+				21CC9E3D1DF833E100C6538C /* SearchTagDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -1626,6 +1637,16 @@
 			path = BatchFetch;
 			sourceTree = "<group>";
 		};
+		21CC9E411DF835EF00C6538C /* SearchTag */ = {
+			isa = PBXGroup;
+			children = (
+				21CC9E421DF8361600C6538C /* SearchTagsFetchRequest.swift */,
+				21CC9E441DF8362C00C6538C /* SearchTagsFetchResponseHandler.swift */,
+			);
+			name = SearchTag;
+			path = CreatubblesAPIClient/Sources/Requests/SearchTag;
+			sourceTree = SOURCE_ROOT;
+		};
 		445A3A561DD297E300986BBB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1973,6 +1994,7 @@
 				18F6E89C1D021B6500AAC5FB /* GalleriesResponseHandler.swift in Sources */,
 				189D9F5F1C84B36100857CC6 /* GalleryMapper.swift in Sources */,
 				08E52DF81D6C422300262672 /* ContentDataFilter.swift in Sources */,
+				21CC9E401DF834A100C6538C /* SearchTag.swift in Sources */,
 				18DB8EB61CE3EF29008B5F52 /* APIClientDateFormatter.swift in Sources */,
 				2117F8C11D3520B800304D79 /* NotificationMetadata.swift in Sources */,
 				18F6E88B1D021B6500AAC5FB /* CommentsResponseHandler.swift in Sources */,
@@ -2001,6 +2023,7 @@
 				2110E04E1D742B3F00B62156 /* NameTranslationObject.swift in Sources */,
 				18F6E8821D021B6500AAC5FB /* BubblesFetchReqest.swift in Sources */,
 				08B4DD5D1DC0BAFF00EF6D67 /* OAuth2Client.swift in Sources */,
+				21CC9E431DF8361600C6538C /* SearchTagsFetchRequest.swift in Sources */,
 				08B7E90C1D522EA3007A30F3 /* GroupCreatorsRequest.swift in Sources */,
 				187671431C7CA0F700733E9E /* PagingData.swift in Sources */,
 				08AC6A5D1D424A5F004A35C3 /* ActivitiesDAO.swift in Sources */,
@@ -2030,6 +2053,7 @@
 				18F6E8A11D021B6500AAC5FB /* LandingURLRequest.swift in Sources */,
 				181E76E71CC5358E00A1546A /* NewBubbleData.swift in Sources */,
 				18F6E8A91D021B6500AAC5FB /* ProfileRequest.swift in Sources */,
+				21CC9E3E1DF833E100C6538C /* SearchTagDAO.swift in Sources */,
 				2152794F1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift in Sources */,
 				18E30BEC1C8DAAE0000794B6 /* LandingURLMapper.swift in Sources */,
 				21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */,
@@ -2069,6 +2093,7 @@
 				215279751D464C6600B67313 /* ContentSearchRequest.swift in Sources */,
 				08BBFE361D7EB120005F1F11 /* FavoriteGalleriesRequest.swift in Sources */,
 				187902021C6C8BAF008F5302 /* Gallery.swift in Sources */,
+				21CC9E451DF8362C00C6538C /* SearchTagsFetchResponseHandler.swift in Sources */,
 				2152794D1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift in Sources */,
 				1859FA991D3905210023A6B6 /* NewGroupData.swift in Sources */,
 				083785931D378B64006EF69E /* ReportUserRequest.swift in Sources */,
