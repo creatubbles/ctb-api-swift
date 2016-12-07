@@ -54,14 +54,17 @@ class CreationsQueueBatchFetcher
         self.errorsByPage = Dictionary<PagingData, APIClientError>()
     }
     
-    func fetch()
+    func fetch() -> RequestHandler
     {
         guard operationQueue == nil
         else
         {
             assert(false) //Fetch should be called only once
-            return
+            return RequestHandler(object: BatchFetchDummyRequestHandler())
         }
+        
+        operationQueue = OperationQueue()
+        operationQueue.maxConcurrentOperationCount = 4
         
         let request =  FetchCreationsRequest(page: 1, perPage: pageSize, galleryId: galleryId, userId: userId, sort: sort, keyword: keyword, partnerApplicationId: partnerApplicationId, onlyPublic: onlyPublic)
         let handler = FetchCreationsResponseHandler
@@ -81,14 +84,13 @@ class CreationsQueueBatchFetcher
                 strongSelf.completion?(nil, error)
             }
         }
-        requestSender.send(request, withResponseHandler: handler)
+    
+        let requestHandler = requestSender.send(request, withResponseHandler: handler)
+        return RequestHandler(object: BatchFetchHandler(operationQueue: operationQueue, firstCallRequestHandler: requestHandler))
     }
     
     private func prepareBlockOperations(pagingInfo: PagingInfo)
     {
-        operationQueue = OperationQueue()
-        operationQueue.maxConcurrentOperationCount = 4
-        
         let finishOperation = BlockOperation()
         finishOperation.addExecutionBlock()
         {
