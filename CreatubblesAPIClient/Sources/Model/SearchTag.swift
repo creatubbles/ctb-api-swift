@@ -28,9 +28,14 @@ open class SearchTag: NSObject
 {
     // Mock of the model until implemented on API side
     open let name: String
+    open let imageURL: String
+    open let identifier: String
+
     
-    init(name: String)
+    init(name: String, imageURL: String)
     {
         self.name = name
+        self.imageURL = imageURL
+        self.identifier = NSUUID().uuidString
     }
 }
