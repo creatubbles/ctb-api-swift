@@ -71,7 +71,7 @@ class MyGalleriesQueueBatchFetcher
             {
                 strongSelf.completion?(nil, error)
             }
-        }
+        }        
         requestSender.send(request, withResponseHandler: handler)
     }
     

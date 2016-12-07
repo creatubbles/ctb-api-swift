@@ -124,37 +124,37 @@ class GalleryDAO
     //MARK: Batch Mode    
     func getGalleriesInBatchMode(userIdentifier userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        let fetcher = GalleriesBatchFetcher(requestSender: requestSender)
-        return fetcher.fetch(userId, sort: sort, completion: completion)
+        let fetcher = GalleriesQueueBatchFetcher(requestSender: requestSender, userId: userId, sort: sort, completion: completion)        
+        return fetcher.fetch()
     }
     
     func getMyGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        let fetcher = MyGalleriesBatchFetcher(requestSender: requestSender)
-        return fetcher.fetch(.none, completion: completion)
+        let fetcher = MyGalleriesQueueBatchFetcher(requestSender: requestSender, filter: .none, completion: completion)
+        return fetcher.fetch()
     }
     
     func getMyOwnedGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        let fetcher = MyGalleriesBatchFetcher(requestSender: requestSender)
-        return fetcher.fetch(.owned, completion: completion)
+        let fetcher = MyGalleriesQueueBatchFetcher(requestSender: requestSender, filter: .owned, completion: completion)
+        return fetcher.fetch()
     }
     
     func getMySharedGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        let fetcher = MyGalleriesBatchFetcher(requestSender: requestSender)
-        return fetcher.fetch(.shared, completion: completion)
+        let fetcher = MyGalleriesQueueBatchFetcher(requestSender: requestSender, filter: .shared, completion: completion)
+        return fetcher.fetch()
     }
     
     func getFavoriteGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        let fetcher = FavoriteGalleriesBatchFetcher(requestSender: requestSender)
-        return fetcher.fetch(completion)
+        let fetcher = FavoriteGalleriesQueueBatchFetcher(requestSender: requestSender, completion: completion)
+        return fetcher.fetch()
     }
     
     func getFeaturedGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        let fetcher = FeaturedGalleriesBatchFetcher(requestSender: requestSender)
-        return fetcher.fetch(completion)
+        let fetcher = FeaturedGalleriesQueueBatchFetcher(requestSender: requestSender, completion: completion)
+        return fetcher.fetch()
     }
 }

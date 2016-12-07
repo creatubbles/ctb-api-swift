@@ -45,7 +45,7 @@ class FavoriteGalleriesQueueBatchFetcher
     func fetch()
     {
         guard operationQueue == nil
-            else
+        else
         {
             assert(false) //Fetch should be called only once
             return
