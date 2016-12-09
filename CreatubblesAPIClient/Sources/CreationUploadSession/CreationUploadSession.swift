@@ -80,7 +80,7 @@ class CreationUploadSession: NSObject, Cancelable
         self.state = creationUploadSessionEntity.state
         self.requestSender = requestSender
         self.imageFileName = creationUploadSessionEntity.imageFileName!
-        self.relativeFilePath = creationUploadSessionEntity.relativeImageFilePath!
+        self.relativeFilePath = creationUploadSessionEntity.relativeImageFilePath!        
         
         if let creationUploadEntity = creationUploadSessionEntity.creationUploadEntity
         {
