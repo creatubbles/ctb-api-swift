@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-class UsersQueueBatchFetcher
+class UsersQueueBatchFetcher: Cancelable
 {
     private let pageSize = 20
     private let requestSender: RequestSender
@@ -32,7 +32,9 @@ class UsersQueueBatchFetcher
     private let scope: CreatorsAndManagersScopeElement
     private let completion: UsersBatchClosure?
     
-    private var operationQueue: OperationQueue!
+    private var operationQueue: OperationQueue?
+    private var firstRequestHandler: RequestHandler?
+
     private var objectsByPage: Dictionary<PagingData, Array<User>>
     private var errorsByPage: Dictionary<PagingData, APIClientError>
     
@@ -47,17 +49,20 @@ class UsersQueueBatchFetcher
         self.errorsByPage = Dictionary<PagingData, APIClientError>()
     }
     
+    func cancel()
+    {
+        operationQueue?.cancelAllOperations()
+        firstRequestHandler?.cancel()
+    }
+    
     func fetch() -> RequestHandler
     {
         guard operationQueue == nil
             else
         {
             assert(false) //Fetch should be called only once
-            return RequestHandler(object: BatchFetchDummyRequestHandler())
-        }
-        
-        operationQueue = OperationQueue()
-        operationQueue.maxConcurrentOperationCount = 4
+            return RequestHandler(object: self)
+        }        
         
         let request = CreatorsAndManagersRequest(userId: userId, page: 1, perPage: pageSize, scope: scope)
         let handler = CreatorsAndManagersResponseHandler()
@@ -78,12 +83,15 @@ class UsersQueueBatchFetcher
             }
         }
         
-        let requestHandler = requestSender.send(request, withResponseHandler: handler)
-        return RequestHandler(object: BatchFetchHandler(operationQueue: operationQueue, firstCallRequestHandler: requestHandler))
+        firstRequestHandler = requestSender.send(request, withResponseHandler: handler)
+        return RequestHandler(object: self)
     }
     
     private func prepareBlockOperations(pagingInfo: PagingInfo)
     {
+        operationQueue = OperationQueue()
+        operationQueue!.maxConcurrentOperationCount = 4
+        
         let finishOperation = BlockOperation()
         finishOperation.addExecutionBlock()
         {
@@ -120,11 +128,11 @@ class UsersQueueBatchFetcher
                     }
                 }
                 finishOperation.addDependency(operation)
-                operationQueue.addOperation(operation)
+                operationQueue!.addOperation(operation)
             }
         }
         
-        operationQueue.addOperation(finishOperation)
+        operationQueue!.addOperation(finishOperation)
     }
 
 }

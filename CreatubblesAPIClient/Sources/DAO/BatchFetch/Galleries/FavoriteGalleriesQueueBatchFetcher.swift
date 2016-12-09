@@ -23,14 +23,16 @@
 //  THE SOFTWARE.
 //
 
-class FavoriteGalleriesQueueBatchFetcher
+class FavoriteGalleriesQueueBatchFetcher: Cancelable
 {
     private let pageSize = 20
     private let requestSender: RequestSender
     
     private let completion: GalleriesBatchClosure?
     
-    private var operationQueue: OperationQueue!
+    private var operationQueue: OperationQueue?
+    private var firstRequestHandler: RequestHandler?
+
     private var objectsByPage: Dictionary<PagingData, Array<Gallery>>
     private var errorsByPage: Dictionary<PagingData, APIClientError>
     
@@ -42,17 +44,20 @@ class FavoriteGalleriesQueueBatchFetcher
         self.errorsByPage = Dictionary<PagingData, APIClientError>()
     }
     
+    func cancel()
+    {
+        operationQueue?.cancelAllOperations()
+        firstRequestHandler?.cancel()
+    }
+    
     func fetch() -> RequestHandler
     {
         guard operationQueue == nil
         else
         {
             assert(false) //Fetch should be called only once
-            return RequestHandler(object: BatchFetchDummyRequestHandler())
+            return RequestHandler(object: self)
         }
-        
-        operationQueue = OperationQueue()
-        operationQueue.maxConcurrentOperationCount = 4
         
         let request = FavoriteGalleriesRequest(page: 1, perPage: pageSize)
         let handler = GalleriesResponseHandler()
@@ -73,12 +78,15 @@ class FavoriteGalleriesQueueBatchFetcher
             }
         }
         
-        let requestHandler = requestSender.send(request, withResponseHandler: handler)
-        return RequestHandler(object: BatchFetchHandler(operationQueue: operationQueue, firstCallRequestHandler: requestHandler))
+        firstRequestHandler = requestSender.send(request, withResponseHandler: handler)
+        return RequestHandler(object: self)
     }
     
     private func prepareBlockOperations(pagingInfo: PagingInfo)
     {
+        operationQueue = OperationQueue()
+        operationQueue!.maxConcurrentOperationCount = 4
+        
         let finishOperation = BlockOperation()
         finishOperation.addExecutionBlock()
         {
@@ -115,11 +123,11 @@ class FavoriteGalleriesQueueBatchFetcher
                     }
                 }
                 finishOperation.addDependency(operation)
-                operationQueue.addOperation(operation)
+                operationQueue!.addOperation(operation)
             }
         }
         
-        operationQueue.addOperation(finishOperation)
+        operationQueue!.addOperation(finishOperation)
     }
 
 }

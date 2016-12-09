@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-class GalleriesQueueBatchFetcher
+class GalleriesQueueBatchFetcher: Cancelable
 {
     private let pageSize = 20
     private let requestSender: RequestSender
@@ -32,7 +32,9 @@ class GalleriesQueueBatchFetcher
     private let sort:SortOrder?
     private let completion: GalleriesBatchClosure?
     
-    private var operationQueue: OperationQueue!
+    private var operationQueue: OperationQueue?
+    private var firstRequestHandler: RequestHandler?
+
     private var objectsByPage: Dictionary<PagingData, Array<Gallery>>
     private var errorsByPage: Dictionary<PagingData, APIClientError>
     
@@ -46,17 +48,21 @@ class GalleriesQueueBatchFetcher
         self.errorsByPage = Dictionary<PagingData, APIClientError>()
     }
     
+    func cancel()
+    {
+        operationQueue?.cancelAllOperations()
+        firstRequestHandler?.cancel()
+    }
+
+    
     func fetch() -> RequestHandler
     {
         guard operationQueue == nil
             else
         {
             assert(false) //Fetch should be called only once
-            return RequestHandler(object: BatchFetchDummyRequestHandler())
+            return RequestHandler(object: self)
         }
-        
-        operationQueue = OperationQueue()
-        operationQueue.maxConcurrentOperationCount = 4
         
         let request =  GalleriesRequest(page: 1, perPage: pageSize, sort: sort, userId: userId)
         let handler = GalleriesResponseHandler()
@@ -77,12 +83,15 @@ class GalleriesQueueBatchFetcher
             }
         }
         
-        let requestHandler = requestSender.send(request, withResponseHandler: handler)
-        return RequestHandler(object: BatchFetchHandler(operationQueue: operationQueue, firstCallRequestHandler: requestHandler))
+        firstRequestHandler = requestSender.send(request, withResponseHandler: handler)
+        return RequestHandler(object: self)
     }
     
     private func prepareBlockOperations(pagingInfo: PagingInfo)
     {
+        operationQueue = OperationQueue()
+        operationQueue!.maxConcurrentOperationCount = 4
+        
         let finishOperation = BlockOperation()
         finishOperation.addExecutionBlock()
         {
@@ -119,11 +128,11 @@ class GalleriesQueueBatchFetcher
                     }
                 }
                 finishOperation.addDependency(operation)
-                operationQueue.addOperation(operation)
+                operationQueue!.addOperation(operation)
             }
         }
         
-        operationQueue.addOperation(finishOperation)
+        operationQueue!.addOperation(finishOperation)
     }
 
 }
