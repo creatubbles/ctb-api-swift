@@ -56,9 +56,9 @@ class ErrorTransformer
         var errorsArray = Array<APIClientError>()
         for mapper in mappers
         {
-            if mapper.status != nil || mapper.code != nil || mapper.title != nil || mapper.source != nil || mapper.detail != nil
+            if mapper.status != nil || mapper.statusAsString != nil || mapper.code != nil || mapper.title != nil || mapper.source != nil || mapper.detail != nil
             {
-                errorsArray.append(APIClientError(status: mapper.status, code: mapper.code, title: mapper.title, source: mapper.source, detail: mapper.detail))
+                errorsArray.append(APIClientError(status: mapper.status ?? (mapper.statusAsString != nil ? Int(mapper.statusAsString!) : nil), code: mapper.code, title: mapper.title, source: mapper.source, detail: mapper.detail))
             }
         }
         return errorsArray
