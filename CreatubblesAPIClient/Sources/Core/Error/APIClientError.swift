@@ -74,8 +74,8 @@ open class APIClientError: Error
     }
     
     init(mapper: ErrorMapper)
-    {
-        self.status = mapper.status ?? APIClientError.DefaultStatus
+    {        
+        self.status = (mapper.status ?? (mapper.statusAsString != nil ? Int(mapper.statusAsString!) : nil)) ?? APIClientError.DefaultStatus
         self.code   = mapper.code   ?? APIClientError.DefaultCode
         self.title  = mapper.title  ?? APIClientError.DefaultTitle
         self.source = mapper.source ?? APIClientError.DefaultSource
