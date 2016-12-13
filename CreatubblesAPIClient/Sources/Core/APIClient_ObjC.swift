@@ -110,7 +110,6 @@ extension APIClient
     }
     
     public func _getCreators(userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
-        
     {
         return getCreators(userId: userId, pagingData: pagingData)
         {
@@ -841,14 +840,14 @@ extension APIClient
     //MARK: - Utils
     static func errorTypeToNSError(_ error: Error?) -> NSError?
     {
-        if let error = error as? NSError
-        {
-            return error
-        }
         if let error = error as? APIClientError
         {
             let userInfo = [NSLocalizedDescriptionKey : error.title]
             return NSError(domain: APIClientError.DefaultDomain, code: error.status, userInfo: userInfo)
+        }
+        if let error = error as? NSError
+        {
+            return error
         }
         if let _ = error
         {
