@@ -174,3 +174,33 @@ apiClient.newCreation(data: creationData)
   print("Creation uploaded. Error: \(error)")
 }
 ```
+
+### Error handling
+Error handling is based on http://jsonapi.org/format/#error-objects.
+Most methods may provide an `APIClientError` in completion block. Example:
+
+```
+getSuggestedAvatars()
+{   
+  (avatarSuggestions: Array<AvatarSuggestion>?, error: APIClientError?) -> (Void) in
+  //Do stuff
+}
+```
+The `APICLientError` object has following non-optional fields:
+```
+open let status: Int
+open let code: String
+open let title: String
+open let source: String
+open let detail: String
+open let domain: String
+```
+If any of those fields is not returned in the server's response, then following default values are used:
+```
+public static let DefaultDomain: String = "com.creatubbles.apiclient.errordomain"
+public static let DefaultStatus: Int    = -6000
+public static let DefaultCode:   String = "creatubbles-apiclient-default-code"
+public static let DefaultTitle:  String = "creatubbles-apiclient-default-title"
+public static let DefaultSource: String = "creatubbles-apiclient-default-source"
+public static let DefaultDetail: String = "creatubbles-apiclient-default-detail"
+```
