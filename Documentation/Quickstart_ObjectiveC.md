@@ -173,3 +173,24 @@ At this point you should be ready to upload a creation
   NSLog(@"Creation uploaded. Error %@",error);
 }];
 ```
+
+### Error handling
+Most methods may provide an `NSError` in completion block. Example:
+
+```
+[apiClient _getSuggestedAvatarsWithCompletion:^(NSArray<AvatarSuggestion *> *avatarSuggestions, NSError * error)
+{
+  if(error)
+  {
+    NSLog(error.localizedDescription);
+  }
+}];
+```
+
+The error object has access to standard NSError fields, like:
+```
+@property (readonly, copy) NSErrorDomain domain;
+@property (readonly) NSInteger code;
+@property (readonly, copy) NSDictionary *userInfo;
+@property (readonly, copy) NSString *localizedDescription;
+```
