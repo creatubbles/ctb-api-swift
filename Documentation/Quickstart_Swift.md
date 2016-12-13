@@ -217,7 +217,7 @@ You can recognize what kind of error you received based on it's `status` propert
 500	Internal Server Error – We had a problem with our server. Try again later.
 503	Service Unavailable – We’re temporarially offline for maintanance. Please try again later.
 ```
-There are also some additional APIClient error codes available:
+There are also some additional APIClient error statuses available:
 ```
 -6001   UnknownStatus
 -6002   LoginStatus
