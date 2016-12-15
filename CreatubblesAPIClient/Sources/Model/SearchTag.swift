@@ -1,5 +1,5 @@
 //
-//  PagingInfo.swift
+//  CreatubblesAPIClient.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -24,22 +24,18 @@
 
 import UIKit
 
-@objc
-open class PagingInfo: NSObject
+open class SearchTag: NSObject, Identifiable
 {
-    open let totalPages: Int
-    open let totalCount: Int
+    // Mock of the model until implemented on API side
+    open let name: String
+    open let imageURL: String
+    open let identifier: String
 
     
-    public init(totalPages: Int, totalCount: Int)
+    init(name: String, imageURL: String)
     {
-        self.totalPages = totalPages
-        self.totalCount = totalCount
-    }
-    
-    init(mapper: PagingInfoMapper)
-    {
-        self.totalCount = mapper.totalCount!
-        self.totalPages = mapper.totalPages!
+        self.name = name
+        self.imageURL = imageURL
+        self.identifier = NSUUID().uuidString
     }
 }

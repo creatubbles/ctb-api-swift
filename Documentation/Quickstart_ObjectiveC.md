@@ -141,12 +141,18 @@ NewCreationData *creationData = [[NewCreationData alloc] initWithUrl:path upload
 ```
 On `NewCreationData` object you can set:
 - name
+- creationIdentifier
+- localIdentifier
 - reflection text
 - reflection video url
 - gallery (gallery identifier)
 - creators (creator identifiers)
 - creation year
 - creation month
+
+The `creationIdentifier` property is responsible for editing an existing creation.
+
+Also please be aware of the usage of `localIdentifier`. It could be useful in you want to improve management process of creations. In this case you will need to make sure that this identifier is unique. `CreatubblesAPIClient` framework returns error if there are more than one creation with the same `localIdentifier` property.
 
 ```ObjectiveC
 NewCreationData *creationData = [[NewCreationData alloc] initWith...];
@@ -166,4 +172,49 @@ At this point you should be ready to upload a creation
 {
   NSLog(@"Creation uploaded. Error %@",error);
 }];
+```
+
+### Error handling
+Most methods may provide an `NSError` in completion block. Example:
+
+```ObjectiveC
+[apiClient _getSuggestedAvatarsWithCompletion:^(NSArray<AvatarSuggestion *> *avatarSuggestions, NSError * error)
+{
+  if(error)
+  {
+    NSLog(error.localizedDescription);
+  }
+}];
+```
+
+The error object has access to standard NSError properties, like:
+```ObjectiveC
+@property (readonly, copy) NSErrorDomain domain;
+@property (readonly) NSInteger code;
+@property (readonly, copy) NSDictionary *userInfo;
+@property (readonly, copy) NSString *localizedDescription;
+```
+
+You can recognize what kind of error you received based on it's `code` property:
+
+```
+1      Unknown - The operation couldn’t be completed.
+400	Bad request - you requested a resource which returned validation errors
+401	Not authorized – Access Token is invalid
+403	Forbidden – Accessing forbidden resources. When trying to access restricted area.
+404	Not Found – When object in the database cannot be found.
+406	Not Acceptable – You requested a format that isn’t json
+422	Validation error - You try to create/update a resource with invalid params
+429	Too Many Requests – You’re requesting too many kittens! Slow down!
+500	Internal Server Error – We had a problem with our server. Try again later.
+503	Service Unavailable – We’re temporarially offline for maintanance. Please try again later.
+```
+There are also some additional APIClient error codes available:
+```
+-6001   UnknownStatus
+-6002   LoginStatus
+-6003   UploadCancelledStatus
+-6004   MissingResponseDataStatus
+-6005   InvalidResponseDataStatus
+-6006   DuplicatedUploadLocalIdentifierStatus
 ```

@@ -45,6 +45,7 @@ public enum AbilityOperation: Int
     case delete
     case submitTo
     case destroy
+    case seeConnectionFilters
 }
 
 @objc
@@ -84,6 +85,7 @@ open class Ability: NSObject
             case "delete":                  return .delete
             case "submit_to":               return .submitTo
             case "destroy":                 return .destroy
+            case "see_connection_filters":  return .seeConnectionFilters
             
             default:
                 Logger.log.error("Unknown operation type: \(operationString)")

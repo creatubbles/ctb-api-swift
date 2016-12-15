@@ -117,9 +117,17 @@ class CreationUploadService: CreationUploadSessionDelegate
         uploadSessions = databaseDAO.fetchAllCreationUploadSessions(requestSender)
     }
     
-    func uploadCreation(data: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData
+    func uploadCreation(data: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData?
     {
         let session = CreationUploadSession(data: data, requestSender: requestSender)
+        if let _ = uploadSessions.filter({ $0.localIdentifier == data.localIdentifier }).first {
+            let error = APIClientError.duplicatedUploadLocalIdentifierError
+            completion?(nil, error)
+            delegate?.creationUploadService(self, uploadFailed: session, withError: error)
+            
+            return nil
+        }
+        
         uploadSessions.append(session)
         databaseDAO.saveCreationUploadSessionToDatabase(session)
         session.delegate = self
