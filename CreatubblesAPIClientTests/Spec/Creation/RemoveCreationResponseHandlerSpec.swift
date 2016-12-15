@@ -40,7 +40,7 @@ class RemoveCreationResponseHandlerSpec: QuickSpec
                 else { return }
                 let request = RemoveCreationRequest(creationId: creationId)
                 
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 waitUntil(timeout: 20)
                 {
@@ -58,7 +58,7 @@ class RemoveCreationResponseHandlerSpec: QuickSpec
         {
             let creationId = "id"
             let request = RemoveCreationRequest(creationId: creationId)
-            let sender = RequestSender(settings: TestConfiguration.settings)
+            let sender = TestComponentsFactory.requestSender
             
             waitUntil(timeout: 10)
             {

@@ -88,7 +88,7 @@ class GalleriesResponseHandlerSpec: QuickSpec
                 else { return }
                 
                 let request = GalleriesRequest(creationId: identifier, page: nil, perPage: nil, sort: nil)
-                let sender =  RequestSender(settings: TestConfiguration.settings)
+                let sender =  TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in

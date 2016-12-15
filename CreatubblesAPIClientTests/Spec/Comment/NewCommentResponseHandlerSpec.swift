@@ -60,8 +60,7 @@ class NewCommentResponseHandlerSpec: QuickSpec
                 
                 let data = NewCommentData(galleryId: galleryId, text: "TestGalleryComment")
                 let request = NewCommentRequest(data: data)
-                //                let sender = TestComponentsFactory.requestSender
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -87,8 +86,7 @@ class NewCommentResponseHandlerSpec: QuickSpec
                 
                 let data = NewCommentData(userId: userId, text: "TestProfileComment")
                 let request = NewCommentRequest(data: data)
-                //                let sender = TestComponentsFactory.requestSender
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -114,8 +112,7 @@ class NewCommentResponseHandlerSpec: QuickSpec
                 
                 let data = NewCommentData(creationId: creationId, text: "TestCreationComment")
                 let request = NewCommentRequest(data: data)
-                //                let sender = TestComponentsFactory.requestSender
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in

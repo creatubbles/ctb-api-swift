@@ -34,7 +34,8 @@ class NewCreatorRequestSpec: QuickSpec
     {
         describe("New creator request")
         {
-            let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(dividingBy: 1000))))
+            guard let timestamp = TestConfiguration.newCreatorRequestSpecTestTimestamp
+            else { return }
             let name = "MMCreator"+timestamp
             let displayName = "MMCreator"+timestamp
             let birthYear = 2000
@@ -75,7 +76,7 @@ class NewCreatorRequestSpec: QuickSpec
             it("Should return correct value after login")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 20)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)

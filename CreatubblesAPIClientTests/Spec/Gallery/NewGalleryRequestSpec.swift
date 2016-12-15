@@ -34,7 +34,8 @@ class NewGalleryRequestSpec: QuickSpec
     {
         describe("New Gallery request")
         {
-            let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(dividingBy: 1000))))
+            guard let timestamp = TestConfiguration.newGalleryRequestSpecTestTimestamp
+            else { return }
             let name = "MMGallery"+timestamp
             let galleryDescription = "MMGallery"+timestamp
             let openForAll = false

@@ -44,7 +44,7 @@ class EditProfileResponseHandlerSpec: QuickSpec
                 data.avatarCreationIdentifier = creationIdentifier
                 
                 let request = EditProfileRequest(identifier: profileIdentifier, data: data)
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 10)
                 {

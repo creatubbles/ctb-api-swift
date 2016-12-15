@@ -33,6 +33,7 @@ class ActivitiesRequestSpec: QuickSpec {
     override func spec() {
         
         describe("Activities request") {
+            URLCache.shared.removeAllCachedResponses()
             
             it("Should have a proper method") {
                 let request = ActivitiesRequest(page: nil, perPage: nil)

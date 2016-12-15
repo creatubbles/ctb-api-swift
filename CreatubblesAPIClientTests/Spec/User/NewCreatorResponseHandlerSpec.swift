@@ -34,8 +34,12 @@ class NewCreatorResponseHandlerSpec: QuickSpec
     {
         describe("New creator response handler")
         {
+            guard let timestamp = TestConfiguration.newCreatorResponseHandlerSpecTestTimestamp
+            else
+            {
+                return
+            }
 //            let timestamp = String(Int(round(NSDate().time)))
-            let timestamp = String(Int(round(NSDate().timeIntervalSince1970.truncatingRemainder(dividingBy: 1000))))
             let name = "MMCreator"+timestamp
             let displayName = "MMCreator"+timestamp
             let birthYear = 2000
@@ -48,7 +52,7 @@ class NewCreatorResponseHandlerSpec: QuickSpec
             it("Should return correct value after login")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 20)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -70,7 +74,7 @@ class NewCreatorResponseHandlerSpec: QuickSpec
             {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 20)
                 {
                     done in
                     _ = sender.send(creatorRequest, withResponseHandler:NewCreatorResponseHandler()

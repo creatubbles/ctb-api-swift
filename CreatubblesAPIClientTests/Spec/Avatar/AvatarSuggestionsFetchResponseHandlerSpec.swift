@@ -40,7 +40,7 @@ class AvatarSuggestionsFetchResponseHandlerSpec: QuickSpec
                 
                 let requestSender = TestComponentsFactory.requestSender
                 requestSender.logout()
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 20)
                 {
                     done in
                     requestSender.send(request, withResponseHandler: AvatarSuggestionsFetchResponseHandler()
@@ -55,8 +55,8 @@ class AvatarSuggestionsFetchResponseHandlerSpec: QuickSpec
             it("Should return an array of AvatarSuggestion when logged in")
             {
                 let request = AvatarSuggestionsFetchRequest()
-
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 20)
                 {
                     done in
