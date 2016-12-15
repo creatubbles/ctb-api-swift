@@ -1,5 +1,5 @@
 //
-//  PagingInfo.swift
+//  CreatubblesAPIClient.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -24,22 +24,7 @@
 
 import UIKit
 
-@objc
-open class PagingInfo: NSObject
+class SearchTagsFetchRequest: Request
 {
-    open let totalPages: Int
-    open let totalCount: Int
-
-    
-    public init(totalPages: Int, totalCount: Int)
-    {
-        self.totalPages = totalPages
-        self.totalCount = totalCount
-    }
-    
-    init(mapper: PagingInfoMapper)
-    {
-        self.totalCount = mapper.totalCount!
-        self.totalPages = mapper.totalPages!
-    }
+    //Empty until it's ready on API's side
 }

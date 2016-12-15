@@ -142,12 +142,18 @@ let creationData = NewCreationData(path: path, uploadExtension: .MP4)
 ```
 In `NewCreationData` object you can set:
 - name
+- creationIdentifier
+- localIdentifier
 - reflection text
 - reflection video url
 - gallery (gallery identifier)
 - creators (creator identifiers)
 - creation year
 - creation month
+
+The `creationIdentifier` property is responsible for editing an existing creation.
+
+Also please be aware of the usage of `localIdentifier`. It could be useful in you want to improve management process of creations. In this case you will need to make sure that this identifier is unique. `CreatubblesAPIClient` framework returns error if there are more than one creation with the same `localIdentifier` property.
 
 ```Swift
 let creationData = NewCreationData(...)
@@ -167,4 +173,56 @@ apiClient.newCreation(data: creationData)
   (creation, error) -> (Void) in
   print("Creation uploaded. Error: \(error)")
 }
+```
+
+### Error handling
+Error handling is based on http://jsonapi.org/format/#error-objects.
+Most methods may provide an `APIClientError` in completion block. Example:
+
+```
+getSuggestedAvatars()
+{   
+  (avatarSuggestions: Array<AvatarSuggestion>?, error: APIClientError?) -> (Void) in
+  //Do stuff
+}
+```
+The `APICLientError` object has following non-optional fields:
+```Swift
+open let status: Int
+open let code: String
+open let title: String
+open let source: String
+open let detail: String
+open let domain: String
+```
+If any of those fields is not returned in the server's response, then following default values are used:
+```Swift
+public static let DefaultDomain: String = "com.creatubbles.apiclient.errordomain"
+public static let DefaultStatus: Int    = -6000
+public static let DefaultCode:   String = "creatubbles-apiclient-default-code"
+public static let DefaultTitle:  String = "creatubbles-apiclient-default-title"
+public static let DefaultSource: String = "creatubbles-apiclient-default-source"
+public static let DefaultDetail: String = "creatubbles-apiclient-default-detail"
+```
+You can recognize what kind of error you received based on it's `status` property:
+```
+1      Unknown - The operation couldn’t be completed.
+400	Bad request - you requested a resource which returned validation errors
+401	Not authorized – Access Token is invalid
+403	Forbidden – Accessing forbidden resources. When trying to access restricted area.
+404	Not Found – When object in the database cannot be found.
+406	Not Acceptable – You requested a format that isn’t json
+422	Validation error - You try to create/update a resource with invalid params
+429	Too Many Requests – You’re requesting too many kittens! Slow down!
+500	Internal Server Error – We had a problem with our server. Try again later.
+503	Service Unavailable – We’re temporarially offline for maintanance. Please try again later.
+```
+There are also some additional APIClient error statuses available:
+```
+-6001   UnknownStatus
+-6002   LoginStatus
+-6003   UploadCancelledStatus
+-6004   MissingResponseDataStatus
+-6005   InvalidResponseDataStatus
+-6006   DuplicatedUploadLocalIdentifierStatus
 ```

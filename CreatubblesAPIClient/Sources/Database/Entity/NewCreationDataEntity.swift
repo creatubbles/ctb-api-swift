@@ -34,6 +34,7 @@ class NewCreationDataEntity: Object
 {
     dynamic var name: String?
     dynamic var creationIdentifier: String?
+    dynamic var localIdentifier: String?
     dynamic var reflectionText: String?
     dynamic var reflectionVideoUrl: String?
     dynamic var galleryId: String?
