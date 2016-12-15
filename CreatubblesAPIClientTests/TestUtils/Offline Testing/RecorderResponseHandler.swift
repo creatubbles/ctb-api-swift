@@ -1,5 +1,5 @@
 //
-//  GroupsResponseHandlerSpec.swift
+//  APIClientError.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -23,39 +23,31 @@
 //  THE SOFTWARE.
 //
 
-
-import Quick
-import Nimble
+import UIKit
 @testable import CreatubblesAPIClient
 
-class GroupsResponseHandlerSpec: QuickSpec
+class RecorderResponseHandler: ResponseHandler
 {
-    override func spec()
+    private let originalResponseHandler: ResponseHandler
+    private let fileToSavePath: String?
+    private let isLoggedIn: Bool?
+    
+    init(originalHandler: ResponseHandler, fileToSavePath: String?, isLoggedIn: Bool?)
     {
-        describe("Groups request")
+        self.originalResponseHandler = originalHandler
+        self.fileToSavePath = fileToSavePath
+        self.isLoggedIn = isLoggedIn
+    }
+    
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
+    {
+    
+        if let _ = fileToSavePath
         {
-            it("Should return proper value after logging in")
-            {
-                let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
-                {
-                    done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
-                        (error: Error?) -> Void in
-                        expect(error).to(beNil())
-                        sender.send(GroupsRequest(), withResponseHandler: GroupsResponseHandler()
-                        {
-                            (groups, error) -> (Void) in
-                            expect(error).to(beNil())
-                            expect(groups).notTo(beNil())
-                            expect(groups).notTo(beEmpty())
-                            sender.logout()
-                            done()
-                        })
-                    }
-                }
-            }
+            let testRecorder = TestRecorder(isLoggedIn: isLoggedIn)
+            testRecorder.saveResponseToFile(response, fileToSavePath: fileToSavePath, error: error)
         }
+        
+        originalResponseHandler.handleResponse(response, error: error)
     }
 }

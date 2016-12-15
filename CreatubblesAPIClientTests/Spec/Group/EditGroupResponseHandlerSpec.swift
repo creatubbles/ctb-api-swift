@@ -36,13 +36,14 @@ class EditGroupResponseHandlerSpec: QuickSpec
         {
             it("Should Edit group when only name is passed")
             {
-                guard let identifier = TestConfiguration.testGroupIdentifier
+                guard let identifier = TestConfiguration.testGroupIdentifier,
+                      let name = TestConfiguration.testEditGroupName
                 else { return }
                 
                 let data = EditGroupData()
-                data.name =  "TestEditGroupName_"+String(NSDate().timeIntervalSince1970)
+                data.name = name
                 
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -68,10 +69,10 @@ class EditGroupResponseHandlerSpec: QuickSpec
                 else { return }
                 
                 let data = EditGroupData()
-                data.name =  "TestEditGroupName_"+String(NSDate().timeIntervalSince1970)
+                data.name =  TestConfiguration.testEditGroupName
                 data.avatarCreationIdentifier = creationIdentifier
                 
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in

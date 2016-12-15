@@ -125,7 +125,8 @@ class RequestSender: NSObject
         return APIClientError.genericLoginError
     }
     
-    func logout() {
+    func logout()
+    {
         networkManager.authClient.logout()
     }
     
@@ -137,6 +138,7 @@ class RequestSender: NSObject
     // MARK: - Request sending
     
     @discardableResult
+    
     func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler {
         Logger.log.debug("Sending request: \(type(of: request))")
         
