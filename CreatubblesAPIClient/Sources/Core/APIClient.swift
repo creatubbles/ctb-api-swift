@@ -619,6 +619,11 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return commentsDAO.addComment(commendData: data, completion: completion)
     }
     
+    open func declineComment(commentId: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        return commentsDAO.declineComment(commentIdentifier: commentId, completion: completion)
+    }
+    
     open func reportComment(commentId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
         return commentsDAO.reportComment(commentIdentifier: commentId, message: message, completion: completion)

@@ -623,6 +623,15 @@ extension APIClient
         }
     }
     
+    public func _addComment(commentId: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
+    {
+        return declineComment(commentId: commentId)
+        {
+            (error) -> (Void) in
+            completion?(APIClient.errorTypeToNSError(error))
+        }
+    }
+    
     public func _reportComment(commentId: String, message: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
         return reportComment(commentId: commentId, message: message)
