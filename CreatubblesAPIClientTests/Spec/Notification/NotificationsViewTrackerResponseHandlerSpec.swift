@@ -38,7 +38,7 @@ class NotificationsViewTrackerResponseHandlerSpec: QuickSpec
             it("Should return error when user is not logged in")
             {
                 let request = NotificationsViewTrackerRequest()
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 
                 waitUntil(timeout: 10)
@@ -56,7 +56,7 @@ class NotificationsViewTrackerResponseHandlerSpec: QuickSpec
             it("Shouldn't return any errors when user is logged in")
             {
                 let request = NotificationsViewTrackerRequest()
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 10)
                 {

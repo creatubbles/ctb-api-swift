@@ -34,7 +34,12 @@ class NewGalleryResponseHandlerSpec: QuickSpec
     {
         describe("New Gallery response handler")
         {
-            let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(dividingBy: 1000))))
+            guard let timestamp = TestConfiguration.newGalleryResponseHandlerSpecTestTimestamp
+            else
+            {
+                return
+            }
+            
             let name = "MMGallery"+timestamp
             let galleryDescription = "MMGallery"+timestamp
             let openForAll = false
