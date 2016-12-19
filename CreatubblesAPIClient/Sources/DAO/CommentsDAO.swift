@@ -42,6 +42,13 @@ class CommentsDAO: NSObject
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func declineComment(commentIdentifier commentId: String, completion: ErrorClosure?) -> RequestHandler
+    {
+        let request = DeclineCommentRequest(commentId: commentId)
+        let handler = DeclineCommentResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func reportComment(commentIdentifier commentId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
         let request = ReportCommentRequest(commentId: commentId, message: message)
