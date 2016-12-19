@@ -37,7 +37,7 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec
             it("Should return error when user is not logged in")
             {
                 let request = NotificationsFetchRequest()
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 
                 waitUntil(timeout: 10)
@@ -58,7 +58,7 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec
             it("Should fetch notificaions when user is logged in")
             {
                 let request = NotificationsFetchRequest()
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in

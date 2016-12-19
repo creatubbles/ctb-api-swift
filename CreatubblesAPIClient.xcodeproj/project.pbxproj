@@ -324,6 +324,10 @@
 		213B29F51DCA3936003E7314 /* FetchToybooCreationResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B29F31DCA3936003E7314 /* FetchToybooCreationResponseHandlerSpec.swift */; };
 		213B29F81DCA3946003E7314 /* FetchToybooCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B29F61DCA3946003E7314 /* FetchToybooCreationRequest.swift */; };
 		213B29F91DCA3946003E7314 /* FetchToybooCreationResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B29F71DCA3946003E7314 /* FetchToybooCreationResponseHandler.swift */; };
+		214BE6251E02B20700374E21 /* RecorderResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BE6211E02B20700374E21 /* RecorderResponseHandler.swift */; };
+		214BE6261E02B20700374E21 /* RecorderTestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BE6221E02B20700374E21 /* RecorderTestSender.swift */; };
+		214BE6271E02B20700374E21 /* TestRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BE6231E02B20700374E21 /* TestRecorder.swift */; };
+		214BE6281E02B20700374E21 /* TestRecorderNameUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BE6241E02B20700374E21 /* TestRecorderNameUtils.swift */; };
 		2152794D1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152794C1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift */; };
 		2152794F1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152794E1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift */; };
 		215279521D3F6FC400B67313 /* CreateAUserFollowingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215279511D3F6FC400B67313 /* CreateAUserFollowingRequest.swift */; };
@@ -710,6 +714,10 @@
 		213B29F31DCA3936003E7314 /* FetchToybooCreationResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchToybooCreationResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		213B29F61DCA3946003E7314 /* FetchToybooCreationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchToybooCreationRequest.swift; sourceTree = "<group>"; };
 		213B29F71DCA3946003E7314 /* FetchToybooCreationResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchToybooCreationResponseHandler.swift; sourceTree = "<group>"; };
+		214BE6211E02B20700374E21 /* RecorderResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderResponseHandler.swift; sourceTree = "<group>"; };
+		214BE6221E02B20700374E21 /* RecorderTestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderTestSender.swift; sourceTree = "<group>"; };
+		214BE6231E02B20700374E21 /* TestRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRecorder.swift; sourceTree = "<group>"; };
+		214BE6241E02B20700374E21 /* TestRecorderNameUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRecorderNameUtils.swift; sourceTree = "<group>"; };
 		2152794C1D3F6E3900B67313 /* UsersFollowedByAUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersFollowedByAUserRequest.swift; sourceTree = "<group>"; };
 		2152794E1D3F6F1400B67313 /* UsersFollowedByAUserResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersFollowedByAUserResponseHandler.swift; sourceTree = "<group>"; };
 		215279511D3F6FC400B67313 /* CreateAUserFollowingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAUserFollowingRequest.swift; sourceTree = "<group>"; };
@@ -1089,6 +1097,7 @@
 		18779DBC1C68DFAE000BFB57 /* TestUtils */ = {
 			isa = PBXGroup;
 			children = (
+				214BE6201E02B20700374E21 /* Offline Testing */,
 				18779DC11C68E2D9000BFB57 /* TestConfigurationTemplate.swift */,
 				18779DBD1C68DFCB000BFB57 /* DummyResponseHandler.swift */,
 				187901F11C6B43E1008F5302 /* TestRequestSender.swift */,
@@ -1575,6 +1584,17 @@
 				212A12271D536A3C001BA35A /* PartnerApplicationsSearchResponseHandlerSpec.swift */,
 			);
 			path = "Partner Applications";
+			sourceTree = "<group>";
+		};
+		214BE6201E02B20700374E21 /* Offline Testing */ = {
+			isa = PBXGroup;
+			children = (
+				214BE6211E02B20700374E21 /* RecorderResponseHandler.swift */,
+				214BE6221E02B20700374E21 /* RecorderTestSender.swift */,
+				214BE6231E02B20700374E21 /* TestRecorder.swift */,
+				214BE6241E02B20700374E21 /* TestRecorderNameUtils.swift */,
+			);
+			path = "Offline Testing";
 			sourceTree = "<group>";
 		};
 		215279501D3F6F9800B67313 /* User Followings */ = {
@@ -2173,6 +2193,7 @@
 				2178B7361D37CE4E0013C251 /* CreateMultipleCreatorsResponseHandlerSpec.swift in Sources */,
 				18F6E84A1D0219C800AAC5FB /* CommentsRequestSpec.swift in Sources */,
 				1859FAB81D39053D0023A6B6 /* DeleteGroupResponseHandlerSpec.swift in Sources */,
+				214BE6281E02B20700374E21 /* TestRecorderNameUtils.swift in Sources */,
 				18F6E8481D0218A100AAC5FB /* ContentResponseHandlerSpec.swift in Sources */,
 				213B29F51DCA3936003E7314 /* FetchToybooCreationResponseHandlerSpec.swift in Sources */,
 				0837859D1D379A8C006EF69E /* ReportCreationResponseHandlerSpec.swift in Sources */,
@@ -2208,8 +2229,10 @@
 				08AC6A6B1D425DEC004A35C3 /* ActivitiesResponseHandlerSpec.swift in Sources */,
 				213B29F41DCA3936003E7314 /* FetchToybooCreationRequestSpec.swift in Sources */,
 				18467F661D02EA59005CE5DD /* UIColorHexSpec.swift in Sources */,
+				214BE6251E02B20700374E21 /* RecorderResponseHandler.swift in Sources */,
 				18F6E8191D02114400AAC5FB /* CreationResponseHandlerSpec.swift in Sources */,
 				08B7E9121D524CDD007A30F3 /* GroupCreatorsResponseHandlerSpec.swift in Sources */,
+				214BE6261E02B20700374E21 /* RecorderTestSender.swift in Sources */,
 				18F6E8371D02170500AAC5FB /* CreatorsAndManagersRequestSpec.swift in Sources */,
 				18F6E81F1D0213B000AAC5FB /* NewCreationUploadRequestSpec.swift in Sources */,
 				212A121E1D522374001BA35A /* PartnerApplicationRequestSpec.swift in Sources */,
@@ -2240,6 +2263,7 @@
 				217745161DD9C9940012FFDC /* AvatarSuggestionsFetchResponseHandlerSpec.swift in Sources */,
 				18F6E8231D02145600AAC5FB /* CreationPingRequestSpec.swift in Sources */,
 				08BBFE401D7EB491005F1F11 /* FeaturedGalleriesRequestSpec.swift in Sources */,
+				214BE6271E02B20700374E21 /* TestRecorder.swift in Sources */,
 				18F6E8131D020F3200AAC5FB /* BubbleRequestSpec.swift in Sources */,
 				083785A11D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift in Sources */,
 				18F6E8461D02189700AAC5FB /* ContentRequestSpec.swift in Sources */,

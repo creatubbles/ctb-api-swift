@@ -64,7 +64,7 @@ class SwitchUserRequestSpec: QuickSpec {
                 else { return }
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 10) { done in
+                waitUntil(timeout: 100) { done in
                     sender.login(teacherUsername, password: teacherPassword) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())

@@ -37,7 +37,7 @@ class ContentResponseHandlerSpec: QuickSpec
             it("Should return recent content after login")
             {
                 let request = ContentRequest(type: .Recent, page: 1, perPage: 20, userId: nil)
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 10)
                 {
@@ -62,7 +62,7 @@ class ContentResponseHandlerSpec: QuickSpec
             it("Should return trending content after login")
             {
                 let request = ContentRequest(type: .Trending, page: 1, perPage: 20, userId: nil)
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 10)
                 {
@@ -87,7 +87,7 @@ class ContentResponseHandlerSpec: QuickSpec
             it("Should return Connected contents after login")
             {
                 let request = ContentRequest(type: .Connected, page: 1, perPage: 20, userId: nil)
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 20)
                 {
@@ -113,7 +113,7 @@ class ContentResponseHandlerSpec: QuickSpec
         it("Should return User Bubbled Contents after login")
         {
             let request = ContentRequest(type: .BubbledContents, page: 1, perPage: 20, userId: TestConfiguration.testUserIdentifier)
-            let sender = RequestSender(settings: TestConfiguration.settings)
+            let sender = TestComponentsFactory.requestSender
             
             waitUntil(timeout: 20)
             {
@@ -137,7 +137,7 @@ class ContentResponseHandlerSpec: QuickSpec
         it("Should return Contents By A User after login")
         {
             let request = ContentRequest(type: .ContentsByAUser, page: 1, perPage: 20, userId: TestConfiguration.testUserIdentifier)
-            let sender = RequestSender(settings: TestConfiguration.settings)
+            let sender = TestComponentsFactory.requestSender
             
             waitUntil(timeout: 20)
             {
@@ -161,7 +161,7 @@ class ContentResponseHandlerSpec: QuickSpec
         it("Should return Contents based on Followed Users after login")
         {
             let request = ContentRequest(type: .Followed, page: 1, perPage: 20, userId: nil)
-            let sender = RequestSender(settings: TestConfiguration.settings)
+            let sender = TestComponentsFactory.requestSender
             
             waitUntil(timeout: 20)
             {

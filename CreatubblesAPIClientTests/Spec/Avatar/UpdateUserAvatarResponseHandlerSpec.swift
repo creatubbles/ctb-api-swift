@@ -63,7 +63,7 @@ class UpdateUserAvatarResponseHandlerSpec: QuickSpec
 
                 let request = UpdateUserAvatarRequest(userId: userId, data: data)
                 
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 20)
                 {
                     done in
