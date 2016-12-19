@@ -25,13 +25,52 @@
 import UIKit
 import XCGLogger
 
+enum LogLevel
+{
+    case verbose
+    case debug
+    case info
+    case warning
+    case error
+    case severe
+    case none
+}
+
 class Logger
 {
     static var loggerIdentifier = "CreatubblesAPIClientLogger"
-    static var log = XCGLogger(identifier: loggerIdentifier, includeDefaultDestinations: true)
+    private static var logger = XCGLogger(identifier: loggerIdentifier, includeDefaultDestinations: true)
     
-    class func setup()
+    class func log(_ level: LogLevel, _ message:String?)
     {
-        log.setup(level: .debug, showLogIdentifier: true, showFunctionName: false, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, showDate: true, writeToFile: nil, fileLevel: nil)
+        switch level
+        {
+            case .verbose:  logger.verbose(message)
+            case .debug:    logger.debug(message)
+            case .info:     logger.info(message)
+            case .warning:  logger.warning(message)
+            case .error:    logger.error(message)
+            case .severe:   logger.severe(message)
+            case .none:     return
+        }
+    }
+    
+    class func setup(level: LogLevel = .info)
+    {
+        logger.setup(level: Logger.logLevelToXCGLevel(level: level), showLogIdentifier: true, showFunctionName: false, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, showDate: true, writeToFile: nil, fileLevel: nil)
+    }
+    
+    private class func logLevelToXCGLevel(level: LogLevel) -> XCGLogger.Level
+    {
+        switch level
+        {
+            case .verbose: return .verbose
+            case .debug: return .debug
+            case .info: return .info
+            case .warning: return .warning
+            case .error: return .error
+            case .severe: return .severe
+            case .none: return .none
+        }
     }
 }

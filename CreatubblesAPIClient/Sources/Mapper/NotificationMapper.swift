@@ -88,7 +88,7 @@ class NotificationMapper: Mappable
         if type == "new_comment_for_creation_users" { return .newCommentForCreationUsers }
         if type == "multiple_creators_created" { return .multipleCreatorsCreated }
         
-        Logger.log.warning("Unknown notification type: \(self.type)")
+        Logger.log(.warning, "Unknown notification type: \(self.type)")
         return .unknown
     }
 }
