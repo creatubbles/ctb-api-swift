@@ -1,5 +1,5 @@
 //
-//  BatchFetcher.swift
+//  GroupUsersBatchFetchOperation.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -21,18 +21,43 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
-import UIKit
-
-class BatchFetcher: NSObject
+class GroupUsersBatchFetchOperation: ConcurrentOperation
 {
-    let maxPageCount = 20
-    let perPage = 20
-    var page = 1
+    private let requestSender: RequestSender
+    private let groupId: String
     
-    let requestSender: RequestSender
-    init(requestSender: RequestSender)
+    let pagingData: PagingData
+    private(set) var users: Array<User>?
+    private var requestHandler: RequestHandler?
+    
+    init(requestSender: RequestSender,  groupId: String, pagingData: PagingData, complete: OperationCompleteClosure?)
     {
         self.requestSender = requestSender
+        self.groupId = groupId
+        self.pagingData = pagingData
+        
+        super.init(complete: complete)
+    }
+    
+    override func main()
+    {
+        guard isCancelled == false else { return }
+
+        let request = GroupCreatorsRequest(groupId: groupId,page: pagingData.page, perPage: pagingData.pageSize)
+        let handler = GroupCreatorsResponseHandler()
+        {
+            [weak self](users, pagingInfo, error) -> (Void) in
+            self?.users = users
+            self?.finish(error)
+        }
+        requestHandler = requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    override func cancel()
+    {
+        requestHandler?.cancel()
+        super.cancel()
     }
 }

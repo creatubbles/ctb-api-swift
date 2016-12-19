@@ -96,8 +96,8 @@ class CreationsDAO
     
     //MARK: BatchMode
     func getCreationsInBatchMode(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, partnerApplicationId: String?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
-    {
-        let fetcher = CreationsBatchFetcher(requestSender: requestSender)
-        return fetcher.fetch(userId, galleryId: galleryId, keyword: keyword, partnerApplicationId: partnerApplicationId, sort: sortOrder, onlyPublic: onlyPublic, completion: completion)
+    {        
+        let fetcher =  CreationsQueueBatchFetcher(requestSender: requestSender,userId: userId, galleryId: galleryId, keyword: keyword, partnerApplicationId: partnerApplicationId, sort: sortOrder, onlyPublic: onlyPublic, completion: completion)
+        return fetcher.fetch()
     }
 }
