@@ -88,7 +88,7 @@ open class Ability: NSObject
             case "see_connection_filters":  return .seeConnectionFilters
             
             default:
-                Logger.log.error("Unknown operation type: \(operationString)")
+                Logger.log(.warning, "Unknown operation type: \(operationString)")
                 return .unknown
             
         }

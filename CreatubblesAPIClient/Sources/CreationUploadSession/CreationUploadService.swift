@@ -81,7 +81,7 @@ class CreationUploadService: CreationUploadSessionDelegate
         guard let session = uploadSessions.filter( {$0.localIdentifier == sessionId }).first
         else
         {
-            Logger.log.warning("Cannot find session with identifier \(sessionId) to start")
+            Logger.log(.warning, "Cannot find session with identifier \(sessionId) to start")
             return
         }
         
@@ -95,7 +95,7 @@ class CreationUploadService: CreationUploadSessionDelegate
               let index = uploadSessions.index(of: session)
         else
         {
-            Logger.log.warning("Cannot find session with identifier \(sessionId) to remove")
+            Logger.log(.warning, "Cannot find session with identifier \(sessionId) to remove")
             return
         }
         
