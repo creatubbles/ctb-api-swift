@@ -32,6 +32,8 @@
 		083785A11D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785A01D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift */; };
 		083785A31D379B35006EF69E /* ReportUserRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785A21D379B35006EF69E /* ReportUserRequestSpec.swift */; };
 		083785A51D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785A41D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift */; };
+		0846DD531E07E20E002722ED /* DeclineCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0846DD521E07E20E002722ED /* DeclineCommentRequest.swift */; };
+		0846DD551E07E224002722ED /* DeclineCommentResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0846DD541E07E224002722ED /* DeclineCommentResponseHandler.swift */; };
 		08A587411DC34BE100F570C4 /* UploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A587401DC34BE100F570C4 /* UploadManager.swift */; };
 		08A587431DC34E0200F570C4 /* HTTPHeadersBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A587421DC34E0200F570C4 /* HTTPHeadersBuilder.swift */; };
 		08A75A9E1DC219E7007F546D /* UploadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A75A9D1DC219E7007F546D /* UploadTask.swift */; };
@@ -408,6 +410,8 @@
 		083785A01D379AC1006EF69E /* ReportGalleryResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportGalleryResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		083785A21D379B35006EF69E /* ReportUserRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportUserRequestSpec.swift; sourceTree = "<group>"; };
 		083785A41D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportUserResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		0846DD521E07E20E002722ED /* DeclineCommentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclineCommentRequest.swift; sourceTree = "<group>"; };
+		0846DD541E07E224002722ED /* DeclineCommentResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclineCommentResponseHandler.swift; sourceTree = "<group>"; };
 		08A587401DC34BE100F570C4 /* UploadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadManager.swift; sourceTree = "<group>"; };
 		08A587421DC34E0200F570C4 /* HTTPHeadersBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHeadersBuilder.swift; sourceTree = "<group>"; };
 		08A75A9D1DC219E7007F546D /* UploadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadTask.swift; sourceTree = "<group>"; };
@@ -1367,6 +1371,8 @@
 				18F6E85E1D021B6500AAC5FB /* NewCommentResponseHandler.swift */,
 				083785861D378714006EF69E /* ReportCommentRequest.swift */,
 				083785881D37872C006EF69E /* ReportCommentResponseHandler.swift */,
+				0846DD521E07E20E002722ED /* DeclineCommentRequest.swift */,
+				0846DD541E07E224002722ED /* DeclineCommentResponseHandler.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -1891,6 +1897,7 @@
 				181E76CF1CC5351300A1546A /* Bubble.swift in Sources */,
 				083785951D378B7D006EF69E /* ReportUserResponseHandler.swift in Sources */,
 				18F6E8951D021B6500AAC5FB /* NewCreationPingRequest.swift in Sources */,
+				0846DD531E07E20E002722ED /* DeclineCommentRequest.swift in Sources */,
 				181E76E41CC5353600A1546A /* BubbleDAO.swift in Sources */,
 				21B9334A1D2AEC2900FCD248 /* MyConnectionsRequest.swift in Sources */,
 				21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */,
@@ -1935,6 +1942,7 @@
 				18F6E8881D021B6500AAC5FB /* UpdateBubbleRequest.swift in Sources */,
 				18E9D18F1D117812006F2BAB /* EditCreationRequest.swift in Sources */,
 				08B7E90E1D52302D007A30F3 /* GroupCreatorsResponseHandler.swift in Sources */,
+				0846DD551E07E224002722ED /* DeclineCommentResponseHandler.swift in Sources */,
 				183B5BBF1D8BDDD200A19298 /* APIClient_ObjC.swift in Sources */,
 				217745111DD9C9880012FFDC /* UpdateUserAvatarResponseHandler.swift in Sources */,
 				18F6E89E1D021B6500AAC5FB /* GallerySubmissionResponseHandler.swift in Sources */,
