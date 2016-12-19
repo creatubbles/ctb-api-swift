@@ -25,7 +25,7 @@
 import UIKit
 import XCGLogger
 
-enum LogLevel
+public enum LogLevel
 {
     case verbose
     case debug
@@ -55,9 +55,9 @@ class Logger
         }
     }
     
-    class func setup(level: LogLevel = .info)
+    class func setup(logLevel: LogLevel = .info)
     {
-        logger.setup(level: Logger.logLevelToXCGLevel(level: level), showLogIdentifier: true, showFunctionName: false, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, showDate: true, writeToFile: nil, fileLevel: nil)
+        logger.setup(level: Logger.logLevelToXCGLevel(level: logLevel), showLogIdentifier: true, showFunctionName: false, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, showDate: true, writeToFile: nil, fileLevel: nil)
     }
     
     private class func logLevelToXCGLevel(level: LogLevel) -> XCGLogger.Level
