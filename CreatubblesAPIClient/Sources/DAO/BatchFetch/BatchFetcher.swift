@@ -26,7 +26,7 @@ import UIKit
 
 class BatchFetcher: NSObject
 {
-    let maxPageCount = 20
+    let maxPageCount = 1000
     let perPage = 20
     var page = 1
     
