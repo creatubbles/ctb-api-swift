@@ -34,6 +34,8 @@
 		083785A51D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785A41D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift */; };
 		0846DD531E07E20E002722ED /* DeclineCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0846DD521E07E20E002722ED /* DeclineCommentRequest.swift */; };
 		0846DD551E07E224002722ED /* DeclineCommentResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0846DD541E07E224002722ED /* DeclineCommentResponseHandler.swift */; };
+		0846DD571E080BB1002722ED /* DeclineCommentRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0846DD561E080BB1002722ED /* DeclineCommentRequestSpec.swift */; };
+		0846DD591E080BCE002722ED /* DeclineCommentResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0846DD581E080BCE002722ED /* DeclineCommentResponseHandlerSpec.swift */; };
 		08A587411DC34BE100F570C4 /* UploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A587401DC34BE100F570C4 /* UploadManager.swift */; };
 		08A587431DC34E0200F570C4 /* HTTPHeadersBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A587421DC34E0200F570C4 /* HTTPHeadersBuilder.swift */; };
 		08A75A9E1DC219E7007F546D /* UploadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A75A9D1DC219E7007F546D /* UploadTask.swift */; };
@@ -412,6 +414,8 @@
 		083785A41D379B4E006EF69E /* ReportUserResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportUserResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		0846DD521E07E20E002722ED /* DeclineCommentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclineCommentRequest.swift; sourceTree = "<group>"; };
 		0846DD541E07E224002722ED /* DeclineCommentResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclineCommentResponseHandler.swift; sourceTree = "<group>"; };
+		0846DD561E080BB1002722ED /* DeclineCommentRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclineCommentRequestSpec.swift; sourceTree = "<group>"; };
+		0846DD581E080BCE002722ED /* DeclineCommentResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclineCommentResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		08A587401DC34BE100F570C4 /* UploadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadManager.swift; sourceTree = "<group>"; };
 		08A587421DC34E0200F570C4 /* HTTPHeadersBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHeadersBuilder.swift; sourceTree = "<group>"; };
 		08A75A9D1DC219E7007F546D /* UploadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadTask.swift; sourceTree = "<group>"; };
@@ -1332,6 +1336,8 @@
 				18F6E84D1D0219EA00AAC5FB /* NewCommentResponseHandlerSpec.swift */,
 				083785961D379A47006EF69E /* ReportCommentRequestSpec.swift */,
 				083785981D379A60006EF69E /* ReportCommentResponseHandlerSpec.swift */,
+				0846DD561E080BB1002722ED /* DeclineCommentRequestSpec.swift */,
+				0846DD581E080BCE002722ED /* DeclineCommentResponseHandlerSpec.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -2114,7 +2120,9 @@
 				18F6E81D1D02132F00AAC5FB /* NewCreationResponseHandlerSpec.swift in Sources */,
 				18F6E8251D02146100AAC5FB /* CreationPingResponseHandlerSpec.swift in Sources */,
 				18F6E8291D02158F00AAC5FB /* GalleriesResponseHandlerSpec.swift in Sources */,
+				0846DD571E080BB1002722ED /* DeclineCommentRequestSpec.swift in Sources */,
 				18F6E8271D02158400AAC5FB /* GalleriesRequestSpec.swift in Sources */,
+				0846DD591E080BCE002722ED /* DeclineCommentResponseHandlerSpec.swift in Sources */,
 				18EFFF711C772A4E00BE0B70 /* DataUploaderSpec.swift in Sources */,
 				18F6E8331D0216E300AAC5FB /* ProfileRequestSpec.swift in Sources */,
 				18F6E8171D02113800AAC5FB /* CreationRequestSpec.swift in Sources */,
