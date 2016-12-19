@@ -68,7 +68,12 @@ open class APIClientSettings: NSObject
     */
     let locale: String?
     
-    public init(appId: String, appSecret: String, backgroundSessionConfigurationIdentifier: String? = nil)
+    /*
+        Internal logging level. '.warning' by default
+     */
+    let logLevel: LogLevel
+    
+    public init(appId: String, appSecret: String, backgroundSessionConfigurationIdentifier: String? = nil, locale: String? = nil, logLevel: LogLevel = .warning)
     {
         self.appId = appId
         self.appSecret = appSecret
@@ -76,11 +81,12 @@ open class APIClientSettings: NSObject
         self.authorizeUri = "https://api.creatubbles.com/v2/oauth/token"
         self.baseUrl = "https://api.creatubbles.com"
         self.apiVersion = "v2"
-        self.locale = nil
+        self.locale = locale
+        self.logLevel = logLevel
         self.backgroundSessionConfigurationIdentifier = backgroundSessionConfigurationIdentifier
     }
     
-    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, locale: String? = nil, backgroundSessionConfigurationIdentifier: String? = nil)
+    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, locale: String? = nil, logLevel: LogLevel = .warning,  backgroundSessionConfigurationIdentifier: String? = nil)
     {
         self.appId = appId
         self.appSecret = appSecret
@@ -89,6 +95,7 @@ open class APIClientSettings: NSObject
         self.baseUrl = baseUrl
         self.apiVersion = apiVersion
         self.locale = locale
+        self.logLevel = logLevel
         self.backgroundSessionConfigurationIdentifier = backgroundSessionConfigurationIdentifier
     }
 }
