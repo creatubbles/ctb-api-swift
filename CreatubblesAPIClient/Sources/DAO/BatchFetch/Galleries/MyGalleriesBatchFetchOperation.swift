@@ -1,5 +1,5 @@
 //
-//  OAuth2Client.swift
+//  MyGalleriesBatchFetchOperation.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -21,37 +21,43 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
-import UIKit
-import KeychainAccess
-
-class OAuth2Client: NSObject
+class MyGalleriesBatchFetchOperation: ConcurrentOperation
 {
-    private let keychain = Keychain(service: "com.creatubbles.access-token")
+    private let requestSender: RequestSender
+    private let filter: MyGalleriesRequestFilter
     
-    var privateAccessToken: String? {
-        get {
-            return keychain["access-token"]
-        }
-        
-        set {
-            keychain["access-token"] = newValue
-        }
-    }
+    let pagingData: PagingData
+    private(set) var galleries: Array<Gallery>?
+    private var requestHandler: RequestHandler?
     
-    var publicAccessToken: String?
-        {
-        get {
-            return keychain["public-access-token"]
-        }
-        
-        set {
-            keychain["public-access-token"] = newValue
-        }
-    }
-    
-    func logout()
+    init(requestSender: RequestSender,  filter: MyGalleriesRequestFilter, pagingData: PagingData, complete: OperationCompleteClosure?)
     {
-        privateAccessToken = nil
+        self.requestSender = requestSender
+        self.filter = filter
+        self.pagingData = pagingData
+        
+        super.init(complete: complete)
+    }
+    
+    override func main()
+    {
+        guard isCancelled == false else { return }
+
+        let request = MyGalleriesRequest(page: pagingData.page, perPage: pagingData.pageSize, filter: filter)
+        let handler = GalleriesResponseHandler()
+        {
+            [weak self](galleries, pagingInfo, error) -> (Void) in
+            self?.galleries = galleries
+            self?.finish(error)
+        }
+        requestHandler = requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    override func cancel()
+    {
+        requestHandler?.cancel()
+        super.cancel()
     }
 }

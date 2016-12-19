@@ -155,19 +155,19 @@ class UserDAO
     //MARK: Batch
     func getCreatorsInBatchMode(_ userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
-        let batchFetcher = UsersBatchFetcher(requestSender: requestSender)
-        return batchFetcher.fetch(userId, scope: .Creators, completion: completion)
+        let batchFetcher = UsersQueueBatchFetcher(requestSender: requestSender, userId: userId, scope: .Creators, completion: completion)
+        return batchFetcher.fetch()
     }
     
     func getGroupCreatorsInBatchMode(_ groupId: String, completion: UsersBatchClosure?) -> RequestHandler
     {
-        let batchFetcher = GroupUsersBatchFetcher(requestSender: requestSender)
-        return batchFetcher.fetch(groupId, completion: completion)
+        let batchFetcher = GroupUsersQueueBatchFetcher(requestSender: requestSender, groupId: groupId, completion: completion)
+        return batchFetcher.fetch()
     }
     
     func getManagersInBatchMode(_ userId: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
-        let batchFetcher = UsersBatchFetcher(requestSender: requestSender)
-        return batchFetcher.fetch(userId, scope: .Managers, completion: completion)
+        let batchFetcher = UsersQueueBatchFetcher(requestSender: requestSender, userId: userId, scope: .Managers, completion: completion)            
+        return batchFetcher.fetch()
     }
 }
