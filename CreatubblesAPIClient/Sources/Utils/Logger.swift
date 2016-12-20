@@ -38,19 +38,20 @@ public enum LogLevel
 
 class Logger
 {
-    static var loggerIdentifier = "CreatubblesAPIClientLogger"
+    private static var loggerIdentifier = "com.creatubbles.CreatubblesAPIClient.logger"
     private static var logger = XCGLogger(identifier: loggerIdentifier, includeDefaultDestinations: true)
     
-    class func log(_ level: LogLevel, _ message:String?)
+    
+    class func log(_ level: LogLevel, _ message:String?, fileName: StaticString = #file, lineNumber: Int = #line)
     {
         switch level
         {
-            case .verbose:  logger.verbose(message)
-            case .debug:    logger.debug(message)
-            case .info:     logger.info(message)
-            case .warning:  logger.warning(message)
-            case .error:    logger.error(message)
-            case .severe:   logger.severe(message)
+            case .verbose:  logger.verbose(message, fileName: fileName, lineNumber: lineNumber)
+            case .debug:    logger.debug(message, fileName: fileName, lineNumber: lineNumber)
+            case .info:     logger.info(message, fileName: fileName, lineNumber: lineNumber)
+            case .warning:  logger.warning(message, fileName: fileName, lineNumber: lineNumber)
+            case .error:    logger.error(message, fileName: fileName, lineNumber: lineNumber)
+            case .severe:   logger.severe(message, fileName: fileName, lineNumber: lineNumber)
             case .none:     return
         }
     }
@@ -64,13 +65,13 @@ class Logger
     {
         switch level
         {
-            case .verbose: return .verbose
-            case .debug: return .debug
-            case .info: return .info
-            case .warning: return .warning
-            case .error: return .error
-            case .severe: return .severe
-            case .none: return .none
+            case .verbose:  return .verbose
+            case .debug:    return .debug
+            case .info:     return .info
+            case .warning:  return .warning
+            case .error:    return .error
+            case .severe:   return .severe
+            case .none:     return .none
         }
     }
 }

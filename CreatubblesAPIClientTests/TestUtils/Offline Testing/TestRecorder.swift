@@ -67,12 +67,12 @@ class TestRecorder
         {
             if let error = ErrorTransformer.errorsFromResponse(response as? Dictionary<String, AnyObject>).first
             {
-                Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
+                Logger.log(.error, "Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
                 recorderHandler.handleResponse(nil, error: error)
             }
             else if let error = response as? Error
             {
-                Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
+                Logger.log(.error, "Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
                 recorderHandler.handleResponse(nil, error: error)
             }
             else
