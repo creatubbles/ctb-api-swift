@@ -755,6 +755,12 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return searchTagDAO.fetchSearchTags(completion: completion)
     }
     
+    //MARK: - Log listener
+    open func addLoggerListnerer(_ listener: LogListener)
+    {
+        Logger.addListener(listener: listener)
+    }
+    
     //MARK: - Delegate
     func creationUploadService(_ sender: CreationUploadService, newSessionAdded session: CreationUploadSession)
     {
