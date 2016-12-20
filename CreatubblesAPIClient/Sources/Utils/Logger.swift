@@ -36,14 +36,21 @@ public enum LogLevel
     case none
 }
 
+public protocol LogListener: class
+{
+    func log(logLevel: LogLevel, message: String?, fileName: String, lineNumber: Int, date: Date)
+}
+
 class Logger
 {
     private static var loggerIdentifier = "com.creatubbles.CreatubblesAPIClient.logger"
     private static var logger = XCGLogger(identifier: loggerIdentifier, includeDefaultDestinations: true)
-    
+    private static var listeners: Array<LogListener> = Array<LogListener>()
     
     class func log(_ level: LogLevel, _ message:String?, fileName: StaticString = #file, lineNumber: Int = #line)
     {
+        listeners.forEach({ $0.log(logLevel: level, message: message, fileName: String(describing: fileName), lineNumber: lineNumber, date: Date()) })
+
         switch level
         {
             case .verbose:  logger.verbose(message, fileName: fileName, lineNumber: lineNumber)
@@ -73,5 +80,14 @@ class Logger
             case .severe:   return .severe
             case .none:     return .none
         }
+    }
+    
+    class func addListener(listener: LogListener)
+    {
+        if !listeners.contains(where: { $0 === listener})
+        {
+            listeners.append(listener)
+        }
+        
     }
 }
