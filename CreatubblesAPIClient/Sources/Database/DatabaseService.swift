@@ -39,7 +39,7 @@ class DatabaseService: NSObject
         }
         catch let realmError
         {
-            Logger.log.error("Realm error error: \(realmError)")
+            Logger.log(.error, "Realm error error: \(realmError)")
             do
             {
                 let url = RLMRealmConfiguration.default().fileURL
@@ -47,7 +47,7 @@ class DatabaseService: NSObject
             }
             catch let fileManagerError
             {
-                Logger.log.error("File manager error: \(fileManagerError)")
+                Logger.log(.error, "File manager error: \(fileManagerError)")
             }
         }
         return try! Realm()
@@ -198,7 +198,7 @@ class DatabaseService: NSObject
             }
             catch let error
             {
-                Logger.log.error("Error during removing upload session: \(error)")
+                Logger.log(.error, "Error during removing upload session: \(error)")
             }
         }
     }
@@ -214,7 +214,7 @@ class DatabaseService: NSObject
         }
         catch let error
         {
-            Logger.log.error("Error duting database clear: \(error)")
+            Logger.log(.error, "Error duting database clear: \(error)")
         }
     }
     
