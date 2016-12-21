@@ -91,7 +91,7 @@ class UserAccountDetailsMapper: Mappable
         if roleString == "instructor" { return .instructor }
         if roleString == "creator"    { return .creator }
         
-        Logger.log.warning("Unkown or missing role string in user account detail")
+        Logger.log(.warning, "Unkown or missing role string in user account detail")
         return Role.creator
     }
     

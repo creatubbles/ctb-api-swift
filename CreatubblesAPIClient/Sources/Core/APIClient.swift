@@ -201,7 +201,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         self.avatarDAO = AvatarDAO(requestSender: requestSender)
         self.searchTagDAO = SearchTagDAO(requestSender: requestSender)
         
-        Logger.setup()
+        Logger.setup(logLevel: settings.logLevel)
         super.init()
         self.creationUploadService.delegate = self
     }
@@ -753,6 +753,12 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     open func getSearchTags(completion: SearchTagsClosure?) -> RequestHandler
     {
         return searchTagDAO.fetchSearchTags(completion: completion)
+    }
+    
+    //MARK: - Log listener
+    open func addLoggerListnerer(_ listener: LogListener)
+    {
+        Logger.addListener(listener: listener)
     }
     
     //MARK: - Delegate

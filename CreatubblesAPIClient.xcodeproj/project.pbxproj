@@ -159,11 +159,6 @@
 		1859FABD1D39053D0023A6B6 /* GroupsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAB41D39053D0023A6B6 /* GroupsResponseHandlerSpec.swift */; };
 		1859FABE1D39053D0023A6B6 /* NewGroupRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAB51D39053D0023A6B6 /* NewGroupRequestSpec.swift */; };
 		1859FABF1D39053D0023A6B6 /* NewGroupResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859FAB61D39053D0023A6B6 /* NewGroupResponseHandlerSpec.swift */; };
-		186782981DE3AA4100823875 /* AvailableOperations.md in Sources */ = {isa = PBXBuildFile; fileRef = 186782931DE3AA4100823875 /* AvailableOperations.md */; };
-		186782991DE3AA4100823875 /* changelog.md in Sources */ = {isa = PBXBuildFile; fileRef = 186782941DE3AA4100823875 /* changelog.md */; };
-		1867829A1DE3AA4100823875 /* Migration_Guide_0.2.0.md in Sources */ = {isa = PBXBuildFile; fileRef = 186782951DE3AA4100823875 /* Migration_Guide_0.2.0.md */; };
-		1867829B1DE3AA4100823875 /* Quickstart_ObjectiveC.md in Sources */ = {isa = PBXBuildFile; fileRef = 186782961DE3AA4100823875 /* Quickstart_ObjectiveC.md */; };
-		1867829C1DE3AA4100823875 /* Quickstart_Swift.md in Sources */ = {isa = PBXBuildFile; fileRef = 186782971DE3AA4100823875 /* Quickstart_Swift.md */; };
 		187671431C7CA0F700733E9E /* PagingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187671421C7CA0F700733E9E /* PagingData.swift */; };
 		187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187671441C7CA23900733E9E /* NewCreatorData.swift */; };
 		187671491C7CA31600733E9E /* NewGalleryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187671481C7CA31600733E9E /* NewGalleryData.swift */; };
@@ -1939,7 +1934,6 @@
 				18F6E88A1D021B6500AAC5FB /* CommentsRequest.swift in Sources */,
 				18290AEF1D06E45A000EA216 /* NotificationTextEntityMapper.swift in Sources */,
 				1859FAA91D39052F0023A6B6 /* GroupsRequest.swift in Sources */,
-				1867829C1DE3AA4100823875 /* Quickstart_Swift.md in Sources */,
 				213B29EF1DCA390E003E7314 /* ToybooCreation.swift in Sources */,
 				2110E0541D7465AE00B62156 /* NameTranslationObjectEntity.swift in Sources */,
 				18F6E8941D021B6500AAC5FB /* FetchCreationsResponseHandler.swift in Sources */,
@@ -1999,7 +1993,6 @@
 				18290AED1D06E44B000EA216 /* NotificationTextEntity.swift in Sources */,
 				180C97B11C6DEA4100BC682D /* Creation.swift in Sources */,
 				081024CC1DDB24A9001A2CF8 /* URLRequest+CURL.swift in Sources */,
-				1867829A1DE3AA4100823875 /* Migration_Guide_0.2.0.md in Sources */,
 				18779DF91C69F39D000BFB57 /* Group.swift in Sources */,
 				182A36C71D409602005E01DC /* UserAccountDetails.swift in Sources */,
 				18E6E8711CFF2F24008D7B89 /* Metadata.swift in Sources */,
@@ -2104,7 +2097,6 @@
 				2177450E1DD9C9880012FFDC /* AvatarSuggestionsFetchRequest.swift in Sources */,
 				1814B76D1DF825CE003B3C65 /* MyGalleriesBatchFetchOperation.swift in Sources */,
 				18F6E8B11D0222AD00AAC5FB /* CustomStyleFetchRequest.swift in Sources */,
-				186782991DE3AA4100823875 /* changelog.md in Sources */,
 				2177451C1DD9C9E60012FFDC /* AvatarDAO.swift in Sources */,
 				1814B7561DF7F052003B3C65 /* CreationsBatchFetchOperation.swift in Sources */,
 				18467F631D02E9E1005CE5DD /* UIColor+Hex.swift in Sources */,
@@ -2136,7 +2128,6 @@
 				08A587411DC34BE100F570C4 /* UploadManager.swift in Sources */,
 				1814B7771DF83332003B3C65 /* UsersBatchFetchOperation.swift in Sources */,
 				0801353B1D353FF90054DAB0 /* SwitchUserResponseHandler.swift in Sources */,
-				186782981DE3AA4100823875 /* AvailableOperations.md in Sources */,
 				083785891D37872C006EF69E /* ReportCommentResponseHandler.swift in Sources */,
 				183635471CB5014700ED778A /* DataIncludeMapper.swift in Sources */,
 				080135391D353F9A0054DAB0 /* SwitchUserRequest.swift in Sources */,
@@ -2147,7 +2138,6 @@
 				18F6E89B1D021B6500AAC5FB /* GalleriesRequest.swift in Sources */,
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,
 				1859FA981D3905210023A6B6 /* EditGroupData.swift in Sources */,
-				1867829B1DE3AA4100823875 /* Quickstart_ObjectiveC.md in Sources */,
 				18C744FC1C84611600A07E4C /* CreationUploadEntity.swift in Sources */,
 				183728EE1CEDD1AC008784C7 /* ContentDAO.swift in Sources */,
 				18E6E86F1CFF2E1D008D7B89 /* AbilityMapper.swift in Sources */,
