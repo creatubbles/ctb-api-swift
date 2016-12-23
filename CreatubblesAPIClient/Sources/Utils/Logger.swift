@@ -49,7 +49,7 @@ class Logger
     
     class func log(_ level: LogLevel, _ message:String?, fileName: StaticString = #file, lineNumber: Int = #line)
     {
-        listeners.forEach({ $0.log(logLevel: level, message: message, fileName: String(describing: fileName), lineNumber: lineNumber, date: Date()) })
+        listeners.forEach({ $0.log(logLevel: level, message: message, fileName: String(describing: fileName).lastPathComponent, lineNumber: lineNumber, date: Date()) })
 
         switch level
         {
