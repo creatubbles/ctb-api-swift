@@ -27,18 +27,17 @@ import UIKit
 
 class TestComponentsFactory: NSObject
 {
-    fileprivate static let useMockSender = false
     fileprivate static let settings = TestConfiguration.settings
     
     static var requestSender: RequestSender
     {
-        if(useMockSender)
+        if TestConfiguration.mode == .useAPI
         {
-            return TestRequestSender(settings: settings)
+            return RequestSender(settings: settings)
         }
         else
         {
-            return RequestSender(settings: settings)
+            return RecorderTestSender(settings: settings)
         }
     }
 }

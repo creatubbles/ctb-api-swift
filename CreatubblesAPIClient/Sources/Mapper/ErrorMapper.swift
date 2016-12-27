@@ -31,12 +31,15 @@ class ErrorMapper: Mappable
     var source: String?
     var title: String?
     var detail: String?
+    //ObjectMapper has a bug when mapping Ints, so we also try to map status as String
+    var statusAsString: String?
     
     required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
         status <- map["status"]
+        statusAsString <- map["status"]
         code <- map["code"]
         source <- map["source"]
         title <- map["title"]

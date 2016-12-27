@@ -110,7 +110,6 @@ extension APIClient
     }
     
     public func _getCreators(userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
-        
     {
         return getCreators(userId: userId, pagingData: pagingData)
         {
@@ -624,6 +623,15 @@ extension APIClient
         }
     }
     
+    public func _addComment(commentId: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
+    {
+        return declineComment(commentId: commentId)
+        {
+            (error) -> (Void) in
+            completion?(APIClient.errorTypeToNSError(error))
+        }
+    }
+    
     public func _reportComment(commentId: String, message: String, completion: ((NSError?) -> (Void))?) -> RequestHandler
     {
         return reportComment(commentId: commentId, message: message)
@@ -841,14 +849,14 @@ extension APIClient
     //MARK: - Utils
     static func errorTypeToNSError(_ error: Error?) -> NSError?
     {
-        if let error = error as? NSError
-        {
-            return error
-        }
         if let error = error as? APIClientError
         {
             let userInfo = [NSLocalizedDescriptionKey : error.title]
             return NSError(domain: APIClientError.DefaultDomain, code: error.status, userInfo: userInfo)
+        }
+        if let error = error as? NSError
+        {
+            return error
         }
         if let _ = error
         {

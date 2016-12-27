@@ -52,7 +52,7 @@ class LandingURLMapper: Mappable
         if typeString == "cte-account_dashboard" { return LandingURLType.accountDashboard }
         if typeString == "cte-upload_guidelines" { return LandingURLType.uploadGuidelines }
         
-        Logger.log.warning("Unknown landingURL: \(self.typeString)")
+        Logger.log(.warning, "Unknown landingURL: \(self.typeString)")
         return .unknown
     }
 }

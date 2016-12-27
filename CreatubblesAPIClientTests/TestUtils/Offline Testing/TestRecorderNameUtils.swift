@@ -1,5 +1,5 @@
 //
-//  GroupsResponseHandlerSpec.swift
+//  APIClientError.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -23,39 +23,34 @@
 //  THE SOFTWARE.
 //
 
-
-import Quick
-import Nimble
+import UIKit
 @testable import CreatubblesAPIClient
 
-class GroupsResponseHandlerSpec: QuickSpec
+class TestRecorderNameUtils
 {
-    override func spec()
+    class func filenameForRequest(request: Request, isLoggedIn: Bool?) -> String
     {
-        describe("Groups request")
+        var nameComponents = Array<String>()
+        nameComponents.append(request.endpoint)
+        nameComponents.append(request.method.rawValue)
+        nameComponents.append(String(String(describing: request.parameters).hashValue))
+        nameComponents.append("loggedIn;\(isLoggedIn)")
+        
+        nameComponents = [nameComponents.joined(separator: "_")]
+        
+        let name =  String(nameComponents.first!.characters.map { $0 == "/" ? "." : $0 })
+        return name.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    class func getInputFilePathForFileName(fileName: String) -> String?
+    {
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
+        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        if let dirPath          = paths.first
         {
-            it("Should return proper value after logging in")
-            {
-                let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
-                {
-                    done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
-                        (error: Error?) -> Void in
-                        expect(error).to(beNil())
-                        sender.send(GroupsRequest(), withResponseHandler: GroupsResponseHandler()
-                        {
-                            (groups, error) -> (Void) in
-                            expect(error).to(beNil())
-                            expect(groups).notTo(beNil())
-                            expect(groups).notTo(beEmpty())
-                            sender.logout()
-                            done()
-                        })
-                    }
-                }
-            }
+            return dirPath.stringByAppendingPathComponent(fileName)
         }
+        return nil
     }
 }

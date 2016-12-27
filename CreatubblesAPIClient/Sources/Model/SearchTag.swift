@@ -24,7 +24,7 @@
 
 import UIKit
 
-open class SearchTag: NSObject
+open class SearchTag: NSObject, Identifiable
 {
     // Mock of the model until implemented on API side
     open let name: String

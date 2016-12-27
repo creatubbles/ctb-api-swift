@@ -37,7 +37,7 @@ class NotificationReadResponseHandlerSpec: QuickSpec
             it("Should return error when not logged in")
             {
                 let request = NotificationReadRequest(notificationIdentifier: "384580")
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 
                 waitUntil(timeout: 10)
@@ -55,7 +55,7 @@ class NotificationReadResponseHandlerSpec: QuickSpec
             it("Should not return error when logged in")
             {
                 let request = NotificationReadRequest(notificationIdentifier: "384580")
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 10)
                 {

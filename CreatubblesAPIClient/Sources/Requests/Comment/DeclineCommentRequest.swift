@@ -1,5 +1,5 @@
 //
-//  ActivitiesRequestSpec.swift
+//  DeclineCommentRequest.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -23,26 +23,16 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
 
-import Quick
-import Nimble
-@testable import CreatubblesAPIClient
-
-class ActivitiesRequestSpec: QuickSpec {
+class DeclineCommentRequest: Request {
     
-    override func spec() {
-        
-        describe("Activities request") {
-            URLCache.shared.removeAllCachedResponses()
-            
-            it("Should have a proper method") {
-                let request = ActivitiesRequest(page: nil, perPage: nil)
-                expect(request.method).to(equal(RequestMethod.get))
-            }
-            
-            it("Should have a proper endpoint for activities source") {
-                expect(ActivitiesRequest(page: nil, perPage: nil).endpoint).to(equal("activities"))
-            }
-        }
+    override var method: RequestMethod  { return .delete }
+    override var endpoint: String       { return "comments/\(commentId)/approval" }
+    
+    fileprivate let commentId: String
+    
+    init(commentId: String) {
+        self.commentId = commentId
     }
 }

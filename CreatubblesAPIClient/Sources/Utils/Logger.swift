@@ -25,13 +25,69 @@
 import UIKit
 import XCGLogger
 
+public enum LogLevel
+{
+    case verbose
+    case debug
+    case info
+    case warning
+    case error
+    case severe
+    case none
+}
+
+public protocol LogListener: class
+{
+    func log(logLevel: LogLevel, message: String?, fileName: String, lineNumber: Int, date: Date)
+}
+
 class Logger
 {
-    static var loggerIdentifier = "CreatubblesAPIClientLogger"
-    static var log = XCGLogger(identifier: loggerIdentifier, includeDefaultDestinations: true)
+    private static var loggerIdentifier = "com.creatubbles.CreatubblesAPIClient.logger"
+    private static var logger = XCGLogger(identifier: loggerIdentifier, includeDefaultDestinations: true)
+    private static var listeners: Array<LogListener> = Array<LogListener>()
     
-    class func setup()
+    class func log(_ level: LogLevel, _ message:String?, fileName: StaticString = #file, lineNumber: Int = #line)
     {
-        log.setup(level: .debug, showLogIdentifier: true, showFunctionName: false, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, showDate: true, writeToFile: nil, fileLevel: nil)
+        listeners.forEach({ $0.log(logLevel: level, message: message, fileName: String(describing: fileName).lastPathComponent, lineNumber: lineNumber, date: Date()) })
+
+        switch level
+        {
+            case .verbose:  logger.verbose(message, fileName: fileName, lineNumber: lineNumber)
+            case .debug:    logger.debug(message, fileName: fileName, lineNumber: lineNumber)
+            case .info:     logger.info(message, fileName: fileName, lineNumber: lineNumber)
+            case .warning:  logger.warning(message, fileName: fileName, lineNumber: lineNumber)
+            case .error:    logger.error(message, fileName: fileName, lineNumber: lineNumber)
+            case .severe:   logger.severe(message, fileName: fileName, lineNumber: lineNumber)
+            case .none:     return
+        }
+    }
+    
+    class func setup(logLevel: LogLevel = .info)
+    {
+        logger.setup(level: Logger.logLevelToXCGLevel(level: logLevel), showLogIdentifier: true, showFunctionName: false, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, showDate: true, writeToFile: nil, fileLevel: nil)
+    }
+    
+    private class func logLevelToXCGLevel(level: LogLevel) -> XCGLogger.Level
+    {
+        switch level
+        {
+            case .verbose:  return .verbose
+            case .debug:    return .debug
+            case .info:     return .info
+            case .warning:  return .warning
+            case .error:    return .error
+            case .severe:   return .severe
+            case .none:     return .none
+        }
+    }
+    
+    class func addListener(listener: LogListener)
+    {
+        if !listeners.contains(where: { $0 === listener})
+        {
+            listeners.append(listener)
+        }
+        
     }
 }

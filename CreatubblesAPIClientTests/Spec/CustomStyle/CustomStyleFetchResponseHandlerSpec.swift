@@ -45,7 +45,7 @@ class CustomStyleFetchResponseHandlerSpec: QuickSpec
                 
                 //For now API returns error 500 for some users, valid identifier: a60rC05Y
                 let request = CustomStyleFetchRequest(userIdentifier: identifier)
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 30)
                 {
