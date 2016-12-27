@@ -1,5 +1,5 @@
 //
-//  ActivitiesRequestSpec.swift
+//  DeclineCommentResponseHandler.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -24,25 +24,8 @@
 //
 
 
-import Quick
-import Nimble
-@testable import CreatubblesAPIClient
+import UIKit
 
-class ActivitiesRequestSpec: QuickSpec {
-    
-    override func spec() {
-        
-        describe("Activities request") {
-            URLCache.shared.removeAllCachedResponses()
-            
-            it("Should have a proper method") {
-                let request = ActivitiesRequest(page: nil, perPage: nil)
-                expect(request.method).to(equal(RequestMethod.get))
-            }
-            
-            it("Should have a proper endpoint for activities source") {
-                expect(ActivitiesRequest(page: nil, perPage: nil).endpoint).to(equal("activities"))
-            }
-        }
-    }
+class DeclineCommentResponseHandler: ErrorResponseHandler {
+
 }

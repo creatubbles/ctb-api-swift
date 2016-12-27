@@ -42,7 +42,7 @@ class BubbleResponseHandlerSpec: QuickSpec
                 
                 let requestSender = TestComponentsFactory.requestSender
                 requestSender.logout()
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 20)
                 {
                     done in
                     requestSender.send(request, withResponseHandler: NewBubbleResponseHandler()
@@ -63,8 +63,8 @@ class BubbleResponseHandlerSpec: QuickSpec
                 let data = NewBubbleData(creationId: identifier, colorName: nil, xPosition: nil, yPosition: nil)
                 let request = NewBubbleRequest(data: data)
                 
-                let sender = RequestSender(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 20)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -93,16 +93,16 @@ class BubbleResponseHandlerSpec: QuickSpec
                 
                 let requestSender = TestComponentsFactory.requestSender
                 requestSender.logout()
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 100)
                 {
                     done in
                     requestSender.send(request, withResponseHandler: UpdateBubbleResponseHandler()
-                        {
-                            (bubble, error) -> (Void) in
-                            expect(bubble).to(beNil())
-                            expect(error).notTo(beNil())
-                            done()
-                        })
+                    {
+                        (bubble, error) -> (Void) in
+                        expect(bubble).to(beNil())
+                        expect(error).notTo(beNil())
+                        done()
+                    })
                 }
             }
             
@@ -114,7 +114,7 @@ class BubbleResponseHandlerSpec: QuickSpec
                 let request = UpdateBubbleRequest(data:data)
                 
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 100)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -140,9 +140,8 @@ class BubbleResponseHandlerSpec: QuickSpec
             {
                 guard TestConfiguration.testUserIdentifier != nil else { return }
                 
-//                let sender = TestComponentsFactory.requestSender
-                let sender = RequestSender(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: 100)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)

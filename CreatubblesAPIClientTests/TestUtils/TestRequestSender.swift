@@ -55,7 +55,7 @@ class TestRequestSender: RequestSender
     
     override func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
     {
-        Logger.log.debug("Sending request: \(type(of: request))")
+        Logger.log(.debug, "Sending request: \(type(of: request))")
         if(isLoggedIn)
         {
             handler.handleResponse(responseForRequest(request), error: nil)

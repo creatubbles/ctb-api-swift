@@ -67,7 +67,7 @@ class MyConnectionsRequestSpec: QuickSpec
             
             it("Should return correct value after login for current user")
             {
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
                     done in
@@ -89,7 +89,7 @@ class MyConnectionsRequestSpec: QuickSpec
             
             it("Should return correct value after login for a different user")
             {
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 30)
                 {
                     done in

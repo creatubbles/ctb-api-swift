@@ -94,7 +94,7 @@ class DataIncludeMapper
             
             default: mapper = nil
         }
-        if (mapper == nil) { Logger.log.warning("Unknown typeString: \(typeString)") }
+        if (mapper == nil) { Logger.log(.warning, "Unknown typeString: \(typeString)") }
         return mapper == nil ? nil : (identifierString, mapper!)                
     }
 }

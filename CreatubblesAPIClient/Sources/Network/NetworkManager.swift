@@ -41,7 +41,7 @@ class NetworkManager: NSObject {
     func dataTask(request: Request, completion: @escaping (_ response: AnyObject?, _ error: APIClientError?) -> ()) {
         let urlRequest = clientURLRequest(request: request)
         
-        Logger.log.debug("cURL: \(urlRequest.cURLRepresentation(session: self.session))")
+        Logger.log(.debug, "cURL: \(urlRequest.cURLRepresentation(session: self.session))")
         session.dataTask(with: urlRequest) { (data, response, error) -> Void in
             if let data = data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])

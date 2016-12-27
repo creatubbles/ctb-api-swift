@@ -69,7 +69,7 @@ class RequestSender: NSObject
         self.networkManager.dataTask(request: request) { (response, error) in
             DispatchQueue.main.async {
                 if let error = error {
-                    Logger.log.error("Error while login:\(response)")
+                    Logger.log(.error, "Error while login:\(response)")
                     
                     if isPublicAuthentication
                     {
@@ -125,7 +125,8 @@ class RequestSender: NSObject
         return APIClientError.genericLoginError
     }
     
-    func logout() {
+    func logout()
+    {
         networkManager.authClient.logout()
     }
     
@@ -137,8 +138,9 @@ class RequestSender: NSObject
     // MARK: - Request sending
     
     @discardableResult
+    
     func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler {
-        Logger.log.debug("Sending request: \(type(of: request))")
+        Logger.log(.debug, "Sending request: \(type(of: request))")
         
         self.networkManager.dataTask(request: request) { (response, error) in
             if let error = error {
@@ -147,7 +149,7 @@ class RequestSender: NSObject
                     return
                 }
                 
-                Logger.log.error("Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
+                Logger.log(.error, "Error while sending request:\(type(of: request))\nError:\nResponse:\n\(response)")
                 handler.handleResponse(nil, error: ErrorTransformer.errorsFromResponse(response as? Dictionary<String, AnyObject>).first)
             } else {
                 DispatchQueue.global().async {
@@ -178,12 +180,12 @@ class RequestSender: NSObject
         }
         
         uploadTask.uploadProgressHandler = { progress in
-            Logger.log.verbose("Uploading progress for data with identifier:\(uploadData.identifier) \n \(progress.fractionCompleted)")
+            Logger.log(.verbose, "Uploading progress for data with identifier:\(uploadData.identifier) \n \(progress.fractionCompleted)")
             progressChanged(progress.completedUnitCount, progress.totalUnitCount, progress.fractionCompleted)
         }
         
         uploadTask.completionHandler = { error in
-            Logger.log.verbose("Uploading finished for data with identifier:\(uploadData.identifier)")
+            Logger.log(.verbose, "Uploading finished for data with identifier:\(uploadData.identifier)")
             completion(error)
         }
         

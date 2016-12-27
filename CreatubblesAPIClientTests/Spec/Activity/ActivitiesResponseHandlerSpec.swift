@@ -37,7 +37,7 @@ class ActivitiesResponseHandlerSpec: QuickSpec {
             it("Should return activities") {
                 
                 let request = ActivitiesRequest(page: nil, perPage: nil)
-                let sender = RequestSender(settings: TestConfiguration.settings)
+                let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 30) { done in
                     
