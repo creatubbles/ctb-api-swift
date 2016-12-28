@@ -249,18 +249,25 @@ class DatabaseService: NSObject
         newCreationDataEntity.localIdentifier = newCreationData.localIdentifier
         newCreationDataEntity.reflectionText = newCreationData.reflectionText
         newCreationDataEntity.reflectionVideoUrl = newCreationData.reflectionVideoUrl
-        newCreationDataEntity.galleryId = newCreationData.galleryId
         newCreationDataEntity.dataTypeRaw.value = newCreationData.dataType.rawValue
         newCreationDataEntity.uploadExtensionRaw = newCreationData.uploadExtension.stringValue
         
-        if let _ = newCreationData.creatorIds
+        newCreationData.creatorIds?.forEach()
         {
-            for creatorId in newCreationData.creatorIds!
-            {
-                let creatorIdEntity = CreatorIdString()
-                creatorIdEntity.creatorIdString = creatorId
-                newCreationDataEntity.creatorIds.append(creatorIdEntity)
-            }
+            creatorIdentifier in
+            
+            let idEntity = CreatorIdString()
+            idEntity.creatorIdString = creatorIdentifier
+            newCreationDataEntity.creatorIds.append(idEntity)
+        }
+        
+        newCreationData.galleryIds?.forEach()
+        {
+            galleryIdentifier in
+            
+            let idEntity = GalleryIdString()
+            idEntity.galleryIdString = galleryIdentifier
+            newCreationDataEntity.galleryIds.append(idEntity)
         }
         
         newCreationDataEntity.creationYear.value = newCreationData.creationYear

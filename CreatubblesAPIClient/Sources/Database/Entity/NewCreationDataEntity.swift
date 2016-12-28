@@ -30,6 +30,11 @@ class CreatorIdString: Object
     dynamic var creatorIdString: String?
 }
 
+class GalleryIdString: Object
+{
+    dynamic var galleryIdString: String?
+}
+
 class NewCreationDataEntity: Object
 {
     dynamic var name: String?
@@ -39,7 +44,10 @@ class NewCreationDataEntity: Object
     dynamic var reflectionVideoUrl: String?
     dynamic var galleryId: String?
     dynamic var uploadExtensionRaw: String?
+    
     var creatorIds = List<CreatorIdString>()
+    var galleryIds = List<GalleryIdString>()
+    
     var creationYear = RealmOptional<Int>()
     var creationMonth = RealmOptional<Int>()
     
