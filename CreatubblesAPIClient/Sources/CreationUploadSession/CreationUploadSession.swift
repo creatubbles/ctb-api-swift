@@ -337,8 +337,9 @@ class CreationUploadSession: NSObject, Cancelable
             return
         }
         
-        guard let galleryId = creationData.galleryId
-            else
+        guard let galleryIdentifiers = creationData.galleryIds,
+                  !galleryIdentifiers.isEmpty
+        else
         {
             state = .submittedToGallery
             Logger.log(.debug, "GalleryId not set for creation to upload:\(self.creation!.identifier)")
@@ -346,20 +347,20 @@ class CreationUploadSession: NSObject, Cancelable
             return
         }
         
-        let request = GallerySubmissionRequest(galleryId: galleryId, creationId: creation!.identifier)
-        let handler = GallerySubmissionResponseHandler()
+        let submitter = GallerySubmitter(requestSender: requestSender, creationId: creation!.identifier, galleryIdentifiers: galleryIdentifiers)
+        {
+            [weak self](error) -> Void in
+            if let weakSelf = self
             {
-                [weak self](error) -> Void in
-                if let weakSelf = self
+                if error == nil
                 {
-                    if error == nil
-                    {
-                        weakSelf.state = .submittedToGallery
-                    }
+                    weakSelf.state = .submittedToGallery
                 }
-                completion(error)
+            }
+            completion(error)
         }
-        currentRequest = requestSender.send(request, withResponseHandler: handler)
+        
+        currentRequest = submitter.submit()
     }
     
     //MARK: - Utils
@@ -407,7 +408,7 @@ class CreationUploadSession: NSObject, Cancelable
         }
         catch let error
         {
-            print("File save error: \(error)")
+            Logger.log(.error, "File save error: \(error)")
             completion(APIClientError.genericUploadCancelledError as Error)
         }        
     }
