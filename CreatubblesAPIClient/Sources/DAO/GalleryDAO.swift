@@ -40,6 +40,12 @@ class GalleryDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    open func submitCreationToGalleries(creationId: String, galleryIdentifiers: Array<String>, completion: ErrorClosure?) -> RequestHandler
+    {
+        let submitter = GallerySubmitter(requestSender: requestSender, creationId: creationId, galleryIdentifiers: galleryIdentifiers, completion: completion)
+        return submitter.submit()
+    }
+    
     func getGallery(galleryIdentifier galleryId: String, completion: GalleryClosure?) -> RequestHandler
     {
         let request = GalleriesRequest(galleryId: galleryId)

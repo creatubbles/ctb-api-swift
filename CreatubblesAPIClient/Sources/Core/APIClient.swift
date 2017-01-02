@@ -455,6 +455,11 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return galleryDAO.submitCreationToGallery(galleryIdentifier: galleryId, creationId: creationId, completion: completion)
     }
     
+    open func submitCreationToGalleries(creationId: String, galleryIdentifiers: Array<String>, completion: ErrorClosure?) -> RequestHandler
+    {
+        return galleryDAO.submitCreationToGalleries(creationId: creationId, galleryIdentifiers: galleryIdentifiers, completion: completion)
+    }
+
     //MARK: - Creation managment
     open func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler
     {

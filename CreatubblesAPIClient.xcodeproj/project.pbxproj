@@ -128,6 +128,8 @@
 		183728EC1CEDC93D008784C7 /* ContentEntryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183728EB1CEDC93D008784C7 /* ContentEntryMapper.swift */; };
 		183728EE1CEDD1AC008784C7 /* ContentDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183728ED1CEDD1AC008784C7 /* ContentDAO.swift */; };
 		183B5BBF1D8BDDD200A19298 /* APIClient_ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B5BBE1D8BDDD200A19298 /* APIClient_ObjC.swift */; };
+		18431BC81E12A65400CEDE83 /* GallerySubmitOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18431BC61E12A65400CEDE83 /* GallerySubmitOperation.swift */; };
+		18431BC91E12A65400CEDE83 /* GallerySubmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18431BC71E12A65400CEDE83 /* GallerySubmitter.swift */; };
 		18467F5D1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F5C1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift */; };
 		18467F5F1D02E356005CE5DD /* CustomStyleEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F5E1D02E356005CE5DD /* CustomStyleEditRequest.swift */; };
 		18467F611D02E486005CE5DD /* CustomStyleEditData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467F601D02E486005CE5DD /* CustomStyleEditData.swift */; };
@@ -516,6 +518,8 @@
 		183728EB1CEDC93D008784C7 /* ContentEntryMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentEntryMapper.swift; sourceTree = "<group>"; };
 		183728ED1CEDD1AC008784C7 /* ContentDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentDAO.swift; sourceTree = "<group>"; };
 		183B5BBE1D8BDDD200A19298 /* APIClient_ObjC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient_ObjC.swift; sourceTree = "<group>"; };
+		18431BC61E12A65400CEDE83 /* GallerySubmitOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GallerySubmitOperation.swift; sourceTree = "<group>"; };
+		18431BC71E12A65400CEDE83 /* GallerySubmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GallerySubmitter.swift; sourceTree = "<group>"; };
 		18467F5C1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleEditRequestSpec.swift; sourceTree = "<group>"; };
 		18467F5E1D02E356005CE5DD /* CustomStyleEditRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleEditRequest.swift; sourceTree = "<group>"; };
 		18467F601D02E486005CE5DD /* CustomStyleEditData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleEditData.swift; sourceTree = "<group>"; };
@@ -1022,6 +1026,15 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
+		18431BC51E12A65400CEDE83 /* GallerySubmitter */ = {
+			isa = PBXGroup;
+			children = (
+				18431BC61E12A65400CEDE83 /* GallerySubmitOperation.swift */,
+				18431BC71E12A65400CEDE83 /* GallerySubmitter.swift */,
+			);
+			path = GallerySubmitter;
+			sourceTree = "<group>";
+		};
 		18467F641D02EA47005CE5DD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -1115,6 +1128,7 @@
 		188BCEA71C64E09800EA4F11 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				18431BC51E12A65400CEDE83 /* GallerySubmitter */,
 				08E52DF61D6C41FB00262672 /* Filters */,
 				21A79F6A1C81E6C5009E95D1 /* BatchFetch */,
 				1859FA941D3905180023A6B6 /* GroupDAO.swift */,
@@ -1990,6 +2004,7 @@
 				1814B7581DF7F082003B3C65 /* CreationsQueueBatchFetcher.swift in Sources */,
 				18F6E8AA1D021B6500AAC5FB /* ProfileResponseHandler.swift in Sources */,
 				18F6E8831D021B6500AAC5FB /* BubblesFetchResponseHandler.swift in Sources */,
+				18431BC81E12A65400CEDE83 /* GallerySubmitOperation.swift in Sources */,
 				18290AED1D06E44B000EA216 /* NotificationTextEntity.swift in Sources */,
 				180C97B11C6DEA4100BC682D /* Creation.swift in Sources */,
 				081024CC1DDB24A9001A2CF8 /* URLRequest+CURL.swift in Sources */,
@@ -2110,6 +2125,7 @@
 				18E4354C1D04287600B728C6 /* Notification.swift in Sources */,
 				181E76EE1CC547E900A1546A /* Comment.swift in Sources */,
 				215279751D464C6600B67313 /* ContentSearchRequest.swift in Sources */,
+				18431BC91E12A65400CEDE83 /* GallerySubmitter.swift in Sources */,
 				08BBFE361D7EB120005F1F11 /* FavoriteGalleriesRequest.swift in Sources */,
 				187902021C6C8BAF008F5302 /* Gallery.swift in Sources */,
 				21CC9E451DF8362C00C6538C /* SearchTagsFetchResponseHandler.swift in Sources */,

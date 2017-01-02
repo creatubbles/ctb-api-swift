@@ -45,7 +45,7 @@ open class NewCreationData: NSObject
     open var name: String? = nil
     open var reflectionText: String? = nil
     open var reflectionVideoUrl: String? = nil
-    open var galleryId: String? = nil
+    open var galleryIds: Array<String>? = nil
     open var creatorIds: Array<String>? = nil
     open var creationYear: Int? = nil
     open var creationMonth: Int? = nil
@@ -78,17 +78,14 @@ open class NewCreationData: NSObject
         self.name = creationDataEntity.name
         self.reflectionText = creationDataEntity.reflectionText
         self.reflectionVideoUrl = creationDataEntity.reflectionVideoUrl
-        self.galleryId = creationDataEntity.galleryId
-        self.creatorIds = Array<String>()
-        self.uploadExtension = creationDataEntity.uploadExtension
         
-        for creatorId in creationDataEntity.creatorIds
-        {
-            self.creatorIds!.append(creatorId.creatorIdString!)
-        }
+        self.uploadExtension = creationDataEntity.uploadExtension
         self.creationMonth = creationDataEntity.creationMonth.value
         self.creationYear = creationDataEntity.creationYear.value
         self.dataType = creationDataEntity.dataType
+        
+        self.creatorIds = creationDataEntity.creatorIds.flatMap({ $0.creatorIdString })
+        self.galleryIds = creationDataEntity.galleryIds.flatMap({ $0.galleryIdString })
         
         if(dataType.rawValue == 0)
         {
