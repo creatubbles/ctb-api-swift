@@ -1,5 +1,5 @@
 //
-//  NewCreationDataEntity.swift
+//  GallerySubmitOperation.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -21,48 +21,44 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
-import Foundation
-import RealmSwift
+import UIKit
 
-class CreatorIdString: Object
+class GallerySubmitOperation: ConcurrentOperation
 {
-    dynamic var creatorIdString: String?
-}
-
-class GalleryIdString: Object
-{
-    dynamic var galleryIdString: String?
-}
-
-class NewCreationDataEntity: Object
-{
-    dynamic var name: String?
-    dynamic var creationIdentifier: String?
-    dynamic var localIdentifier: String?
-    dynamic var reflectionText: String?
-    dynamic var reflectionVideoUrl: String?
-    dynamic var galleryId: String?
-    dynamic var uploadExtensionRaw: String?
+    private let requestSender: RequestSender
+    private let galleryId: String
+    private let creationId: String
+    private var requestHandler: RequestHandler?
     
-    var creatorIds = List<CreatorIdString>()
-    var galleryIds = List<GalleryIdString>()
-    
-    var creationYear = RealmOptional<Int>()
-    var creationMonth = RealmOptional<Int>()
-    
-    var dataTypeRaw = RealmOptional<Int>()
-    
-    var dataType: CreationDataType
+    init(requestSender: RequestSender, galleryId: String, creationId: String, complete: OperationCompleteClosure?)
     {
-        get
+        self.requestSender = requestSender
+        self.creationId = creationId
+        self.galleryId = galleryId
+        
+        super.init(complete: complete)
+    }
+    
+    override func main()
+    {
+        guard isCancelled == false else { return }
+        
+        let request = GallerySubmissionRequest(galleryId: galleryId, creationId: creationId)
+        let handler = GallerySubmissionResponseHandler()
         {
-            return CreationDataType(rawValue: dataTypeRaw.value!)!
+            [weak self](error) -> (Void) in
+            self?.finish(error)
         }
+        
+        requestHandler = requestSender.send(request, withResponseHandler: handler)
     }
     
-    var uploadExtension: UploadExtension
+    override func cancel()
     {
-        return UploadExtension.fromString(uploadExtensionRaw!)!
+        requestHandler?.cancel()
+        super.cancel()
     }
+
 }
