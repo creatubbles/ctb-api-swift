@@ -37,12 +37,12 @@ open class AppScreenshot: NSObject, Identifiable {
     init(mapper: AppScreenshotMapper)
     {
         self.identifier = mapper.identifier!
-        self.imageURL = mapper.imageURL!
+        self.imageURL = mapper.imageURL
         self.isVideo = mapper.isVideo!
-        self.videoIdentifier = mapper.videoIdentifier!
-        self.title = mapper.title!
+        self.videoIdentifier = mapper.videoIdentifier
+        self.title = mapper.title
         self.provider = mapper.parseProvider()
-        self.thumbnailURL = mapper.thumbnailURL!
+        self.thumbnailURL = mapper.thumbnailURL
         self.position = mapper.position!
     }
 }
