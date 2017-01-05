@@ -56,6 +56,7 @@ class AppScreenshotMapper: Mappable
     func parseProvider() -> AppScreenshotProvider {
         if isVideo == false { return .unknown }
         if provider == "vimeo" { return .vimeo }
+        if provider == "youtube" { return .youtube }
         
         Logger.log(.warning, "Unknown provider: \(self.provider)")
         return .unknown

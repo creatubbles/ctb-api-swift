@@ -145,6 +145,7 @@ open class ResponseData<T> {
 {
     case unknown
     case vimeo
+    case youtube
 }
 
 @objc

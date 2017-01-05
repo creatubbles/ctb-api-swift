@@ -79,6 +79,8 @@ class PartnerApplicationsMapper: Mappable
     var updatedAt: Date?
     
     //MARK: Relationships
+    var userRelationship: RelationshipMapper?
+    var user: User?
     var galleryRelationship: RelationshipMapper?
     var gallery: Gallery?
     var galleriesRelationships: Array<RelationshipMapper>?
@@ -142,10 +144,16 @@ class PartnerApplicationsMapper: Mappable
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
         updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
         
+        userRelationship <- map["relationships.user.data"]
         galleryRelationship <- map["relationships.gallery.data"]
         galleriesRelationships <- map["relationships.galleries.data"]
         relatedAppsRelationships <- map["relationships.related_apps.data"]
         appScreenshotsRelationships <- map["relationships.app_screenshots.data"]
+    }
+    
+    func parseUserRelationship() -> Relationship?
+    {
+        return MappingUtils.relationshipFromMapper(userRelationship)
     }
     
     func parseGalleryRelationship() -> Relationship?
