@@ -270,17 +270,17 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     //MARK: - Creators managment
     open func getUser(userId: String, completion: UserClosure?) -> RequestHandler
     {
-        return userDAO.getUser(userId, completion: completion)
+        return userDAO.getUser(userId: userId, completion: completion)
     }
     
     open func getCurrentUser(_ completion: UserClosure?) -> RequestHandler
     {
-        return userDAO.getCurrentUser(completion)
+        return userDAO.getCurrentUser(completion: completion)
     }
     
     open func switchUser(targetUserId: String, accessToken: String, completion: SwitchUserClosure?) -> RequestHandler
     {
-        return userDAO.switchUser(targetUserId, accessToken: accessToken) { [weak self] (accessToken, error) in completion?(accessToken, error)
+        return userDAO.switchUser(targetUserId: targetUserId, accessToken: accessToken) { [weak self] (accessToken, error) in completion?(accessToken, error)
             if let strongSelf = self , error == nil {
                 strongSelf.delegate?.creatubblesAPIClientUserChanged(strongSelf)
             }
@@ -289,12 +289,12 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     
     open func reportUser(userId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
-        return userDAO.reportUser(userId, message: message, completion: completion)
+        return userDAO.reportUser(userId: userId, message: message, completion: completion)
     }
     
-    open func getCreators(userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    open func getCreators(userId: String?, query: String? = nil, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
-        return userDAO.getCreators(userId, pagingData: pagingData, completion: completion)
+        return userDAO.getCreators(userId: userId, query: query, pagingData: pagingData, completion: completion)
     }
     
     open func getCreators(groupId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
@@ -304,37 +304,37 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     
     open func getSwitchUsers(_ pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
-        return userDAO.getSwitchUsers(pagingData, completion: completion)
+        return userDAO.getSwitchUsers(pagingData: pagingData, completion: completion)
     }
     
-    open func getManagers(userId: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    open func getManagers(userId: String?, query: String? = nil, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
-        return userDAO.getManagers(userId, pagingData: pagingData, completion: completion)
+        return userDAO.getManagers(userId: userId, query: query, pagingData: pagingData, completion: completion)
     }
 
-    open func getCreatorsInBatchMode(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
+    open func getCreatorsInBatchMode(userId: String?, query: String? = nil, completion: UsersBatchClosure?) -> RequestHandler
     {
-        return userDAO.getCreatorsInBatchMode(userId, completion: completion)
+        return userDAO.getCreatorsInBatchMode(userId: userId, query: query, completion: completion)
     }
     
     open func getGroupCreatorsInBatchMode(groupId: String, completion: UsersBatchClosure?) -> RequestHandler
     {
-        return userDAO.getGroupCreatorsInBatchMode(groupId, completion: completion)
+        return userDAO.getGroupCreatorsInBatchMode(groupId: groupId, completion: completion)
     }
     
-    open func getManagersInBatchMode(userId: String?, completion: UsersBatchClosure?) -> RequestHandler
+    open func getManagersInBatchMode(userId: String?, query: String? = nil, completion: UsersBatchClosure?) -> RequestHandler
     {
-        return userDAO.getManagersInBatchMode(userId, completion: completion)
+        return userDAO.getManagersInBatchMode(userId: userId, query: query, completion: completion)
     }
     
     open func newCreator(data creatorData: NewCreatorData,completion: UserClosure?) -> RequestHandler
     {
-        return userDAO.newCreator(creatorData, completion: completion)
+        return userDAO.newCreator(data: creatorData, completion: completion)
     }
     
     open func editProfile(userId identifier: String, data: EditProfileData, completion: ErrorClosure?) -> RequestHandler
     {
-        return userDAO.editProfile(identifier, data: data, completion: completion)
+        return userDAO.editProfile(identifier: identifier, data: data, completion: completion)
     }
     
     open func createMultipleCreators(data: CreateMultipleCreatorsData, completion: ErrorClosure?) -> RequestHandler
@@ -344,12 +344,12 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     
     open func getMyConnections(pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
-        return userDAO.getMyConnections(pagingData, completion: completion)
+        return userDAO.getMyConnections(pagingData: pagingData, completion: completion)
     }
     
     open func getOtherUsersMyConnections(userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
-        return userDAO.getOtherUsersMyConnections(userId, pagingData: pagingData, completion: completion)
+        return userDAO.getOtherUsersMyConnections(userId: userId, pagingData: pagingData, completion: completion)
     }
     
     open func getUsersFollowedByAUser(userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
