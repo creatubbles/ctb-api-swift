@@ -48,7 +48,7 @@ class GalleriesBatchFetcherSpec: QuickSpec
                         expect(error).to(beNil())
                         expect(sender.isLoggedIn()).to(beTrue())
                         
-                        batchFetcher = GalleriesQueueBatchFetcher(requestSender: sender, userId: nil, sort: nil)
+                        batchFetcher = GalleriesQueueBatchFetcher(requestSender: sender, userId: nil, query: nil, sort: nil)
                         {
                             (galleries, error) -> (Void) in
                             expect(galleries).notTo(beNil())
