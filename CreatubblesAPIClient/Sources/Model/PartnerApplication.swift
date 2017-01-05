@@ -80,6 +80,8 @@ open class PartnerApplication: NSObject, Identifiable
     open let updatedAt: Date
     
     //MARK: Relationships
+    open let userRelationship: Relationship
+    open let user: User
     open let galleryRelationship: Relationship
     open let gallery: Gallery
     open let galleriesRelationships: Array<Relationship>?
@@ -141,6 +143,9 @@ open class PartnerApplication: NSObject, Identifiable
         avatarUrl = mapper.avatarUrl
         createdAt = mapper.createdAt! as Date
         updatedAt = mapper.updatedAt! as Date
+        
+        userRelationship = mapper.parseUserRelationship()!
+        user = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)!
         
         galleryRelationship = mapper.parseGalleryRelationship()!
         gallery = MappingUtils.objectFromMapper(dataMapper, relationship: galleryRelationship, type: Gallery.self)!
