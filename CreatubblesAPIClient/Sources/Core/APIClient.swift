@@ -375,14 +375,14 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return galleryDAO.getGalleries(creationIdentifier: creationId, pagingData: pagingData, sort: sort, completion: completion)
     }
 
-    open func getGalleries(userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
+    open func getGalleries(userId: String?, query: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
     {
-        return galleryDAO.getGalleries(userIdentifier: userId, pagingData: pagingData, sort: sort, completion: completion)
+        return galleryDAO.getGalleries(userIdentifier: userId, query: query,pagingData: pagingData, sort: sort, completion: completion)
     }
     
-    open func getGalleriesInBatchMode(userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
+    open func getGalleriesInBatchMode(userId: String?, query: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        return galleryDAO.getGalleriesInBatchMode(userIdentifier: userId, sort: sort, completion: completion)
+        return galleryDAO.getGalleriesInBatchMode(userIdentifier: userId, query:query, sort: sort, completion: completion)
     }
     
     open func getMyGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler

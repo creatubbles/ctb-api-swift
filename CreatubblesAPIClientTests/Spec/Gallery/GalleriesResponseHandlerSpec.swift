@@ -36,7 +36,7 @@ class GalleriesResponseHandlerSpec: QuickSpec
         {
             it("Should return correct value for many galleries after login")
             {
-                let request = GalleriesRequest(page: 1, perPage: 10, sort: .popular, userId: nil)
+                let request = GalleriesRequest(page: 1, perPage: 10, sort: .popular, userId: nil, query: nil)
                 let sender =  TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
                 {
@@ -112,7 +112,7 @@ class GalleriesResponseHandlerSpec: QuickSpec
             
             it("Should return error when not logged in")
             {
-                let request = GalleriesRequest(page: 0, perPage: 20, sort: .recent, userId: nil)
+                let request = GalleriesRequest(page: 0, perPage: 20, sort: .recent, userId: nil, query: nil)
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 waitUntil(timeout: 10)

@@ -43,7 +43,7 @@ class GalleriesRequest: Request
     fileprivate let page: Int?
     fileprivate let perPage: Int?
     fileprivate let sort: SortOrder?
-    
+    fileprivate let query: String?
     
     init(galleryId: String)
     {
@@ -53,9 +53,10 @@ class GalleriesRequest: Request
         self.sort = nil
         self.creationId = nil
         self.userId = nil
+        self.query = nil
     }
     
-    init(page: Int?, perPage: Int?, sort: SortOrder?, userId: String?)
+    init(page: Int?, perPage: Int?, sort: SortOrder?, userId: String?, query: String?)
     {
         self.galleryId = nil
         self.page = page
@@ -63,6 +64,7 @@ class GalleriesRequest: Request
         self.sort = sort
         self.creationId = nil
         self.userId = userId
+        self.query = query
     }
     
     init(creationId: String, page: Int?, perPage: Int?, sort: SortOrder?)
@@ -73,6 +75,7 @@ class GalleriesRequest: Request
         self.sort = sort
         self.creationId = creationId
         self.userId = nil
+        self.query = nil
     }
     
     fileprivate func prepareParametersDict() -> Dictionary<String, AnyObject>
@@ -95,6 +98,10 @@ class GalleriesRequest: Request
             if let sort = sort
             {
                 dict["sort"] = Request.sortOrderStringValue(sort) as AnyObject?
+            }
+            if let query = query
+            {
+                dict["query"] = query as AnyObject?
             }
             
             return dict
