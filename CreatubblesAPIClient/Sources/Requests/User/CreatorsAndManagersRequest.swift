@@ -37,16 +37,18 @@ class CreatorsAndManagersRequest: Request
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
     
     fileprivate let userId: String?
+    fileprivate let query: String?
     fileprivate let page: Int?
     fileprivate let perPage: Int?
     fileprivate let scope: CreatorsAndManagersScopeElement?
     
-    init(userId: String? = nil, page: Int? = nil, perPage: Int? = nil, scope:CreatorsAndManagersScopeElement? = nil)
+    init(userId: String? = nil, query: String? = nil, page: Int? = nil, perPage: Int? = nil, scope:CreatorsAndManagersScopeElement? = nil)
     {
         self.userId = userId
         self.page = page
         self.perPage = perPage
         self.scope = scope
+        self.query = query
     }
     
     fileprivate func prepareParameters() -> Dictionary<String, AnyObject>
@@ -68,6 +70,10 @@ class CreatorsAndManagersRequest: Request
         if let scope = scope
         {
             params["scope"] = scope.rawValue as AnyObject?
+        }
+        if let query = query
+        {
+            params["query"] = query as AnyObject?
         }
         
         return params

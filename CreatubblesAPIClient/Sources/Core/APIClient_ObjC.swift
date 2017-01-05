@@ -109,9 +109,9 @@ extension APIClient
         }
     }
     
-    public func _getCreators(userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
+    public func _getCreators(userId: String?, query: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
     {
-        return getCreators(userId: userId, pagingData: pagingData)
+        return getCreators(userId: userId, query: query, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
@@ -136,9 +136,9 @@ extension APIClient
         }
     }
     
-    public func _getManagers(_ userId: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
+    public func _getManagers(_ userId: String?, query: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        return getManagers(userId: userId, pagingData: pagingData)
+        return getManagers(userId: userId, query: query, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
@@ -465,18 +465,18 @@ extension APIClient
         }
     }
     
-    public func _getCreatorsInBatchMode(_ userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?) -> RequestHandler
+    public func _getCreatorsInBatchMode(_ userId: String?, query: String?, completion: ((Array<User>?,NSError?) -> (Void))?) -> RequestHandler
     {
-        return getCreatorsInBatchMode(userId: userId)
+        return getCreatorsInBatchMode(userId: userId, query: query)
         {
             (users, error) -> (Void) in
             completion?(users, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getManagersInBatchMode(_ userId: String?, completion: ((Array<User>?,NSError?) -> (Void))?) -> RequestHandler
+    public func _getManagersInBatchMode(_ userId: String?, query: String?, completion: ((Array<User>?,NSError?) -> (Void))?) -> RequestHandler
     {
-        return getManagersInBatchMode(userId: userId)
+        return getManagersInBatchMode(userId: userId, query: query)
         {
             (users, error) -> (Void) in
             completion?(users, APIClient.errorTypeToNSError(error))

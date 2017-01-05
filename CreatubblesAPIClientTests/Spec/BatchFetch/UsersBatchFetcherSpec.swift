@@ -50,7 +50,7 @@ class UsersBatchFetcherSpec: QuickSpec
                         expect(error).to(beNil())
                         expect(sender.isLoggedIn()).to(beTrue())
                         
-                        batchFetcher = UsersQueueBatchFetcher(requestSender: sender, userId: identifier, scope: .Creators)
+                        batchFetcher = UsersQueueBatchFetcher(requestSender: sender, userId: identifier, query:nil, scope: .Creators)
                         {
                             (users, error) -> (Void) in
                             expect(users).notTo(beNil())

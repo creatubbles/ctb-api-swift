@@ -33,37 +33,37 @@ class UserDAO
         self.requestSender = requestSender
     }
     
-    func getUser(_ userId: String, completion: UserClosure?) -> RequestHandler
+    func getUser(userId: String, completion: UserClosure?) -> RequestHandler
     {
         let request = ProfileRequest(userId: userId)
         let handler = ProfileResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCurrentUser(_ completion: UserClosure?) -> RequestHandler
+    func getCurrentUser(completion: UserClosure?) -> RequestHandler
     {
         let request = ProfileRequest()
         let handler = ProfileResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func switchUser(_ targetUserId: String, accessToken: String, completion: SwitchUserClosure?) -> RequestHandler
+    func switchUser(targetUserId: String, accessToken: String, completion: SwitchUserClosure?) -> RequestHandler
     {
         let request = SwitchUserRequest(targetUserId: targetUserId, accessToken: accessToken)
         let handler = SwitchUserResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func reportUser(_ userId: String, message: String, completion: ErrorClosure?) -> RequestHandler
+    func reportUser(userId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
         let request = ReportUserRequest(userId: userId, message: message)
         let handler = ReportUserResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getCreators(_ userId: String?, pagingData: PagingData?,completion: UsersClosure?) -> RequestHandler
+    func getCreators(userId: String?, query: String?, pagingData: PagingData?,completion: UsersClosure?) -> RequestHandler
     {
-        let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Creators)
+        let request = CreatorsAndManagersRequest(userId: userId, query: query, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Creators)
         let handler = CreatorsAndManagersResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
@@ -75,7 +75,7 @@ class UserDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getSwitchUsers(_ pagingData: PagingData?,completion: UsersClosure?) -> RequestHandler
+    func getSwitchUsers(pagingData: PagingData?,completion: UsersClosure?) -> RequestHandler
     {
         let request = SwitchUsersRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = SwitchUsersResponseHandler(completion: completion)
@@ -96,35 +96,35 @@ class UserDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getManagers(_ userId: String?, pagingData: PagingData?,completion: UsersClosure?) -> RequestHandler
+    func getManagers(userId: String?, query: String?, pagingData: PagingData?,completion: UsersClosure?) -> RequestHandler
     {
-        let request = CreatorsAndManagersRequest(userId: userId, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Managers)
+        let request = CreatorsAndManagersRequest(userId: userId, query:query, page: pagingData?.page, perPage: pagingData?.pageSize, scope: .Managers)
         let handler = CreatorsAndManagersResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getMyConnections(_ pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    func getMyConnections(pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         let request = MyConnectionsRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = MyConnectionsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getOtherUsersMyConnections(_ userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    func getOtherUsersMyConnections(userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         let request = MyConnectionsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, userId: userId)
         let handler = MyConnectionsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func newCreator(_ data: NewCreatorData, completion: UserClosure?) -> RequestHandler
+    func newCreator(data: NewCreatorData, completion: UserClosure?) -> RequestHandler
     {
         let request = NewCreatorRequest(name: data.name, displayName: data.displayName, birthYear: data.birthYear, birthMonth: data.birthMonth, countryCode: data.countryCode, gender: data.gender)
         let handler = NewCreatorResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func editProfile(_ identifier: String, data: EditProfileData, completion: ErrorClosure?) -> RequestHandler
+    func editProfile(identifier: String, data: EditProfileData, completion: ErrorClosure?) -> RequestHandler
     {
         let request = EditProfileRequest(identifier: identifier, data: data)
         let handler = EditProfileResponseHandler(completion: completion)
@@ -153,21 +153,21 @@ class UserDAO
     }
     
     //MARK: Batch
-    func getCreatorsInBatchMode(_ userId: String?, completion: UsersBatchClosure?) -> RequestHandler
+    func getCreatorsInBatchMode(userId: String?, query: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
-        let batchFetcher = UsersQueueBatchFetcher(requestSender: requestSender, userId: userId, scope: .Creators, completion: completion)
+        let batchFetcher = UsersQueueBatchFetcher(requestSender: requestSender, userId: userId, query: query, scope: .Creators, completion: completion)
         return batchFetcher.fetch()
     }
     
-    func getGroupCreatorsInBatchMode(_ groupId: String, completion: UsersBatchClosure?) -> RequestHandler
+    func getGroupCreatorsInBatchMode(groupId: String, completion: UsersBatchClosure?) -> RequestHandler
     {
         let batchFetcher = GroupUsersQueueBatchFetcher(requestSender: requestSender, groupId: groupId, completion: completion)
         return batchFetcher.fetch()
     }
     
-    func getManagersInBatchMode(_ userId: String?, completion: UsersBatchClosure?) -> RequestHandler
+    func getManagersInBatchMode(userId: String?, query: String?, completion: UsersBatchClosure?) -> RequestHandler
     {
-        let batchFetcher = UsersQueueBatchFetcher(requestSender: requestSender, userId: userId, scope: .Managers, completion: completion)            
+        let batchFetcher = UsersQueueBatchFetcher(requestSender: requestSender, userId: userId, query:query, scope: .Managers, completion: completion)
         return batchFetcher.fetch()
     }
 }
