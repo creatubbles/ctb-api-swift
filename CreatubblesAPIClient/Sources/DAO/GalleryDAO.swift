@@ -71,9 +71,9 @@ class GalleryDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getGalleries(userIdentifier userId: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
+    func getGalleries(userIdentifier userId: String?, query: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
     {
-        let request = GalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, sort: sort, userId: userId)
+        let request = GalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, sort: sort, userId: userId, query: query)
         let handler = GalleriesResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
@@ -128,9 +128,9 @@ class GalleryDAO
     }
 
     //MARK: Batch Mode    
-    func getGalleriesInBatchMode(userIdentifier userId: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
+    func getGalleriesInBatchMode(userIdentifier userId: String?, query: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        let fetcher = GalleriesQueueBatchFetcher(requestSender: requestSender, userId: userId, sort: sort, completion: completion)        
+        let fetcher = GalleriesQueueBatchFetcher(requestSender: requestSender, userId: userId, query: query, sort: sort, completion: completion)
         return fetcher.fetch()
     }
     

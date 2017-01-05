@@ -69,7 +69,7 @@ class NewGalleryResponseHandlerSpec: QuickSpec
             
             it("Should return error when not logged in")
             {
-                let request = GalleriesRequest(page: 0, perPage: 20, sort: .recent, userId: nil)
+                let request = GalleriesRequest(page: 0, perPage: 20, sort: .recent, userId: nil, query: nil)
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 waitUntil(timeout: 10)

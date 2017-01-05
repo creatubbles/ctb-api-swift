@@ -293,7 +293,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        _ = client.getGalleries(userId: nil, pagingData: nil, sort: .popular)
+                        _ = client.getGalleries(userId: nil, query: nil, pagingData: nil, sort: .popular)
                         {
                             (galleries, pageInfo, error) -> (Void) in
                             expect(galleries).notTo(beNil())
