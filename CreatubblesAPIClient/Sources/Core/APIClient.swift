@@ -292,7 +292,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.reportUser(userId: userId, message: message, completion: completion)
     }
     
-    open func getCreators(userId: String?, query: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    open func getCreators(userId: String?, query: String? = nil, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getCreators(userId: userId, query: query, pagingData: pagingData, completion: completion)
     }
@@ -307,12 +307,12 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.getSwitchUsers(pagingData: pagingData, completion: completion)
     }
     
-    open func getManagers(userId: String?, query: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    open func getManagers(userId: String?, query: String? = nil, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getManagers(userId: userId, query: query, pagingData: pagingData, completion: completion)
     }
 
-    open func getCreatorsInBatchMode(userId: String?, query: String?, completion: UsersBatchClosure?) -> RequestHandler
+    open func getCreatorsInBatchMode(userId: String?, query: String? = nil, completion: UsersBatchClosure?) -> RequestHandler
     {
         return userDAO.getCreatorsInBatchMode(userId: userId, query: query, completion: completion)
     }
@@ -322,7 +322,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.getGroupCreatorsInBatchMode(groupId: groupId, completion: completion)
     }
     
-    open func getManagersInBatchMode(userId: String?, query: String?, completion: UsersBatchClosure?) -> RequestHandler
+    open func getManagersInBatchMode(userId: String?, query: String? = nil, completion: UsersBatchClosure?) -> RequestHandler
     {
         return userDAO.getManagersInBatchMode(userId: userId, query: query, completion: completion)
     }
