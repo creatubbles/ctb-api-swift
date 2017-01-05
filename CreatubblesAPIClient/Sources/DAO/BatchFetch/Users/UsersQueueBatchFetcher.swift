@@ -29,6 +29,8 @@ class UsersQueueBatchFetcher: Cancelable
     private let requestSender: RequestSender
     
     private let userId: String?
+    private let query: String?
+
     private let scope: CreatorsAndManagersScopeElement
     private let completion: UsersBatchClosure?
     
@@ -38,12 +40,13 @@ class UsersQueueBatchFetcher: Cancelable
     private var objectsByPage: Dictionary<PagingData, Array<User>>
     private var errorsByPage: Dictionary<PagingData, APIClientError>
     
-    init(requestSender: RequestSender, userId: String?, scope: CreatorsAndManagersScopeElement, completion: UsersBatchClosure?)
+    init(requestSender: RequestSender, userId: String?, query: String?, scope: CreatorsAndManagersScopeElement, completion: UsersBatchClosure?)
     {
         self.requestSender = requestSender
         self.userId = userId
         self.scope = scope
         self.completion = completion
+        self.query = query
         
         self.objectsByPage = Dictionary<PagingData, Array<User>>()
         self.errorsByPage = Dictionary<PagingData, APIClientError>()
@@ -64,7 +67,7 @@ class UsersQueueBatchFetcher: Cancelable
             return RequestHandler(object: self)
         }        
         
-        let request = CreatorsAndManagersRequest(userId: userId, page: 1, perPage: pageSize, scope: scope)
+        let request = CreatorsAndManagersRequest(userId: userId, query: query, page: 1, perPage: pageSize, scope: scope)
         let handler = CreatorsAndManagersResponseHandler()
         {
             [weak self](users, pagingInfo, error) -> (Void) in
@@ -111,7 +114,7 @@ class UsersQueueBatchFetcher: Cancelable
             for page in 2...pagingInfo.totalPages
             {
                 let pagingData = PagingData(page: page, pageSize: pageSize)
-                let operation = UsersBatchFetchOperation(requestSender: requestSender, userId: userId, scope: scope, pagingData: pagingData)
+                let operation = UsersBatchFetchOperation(requestSender: requestSender, userId: userId, query: query, scope: scope, pagingData: pagingData)
                 {
                     [weak self](operation, error) in
                     guard let strongSelf = self,
