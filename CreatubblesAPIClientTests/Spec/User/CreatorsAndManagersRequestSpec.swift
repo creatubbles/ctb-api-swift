@@ -49,15 +49,18 @@ class CreatorsAndManagersRequestSpec: QuickSpec
             it("Should have proper parameters set")
             {
                 let userId = "TestUserId"
+                let query = "TestQuery"
                 let page = 1
                 let pageCount = 10
                 let scope = CreatorsAndManagersScopeElement.Creators
                 
-                let request = CreatorsAndManagersRequest(userId: userId, page: page, perPage: pageCount, scope: scope)
+                
+                let request = CreatorsAndManagersRequest(userId: userId, query: query, page: page, perPage: pageCount, scope: scope)
                 let params = request.parameters
                 expect(params["page"] as? Int).to(equal(page))
                 expect(params["per_page"] as? Int).to(equal(pageCount))
                 expect(params["user_id"] as? String).to(equal(userId))
+                expect(params["query"] as? String).to(equal(query))
                 expect(params["scope"] as? String).to(equal(scope.rawValue))
             }
             
@@ -71,7 +74,7 @@ class CreatorsAndManagersRequestSpec: QuickSpec
                     {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(CreatorsAndManagersRequest(userId:nil, page: nil, perPage: nil, scope:.Managers), withResponseHandler: DummyResponseHandler()
+                        sender.send(CreatorsAndManagersRequest(userId:nil, query:nil, page: nil, perPage: nil, scope:.Managers), withResponseHandler: DummyResponseHandler()
                             {
                                 (response, error) -> Void in
                                 expect(response).notTo(beNil())

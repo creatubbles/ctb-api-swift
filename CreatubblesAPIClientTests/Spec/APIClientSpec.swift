@@ -158,7 +158,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        _ = client.getCreators(userId: identifier, pagingData: nil)
+                        _ = client.getCreators(userId: identifier, query: nil, pagingData: nil)
                         {
                             (users, pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
@@ -184,7 +184,7 @@ class APIClientSpec: QuickSpec
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        _ = client.getManagers(userId: identifier, pagingData: nil)
+                        _ = client.getManagers(userId: identifier, query: nil, pagingData: nil)
                         {
                             (users,pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
