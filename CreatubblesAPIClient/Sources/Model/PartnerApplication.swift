@@ -48,6 +48,7 @@ open class PartnerApplication: NSObject, Identifiable
     open let bodyBgLinksExploreMobile: String?
     
     open let ownerName: String?
+    open let ownerCountry: String?
     open let partnerDescription: String?
     
     open let ctaLoggedInLabel: String?
@@ -81,11 +82,12 @@ open class PartnerApplication: NSObject, Identifiable
     //MARK: Relationships
     open let galleryRelationship: Relationship
     open let gallery: Gallery
+    open let galleriesRelationships: Array<Relationship>?
+    open let galleries: Array<Gallery>?
     open let relatedAppsRelationships: Array<Relationship>?
     open let relatedApps: Array<PartnerApplication>?
-    
-    //Mark: TODO: implement when api is ready
-    //public let appScreenshots: Array<AppScreenshot>
+    open let appScreenshotsRelationships: Array<Relationship>?
+    open let appScreenshots: Array<AppScreenshot>?
     
     init(mapper: PartnerApplicationsMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
     {
@@ -109,6 +111,7 @@ open class PartnerApplication: NSObject, Identifiable
         bodyBgLinksExploreMobile = mapper.bodyBgLinksExploreMobile
 
         ownerName = mapper.ownerName
+        ownerCountry = mapper.ownerCountry
         partnerDescription = mapper.partnerDescription
         
         ctaLoggedInLabel = mapper.ctaLoggedInLabel
@@ -142,6 +145,21 @@ open class PartnerApplication: NSObject, Identifiable
         galleryRelationship = mapper.parseGalleryRelationship()!
         gallery = MappingUtils.objectFromMapper(dataMapper, relationship: galleryRelationship, type: Gallery.self)!
         
+        galleriesRelationships = mapper.parseGalleriesRelationships()
+        if let galleriesRelationships = galleriesRelationships
+        {
+            galleries = Array<Gallery>()
+            
+            for relationship in galleriesRelationships
+            {
+                galleries?.append(MappingUtils.objectFromMapper(dataMapper, relationship: relationship, type: Gallery.self)!)
+            }
+        }
+        else
+        {
+            galleries = nil
+        }
+        
         relatedAppsRelationships = mapper.parseRelatedAppsRelationships()
         if let relatedAppsRelationships = relatedAppsRelationships
         {
@@ -155,6 +173,21 @@ open class PartnerApplication: NSObject, Identifiable
         else
         {
             relatedApps = nil
+        }
+        
+        appScreenshotsRelationships = mapper.parseAppScreenshotsRelationships()
+        if let appScreenshotsRelationships = appScreenshotsRelationships
+        {
+            appScreenshots = Array<AppScreenshot>()
+            
+            for relationship in appScreenshotsRelationships
+            {
+                appScreenshots?.append(MappingUtils.objectFromMapper(dataMapper, relationship: relationship, type: AppScreenshot.self)!)
+            }
+        }
+        else
+        {
+            appScreenshots = nil
         }
     }
 }
