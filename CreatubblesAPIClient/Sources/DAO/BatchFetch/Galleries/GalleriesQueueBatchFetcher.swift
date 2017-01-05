@@ -29,6 +29,7 @@ class GalleriesQueueBatchFetcher: Cancelable
     private let requestSender: RequestSender
     
     private let userId: String?
+    private let query: String?
     private let sort:SortOrder?
     private let completion: GalleriesBatchClosure?
     
@@ -38,11 +39,12 @@ class GalleriesQueueBatchFetcher: Cancelable
     private var objectsByPage: Dictionary<PagingData, Array<Gallery>>
     private var errorsByPage: Dictionary<PagingData, APIClientError>
     
-    init(requestSender: RequestSender, userId: String?, sort:SortOrder?, completion: GalleriesBatchClosure?)
+    init(requestSender: RequestSender, userId: String?, query: String?, sort:SortOrder?, completion: GalleriesBatchClosure?)
     {
         self.requestSender = requestSender
         self.userId = userId
         self.sort = sort
+        self.query = query
         self.completion = completion
         self.objectsByPage = Dictionary<PagingData, Array<Gallery>>()
         self.errorsByPage = Dictionary<PagingData, APIClientError>()
@@ -64,7 +66,7 @@ class GalleriesQueueBatchFetcher: Cancelable
             return RequestHandler(object: self)
         }
         
-        let request =  GalleriesRequest(page: 1, perPage: pageSize, sort: sort, userId: userId)
+        let request =  GalleriesRequest(page: 1, perPage: pageSize, sort: sort, userId: userId, query: query)
         let handler = GalleriesResponseHandler()
         {
             [weak self](galleries, pagingInfo, error) -> (Void) in
@@ -111,7 +113,7 @@ class GalleriesQueueBatchFetcher: Cancelable
             for page in 2...pagingInfo.totalPages
             {
                 let pagingData = PagingData(page: page, pageSize: pageSize)
-                let operation = GalleriesBatchFetchOperation(requestSender: requestSender, userId: userId, sort: sort, pagingData: pagingData)
+                let operation = GalleriesBatchFetchOperation(requestSender: requestSender, userId: userId, query: query, sort: sort, pagingData: pagingData)
                 {
                     [weak self](operation, error) in
                     guard let strongSelf = self,

@@ -29,18 +29,19 @@ class GalleriesBatchFetchOperation: ConcurrentOperation
     
     private let userId: String?
     private let sort:SortOrder?
-    
+    private let query: String?
     
     let pagingData: PagingData
     private(set) var galleries: Array<Gallery>?
     private var requestHandler: RequestHandler?
     
-    init(requestSender: RequestSender, userId: String?, sort:SortOrder?, pagingData: PagingData, complete: OperationCompleteClosure?)
+    init(requestSender: RequestSender, userId: String?, query: String?, sort:SortOrder?, pagingData: PagingData, complete: OperationCompleteClosure?)
     {
         self.requestSender = requestSender
         self.userId = userId
         self.sort = sort
         self.pagingData = pagingData
+        self.query = query
         
         super.init(complete: complete)
     }
@@ -49,7 +50,7 @@ class GalleriesBatchFetchOperation: ConcurrentOperation
     {
         guard isCancelled == false else { return }
 
-        let request =  GalleriesRequest(page: pagingData.page, perPage: pagingData.pageSize, sort: sort, userId: userId)
+        let request =  GalleriesRequest(page: pagingData.page, perPage: pagingData.pageSize, sort: sort, userId: userId, query: query)
         let handler = GalleriesResponseHandler()
         {
             [weak self](galleries, pagingInfo, error) -> (Void) in

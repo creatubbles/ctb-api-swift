@@ -49,7 +49,7 @@ class GalleriesRequestSpec: QuickSpec
             
             it("Should have proper endpoint for list of galleries")
             {
-                let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, userId: nil)
+                let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, userId: nil, query: nil)
                 expect(request.endpoint).to(equal("galleries"))
             }
             
@@ -63,7 +63,7 @@ class GalleriesRequestSpec: QuickSpec
             it("Should have proper endpoint for list of user galleries")
             {
                 let userId = "TestUserId"
-                let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, userId: userId)
+                let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, userId: userId, query: nil)
                 expect(request.endpoint).to(equal("users/\(userId)/galleries"))
             }
             
@@ -99,7 +99,7 @@ class GalleriesRequestSpec: QuickSpec
                     {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(GalleriesRequest(page: 1, perPage: 20, sort: .recent, userId: nil),
+                        sender.send(GalleriesRequest(page: 1, perPage: 20, sort: .recent, userId: nil, query: nil),
                                     withResponseHandler: DummyResponseHandler()
                         {
                             (response, error) -> Void in

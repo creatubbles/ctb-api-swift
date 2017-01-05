@@ -236,9 +236,9 @@ extension APIClient
         }
     }
     
-    public func _getGalleries(_ userId: String?, pagingData: PagingData?, sort: SortOrder, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
+    public func _getGalleries(_ userId: String?, query: String?, pagingData: PagingData?, sort: SortOrder, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
-        return getGalleries(userId: userId, pagingData: pagingData, sort: sort)
+        return getGalleries(userId: userId, query:query, pagingData: pagingData, sort: sort)
         {
             (galleries, pInfo, error) -> (Void) in
             completion?(galleries, pInfo, APIClient.errorTypeToNSError(error))
@@ -456,9 +456,9 @@ extension APIClient
         }
     }
     
-    public func _getGalleriesInBatchMode(_ userId: String?, sort: SortOrder, completion: ((Array<Gallery>?, NSError?) -> (Void))?) -> RequestHandler
+    public func _getGalleriesInBatchMode(_ userId: String?, query: String?, sort: SortOrder, completion: ((Array<Gallery>?, NSError?) -> (Void))?) -> RequestHandler
     {
-        return getGalleriesInBatchMode(userId: userId, sort: sort)
+        return getGalleriesInBatchMode(userId: userId, query:query, sort: sort)
         {
             (galleries, error) -> (Void) in
             completion?(galleries, APIClient.errorTypeToNSError(error))
