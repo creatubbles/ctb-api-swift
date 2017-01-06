@@ -85,8 +85,6 @@ class PartnerApplicationsMapper: Mappable
     var gallery: Gallery?
     var galleriesRelationships: Array<RelationshipMapper>?
     var galleries: Array<Gallery>?
-    var relatedAppsRelationships: Array<RelationshipMapper>?
-    var relatedApps: Array<PartnerApplication>?
     var appScreenshotsRelationships: Array<RelationshipMapper>?
     var appScreenshots: Array<AppScreenshot>?
     
@@ -147,7 +145,6 @@ class PartnerApplicationsMapper: Mappable
         userRelationship <- map["relationships.user.data"]
         galleryRelationship <- map["relationships.gallery.data"]
         galleriesRelationships <- map["relationships.galleries.data"]
-        relatedAppsRelationships <- map["relationships.related_apps.data"]
         appScreenshotsRelationships <- map["relationships.app_screenshots.data"]
     }
     
@@ -167,20 +164,6 @@ class PartnerApplicationsMapper: Mappable
         {
             var relationships = Array<Relationship>()
             for relationship in galleriesRelationships
-            {
-                relationships.append(MappingUtils.relationshipFromMapper(relationship)!)
-            }
-            return relationships
-        }
-        return nil
-    }
-    
-    func parseRelatedAppsRelationships() -> Array<Relationship>?
-    {
-        if let relatedAppsRelationships = relatedAppsRelationships
-        {
-            var relationships = Array<Relationship>()
-            for relationship in relatedAppsRelationships
             {
                 relationships.append(MappingUtils.relationshipFromMapper(relationship)!)
             }

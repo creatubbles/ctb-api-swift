@@ -86,8 +86,6 @@ open class PartnerApplication: NSObject, Identifiable
     open let gallery: Gallery
     open let galleriesRelationships: Array<Relationship>?
     open let galleries: Array<Gallery>?
-    open let relatedAppsRelationships: Array<Relationship>?
-    open let relatedApps: Array<PartnerApplication>?
     open let appScreenshotsRelationships: Array<Relationship>?
     open let appScreenshots: Array<AppScreenshot>?
     
@@ -163,21 +161,6 @@ open class PartnerApplication: NSObject, Identifiable
         else
         {
             galleries = nil
-        }
-        
-        relatedAppsRelationships = mapper.parseRelatedAppsRelationships()
-        if let relatedAppsRelationships = relatedAppsRelationships
-        {
-            relatedApps = Array<PartnerApplication>()
-            
-            for relationship in relatedAppsRelationships
-            {
-                relatedApps?.append(MappingUtils.objectFromMapper(dataMapper, relationship: relationship, type: PartnerApplication.self)!)
-            }
-        }
-        else
-        {
-            relatedApps = nil
         }
         
         appScreenshotsRelationships = mapper.parseAppScreenshotsRelationships()
