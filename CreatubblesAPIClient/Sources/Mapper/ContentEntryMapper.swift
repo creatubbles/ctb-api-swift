@@ -35,6 +35,7 @@ class ContentEntryMapper: Mappable
     var userRelationship: RelationshipMapper?
     var creationRelationship: RelationshipMapper?
     var galleryRelationship: RelationshipMapper?
+    var partnerApplicationRelationship: RelationshipMapper?
     
     required init?(map: Map) { /* Intentionally left empty  */ }
     
@@ -46,6 +47,7 @@ class ContentEntryMapper: Mappable
         userRelationship <- map["relationships.user.data"]
         creationRelationship <- map["relationships.creation.data"]
         galleryRelationship <- map["relationships.gallery.data"]
+        partnerApplicationRelationship <- map["relationships.partner_application.data"]
     }
     
     func parseCreationRelationship() -> Relationship?
@@ -60,12 +62,17 @@ class ContentEntryMapper: Mappable
     {
         return MappingUtils.relationshipFromMapper(userRelationship)
     }
+    func parsePartnerApplicationRelationship() -> Relationship?
+    {
+        return MappingUtils.relationshipFromMapper(partnerApplicationRelationship)
+    }
     
     func parseType() -> ContentEntryType
     {
-        if type == "creation"   { return .creation }
-        if type == "gallery"    { return .gallery  }
-        if type == "user"       { return .user     }
+        if type == "creation"               { return .creation           }
+        if type == "gallery"                { return .gallery            }
+        if type == "user"                   { return .user               }
+        if type == "partner_application"    { return .partnerApplication }
         return .unknown
     }
 }
