@@ -49,6 +49,7 @@ class PartnerApplicationsMapper: Mappable
     var bodyBgLinksExploreMobile: String?
     
     var ownerName: String?
+    var ownerCountry: String?
     var partnerDescription: String?
     
     var ctaLoggedInLabel: String?
@@ -78,13 +79,14 @@ class PartnerApplicationsMapper: Mappable
     var updatedAt: Date?
     
     //MARK: Relationships
+    var userRelationship: RelationshipMapper?
+    var user: User?
     var galleryRelationship: RelationshipMapper?
     var gallery: Gallery?
-    var relatedAppsRelationships: Array<RelationshipMapper>?
-    var relatedApps: Array<PartnerApplication>?
-        
-    //Mark: TODO: implement when api is ready
-    //let appScreenshots: Array<AppScreenshot>
+    var galleriesRelationships: Array<RelationshipMapper>?
+    var galleries: Array<Gallery>?
+    var appScreenshotsRelationships: Array<RelationshipMapper>?
+    var appScreenshots: Array<AppScreenshot>?
     
     //MARK: - Mappable
     required init?(map: Map) { /* Intentionally left empty  */ }
@@ -111,6 +113,7 @@ class PartnerApplicationsMapper: Mappable
         bodyBgLinksExploreMobile <- map["attributes.body_bg.links.explore_mobile"]
         
         ownerName <- map["attributes.owner_name"]
+        ownerCountry <- map["attributes.owner_country"]
         partnerDescription <- map["attributes.description"]
         
         ctaLoggedInLabel <- map["attributes.cta_logged_in_label"]
@@ -139,11 +142,15 @@ class PartnerApplicationsMapper: Mappable
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
         updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
         
+        userRelationship <- map["relationships.user.data"]
         galleryRelationship <- map["relationships.gallery.data"]
-        relatedAppsRelationships <- map["relationships.related_apps.data"]
-        
-        //Mark: TODO: implement when api is ready
-        //appScreenshots <- map["relationships.app_screenshots"]
+        galleriesRelationships <- map["relationships.galleries.data"]
+        appScreenshotsRelationships <- map["relationships.app_screenshots.data"]
+    }
+    
+    func parseUserRelationship() -> Relationship?
+    {
+        return MappingUtils.relationshipFromMapper(userRelationship)
     }
     
     func parseGalleryRelationship() -> Relationship?
@@ -151,12 +158,26 @@ class PartnerApplicationsMapper: Mappable
         return MappingUtils.relationshipFromMapper(galleryRelationship)
     }
     
-    func parseRelatedAppsRelationships() -> Array<Relationship>?
+    func parseGalleriesRelationships() -> Array<Relationship>?
     {
-        if let relatedAppsRelationships = relatedAppsRelationships
+        if let galleriesRelationships = galleriesRelationships
         {
             var relationships = Array<Relationship>()
-            for relationship in relatedAppsRelationships
+            for relationship in galleriesRelationships
+            {
+                relationships.append(MappingUtils.relationshipFromMapper(relationship)!)
+            }
+            return relationships
+        }
+        return nil
+    }
+    
+    func parseAppScreenshotsRelationships() -> Array<Relationship>?
+    {
+        if let appScreenshotsRelationships = appScreenshotsRelationships
+        {
+            var relationships = Array<Relationship>()
+            for relationship in appScreenshotsRelationships
             {
                 relationships.append(MappingUtils.relationshipFromMapper(relationship)!)
             }
