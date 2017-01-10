@@ -237,12 +237,8 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     {
         
         return requestSender.authenticate {
-            [weak self](error) -> (Void) in
+            (error) -> (Void) in
             completion?(error)
-            if let weakSelf = self , error == nil
-            {
-                weakSelf.delegate?.creatubblesAPIClientUserChanged(weakSelf)
-            }
         }
     }
     
