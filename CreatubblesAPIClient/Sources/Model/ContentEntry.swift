@@ -33,6 +33,7 @@ public enum ContentEntryType: Int
     case creation
     case gallery
     case user
+    case partnerApplication
 }
 
 @objc
@@ -44,10 +45,12 @@ open class ContentEntry: NSObject
     open let user: User?
     open let creation: Creation?
     open let gallery: Gallery?
+    open let partnerApplication: PartnerApplication?
     
     open let userRelationship: Relationship?
     open let creationRelationship: Relationship?
     open let galleryRelationship: Relationship?
+    open let partnerApplicationRelationship: Relationship?
     
     init(mapper: ContentEntryMapper, dataMapper: DataIncludeMapper? = nil)
     {
@@ -57,9 +60,12 @@ open class ContentEntry: NSObject
         userRelationship = mapper.parseUserRelationship()
         creationRelationship = mapper.parseCreationRelationship()
         galleryRelationship = mapper.parseGalleryRelationship()
+        partnerApplicationRelationship = mapper.parsePartnerApplicationRelationship()
         
         user = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)
         creation = MappingUtils.objectFromMapper(dataMapper, relationship: creationRelationship, type: Creation.self)
         gallery = MappingUtils.objectFromMapper(dataMapper, relationship: galleryRelationship, type: Gallery.self)
-    }        
+        partnerApplication = MappingUtils.objectFromMapper(dataMapper, relationship: partnerApplicationRelationship, type: PartnerApplication.self)
+        print("")
+    }
 }
