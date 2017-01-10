@@ -141,6 +141,13 @@ open class ResponseData<T> {
     case userCommented
 }
 
+@objc public enum AppScreenshotProvider: Int
+{
+    case unknown
+    case vimeo
+    case youtube
+}
+
 @objc
 public protocol APIClientDelegate
 {
