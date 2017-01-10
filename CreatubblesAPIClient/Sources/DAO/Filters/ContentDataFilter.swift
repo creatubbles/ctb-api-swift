@@ -39,6 +39,6 @@ class ContentDataFilter: NSObject, Validatable {
             return false
         }
         
-        return contentEntry.user != nil || contentEntry.gallery != nil || contentEntry.creation != nil
+        return contentEntry.user != nil || contentEntry.gallery != nil || contentEntry.creation != nil || contentEntry.partnerApplication != nil
     }
 }
