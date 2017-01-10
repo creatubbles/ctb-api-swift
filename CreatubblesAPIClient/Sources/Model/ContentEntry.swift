@@ -66,6 +66,5 @@ open class ContentEntry: NSObject
         creation = MappingUtils.objectFromMapper(dataMapper, relationship: creationRelationship, type: Creation.self)
         gallery = MappingUtils.objectFromMapper(dataMapper, relationship: galleryRelationship, type: Gallery.self)
         partnerApplication = MappingUtils.objectFromMapper(dataMapper, relationship: partnerApplicationRelationship, type: PartnerApplication.self)
-        print("")
     }
 }
