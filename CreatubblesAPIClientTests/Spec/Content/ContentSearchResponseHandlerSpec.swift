@@ -36,10 +36,11 @@ class ContentSearchResponseHandlerSpec: QuickSpec
         {
             it("Should return recent content after login")
             {
-                let request = ContentSearchRequest(query: "plant", page: 1, perPage: 20)
+                URLCache.shared.removeAllCachedResponses()
+                let request = ContentSearchRequest(query: "tweetadream", page: 1, perPage: 20)
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 1000)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -62,11 +63,12 @@ class ContentSearchResponseHandlerSpec: QuickSpec
         
         it("Should return error when not logged in")
         {
-            let request = ContentSearchRequest(query: "plant", page: 1, perPage: 20)
+            URLCache.shared.removeAllCachedResponses()
+            let request = ContentSearchRequest(query: "tweetadream", page: 1, perPage: 20)
             let sender = TestComponentsFactory.requestSender
             
             sender.logout()
-            waitUntil(timeout: 10)
+            waitUntil(timeout: 100)
             {
                 done in
                 sender.send(request, withResponseHandler: ContentSearchResponseHandler()
