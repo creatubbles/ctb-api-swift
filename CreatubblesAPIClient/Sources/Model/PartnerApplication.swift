@@ -149,33 +149,9 @@ open class PartnerApplication: NSObject, Identifiable
         gallery = MappingUtils.objectFromMapper(dataMapper, relationship: galleryRelationship, type: Gallery.self)
         
         galleriesRelationships = mapper.parseGalleriesRelationships()
-        if let galleriesRelationships = galleriesRelationships
-        {
-            galleries = Array<Gallery>()
-            
-            for relationship in galleriesRelationships
-            {
-                galleries?.append(MappingUtils.objectFromMapper(dataMapper, relationship: relationship, type: Gallery.self)!)
-            }
-        }
-        else
-        {
-            galleries = nil
-        }
+        galleries = galleriesRelationships?.flatMap({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: Gallery.self) })
         
         appScreenshotsRelationships = mapper.parseAppScreenshotsRelationships()
-        if let appScreenshotsRelationships = appScreenshotsRelationships
-        {
-            appScreenshots = Array<AppScreenshot>()
-            
-            for relationship in appScreenshotsRelationships
-            {
-                appScreenshots?.append(MappingUtils.objectFromMapper(dataMapper, relationship: relationship, type: AppScreenshot.self)!)
-            }
-        }
-        else
-        {
-            appScreenshots = nil
-        }
+        appScreenshots = appScreenshotsRelationships?.flatMap({ MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: AppScreenshot.self) })
     }
 }
