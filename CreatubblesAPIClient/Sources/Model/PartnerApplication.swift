@@ -81,9 +81,9 @@ open class PartnerApplication: NSObject, Identifiable
     
     //MARK: Relationships
     open let userRelationship: Relationship
-    open let user: User
+    open let user: User?
     open let galleryRelationship: Relationship
-    open let gallery: Gallery
+    open let gallery: Gallery?
     open let galleriesRelationships: Array<Relationship>?
     open let galleries: Array<Gallery>?
     open let appScreenshotsRelationships: Array<Relationship>?
@@ -143,10 +143,10 @@ open class PartnerApplication: NSObject, Identifiable
         updatedAt = mapper.updatedAt! as Date
         
         userRelationship = mapper.parseUserRelationship()!
-        user = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)!
+        user = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)
         
         galleryRelationship = mapper.parseGalleryRelationship()!
-        gallery = MappingUtils.objectFromMapper(dataMapper, relationship: galleryRelationship, type: Gallery.self)!
+        gallery = MappingUtils.objectFromMapper(dataMapper, relationship: galleryRelationship, type: Gallery.self)
         
         galleriesRelationships = mapper.parseGalleriesRelationships()
         if let galleriesRelationships = galleriesRelationships
