@@ -46,6 +46,8 @@ class SearchTagDAO: NSObject
     
     private func prepareMockSearchTags() -> Array<SearchTag>
     {
+        //Please note, that imageTagURL can be changed in future. For best experience, you can use (probably after scaling) images from Resources/MockSearchTagImages folder. Sorry for inconvinience!
+        
         //Lego
         let legoTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/lego-b8ad79890b22bee5d8c55dc4ac17a446.jpg"
         let legoNames = [NameTranslationObject(code:"en", name:"Lego", original: true),
