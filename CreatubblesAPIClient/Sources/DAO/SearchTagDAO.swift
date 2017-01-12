@@ -56,14 +56,14 @@ class SearchTagDAO: NSObject
         //Minecraft
         let minecraftTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/minecraft-857ee3b90a20e1c5ac16bcd399824673.jpg"
         let minecraftNames = [NameTranslationObject(code:"en", name:"Minecraft", original: true),
-                              NameTranslationObject(code:"jp", name:"Minecraft", original: false),
+                              NameTranslationObject(code:"jp", name:"マインクラフト", original: false),
                               NameTranslationObject(code:"it", name:"Minecraft", original: false)]
         let minecraftTag = SearchTag(name: "Minecraft", imageURL: minecraftTagURL, identifier: "search-tag-minecraft", translatedNames: minecraftNames)
         
         //Beads
         let beadsTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/beads-1a9a1fca6f88d0326097ae6333a1c979.jpg"
         let beadsNames = [NameTranslationObject(code:"en", name:"Beads", original: true),
-                          NameTranslationObject(code:"jp", name:"Beads", original: false),
+                          NameTranslationObject(code:"jp", name:"ビーズ", original: false),
                           NameTranslationObject(code:"it", name:"Beads", original: false)]
         let beadsTag = SearchTag(name: "Beads", imageURL: beadsTagURL, identifier: "search-tag-beads", translatedNames: beadsNames)
         
@@ -84,7 +84,7 @@ class SearchTagDAO: NSObject
         //Origami
         let origamiTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/origami-9ceedaeb753a3234fc547e2703eca108.jpg"
         let origamiNames = [NameTranslationObject(code:"en", name:"Origami", original: true),
-                            NameTranslationObject(code:"jp", name:"Origami", original: false),
+                            NameTranslationObject(code:"jp", name:"おりがみ", original: false),
                             NameTranslationObject(code:"it", name:"Origami", original: false)]
         let origamiTag = SearchTag(name: "Origami", imageURL: origamiTagURL, identifier: "search-tag-origami", translatedNames: origamiNames)
         
@@ -112,64 +112,64 @@ class SearchTagDAO: NSObject
         //Scratch
         let scratchTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/scratch-f07bb305df1932ef81ccc1fe5617b04e.jpg"
         let scratchNames = [NameTranslationObject(code:"en", name:"Scratch", original: true),
-                            NameTranslationObject(code:"jp", name:"Scratch", original: false),
+                            NameTranslationObject(code:"jp", name:"スクラッチ", original: false),
                             NameTranslationObject(code:"it", name:"Scratch", original: false)]
         let scratchTag = SearchTag(name: "Scratch", imageURL: scratchTagURL, identifier: "search-tag-scratch", translatedNames: scratchNames)
         
         //Pokemon
         let pokemonTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/pokemon-e23319f7d2402bf3bd6607978d8684b6.jpg"
         let pokemonNames = [NameTranslationObject(code:"en", name:"Pokemon", original: true),
-                            NameTranslationObject(code:"jp", name:"Pokemon", original: false),
+                            NameTranslationObject(code:"jp", name:"ポケモン", original: false),
                             NameTranslationObject(code:"it", name:"Pokemon", original: false)]
         let pokemonTag = SearchTag(name: "Lego", imageURL: pokemonTagURL, identifier: "search-tag-pokemon", translatedNames: pokemonNames)
         
         //Blocks
         let blocksTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/blocks-b75c1eebf84f0143d7b5aa19af56c3a2.jpg"
         let blocksNames = [NameTranslationObject(code:"en", name:"Blocks", original: true),
-                           NameTranslationObject(code:"jp", name:"Blocks", original: false),
+                           NameTranslationObject(code:"jp", name:"ブロック", original: false),
                            NameTranslationObject(code:"it", name:"Blocks", original: false)]
         let blocksTag = SearchTag(name: "Blocks", imageURL: blocksTagURL, identifier: "search-tag-blocks", translatedNames: blocksNames)
         
         //Strawbees
         let strawbeesTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/strawbees-f1ea6ed75d6185519cea654da9667c90.jpg"
         let strawbeesNames = [NameTranslationObject(code:"en", name:"Strawbees", original: true),
-                     NameTranslationObject(code:"jp", name:"Strawbees", original: false),
-                     NameTranslationObject(code:"it", name:"Strawbees", original: false)]
+                              NameTranslationObject(code:"jp", name:"Strawbees", original: false),
+                              NameTranslationObject(code:"it", name:"Strawbees", original: false)]
         let strawbeesTag = SearchTag(name: "Strawbees", imageURL: strawbeesTagURL, identifier: "search-tag-strawbees", translatedNames: strawbeesNames)
         
         //Littlebits
         let littlebitsTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/littlebits-00fdf5d7ecc0808929e10cb3399cfd2d.jpg"
         let littlebitsNames = [NameTranslationObject(code:"en", name:"Littlebits", original: true),
-                     NameTranslationObject(code:"jp", name:"Littlebits", original: false),
-                     NameTranslationObject(code:"it", name:"Littlebits", original: false)]
+                               NameTranslationObject(code:"jp", name:"Littlebits", original: false),
+                               NameTranslationObject(code:"it", name:"Littlebits", original: false)]
         let littlebitsTag = SearchTag(name: "Littlebits", imageURL: littlebitsTagURL, identifier: "search-tag-littlebits", translatedNames: littlebitsNames)
         
         //Characters
         let charactersTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/characters-b7ab1dcd40b0682823ba0885e56532f9.jpg"
-        let charactersNames = [NameTranslationObject(code:"en", name:"lego", original: true),
-                     NameTranslationObject(code:"jp", name:"lego", original: false),
-                     NameTranslationObject(code:"it", name:"lego", original: false)]
+        let charactersNames = [NameTranslationObject(code:"en", name:"Characters", original: true),
+                               NameTranslationObject(code:"jp", name:"キャラクター", original: false),
+                               NameTranslationObject(code:"it", name:"Characters", original: false)]
         let charactersTag = SearchTag(name: "Lego", imageURL: charactersTagURL, identifier: "search-tag-characters", translatedNames: charactersNames)
         
         //Paper craft
         let paperCraftTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/paper_craft-e86d08da9149ce2c2d1de54cf5921498.jpg"
         let paperCraftNames = [NameTranslationObject(code:"en", name:"Paper craft", original: true),
-                     NameTranslationObject(code:"jp", name:"Paper craft", original: false),
-                     NameTranslationObject(code:"it", name:"Paper craft", original: false)]
+                               NameTranslationObject(code:"jp", name:"ペーパークラフト", original: false),
+                               NameTranslationObject(code:"it", name:"Paper craft", original: false)]
         let paperCraftTag = SearchTag(name: "Paper craft", imageURL: paperCraftTagURL, identifier: "search-tag-paper-craft", translatedNames: paperCraftNames)
         
         //Robots
         let robotsTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/robots-2f8a784d4bc67468da2a2ae1ebf5020c.jpg"
         let robotsNames = [NameTranslationObject(code:"en", name:"Robots", original: true),
-                     NameTranslationObject(code:"jp", name:"Robots", original: false),
-                     NameTranslationObject(code:"it", name:"Robots", original: false)]
+                           NameTranslationObject(code:"jp", name:"ロボット", original: false),
+                           NameTranslationObject(code:"it", name:"Robots", original: false)]
         let robotsTag = SearchTag(name: "Robots", imageURL: robotsTagURL, identifier: "search-tag-robots", translatedNames: robotsNames)
         
         //Thinkercard
         let thinkercardTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/thinkercard-75d78701eb6c02c42b424f9c206b0d9c.jpg"
         let thinkercardNames = [NameTranslationObject(code:"en", name:"Thinkercard", original: true),
-                     NameTranslationObject(code:"jp", name:"Thinkercard", original: false),
-                     NameTranslationObject(code:"it", name:"Thinkercard", original: false)]
+                                NameTranslationObject(code:"jp", name:"Thinkercard", original: false),
+                                NameTranslationObject(code:"it", name:"Thinkercard", original: false)]
         let thinkercardTag = SearchTag(name: "Thinkercard", imageURL: thinkercardTagURL, identifier: "search-tag-thinkercard", translatedNames: thinkercardNames)
     
         return [legoTag, minecraftTag, beadsTag, rainbowLoomTag, hueAnimationTag, origamiTag, quirkbotsTag, carsTag, threeDTag, scratchTag, pokemonTag, blocksTag, strawbeesTag, littlebitsTag, charactersTag, paperCraftTag, robotsTag, thinkercardTag]
