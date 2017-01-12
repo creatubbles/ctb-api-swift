@@ -121,7 +121,7 @@ class SearchTagDAO: NSObject
         let pokemonNames = [NameTranslationObject(code:"en", name:"Pokemon", original: true),
                             NameTranslationObject(code:"jp", name:"ポケモン", original: false),
                             NameTranslationObject(code:"it", name:"Pokemon", original: false)]
-        let pokemonTag = SearchTag(name: "Lego", imageURL: pokemonTagURL, identifier: "search-tag-pokemon", translatedNames: pokemonNames)
+        let pokemonTag = SearchTag(name: "Pokemon", imageURL: pokemonTagURL, identifier: "search-tag-pokemon", translatedNames: pokemonNames)
         
         //Blocks
         let blocksTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/blocks-b75c1eebf84f0143d7b5aa19af56c3a2.jpg"
@@ -149,7 +149,7 @@ class SearchTagDAO: NSObject
         let charactersNames = [NameTranslationObject(code:"en", name:"Characters", original: true),
                                NameTranslationObject(code:"jp", name:"キャラクター", original: false),
                                NameTranslationObject(code:"it", name:"Characters", original: false)]
-        let charactersTag = SearchTag(name: "Lego", imageURL: charactersTagURL, identifier: "search-tag-characters", translatedNames: charactersNames)
+        let charactersTag = SearchTag(name: "Characters", imageURL: charactersTagURL, identifier: "search-tag-characters", translatedNames: charactersNames)
         
         //Paper craft
         let paperCraftTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/paper_craft-e86d08da9149ce2c2d1de54cf5921498.jpg"
