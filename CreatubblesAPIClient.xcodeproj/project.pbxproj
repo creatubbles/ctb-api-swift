@@ -459,6 +459,24 @@
 		08F580761D3F9D7A00EDCEE2 /* UpdateGalleryRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryRequestSpec.swift; sourceTree = "<group>"; };
 		08F580781D3F9DA700EDCEE2 /* UpdateGalleryResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		08F5807A1D3FAC1700EDCEE2 /* UpdateGalleryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGalleryData.swift; sourceTree = "<group>"; };
+		1808D34A1E281DE200611D8E /* search-tag-3d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-3d.jpg"; sourceTree = "<group>"; };
+		1808D34B1E281DE200611D8E /* search-tag-beads.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-beads.jpg"; sourceTree = "<group>"; };
+		1808D34C1E281DE200611D8E /* search-tag-blocks.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-blocks.jpg"; sourceTree = "<group>"; };
+		1808D34D1E281DE200611D8E /* search-tag-cars.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-cars.jpg"; sourceTree = "<group>"; };
+		1808D34E1E281DE200611D8E /* search-tag-characters.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-characters.jpg"; sourceTree = "<group>"; };
+		1808D34F1E281DE200611D8E /* search-tag-hue-animation.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-hue-animation.jpg"; sourceTree = "<group>"; };
+		1808D3501E281DE200611D8E /* search-tag-lego.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-lego.jpg"; sourceTree = "<group>"; };
+		1808D3511E281DE200611D8E /* search-tag-littlebits.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-littlebits.jpg"; sourceTree = "<group>"; };
+		1808D3521E281DE200611D8E /* search-tag-minecraft.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-minecraft.jpg"; sourceTree = "<group>"; };
+		1808D3531E281DE200611D8E /* search-tag-origami.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-origami.jpg"; sourceTree = "<group>"; };
+		1808D3541E281DE200611D8E /* search-tag-paper-craft.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-paper-craft.jpg"; sourceTree = "<group>"; };
+		1808D3551E281DE200611D8E /* search-tag-pokemon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-pokemon.jpg"; sourceTree = "<group>"; };
+		1808D3561E281DE200611D8E /* search-tag-quirkbots.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-quirkbots.jpg"; sourceTree = "<group>"; };
+		1808D3571E281DE200611D8E /* search-tag-rainbow-loom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-rainbow-loom.jpg"; sourceTree = "<group>"; };
+		1808D3581E281DE200611D8E /* search-tag-robots.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-robots.jpg"; sourceTree = "<group>"; };
+		1808D3591E281DE200611D8E /* search-tag-scratch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-scratch.jpg"; sourceTree = "<group>"; };
+		1808D35A1E281DE200611D8E /* search-tag-strawbees.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-strawbees.jpg"; sourceTree = "<group>"; };
+		1808D35B1E281DE200611D8E /* search-tag-thinkercard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-thinkercard.jpg"; sourceTree = "<group>"; };
 		180C97B01C6DEA4100BC682D /* Creation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creation.swift; sourceTree = "<group>"; };
 		1814B7551DF7F052003B3C65 /* CreationsBatchFetchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsBatchFetchOperation.swift; sourceTree = "<group>"; };
 		1814B7571DF7F082003B3C65 /* CreationsQueueBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsQueueBatchFetcher.swift; sourceTree = "<group>"; };
@@ -856,6 +874,31 @@
 				08E52DF71D6C422300262672 /* ContentDataFilter.swift */,
 			);
 			path = Filters;
+			sourceTree = "<group>";
+		};
+		1808D3491E281B0000611D8E /* MockSearchTagImages */ = {
+			isa = PBXGroup;
+			children = (
+				1808D34A1E281DE200611D8E /* search-tag-3d.jpg */,
+				1808D34B1E281DE200611D8E /* search-tag-beads.jpg */,
+				1808D34C1E281DE200611D8E /* search-tag-blocks.jpg */,
+				1808D34D1E281DE200611D8E /* search-tag-cars.jpg */,
+				1808D34E1E281DE200611D8E /* search-tag-characters.jpg */,
+				1808D34F1E281DE200611D8E /* search-tag-hue-animation.jpg */,
+				1808D3501E281DE200611D8E /* search-tag-lego.jpg */,
+				1808D3511E281DE200611D8E /* search-tag-littlebits.jpg */,
+				1808D3521E281DE200611D8E /* search-tag-minecraft.jpg */,
+				1808D3531E281DE200611D8E /* search-tag-origami.jpg */,
+				1808D3541E281DE200611D8E /* search-tag-paper-craft.jpg */,
+				1808D3551E281DE200611D8E /* search-tag-pokemon.jpg */,
+				1808D3561E281DE200611D8E /* search-tag-quirkbots.jpg */,
+				1808D3571E281DE200611D8E /* search-tag-rainbow-loom.jpg */,
+				1808D3581E281DE200611D8E /* search-tag-robots.jpg */,
+				1808D3591E281DE200611D8E /* search-tag-scratch.jpg */,
+				1808D35A1E281DE200611D8E /* search-tag-strawbees.jpg */,
+				1808D35B1E281DE200611D8E /* search-tag-thinkercard.jpg */,
+			);
+			path = MockSearchTagImages;
 			sourceTree = "<group>";
 		};
 		1814B7541DF7F026003B3C65 /* Creations */ = {
@@ -1691,6 +1734,7 @@
 		445A3A561DD297E300986BBB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1808D3491E281B0000611D8E /* MockSearchTagImages */,
 				445A3A571DD297E300986BBB /* Localizations */,
 			);
 			path = Resources;
