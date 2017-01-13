@@ -45,4 +45,11 @@ open class NameTranslationObject: NSObject
         name = nameTranslationObjectEntity.name
         original = nameTranslationObjectEntity.original.value
     }
+    
+    init (code: String, name: String, original: Bool)
+    {
+        self.code = code
+        self.name = name
+        self.original = original
+    }
 }
