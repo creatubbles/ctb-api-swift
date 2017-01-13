@@ -27,15 +27,24 @@ import UIKit
 open class SearchTag: NSObject, Identifiable
 {
     // Mock of the model until implemented on API side
+    open let identifier: String
     open let name: String
     open let imageURL: String
-    open let identifier: String
-
+    open let translatedNames: Array<NameTranslationObject>
     
     init(name: String, imageURL: String)
     {
         self.name = name
         self.imageURL = imageURL
         self.identifier = NSUUID().uuidString
+        self.translatedNames = []
+    }
+    
+    init(name: String, imageURL: String, identifier: String, translatedNames: Array<NameTranslationObject>)
+    {
+        self.identifier = identifier
+        self.name = name
+        self.imageURL = imageURL
+        self.translatedNames = translatedNames
     }
 }
