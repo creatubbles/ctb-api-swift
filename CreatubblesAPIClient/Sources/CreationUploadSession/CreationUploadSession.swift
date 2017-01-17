@@ -34,6 +34,7 @@ enum CreationUploadSessionState: Int
     case serverNotified = 5
     case submittedToGallery = 6
     case cancelled = 7
+    case completed = 8
 }
 
 protocol CreationUploadSessionDelegate: class
@@ -57,7 +58,10 @@ class CreationUploadSession: NSObject, Cancelable
     fileprivate (set) var creationUpload: CreationUpload?    //Filled during upload flow
     fileprivate (set) var error: Error?
     
-    fileprivate var isAlreadyFinished: Bool { return state == .serverNotified }
+    var isAlreadyFinished: Bool { return state == .completed }
+    var isCancelled: Bool { return state == .cancelled }
+    var isFailed: Bool { return error != nil }
+
     fileprivate var currentRequest: RequestHandler?
     
     weak var delegate: CreationUploadSessionDelegate?
@@ -147,6 +151,8 @@ class CreationUploadSession: NSObject, Cancelable
                                     else
                                     {
                                         Logger.log(.debug, "Upload \(weakSelf.localIdentifier) finished successfully")
+                                        weakSelf.state = .completed
+                                        weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                                     }
                                     completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
                                 })

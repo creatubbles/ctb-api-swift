@@ -140,7 +140,7 @@ class CreationUploadService: CreationUploadSessionDelegate
     func creationUploadSessionChangedState(_ creationUploadSession: CreationUploadSession)
     {
         databaseDAO.saveCreationUploadSessionToDatabase(creationUploadSession)
-        if(creationUploadSession.state == .serverNotified)
+        if(creationUploadSession.isAlreadyFinished)
         {
             delegate?.creationUploadService(self, uploadFinished: creationUploadSession)
         }

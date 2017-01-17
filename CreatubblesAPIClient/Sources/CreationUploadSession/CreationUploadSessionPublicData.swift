@@ -29,10 +29,22 @@ import UIKit
 @objc
 open class CreationUploadSessionPublicData: NSObject
 {
+    public enum Status: Equatable
+    {
+        case inProgress
+        // completed successfully
+        case completed
+        // cancelled by user
+        case cancelled
+        // failed due to error
+        case failed
+    }
+
     open let identifier: String
     open let creationData: NewCreationData
     open let creation: Creation?
     open let error: Error?
+    open let status: Status
     
     init(creationUploadSession: CreationUploadSession)
     {
@@ -40,5 +52,22 @@ open class CreationUploadSessionPublicData: NSObject
         creation = creationUploadSession.creation
         creationData = creationUploadSession.creationData
         error = creationUploadSession.error
+
+        if creationUploadSession.isFailed
+        {
+            status = .failed
+        }
+        else if creationUploadSession.isAlreadyFinished
+        {
+            status = .completed
+        }
+        else if creationUploadSession.isCancelled
+        {
+            status = .cancelled
+        }
+        else
+        {
+            status = .inProgress
+        }
     }
 }
