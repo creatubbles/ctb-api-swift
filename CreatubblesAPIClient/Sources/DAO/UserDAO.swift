@@ -75,6 +75,13 @@ class UserDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getUsers(query: String? = nil, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    {
+        let request = CreatorsAndManagersRequest(userId: nil, query: query, page: pagingData?.page, perPage: pagingData?.pageSize, scope: nil)
+        let handler = CreatorsAndManagersResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getSwitchUsers(pagingData: PagingData?,completion: UsersClosure?) -> RequestHandler
     {
         let request = SwitchUsersRequest(page: pagingData?.page, perPage: pagingData?.pageSize)

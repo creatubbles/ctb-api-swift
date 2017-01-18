@@ -305,6 +305,11 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         return userDAO.getCreators(groupId: groupId, pagingData: pagingData, completion: completion)
     }
     
+    open func getUsers(query: String? = nil, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    {
+        return userDAO.getUsers(query: query, pagingData: pagingData, completion: completion)
+    }
+    
     open func getSwitchUsers(_ pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
         return userDAO.getSwitchUsers(pagingData: pagingData, completion: completion)
