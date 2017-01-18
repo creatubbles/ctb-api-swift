@@ -110,16 +110,16 @@ class UserDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getMyConnections(pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    func getMyConnections(pagingData: PagingData?, query: String?, completion: UsersClosure?) -> RequestHandler
     {
-        let request = MyConnectionsRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
+        let request = MyConnectionsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, query: query)
         let handler = MyConnectionsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getOtherUsersMyConnections(userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
+    func getOtherUsersMyConnections(userId: String, query: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler
     {
-        let request = MyConnectionsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, userId: userId)
+        let request = MyConnectionsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, userId: userId, query: query)
         let handler = MyConnectionsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
