@@ -181,18 +181,18 @@ extension APIClient
         }
     }
     
-    public func _getMyConnections(pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
+    public func _getMyConnections(query: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
     {
-        return getMyConnections(pagingData: pagingData)
+        return getMyConnections(query: query, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
     
-    public func _getOtherUsersMyConnections(userId: String, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
+    public func _getOtherUsersMyConnections(userId: String, query: String?, pagingData: PagingData?, completion: ((Array<User>?,PagingInfo? ,NSError?) -> (Void))?) -> RequestHandler
     {
-        return getOtherUsersMyConnections(userId: userId, pagingData: pagingData)
+        return getOtherUsersMyConnections(userId: userId, query:query, pagingData: pagingData)
         {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
