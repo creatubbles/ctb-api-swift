@@ -40,12 +40,15 @@ class MyConnectionsRequest: Request
     fileprivate let perPage: Int?
     
     fileprivate let userId: String?
+    fileprivate let query: String?
+
     
-    init(page: Int? = nil, perPage: Int? = nil, userId: String? = nil)
+    init(page: Int? = nil, perPage: Int? = nil, userId: String? = nil, query: String? = nil)
     {
         self.page = page
         self.perPage = perPage
         self.userId = userId
+        self.query = query
     }
     
     fileprivate func prepareParameters() -> Dictionary<String, AnyObject>
@@ -63,6 +66,10 @@ class MyConnectionsRequest: Request
         if let userId = userId
         {
             params["user_id"] = userId as AnyObject?
+        }
+        if let query = query
+        {
+            params["query"] = query as AnyObject?
         }
         return params
     }
