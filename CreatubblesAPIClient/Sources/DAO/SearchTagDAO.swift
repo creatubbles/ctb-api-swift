@@ -114,7 +114,7 @@ class SearchTagDAO: NSObject
         //Scratch
         let scratchTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/scratch-f07bb305df1932ef81ccc1fe5617b04e.jpg"
         let scratchNames = [NameTranslationObject(code:"en", name:"Scratch", original: true),
-                            NameTranslationObject(code:"jp", name:"スクラッチ", original: false),
+                            NameTranslationObject(code:"ja", name:"スクラッチ", original: false),
                             NameTranslationObject(code:"it", name:"Scratch", original: false)]
         let scratchTag = SearchTag(name: "Scratch", imageURL: scratchTagURL, identifier: "search-tag-scratch", translatedNames: scratchNames)
         
