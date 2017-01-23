@@ -45,7 +45,7 @@ class NotificationsFetchResponseHandler: ResponseHandler
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
             let notificationMetadata = MappingUtils.notificationMetadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let objects    = mappers.map({ Notification(mapper: $0, dataMapper: dataMapper) }).filter({ $0.type != .unknown })
+            let objects    = mappers.map({ Notification(mapper: $0, dataMapper: dataMapper) })
             
             executeOnMainQueue { self.completion?(objects, notificationMetadata?.totalUnreadCount ,pageInfo, ErrorTransformer.errorFromResponse(response ,error: error)) }
         }
