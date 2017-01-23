@@ -126,6 +126,10 @@ open class ResponseData<T> {
     case anotherComment
     case newCommentForCreationUsers
     case multipleCreatorsCreated
+    case translationTip
+    case customizeTip
+    case galleriesTip
+    case bubblesTip
 }
 
 @objc public enum ActivityType: Int
