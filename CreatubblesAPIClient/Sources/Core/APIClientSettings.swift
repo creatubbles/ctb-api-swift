@@ -29,17 +29,17 @@ open class APIClientSettings: NSObject
     /*
      Personal application identifier. Please contact support@creatubbles.com to obtain it.
     */
-    let appId: String
+    public let appId: String
     
     /*
      Personal application secret. Please contact support@creatubbles.com to obtain it.
      */
-    let appSecret: String
+    public let appSecret: String
     
     /*
         OAuth2 token uri. https://api.creatubbles.com/v2/oauth/token by default.
      */
-    let tokenUri: String
+    public let tokenUri: String
     
     /*
         OAuth2 authorization uri. https://api.creatubbles.com/v2/oauth/token by default.

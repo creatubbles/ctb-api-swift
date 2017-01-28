@@ -26,32 +26,55 @@
 
 import UIKit
 
-class AuthenticationRequest: Request {
-    override var method: RequestMethod  { return .post }
-    override var endpoint: String { return settings.tokenUri }
-    override var onlyPath: Bool { return false }
-    override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
-    
+public class AuthenticationRequest: Request {
+    override public var method: RequestMethod  { return .post }
+    override public var endpoint: String { return settings.tokenUri }
+    override public var onlyPath: Bool { return false }
+    override public var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
+
     fileprivate let settings: APIClientSettings
     fileprivate let username: String?
     fileprivate let password: String?
-    
+    // used in code credentials OAuth flow - https://partners.creatubbles.com/api/#oauth-token-code-credentials-flow
+    fileprivate let code: String?
+    fileprivate let redirectURI: String?
+
+    public init(code: String?, redirectURI: String?, settings: APIClientSettings) {
+        self.code = code
+        self.redirectURI = redirectURI
+        self.settings = settings
+        self.username = nil
+        self.password = nil
+    }
+
     init(username: String?, password: String?, settings: APIClientSettings) {
         self.username = username
         self.password = password
         self.settings = settings
+        self.code = nil
+        self.redirectURI = nil
     }
-    
+
     fileprivate func prepareParameters() -> Dictionary<String,AnyObject> {
         var params = Dictionary<String,AnyObject>()
+
+        if let code = code as AnyObject? {
+            params["code"] = code
+        }
+        if let redirectURI = redirectURI as AnyObject? {
+            params["redirect_uri"] = redirectURI
+        }
+
         if let username = username {
             params["username"] = username as AnyObject?
         }
-        
         if let password = password {
             params["password"] = password as AnyObject?
         }
-        
+
+        if code != nil && redirectURI != nil {
+            params["grant_type"] = "authorization_code" as AnyObject?
+        }
         if username != nil && password != nil {
             params["grant_type"] = "password" as AnyObject?
         } else {

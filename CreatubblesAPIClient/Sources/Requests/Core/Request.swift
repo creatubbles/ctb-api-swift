@@ -24,7 +24,7 @@
 
 import UIKit
 
-enum RequestMethod: String
+public enum RequestMethod: String
 {
     case options = "OPTIONS"
     case get     = "GET"
@@ -37,13 +37,13 @@ enum RequestMethod: String
     case connect = "CONNECT"
 }
 
-class Request: NSObject, Cancelable
+open class Request: NSObject, Cancelable
 {
-    var method: RequestMethod   { return .get }
-    var endpoint: String        { return ""   }
-    var onlyPath: Bool          { return true }
-    var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
-    
+    open var method: RequestMethod   { return .get }
+    open var endpoint: String        { return ""   }
+    open var onlyPath: Bool          { return true }
+    open var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
+
     class func sortOrderStringValue(_ sortOrder: SortOrder) -> String
     {
         switch sortOrder
@@ -52,9 +52,9 @@ class Request: NSObject, Cancelable
             case .recent:   return "recent"
         }
     }
-    
-    func cancel()
+
+    public func cancel()
     {
-        
+
     }
 }

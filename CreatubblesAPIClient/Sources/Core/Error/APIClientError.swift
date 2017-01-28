@@ -109,7 +109,7 @@ open class APIClientError: NSObject, Error, NSCoding
     open override var description: String { return "<APIClienError> Code:\(code); Status:\(status); Detail: \(detail); Title: \(title)" }
 }
 
-extension APIClientError
+public extension APIClientError
 {
     class var genericLoginError: APIClientError
     {
@@ -138,7 +138,7 @@ extension APIClientError
                               detail: "error_upload_cancelled_detail".localized)
     }
     
-    class var missingServerResponseError: APIClientError
+    public class var missingServerResponseError: APIClientError
     {
         return APIClientError(status: APIClientError.MissingResponseDataStatus,
                               code:   APIClientError.MissingResponseDataCode,
