@@ -24,11 +24,11 @@
 
 import UIKit
 
-class RequestSender: NSObject
+public class RequestSender: NSObject
 {
     fileprivate var networkManager: NetworkManager
     fileprivate var uploadManager: UploadManager
-    fileprivate let settings: APIClientSettings
+    public let settings: APIClientSettings
     
     init(settings: APIClientSettings)
     {
@@ -65,7 +65,7 @@ class RequestSender: NSObject
         return excuteAuthenticationRequest(request: request, isPublicAuthentication: true, completion: completion)
     }
     
-    fileprivate func excuteAuthenticationRequest(request: AuthenticationRequest, isPublicAuthentication: Bool, completion: ErrorClosure?) -> RequestHandler {
+    public func excuteAuthenticationRequest(request: AuthenticationRequest, isPublicAuthentication: Bool, completion: ErrorClosure?) -> RequestHandler {
         self.networkManager.dataTask(request: request) { (response, error) in
             DispatchQueue.main.async {
                 if let error = error {
@@ -139,7 +139,7 @@ class RequestSender: NSObject
     
     @discardableResult
     
-    func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler {
+    public func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler {
         Logger.log(.debug, "Sending request: \(type(of: request))")
         
         self.networkManager.dataTask(request: request) { (response, error) in

@@ -26,7 +26,7 @@
 import Foundation
 import ObjectMapper
 
-class DataIncludeMapper
+public class DataIncludeMapper
 {
     fileprivate let metadata: Metadata?
     fileprivate let includeResponse: Array<Dictionary<String, AnyObject>>
