@@ -26,7 +26,7 @@
 
 import UIKit
 
-class Metadata: NSObject
+public class Metadata: NSObject
 {
     let bubbledCreationIdentifiers: Array<String>
     let bubbledUserIdentifiers: Array<String>

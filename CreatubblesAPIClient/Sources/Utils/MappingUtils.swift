@@ -27,7 +27,7 @@
 import UIKit
 import ObjectMapper
 
-class MappingUtils
+public class MappingUtils
 {
     class func relationshipFromMapper(_ mapper: RelationshipMapper?) -> Relationship?
     {
@@ -48,7 +48,7 @@ class MappingUtils
         return PagingInfo(mapper: mapper)
     }
     
-    class func metadataFromResponse(_ response: Dictionary<String, AnyObject>) -> Metadata?
+    public class func metadataFromResponse(_ response: Dictionary<String, AnyObject>) -> Metadata?
     {
         let metadataMapper = Mapper<MetadataMapper>().map(JSONObject: response["meta"])
 
@@ -61,7 +61,7 @@ class MappingUtils
         return ( metadataMapper != nil ) ? NotificationMetadata(mapper: metadataMapper!) : nil
     }
     
-    class func dataIncludeMapperFromResponse(_ response: Dictionary<String, AnyObject>, metadata: Metadata?) -> DataIncludeMapper?
+    public class func dataIncludeMapperFromResponse(_ response: Dictionary<String, AnyObject>, metadata: Metadata?) -> DataIncludeMapper?
     {
         let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
         return ( includedResponse == nil ) ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
