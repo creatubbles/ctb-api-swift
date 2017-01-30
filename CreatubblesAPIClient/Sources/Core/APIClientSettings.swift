@@ -73,7 +73,12 @@ open class APIClientSettings: NSObject
      */
     let logLevel: LogLevel
     
-    public init(appId: String, appSecret: String, backgroundSessionConfigurationIdentifier: String? = nil, locale: String? = nil, logLevel: LogLevel = .warning)
+    /*
+     Scope used in some OAuth requests. 'nil` by default
+     */
+    let oauthScope: String?
+    
+    public init(appId: String, appSecret: String, backgroundSessionConfigurationIdentifier: String? = nil, locale: String? = nil, logLevel: LogLevel = .warning, oauthScope: String? = nil)
     {
         self.appId = appId
         self.appSecret = appSecret
@@ -84,9 +89,10 @@ open class APIClientSettings: NSObject
         self.locale = locale
         self.logLevel = logLevel
         self.backgroundSessionConfigurationIdentifier = backgroundSessionConfigurationIdentifier
+        self.oauthScope = oauthScope
     }
     
-    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, locale: String? = nil, logLevel: LogLevel = .warning,  backgroundSessionConfigurationIdentifier: String? = nil)
+    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, locale: String? = nil, logLevel: LogLevel = .warning,  backgroundSessionConfigurationIdentifier: String? = nil, oauthScope: String? = nil)
     {
         self.appId = appId
         self.appSecret = appSecret
@@ -97,5 +103,6 @@ open class APIClientSettings: NSObject
         self.locale = locale
         self.logLevel = logLevel
         self.backgroundSessionConfigurationIdentifier = backgroundSessionConfigurationIdentifier
+        self.oauthScope = oauthScope
     }
 }
