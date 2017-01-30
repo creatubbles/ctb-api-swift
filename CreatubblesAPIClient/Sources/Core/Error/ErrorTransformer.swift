@@ -26,9 +26,9 @@
 import Foundation
 import ObjectMapper
 
-class ErrorTransformer
+public class ErrorTransformer
 {
-    static func errorFromResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) -> APIClientError?
+    public static func errorFromResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) -> APIClientError?
     {
         if let err = error as? APIClientError
         {

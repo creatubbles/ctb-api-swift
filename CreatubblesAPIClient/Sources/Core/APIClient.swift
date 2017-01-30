@@ -172,7 +172,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
 {
     //MARK: - Internal
     fileprivate let settings: APIClientSettings
-    fileprivate let requestSender: RequestSender
+    public let requestSender: RequestSender
     
     fileprivate let creationsDAO: CreationsDAO
     fileprivate let userDAO: UserDAO

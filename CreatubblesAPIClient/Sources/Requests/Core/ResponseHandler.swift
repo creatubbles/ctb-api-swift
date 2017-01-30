@@ -25,14 +25,14 @@
 import UIKit
 import ObjectMapper
 
-class ResponseHandler: NSObject
+open class ResponseHandler: NSObject
 {    
-    func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
+    open func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
     {
         
     }
     
-    func executeOnMainQueue(_ closure: @escaping () -> ())
+    public func executeOnMainQueue(_ closure: @escaping () -> ())
     {
         DispatchQueue.main.async
         {
