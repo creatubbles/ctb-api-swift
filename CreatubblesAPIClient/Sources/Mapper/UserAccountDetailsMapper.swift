@@ -27,7 +27,7 @@
 import UIKit
 import ObjectMapper
 
-class UserAccountDetailsMapper: Mappable
+public class UserAccountDetailsMapper: Mappable
 {
     var identifier: String?
     var username: String?
@@ -54,9 +54,9 @@ class UserAccountDetailsMapper: Mappable
     var createdAt: Date?
     var updatedAt: Date?
     
-    required init?(map: Map) { /* Intentionally left empty  */ }
+    public required init?(map: Map) { /* Intentionally left empty  */ }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         identifier <- map["id"]
         username <- map["attributes.username"]

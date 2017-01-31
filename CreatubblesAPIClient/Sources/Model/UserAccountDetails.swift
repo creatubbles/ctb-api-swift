@@ -54,7 +54,7 @@ open class UserAccountDetails: NSObject
     open let createdAt: Date
     open let updatedAt: Date
     
-    init(mapper: UserAccountDetailsMapper)
+    public init(mapper: UserAccountDetailsMapper)
     {
         identifier = mapper.identifier!
         username  = mapper.username!
