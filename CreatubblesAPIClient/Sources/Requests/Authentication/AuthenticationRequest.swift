@@ -80,6 +80,12 @@ public class AuthenticationRequest: Request {
         } else {
             params["grant_type"] = "client_credentials" as AnyObject?
         }
+        
+        if let scope = settings.oauthScope
+        {
+            params["scope"] = scope	 as AnyObject?
+        }
+
         params["client_id"] = settings.appId as AnyObject?
         params["client_secret"] = settings.appSecret as AnyObject?
         
