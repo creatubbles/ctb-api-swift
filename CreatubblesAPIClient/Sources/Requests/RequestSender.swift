@@ -28,7 +28,7 @@ public class RequestSender: NSObject
 {
     fileprivate var networkManager: NetworkManager
     fileprivate var uploadManager: UploadManager
-    public let settings: APIClientSettings
+    open let settings: APIClientSettings
     
     init(settings: APIClientSettings)
     {

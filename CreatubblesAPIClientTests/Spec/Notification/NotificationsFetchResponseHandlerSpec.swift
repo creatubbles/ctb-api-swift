@@ -48,7 +48,7 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec
                         (notifications, unreadNotificationsCount,  pInfo, error) -> (Void) in
                         expect(notifications).to(beNil())
                         expect(pInfo).to(beNil())
-                        expect(error).to(beNil())
+                        expect(error).notTo(beNil())
                         expect(unreadNotificationsCount).to(beNil())
                         done()
                     })
