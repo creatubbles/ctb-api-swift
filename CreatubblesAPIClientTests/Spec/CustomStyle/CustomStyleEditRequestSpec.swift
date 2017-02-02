@@ -70,12 +70,33 @@ class CustomStyleEditRequestSpec: QuickSpec
                 
                 let request = CustomStyleEditRequest(userIdentifier: "", data: data)
                 
-                expect(request.parameters["header_background_id"] as? String).to(equal("pattern1"))
-                expect(request.parameters["body_background_id"] as? String).to(equal("pattern2"))
-                expect(request.parameters["font"] as? String).to(equal(testFontName))
-                expect(request.parameters["bio"] as? String).to(equal(testBio))
-                expect(request.parameters["body_colors"] as? Array<String>).to(equal(testBodyColors.map({ $0.hexValue() })))
-                expect(request.parameters["header_colors"] as? Array<String>).to(equal(testHeaderColors.map({ $0.hexValue() })))
+                guard let dataDict = request.parameters["data"] as? Dictionary<String, AnyObject>
+                else
+                {
+                    fail("Data dictionary was not properly build")
+                    return
+                }
+                
+                guard let attributesDict = dataDict["attributes"] as? Dictionary<String, AnyObject>
+                else
+                {
+                    fail("Parameters dictionary was not properly build")
+                    return
+                }
+                
+                guard (dataDict["relationships"] as? Dictionary<String, AnyObject>) != nil
+                else
+                {
+                    fail("Relationships dictionary was not properly build")
+                    return
+                }
+
+                expect(attributesDict["header_background_id"] as? String).to(equal("pattern1"))
+                expect(attributesDict["body_background_id"] as? String).to(equal("pattern2"))
+                expect(attributesDict["font"] as? String).to(equal(testFontName))
+                expect(attributesDict["bio"] as? String).to(equal(testBio))
+                expect(attributesDict["body_colors"] as? Array<String>).to(equal(testBodyColors.map({ $0.hexValue() })))
+                expect(attributesDict["header_colors"] as? Array<String>).to(equal(testHeaderColors.map({ $0.hexValue() })))
             }
         }
     }

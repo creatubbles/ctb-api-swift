@@ -40,8 +40,8 @@ class NewGalleryResponseHandlerSpec: QuickSpec
                 return
             }
             
-            let name = "MMGallery"+timestamp
-            let galleryDescription = "MMGallery"+timestamp
+            let name = "MMTestGallery"+timestamp
+            let galleryDescription = "MMTestGalleryDescription"+timestamp
             let openForAll = false
             let ownerId = "B0SwCGhR"
             let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: ownerId)

@@ -36,25 +36,36 @@ class NotificationReadResponseHandlerSpec: QuickSpec
         {
             it("Should return error when not logged in")
             {
-                let request = NotificationReadRequest(notificationIdentifier: "384580")
+                guard let identifier = TestConfiguration.testNotificationIdentifier
+                else { return }
+                
+                let request = NotificationReadRequest(notificationIdentifier: identifier)                                
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 
                 waitUntil(timeout: 10)
                 {
                     done in
-                    sender.send(request, withResponseHandler:NotificationReadResponseHandler()
+                    sender.authenticate()
                     {
-                        (error) -> (Void) in
-                        expect(error).to(beNil())
-                        done()
-                    })
+                        (err) -> (Void) in
+                        expect(err).to(beNil())
+                        sender.send(request, withResponseHandler:NotificationReadResponseHandler()
+                        {
+                            (error) -> (Void) in
+                            expect(error).notTo(beNil())
+                            done()
+                        })
+                    }
                 }
             }
             
             it("Should not return error when logged in")
             {
-                let request = NotificationReadRequest(notificationIdentifier: "384580")
+                guard let identifier = TestConfiguration.testNotificationIdentifier
+                else { return }
+                
+                let request = NotificationReadRequest(notificationIdentifier: identifier)
                 let sender = TestComponentsFactory.requestSender
                 
                 waitUntil(timeout: 10)

@@ -37,11 +37,10 @@ class NewGroupResponseHandlerSpec: QuickSpec
         {
             it("Should create new group when only name is passed")
             {
-                guard let name = TestConfiguration.testNewGroupDataName,
-                      let creationIdentifier = TestConfiguration.testCreationIdentifier
+                guard let name = TestConfiguration.testNewGroupDataName
                 else { return }
                 
-                let data = NewGroupData(name: name, avatarCreationIdentifier: creationIdentifier)
+                let data = NewGroupData(name: name)
                 
                 let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
