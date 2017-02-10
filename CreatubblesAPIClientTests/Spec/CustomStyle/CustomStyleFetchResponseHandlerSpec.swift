@@ -50,10 +50,10 @@ class CustomStyleFetchResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 30)
                 {
                     done in
-                    //Have to wait for sender to login with Public Grant
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute:
+                    sender.authenticate()
                     {
+                        (err) -> Void in
+                        expect(err).to(beNil())
                         sender.send(request, withResponseHandler: CustomStyleFetchResponseHandler()
                         {
                             (style: CustomStyle?, error: APIClientError?) -> Void in
@@ -61,7 +61,7 @@ class CustomStyleFetchResponseHandlerSpec: QuickSpec
                             expect(error).to(beNil())
                             done()
                         })
-                    })
+                    }
                 }
             }            
         }

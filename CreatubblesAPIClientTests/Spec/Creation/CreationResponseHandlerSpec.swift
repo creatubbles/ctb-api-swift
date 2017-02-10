@@ -40,7 +40,7 @@ class CreationResponseHandlerSpec: QuickSpec
             {
                 let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .recent, keyword: nil, onlyPublic: true)
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 15)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -67,7 +67,7 @@ class CreationResponseHandlerSpec: QuickSpec
                 
                 let request = FetchCreationsRequest(page: 1, perPage: 10, recommendedCreationId: creationId)
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 15)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -116,8 +116,7 @@ class CreationResponseHandlerSpec: QuickSpec
             
             it("Should return a correct value for partner application after login")
             {
-                guard let userId = TestConfiguration.testUserIdentifier,
-                let partnerApplicationId = TestConfiguration.partnerApplicationId
+                guard let partnerApplicationId = TestConfiguration.partnerApplicationId
                 else { return }
                 
                 let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .recent, keyword: nil, partnerApplicationId: partnerApplicationId, onlyPublic: true)

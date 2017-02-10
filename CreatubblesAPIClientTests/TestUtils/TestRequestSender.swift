@@ -27,12 +27,10 @@ import UIKit
 
 class TestRequestSender: RequestSender
 {
-    fileprivate let settings: APIClientSettings
     fileprivate var isLoggedIn = false
     
     override init(settings: APIClientSettings)
     {
-        self.settings = settings
         super.init(settings: settings)
     }
     

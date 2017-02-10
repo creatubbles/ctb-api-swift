@@ -34,12 +34,13 @@ class NewCreatorResponseHandlerSpec: QuickSpec
     {
         describe("New creator response handler")
         {
-            guard let timestamp = TestConfiguration.newCreatorResponseHandlerSpecTestTimestamp
+            guard let timestamp = TestConfiguration.newCreatorResponseHandlerSpecTestTimestamp,
+                  TestConfiguration.shouldTestAddingNewCreator
             else
             {
                 return
             }
-//            let timestamp = String(Int(round(NSDate().time)))
+
             let name = "MMCreator"+timestamp
             let displayName = "MMCreator"+timestamp
             let birthYear = 2000
@@ -48,7 +49,6 @@ class NewCreatorResponseHandlerSpec: QuickSpec
             let gender = Gender.male
             var creatorRequest: NewCreatorRequest { return NewCreatorRequest(name: name, displayName: displayName, birthYear: birthYear,
                                                                              birthMonth: birthMonth, countryCode: countryCode, gender: gender) }
-            
             it("Should return correct value after login")
             {
                 let sender = TestComponentsFactory.requestSender
