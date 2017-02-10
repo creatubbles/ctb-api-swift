@@ -114,20 +114,20 @@ class LandingURLResponseHandlerSpec: QuickSpec
                 {
                     done in                    
                     //Have to wait for sender to login with Public Grant
-
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute:
+                    sender.authenticate()
                     {
+                        (err) -> (Void) in                                                
                         sender.send(LandingURLRequest(type: .forgotPassword), withResponseHandler:LandingURLResponseHandler()
-                            {
-                                (landingUrls, error) -> (Void) in
-                                expect(error).to(beNil())
-                                expect(landingUrls).notTo(beNil())
-                                expect(landingUrls).notTo(beEmpty())
-                                expect(landingUrls?.count).to(equal(1))
-                                sender.logout()
-                                done()
+                        {
+                            (landingUrls, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(landingUrls).notTo(beNil())
+                            expect(landingUrls).notTo(beEmpty())
+                            expect(landingUrls?.count).to(equal(1))
+                            sender.logout()
+                            done()
                         })
-                    })
+                    }
                 }
             }
         }

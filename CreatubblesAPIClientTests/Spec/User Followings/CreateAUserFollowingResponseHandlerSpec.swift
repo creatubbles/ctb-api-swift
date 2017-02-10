@@ -51,7 +51,6 @@ class CreateAUserFollowingResponseHandlerSpec: QuickSpec
                         sender.send(createAUserFollowing, withResponseHandler:CreateAUserFollowingResponseHandler()
                         {
                             (error: Error?) -> Void in
-
                             done()
                         })
                     }

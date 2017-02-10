@@ -71,29 +71,7 @@ class NewCreatorRequestSpec: QuickSpec
                 expect(params["birth_month"] as? Int).to(equal(birthMonth))
                 expect(params["country"] as? String).to(equal(countryCode))
                 expect(params["gender"] as? Int).to(equal(gender.rawValue))
-            }
-            
-            it("Should return correct value after login")
-            {
-                let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 20)
-                {
-                    done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
-                        (error: Error?) -> Void in
-                        expect(error).to(beNil())
-                        sender.send(creatorRequest, withResponseHandler: DummyResponseHandler()
-                            {
-                                (response, error) -> Void in
-                                expect(response).notTo(beNil())
-                                expect(error).to(beNil())
-                                sender.logout()
-                                done()
-                            })
-                    }
-                }
-            }
+            }                    
         }
     }
 }
