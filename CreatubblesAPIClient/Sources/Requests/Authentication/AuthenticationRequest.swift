@@ -74,8 +74,7 @@ public class AuthenticationRequest: Request {
 
         if code != nil && redirectURI != nil {
             params["grant_type"] = "authorization_code" as AnyObject?
-        }
-        if username != nil && password != nil {
+        } else if username != nil && password != nil {
             params["grant_type"] = "password" as AnyObject?
         } else {
             params["grant_type"] = "client_credentials" as AnyObject?
