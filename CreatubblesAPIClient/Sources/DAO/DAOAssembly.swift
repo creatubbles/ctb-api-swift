@@ -28,7 +28,7 @@ public class DAOAssembly
         store[identifier] = dao
     }
     
-    public func assembly<T: APIClientDAO>(type: T.Type) -> T?
+    public func assembly<T: APIClientDAO>(_ type: T.Type) -> T?
     {
         let identifier = identifierFrom(daoClass: type)
         let dao = store[identifier] as? T
