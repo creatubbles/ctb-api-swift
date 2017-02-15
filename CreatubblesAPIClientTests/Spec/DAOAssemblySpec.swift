@@ -30,14 +30,14 @@ class DAOAssemblySpec: QuickSpec
                 let dao = DatabaseDAO()
                 let assembly = DAOAssembly()
                 assembly.register(dao: dao)
-                let assembledDAO = assembly.assembly(type: DatabaseDAO.self)
+                let assembledDAO = assembly.assembly(DatabaseDAO.self)
                 expect(assembledDAO).notTo(beNil())
             }
             
             it("Should return null when assembled DAO was not registered before")
             {
                 let assembly = DAOAssembly()
-                let assembledDAO = assembly.assembly(type: DatabaseDAO.self)
+                let assembledDAO = assembly.assembly(DatabaseDAO.self)
                 expect(assembledDAO).to(beNil())
             }
         }
