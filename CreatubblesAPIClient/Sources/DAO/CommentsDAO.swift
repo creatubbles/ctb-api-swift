@@ -26,7 +26,7 @@
 
 import UIKit
 
-class CommentsDAO: NSObject
+class CommentsDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
     

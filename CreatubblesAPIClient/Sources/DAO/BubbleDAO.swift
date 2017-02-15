@@ -26,7 +26,7 @@
 
 import UIKit
 
-class BubbleDAO: NSObject
+class BubbleDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
     

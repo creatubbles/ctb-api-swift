@@ -26,7 +26,7 @@
 
 import UIKit
 
-class CustomStyleDAO
+class CustomStyleDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
     

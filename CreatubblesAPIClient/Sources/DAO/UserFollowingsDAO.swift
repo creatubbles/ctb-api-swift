@@ -26,7 +26,7 @@
 
 import UIKit
 
-class UserFollowingsDAO: NSObject
+class UserFollowingsDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
     

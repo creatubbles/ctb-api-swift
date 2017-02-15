@@ -100,6 +100,8 @@
 		181E76EE1CC547E900A1546A /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181E76ED1CC547E900A1546A /* Comment.swift */; };
 		181E76F01CC547FF00A1546A /* CommentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181E76EF1CC547FF00A1546A /* CommentMapper.swift */; };
 		181E76FB1CC5485100A1546A /* NewCommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181E76FA1CC5485100A1546A /* NewCommentData.swift */; };
+		1823F8801E54672100AD5517 /* DAOAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823F87F1E54672100AD5517 /* DAOAssembly.swift */; };
+		1823F8821E5468F700AD5517 /* DAOAssemblySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823F8811E5468F700AD5517 /* DAOAssemblySpec.swift */; };
 		18290AE51D06B09E000EA216 /* GallerySubmissionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AE41D06B09E000EA216 /* GallerySubmissionMapper.swift */; };
 		18290AE71D06B24B000EA216 /* GallerySubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AE61D06B24B000EA216 /* GallerySubmission.swift */; };
 		18290AE91D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AE81D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift */; };
@@ -510,6 +512,8 @@
 		181E76ED1CC547E900A1546A /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		181E76EF1CC547FF00A1546A /* CommentMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentMapper.swift; sourceTree = "<group>"; };
 		181E76FA1CC5485100A1546A /* NewCommentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCommentData.swift; sourceTree = "<group>"; };
+		1823F87F1E54672100AD5517 /* DAOAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOAssembly.swift; sourceTree = "<group>"; };
+		1823F8811E5468F700AD5517 /* DAOAssemblySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOAssemblySpec.swift; sourceTree = "<group>"; };
 		18290AE41D06B09E000EA216 /* GallerySubmissionMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GallerySubmissionMapper.swift; sourceTree = "<group>"; };
 		18290AE61D06B24B000EA216 /* GallerySubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GallerySubmission.swift; sourceTree = "<group>"; };
 		18290AE81D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsFetchResponseHandlerSpec.swift; sourceTree = "<group>"; };
@@ -1194,6 +1198,7 @@
 				08AC6A5C1D424A5F004A35C3 /* ActivitiesDAO.swift */,
 				212A12291D537213001BA35A /* PartnerApplicationDAO.swift */,
 				21CC9E3D1DF833E100C6538C /* SearchTagDAO.swift */,
+				1823F87F1E54672100AD5517 /* DAOAssembly.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -1356,6 +1361,7 @@
 				18EFFF6B1C772A4E00BE0B70 /* APIClientSpec.swift */,
 				18EFFF6C1C772A4E00BE0B70 /* DataUploaderSpec.swift */,
 				18EFFF6D1C772A4E00BE0B70 /* RequestSenderSpec.swift */,
+				1823F8811E5468F700AD5517 /* DAOAssemblySpec.swift */,
 			);
 			path = Spec;
 			sourceTree = "<group>";
@@ -2013,6 +2019,7 @@
 				18F6E89F1D021B6500AAC5FB /* NewGalleryRequest.swift in Sources */,
 				2178B7301D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift in Sources */,
 				189D9F611C84B36100857CC6 /* PagingInfoMapper.swift in Sources */,
+				1823F8801E54672100AD5517 /* DAOAssembly.swift in Sources */,
 				1895D3691D11F204009B7271 /* EditCreationResponseHandler.swift in Sources */,
 				2110E0501D742C0E00B62156 /* NameTranslationObjectMapper.swift in Sources */,
 				187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */,
@@ -2316,6 +2323,7 @@
 				18467F5D1D02E2E9005CE5DD /* CustomStyleEditRequestSpec.swift in Sources */,
 				18F6E8401D02182000AAC5FB /* LandingURLRequestSpec.swift in Sources */,
 				18F6E8B41D0222DF00AAC5FB /* CustomStyleFetchRequestSpec.swift in Sources */,
+				1823F8821E5468F700AD5517 /* DAOAssemblySpec.swift in Sources */,
 				215279561D3F715400B67313 /* UsersFollowedByAUserRequestSpec.swift in Sources */,
 				215279581D3F742F00B67313 /* UsersFollowedByAUserResponseHandlerSpec.swift in Sources */,
 				18EFFF721C772A4E00BE0B70 /* RequestSenderSpec.swift in Sources */,

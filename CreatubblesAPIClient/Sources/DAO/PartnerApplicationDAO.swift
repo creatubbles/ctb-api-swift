@@ -26,7 +26,7 @@
 
 import UIKit
 
-class PartnerApplicationDAO
+class PartnerApplicationDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
 
