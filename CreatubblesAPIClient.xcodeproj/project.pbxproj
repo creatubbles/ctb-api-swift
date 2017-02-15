@@ -102,6 +102,8 @@
 		181E76FB1CC5485100A1546A /* NewCommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181E76FA1CC5485100A1546A /* NewCommentData.swift */; };
 		1823F8801E54672100AD5517 /* DAOAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823F87F1E54672100AD5517 /* DAOAssembly.swift */; };
 		1823F8821E5468F700AD5517 /* DAOAssemblySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823F8811E5468F700AD5517 /* DAOAssemblySpec.swift */; };
+		1823F88B1E548E6C00AD5517 /* DataIncludeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823F8891E548E6C00AD5517 /* DataIncludeMapper.swift */; };
+		1823F88C1E548E6C00AD5517 /* DataIncludeMapperDefaultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823F88A1E548E6C00AD5517 /* DataIncludeMapperDefaultParser.swift */; };
 		18290AE51D06B09E000EA216 /* GallerySubmissionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AE41D06B09E000EA216 /* GallerySubmissionMapper.swift */; };
 		18290AE71D06B24B000EA216 /* GallerySubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AE61D06B24B000EA216 /* GallerySubmission.swift */; };
 		18290AE91D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18290AE81D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift */; };
@@ -125,7 +127,6 @@
 		183635421CB5013900ED778A /* DataInclude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836353F1CB5013900ED778A /* DataInclude.swift */; };
 		183635431CB5013900ED778A /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183635401CB5013900ED778A /* Identifiable.swift */; };
 		183635441CB5013900ED778A /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183635411CB5013900ED778A /* Relationship.swift */; };
-		183635471CB5014700ED778A /* DataIncludeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183635451CB5014700ED778A /* DataIncludeMapper.swift */; };
 		183635481CB5014700ED778A /* RelationshipMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183635461CB5014700ED778A /* RelationshipMapper.swift */; };
 		18366AA61D0591E200229D20 /* NotificationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18366AA51D0591E200229D20 /* NotificationMapper.swift */; };
 		183728EA1CEDC835008784C7 /* ContentEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183728E91CEDC835008784C7 /* ContentEntry.swift */; };
@@ -514,6 +515,8 @@
 		181E76FA1CC5485100A1546A /* NewCommentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCommentData.swift; sourceTree = "<group>"; };
 		1823F87F1E54672100AD5517 /* DAOAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOAssembly.swift; sourceTree = "<group>"; };
 		1823F8811E5468F700AD5517 /* DAOAssemblySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOAssemblySpec.swift; sourceTree = "<group>"; };
+		1823F8891E548E6C00AD5517 /* DataIncludeMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataIncludeMapper.swift; sourceTree = "<group>"; };
+		1823F88A1E548E6C00AD5517 /* DataIncludeMapperDefaultParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataIncludeMapperDefaultParser.swift; sourceTree = "<group>"; };
 		18290AE41D06B09E000EA216 /* GallerySubmissionMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GallerySubmissionMapper.swift; sourceTree = "<group>"; };
 		18290AE61D06B24B000EA216 /* GallerySubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GallerySubmission.swift; sourceTree = "<group>"; };
 		18290AE81D06D06E000EA216 /* NotificationsFetchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsFetchResponseHandlerSpec.swift; sourceTree = "<group>"; };
@@ -537,7 +540,6 @@
 		1836353F1CB5013900ED778A /* DataInclude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataInclude.swift; sourceTree = "<group>"; };
 		183635401CB5013900ED778A /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		183635411CB5013900ED778A /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
-		183635451CB5014700ED778A /* DataIncludeMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataIncludeMapper.swift; sourceTree = "<group>"; };
 		183635461CB5014700ED778A /* RelationshipMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipMapper.swift; sourceTree = "<group>"; };
 		18366AA51D0591E200229D20 /* NotificationMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMapper.swift; sourceTree = "<group>"; };
 		183728E91CEDC835008784C7 /* ContentEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentEntry.swift; sourceTree = "<group>"; };
@@ -1078,6 +1080,15 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
+		1823F8881E548E6C00AD5517 /* DataIncludeMapper */ = {
+			isa = PBXGroup;
+			children = (
+				1823F8891E548E6C00AD5517 /* DataIncludeMapper.swift */,
+				1823F88A1E548E6C00AD5517 /* DataIncludeMapperDefaultParser.swift */,
+			);
+			path = DataIncludeMapper;
+			sourceTree = "<group>";
+		};
 		18431BC51E12A65400CEDE83 /* GallerySubmitter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1261,12 +1272,12 @@
 		189D9F541C84B36100857CC6 /* Mapper */ = {
 			isa = PBXGroup;
 			children = (
+				1823F8881E548E6C00AD5517 /* DataIncludeMapper */,
 				217745191DD9C9D10012FFDC /* AvatarSuggestionMapper.swift */,
 				181E76EF1CC547FF00A1546A /* CommentMapper.swift */,
 				18E6E86E1CFF2E1D008D7B89 /* AbilityMapper.swift */,
 				183728EB1CEDC93D008784C7 /* ContentEntryMapper.swift */,
 				181E76D01CC5351D00A1546A /* BubbleMapper.swift */,
-				183635451CB5014700ED778A /* DataIncludeMapper.swift */,
 				183635461CB5014700ED778A /* RelationshipMapper.swift */,
 				189D9F551C84B36100857CC6 /* CreationMapper.swift */,
 				189D9F561C84B36100857CC6 /* CreationUploadMapper.swift */,
@@ -2092,6 +2103,7 @@
 				2117F8C11D3520B800304D79 /* NotificationMetadata.swift in Sources */,
 				18F6E88B1D021B6500AAC5FB /* CommentsResponseHandler.swift in Sources */,
 				18F6E8921D021B6500AAC5FB /* ResponseHandler.swift in Sources */,
+				1823F88C1E548E6C00AD5517 /* DataIncludeMapperDefaultParser.swift in Sources */,
 				1895D36D1D11F81B009B7271 /* EditProfileData.swift in Sources */,
 				18F6E8991D021B6500AAC5FB /* NewCreationUploadRequest.swift in Sources */,
 				08BBFE381D7EB13D005F1F11 /* FeaturedGalleriesRequest.swift in Sources */,
@@ -2138,6 +2150,7 @@
 				182A36C11D4094D3005E01DC /* UserAccountDetailsRequest.swift in Sources */,
 				18290AEB1D06D410000EA216 /* NotificationsFetchResponseHandler.swift in Sources */,
 				188ECF701C74703200AFEE4F /* CreationUploadSession.swift in Sources */,
+				1823F88B1E548E6C00AD5517 /* DataIncludeMapper.swift in Sources */,
 				0837858D1D378AAE006EF69E /* ReportCreationResponseHandler.swift in Sources */,
 				189D64491D9002B900D92E72 /* ErrorTransformer.swift in Sources */,
 				189D64481D9002B900D92E72 /* APIClientError.swift in Sources */,
@@ -2204,7 +2217,6 @@
 				1814B7771DF83332003B3C65 /* UsersBatchFetchOperation.swift in Sources */,
 				0801353B1D353FF90054DAB0 /* SwitchUserResponseHandler.swift in Sources */,
 				083785891D37872C006EF69E /* ReportCommentResponseHandler.swift in Sources */,
-				183635471CB5014700ED778A /* DataIncludeMapper.swift in Sources */,
 				080135391D353F9A0054DAB0 /* SwitchUserRequest.swift in Sources */,
 				18C744FB1C84611600A07E4C /* CreationEntity.swift in Sources */,
 				083785911D378B28006EF69E /* ReportGalleryResponseHandler.swift in Sources */,
