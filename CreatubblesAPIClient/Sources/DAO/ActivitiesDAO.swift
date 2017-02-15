@@ -26,7 +26,8 @@
 
 import UIKit
 
-class ActivitiesDAO: NSObject {
+class ActivitiesDAO: NSObject, APIClientDAO
+{
     fileprivate let requestSender: RequestSender
     
     init(requestSender: RequestSender) {

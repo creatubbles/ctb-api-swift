@@ -26,7 +26,7 @@
 
 import UIKit
 
-class NotificationDAO: NSObject
+class NotificationDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
     
