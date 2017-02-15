@@ -24,7 +24,7 @@
 
 import UIKit
 
-class DatabaseDAO: NSObject
+class DatabaseDAO: NSObject, APIClientDAO
 {
     let databaseService = DatabaseService()
     

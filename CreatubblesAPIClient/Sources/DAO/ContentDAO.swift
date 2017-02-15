@@ -26,7 +26,7 @@
 
 import UIKit
 
-class ContentDAO: NSObject
+class ContentDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
     

@@ -26,7 +26,7 @@
 
 import UIKit
 
-class GroupDAO: NSObject
+class GroupDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
     

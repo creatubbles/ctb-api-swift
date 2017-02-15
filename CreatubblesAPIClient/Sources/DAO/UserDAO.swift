@@ -24,7 +24,7 @@
 
 import UIKit
 
-class UserDAO
+class UserDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
     
