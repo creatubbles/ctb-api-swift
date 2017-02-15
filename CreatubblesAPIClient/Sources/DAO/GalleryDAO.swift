@@ -24,7 +24,7 @@
 
 import UIKit
 
-class GalleryDAO
+class GalleryDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
     

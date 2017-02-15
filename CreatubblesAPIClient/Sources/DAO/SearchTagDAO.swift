@@ -24,7 +24,7 @@
 
 import UIKit
 
-class SearchTagDAO: NSObject
+class SearchTagDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
     

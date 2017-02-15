@@ -29,7 +29,8 @@ class OAuth2Client: NSObject
 {
     private let keychain = Keychain(service: "com.creatubbles.access-token")
     
-    var privateAccessToken: String? {
+    var privateAccessToken: String?
+    {
         get {
             return keychain["access-token"]
         }
@@ -40,7 +41,7 @@ class OAuth2Client: NSObject
     }
     
     var publicAccessToken: String?
-        {
+    {
         get {
             return keychain["public-access-token"]
         }
@@ -53,5 +54,5 @@ class OAuth2Client: NSObject
     func logout()
     {
         privateAccessToken = nil
-    }
+    }        
 }

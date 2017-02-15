@@ -55,6 +55,27 @@ class APIClientSpec: QuickSpec
         
         describe("APIClient")
         {
+            //MARK: - Should have all public DA
+            it("Should have all public DAO's registered")
+            {
+                let client = APIClient(settings: TestConfiguration.settings)
+                expect(client.daoAssembly.assembly(GroupDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(AvatarDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(BubbleDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(CommentsDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(CreationsDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(CustomStyleDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(DatabaseDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(GalleryDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(UserDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(ContentDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(NotificationDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(UserFollowingsDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(ActivitiesDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(PartnerApplicationDAO.self)).notTo(beNil())
+                expect(client.daoAssembly.assembly(SearchTagDAO.self)).notTo(beNil())
+            }
+            
             //MARK: - Authentication
             it("Should login and logout")
             {
