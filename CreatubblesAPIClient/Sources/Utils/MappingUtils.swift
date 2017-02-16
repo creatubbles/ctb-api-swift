@@ -29,12 +29,12 @@ import ObjectMapper
 
 public class MappingUtils
 {
-    class func relationshipFromMapper(_ mapper: RelationshipMapper?) -> Relationship?
+    public class func relationshipFromMapper(_ mapper: RelationshipMapper?) -> Relationship?
     {
         return mapper == nil ? nil : Relationship(mapper: mapper!)
     }
     
-    class func objectFromMapper<T: Identifiable>(_ mapper: DataIncludeMapper?, relationship: Relationship?, type: T.Type) -> T?
+    public class func objectFromMapper<T: Identifiable>(_ mapper: DataIncludeMapper?, relationship: Relationship?, type: T.Type) -> T?
     {
         guard   let mapper = mapper,
         let relationship = relationship

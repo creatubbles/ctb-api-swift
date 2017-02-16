@@ -26,14 +26,14 @@
 import Foundation
 import ObjectMapper
 
-class RelationshipMapper: Mappable
+public class RelationshipMapper: Mappable
 {
     var type: String?
     var identifier: String?
 
-    required init?(map: Map) { /* Intentionally left empty  */ }
+    public required init?(map: Map) { /* Intentionally left empty  */ }
 
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         type <- map["type"]
         identifier <- map["id"]
