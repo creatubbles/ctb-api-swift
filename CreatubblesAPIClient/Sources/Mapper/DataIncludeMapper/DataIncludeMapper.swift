@@ -40,7 +40,7 @@ public class DataIncludeMapper
     private lazy var mappers: Dictionary<String, Mappable> = self.parseMappers()
     private let parser: DataIncludeMapperParser
     
-    init(includeResponse: Array<Dictionary<String, AnyObject>>, metadata: Metadata?, parser: DataIncludeMapperParser = DataIncludeMapperDefaultParser())
+    public init(includeResponse: Array<Dictionary<String, AnyObject>>, metadata: Metadata?, parser: DataIncludeMapperParser = DataIncludeMapperDefaultParser())
     {
         self.metadata = metadata
         self.includeResponse = includeResponse

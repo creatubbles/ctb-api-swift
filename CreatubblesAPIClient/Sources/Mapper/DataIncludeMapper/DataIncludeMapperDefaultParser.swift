@@ -26,7 +26,7 @@
 import Foundation
 import ObjectMapper
 
-open class DataIncludeMapperDefaultParser: DataIncludeMapperParser
+open class DataIncludeMapperDefaultParser: NSObject, DataIncludeMapperParser
 {
     open func dataIncludeMapper(sender: DataIncludeMapper, mapperFor json:[String: Any], typeString: String) -> Mappable?
     {
