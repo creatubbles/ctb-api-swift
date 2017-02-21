@@ -89,7 +89,7 @@ class CreationMapper: Mappable
         
         imageOriginalUrl <- map["attributes.image.links.original"]
         imageFullViewUrl <- map["attributes.image.links.full_view"]
-        imageListViewUrl <- map["attributes.image.links.list_view_retina"]
+        imageListViewUrl <- map["attributes.image.links.list_view"]
         imageListViewRetinaUrl <- map["attributes.image.links.list_view_retina"]
         imageMatrixViewUrl <- map["attributes.image.links.matrix_view"]
         imageMatrixViewRetinaUrl <- map["attributes.image.links.matrix_view_retina"]
