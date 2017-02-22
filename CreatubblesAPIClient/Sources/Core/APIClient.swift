@@ -544,6 +544,16 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
         creationUploadService.startUploadSession(sessionIdentifier: sessionId)
     }
     
+    open func refreshCreationStatusInUploadSession(sessionId: String)
+    {
+        creationUploadService.refreshCreationStatusInUploadSession(sessionId: sessionId)
+    }
+    
+    open func refreshCreationStatusInUploadSession(creationId: String)
+    {
+        creationUploadService.refreshCreationStatusInUploadSession(creationId: creationId)
+    }
+    
     //MARK: - Creation flow
     open func newCreation(data creationData: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData?
     {

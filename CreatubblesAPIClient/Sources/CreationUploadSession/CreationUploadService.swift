@@ -136,6 +136,18 @@ class CreationUploadService: CreationUploadSessionDelegate
         return CreationUploadSessionPublicData(creationUploadSession: session)
     }
     
+    open func refreshCreationStatusInUploadSession(sessionId: String)
+    {
+        let sessions = uploadSessions.filter({ $0.localIdentifier == sessionId})
+        sessions.forEach({ $0.refreshCreation(completion: nil) })
+    }
+    
+    open func refreshCreationStatusInUploadSession(creationId: String)
+    {
+        let sessions = uploadSessions.filter({ $0.creation?.identifier == creationId })
+        sessions.forEach({ $0.refreshCreation(completion: nil) })
+    }
+    
     //MARK: - CreationUploadSessionDelegate
     func creationUploadSessionChangedState(_ creationUploadSession: CreationUploadSession)
     {

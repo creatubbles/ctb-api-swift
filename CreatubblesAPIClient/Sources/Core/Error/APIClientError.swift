@@ -38,6 +38,7 @@ extension APIClientError
     public static let DefaultAuthenticationCode:   String = "authentication-error"
     public static let InvalidResponseDataCode:   String = "invalid-response-error"
     public static let MissingResponseDataCode:   String = "missing-response-error"
+    public static let MissingCreationToRefreshCode:   String = "missing-creation-identifier-error"
 }
 
 //MARK: Error codes
@@ -49,6 +50,7 @@ extension APIClientError
     public static let MissingResponseDataStatus: Int = -6004
     public static let InvalidResponseDataStatus: Int = -6005
     public static let DuplicatedUploadLocalIdentifierStatus: Int = -6006
+    public static let MissingCreationToRefreshStatus: Int = -6007
 }
 
 //  For error documentation, please check:
