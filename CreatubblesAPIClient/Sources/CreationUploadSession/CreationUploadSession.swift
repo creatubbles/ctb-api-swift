@@ -427,10 +427,15 @@ class CreationUploadSession: NSObject, Cancelable
     //MARK: - Creation Refresh
     func refreshCreation(completion: ((Creation?, APIClientError?) -> (Void))?)
     {
+        let currentState = state
         refreshCreationStatus(error: nil)
         {
             [weak self](error) in
             completion?(self?.creation, error as? APIClientError)
+            if let strongSelf = self, strongSelf.state != currentState
+            {
+                strongSelf.delegate?.creationUploadSessionChangedState(strongSelf)
+            }
         }
     }
     
@@ -463,7 +468,7 @@ class CreationUploadSession: NSObject, Cancelable
         {
             [weak self] _ in
             guard let strongSelf = self, strongSelf.state == CreationUploadSessionState.confirmedOnServer
-                else { return }
+            else { return }
             strongSelf.confirmedOnServerRefreshTimer?.invalidate()
             strongSelf.confirmedOnServerRefreshTimer = nil
             strongSelf.delegate?.creationUploadSessionChangedState(strongSelf)
