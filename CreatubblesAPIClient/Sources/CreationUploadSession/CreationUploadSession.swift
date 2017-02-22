@@ -65,7 +65,8 @@ class CreationUploadSession: NSObject, Cancelable
     var isFailed: Bool { return error != nil }
 
     fileprivate var currentRequest: RequestHandler?
-    
+    fileprivate var confirmedOnServerRefreshTimer: Timer?
+
     weak var delegate: CreationUploadSessionDelegate?
     
     init(data: NewCreationData, requestSender: RequestSender)
@@ -157,6 +158,11 @@ class CreationUploadSession: NSObject, Cancelable
                                             weakSelf.state = .completed
                                             weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                                         }
+                                        else
+                                        {
+                                            weakSelf.setupAutoRefreshTimer()
+                                        }
+                                        
                                         completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
                                     })
                                 })
@@ -372,7 +378,7 @@ class CreationUploadSession: NSObject, Cancelable
         currentRequest = submitter.submit()
     }
     
-    private func refreshCreationStatus(error: Error?, shouldUpdateStatus: Bool = true,completion: @escaping (Error?) -> Void)
+    private func refreshCreationStatus(error: Error?,completion: @escaping (Error?) -> Void)
     {
         if let error = error
         {
@@ -402,13 +408,14 @@ class CreationUploadSession: NSObject, Cancelable
                 let creation = creations?.first
                 else
             {
-                let error = error ?? APIClientError(status: APIClientError.InvalidResponseDataStatus, code: APIClientError.InvalidResponseDataCode, title: nil, source: nil,
-                                                    detail: "Missing creation in response for Refresh Creation")
+                let error = error ?? APIClientError(status: APIClientError.InvalidResponseDataStatus, code: APIClientError.InvalidResponseDataCode,
+                                                    title: nil, source: nil, detail: "Missing creation in response for Refresh Creation")
                 completion(error)
                 return
             }
             strongSelf.creation = creation
-            if creation.imageOriginalUrl != nil, shouldUpdateStatus
+            if creation.imageOriginalUrl != nil,
+               (strongSelf.state == .submittedToGallery || strongSelf.state == .serverNotified)
             {
                 strongSelf.state = .confirmedOnServer
             }
@@ -420,13 +427,48 @@ class CreationUploadSession: NSObject, Cancelable
     //MARK: - Creation Refresh
     func refreshCreation(completion: ((Creation?, APIClientError?) -> (Void))?)
     {
-        refreshCreationStatus(error: nil, shouldUpdateStatus: false)
+        refreshCreationStatus(error: nil)
         {
             [weak self](error) in
             completion?(self?.creation, error as? APIClientError)
         }
     }
     
+    fileprivate func setupAutoRefreshTimer()
+    {
+        if let timer = confirmedOnServerRefreshTimer
+        {
+            timer.invalidate()
+            confirmedOnServerRefreshTimer = nil
+        }
+        
+        confirmedOnServerRefreshTimer = Timer.scheduledTimer(timeInterval: 15.0, target: self, selector: #selector(autoRefreshCreationFromTimer), userInfo: nil, repeats: true)
+    }
+    
+    func autoRefreshCreationFromTimer()
+    {
+        if state == CreationUploadSessionState.confirmedOnServer
+        {
+            confirmedOnServerRefreshTimer?.invalidate()
+            confirmedOnServerRefreshTimer = nil
+            return
+        }
+        if (state.rawValue < CreationUploadSessionState.serverNotified.rawValue)
+        {
+            //To early to refresh creation. Server hadn't chance to process it
+            return
+        }
+        
+        self.refreshCreationStatus(error: nil)
+        {
+            [weak self] _ in
+            guard let strongSelf = self, strongSelf.state == CreationUploadSessionState.confirmedOnServer
+                else { return }
+            strongSelf.confirmedOnServerRefreshTimer?.invalidate()
+            strongSelf.confirmedOnServerRefreshTimer = nil
+            strongSelf.delegate?.creationUploadSessionChangedState(strongSelf)
+        }
+    }
     
     //MARK: - Utils
     fileprivate class func documentsDirectory() -> String
