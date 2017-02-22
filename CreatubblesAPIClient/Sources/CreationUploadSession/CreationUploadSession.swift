@@ -34,7 +34,9 @@ enum CreationUploadSessionState: Int
     case serverNotified = 5
     case submittedToGallery = 6
     case cancelled = 7
-    case completed = 8
+    case confirmedOnServer = 8
+    
+    case completed = 9
 }
 
 protocol CreationUploadSessionDelegate: class
@@ -58,12 +60,13 @@ class CreationUploadSession: NSObject, Cancelable
     fileprivate (set) var creationUpload: CreationUpload?    //Filled during upload flow
     fileprivate (set) var error: Error?
     
-    var isAlreadyFinished: Bool { return state == .completed }
+    var isAlreadyFinished: Bool { return state == .confirmedOnServer }
     var isCancelled: Bool { return state == .cancelled }
     var isFailed: Bool { return error != nil }
 
     fileprivate var currentRequest: RequestHandler?
-    
+    fileprivate var confirmedOnServerRefreshTimer: Timer?
+
     weak var delegate: CreationUploadSessionDelegate?
     
     init(data: NewCreationData, requestSender: RequestSender)
@@ -133,30 +136,36 @@ class CreationUploadSession: NSObject, Cancelable
                         
                         weakSelf.uploadImage(error, completion: { (error) -> Void in
                             weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                            
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
-                                
                                 weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
                                 
-                                
                                 weakSelf.uploadToGallery(error: error, completion: { (error) in
-                                    
-                                    weakSelf.error = error
-                                    weakSelf.isActive = false
-                                    
-                                    if let error = error
-                                    {
-                                        Logger.log(.error, "Upload \(weakSelf.localIdentifier) finished with error: \(error)")
-                                        weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
-                                    }
-                                    else
-                                    {
-                                        Logger.log(.debug, "Upload \(weakSelf.localIdentifier) finished successfully")
-                                        weakSelf.state = .completed
-                                        weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
-                                    }
-                                    completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
+                                    weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                                        
+                                    weakSelf.refreshCreationStatus(error: error, completion: { (error) in
+                                        weakSelf.error = error
+                                        weakSelf.isActive = false
+                                            
+                                        if let error = error
+                                        {
+                                            Logger.log(.error, "Upload \(weakSelf.localIdentifier) finished with error: \(error)")
+                                            weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
+                                        }
+                                        else if weakSelf.state == .confirmedOnServer
+                                        {
+                                            Logger.log(.debug, "Upload \(weakSelf.localIdentifier) finished successfully")
+                                            weakSelf.state = .completed
+                                            weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                                        }
+                                        else
+                                        {
+                                            weakSelf.setupAutoRefreshTimer()
+                                        }
+                                        
+                                        completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
+                                    })
                                 })
-                                
                             })
                         })
                     })
@@ -367,6 +376,98 @@ class CreationUploadSession: NSObject, Cancelable
         }
         
         currentRequest = submitter.submit()
+    }
+    
+    private func refreshCreationStatus(error: Error?,completion: @escaping (Error?) -> Void)
+    {
+        if let error = error
+        {
+            completion(error)
+            return
+        }
+        if state.rawValue >= CreationUploadSessionState.confirmedOnServer.rawValue
+        {
+            completion(nil)
+            return
+        }
+        
+        guard let creation = creation
+        else
+        {
+            let error = APIClientError.genericError(APIClientError.MissingCreationToRefreshStatus, code: APIClientError.MissingCreationToRefreshCode,
+                                                    title: nil, source: nil, detail: nil)
+            completion(error)
+            return
+        }
+
+        let request = FetchCreationsRequest(creationId: creation.identifier)
+        let handler = FetchCreationsResponseHandler
+        {
+            [weak self](creations, pageInfo, error) -> (Void) in
+            guard let strongSelf = self,
+                let creation = creations?.first
+                else
+            {
+                let error = error ?? APIClientError(status: APIClientError.InvalidResponseDataStatus, code: APIClientError.InvalidResponseDataCode,
+                                                    title: nil, source: nil, detail: "Missing creation in response for Refresh Creation")
+                completion(error)
+                return
+            }
+            strongSelf.creation = creation
+            if creation.imageOriginalUrl != nil,
+               (strongSelf.state == .submittedToGallery || strongSelf.state == .serverNotified)
+            {
+                strongSelf.state = .confirmedOnServer
+            }
+            completion(error)
+        }
+        currentRequest = requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    //MARK: - Creation Refresh
+    func refreshCreation(completion: ((Creation?, APIClientError?) -> (Void))?)
+    {
+        refreshCreationStatus(error: nil)
+        {
+            [weak self](error) in
+            completion?(self?.creation, error as? APIClientError)
+        }
+    }
+    
+    fileprivate func setupAutoRefreshTimer()
+    {
+        if let timer = confirmedOnServerRefreshTimer
+        {
+            timer.invalidate()
+            confirmedOnServerRefreshTimer = nil
+        }
+        
+        confirmedOnServerRefreshTimer = Timer.scheduledTimer(timeInterval: 15.0, target: self, selector: #selector(autoRefreshCreationFromTimer), userInfo: nil, repeats: true)
+    }
+    
+    func autoRefreshCreationFromTimer()
+    {
+        if state == CreationUploadSessionState.confirmedOnServer
+        {
+            confirmedOnServerRefreshTimer?.invalidate()
+            confirmedOnServerRefreshTimer = nil
+            return
+        }
+        if (state.rawValue < CreationUploadSessionState.serverNotified.rawValue)
+        {
+            //To early to refresh creation. Server hadn't chance to process it
+            return
+        }
+        
+        self.refreshCreationStatus(error: nil)
+        {
+            [weak self] _ in
+            guard let strongSelf = self, strongSelf.state == CreationUploadSessionState.confirmedOnServer
+                else { return }
+            strongSelf.confirmedOnServerRefreshTimer?.invalidate()
+            strongSelf.confirmedOnServerRefreshTimer = nil
+            strongSelf.delegate?.creationUploadSessionChangedState(strongSelf)
+        }
     }
     
     //MARK: - Utils
