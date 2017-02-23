@@ -42,6 +42,10 @@ open class Request: NSObject, Cancelable
     open var method: RequestMethod   { return .get }
     open var endpoint: String        { return ""   }
     open var onlyPath: Bool          { return true }
+    
+    //If set to true, version infix won't be set in RequestSender
+    open var useExternalNamespace: Bool { return false }
+    
     open var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
 
     class func sortOrderStringValue(_ sortOrder: SortOrder) -> String
