@@ -98,7 +98,8 @@ class NetworkManager: NSObject {
     }
     
     private func urlStringWithRequest(_ request: Request) -> String {
-        return String(format: "%@/%@/%@", arguments: [settings.baseUrl, settings.apiVersion, request.endpoint])
+        return request.useExternalNamespace ? String(format: "%@/%@", arguments: [settings.baseUrl, request.endpoint]) :
+                                              String(format: "%@/%@/%@", arguments: [settings.baseUrl, settings.apiVersion, request.endpoint])
     }
     
     private func encodesParametersInURL(with method: RequestMethod) -> Bool {
