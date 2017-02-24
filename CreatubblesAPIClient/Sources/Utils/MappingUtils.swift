@@ -42,7 +42,7 @@ public class MappingUtils
         return mapper.objectWithIdentifier(relationship.identifier, type: T.self)
     }
     
-    class func pagingInfoFromResponse(_ response: Dictionary<String, AnyObject>) -> PagingInfo
+    public class func pagingInfoFromResponse(_ response: Dictionary<String, AnyObject>) -> PagingInfo
     {
         let mapper = Mapper<PagingInfoMapper>().map(JSON: response["meta"] as! [String : Any])!
         return PagingInfo(mapper: mapper)
