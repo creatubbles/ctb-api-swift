@@ -1,5 +1,5 @@
 //
-//  String+Localized.swift
+//  LocalizationConfiguratorSpec
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -21,21 +21,31 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
-import Foundation
+import Quick
+import Nimble
+@testable import CreatubblesAPIClient
 
-extension String
+class LocalizationConfiguratorSpec: QuickSpec
 {
-    var localized: String
+    override func spec()
     {
-        // The main language can be forced with the LocalizationConfigurator.
-        if let language = LocalizationConfigurator.forcedLanguage,
-            let path = Bundle.main.path(forResource: language, ofType: "lproj"),
-            let bundle = Bundle(path: path) {
+        describe("Forcing a default language")
+        {
+            afterEach { () -> () in
+                LocalizationConfigurator.forcedLanguage = nil
+            }
             
-            return NSLocalizedString(self, bundle: bundle, comment: "")
+            it("Should return nil if the property not set") {
+                expect(LocalizationConfigurator.forcedLanguage).to(beNil())
+            }
+            
+            it("Should return correct value if it's set") {
+                let localization = "de"
+                LocalizationConfigurator.forcedLanguage = localization
+                expect(LocalizationConfigurator.forcedLanguage).to(equal(localization))
+            }
         }
-        
-        return NSLocalizedString(self, comment: "")
     }
 }
