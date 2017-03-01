@@ -1,5 +1,5 @@
 //
-//  String+Localized.swift
+//  LocalizationConfigurator.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -21,21 +21,20 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
-import Foundation
+import UIKit
 
-extension String
-{
-    var localized: String
-    {
-        // The main language can be forced with the LocalizationConfigurator.
-        if let language = LocalizationConfigurator.forcedLanguage,
-            let path = Bundle.main.path(forResource: language, ofType: "lproj"),
-            let bundle = Bundle(path: path) {
-            
-            return NSLocalizedString(self, bundle: bundle, comment: "")
+class LocalizationConfigurator: NSObject {
+    static fileprivate let forcedLanguageKey = "com.creatubbles.apiclient.forcedlanguage"
+    
+    // This method is used to force a specific language. At this point it's only used by String+Localized extension.
+    class var forcedLanguage: String? {
+        set {
+            UserDefaults.standard.set(newValue, forKey: forcedLanguageKey)
+            UserDefaults.standard.synchronize()
         }
         
-        return NSLocalizedString(self, comment: "")
+        get { return UserDefaults.standard.string(forKey: forcedLanguageKey) }
     }
 }
