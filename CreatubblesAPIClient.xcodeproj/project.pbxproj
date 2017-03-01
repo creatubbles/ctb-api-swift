@@ -15,6 +15,8 @@
 		0816F3AC1D587FC60026A40E /* SwitchUsersRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816F3AB1D587FC60026A40E /* SwitchUsersRequestSpec.swift */; };
 		0816F3AE1D587FD80026A40E /* SwitchUserResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816F3AD1D587FD80026A40E /* SwitchUserResponseHandlerSpec.swift */; };
 		0816F3B01D5880070026A40E /* SwitchUsersResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816F3AF1D5880070026A40E /* SwitchUsersResponseHandlerSpec.swift */; };
+		0831A0B21E66CEBC0065959C /* LocalizationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0831A0B11E66CEBC0065959C /* LocalizationConfigurator.swift */; };
+		0831A0B41E66D0C60065959C /* LocalizationConfiguratorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0831A0B31E66D0C60065959C /* LocalizationConfiguratorSpec.swift */; };
 		0832717E1DC09D2F00DF008A /* ParametersEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0832717D1DC09D2F00DF008A /* ParametersEncoder.swift */; };
 		083785871D378714006EF69E /* ReportCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785861D378714006EF69E /* ReportCommentRequest.swift */; };
 		083785891D37872C006EF69E /* ReportCommentResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083785881D37872C006EF69E /* ReportCommentResponseHandler.swift */; };
@@ -407,6 +409,8 @@
 		0816F3AB1D587FC60026A40E /* SwitchUsersRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUsersRequestSpec.swift; sourceTree = "<group>"; };
 		0816F3AD1D587FD80026A40E /* SwitchUserResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUserResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		0816F3AF1D5880070026A40E /* SwitchUsersResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchUsersResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		0831A0B11E66CEBC0065959C /* LocalizationConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationConfigurator.swift; sourceTree = "<group>"; };
+		0831A0B31E66D0C60065959C /* LocalizationConfiguratorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationConfiguratorSpec.swift; sourceTree = "<group>"; };
 		0832717D1DC09D2F00DF008A /* ParametersEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParametersEncoder.swift; sourceTree = "<group>"; };
 		083785861D378714006EF69E /* ReportCommentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCommentRequest.swift; sourceTree = "<group>"; };
 		083785881D37872C006EF69E /* ReportCommentResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCommentResponseHandler.swift; sourceTree = "<group>"; };
@@ -1102,6 +1106,7 @@
 			isa = PBXGroup;
 			children = (
 				18467F651D02EA59005CE5DD /* UIColorHexSpec.swift */,
+				0831A0B31E66D0C60065959C /* LocalizationConfiguratorSpec.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1256,6 +1261,7 @@
 				445A3A5A1DD29F7400986BBB /* String+Localized.swift */,
 				188ECF721C747FDE00AFEE4F /* String+Path.swift */,
 				18467F621D02E9E1005CE5DD /* UIColor+Hex.swift */,
+				0831A0B11E66CEBC0065959C /* LocalizationConfigurator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2113,6 +2119,7 @@
 				183728EC1CEDC93D008784C7 /* ContentEntryMapper.swift in Sources */,
 				08B4DD5F1DC0BB2700EF6D67 /* NetworkManager.swift in Sources */,
 				18C744FA1C84611600A07E4C /* DatabaseService.swift in Sources */,
+				0831A0B21E66CEBC0065959C /* LocalizationConfigurator.swift in Sources */,
 				189D9F601C84B36100857CC6 /* GroupMapper.swift in Sources */,
 				18F6E8981D021B6500AAC5FB /* NewCreationResponseHandler.swift in Sources */,
 				1847FBF01C76024300FE5FF3 /* Logger.swift in Sources */,
@@ -2303,6 +2310,7 @@
 				08A7B9761D361D14001D8461 /* SwitchUserRequestSpec.swift in Sources */,
 				182FB8B61D1293AE004495CB /* EditProfileResponseHandlerSpec.swift in Sources */,
 				18290AF11D0704F0000EA216 /* NotificationReadRequestSpec.swift in Sources */,
+				0831A0B41E66D0C60065959C /* LocalizationConfiguratorSpec.swift in Sources */,
 				18F6E8B81D0225F500AAC5FB /* CustomStyleFetchResponseHandlerSpec.swift in Sources */,
 				18F6E8311D0215C500AAC5FB /* GallerySubmissionResponseHandlerSpec.swift in Sources */,
 				18779DC21C68E2D9000BFB57 /* TestConfigurationTemplate.swift in Sources */,
