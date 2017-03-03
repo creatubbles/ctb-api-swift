@@ -32,7 +32,7 @@ open class UserAccountDetails: NSObject
     open let identifier: String
     open let username: String
     open let displayName: String
-    open let email: String
+    open let email: String?
     open let role: Role
     open let birthYear: Int?
     open let birthMonth: Int?
@@ -59,7 +59,7 @@ open class UserAccountDetails: NSObject
         identifier = mapper.identifier!
         username  = mapper.username!
         displayName = mapper.displayName!
-        email = mapper.email!
+        email = mapper.email
         role = mapper.role
         
         birthYear = mapper.birthYear
