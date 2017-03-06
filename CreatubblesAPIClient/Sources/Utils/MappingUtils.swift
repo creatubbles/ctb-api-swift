@@ -31,7 +31,13 @@ public class MappingUtils
 {
     public class func relationshipFromMapper(_ mapper: RelationshipMapper?) -> Relationship?
     {
-        return mapper == nil ? nil : Relationship(mapper: mapper!)
+        guard let mapper = mapper,
+                  mapper.isValid
+        else
+        {
+            return nil
+        }
+        return Relationship(mapper: mapper)
     }
     
     public class func objectFromMapper<T: Identifiable>(_ mapper: DataIncludeMapper?, relationship: Relationship?, type: T.Type) -> T?

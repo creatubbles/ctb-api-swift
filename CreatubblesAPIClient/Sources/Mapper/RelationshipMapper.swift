@@ -30,7 +30,12 @@ public class RelationshipMapper: Mappable
 {
     var type: String?
     var identifier: String?
-
+    
+    var isValid: Bool
+    {
+        return type != nil && identifier != nil
+    }
+    
     public required init?(map: Map) { /* Intentionally left empty  */ }
 
     public func mapping(map: Map)
@@ -38,4 +43,5 @@ public class RelationshipMapper: Mappable
         type <- map["type"]
         identifier <- map["id"]
     }
+    
 }
