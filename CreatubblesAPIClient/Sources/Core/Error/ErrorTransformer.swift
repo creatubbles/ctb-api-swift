@@ -61,7 +61,8 @@ public class ErrorTransformer
             return errorsArray
         }
         else if let response = response,
-                let mapper = Mapper<ServerErrorMapper>().map(JSONObject: response)
+                let mapper = Mapper<ServerErrorMapper>().map(JSONObject: response),
+                mapper.isValid
         {
             let status = mapper.status ?? (mapper.statusAsString != nil ? Int(mapper.statusAsString!) : nil)
             let error = APIClientError(status: status, code: nil, title: mapper.error, source: nil, detail: nil)

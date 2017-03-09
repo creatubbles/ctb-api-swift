@@ -39,4 +39,9 @@ class ServerErrorMapper:  Mappable
         statusAsString <- map["status"]
         error <- map["error"]
     }
+    
+    var isValid: Bool
+    {
+        return (status != nil || statusAsString != nil) && error != nil
+    }
 }
