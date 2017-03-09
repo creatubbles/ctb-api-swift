@@ -244,6 +244,17 @@
 		185E33911E71571E0077E9A8 /* DeleteAUserFollowingRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E330E1E71571E0077E9A8 /* DeleteAUserFollowingRequestSpec.swift */; };
 		185E33931E71571E0077E9A8 /* LocalizationConfiguratorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33111E71571E0077E9A8 /* LocalizationConfiguratorSpec.swift */; };
 		185E33941E71571E0077E9A8 /* UIColorHexSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33121E71571E0077E9A8 /* UIColorHexSpec.swift */; };
+		185E33C61E715C270077E9A8 /* DummyResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33BA1E715C270077E9A8 /* DummyResponseHandler.swift */; };
+		185E33C71E715C270077E9A8 /* RecorderResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33BC1E715C270077E9A8 /* RecorderResponseHandler.swift */; };
+		185E33C81E715C270077E9A8 /* RecorderTestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33BD1E715C270077E9A8 /* RecorderTestSender.swift */; };
+		185E33C91E715C270077E9A8 /* TestRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33BE1E715C270077E9A8 /* TestRecorder.swift */; };
+		185E33CA1E715C270077E9A8 /* TestRecorderNameUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33BF1E715C270077E9A8 /* TestRecorderNameUtils.swift */; };
+		185E33CB1E715C270077E9A8 /* TestComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33C01E715C270077E9A8 /* TestComponentsFactory.swift */; };
+		185E33CC1E715C270077E9A8 /* TestConfiguration.swift.enc in Resources */ = {isa = PBXBuildFile; fileRef = 185E33C11E715C270077E9A8 /* TestConfiguration.swift.enc */; };
+		185E33CD1E715C270077E9A8 /* TestConfigurationTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33C21E715C270077E9A8 /* TestConfigurationTemplate.swift */; };
+		185E33CE1E715C270077E9A8 /* TestRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33C31E715C270077E9A8 /* TestRequestHandler.swift */; };
+		185E33CF1E715C270077E9A8 /* TestRequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33C41E715C270077E9A8 /* TestRequestSender.swift */; };
+		185E33D01E715C270077E9A8 /* TestResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33C51E715C270077E9A8 /* TestResponses.swift */; };
 		187671431C7CA0F700733E9E /* PagingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187671421C7CA0F700733E9E /* PagingData.swift */; };
 		187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187671441C7CA23900733E9E /* NewCreatorData.swift */; };
 		187671491C7CA31600733E9E /* NewGalleryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187671481C7CA31600733E9E /* NewGalleryData.swift */; };
@@ -663,6 +674,17 @@
 		185E330E1E71571E0077E9A8 /* DeleteAUserFollowingRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAUserFollowingRequestSpec.swift; sourceTree = "<group>"; };
 		185E33111E71571E0077E9A8 /* LocalizationConfiguratorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationConfiguratorSpec.swift; sourceTree = "<group>"; };
 		185E33121E71571E0077E9A8 /* UIColorHexSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHexSpec.swift; sourceTree = "<group>"; };
+		185E33BA1E715C270077E9A8 /* DummyResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyResponseHandler.swift; sourceTree = "<group>"; };
+		185E33BC1E715C270077E9A8 /* RecorderResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderResponseHandler.swift; sourceTree = "<group>"; };
+		185E33BD1E715C270077E9A8 /* RecorderTestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderTestSender.swift; sourceTree = "<group>"; };
+		185E33BE1E715C270077E9A8 /* TestRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRecorder.swift; sourceTree = "<group>"; };
+		185E33BF1E715C270077E9A8 /* TestRecorderNameUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRecorderNameUtils.swift; sourceTree = "<group>"; };
+		185E33C01E715C270077E9A8 /* TestComponentsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestComponentsFactory.swift; sourceTree = "<group>"; };
+		185E33C11E715C270077E9A8 /* TestConfiguration.swift.enc */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestConfiguration.swift.enc; sourceTree = "<group>"; };
+		185E33C21E715C270077E9A8 /* TestConfigurationTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfigurationTemplate.swift; sourceTree = "<group>"; };
+		185E33C31E715C270077E9A8 /* TestRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRequestHandler.swift; sourceTree = "<group>"; };
+		185E33C41E715C270077E9A8 /* TestRequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRequestSender.swift; sourceTree = "<group>"; };
+		185E33C51E715C270077E9A8 /* TestResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestResponses.swift; sourceTree = "<group>"; };
 		186782931DE3AA4100823875 /* AvailableOperations.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = AvailableOperations.md; sourceTree = "<group>"; };
 		186782941DE3AA4100823875 /* changelog.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = changelog.md; sourceTree = "<group>"; };
 		186782951DE3AA4100823875 /* Migration_Guide_0.2.0.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Migration_Guide_0.2.0.md; sourceTree = "<group>"; };
@@ -1115,6 +1137,7 @@
 			isa = PBXGroup;
 			children = (
 				185E31761E7157160077E9A8 /* CreatubblesAPIClientIntegrationTests-Info.plist */,
+				185E33B91E715C270077E9A8 /* TestUtils */,
 				185E31771E7157160077E9A8 /* Resources */,
 				185E317B1E7157160077E9A8 /* Spec */,
 			);
@@ -1523,6 +1546,32 @@
 				185E33121E71571E0077E9A8 /* UIColorHexSpec.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		185E33B91E715C270077E9A8 /* TestUtils */ = {
+			isa = PBXGroup;
+			children = (
+				185E33BA1E715C270077E9A8 /* DummyResponseHandler.swift */,
+				185E33BB1E715C270077E9A8 /* Offline Testing */,
+				185E33C01E715C270077E9A8 /* TestComponentsFactory.swift */,
+				185E33C11E715C270077E9A8 /* TestConfiguration.swift.enc */,
+				185E33C21E715C270077E9A8 /* TestConfigurationTemplate.swift */,
+				185E33C31E715C270077E9A8 /* TestRequestHandler.swift */,
+				185E33C41E715C270077E9A8 /* TestRequestSender.swift */,
+				185E33C51E715C270077E9A8 /* TestResponses.swift */,
+			);
+			path = TestUtils;
+			sourceTree = "<group>";
+		};
+		185E33BB1E715C270077E9A8 /* Offline Testing */ = {
+			isa = PBXGroup;
+			children = (
+				185E33BC1E715C270077E9A8 /* RecorderResponseHandler.swift */,
+				185E33BD1E715C270077E9A8 /* RecorderTestSender.swift */,
+				185E33BE1E715C270077E9A8 /* TestRecorder.swift */,
+				185E33BF1E715C270077E9A8 /* TestRecorderNameUtils.swift */,
+			);
+			path = "Offline Testing";
 			sourceTree = "<group>";
 		};
 		186782921DE3AA4100823875 /* Documentation */ = {
@@ -2076,6 +2125,7 @@
 				185E320C1E7157160077E9A8 /* creatubbles_logo.jpg in Resources */,
 				185E320D1E7157160077E9A8 /* test.zip in Resources */,
 				185E320E1E7157160077E9A8 /* testVideo.mp4 in Resources */,
+				185E33CC1E715C270077E9A8 /* TestConfiguration.swift.enc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2532,6 +2582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185E33C81E715C270077E9A8 /* RecorderTestSender.swift in Sources */,
 				185E32161E7157160077E9A8 /* CreationsBatchFetcherSpec.swift in Sources */,
 				185E321E1E7157160077E9A8 /* DeclineCommentResponseHandlerSpec.swift in Sources */,
 				185E32491E7157170077E9A8 /* UpdateGalleryResponseHandlerSpec.swift in Sources */,
@@ -2542,6 +2593,8 @@
 				185E324E1E7157170077E9A8 /* EditGroupResponseHandlerSpec.swift in Sources */,
 				185E32551E7157170077E9A8 /* LandingURLResponseHandlerSpec.swift in Sources */,
 				185E32281E7157160077E9A8 /* CreationPingResponseHandlerSpec.swift in Sources */,
+				185E33C71E715C270077E9A8 /* RecorderResponseHandler.swift in Sources */,
+				185E33D01E715C270077E9A8 /* TestResponses.swift in Sources */,
 				185E321C1E7157160077E9A8 /* CommentsResponseHandlerSpec.swift in Sources */,
 				185E326A1E7157170077E9A8 /* MyConnectionsResponseHandlerSpec.swift in Sources */,
 				185E32151E7157160077E9A8 /* UpdateUserAvatarResponseHandlerSpec.swift in Sources */,
@@ -2552,14 +2605,18 @@
 				185E327C1E7157170077E9A8 /* DeleteAUserFollowingResponseHandlerSpec.swift in Sources */,
 				185E32401E7157160077E9A8 /* GalleriesResponseHandlerSpec.swift in Sources */,
 				185E32171E7157160077E9A8 /* GalleriesBatchFetcherSpec.swift in Sources */,
+				185E33C91E715C270077E9A8 /* TestRecorder.swift in Sources */,
 				185E32681E7157170077E9A8 /* GroupCreatorsResponseHandlerSpec.swift in Sources */,
+				185E33CB1E715C270077E9A8 /* TestComponentsFactory.swift in Sources */,
 				185E32221E7157160077E9A8 /* ReportCommentResponseHandlerSpec.swift in Sources */,
 				185E32621E7157170077E9A8 /* CreateMultipleCreatorsResponseHandlerSpec.swift in Sources */,
 				185E32721E7157170077E9A8 /* SwitchUserResponseHandlerSpec.swift in Sources */,
 				185E32321E7157160077E9A8 /* NewCreationUploadResponseHandlerSpec.swift in Sources */,
 				185E32661E7157170077E9A8 /* EditProfileResponseHandlerSpec.swift in Sources */,
 				185E32341E7157160077E9A8 /* RemoveCreationResponseHandlerSpec.swift in Sources */,
+				185E33CA1E715C270077E9A8 /* TestRecorderNameUtils.swift in Sources */,
 				185E324F1E7157170077E9A8 /* GroupResponseHandlerSpec.swift in Sources */,
+				185E33CE1E715C270077E9A8 /* TestRequestHandler.swift in Sources */,
 				185E322C1E7157160077E9A8 /* EditCreationResponseHandlerSpec.swift in Sources */,
 				185E32751E7157170077E9A8 /* UserAccoundDetailsResponseHandlerSpec.swift in Sources */,
 				185E32101E7157160077E9A8 /* ActivitiesResponseHandlerSpec.swift in Sources */,
@@ -2578,6 +2635,7 @@
 				185E326E1E7157170077E9A8 /* ProfileResponseHandlerSpec.swift in Sources */,
 				185E325D1E7157170077E9A8 /* PartnerApplicationResponseHandlerSpec.swift in Sources */,
 				185E325B1E7157170077E9A8 /* NotificationsViewTrackerResponseHandlerSpec.swift in Sources */,
+				185E33CF1E715C270077E9A8 /* TestRequestSender.swift in Sources */,
 				185E323C1E7157160077E9A8 /* DataUploaderSpec.swift in Sources */,
 				185E32261E7157160077E9A8 /* ContentSearchResponseHandlerSpec.swift in Sources */,
 				185E32741E7157170077E9A8 /* SwitchUsersResponseHandlerSpec.swift in Sources */,
@@ -2590,6 +2648,8 @@
 				185E32201E7157160077E9A8 /* NewCommentResponseHandlerSpec.swift in Sources */,
 				185E32181E7157160077E9A8 /* UsersBatchFetcherSpec.swift in Sources */,
 				185E32131E7157160077E9A8 /* AvatarSuggestionsFetchResponseHandlerSpec.swift in Sources */,
+				185E33C61E715C270077E9A8 /* DummyResponseHandler.swift in Sources */,
+				185E33CD1E715C270077E9A8 /* TestConfigurationTemplate.swift in Sources */,
 				185E32641E7157170077E9A8 /* CreatorsAndManagersResponseHandlerSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2771,7 +2831,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = CreatubblesAPIClientTests/Info.plist;
+				INFOPLIST_FILE = "CreatubblesAPIClientUnitTests/CreatubblesAPIClientUnitTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2787,7 +2847,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = CreatubblesAPIClientTests/Info.plist;
+				INFOPLIST_FILE = "CreatubblesAPIClientUnitTests/CreatubblesAPIClientUnitTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

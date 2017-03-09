@@ -1,5 +1,5 @@
 //
-//  AvatarUpdateRequestSpec.swift
+//  APIClientError.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -23,31 +23,31 @@
 //  THE SOFTWARE.
 //
 
-
-import Quick
-import Nimble
+import UIKit
 @testable import CreatubblesAPIClient
 
-class UpdateUserAvatarRequestSpec: QuickSpec
+class RecorderResponseHandler: ResponseHandler
 {
-    override func spec()
+    private let originalResponseHandler: ResponseHandler
+    private let fileToSavePath: String?
+    private let isLoggedIn: Bool?
+    
+    init(originalHandler: ResponseHandler, fileToSavePath: String?, isLoggedIn: Bool?)
     {
-        describe("AvatarUpdate request")
-        {
-            it("Should have a proper endpoint")
-            {
-                let userId = "TestUserIdentifier"
-                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.endpoint).to(equal("users/\(userId)/user_avatar"))
-            }
-            
-            it("Should have a proper method")
-            {                
-                let userId = "TestUserIdentifier"
-                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.method).to(equal(RequestMethod.put))
-            }
-        }
+        self.originalResponseHandler = originalHandler
+        self.fileToSavePath = fileToSavePath
+        self.isLoggedIn = isLoggedIn
     }
-
+    
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
+    {
+    
+        if let _ = fileToSavePath
+        {
+            let testRecorder = TestRecorder(isLoggedIn: isLoggedIn)
+            testRecorder.saveResponseToFile(response, fileToSavePath: fileToSavePath, error: error)
+        }
+        
+        originalResponseHandler.handleResponse(response, error: error)
+    }
 }

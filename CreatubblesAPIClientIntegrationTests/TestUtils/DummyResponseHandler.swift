@@ -1,5 +1,5 @@
 //
-//  AvatarUpdateRequestSpec.swift
+//  DummyResponseHandler.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -21,33 +21,23 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
 
-
-import Quick
-import Nimble
+import UIKit
 @testable import CreatubblesAPIClient
 
-class UpdateUserAvatarRequestSpec: QuickSpec
+class DummyResponseHandler: ResponseHandler
 {
-    override func spec()
+    fileprivate let completion: (_ response: Dictionary<String, AnyObject>?, _ error:Error?) -> Void
+    
+    init(completion: @escaping (_ response: Dictionary<String, AnyObject>?, _ error:Error?) -> Void)
     {
-        describe("AvatarUpdate request")
-        {
-            it("Should have a proper endpoint")
-            {
-                let userId = "TestUserIdentifier"
-                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.endpoint).to(equal("users/\(userId)/user_avatar"))
-            }
-            
-            it("Should have a proper method")
-            {                
-                let userId = "TestUserIdentifier"
-                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.method).to(equal(RequestMethod.put))
-            }
-        }
+        self.completion = completion
+        
     }
-
+    
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
+    {
+        completion(response, error)
+    }
+    
 }

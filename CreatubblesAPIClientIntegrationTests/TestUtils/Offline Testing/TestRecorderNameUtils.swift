@@ -1,5 +1,5 @@
 //
-//  AvatarUpdateRequestSpec.swift
+//  APIClientError.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -23,31 +23,34 @@
 //  THE SOFTWARE.
 //
 
-
-import Quick
-import Nimble
+import UIKit
 @testable import CreatubblesAPIClient
 
-class UpdateUserAvatarRequestSpec: QuickSpec
+class TestRecorderNameUtils
 {
-    override func spec()
+    class func filenameForRequest(request: Request, isLoggedIn: Bool?) -> String
     {
-        describe("AvatarUpdate request")
-        {
-            it("Should have a proper endpoint")
-            {
-                let userId = "TestUserIdentifier"
-                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.endpoint).to(equal("users/\(userId)/user_avatar"))
-            }
-            
-            it("Should have a proper method")
-            {                
-                let userId = "TestUserIdentifier"
-                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.method).to(equal(RequestMethod.put))
-            }
-        }
+        var nameComponents = Array<String>()
+        nameComponents.append(request.endpoint)
+        nameComponents.append(request.method.rawValue)
+        nameComponents.append(String(String(describing: request.parameters).hashValue))
+        nameComponents.append("loggedIn;\(isLoggedIn)")
+        
+        nameComponents = [nameComponents.joined(separator: "_")]
+        
+        let name =  String(nameComponents.first!.characters.map { $0 == "/" ? "." : $0 })
+        return name.trimmingCharacters(in: .whitespacesAndNewlines)
     }
-
+    
+    class func getInputFilePathForFileName(fileName: String) -> String?
+    {
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
+        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        if let dirPath          = paths.first
+        {
+            return dirPath.stringByAppendingPathComponent(fileName)
+        }
+        return nil
+    }
 }

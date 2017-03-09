@@ -1,5 +1,5 @@
 //
-//  AvatarUpdateRequestSpec.swift
+//  TestComponentsFactory.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -21,33 +21,23 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
 
-
-import Quick
-import Nimble
+import UIKit
 @testable import CreatubblesAPIClient
 
-class UpdateUserAvatarRequestSpec: QuickSpec
+class TestComponentsFactory: NSObject
 {
-    override func spec()
+    fileprivate static let settings = TestConfiguration.settings
+    
+    static var requestSender: RequestSender
     {
-        describe("AvatarUpdate request")
+        if TestConfiguration.mode == .useAPI
         {
-            it("Should have a proper endpoint")
-            {
-                let userId = "TestUserIdentifier"
-                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.endpoint).to(equal("users/\(userId)/user_avatar"))
-            }
-            
-            it("Should have a proper method")
-            {                
-                let userId = "TestUserIdentifier"
-                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.method).to(equal(RequestMethod.put))
-            }
+            return RequestSender(settings: settings)
+        }
+        else
+        {
+            return RecorderTestSender(settings: settings)
         }
     }
-
 }

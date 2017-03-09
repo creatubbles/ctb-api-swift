@@ -34,10 +34,8 @@ class NewCreatorRequestSpec: QuickSpec
     {
         describe("New creator request")
         {
-            guard let timestamp = TestConfiguration.newCreatorRequestSpecTestTimestamp
-            else { return }
-            let name = "MMCreator"+timestamp
-            let displayName = "MMCreator"+timestamp
+            let name = "TestCreatorName"
+            let displayName = "TestCreatorDisplayName"
             let birthYear = 2000
             let birthMonth = 10
             let countryCode = "PL"

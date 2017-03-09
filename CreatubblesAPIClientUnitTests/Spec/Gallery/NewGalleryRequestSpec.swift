@@ -34,12 +34,10 @@ class NewGalleryRequestSpec: QuickSpec
     {
         describe("New Gallery request")
         {
-            guard let timestamp = TestConfiguration.newGalleryRequestSpecTestTimestamp
-            else { return }
-            let name = "MMGallery"+timestamp
-            let galleryDescription = "MMGallery"+timestamp
+            let name = "TestGallery"
+            let galleryDescription = "TestGallery"
             let openForAll = false
-            let ownerId = "dSPX04ab"
+            let ownerId = "TestOwnerId"
             let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: ownerId)
             
             it("Should have proper method")

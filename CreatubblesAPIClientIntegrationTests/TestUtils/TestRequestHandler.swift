@@ -1,5 +1,5 @@
 //
-//  AvatarUpdateRequestSpec.swift
+//  TestRequestHandler.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -24,30 +24,22 @@
 //
 
 
-import Quick
-import Nimble
+import UIKit
+
 @testable import CreatubblesAPIClient
 
-class UpdateUserAvatarRequestSpec: QuickSpec
+class TestCancelable: Cancelable
 {
-    override func spec()
+    func cancel()
     {
-        describe("AvatarUpdate request")
-        {
-            it("Should have a proper endpoint")
-            {
-                let userId = "TestUserIdentifier"
-                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.endpoint).to(equal("users/\(userId)/user_avatar"))
-            }
-            
-            it("Should have a proper method")
-            {                
-                let userId = "TestUserIdentifier"
-                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.method).to(equal(RequestMethod.put))
-            }
-        }
+        //Ignore
     }
+}
 
+class TestRequestHandler: RequestHandler
+{
+    init()
+    {
+        super.init(object: TestCancelable())
+    }
 }

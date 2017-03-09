@@ -1,5 +1,5 @@
 //
-//  AvatarUpdateRequestSpec.swift
+//  TestConfigurationTemplate.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2016 Creatubbles Pte. Ltd.
@@ -21,33 +21,37 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
 
+import UIKit
+import CreatubblesAPIClient
 
-import Quick
-import Nimble
-@testable import CreatubblesAPIClient
-
-class UpdateUserAvatarRequestSpec: QuickSpec
+class TestConfigurationTemplate: NSObject
 {
-    override func spec()
+    static let appId = "TEST_APP_ID"
+    static let appSecret = "TEST_APP_SECRET"
+    static let tokenUri = "TEST_TOKEN_URI"
+    static let authorizeUri = "TEST_AUTH_URI"
+    static let baseUrl = "TEST_BASE_URL"
+    static let apiVersion = "TEST_API_VERSION"
+    
+    static let username = "TEST_USERNAME"
+    static let password = "TEST_PASSWORD"
+    
+    static let testCreationIdentifier: String? = nil
+    static let testUserIdentifier: String? = nil
+    static let testGalleryIdentifier: String? = nil
+    static let testCommentIdentifier: String? = nil
+    static let testBubbleIdentifier: String? = nil
+    
+    static var settings: APIClientSettings
     {
-        describe("AvatarUpdate request")
-        {
-            it("Should have a proper endpoint")
-            {
-                let userId = "TestUserIdentifier"
-                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.endpoint).to(equal("users/\(userId)/user_avatar"))
-            }
-            
-            it("Should have a proper method")
-            {                
-                let userId = "TestUserIdentifier"
-                let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.method).to(equal(RequestMethod.put))
-            }
-        }
+        return APIClientSettings(
+                appId: appId,
+                appSecret: appSecret,
+                tokenUri: tokenUri,
+                authorizeUri: authorizeUri,
+                baseUrl: baseUrl,
+                apiVersion: apiVersion
+            )
     }
-
 }

@@ -58,7 +58,16 @@ class APIClientSpec: QuickSpec
             //MARK: - Should have all public DA
             it("Should have all public DAO's registered")
             {
-                let client = APIClient(settings: TestConfiguration.settings)
+                let appId = "TestAppId"
+                let appSecret = "TestAppSecret"
+                let tokenUri = "TestTokenUri"
+                let authorizeUri = "TestAuthorizeUri"
+                let baseUrl = "TestBaseUrl"
+                let apiVersion = "TestApiVersion"
+                
+                let settings = APIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion)
+                
+                let client = APIClient(settings: settings)
                 expect(client.daoAssembly.assembly(GroupDAO.self)).notTo(beNil())
                 expect(client.daoAssembly.assembly(AvatarDAO.self)).notTo(beNil())
                 expect(client.daoAssembly.assembly(BubbleDAO.self)).notTo(beNil())
