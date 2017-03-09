@@ -33,8 +33,18 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1815D54B1C63658000EF4C38"
-               BuildableName = "CreatubblesAPIClientTests.xctest"
-               BlueprintName = "CreatubblesAPIClientTests"
+               BuildableName = "CreatubblesAPIClientUnitTests.xctest"
+               BlueprintName = "CreatubblesAPIClientUnitTests"
+               ReferencedContainer = "container:CreatubblesAPIClient.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "185E30E81E71559E0077E9A8"
+               BuildableName = "CreatubblesAPIClientIntegrationTests.xctest"
+               BlueprintName = "CreatubblesAPIClientIntegrationTests"
                ReferencedContainer = "container:CreatubblesAPIClient.xcodeproj">
             </BuildableReference>
          </TestableReference>
