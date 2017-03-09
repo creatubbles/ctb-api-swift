@@ -2,7 +2,7 @@
 //  CreateAUserFollowingResponseHandler.swift
 //  CreatubblesAPIClient
 //
-//  Copyright (c) 2016 Creatubbles Pte. Ltd.
+//  Copyright (c) 2017 Creatubbles Pte. Ltd.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
