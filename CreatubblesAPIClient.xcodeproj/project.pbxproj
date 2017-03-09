@@ -125,7 +125,6 @@
 		185E30E71E714C820077E9A8 /* OAuth2InMemoryClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E30E61E714C820077E9A8 /* OAuth2InMemoryClient.swift */; };
 		185E31681E71559E0077E9A8 /* CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */; };
 		185E31691E71559E0077E9A8 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EC80FB40DC05B38396DFBE /* Pods_CreatubblesAPIClientTests.framework */; };
-		185E320B1E7157160077E9A8 /* CreatubblesAPIClientIntegrationTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 185E31761E7157160077E9A8 /* CreatubblesAPIClientIntegrationTests-Info.plist */; };
 		185E320C1E7157160077E9A8 /* creatubbles_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 185E31781E7157160077E9A8 /* creatubbles_logo.jpg */; };
 		185E320D1E7157160077E9A8 /* test.zip in Resources */ = {isa = PBXBuildFile; fileRef = 185E31791E7157160077E9A8 /* test.zip */; };
 		185E320E1E7157160077E9A8 /* testVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 185E317A1E7157160077E9A8 /* testVideo.mp4 */; };
@@ -250,11 +249,11 @@
 		185E33C91E715C270077E9A8 /* TestRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33BE1E715C270077E9A8 /* TestRecorder.swift */; };
 		185E33CA1E715C270077E9A8 /* TestRecorderNameUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33BF1E715C270077E9A8 /* TestRecorderNameUtils.swift */; };
 		185E33CB1E715C270077E9A8 /* TestComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33C01E715C270077E9A8 /* TestComponentsFactory.swift */; };
-		185E33CC1E715C270077E9A8 /* TestConfiguration.swift.enc in Resources */ = {isa = PBXBuildFile; fileRef = 185E33C11E715C270077E9A8 /* TestConfiguration.swift.enc */; };
 		185E33CD1E715C270077E9A8 /* TestConfigurationTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33C21E715C270077E9A8 /* TestConfigurationTemplate.swift */; };
 		185E33CE1E715C270077E9A8 /* TestRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33C31E715C270077E9A8 /* TestRequestHandler.swift */; };
 		185E33CF1E715C270077E9A8 /* TestRequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33C41E715C270077E9A8 /* TestRequestSender.swift */; };
 		185E33D01E715C270077E9A8 /* TestResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33C51E715C270077E9A8 /* TestResponses.swift */; };
+		185E33D21E715E6E0077E9A8 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E33D11E715E6E0077E9A8 /* TestConfiguration.swift */; };
 		187671431C7CA0F700733E9E /* PagingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187671421C7CA0F700733E9E /* PagingData.swift */; };
 		187671451C7CA23900733E9E /* NewCreatorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187671441C7CA23900733E9E /* NewCreatorData.swift */; };
 		187671491C7CA31600733E9E /* NewGalleryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187671481C7CA31600733E9E /* NewGalleryData.swift */; };
@@ -680,11 +679,11 @@
 		185E33BE1E715C270077E9A8 /* TestRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRecorder.swift; sourceTree = "<group>"; };
 		185E33BF1E715C270077E9A8 /* TestRecorderNameUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRecorderNameUtils.swift; sourceTree = "<group>"; };
 		185E33C01E715C270077E9A8 /* TestComponentsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestComponentsFactory.swift; sourceTree = "<group>"; };
-		185E33C11E715C270077E9A8 /* TestConfiguration.swift.enc */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestConfiguration.swift.enc; sourceTree = "<group>"; };
 		185E33C21E715C270077E9A8 /* TestConfigurationTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfigurationTemplate.swift; sourceTree = "<group>"; };
 		185E33C31E715C270077E9A8 /* TestRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRequestHandler.swift; sourceTree = "<group>"; };
 		185E33C41E715C270077E9A8 /* TestRequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRequestSender.swift; sourceTree = "<group>"; };
 		185E33C51E715C270077E9A8 /* TestResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestResponses.swift; sourceTree = "<group>"; };
+		185E33D11E715E6E0077E9A8 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		186782931DE3AA4100823875 /* AvailableOperations.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = AvailableOperations.md; sourceTree = "<group>"; };
 		186782941DE3AA4100823875 /* changelog.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = changelog.md; sourceTree = "<group>"; };
 		186782951DE3AA4100823875 /* Migration_Guide_0.2.0.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Migration_Guide_0.2.0.md; sourceTree = "<group>"; };
@@ -1551,11 +1550,11 @@
 		185E33B91E715C270077E9A8 /* TestUtils */ = {
 			isa = PBXGroup;
 			children = (
+				185E33D11E715E6E0077E9A8 /* TestConfiguration.swift */,
+				185E33C21E715C270077E9A8 /* TestConfigurationTemplate.swift */,
 				185E33BA1E715C270077E9A8 /* DummyResponseHandler.swift */,
 				185E33BB1E715C270077E9A8 /* Offline Testing */,
 				185E33C01E715C270077E9A8 /* TestComponentsFactory.swift */,
-				185E33C11E715C270077E9A8 /* TestConfiguration.swift.enc */,
-				185E33C21E715C270077E9A8 /* TestConfigurationTemplate.swift */,
 				185E33C31E715C270077E9A8 /* TestRequestHandler.swift */,
 				185E33C41E715C270077E9A8 /* TestRequestSender.swift */,
 				185E33C51E715C270077E9A8 /* TestResponses.swift */,
@@ -2121,11 +2120,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				185E320B1E7157160077E9A8 /* CreatubblesAPIClientIntegrationTests-Info.plist in Resources */,
 				185E320C1E7157160077E9A8 /* creatubbles_logo.jpg in Resources */,
 				185E320D1E7157160077E9A8 /* test.zip in Resources */,
 				185E320E1E7157160077E9A8 /* testVideo.mp4 in Resources */,
-				185E33CC1E715C270077E9A8 /* TestConfiguration.swift.enc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2644,6 +2641,7 @@
 				185E32361E7157160077E9A8 /* ReportCreationResponseHandlerSpec.swift in Sources */,
 				185E32451E7157170077E9A8 /* NewGalleryResponseHandlerSpec.swift in Sources */,
 				185E32111E7157160077E9A8 /* APIClientSpec.swift in Sources */,
+				185E33D21E715E6E0077E9A8 /* TestConfiguration.swift in Sources */,
 				185E32781E7157170077E9A8 /* UsersFollowedByAUserResponseHandlerSpec.swift in Sources */,
 				185E32201E7157160077E9A8 /* NewCommentResponseHandlerSpec.swift in Sources */,
 				185E32181E7157160077E9A8 /* UsersBatchFetcherSpec.swift in Sources */,
@@ -2833,7 +2831,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "CreatubblesAPIClientUnitTests/CreatubblesAPIClientUnitTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -2849,7 +2847,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "CreatubblesAPIClientUnitTests/CreatubblesAPIClientUnitTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -2862,9 +2860,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = "CreatubblesAPIClientTests copy-Info.plist";
+				INFOPLIST_FILE = "CreatubblesAPIClientIntegrationTests/CreatubblesAPIClientIntegrationTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientIntegrationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -2878,9 +2876,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = "CreatubblesAPIClientTests copy-Info.plist";
+				INFOPLIST_FILE = "CreatubblesAPIClientIntegrationTests/CreatubblesAPIClientIntegrationTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.creatubbles.CreatubblesAPIClientIntegrationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
