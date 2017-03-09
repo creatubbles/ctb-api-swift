@@ -2,7 +2,7 @@
 //  NetworkManager.swift
 //  CreatubblesAPIClient
 //
-//  Copyright (c) 2016 Creatubbles Pte. Ltd.
+//  Copyright (c) 2017 Creatubbles Pte. Ltd.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -32,10 +32,12 @@ class NetworkManager: NSObject {
     }()
     
     private let settings: APIClientSettings
-    let authClient = OAuth2Client()
+    let authClient: OAuth2Client
     
-    public init(settings: APIClientSettings) {
+    public init(settings: APIClientSettings)
+    {
         self.settings = settings
+        self.authClient = settings.oauth2Client
     }
     
     func dataTask(request: Request, completion: @escaping (_ response: AnyObject?, _ error: APIClientError?) -> ()) {
