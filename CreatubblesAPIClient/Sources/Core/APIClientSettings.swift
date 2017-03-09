@@ -74,11 +74,16 @@ open class APIClientSettings: NSObject
     let logLevel: LogLevel
     
     /*
-     Scope used in some OAuth requests. 'nil` by default
+        Scope used in some OAuth requests. 'nil` by default
      */
     let oauthScope: String?
     
-    public init(appId: String, appSecret: String, backgroundSessionConfigurationIdentifier: String? = nil, locale: String? = nil, logLevel: LogLevel = .warning, oauthScope: String? = nil)
+    /*
+        Client used to store OAuth2 tokens. Keychain by default
+     */
+    let oauth2Client: OAuth2Client
+    
+    public init(appId: String, appSecret: String, backgroundSessionConfigurationIdentifier: String? = nil, locale: String? = nil, logLevel: LogLevel = .warning, oauthScope: String? = nil, oauth2Client: OAuth2Client = OAuth2KeychainClient())
     {
         self.appId = appId
         self.appSecret = appSecret
@@ -90,9 +95,10 @@ open class APIClientSettings: NSObject
         self.logLevel = logLevel
         self.backgroundSessionConfigurationIdentifier = backgroundSessionConfigurationIdentifier
         self.oauthScope = oauthScope
+        self.oauth2Client = oauth2Client
     }
     
-    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, locale: String? = nil, logLevel: LogLevel = .warning,  backgroundSessionConfigurationIdentifier: String? = nil, oauthScope: String? = nil)
+    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, locale: String? = nil, logLevel: LogLevel = .warning,  backgroundSessionConfigurationIdentifier: String? = nil, oauthScope: String? = nil, oauth2Client: OAuth2Client = OAuth2KeychainClient())
     {
         self.appId = appId
         self.appSecret = appSecret
@@ -104,5 +110,6 @@ open class APIClientSettings: NSObject
         self.logLevel = logLevel
         self.backgroundSessionConfigurationIdentifier = backgroundSessionConfigurationIdentifier
         self.oauthScope = oauthScope
+        self.oauth2Client = oauth2Client
     }
 }

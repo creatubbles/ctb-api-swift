@@ -32,10 +32,12 @@ class NetworkManager: NSObject {
     }()
     
     private let settings: APIClientSettings
-    let authClient = OAuth2Client()
+    let authClient: OAuth2Client
     
-    public init(settings: APIClientSettings) {
+    public init(settings: APIClientSettings)
+    {
         self.settings = settings
+        self.authClient = settings.oauth2Client
     }
     
     func dataTask(request: Request, completion: @escaping (_ response: AnyObject?, _ error: APIClientError?) -> ()) {
