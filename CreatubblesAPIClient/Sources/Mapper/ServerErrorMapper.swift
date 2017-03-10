@@ -23,39 +23,25 @@
 //  THE SOFTWARE.
 
 import Foundation
+import ObjectMapper
 
-import Quick
-import Nimble
-@testable import CreatubblesAPIClient
-
-class DAOAssemblySpec: QuickSpec
+class ServerErrorMapper:  Mappable
 {
-    override func spec()
+    var status: Int?
+    var statusAsString: String? //ObjectMapper has a bug when mapping Ints, so we also try to map status as String
+    var error: String?
+    
+    required init?(map: Map) { /* Intentionally left empty  */ }
+    
+    func mapping(map: Map)
     {
-        describe("DAOAssembly")
-        {
-            it("Should register new DAO")
-            {
-                let dao = DatabaseDAO()
-                let assembly = DAOAssembly()
-                assembly.register(dao: dao)
-            }
-            
-            it("Should assembly DAO after register")
-            {
-                let dao = DatabaseDAO()
-                let assembly = DAOAssembly()
-                assembly.register(dao: dao)
-                let assembledDAO = assembly.assembly(DatabaseDAO.self)
-                expect(assembledDAO).notTo(beNil())
-            }
-            
-            it("Should return null when assembled DAO was not registered before")
-            {
-                let assembly = DAOAssembly()
-                let assembledDAO = assembly.assembly(DatabaseDAO.self)
-                expect(assembledDAO).to(beNil())
-            }
-        }
+        status <- map["status"]
+        statusAsString <- map["status"]
+        error <- map["error"]
+    }
+    
+    var isValid: Bool
+    {
+        return (status != nil || statusAsString != nil) && error != nil
     }
 }

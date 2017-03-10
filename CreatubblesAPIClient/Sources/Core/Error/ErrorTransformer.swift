@@ -47,23 +47,29 @@ public class ErrorTransformer
     
     static func errorsFromResponse(_ response: Dictionary<String, AnyObject>?) -> Array<APIClientError>
     {
-        guard let response = response,
-              let mappers = Mapper<ErrorMapper>().mapArray(JSONObject: response["errors"])
-        else
+        if let response = response,
+           let mappers = Mapper<ErrorMapper>().mapArray(JSONObject: response["errors"])
         {
-            return Array<APIClientError>()
-        }
-        var errorsArray = Array<APIClientError>()
-        for mapper in mappers
-        {
-            if mapper.status != nil || mapper.statusAsString != nil || mapper.code != nil || mapper.title != nil || mapper.source != nil || mapper.detail != nil
+            var errorsArray = Array<APIClientError>()
+            for mapper in mappers
             {
-                errorsArray.append(APIClientError(status: mapper.status ?? (mapper.statusAsString != nil ? Int(mapper.statusAsString!) : nil), code: mapper.code, title: mapper.title, source: mapper.source, detail: mapper.detail))
+                if mapper.status != nil || mapper.statusAsString != nil || mapper.code != nil || mapper.title != nil || mapper.source != nil || mapper.detail != nil
+                {
+                    errorsArray.append(APIClientError(status: mapper.status ?? (mapper.statusAsString != nil ? Int(mapper.statusAsString!) : nil), code: mapper.code, title: mapper.title, source: mapper.source, detail: mapper.detail))
+                }
             }
+            return errorsArray
         }
-        return errorsArray
-
-//        return mappers.map({ APIClientError(mapper: $0) })
+        else if let response = response,
+                let mapper = Mapper<ServerErrorMapper>().map(JSONObject: response),
+                mapper.isValid
+        {
+            let status = mapper.status ?? (mapper.statusAsString != nil ? Int(mapper.statusAsString!) : nil)
+            let error = APIClientError(status: status, code: nil, title: mapper.error, source: nil, detail: nil)
+            return [error]
+        }
+                
+         return Array<APIClientError>()
     }
     
     static func errorFromNSError(_ error: NSError) -> APIClientError

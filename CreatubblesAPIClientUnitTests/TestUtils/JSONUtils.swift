@@ -22,40 +22,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
+import UIKit
 
-import Quick
-import Nimble
-@testable import CreatubblesAPIClient
-
-class DAOAssemblySpec: QuickSpec
+class JSONUtils: NSObject
 {
-    override func spec()
+    class func dictionaryFromJSONString(_ jsonString: String) -> Dictionary<String, AnyObject>
     {
-        describe("DAOAssembly")
+        if let data = jsonString.data(using: String.Encoding.utf8)
         {
-            it("Should register new DAO")
+            do
             {
-                let dao = DatabaseDAO()
-                let assembly = DAOAssembly()
-                assembly.register(dao: dao)
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String:AnyObject]
+                return json
             }
-            
-            it("Should assembly DAO after register")
+            catch
             {
-                let dao = DatabaseDAO()
-                let assembly = DAOAssembly()
-                assembly.register(dao: dao)
-                let assembledDAO = assembly.assembly(DatabaseDAO.self)
-                expect(assembledDAO).notTo(beNil())
-            }
-            
-            it("Should return null when assembled DAO was not registered before")
-            {
-                let assembly = DAOAssembly()
-                let assembledDAO = assembly.assembly(DatabaseDAO.self)
-                expect(assembledDAO).to(beNil())
+                print("Cannot parse JSON: \(jsonString)")
             }
         }
+        return Dictionary<String, AnyObject>()
     }
 }
