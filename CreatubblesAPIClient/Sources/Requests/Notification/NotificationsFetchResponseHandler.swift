@@ -45,13 +45,19 @@ class NotificationsFetchResponseHandler: ResponseHandler
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
             let notificationMetadata = MappingUtils.notificationMetadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let objects    = mappers.map({ Notification(mapper: $0, dataMapper: dataMapper) })
+            let notifications = mappers.map({ Notification(mapper: $0, dataMapper: dataMapper) })
             
-            executeOnMainQueue { self.completion?(objects, notificationMetadata?.totalUnreadCount ,pageInfo, ErrorTransformer.errorFromResponse(response ,error: error)) }
+            let validNotifications = notifications.filter({ $0.isValid })
+            let invalidNotifications = notifications.filter({ !$0.isValid })
+            
+            let responseData = ResponseData<Notification>(objects: validNotifications, rejectedObjects: invalidNotifications, pagingInfo: pageInfo, error: ErrorTransformer.errorFromResponse(response ,error: error))
+
+            executeOnMainQueue { self.completion?(responseData, notificationMetadata?.totalUnreadCount) }
         }
         else
         {
-            executeOnMainQueue { self.completion?(nil, nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
+            let responseData = ResponseData<Notification>(objects: nil, rejectedObjects: nil, pagingInfo: nil, error:  ErrorTransformer.errorFromResponse(response, error: error))
+            executeOnMainQueue { self.completion?(responseData, nil) }
         }
     }
 }

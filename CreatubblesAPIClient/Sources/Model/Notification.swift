@@ -91,4 +91,13 @@ open class Notification: NSObject, Identifiable
         bubbleRelationship = MappingUtils.relationshipFromMapper(mapper.bubbleRelationship)
         bubble = MappingUtils.objectFromMapper(dataMapper, relationship: bubbleRelationship, type: Bubble.self)
     }
+    
+    var isValid: Bool
+    {
+        //Valid creation should have at least one of [creation, user, gallery, creationEntities, userEntities, galleryEntities] set and not-empty
+        return creation != nil || user != nil || gallery != nil ||
+               creationEntities?.isEmpty == false ||
+               galleryEntities?.isEmpty == false ||
+               userEntities?.isEmpty == false
+    }
 }
