@@ -96,8 +96,8 @@ open class Notification: NSObject, Identifiable
     {
         //Valid creation should have at least one of [creation, user, gallery, creationEntities, userEntities, galleryEntities] set and not-empty
         return creation != nil || user != nil || gallery != nil ||
-            (creationEntities != nil && !creationEntities!.isEmpty) ||
-            (galleryEntities != nil && !galleryEntities!.isEmpty) ||
-            (userEntities != nil && !userEntities!.isEmpty)                
+               creationEntities?.isEmpty == false ||
+               galleryEntities?.isEmpty == false ||
+               userEntities?.isEmpty == false
     }
 }
