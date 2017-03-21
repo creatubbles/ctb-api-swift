@@ -762,12 +762,12 @@ extension APIClient
     }
     
     //MARK: - Notifications
-    public func _getNotifications(pagingdata: PagingData?, completion: ((Array<Notification>?, _ unreadNotificationsCount: Int?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
+    public func _getNotifications(pagingdata: PagingData?, completion: ((Array<Notification>?, Array<Notification>?, _ unreadNotificationsCount: Int?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler
     {
         return getNotifications(pagingData: pagingdata)
         {
-            (notifications, unreadNotificationsCount, pInfo, error) -> (Void) in
-            completion?(notifications, unreadNotificationsCount, pInfo, APIClient.errorTypeToNSError(error))
+            (responseData: ResponseData<Notification>?, unreadNotificationsCount: Int?) -> (Void) in
+            completion?(responseData?.objects, responseData?.rejectedObjects, unreadNotificationsCount, responseData?.pagingInfo, APIClient.errorTypeToNSError(responseData?.error))
         }
     }
     

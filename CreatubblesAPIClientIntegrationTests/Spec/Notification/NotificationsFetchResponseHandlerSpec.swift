@@ -45,10 +45,10 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec
                     done in
                     _ = sender.send(request, withResponseHandler:NotificationsFetchResponseHandler()
                     {
-                        (notifications, unreadNotificationsCount,  pInfo, error) -> (Void) in
-                        expect(notifications).to(beNil())
-                        expect(pInfo).to(beNil())
-                        expect(error).notTo(beNil())
+                        (responseData, unreadNotificationsCount) -> (Void) in
+                        expect(responseData?.objects).to(beNil())
+                        expect(responseData?.pagingInfo).to(beNil())
+                        expect(responseData?.error).notTo(beNil())
                         expect(unreadNotificationsCount).to(beNil())
                         done()
                     })
@@ -68,11 +68,11 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         _ = sender.send(request, withResponseHandler:NotificationsFetchResponseHandler()
                         {
-                            (notifications, unreadNotificationsCount, pInfo, error) -> (Void) in
-                            expect(notifications).notTo(beNil())
-                            expect(notifications).notTo(beEmpty())                            
-                            expect(pInfo).notTo(beNil())
-                            expect(error).to(beNil())
+                            (responseData, unreadNotificationsCount) -> (Void) in
+                            expect(responseData?.objects).notTo(beNil())
+                            expect(responseData?.objects).notTo(beEmpty())
+                            expect(responseData?.pagingInfo).notTo(beNil())
+                            expect(responseData?.error).to(beNil())
                             expect(unreadNotificationsCount).notTo(beNil())
                             done()
                         })
