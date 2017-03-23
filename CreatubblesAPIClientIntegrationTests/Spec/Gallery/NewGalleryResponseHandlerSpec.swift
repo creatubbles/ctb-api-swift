@@ -34,7 +34,8 @@ class NewGalleryResponseHandlerSpec: QuickSpec
     {
         describe("New Gallery response handler")
         {
-            guard let timestamp = TestConfiguration.newGalleryResponseHandlerSpecTestTimestamp
+            guard let timestamp = TestConfiguration.newGalleryResponseHandlerSpecTestTimestamp,
+                  let testUserIdentifier = TestConfiguration.testUserIdentifier
             else
             {
                 return
@@ -43,8 +44,7 @@ class NewGalleryResponseHandlerSpec: QuickSpec
             let name = "MMTestGallery"+timestamp
             let galleryDescription = "MMTestGalleryDescription"+timestamp
             let openForAll = false
-            let ownerId = "B0SwCGhR"
-            let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: ownerId)
+            let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: testUserIdentifier)
             
             it("Should return correct value after login")
             {

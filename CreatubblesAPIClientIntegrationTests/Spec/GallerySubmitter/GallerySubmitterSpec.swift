@@ -33,10 +33,9 @@ class GallerySubmitterSpec: QuickSpec
     {
         describe("GallerySubmitter")
         {
-            it("Should batch fetch creations using operation client")
+            it("Should submit creation to gallery")
             {
                 guard TestConfiguration.shoulTestBatchFetchers,
-                      let creationIdentifier = TestConfiguration.testCreationIdentifier,
                       let galleryIdentifiers = TestConfiguration.testGalleryIdentifiers
                 else { return }
                 
@@ -52,13 +51,28 @@ class GallerySubmitterSpec: QuickSpec
                         expect(error).to(beNil())
                         expect(sender.isLoggedIn()).to(beTrue())
                         
-                        submitter = GallerySubmitter(requestSender: sender, creationId: creationIdentifier, galleryIdentifiers: galleryIdentifiers)
+                        //We have to create a new unique creation - all creations in a single gallery must have unique id
+                        sender.send(NewCreationRequest(creationData: NewCreationData(image: UIImage(), uploadExtension: .jpeg)), withResponseHandler:NewCreationResponseHandler()
                         {
-                            (error) -> (Void) in
+                            (creation: Creation?, error:Error?) -> Void in
                             expect(error).to(beNil())
-                            done()
-                        }
-                        submitter.submit()
+                            expect(creation).notTo(beNil())
+                            
+                            guard let identifier = creation?.identifier
+                            else
+                            {
+                                fail("Creation's identifier should not be nil")
+                                return
+                            }
+                            
+                            submitter = GallerySubmitter(requestSender: sender, creationId: identifier, galleryIdentifiers: galleryIdentifiers)
+                            {
+                                (error) -> (Void) in
+                                expect(error).to(beNil())
+                                done()
+                            }
+                            submitter.submit()
+                        })
                     }
                 }
             }

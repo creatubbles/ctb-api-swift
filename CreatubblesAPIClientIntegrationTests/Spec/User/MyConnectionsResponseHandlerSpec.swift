@@ -89,13 +89,13 @@ class MyConnectionsResponseHandlerSpec: QuickSpec
                     done in
                     sender.send(MyConnectionsRequest(page: page, perPage: perPage, userId: userId), withResponseHandler:
                         MyConnectionsResponseHandler()
-                        {
-                            (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
-                            expect(error).notTo(beNil())
-                            expect(users).to(beNil())
-                            expect(pageInfo).to(beNil())
-                            done()
-                        })
+                    {
+                        (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
+                        expect(error).to(beNil())
+                        expect(users).notTo(beNil())
+                        expect(pageInfo).notTo(beNil())
+                        done()
+                    })
                 }
             }
             
@@ -115,13 +115,13 @@ class MyConnectionsResponseHandlerSpec: QuickSpec
                         expect(error).to(beNil())
                         sender.send(MyConnectionsRequest(page: page, perPage: perPage, userId: userId), withResponseHandler:
                             MyConnectionsResponseHandler()
-                            {
-                                (users: Array<User>?,pageInfo: PagingInfo?, error: Error?) -> Void in
-                                expect(error).to(beNil())
-                                expect(users).notTo(beNil())
-                                expect(pageInfo).notTo(beNil())
-                                done()
-                            })
+                        {
+                            (users: Array<User>?,pageInfo: PagingInfo?, error: Error?) -> Void in
+                            expect(error).to(beNil())
+                            expect(users).notTo(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            done()
+                        })
                     }
                 }
             }

@@ -70,7 +70,7 @@ class EditGroupResponseHandlerSpec: QuickSpec
                 
                 let data = EditGroupData()
                 data.name =  TestConfiguration.testEditGroupName
-                data.avatarCreationIdentifier = creationIdentifier
+                data.avatarCreationIdentifier = "https://resizing.flixster.com/RekPVUC5CH4Vgulb0UaiXgYDbdM=/206x305/v1.bTsxMTE3Njc5MjtqOzE3MzY0OzEyMDA7ODAwOzEyMDA"
                 
                 let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)

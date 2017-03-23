@@ -128,7 +128,7 @@ class APIClientSpec: QuickSpec
                 
                 let identifier = TestConfiguration.testUserIdentifier!
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 20)
                 {
                     done in
                     client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -154,7 +154,7 @@ class APIClientSpec: QuickSpec
                 
                 let identifier = TestConfiguration.testUserIdentifier!
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
+                waitUntil(timeout: 20)
                 {
                     done in
                     client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:

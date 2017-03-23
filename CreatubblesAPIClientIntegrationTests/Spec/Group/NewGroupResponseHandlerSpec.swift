@@ -68,7 +68,7 @@ class NewGroupResponseHandlerSpec: QuickSpec
                       let creationIdentifier = TestConfiguration.testCreationIdentifier
                 else { return }
                 
-                let data = NewGroupData(name: name, avatarCreationIdentifier: creationIdentifier)
+                let data = NewGroupData(name: "test\(name)", avatarCreationIdentifier: "tYs3snpr")
                 
                 let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: 10)
