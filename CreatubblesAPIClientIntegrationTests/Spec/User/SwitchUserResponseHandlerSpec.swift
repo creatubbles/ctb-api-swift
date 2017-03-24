@@ -44,13 +44,13 @@ class SwitchUserResponseHandlerSpec: QuickSpec {
                     sender.login(teacherUsername, password: teacherPassword) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(SwitchUserRequest(targetUserId: studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler() {
-                                (accessToken, error) -> Void in
-                                expect(accessToken).notTo(beNil())
-                                expect(error).to(beNil())
-                                sender.logout()
-                                done()
-                            })
+                    sender.send(SwitchUserRequest(targetUserId: studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler() {
+                            (accessToken, error) -> Void in
+                            expect(accessToken).notTo(beNil())
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
                     }
                 }
             }
@@ -72,12 +72,11 @@ class SwitchUserResponseHandlerSpec: QuickSpec {
                         
                         sender.send(SwitchUserRequest(targetUserId: studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler() {
                             (accessToken, error) -> Void in
-                            expect(error).notTo(beNil())
+                            expect(error).to(beNil())
                             expect(accessToken).to(beNil())
                             done()
                         })
                     }
-                    
                 }
             }
         }

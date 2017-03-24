@@ -110,7 +110,7 @@ class GalleriesResponseHandlerSpec: QuickSpec
 
             }
             
-            it("Should return error when not logged in")
+            it("Should not return errors when not logged in")
             {
                 let request = GalleriesRequest(page: 0, perPage: 20, sort: .recent, userId: nil, query: nil)
                 let sender = TestComponentsFactory.requestSender
@@ -118,13 +118,15 @@ class GalleriesResponseHandlerSpec: QuickSpec
                 waitUntil(timeout: 20)
                 {
                     done in
-                    _ = sender.send(request, withResponseHandler:NewCreatorResponseHandler()
-                        {
-                            (user: User?, error:Error?) -> Void in
-                            expect(error).notTo(beNil())
-                            expect(user).to(beNil())
-                            done()
-                        })
+                    _ = sender.send(request, withResponseHandler:GalleriesResponseHandler()
+                    {
+                        (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
+                        expect(galleries).notTo(beNil())
+                        expect(error).to(beNil())
+                        expect(pageInfo).notTo(beNil())
+                        sender.logout()
+                        done()
+                    })
                 }
             }
         }

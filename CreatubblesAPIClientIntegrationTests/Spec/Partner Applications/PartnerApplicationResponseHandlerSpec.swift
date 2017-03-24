@@ -57,7 +57,7 @@ class PartnerApplicationsResponseHandlerSpec: QuickSpec
                 }
             }
             
-            it("Should return error when not logged in")
+            it("Should not return errors when not logged in")
             {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
@@ -67,8 +67,8 @@ class PartnerApplicationsResponseHandlerSpec: QuickSpec
                     sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler:PartnerApplicationResponseHandler()
                     {
                         (partnerApplication: PartnerApplication?, error: Error?) -> Void in
-                        expect(error).notTo(beNil())
-                        expect(partnerApplication).to(beNil())
+                        expect(error).to(beNil())
+                        expect(partnerApplication).notTo(beNil())
                         done()
                     })
                 }

@@ -69,19 +69,29 @@ class NewGalleryResponseHandlerSpec: QuickSpec
             
             it("Should return error when not logged in")
             {
-                let request = GalleriesRequest(page: 0, perPage: 20, sort: .recent, userId: nil, query: nil)
+                guard let timestamp = TestConfiguration.newGalleryResponseHandlerSpecTestTimestamp,
+                      let testUserIdentifier = TestConfiguration.testUserIdentifier
+                else
+                {
+                    return
+                }
+                
+                let name = "MMTestGallery1"+timestamp
+                let galleryDescription = "MMTestGalleryDescription1"+timestamp
+                
+                let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: testUserIdentifier)
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 waitUntil(timeout: 10)
                 {
                     done in
                     sender.send(request, withResponseHandler:NewGalleryResponseHandler
-                        {
-                            (gallery: Gallery?, error:Error?) -> Void in
-                            expect(error).notTo(beNil())
-                            expect(gallery).to(beNil())
-                            done()
-                        })
+                    {
+                        (gallery: Gallery?, error:Error?) -> Void in
+                        expect(error).notTo(beNil())
+                        expect(gallery).to(beNil())
+                        done()
+                    })
                 }
             }
         }

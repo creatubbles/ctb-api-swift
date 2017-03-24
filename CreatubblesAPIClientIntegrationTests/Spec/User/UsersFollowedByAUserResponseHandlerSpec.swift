@@ -61,7 +61,7 @@ class UsersFollowedByAUserResponseHandlerSpec: QuickSpec
                 }
             }
             
-            it("Should return error when not logged in")
+            it("Should not return errors when not logged in")
             {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
@@ -72,9 +72,9 @@ class UsersFollowedByAUserResponseHandlerSpec: QuickSpec
                         UsersFollowedByAUserResponseHandler()
                     {
                         (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
-                        expect(error).notTo(beNil())
-                        expect(users).to(beNil())
-                        expect(pageInfo).to(beNil())
+                        expect(error).to(beNil())
+                        expect(users).notTo(beNil())
+                        expect(pageInfo).notTo(beNil())
                         done()
                     })
                 }
