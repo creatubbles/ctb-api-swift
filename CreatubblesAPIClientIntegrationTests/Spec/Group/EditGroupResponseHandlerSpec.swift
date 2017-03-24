@@ -44,7 +44,7 @@ class EditGroupResponseHandlerSpec: QuickSpec
                 data.name = name
                 
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -61,8 +61,8 @@ class EditGroupResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should edit group when name and avatar_id are passed")
+            //TODO: uncomment/remove when status is determined on api - for now creating with creation's id as avatar does not work
+            xit("Should edit group when name and avatar_id are passed")
             {
                 guard let groupIdentifier = TestConfiguration.testGroupIdentifier,
                       let creationIdentifier = TestConfiguration.testCreationIdentifier
@@ -73,7 +73,7 @@ class EditGroupResponseHandlerSpec: QuickSpec
                 data.avatarCreationIdentifier = creationIdentifier
                 
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)

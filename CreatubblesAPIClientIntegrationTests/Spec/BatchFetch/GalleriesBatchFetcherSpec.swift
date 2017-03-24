@@ -39,7 +39,7 @@ class GalleriesBatchFetcherSpec: QuickSpec
 
                 let sender = TestComponentsFactory.requestSender
                 var batchFetcher: GalleriesQueueBatchFetcher!
-                waitUntil(timeout: 200)
+                waitUntil(timeout: TestConfiguration.timeoutLong)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -67,7 +67,7 @@ class GalleriesBatchFetcherSpec: QuickSpec
 
                 let sender = TestComponentsFactory.requestSender
                 var batchFetcher: FavoriteGalleriesQueueBatchFetcher!
-                waitUntil(timeout: 200)
+                waitUntil(timeout: TestConfiguration.timeoutLong)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -95,7 +95,7 @@ class GalleriesBatchFetcherSpec: QuickSpec
                 
                 let sender = TestComponentsFactory.requestSender
                 var batchFetcher: FeaturedGalleriesQueueBatchFetcher!
-                waitUntil(timeout: 200)
+                waitUntil(timeout: TestConfiguration.timeoutLong)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -123,7 +123,7 @@ class GalleriesBatchFetcherSpec: QuickSpec
                 
                 let sender = TestComponentsFactory.requestSender
                 var batchFetcher: MyGalleriesQueueBatchFetcher!
-                waitUntil(timeout: 200)
+                waitUntil(timeout: TestConfiguration.timeoutLong)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:

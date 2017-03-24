@@ -42,7 +42,7 @@ class DataUploaderSpec: QuickSpec
 //                let requestSender = TestComponentsFactory.requestSender
 //                let session = CreationUploadSession(data: NewCreationData(image: image, uploadExtension: .jpg), requestSender: requestSender)
 //
-//                waitUntil(timeout: 30)
+//                waitUntil(timeout: TestConfiguration.timeoutMedium)
 //                {
 //                    done in
 //                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -64,7 +64,7 @@ class DataUploaderSpec: QuickSpec
 //                let requestSender = TestComponentsFactory.requestSender
 //                let session = CreationUploadSession(data: NewCreationData(url: path!, uploadExtension: .mp4), requestSender: requestSender)
 //                
-//                waitUntil(timeout: 30)
+//                waitUntil(timeout: TestConfiguration.timeoutMedium)
 //                {
 //                    done in
 //                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -93,7 +93,7 @@ class DataUploaderSpec: QuickSpec
 //                
 //                let session = CreationUploadSession(data: NewCreationData(data: data, uploadExtension: .zip), requestSender: requestSender)
 //                
-//                waitUntil(timeout: 30)
+//                waitUntil(timeout: TestConfiguration.timeoutMedium)
 //                {
 //                    done in
 //                    requestSender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -116,7 +116,7 @@ class DataUploaderSpec: QuickSpec
 //                
 //                let creationUploadSessions = databaseDAO.fetchAllCreationUploadSessions(requestSender)
 //                
-//                waitUntil(timeout: 30)
+//                waitUntil(timeout: TestConfiguration.timeoutMedium)
 //                {
 //                    done in
 //                    if(creationUploadSessions.count == 0)
@@ -151,7 +151,7 @@ class DataUploaderSpec: QuickSpec
 //                let image = UIImage(contentsOfFile: path!.path)!
 //                let apiClient = APIClient(settings: TestConfiguration.settings)
 //                let data = NewCreationData(image: image, uploadExtension: .jpg)
-//                waitUntil(timeout: 30)
+//                waitUntil(timeout: TestConfiguration.timeoutMedium)
 //                {
 //                    done in
 //                    apiClient.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:

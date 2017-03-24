@@ -37,7 +37,7 @@ class CreatorsAndManagersResponseHandlerSpec: QuickSpec
             it("Should return correct value after login")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -60,7 +60,7 @@ class CreatorsAndManagersResponseHandlerSpec: QuickSpec
             {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     _ = sender.send(CreatorsAndManagersRequest(), withResponseHandler:CreatorsAndManagersResponseHandler()

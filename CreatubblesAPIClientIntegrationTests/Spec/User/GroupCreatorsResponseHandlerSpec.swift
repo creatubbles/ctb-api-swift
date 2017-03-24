@@ -38,7 +38,7 @@ class GroupCreatorsResponseHandlerSpec: QuickSpec {
                 
                 guard let groupIdentifier = TestConfiguration.testGroupIdentifier else { return }
                 
-                waitUntil(timeout: 10) { done in
+                waitUntil(timeout: TestConfiguration.timeoutShort) { done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())

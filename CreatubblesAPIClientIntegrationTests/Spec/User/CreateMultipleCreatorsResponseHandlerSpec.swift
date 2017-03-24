@@ -47,7 +47,7 @@ class CreateMultipleCreatorsResponseHandlerSpec: QuickSpec
 //            it("Shouldn't return any errors when logged in")
 //            {
 //                let sender = TestComponentsFactory.requestSender
-//                waitUntil(timeout: 20)
+//                waitUntil(timeout: TestConfiguration.timeoutMedium)
 //                {
 //                    done in
 //                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -68,7 +68,7 @@ class CreateMultipleCreatorsResponseHandlerSpec: QuickSpec
 //            {
 //                let sender = TestComponentsFactory.requestSender
 //                sender.logout()
-//                waitUntil(timeout: 20)
+//                waitUntil(timeout: TestConfiguration.timeoutMedium)
 //                {
 //                    done in
 //                    sender.send(multipleCreatorsRequest, withResponseHandler: CreateMultipleCreatorsResponseHandler()

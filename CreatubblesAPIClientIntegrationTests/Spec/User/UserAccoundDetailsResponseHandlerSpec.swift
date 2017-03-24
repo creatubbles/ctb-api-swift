@@ -40,7 +40,7 @@ class UserAccoundDetailsResponseHandlerSpec: QuickSpec
                 else { return }
                 let request = UserAccountDetailsRequest(userId: userIdentifier)
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)

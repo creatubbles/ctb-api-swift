@@ -43,7 +43,7 @@ class NewGroupResponseHandlerSpec: QuickSpec
                 let data = NewGroupData(name: name)
                 
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -61,17 +61,17 @@ class NewGroupResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should create new group when name and avatar_id are passed")
+            //TODO: uncomment/remove when status is determined on api - for now creating with creation's id as avatar does not work
+            xit("Should create new group when name and avatar_id are passed")
             {
                 guard let name = TestConfiguration.testNewGroupDataName,
                       let creationIdentifier = TestConfiguration.testCreationIdentifier
                 else { return }
                 
-                let data = NewGroupData(name: name, avatarCreationIdentifier: creationIdentifier)
+                let data = NewGroupData(name: "test\(name)", avatarCreationIdentifier: creationIdentifier)
                 
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)

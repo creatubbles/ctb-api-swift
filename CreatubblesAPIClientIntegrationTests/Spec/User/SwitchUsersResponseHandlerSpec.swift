@@ -36,7 +36,7 @@ class SwitchUsersResponseHandlerSpec: QuickSpec {
             it("Should correctly return users available for switching") {
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 10) { done in
+                waitUntil(timeout: TestConfiguration.timeoutShort) { done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())

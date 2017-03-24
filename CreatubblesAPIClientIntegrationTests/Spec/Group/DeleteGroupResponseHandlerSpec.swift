@@ -41,7 +41,7 @@ class DeleteGroupResponseHandlerSpec: QuickSpec
                 
                 //How to handle this? Group can be removed only once
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)

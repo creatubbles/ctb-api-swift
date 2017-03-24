@@ -39,7 +39,7 @@ class NewCommentResponseHandlerSpec: QuickSpec
                 let data = NewCommentData(userId: "TestUserId", text: "Test")
                 let request = NewCommentRequest(data: data)
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.logout()
@@ -61,7 +61,7 @@ class NewCommentResponseHandlerSpec: QuickSpec
                 let data = NewCommentData(galleryId: galleryId, text: "TestGalleryComment")
                 let request = NewCommentRequest(data: data)
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -87,7 +87,7 @@ class NewCommentResponseHandlerSpec: QuickSpec
                 let data = NewCommentData(userId: userId, text: "TestProfileComment")
                 let request = NewCommentRequest(data: data)
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -113,7 +113,7 @@ class NewCommentResponseHandlerSpec: QuickSpec
                 let data = NewCommentData(creationId: creationId, text: "TestCreationComment")
                 let request = NewCommentRequest(data: data)
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)

@@ -46,7 +46,7 @@ class EditProfileResponseHandlerSpec: QuickSpec
                 let request = EditProfileRequest(identifier: profileIdentifier, data: data)
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)

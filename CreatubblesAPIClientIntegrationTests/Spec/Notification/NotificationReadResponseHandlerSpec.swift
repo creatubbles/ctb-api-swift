@@ -43,7 +43,7 @@ class NotificationReadResponseHandlerSpec: QuickSpec
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.authenticate()
@@ -68,7 +68,7 @@ class NotificationReadResponseHandlerSpec: QuickSpec
                 let request = NotificationReadRequest(notificationIdentifier: identifier)
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)

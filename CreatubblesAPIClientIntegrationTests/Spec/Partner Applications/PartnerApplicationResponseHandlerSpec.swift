@@ -39,7 +39,7 @@ class PartnerApplicationsResponseHandlerSpec: QuickSpec
             it("Should return correct value after login")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -57,18 +57,18 @@ class PartnerApplicationsResponseHandlerSpec: QuickSpec
                 }
             }
             
-            it("Should return error when not logged in")
+            it("Should not return errors when not logged in")
             {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler:PartnerApplicationResponseHandler()
                     {
                         (partnerApplication: PartnerApplication?, error: Error?) -> Void in
-                        expect(error).notTo(beNil())
-                        expect(partnerApplication).to(beNil())
+                        expect(error).to(beNil())
+                        expect(partnerApplication).notTo(beNil())
                         done()
                     })
                 }

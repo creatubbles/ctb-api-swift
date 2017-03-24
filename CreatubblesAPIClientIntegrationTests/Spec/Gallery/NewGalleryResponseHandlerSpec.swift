@@ -34,7 +34,8 @@ class NewGalleryResponseHandlerSpec: QuickSpec
     {
         describe("New Gallery response handler")
         {
-            guard let timestamp = TestConfiguration.newGalleryResponseHandlerSpecTestTimestamp
+            guard let timestamp = TestConfiguration.newGalleryResponseHandlerSpecTestTimestamp,
+                  let testUserIdentifier = TestConfiguration.testUserIdentifier
             else
             {
                 return
@@ -43,13 +44,12 @@ class NewGalleryResponseHandlerSpec: QuickSpec
             let name = "MMTestGallery"+timestamp
             let galleryDescription = "MMTestGalleryDescription"+timestamp
             let openForAll = false
-            let ownerId = "B0SwCGhR"
-            let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: ownerId)
+            let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: testUserIdentifier)
             
             it("Should return correct value after login")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -69,19 +69,29 @@ class NewGalleryResponseHandlerSpec: QuickSpec
             
             it("Should return error when not logged in")
             {
-                let request = GalleriesRequest(page: 0, perPage: 20, sort: .recent, userId: nil, query: nil)
+                guard let timestamp = TestConfiguration.newGalleryResponseHandlerSpecTestTimestamp,
+                      let testUserIdentifier = TestConfiguration.testUserIdentifier
+                else
+                {
+                    return
+                }
+                
+                let name = "MMTestGallery1"+timestamp
+                let galleryDescription = "MMTestGalleryDescription1"+timestamp
+                
+                let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: testUserIdentifier)
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.send(request, withResponseHandler:NewGalleryResponseHandler
-                        {
-                            (gallery: Gallery?, error:Error?) -> Void in
-                            expect(error).notTo(beNil())
-                            expect(gallery).to(beNil())
-                            done()
-                        })
+                    {
+                        (gallery: Gallery?, error:Error?) -> Void in
+                        expect(error).notTo(beNil())
+                        expect(gallery).to(beNil())
+                        done()
+                    })
                 }
             }
         }

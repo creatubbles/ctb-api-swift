@@ -38,7 +38,7 @@ class MyGalleriesResponseHandlerSpec: QuickSpec
             {
                 let request = MyGalleriesRequest(page: 1, perPage: 10, filter: .owned)
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -62,7 +62,7 @@ class MyGalleriesResponseHandlerSpec: QuickSpec
             {
                 let request = MyGalleriesRequest(page: 1, perPage: 10, filter: .owned)
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     _ = sender.logout()

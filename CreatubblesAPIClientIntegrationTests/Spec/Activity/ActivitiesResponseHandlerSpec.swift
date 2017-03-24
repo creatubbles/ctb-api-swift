@@ -39,7 +39,7 @@ class ActivitiesResponseHandlerSpec: QuickSpec {
                 let request = ActivitiesRequest(page: nil, perPage: nil)
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 30) { done in
+                waitUntil(timeout: TestConfiguration.timeoutMedium) { done in
                     
                     sender.login(TestConfiguration.username, password: TestConfiguration.password) { (error: Error?) -> Void in
                         expect(error).to(beNil())

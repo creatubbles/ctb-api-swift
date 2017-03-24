@@ -42,7 +42,7 @@ class CommentsResponseHandlerSpec: QuickSpec
                 let request = CommentsRequest(creationId: creationId, page: nil, perPage: nil)
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -70,7 +70,7 @@ class CommentsResponseHandlerSpec: QuickSpec
                 let request = CommentsRequest(galleryId: galleryId, page: nil, perPage: nil)
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -98,7 +98,7 @@ class CommentsResponseHandlerSpec: QuickSpec
                 let request = CommentsRequest(userId: userId, page: nil, perPage: nil)
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)

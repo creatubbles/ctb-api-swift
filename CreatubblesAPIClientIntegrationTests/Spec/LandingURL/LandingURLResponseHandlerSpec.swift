@@ -37,7 +37,7 @@ class LandingURLResponseHandlerSpec: QuickSpec
             it("Should return all basic urls when logged in")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -60,7 +60,7 @@ class LandingURLResponseHandlerSpec: QuickSpec
             it("Should return single value when logged in")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -84,7 +84,7 @@ class LandingURLResponseHandlerSpec: QuickSpec
             it("Should return landing url for creation value when logged in")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -110,7 +110,7 @@ class LandingURLResponseHandlerSpec: QuickSpec
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 
-                waitUntil(timeout: 30)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in                    
                     //Have to wait for sender to login with Public Grant
