@@ -41,7 +41,7 @@ class UsersBatchFetcherSpec: QuickSpec
                 
                 let sender = TestComponentsFactory.requestSender
                 var batchFetcher: UsersQueueBatchFetcher!
-                waitUntil(timeout: 200)
+                waitUntil(timeout: TestConfiguration.timeoutLong)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -71,7 +71,7 @@ class UsersBatchFetcherSpec: QuickSpec
                 
                 let sender = TestComponentsFactory.requestSender
                 var batchFetcher: GroupUsersQueueBatchFetcher!
-                waitUntil(timeout: 200)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:

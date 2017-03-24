@@ -38,7 +38,7 @@ class GalleriesResponseHandlerSpec: QuickSpec
             {
                 let request = GalleriesRequest(page: 1, perPage: 10, sort: .popular, userId: nil, query: nil)
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 25)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -62,7 +62,7 @@ class GalleriesResponseHandlerSpec: QuickSpec
             {
                 let request = GalleriesRequest(galleryId: "NrLLiMVC")
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 25)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -89,7 +89,7 @@ class GalleriesResponseHandlerSpec: QuickSpec
                 
                 let request = GalleriesRequest(creationId: identifier, page: nil, perPage: nil, sort: nil)
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 25)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -115,7 +115,7 @@ class GalleriesResponseHandlerSpec: QuickSpec
                 let request = GalleriesRequest(page: 0, perPage: 20, sort: .recent, userId: nil, query: nil)
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: 20)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     _ = sender.send(request, withResponseHandler:GalleriesResponseHandler()

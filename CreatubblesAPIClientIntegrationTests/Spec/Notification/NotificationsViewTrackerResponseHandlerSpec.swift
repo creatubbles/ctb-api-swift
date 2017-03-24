@@ -41,7 +41,7 @@ class NotificationsViewTrackerResponseHandlerSpec: QuickSpec
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.send(request, withResponseHandler:NotificationsViewTrackerResponseHandler()
@@ -58,7 +58,7 @@ class NotificationsViewTrackerResponseHandlerSpec: QuickSpec
                 let request = NotificationsViewTrackerRequest()
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:

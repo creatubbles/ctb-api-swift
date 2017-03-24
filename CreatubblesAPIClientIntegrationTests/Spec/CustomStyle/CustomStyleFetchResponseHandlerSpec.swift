@@ -47,7 +47,7 @@ class CustomStyleFetchResponseHandlerSpec: QuickSpec
                 let request = CustomStyleFetchRequest(userIdentifier: identifier)
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 30)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     sender.authenticate()

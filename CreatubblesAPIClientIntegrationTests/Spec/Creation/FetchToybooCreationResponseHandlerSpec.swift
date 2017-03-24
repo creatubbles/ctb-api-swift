@@ -40,7 +40,7 @@ class FetchToybooCreationResponseHandlerSpec: QuickSpec
                 else { return }
                 let request = FetchToybooCreationRequest(creationId: creationId)
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 20)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -65,7 +65,7 @@ class FetchToybooCreationResponseHandlerSpec: QuickSpec
                     else { return }
                 let request = FetchToybooCreationRequest(creationId: creationId)
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 20)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     sender.logout()

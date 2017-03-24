@@ -46,7 +46,7 @@ class RequestSenderSpec: QuickSpec
             {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -63,7 +63,7 @@ class RequestSenderSpec: QuickSpec
                 guard TestConfiguration.mode == .useAPI
                 else { return }
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login("wrongEmail@wrong.com", password: "wrong password", completion:

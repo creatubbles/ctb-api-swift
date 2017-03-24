@@ -39,7 +39,7 @@ class ContentSearchResponseHandlerSpec: QuickSpec
                 let request = ContentSearchRequest(query: "plant", page: 1, perPage: 20)
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -66,7 +66,7 @@ class ContentSearchResponseHandlerSpec: QuickSpec
             let sender = TestComponentsFactory.requestSender
             
             sender.logout()
-            waitUntil(timeout: 10)
+            waitUntil(timeout: TestConfiguration.timeoutShort)
             {
                 done in
                 sender.send(request, withResponseHandler: ContentSearchResponseHandler()

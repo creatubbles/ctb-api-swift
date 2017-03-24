@@ -39,7 +39,7 @@ class ContentResponseHandlerSpec: QuickSpec
                 let request = ContentRequest(type: .Recent, page: 1, perPage: 20, userId: nil)
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -64,7 +64,7 @@ class ContentResponseHandlerSpec: QuickSpec
                 let request = ContentRequest(type: .Trending, page: 1, perPage: 20, userId: nil)
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -89,7 +89,7 @@ class ContentResponseHandlerSpec: QuickSpec
                 let request = ContentRequest(type: .Connected, page: 1, perPage: 20, userId: nil)
                 let sender = TestComponentsFactory.requestSender
                 
-                waitUntil(timeout: 20)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -115,7 +115,7 @@ class ContentResponseHandlerSpec: QuickSpec
             let request = ContentRequest(type: .BubbledContents, page: 1, perPage: 20, userId: TestConfiguration.testUserIdentifier)
             let sender = TestComponentsFactory.requestSender
             
-            waitUntil(timeout: 20)
+            waitUntil(timeout: TestConfiguration.timeoutMedium)
             {
                 done in
                 sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -139,7 +139,7 @@ class ContentResponseHandlerSpec: QuickSpec
             let request = ContentRequest(type: .ContentsByAUser, page: 1, perPage: 20, userId: TestConfiguration.testUserIdentifier)
             let sender = TestComponentsFactory.requestSender
             
-            waitUntil(timeout: 20)
+            waitUntil(timeout: TestConfiguration.timeoutMedium)
             {
                 done in
                 sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -163,7 +163,7 @@ class ContentResponseHandlerSpec: QuickSpec
             let request = ContentRequest(type: .Followed, page: 1, perPage: 20, userId: nil)
             let sender = TestComponentsFactory.requestSender
             
-            waitUntil(timeout: 20)
+            waitUntil(timeout: TestConfiguration.timeoutMedium)
             {
                 done in
                 sender.login(TestConfiguration.username, password: TestConfiguration.password)

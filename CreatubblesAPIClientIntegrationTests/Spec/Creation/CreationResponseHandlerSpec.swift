@@ -40,7 +40,7 @@ class CreationResponseHandlerSpec: QuickSpec
             {
                 let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .recent, keyword: nil, onlyPublic: true)
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 15)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -67,7 +67,7 @@ class CreationResponseHandlerSpec: QuickSpec
                 
                 let request = FetchCreationsRequest(page: 1, perPage: 10, recommendedCreationId: creationId)
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 15)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -94,7 +94,7 @@ class CreationResponseHandlerSpec: QuickSpec
                 
                 let request = FetchCreationsRequest(page: 1, perPage: 10, recommendedUserId: userId)
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -121,7 +121,7 @@ class CreationResponseHandlerSpec: QuickSpec
                 
                 let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .recent, keyword: nil, partnerApplicationId: partnerApplicationId, onlyPublic: true)
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -149,7 +149,7 @@ class CreationResponseHandlerSpec: QuickSpec
                 
                 let request = FetchCreationsRequest(creationId: creationId)
                 let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)

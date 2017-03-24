@@ -38,7 +38,7 @@ class APIClientSpec: QuickSpec
             {
                 let client = APIClient(settings: TestConfiguration.settings)
                 client.logout()
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -58,7 +58,7 @@ class APIClientSpec: QuickSpec
             {
                 let client = APIClient(settings: TestConfiguration.settings)
                 client.logout()
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     client.login(username: "WrongUsername", password: "WrongPassword", completion:
@@ -77,7 +77,7 @@ class APIClientSpec: QuickSpec
             it("Should fetch current user")
             {
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -102,7 +102,7 @@ class APIClientSpec: QuickSpec
                 
                 let identifier = TestConfiguration.testUserIdentifier!
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -128,7 +128,7 @@ class APIClientSpec: QuickSpec
                 
                 let identifier = TestConfiguration.testUserIdentifier!
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 20)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -154,7 +154,7 @@ class APIClientSpec: QuickSpec
                 
                 let identifier = TestConfiguration.testUserIdentifier!
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 20)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -180,7 +180,7 @@ class APIClientSpec: QuickSpec
 //                let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(Double: 1000))))
 //                let data = NewCreatorData(name: "CTBAPITestCreator_"+timestamp, displayName: "CTBAPITestCreator_"+timestamp, birthYear: 2016, birthMonth: 1, countryCode: "UK", gender: .Male)
 //                let client = CreatubblesAPIClient(settings: TestConfiguration.settings)
-//                waitUntil(timeout: 10)
+//                waitUntil(timeout: TestConfiguration.timeoutShort)
 //                {
 //                    done in
 //                    client.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -213,7 +213,7 @@ class APIClientSpec: QuickSpec
                 
                 let identifier = TestConfiguration.testGalleryIdentifier!
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -239,7 +239,7 @@ class APIClientSpec: QuickSpec
                 
                 let identifier = TestConfiguration.testUserIdentifier!
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -263,7 +263,7 @@ class APIClientSpec: QuickSpec
             it("Should fetch some public popular galleries")
             {
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -289,7 +289,7 @@ class APIClientSpec: QuickSpec
                 let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(dividingBy: 1000))))
                 let data = NewGalleryData(name: "TestGallery_\(timestamp)", galleryDescription: "TestDescription_\(timestamp)", openForAll: false, ownerId: nil)
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -317,7 +317,7 @@ class APIClientSpec: QuickSpec
                 
                 let identifier = TestConfiguration.testCreationIdentifier!
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
@@ -341,7 +341,7 @@ class APIClientSpec: QuickSpec
             it("Should fetch all finished UploadSessions")
             {
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: 20)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:

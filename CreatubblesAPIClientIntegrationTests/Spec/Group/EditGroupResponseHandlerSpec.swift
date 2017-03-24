@@ -44,7 +44,7 @@ class EditGroupResponseHandlerSpec: QuickSpec
                 data.name = name
                 
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -62,34 +62,34 @@ class EditGroupResponseHandlerSpec: QuickSpec
                 }
             }
             //TODO: uncomment/remove when status is determined on api - for now creating with creation's id as avatar does not work
-//            it("Should edit group when name and avatar_id are passed")
-//            {
-//                guard let groupIdentifier = TestConfiguration.testGroupIdentifier,
-//                      let creationIdentifier = TestConfiguration.testCreationIdentifier
-//                else { return }
-//                
-//                let data = EditGroupData()
-//                data.name =  TestConfiguration.testEditGroupName
-//                data.avatarCreationIdentifier = creationIdentifier
-//                
-//                let sender = TestComponentsFactory.requestSender
-//                waitUntil(timeout: 10)
-//                {
-//                    done in
-//                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-//                    {
-//                        (error: Error?) -> Void in
-//                        expect(error).to(beNil())
-//                        _ = sender.send(EditGroupRequest(identifier: groupIdentifier, data:data), withResponseHandler: EditGroupResponseHandler()
-//                        {
-//                            (error) -> (Void) in
-//                            expect(error).to(beNil())
-//                            sender.logout()
-//                            done()
-//                        })
-//                    }
-//                }
-//            }
+            xit("Should edit group when name and avatar_id are passed")
+            {
+                guard let groupIdentifier = TestConfiguration.testGroupIdentifier,
+                      let creationIdentifier = TestConfiguration.testCreationIdentifier
+                else { return }
+                
+                let data = EditGroupData()
+                data.name =  TestConfiguration.testEditGroupName
+                data.avatarCreationIdentifier = creationIdentifier
+                
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: TestConfiguration.timeoutShort)
+                {
+                    done in
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
+                        (error: Error?) -> Void in
+                        expect(error).to(beNil())
+                        _ = sender.send(EditGroupRequest(identifier: groupIdentifier, data:data), withResponseHandler: EditGroupResponseHandler()
+                        {
+                            (error) -> (Void) in
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
         }
     }
 }

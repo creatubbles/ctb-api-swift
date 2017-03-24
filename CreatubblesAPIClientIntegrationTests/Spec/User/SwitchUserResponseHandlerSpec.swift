@@ -40,7 +40,7 @@ class SwitchUserResponseHandlerSpec: QuickSpec {
                       let studentIdentifier = TestConfiguration.studentIdentifier
                 else { return }
                 
-                waitUntil(timeout: 10) { done in
+                waitUntil(timeout: TestConfiguration.timeoutShort) { done in
                     sender.login(teacherUsername, password: teacherPassword) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
@@ -62,7 +62,7 @@ class SwitchUserResponseHandlerSpec: QuickSpec {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 
-                waitUntil(timeout: 30)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     sender.authenticate()

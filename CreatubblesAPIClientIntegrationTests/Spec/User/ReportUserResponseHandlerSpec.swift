@@ -38,7 +38,7 @@ class ReportUserResponseHandlerSpec: QuickSpec {
                 
                 guard let userIdentifier = TestConfiguration.testUserIdentifier else { return }
                 
-                waitUntil(timeout: 10) { done in
+                waitUntil(timeout: TestConfiguration.timeoutShort) { done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())

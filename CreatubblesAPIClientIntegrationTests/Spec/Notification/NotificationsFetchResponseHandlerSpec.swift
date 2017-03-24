@@ -40,7 +40,7 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     _ = sender.send(request, withResponseHandler:NotificationsFetchResponseHandler()
@@ -59,7 +59,7 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec
             {
                 let request = NotificationsFetchRequest()
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)

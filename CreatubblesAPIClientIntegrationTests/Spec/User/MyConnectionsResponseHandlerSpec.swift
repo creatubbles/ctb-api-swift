@@ -37,7 +37,7 @@ class MyConnectionsResponseHandlerSpec: QuickSpec
             it("Should return correct value after login")
             {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -61,7 +61,7 @@ class MyConnectionsResponseHandlerSpec: QuickSpec
             {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.send(MyConnectionsRequest(), withResponseHandler:
@@ -84,7 +84,7 @@ class MyConnectionsResponseHandlerSpec: QuickSpec
                 let page = 1
                 let perPage = 10
                 let userId = TestConfiguration.testUserIdentifier
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.send(MyConnectionsRequest(page: page, perPage: perPage, userId: userId), withResponseHandler:
@@ -106,7 +106,7 @@ class MyConnectionsResponseHandlerSpec: QuickSpec
                 let perPage = 10
                 let userId = TestConfiguration.testUserIdentifier
                 
-                waitUntil(timeout: 10)
+                waitUntil(timeout: TestConfiguration.timeoutShort)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)

@@ -42,7 +42,7 @@ class BubbleResponseHandlerSpec: QuickSpec
                 
                 let requestSender = TestComponentsFactory.requestSender
                 requestSender.logout()
-                waitUntil(timeout: 20)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     requestSender.send(request, withResponseHandler: NewBubbleResponseHandler()
@@ -64,7 +64,7 @@ class BubbleResponseHandlerSpec: QuickSpec
                 let request = NewBubbleRequest(data: data)
                 
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 20)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -93,7 +93,7 @@ class BubbleResponseHandlerSpec: QuickSpec
                 
                 let requestSender = TestComponentsFactory.requestSender
                 requestSender.logout()
-                waitUntil(timeout: 100)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     requestSender.send(request, withResponseHandler: UpdateBubbleResponseHandler()
@@ -114,7 +114,7 @@ class BubbleResponseHandlerSpec: QuickSpec
                 let request = UpdateBubbleRequest(data:data)
                 
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 100)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
@@ -141,7 +141,7 @@ class BubbleResponseHandlerSpec: QuickSpec
                 guard TestConfiguration.testUserIdentifier != nil else { return }
                 
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: 100)
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
                 {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password)
