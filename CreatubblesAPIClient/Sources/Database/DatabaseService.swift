@@ -269,6 +269,7 @@ class DatabaseService: NSObject
         newCreationDataEntity.reflectionText = newCreationData.reflectionText
         newCreationDataEntity.reflectionVideoUrl = newCreationData.reflectionVideoUrl
         newCreationDataEntity.dataTypeRaw.value = newCreationData.dataType.rawValue
+        newCreationDataEntity.storageTypeRaw.value = newCreationData.storageType.rawValue
         newCreationDataEntity.uploadExtensionRaw = newCreationData.uploadExtension.stringValue
         
         newCreationData.creatorIds?.forEach()
