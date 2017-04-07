@@ -61,6 +61,14 @@ class NewCreationDataEntity: Object
         }
     }
     
+    var storageTypeRaw = RealmOptional<Int>()
+    
+    var storageType: CreationDataStorageType {
+        get {
+            return CreationDataStorageType(rawValue: storageTypeRaw.value!)!
+        }
+    }
+    
     var uploadExtension: UploadExtension
     {
         return UploadExtension.fromString(uploadExtensionRaw!)!

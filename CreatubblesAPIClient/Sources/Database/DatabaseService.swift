@@ -34,7 +34,26 @@ class DatabaseService: NSObject
     {
         do
         {
-            let r = try Realm()
+            var config = Realm.Configuration.defaultConfiguration
+            
+            let originalDefaultRealmURL = config.fileURL
+            
+            let appGroupURL: URL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroupConfigurator.identifier)!
+            let realmURL = appGroupURL.appendingPathComponent("db.realm")
+            
+            if let defaultURL = originalDefaultRealmURL, FileManager.default.fileExists(atPath: defaultURL.path) && !FileManager.default.fileExists(atPath: realmURL.path) {
+                
+                do {
+                    try FileManager.default.moveItem(atPath: originalDefaultRealmURL!.path, toPath: realmURL.path)
+                }
+                catch let error as NSError {
+                    print(error)
+                }
+            }
+            
+            config.fileURL = realmURL
+            let r = try Realm(configuration: config)
+            
             return r
         }
         catch let realmError
@@ -42,7 +61,7 @@ class DatabaseService: NSObject
             Logger.log(.error, "Realm error error: \(realmError)")
             do
             {
-                let url = RLMRealmConfiguration.default().fileURL
+                let url = Realm.Configuration.defaultConfiguration.fileURL
                 try FileManager.default.removeItem(at: url!)
             }
             catch let fileManagerError

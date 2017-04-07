@@ -77,7 +77,12 @@ class CreationUploadSession: NSObject, Cancelable
         self.requestSender = requestSender
         self.creationData = data
         self.imageFileName = localIdentifier+"_creation"
-        self.relativeFilePath = "creations/"+imageFileName
+        
+        if let fileURL = data.url, data.storageType == .appGroupDirectory {
+            self.relativeFilePath = fileURL.lastPathComponent
+        } else {
+            self.relativeFilePath = "creations/"+imageFileName
+        }
     }
     
     init(creationUploadSessionEntity: CreationUploadSessionEntity, requestSender: RequestSender)
@@ -482,6 +487,11 @@ class CreationUploadSession: NSObject, Cancelable
         return paths.first!
     }
     
+    fileprivate class func appGroupDirectory() -> String
+    {
+        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroupConfigurator.identifier)!.path
+    }
+    
     fileprivate func storeCreation(_ completion: ((Error?) -> Void) )
     {
         var data: Data!
@@ -490,7 +500,12 @@ class CreationUploadSession: NSObject, Cancelable
         else if let image   = self.creationData.image { data = UIImageJPEGRepresentation(image, 1)! }
         else if let url     = self.creationData.url   { data = try? Data(contentsOf: url) }
         
-        let url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
+        var url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
+        
+        if creationData.storageType == .appGroupDirectory {
+            url = URL(fileURLWithPath: (CreationUploadSession.appGroupDirectory()+"/"+relativeFilePath))
+        }
+        
         let fileManager = FileManager.default
         
         if !fileManager.fileExists(atPath: url.path.stringByDeletingLastPathComponent)
