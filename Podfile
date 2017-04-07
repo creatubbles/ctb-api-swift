@@ -1,6 +1,11 @@
 platform :ios, '8.0'
 use_frameworks!
 
+def test_pods
+    pod 'Quick', '~> 0.10.0'
+    pod 'Nimble', '~> 5.0.0'
+end
+
 target 'CreatubblesAPIClient' do
 
 pod 'ObjectMapper', '~> 2.0'
@@ -10,10 +15,12 @@ pod 'KeychainAccess', '~> 3.0.1'
 
 end
 
-target 'CreatubblesAPIClientTests' do
+target 'CreatubblesAPIClientUnitTests' do
+    test_pods
+end
 
-pod 'Quick', '~> 0.10.0'
-pod 'Nimble', '~> 5.0.0'
+target 'CreatubblesAPIClientIntegrationTests' do
+    test_pods
 end
 
 post_install do |installer|
