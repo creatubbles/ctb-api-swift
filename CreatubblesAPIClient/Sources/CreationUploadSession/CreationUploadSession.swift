@@ -99,7 +99,10 @@ class CreationUploadSession: NSObject, Cancelable
             self.creationUpload = CreationUpload(creationUploadEntity: creationUploadEntity)
         }
         
-        let url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
+        var url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
+        if creationUploadSessionEntity.creationDataEntity!.storageType == .appGroupDirectory {
+            url = URL(fileURLWithPath: (CreationUploadSession.appGroupDirectory()+"/"+relativeFilePath))
+        }
         
         self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, url: url)
         
