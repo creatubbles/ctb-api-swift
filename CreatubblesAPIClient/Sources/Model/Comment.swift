@@ -75,7 +75,6 @@ open class Comment: NSObject, Identifiable
         commentedGallery = MappingUtils.objectFromMapper(dataMapper, relationship: commentedGalleryRelationship, type: Gallery.self)
         commentedUser = MappingUtils.objectFromMapper(dataMapper, relationship: commentedUserRelationship, type: User.self)
         
-        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
-        
+        abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)        
     }
 }

@@ -115,8 +115,8 @@ open class User: NSObject, Identifiable
         homeSchooling = mapper.homeSchooling!
         signedUpAsInstructor = mapper.signedUpAsInstructor!
         
-        isBubbled = metadata?.bubbledUserIdentifiers.contains(mapper.identifier!) ?? false
-        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
+        isBubbled = MappingUtils.bubbledStateFrom(metadata: metadata, forObjectWithIdentifier: identifier)
+        abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
     
         isFollowed = metadata?.userFollowedUsersIdentifiers.contains(mapper.identifier!) ?? false
         

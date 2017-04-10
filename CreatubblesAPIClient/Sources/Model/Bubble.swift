@@ -78,7 +78,7 @@ open class Bubble: NSObject, Identifiable
         bubbledCreation = MappingUtils.objectFromMapper(dataMapper, relationship: bubbledCreationRelationship, type: Creation.self)
         bubbledGallery = MappingUtils.objectFromMapper(dataMapper, relationship: bubbledGalleryRelationship, type: Gallery.self)
         bubbledUser = MappingUtils.objectFromMapper(dataMapper, relationship: bubbledUserRelationship, type: User.self)
-        
-        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
+                
+        abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
     }
 }

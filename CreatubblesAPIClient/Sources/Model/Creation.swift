@@ -136,14 +136,13 @@ open class Creation: NSObject, Identifiable
         
         owner = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)
         
-        isBubbled = metadata?.bubbledCreationIdentifiers.contains(mapper.identifier!) ?? false
-        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
+        isBubbled = MappingUtils.bubbledStateFrom(metadata: metadata, forObjectWithIdentifier: identifier)
+        abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
         
         if  let dataMapper = dataMapper,
             let relationships = creatorRelationships
         {
-            let creators = relationships.map( { dataMapper.objectWithIdentifier($0.identifier, type: User.self) })
-            self.creators = creators.flatMap({ $0 })
+            creators = relationships.flatMap( { dataMapper.objectWithIdentifier($0.identifier, type: User.self) })
         }
         else
         {

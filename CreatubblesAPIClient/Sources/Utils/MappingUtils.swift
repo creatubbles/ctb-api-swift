@@ -72,4 +72,17 @@ public class MappingUtils
         let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
         return ( includedResponse == nil ) ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
     }
+    
+    public class func abilitiesFrom(metadata: Metadata?, forObjectWithIdentifier identifier: String) -> Array<Ability>
+    {
+        guard let metadata = metadata
+        else { return [] }
+        
+        return metadata.abilities.filter({ $0.resourceIdentifier == identifier })
+    }
+    
+    public class func bubbledStateFrom(metadata: Metadata?, forObjectWithIdentifier identifier: String) -> Bool
+    {
+        return metadata?.bubbledCreationIdentifiers.contains(identifier) ?? false
+    }
 }
