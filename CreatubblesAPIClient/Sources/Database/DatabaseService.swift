@@ -34,20 +34,22 @@ class DatabaseService: NSObject
     {
         do
         {
-            var config = Realm.Configuration.defaultConfiguration
+            // The app group may be not accessible for testing purposes. That's why we added a failover below.
+            guard let appGroupURL: URL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroupConfigurator.identifier) else {
+                return try Realm()
+            }
             
-            let originalDefaultRealmURL = config.fileURL
-            
-            let appGroupURL: URL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroupConfigurator.identifier)!
             let realmURL = appGroupURL.appendingPathComponent("db.realm")
             
+            var config = Realm.Configuration.defaultConfiguration
+            let originalDefaultRealmURL = config.fileURL
             if let defaultURL = originalDefaultRealmURL, FileManager.default.fileExists(atPath: defaultURL.path) && !FileManager.default.fileExists(atPath: realmURL.path) {
                 
                 do {
                     try FileManager.default.moveItem(atPath: originalDefaultRealmURL!.path, toPath: realmURL.path)
                 }
                 catch let error as NSError {
-                    print(error)
+                    Logger.log(.error, "Realm migration error: \(error)")
                 }
             }
             
