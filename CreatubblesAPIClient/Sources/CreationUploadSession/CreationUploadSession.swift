@@ -100,8 +100,8 @@ class CreationUploadSession: NSObject, Cancelable
         }
         
         var url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
-        if creationUploadSessionEntity.creationDataEntity!.storageType == .appGroupDirectory {
-            url = URL(fileURLWithPath: (CreationUploadSession.appGroupDirectory()+"/"+relativeFilePath))
+        if let appGroupDirectory = CreationUploadSession.appGroupDirectory(), creationUploadSessionEntity.creationDataEntity!.storageType == .appGroupDirectory {
+            url = URL(fileURLWithPath: (appGroupDirectory+"/"+relativeFilePath))
         }
         
         self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, url: url)
@@ -490,9 +490,9 @@ class CreationUploadSession: NSObject, Cancelable
         return paths.first!
     }
     
-    fileprivate class func appGroupDirectory() -> String
+    fileprivate class func appGroupDirectory() -> String?
     {
-        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroupConfigurator.identifier)!.path
+        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroupConfigurator.identifier)?.path
     }
     
     fileprivate func storeCreation(_ completion: ((Error?) -> Void) )
@@ -505,8 +505,8 @@ class CreationUploadSession: NSObject, Cancelable
         
         var url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
         
-        if creationData.storageType == .appGroupDirectory {
-            url = URL(fileURLWithPath: (CreationUploadSession.appGroupDirectory()+"/"+relativeFilePath))
+        if let appGroupDirectory = CreationUploadSession.appGroupDirectory(), creationData.storageType == .appGroupDirectory {
+            url = URL(fileURLWithPath: (appGroupDirectory+"/"+relativeFilePath))
         }
         
         let fileManager = FileManager.default
