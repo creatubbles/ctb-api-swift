@@ -53,8 +53,9 @@ open class UserAccountDetails: NSObject
     open let currentSignInAt: Date?
     open let createdAt: Date
     open let updatedAt: Date
+    open let abilities: Array<Ability>
     
-    public init(mapper: UserAccountDetailsMapper)
+    public init(mapper: UserAccountDetailsMapper, metadata: Metadata?)
     {
         identifier = mapper.identifier!
         username  = mapper.username!
@@ -81,5 +82,6 @@ open class UserAccountDetails: NSObject
         currentSignInAt = mapper.currentSignInAt as Date?
         createdAt = mapper.createdAt! as Date
         updatedAt = mapper.updatedAt! as Date
+        abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
     }
 }

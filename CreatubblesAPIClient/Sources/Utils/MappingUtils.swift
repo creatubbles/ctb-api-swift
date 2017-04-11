@@ -84,7 +84,7 @@ public class MappingUtils
         else { return [] }
         let abilities = metadata.abilities.filter({ $0.resourceIdentifier == identifier })
         let allAbilities = metadata.abilities.filter({ $0.identifier.hasPrefix("all:") })
-                
+        
         return abilities + allAbilities
     }
 }
