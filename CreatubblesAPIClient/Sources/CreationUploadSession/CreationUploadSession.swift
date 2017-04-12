@@ -160,7 +160,7 @@ class CreationUploadSession: NSObject, Cancelable
                                             Logger.log(.error, "Upload \(weakSelf.localIdentifier) finished with error: \(error)")
                                             weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
                                         }
-                                        else if weakSelf.state == .confirmedOnServer
+                                        else if weakSelf.state == .confirmedOnServer || weakSelf.state == .completed
                                         {
                                             Logger.log(.debug, "Upload \(weakSelf.localIdentifier) finished successfully")
                                             weakSelf.state = .completed
