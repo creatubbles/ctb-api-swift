@@ -1,6 +1,6 @@
 //
 //  ConcurrentOperation.swift
-//  Creatubbles Explorer
+//  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
 //
