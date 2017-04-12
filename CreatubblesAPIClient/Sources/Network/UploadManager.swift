@@ -31,6 +31,7 @@ class UploadManager: NSObject {
         var configuration = URLSessionConfiguration.default
         if let identifier = self.settings.backgroundSessionConfigurationIdentifier {
             configuration = URLSessionConfiguration.background(withIdentifier: identifier)
+            configuration.sharedContainerIdentifier = AppGroupConfigurator.identifier
         }
         
         configuration.httpAdditionalHeaders = HTTPHeadersBuilder.defaultHTTPHeaders

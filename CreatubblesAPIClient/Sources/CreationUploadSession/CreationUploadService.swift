@@ -73,7 +73,17 @@ class CreationUploadService: CreationUploadSessionDelegate
     
     func startAllNotFinishedUploadSessions(_ completion: CreationClosure?)
     {
-        uploadSessions.forEach({ $0.start(completion) })
+        // We have to check if there are some new sessions that should consider
+        var newUploadSessions: [CreationUploadSession] = []
+        databaseDAO.fetchAllCreationUploadSessions(requestSender).forEach { (uploadSession) in
+            if uploadSessions.filter({$0.localIdentifier == uploadSession.localIdentifier}).isEmpty {
+                uploadSession.delegate = self
+                newUploadSessions.append(uploadSession)
+            }
+        }
+            
+        uploadSessions.append(contentsOf: newUploadSessions)
+        uploadSessions.filter({ !$0.isActive }).forEach({ $0.start(completion) })
     }
     
     func startUploadSession(sessionIdentifier sessionId: String)

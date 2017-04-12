@@ -31,6 +31,12 @@ enum CreationDataType: Int
     case data = 2
 }
 
+public enum CreationDataStorageType: Int
+{
+    case documentsDirectory = 0
+    case appGroupDirectory = 1
+}
+
 @objc
 open class NewCreationData: NSObject
 {
@@ -51,24 +57,28 @@ open class NewCreationData: NSObject
     open var creationMonth: Int? = nil
     
     let dataType: CreationDataType
+    let storageType: CreationDataStorageType
     
     public init(data: Data, uploadExtension: UploadExtension)
     {
         self.data = data
         self.dataType = .data
         self.uploadExtension = uploadExtension
+        self.storageType = .documentsDirectory
     }
     public init(image: UIImage, uploadExtension: UploadExtension)
     {
         self.image = image
         self.dataType = .image
         self.uploadExtension = uploadExtension
+        self.storageType = .documentsDirectory
     }
-    public init(url: URL, uploadExtension: UploadExtension)
+    public init(url: URL, uploadExtension: UploadExtension, storageType: CreationDataStorageType = .documentsDirectory)
     {
         self.url = url
         self.dataType = .url
         self.uploadExtension = uploadExtension
+        self.storageType = storageType
     }
     
     init(creationDataEntity: NewCreationDataEntity, url: URL)
@@ -83,6 +93,7 @@ open class NewCreationData: NSObject
         self.creationMonth = creationDataEntity.creationMonth.value
         self.creationYear = creationDataEntity.creationYear.value
         self.dataType = creationDataEntity.dataType
+        self.storageType = creationDataEntity.storageType
         
         self.creatorIds = creationDataEntity.creatorIds.flatMap({ $0.creatorIdString })
         self.galleryIds = creationDataEntity.galleryIds.flatMap({ $0.galleryIdString })

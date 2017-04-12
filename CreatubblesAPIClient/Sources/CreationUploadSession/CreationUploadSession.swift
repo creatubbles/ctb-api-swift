@@ -77,7 +77,12 @@ class CreationUploadSession: NSObject, Cancelable
         self.requestSender = requestSender
         self.creationData = data
         self.imageFileName = localIdentifier+"_creation"
-        self.relativeFilePath = "creations/"+imageFileName
+        
+        if let fileURL = data.url, data.storageType == .appGroupDirectory {
+            self.relativeFilePath = fileURL.lastPathComponent
+        } else {
+            self.relativeFilePath = "creations/"+imageFileName
+        }
     }
     
     init(creationUploadSessionEntity: CreationUploadSessionEntity, requestSender: RequestSender)
@@ -94,7 +99,10 @@ class CreationUploadSession: NSObject, Cancelable
             self.creationUpload = CreationUpload(creationUploadEntity: creationUploadEntity)
         }
         
-        let url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
+        var url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
+        if let appGroupDirectory = CreationUploadSession.appGroupDirectory(), creationUploadSessionEntity.creationDataEntity!.storageType == .appGroupDirectory {
+            url = URL(fileURLWithPath: (appGroupDirectory+"/"+relativeFilePath))
+        }
         
         self.creationData = NewCreationData(creationDataEntity: creationUploadSessionEntity.creationDataEntity!, url: url)
         
@@ -152,7 +160,7 @@ class CreationUploadSession: NSObject, Cancelable
                                             Logger.log(.error, "Upload \(weakSelf.localIdentifier) finished with error: \(error)")
                                             weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
                                         }
-                                        else if weakSelf.state == .confirmedOnServer
+                                        else if weakSelf.state == .confirmedOnServer || weakSelf.state == .completed
                                         {
                                             Logger.log(.debug, "Upload \(weakSelf.localIdentifier) finished successfully")
                                             weakSelf.state = .completed
@@ -482,6 +490,11 @@ class CreationUploadSession: NSObject, Cancelable
         return paths.first!
     }
     
+    fileprivate class func appGroupDirectory() -> String?
+    {
+        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroupConfigurator.identifier)?.path
+    }
+    
     fileprivate func storeCreation(_ completion: ((Error?) -> Void) )
     {
         var data: Data!
@@ -490,7 +503,12 @@ class CreationUploadSession: NSObject, Cancelable
         else if let image   = self.creationData.image { data = UIImageJPEGRepresentation(image, 1)! }
         else if let url     = self.creationData.url   { data = try? Data(contentsOf: url) }
         
-        let url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
+        var url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
+        
+        if let appGroupDirectory = CreationUploadSession.appGroupDirectory(), creationData.storageType == .appGroupDirectory {
+            url = URL(fileURLWithPath: (appGroupDirectory+"/"+relativeFilePath))
+        }
+        
         let fileManager = FileManager.default
         
         if !fileManager.fileExists(atPath: url.path.stringByDeletingLastPathComponent)

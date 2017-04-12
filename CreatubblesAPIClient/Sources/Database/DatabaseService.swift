@@ -34,7 +34,28 @@ class DatabaseService: NSObject
     {
         do
         {
-            let r = try Realm()
+            // The app group may be not accessible for testing purposes. That's why we added a failover below.
+            guard let appGroupURL: URL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroupConfigurator.identifier) else {
+                return try Realm()
+            }
+            
+            let realmURL = appGroupURL.appendingPathComponent("db.realm")
+            
+            var config = Realm.Configuration.defaultConfiguration
+            let originalDefaultRealmURL = config.fileURL
+            if let defaultURL = originalDefaultRealmURL, FileManager.default.fileExists(atPath: defaultURL.path) && !FileManager.default.fileExists(atPath: realmURL.path) {
+                
+                do {
+                    try FileManager.default.moveItem(atPath: originalDefaultRealmURL!.path, toPath: realmURL.path)
+                }
+                catch let error as NSError {
+                    Logger.log(.error, "Realm migration error: \(error)")
+                }
+            }
+            
+            config.fileURL = realmURL
+            let r = try Realm(configuration: config)
+            
             return r
         }
         catch let realmError
@@ -42,7 +63,7 @@ class DatabaseService: NSObject
             Logger.log(.error, "Realm error error: \(realmError)")
             do
             {
-                let url = RLMRealmConfiguration.default().fileURL
+                let url = Realm.Configuration.defaultConfiguration.fileURL
                 try FileManager.default.removeItem(at: url!)
             }
             catch let fileManagerError
@@ -250,6 +271,7 @@ class DatabaseService: NSObject
         newCreationDataEntity.reflectionText = newCreationData.reflectionText
         newCreationDataEntity.reflectionVideoUrl = newCreationData.reflectionVideoUrl
         newCreationDataEntity.dataTypeRaw.value = newCreationData.dataType.rawValue
+        newCreationDataEntity.storageTypeRaw.value = newCreationData.storageType.rawValue
         newCreationDataEntity.uploadExtensionRaw = newCreationData.uploadExtension.stringValue
         
         newCreationData.creatorIds?.forEach()
