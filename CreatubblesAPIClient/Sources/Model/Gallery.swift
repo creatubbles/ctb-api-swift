@@ -83,10 +83,9 @@ open class Gallery: NSObject, Identifiable
         bannerMatrixViewUrl = mapper.bannerMatrixViewUrl
         bannerMatrixViewRetinaUrl = mapper.bannerMatrixViewRetinaUrl
         bannerExploreMobileUrl = mapper.bannerExploreMobileUrl
-        
-        
-        isBubbled = metadata?.bubbledGalleryIdentifiers.contains(mapper.identifier!) ?? false
-        abilities = metadata?.abilities.filter({ $0.resourceIdentifier == mapper.identifier! }) ?? []
+                
+        isBubbled = MappingUtils.bubbledStateFrom(metadata: metadata, forObjectWithIdentifier: identifier)
+        abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
         
         ownerRelationship = mapper.parseOwnerRelationship()
         owner = MappingUtils.objectFromMapper(dataMapper, relationship: ownerRelationship, type: User.self)                

@@ -54,7 +54,7 @@ open class Ability: NSObject
     open let identifier: String
     open let type: String
     open let resourceType: String
-    open let resourceIdentifier: String
+    open let resourceIdentifier: String?
     open let operation: AbilityOperation
     open let permission: Bool
     
@@ -63,7 +63,7 @@ open class Ability: NSObject
         identifier = mapper.identifier!
         type = mapper.type!
         resourceType = mapper.resourceType!
-        resourceIdentifier = mapper.resourceIdentifier!
+        resourceIdentifier = mapper.resourceIdentifier
         operation = Ability.parseOperation(mapper.operation!)
         permission = mapper.permission!
     }
