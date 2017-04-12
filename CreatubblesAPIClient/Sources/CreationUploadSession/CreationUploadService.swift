@@ -76,7 +76,7 @@ class CreationUploadService: CreationUploadSessionDelegate
         // We have to check if there are some new sessions that should consider
         var newUploadSessions: [CreationUploadSession] = []
         databaseDAO.fetchAllCreationUploadSessions(requestSender).forEach { (uploadSession) in
-            if uploadSessions.filter({$0.localIdentifier == uploadSession.localIdentifier}).count == 0 {
+            if uploadSessions.filter({$0.localIdentifier == uploadSession.localIdentifier}).isEmpty {
                 uploadSession.delegate = self
                 newUploadSessions.append(uploadSession)
             }
