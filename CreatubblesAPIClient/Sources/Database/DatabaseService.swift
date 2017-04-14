@@ -30,40 +30,49 @@ class DatabaseService: NSObject
 {
     let realm = DatabaseService.prepareRealm()
     
+    fileprivate class func prepareRealmConfig() -> Realm.Configuration
+    {
+        // The app group may be not accessible for testing purposes. That's why we added a failover below.
+        guard let appGroupURL: URL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroupConfigurator.identifier)
+            else
+        {
+            return Realm.Configuration.defaultConfiguration
+        }
+        
+        let realmURL = appGroupURL.appendingPathComponent("db.realm")
+        var configuration = Realm.Configuration.defaultConfiguration
+        let originalDefaultRealmURL = configuration.fileURL
+        configuration.fileURL = realmURL
+        
+        if let defaultURL = originalDefaultRealmURL, FileManager.default.fileExists(atPath: defaultURL.path) && !FileManager.default.fileExists(atPath: realmURL.path)
+        {
+            do
+            {
+                try FileManager.default.moveItem(atPath: defaultURL.path, toPath: realmURL.path)
+            }
+            catch let error as NSError
+            {
+                Logger.log(.error, "Realm migration error: \(error)")
+            }
+        }
+        
+        return configuration
+    }
+    
     fileprivate class func prepareRealm() -> Realm
     {
+        let realmConfiguration = prepareRealmConfig()
         do
         {
-            // The app group may be not accessible for testing purposes. That's why we added a failover below.
-            guard let appGroupURL: URL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroupConfigurator.identifier) else {
-                return try Realm()
-            }
             
-            let realmURL = appGroupURL.appendingPathComponent("db.realm")
-            
-            var config = Realm.Configuration.defaultConfiguration
-            let originalDefaultRealmURL = config.fileURL
-            if let defaultURL = originalDefaultRealmURL, FileManager.default.fileExists(atPath: defaultURL.path) && !FileManager.default.fileExists(atPath: realmURL.path) {
-                
-                do {
-                    try FileManager.default.moveItem(atPath: originalDefaultRealmURL!.path, toPath: realmURL.path)
-                }
-                catch let error as NSError {
-                    Logger.log(.error, "Realm migration error: \(error)")
-                }
-            }
-            
-            config.fileURL = realmURL
-            let r = try Realm(configuration: config)
-            
-            return r
+            return try Realm(configuration: realmConfiguration)
         }
         catch let realmError
         {
             Logger.log(.error, "Realm error error: \(realmError)")
             do
             {
-                let url = Realm.Configuration.defaultConfiguration.fileURL
+                let url = realmConfiguration.fileURL
                 try FileManager.default.removeItem(at: url!)
             }
             catch let fileManagerError
@@ -71,7 +80,7 @@ class DatabaseService: NSObject
                 Logger.log(.error, "File manager error: \(fileManagerError)")
             }
         }
-        return try! Realm()
+        return try! Realm(configuration: realmConfiguration)
     }
     
     func saveCreationUploadSessionToDatabase(_ creationUploadSession: CreationUploadSession)
