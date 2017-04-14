@@ -48,7 +48,7 @@ class DatabaseService: NSObject
         {
             do
             {
-                try FileManager.default.moveItem(atPath: originalDefaultRealmURL!.path, toPath: realmURL.path)
+                try FileManager.default.moveItem(atPath: defaultURL.path, toPath: realmURL.path)
             }
             catch let error as NSError
             {
