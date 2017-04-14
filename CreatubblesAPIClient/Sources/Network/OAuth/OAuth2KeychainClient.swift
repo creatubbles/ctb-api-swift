@@ -27,7 +27,18 @@ import KeychainAccess
 
 public class OAuth2KeychainClient: NSObject, OAuth2Client
 {
-    private let keychain = Keychain(service: "com.creatubbles.access-token", accessGroup: AppGroupConfigurator.keychainIdentifier)
+    private let keychain: Keychain =
+    {
+        if let accessGroup = AppGroupConfigurator.keychainIdentifier
+        {
+            return Keychain(service: "com.creatubbles.access-token", accessGroup: accessGroup)
+        }
+        else
+        {
+            return Keychain(service: "com.creatubbles.access-token")
+        }
+    }()
+
     
     public var privateAccessToken: String?
     {

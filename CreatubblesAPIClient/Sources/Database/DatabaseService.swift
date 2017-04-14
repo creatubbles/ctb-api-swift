@@ -33,8 +33,9 @@ class DatabaseService: NSObject
     fileprivate class func prepareRealmConfig() -> Realm.Configuration
     {
         // The app group may be not accessible for testing purposes. That's why we added a failover below.
-        guard let appGroupURL: URL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroupConfigurator.identifier)
-            else
+        guard let appGroupIdentifier = AppGroupConfigurator.identifier,
+              let appGroupURL: URL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)
+        else
         {
             return Realm.Configuration.defaultConfiguration
         }
