@@ -492,7 +492,10 @@ class CreationUploadSession: NSObject, Cancelable
     
     fileprivate class func appGroupDirectory() -> String?
     {
-        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroupConfigurator.identifier)?.path
+        guard let appGroupIdentifier = AppGroupConfigurator.identifier
+        else { return nil }
+        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)?.path
+
     }
     
     fileprivate func storeCreation(_ completion: ((Error?) -> Void) )
