@@ -92,7 +92,7 @@ class NotificationMapper: Mappable
         if type == "galleries_tip" { return .galleriesTip }
         if type == "bubbles_tip" { return .bubblesTip }
         
-        Logger.log(.warning, "Unknown notification type: \(self.type)")
+        Logger.log(.warning, "Unknown notification type: \(String(describing: self.type))")
         return .unknown
     }
 }

@@ -854,7 +854,7 @@ extension APIClient
             let userInfo = [NSLocalizedDescriptionKey : error.title]
             return NSError(domain: APIClientError.DefaultDomain, code: error.status, userInfo: userInfo)
         }
-        if let error = error as? NSError
+        if let error = error as NSError?
         {
             return error
         }
