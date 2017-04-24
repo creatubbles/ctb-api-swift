@@ -1,5 +1,6 @@
 platform :ios, '8.0'
 use_frameworks!
+inhibit_all_warnings!
 
 def test_pods
     pod 'Quick', '~> 0.10.0'

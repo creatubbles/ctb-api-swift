@@ -116,7 +116,7 @@ open class PartnerApplication: NSObject, Identifiable
         
         ctaLoggedInLabel = mapper.ctaLoggedInLabel
         ctaLoggedOutLabel = mapper.ctaLoggedOutLabel
-        requestCtaForYoungsters = mapper.requestCtaForYoungsters!
+        requestCtaForYoungsters = mapper.requestCtaForYoungsters ?? false
         ctaForYoungsters = mapper.ctaForYoungsters
         ctaHref = mapper.ctaHref
         

@@ -38,9 +38,9 @@ public class ErrorTransformer
         {
             return err
         }
-        if let err = error as? NSError
+        if let err = error
         {
-            return errorFromNSError(err)
+            return errorFromNSError(err as NSError)
         }
         return nil
     }

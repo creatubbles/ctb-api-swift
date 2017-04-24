@@ -58,7 +58,7 @@ class AppScreenshotMapper: Mappable
         if provider == "vimeo" { return .vimeo }
         if provider == "youtube" { return .youtube }
         
-        Logger.log(.warning, "Unknown provider: \(self.provider)")
+        Logger.log(.warning, "Unknown provider: \(String(describing: self.provider))")
         return .unknown
     }
 }

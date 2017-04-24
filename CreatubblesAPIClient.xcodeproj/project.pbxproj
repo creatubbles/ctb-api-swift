@@ -2111,7 +2111,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Nomtek;
 				TargetAttributes = {
 					1815D5411C63658000EF4C38 = {

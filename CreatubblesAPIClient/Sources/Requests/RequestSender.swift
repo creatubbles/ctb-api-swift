@@ -69,7 +69,7 @@ public class RequestSender: NSObject
         self.networkManager.dataTask(request: request) { (response, error) in
             DispatchQueue.main.async {
                 if let error = error {
-                    Logger.log(.error, "Error while login:\(response)")
+                    Logger.log(.error, "Error while login:\(String(describing: response))")
                     
                     if isPublicAuthentication
                     {
@@ -118,7 +118,7 @@ public class RequestSender: NSObject
             return ErrorTransformer.errorFromAuthenticationError(err)
         }
         
-        if let err = error as? NSError {
+        if let err = error as NSError? {
             return ErrorTransformer.errorFromNSError(err)
         }
         
