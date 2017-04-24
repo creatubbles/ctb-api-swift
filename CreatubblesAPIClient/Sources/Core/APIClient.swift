@@ -167,6 +167,12 @@ public protocol Cancelable
     func cancel()
 }
 
+public class ErrorCancelable: Cancelable {
+    public func cancel() {
+        assertionFailure("cancelable object for error purposes only")
+    }
+}
+
 @objc
 open class APIClient: NSObject, CreationUploadServiceDelegate
 {
@@ -369,103 +375,203 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     //MARK: - Gallery managment
     open func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getGallery(galleryIdentifier: galleryId, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getGallery(galleryIdentifier: galleryId, completion: completion)
     }
     
     open func getGalleries(creationId: String, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getGalleries(creationIdentifier: creationId, pagingData: pagingData, sort: sort, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getGalleries(creationIdentifier: creationId, pagingData: pagingData, sort: sort, completion: completion)
     }
 
     open func getGalleries(userId: String?, query: String? = nil, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getGalleries(userIdentifier: userId, query: query,pagingData: pagingData, sort: sort, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getGalleries(userIdentifier: userId, query: query,pagingData: pagingData, sort: sort, completion: completion)
     }
     
     open func getGalleriesInBatchMode(userId: String?, query: String? = nil, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getGalleriesInBatchMode(userIdentifier: userId, query:query, sort: sort, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getGalleriesInBatchMode(userIdentifier: userId, query:query, sort: sort, completion: completion)
     }
     
     open func getMyGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getMyGalleries(pagingData, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getMyGalleries(pagingData, completion: completion)
     }
     
     open func getMyOwnedGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getMyOwnedGalleries(pagingData, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getMyOwnedGalleries(pagingData, completion: completion)
     }
     
     open func getMySharedGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getMySharedGalleries(pagingData, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getMySharedGalleries(pagingData, completion: completion)
     }
     
     open func getMyFavoriteGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getMyFavoriteGalleries(pagingData, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getMyFavoriteGalleries(pagingData, completion: completion)
     }
     
     open func getFeaturedGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getFeaturedGalleries(pagingData, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getFeaturedGalleries(pagingData, completion: completion)
     }
     
     open func getMyGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getMyGalleriesInBatchMode(completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getMyGalleriesInBatchMode(completion)
     }
     
     open func getOwnedGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getMyOwnedGalleriesInBatchMode(completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getMyOwnedGalleriesInBatchMode(completion)
     }
     
     open func getSharedGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getMySharedGalleriesInBatchMode(completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getMySharedGalleriesInBatchMode(completion)
     }
     
     open func getFavoriteGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getFavoriteGalleriesInBatchMode(completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getFavoriteGalleriesInBatchMode(completion)
     }
     
     open func getFeaturedGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.getFeaturedGalleriesInBatchMode(completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getFeaturedGalleriesInBatchMode(completion)
     }
     
     open func newGallery(data galleryData: NewGalleryData, completion: GalleryClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.newGallery(data: galleryData, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.newGallery(data: galleryData, completion: completion)
     }
     
     open func updateGallery(data: UpdateGalleryData, completion: ErrorClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.updateGallery(data: data, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.updateGallery(data: data, completion: completion)
     }
     
     open func reportGallery(galleryId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.reportGallery(galleryIdentifier: galleryId, message: message, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.reportGallery(galleryIdentifier: galleryId, message: message, completion: completion)
     }
     
     open func submitCreationToGallery(galleryId: String, creationId: String, completion: @escaping ErrorClosure) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.submitCreationToGallery(galleryIdentifier: galleryId, creationId: creationId, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.submitCreationToGallery(galleryIdentifier: galleryId, creationId: creationId, completion: completion)
     }
     
     open func submitCreationToGalleries(creationId: String, galleryIdentifiers: Array<String>, completion: ErrorClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(GalleryDAO.self)!.submitCreationToGalleries(creationId: creationId, galleryIdentifiers: galleryIdentifiers, completion: completion)
+        guard let assembly = daoAssembly.assembly(GalleryDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.submitCreationToGalleries(creationId: creationId, galleryIdentifiers: galleryIdentifiers, completion: completion)
     }
 
     //MARK: - Creation managment
     open func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler
     {
-        return daoAssembly.assembly(CreationsDAO.self)!.getCreation(creationIdentifier: creationId, completion: completion)
+        guard let assembly = daoAssembly.assembly(CreationsDAO.self) else {
+            assertionFailure("Need valid assembly for RequestHandler return")
+            return RequestHandler(object: ErrorCancelable())
+        }
+
+        return assembly.getCreation(creationIdentifier: creationId, completion: completion)
     }
     
     open func reportCreation(creationId: String, message: String, completion: ErrorClosure?) -> RequestHandler
