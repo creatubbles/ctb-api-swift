@@ -25,7 +25,7 @@
 import UIKit
 @testable import CreatubblesAPIClient
 
-class TestRequestSender: RequestSender
+public class TestRequestSender: RequestSender
 {
     fileprivate var isLoggedIn = false
     

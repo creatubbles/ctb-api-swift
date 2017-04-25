@@ -464,10 +464,10 @@ open class APIClient: NSObject, CreationUploadServiceDelegate
     }
 
     //MARK: - Creation managment
-    open func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler
-    {
-        return daoAssembly.assembly(CreationsDAO.self).getCreation(creationIdentifier: creationId, completion: completion)
-    }
+open func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler
+{
+    return daoAssembly.assembly(CreationsDAO.self).getCreation(creationIdentifier: creationId, completion: completion)
+}
     
     open func reportCreation(creationId: String, message: String, completion: ErrorClosure?) -> RequestHandler
     {

@@ -37,24 +37,17 @@ class DAOAssemblySpec: QuickSpec
             it("Should register new DAO")
             {
                 let dao = DatabaseDAO()
-                let assembly = DAOAssembly()
+                let assembly = DAOAssembly(dependencies: DAODependencies.testDependencies())
                 assembly.register(dao: dao)
             }
             
             it("Should assembly DAO after register")
             {
                 let dao = DatabaseDAO()
-                let assembly = DAOAssembly()
+                let assembly = DAOAssembly(dependencies: DAODependencies.testDependencies())
                 assembly.register(dao: dao)
                 let assembledDAO = assembly.assembly(DatabaseDAO.self)
                 expect(assembledDAO).notTo(beNil())
-            }
-            
-            it("Should return null when assembled DAO was not registered before")
-            {
-                let assembly = DAOAssembly()
-                let assembledDAO = assembly.assembly(DatabaseDAO.self)
-                expect(assembledDAO).to(beNil())
             }
         }
     }
