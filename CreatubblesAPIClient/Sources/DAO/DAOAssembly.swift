@@ -33,7 +33,7 @@ public class DAODependencies
 {
     public let requestSender: RequestSender
     
-    init(requestSender: RequestSender)
+    public init(requestSender: RequestSender)
     {
         self.requestSender = requestSender
     }
@@ -69,6 +69,13 @@ public class DAOAssembly
             return T(dependencies: dependencies)
         }
     }
+    
+    public func isDAORegistered<T: APIClientDAO>(_ type: T.Type) -> Bool
+    {
+        let identifier = identifierFrom(daoClass: type)
+        return store[identifier] as? T != nil
+    }
+    
     
     private func identifierFrom(daoClass: AnyClass) -> String
     {
