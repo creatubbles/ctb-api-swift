@@ -1,5 +1,5 @@
 //
-//  UserFollowingsDAO.swift
+//  DAODependencies+Utils.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -23,29 +23,14 @@
 //  THE SOFTWARE.
 //
 
+import Foundation
+@testable import CreatubblesAPIClient
 
-import UIKit
-
-class UserFollowingsDAO: NSObject, APIClientDAO
+extension DAODependencies
 {
-    fileprivate let requestSender: RequestSender
-    
-    required init(dependencies: DAODependencies)
+    class func testDependencies() -> DAODependencies
     {
-        self.requestSender = dependencies.requestSender
-    }
-    
-    func createAUserFollowing(_ userId: String, completion: ErrorClosure?) -> RequestHandler
-    {
-        let request = CreateAUserFollowingRequest(userId: userId)
-        let handler = CreateAUserFollowingResponseHandler(completion: completion)
-        return requestSender.send(request, withResponseHandler: handler)
-    }
-    
-    func deleteAUserFollowing(_ userId: String, completion: ErrorClosure?) -> RequestHandler
-    {
-        let request = DeleteAUserFollowingRequest(userId: userId)
-        let handler = DeleteAUserFollowingResponseHandler(completion: completion)
-        return requestSender.send(request, withResponseHandler: handler)
+        let settings = APIClientSettings(appId: "test", appSecret: "test")
+        return DAODependencies(requestSender: RequestSender(settings: settings))
     }
 }

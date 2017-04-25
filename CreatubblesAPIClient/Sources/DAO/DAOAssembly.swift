@@ -26,15 +26,27 @@ import UIKit
 
 public protocol APIClientDAO: class
 {
+    init(dependencies: DAODependencies)
+}
 
+public class DAODependencies
+{
+    public let requestSender: RequestSender
+    
+    public init(requestSender: RequestSender)
+    {
+        self.requestSender = requestSender
+    }
 }
 
 public class DAOAssembly
 {
     private var store: Dictionary<String, AnyObject>
+    private let dependencies: DAODependencies
     
-    init()
+    init(dependencies: DAODependencies)
     {
+        self.dependencies = dependencies
         store = Dictionary<String, AnyObject>()
     }
     
@@ -44,12 +56,26 @@ public class DAOAssembly
         store[identifier] = dao
     }
     
-    public func assembly<T: APIClientDAO>(_ type: T.Type) -> T?
+    public func assembly<T: APIClientDAO>(_ type: T.Type) -> T
     {
         let identifier = identifierFrom(daoClass: type)
-        let dao = store[identifier] as? T
-        return dao
+        if let dao = store[identifier] as? T
+        {
+            return dao
+        }
+        else
+        {
+            assertionFailure("DAO with identifier: \(identifier) was not registered yet.")
+            return T(dependencies: dependencies)
+        }
     }
+    
+    public func isDAORegistered<T: APIClientDAO>(_ type: T.Type) -> Bool
+    {
+        let identifier = identifierFrom(daoClass: type)
+        return store[identifier] as? T != nil
+    }
+    
     
     private func identifierFrom(daoClass: AnyClass) -> String
     {

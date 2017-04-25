@@ -30,8 +30,9 @@ class ActivitiesDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
     
-    init(requestSender: RequestSender) {
-        self.requestSender = requestSender
+    required init(dependencies: DAODependencies)
+    {
+        self.requestSender = dependencies.requestSender
     }
     
     func getActivities(_ pagingData: PagingData?, completion: ActivitiesClosure?) -> RequestHandler {

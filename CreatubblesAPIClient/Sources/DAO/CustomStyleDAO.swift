@@ -30,9 +30,9 @@ class CustomStyleDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
     
-    init(requestSender: RequestSender)
+    required init(dependencies: DAODependencies)
     {
-        self.requestSender = requestSender
+        self.requestSender = dependencies.requestSender
     }
     
     func fetchCustomStyleForUser(userIdentifier identifier: String, completion: CustomStyleClosure?) -> RequestHandler

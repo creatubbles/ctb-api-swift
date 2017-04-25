@@ -26,7 +26,17 @@ import UIKit
 
 class DatabaseDAO: NSObject, APIClientDAO
 {
-    let databaseService = DatabaseService()
+    private let databaseService = DatabaseService()
+    
+    required init(dependencies: DAODependencies)
+    {
+        //Required by APIClientDAO. Intentionally left empty.
+    }
+    
+    override init()
+    {
+        //Intentionally left empty
+    }
     
     func saveCreationUploadSessionToDatabase(_ creationUploadSession: CreationUploadSession)
     {
