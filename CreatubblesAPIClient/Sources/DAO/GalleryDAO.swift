@@ -28,9 +28,9 @@ class GalleryDAO: NSObject, APIClientDAO
 {
     fileprivate let requestSender: RequestSender
     
-    init(requestSender: RequestSender)
+    required init(dependencies: DAODependencies)
     {
-        self.requestSender = requestSender
+        self.requestSender = dependencies.requestSender
     }
     
     func submitCreationToGallery(galleryIdentifier galleryId: String, creationId: String, completion: @escaping ErrorClosure) -> RequestHandler
