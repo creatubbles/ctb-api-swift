@@ -126,7 +126,7 @@ open class PartnerApplication: NSObject, Identifiable
         support = mapper.support
         developers = mapper.developers
         platforms = mapper.platforms
-        showOtherApps = mapper.showOtherApps!
+        showOtherApps = mapper.showOtherApps ?? false
         displayCreationsNr = mapper.displayCreationsNr
         aboutCardText = mapper.aboutCardText
         
