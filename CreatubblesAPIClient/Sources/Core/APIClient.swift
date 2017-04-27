@@ -70,7 +70,7 @@ open class ResponseData<T> {
     open let pagingInfo: PagingInfo?
     open let error: APIClientError?
     
-    init(objects: Array<T>?, rejectedObjects: Array<T>?, pagingInfo: PagingInfo?, error: APIClientError?) {
+    public init(objects: Array<T>?, rejectedObjects: Array<T>?, pagingInfo: PagingInfo?, error: APIClientError?) {
         self.objects = objects
         self.rejectedObjects = rejectedObjects
         self.pagingInfo = pagingInfo
