@@ -167,13 +167,13 @@ class SearchTagDAO: NSObject, APIClientDAO
                            NameTranslationObject(code:"it", name:"Robots", original: false)]
         let robotsTag = SearchTag(name: "Robots", imageURL: robotsTagURL, identifier: "search-tag-robots", translatedNames: robotsNames)
         
-        //Thinkercard
-        let thinkercardTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/thinkercard-75d78701eb6c02c42b424f9c206b0d9c.jpg"
-        let thinkercardNames = [NameTranslationObject(code:"en", name:"Thinkercard", original: true),
-                                NameTranslationObject(code:"ja", name:"Thinkercard", original: false),
-                                NameTranslationObject(code:"it", name:"Thinkercard", original: false)]
-        let thinkercardTag = SearchTag(name: "Thinkercard", imageURL: thinkercardTagURL, identifier: "search-tag-thinkercard", translatedNames: thinkercardNames)
+        //Tinkercad
+        let tinkercadTagURL = "https://d3i3mct63wvprb.cloudfront.net/assets/images/suggested-searches/thinkercard-75d78701eb6c02c42b424f9c206b0d9c.jpg"
+        let tinkercadNames = [NameTranslationObject(code:"en", name:"Tinkercad", original: true),
+                              NameTranslationObject(code:"ja", name:"Tinkercad", original: false),
+                              NameTranslationObject(code:"it", name:"Tinkercad", original: false)]
+        let tinkercadTag = SearchTag(name: "Tinkercad", imageURL: tinkercadTagURL, identifier: "search-tag-tinkercad", translatedNames: tinkercadNames)
     
-        return [legoTag, minecraftTag, beadsTag, rainbowLoomTag, hueAnimationTag, origamiTag, quirkbotsTag, carsTag, threeDTag, scratchTag, pokemonTag, blocksTag, strawbeesTag, littlebitsTag, charactersTag, paperCraftTag, robotsTag, thinkercardTag]
+        return [legoTag, minecraftTag, beadsTag, rainbowLoomTag, hueAnimationTag, origamiTag, quirkbotsTag, carsTag, threeDTag, scratchTag, pokemonTag, blocksTag, strawbeesTag, littlebitsTag, charactersTag, paperCraftTag, robotsTag, tinkercadTag]
     }
 }

@@ -484,7 +484,7 @@
 		1808D3581E281DE200611D8E /* search-tag-robots.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-robots.jpg"; sourceTree = "<group>"; };
 		1808D3591E281DE200611D8E /* search-tag-scratch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-scratch.jpg"; sourceTree = "<group>"; };
 		1808D35A1E281DE200611D8E /* search-tag-strawbees.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-strawbees.jpg"; sourceTree = "<group>"; };
-		1808D35B1E281DE200611D8E /* search-tag-thinkercard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-thinkercard.jpg"; sourceTree = "<group>"; };
+		1808D35B1E281DE200611D8E /* search-tag-tinkercad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "search-tag-tinkercad.jpg"; sourceTree = "<group>"; };
 		180C97B01C6DEA4100BC682D /* Creation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creation.swift; sourceTree = "<group>"; };
 		1814B7551DF7F052003B3C65 /* CreationsBatchFetchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsBatchFetchOperation.swift; sourceTree = "<group>"; };
 		1814B7571DF7F082003B3C65 /* CreationsQueueBatchFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationsQueueBatchFetcher.swift; sourceTree = "<group>"; };
@@ -955,7 +955,7 @@
 				1808D3581E281DE200611D8E /* search-tag-robots.jpg */,
 				1808D3591E281DE200611D8E /* search-tag-scratch.jpg */,
 				1808D35A1E281DE200611D8E /* search-tag-strawbees.jpg */,
-				1808D35B1E281DE200611D8E /* search-tag-thinkercard.jpg */,
+				1808D35B1E281DE200611D8E /* search-tag-tinkercad.jpg */,
 			);
 			path = MockSearchTagImages;
 			sourceTree = "<group>";
