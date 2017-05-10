@@ -1,0 +1,6 @@
+framework module CreatubblesAPIClient {
+  umbrella header "CreatubblesAPIClient-umbrella.h"
+
+  export *
+  module * { export * }
+}

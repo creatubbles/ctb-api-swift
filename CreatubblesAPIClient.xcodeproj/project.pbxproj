@@ -400,15 +400,17 @@
 		21CC9E401DF834A100C6538C /* SearchTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC9E3F1DF834A100C6538C /* SearchTag.swift */; };
 		21CC9E431DF8361600C6538C /* SearchTagsFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC9E421DF8361600C6538C /* SearchTagsFetchRequest.swift */; };
 		21CC9E451DF8362C00C6538C /* SearchTagsFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC9E441DF8362C00C6538C /* SearchTagsFetchResponseHandler.swift */; };
+		3F7AD4441EB70B6C0044F6D6 /* DemoWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7AD4431EB70B6C0044F6D6 /* DemoWelcomeViewController.swift */; };
+		3F7AD4461EB70F540044F6D6 /* DemoAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7AD4451EB70F540044F6D6 /* DemoAPIClient.swift */; };
 		445A3A5B1DD29F7400986BBB /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A3A5A1DD29F7400986BBB /* String+Localized.swift */; };
 		445A3A5C1DD2A8CD00986BBB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 445A3A5E1DD2A8CD00986BBB /* Localizable.strings */; };
 		5D916F1D7C0D528FDCA37ADB /* Pods_CreatubblesAPIClientIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7184408A7E06B801847505 /* Pods_CreatubblesAPIClientIntegrationTests.framework */; };
-		B20A328D1EB3BCD80014B78F /* CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */; };
 		B225DF6E1EB31F2200AB6F4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225DF6D1EB31F2200AB6F4C /* AppDelegate.swift */; };
-		B225DF721EB31F2200AB6F4C /* OAuthDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225DF711EB31F2200AB6F4C /* OAuthDemoViewController.swift */; };
+		B225DF721EB31F2200AB6F4C /* DemoAuthenticatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225DF711EB31F2200AB6F4C /* DemoAuthenticatedViewController.swift */; };
 		B225DF751EB31F2200AB6F4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF731EB31F2200AB6F4C /* Main.storyboard */; };
 		B225DF771EB31F2200AB6F4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B225DF761EB31F2200AB6F4C /* Assets.xcassets */; };
 		B225DF7A1EB31F2200AB6F4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF781EB31F2200AB6F4C /* LaunchScreen.storyboard */; };
+		DCB6AE268E81388D94B0CE09 /* Pods_CreatubblesAPIClientDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45942E9020B7B23E59F429AC /* Pods_CreatubblesAPIClientDemo.framework */; };
 		DF413EEFCF6E24450841A6BB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D5DF300DAE4BC13E0AD21 /* Pods_CreatubblesAPIClient.framework */; };
 		E4B817A3F6801889CE0CF655 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EC80FB40DC05B38396DFBE /* Pods_CreatubblesAPIClientTests.framework */; };
 		FE0EAC71BB3B3D2D33C67AA0 /* Pods_CreatubblesAPIClientUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */; };
@@ -429,7 +431,7 @@
 			remoteGlobalIDString = 1815D5411C63658000EF4C38;
 			remoteInfo = CreatubblesAPIClient;
 		};
-		B20A328B1EB3BCC40014B78F /* PBXContainerItemProxy */ = {
+		B20A328E1EB3C0860014B78F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1815D5391C63658000EF4C38 /* Project object */;
 			proxyType = 1;
@@ -862,15 +864,19 @@
 		2B7184408A7E06B801847505 /* Pods_CreatubblesAPIClientIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		365569ACBF6DA2AABD7377FF /* Pods-CreatubblesAPIClientIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientIntegrationTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientIntegrationTests/Pods-CreatubblesAPIClientIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		39E1EB9D8152D4F185B9A736 /* Pods-CreatubblesAPIClientIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientIntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientIntegrationTests/Pods-CreatubblesAPIClientIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3F7AD4431EB70B6C0044F6D6 /* DemoWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoWelcomeViewController.swift; sourceTree = "<group>"; };
+		3F7AD4451EB70F540044F6D6 /* DemoAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAPIClient.swift; sourceTree = "<group>"; };
 		40A50E16F47F77C926108587 /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		445A3A5A1DD29F7400986BBB /* String+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		445A3A5D1DD2A8CD00986BBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		445A3A5F1DD2A8DA00986BBB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		445A3A601DD2A8E100986BBB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		45942E9020B7B23E59F429AC /* Pods_CreatubblesAPIClientDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4835B8FFF725B1C29D80C1B6 /* Pods-CreatubblesAPIClientDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo.release.xcconfig"; sourceTree = "<group>"; };
 		52EC80FB40DC05B38396DFBE /* Pods_CreatubblesAPIClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B225DF6B1EB31F2200AB6F4C /* CreatubblesAPIClientDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CreatubblesAPIClientDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B225DF6D1EB31F2200AB6F4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B225DF711EB31F2200AB6F4C /* OAuthDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthDemoViewController.swift; sourceTree = "<group>"; };
+		B225DF711EB31F2200AB6F4C /* DemoAuthenticatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAuthenticatedViewController.swift; sourceTree = "<group>"; };
 		B225DF741EB31F2200AB6F4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B225DF761EB31F2200AB6F4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B225DF791EB31F2200AB6F4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -880,6 +886,7 @@
 		DA9EC9D915023C993B9C5639 /* Pods-CreatubblesAPIClientUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		EF9D5DF300DAE4BC13E0AD21 /* Pods_CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0EF0A53BD3DF55EB3FFF1EC /* Pods-CreatubblesAPIClientUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FD53B985CEF587E5717E98B7 /* Pods-CreatubblesAPIClientDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		FF141048CEF687AAB6454656 /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -916,7 +923,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B20A328D1EB3BCD80014B78F /* CreatubblesAPIClient.framework in Frameworks */,
+				DCB6AE268E81388D94B0CE09 /* Pods_CreatubblesAPIClientDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2042,6 +2049,7 @@
 				52EC80FB40DC05B38396DFBE /* Pods_CreatubblesAPIClientTests.framework */,
 				2B7184408A7E06B801847505 /* Pods_CreatubblesAPIClientIntegrationTests.framework */,
 				C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */,
+				45942E9020B7B23E59F429AC /* Pods_CreatubblesAPIClientDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2057,6 +2065,8 @@
 				365569ACBF6DA2AABD7377FF /* Pods-CreatubblesAPIClientIntegrationTests.release.xcconfig */,
 				F0EF0A53BD3DF55EB3FFF1EC /* Pods-CreatubblesAPIClientUnitTests.debug.xcconfig */,
 				DA9EC9D915023C993B9C5639 /* Pods-CreatubblesAPIClientUnitTests.release.xcconfig */,
+				FD53B985CEF587E5717E98B7 /* Pods-CreatubblesAPIClientDemo.debug.xcconfig */,
+				4835B8FFF725B1C29D80C1B6 /* Pods-CreatubblesAPIClientDemo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2065,11 +2075,13 @@
 			isa = PBXGroup;
 			children = (
 				B225DF6D1EB31F2200AB6F4C /* AppDelegate.swift */,
-				B225DF711EB31F2200AB6F4C /* OAuthDemoViewController.swift */,
+				B225DF711EB31F2200AB6F4C /* DemoAuthenticatedViewController.swift */,
 				B225DF731EB31F2200AB6F4C /* Main.storyboard */,
 				B225DF761EB31F2200AB6F4C /* Assets.xcassets */,
 				B225DF781EB31F2200AB6F4C /* LaunchScreen.storyboard */,
 				B225DF7B1EB31F2200AB6F4C /* Info.plist */,
+				3F7AD4431EB70B6C0044F6D6 /* DemoWelcomeViewController.swift */,
+				3F7AD4451EB70F540044F6D6 /* DemoAPIClient.swift */,
 			);
 			path = CreatubblesAPIClientDemo;
 			sourceTree = "<group>";
@@ -2154,14 +2166,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B225DF7E1EB31F2200AB6F4C /* Build configuration list for PBXNativeTarget "CreatubblesAPIClientDemo" */;
 			buildPhases = (
+				3726F3A77F06B9A16473CCB8 /* [CP] Check Pods Manifest.lock */,
 				B225DF671EB31F2200AB6F4C /* Sources */,
 				B225DF681EB31F2200AB6F4C /* Frameworks */,
 				B225DF691EB31F2200AB6F4C /* Resources */,
+				6E4DBEB68F22ECB622473491 /* [CP] Embed Pods Frameworks */,
+				9496FA2D89771C307A1C87A0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B20A328C1EB3BCC40014B78F /* PBXTargetDependency */,
+				B20A328F1EB3C0860014B78F /* PBXTargetDependency */,
 			);
 			name = CreatubblesAPIClientDemo;
 			productName = CreatubblesAPIClientDemo;
@@ -2315,6 +2330,36 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		3726F3A77F06B9A16473CCB8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6E4DBEB68F22ECB622473491 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		85AC117C6AF9CA82966C1E1C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2328,6 +2373,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9496FA2D89771C307A1C87A0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B73171DB3EE3BB519D1909EA /* [CP] Copy Pods Resources */ = {
@@ -2790,7 +2850,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B225DF721EB31F2200AB6F4C /* OAuthDemoViewController.swift in Sources */,
+				3F7AD4461EB70F540044F6D6 /* DemoAPIClient.swift in Sources */,
+				B225DF721EB31F2200AB6F4C /* DemoAuthenticatedViewController.swift in Sources */,
+				3F7AD4441EB70B6C0044F6D6 /* DemoWelcomeViewController.swift in Sources */,
 				B225DF6E1EB31F2200AB6F4C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2808,10 +2870,10 @@
 			target = 1815D5411C63658000EF4C38 /* CreatubblesAPIClient */;
 			targetProxy = 185E30EA1E71559E0077E9A8 /* PBXContainerItemProxy */;
 		};
-		B20A328C1EB3BCC40014B78F /* PBXTargetDependency */ = {
+		B20A328F1EB3C0860014B78F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1815D5411C63658000EF4C38 /* CreatubblesAPIClient */;
-			targetProxy = B20A328B1EB3BCC40014B78F /* PBXContainerItemProxy */;
+			targetProxy = B20A328E1EB3C0860014B78F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3050,6 +3112,7 @@
 		};
 		B225DF7C1EB31F2200AB6F4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD53B985CEF587E5717E98B7 /* Pods-CreatubblesAPIClientDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3058,7 +3121,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = GFEDRTTUSS;
 				INFOPLIST_FILE = CreatubblesAPIClientDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ctb.CreatubblesAPIClientDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3069,6 +3132,7 @@
 		};
 		B225DF7D1EB31F2200AB6F4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4835B8FFF725B1C29D80C1B6 /* Pods-CreatubblesAPIClientDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3076,7 +3140,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = GFEDRTTUSS;
 				INFOPLIST_FILE = CreatubblesAPIClientDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ctb.CreatubblesAPIClientDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

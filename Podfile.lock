@@ -1,7 +1,12 @@
 PODS:
+  - CreatubblesAPIClient (0.2.0):
+    - KeychainAccess (= 3.0.1)
+    - ObjectMapper (= 2.0)
+    - RealmSwift (= 2.0.3)
+    - XCGLogger (= 4.0.0)
   - KeychainAccess (3.0.1)
   - Nimble (5.0.0)
-  - ObjectMapper (2.2.0)
+  - ObjectMapper (2.0.0)
   - Quick (0.10.0)
   - Realm (2.0.3):
     - Realm/Headers (= 2.0.3)
@@ -13,6 +18,7 @@ PODS:
   - XCGLogger/Core (4.0.0)
 
 DEPENDENCIES:
+  - CreatubblesAPIClient (from `https://github.com/creatubbles/ctb-api-swift.git`, branch `develop`)
   - KeychainAccess (~> 3.0.1)
   - Nimble (~> 5.0.0)
   - ObjectMapper (~> 2.0)
@@ -20,15 +26,26 @@ DEPENDENCIES:
   - RealmSwift (= 2.0.3)
   - XCGLogger (~> 4.0.0)
 
+EXTERNAL SOURCES:
+  CreatubblesAPIClient:
+    :branch: develop
+    :git: https://github.com/creatubbles/ctb-api-swift.git
+
+CHECKOUT OPTIONS:
+  CreatubblesAPIClient:
+    :commit: e6c28e8aa6e04da9dd723e60f2be7c10588a532f
+    :git: https://github.com/creatubbles/ctb-api-swift.git
+
 SPEC CHECKSUMS:
+  CreatubblesAPIClient: 5fb8dbef88747a4487d373d1bd933e360ba63f41
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
   Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
-  ObjectMapper: 4060d739febae11ab0c6af8d786f98667c82e1bd
+  ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
   Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
   Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
   RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: 36c3fdff27a7784acd4368ab477d3c10210502bf
+PODFILE CHECKSUM: 831493faca854228a67bc74f22950c9db6147b0b
 
 COCOAPODS: 1.2.0
