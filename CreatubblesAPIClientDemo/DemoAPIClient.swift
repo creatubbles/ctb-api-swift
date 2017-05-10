@@ -58,8 +58,6 @@ class DemoAPIClient: APIClientDelegate {
         return CreatubblesAPIClient.APIClient(settings: OAuthExampleConstants.settings)
     }
 
-    //        APIClientAccessSingleton.sharedInstance.client.delegate = self
-
     func creatubblesAPIClientNewImageUpload(_ apiClient: APIClient, uploadSessionData: CreationUploadSessionPublicData)
     {
 

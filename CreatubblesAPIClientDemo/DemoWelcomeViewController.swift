@@ -54,7 +54,7 @@ extension DemoWelcomeViewController: SFSafariViewControllerDelegate {
         let codeParam = queryParams?.filter {
             element in
             // 5 becaues "code=" has 5 characters.
-            return String(element.characters.prefix(5)) == codeKey
+            return String(element.characters.prefix(codeKey.characters.count)) == codeKey
         }
         let codeQuery = codeParam?.first
         let optionalCode = codeQuery?.replacingOccurrences(of: codeKey, with: "")
