@@ -26,7 +26,7 @@
 import Foundation
 import ObjectMapper
 
-public class RelationshipMapper: Mappable
+open class RelationshipMapper: Mappable
 {
     var type: String?
     var identifier: String?
