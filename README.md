@@ -41,6 +41,9 @@ Please check out our [Migration Guide](Documentation/Migration_Guide_0.2.0.md) t
 ## QuickStart
 After installation you can start using APIClient. See QuickStart for [Swift](Documentation/Quickstart_Swift.md) or [Objective-C](Documentation/Quickstart_ObjectiveC.md) for first steps with library.
 
+## Demo
+We also have a demo, explained more [here](Documentation/OAuthDemo.md)
+
 ## Objective-C API Client
 Feel free to use our own CTAPIClient wrapper for your Objective-C projects. You can check it out [here](https://github.com/creatubbles/ctb-api-swift/tree/develop/ObjectiveC_APIClient)
 

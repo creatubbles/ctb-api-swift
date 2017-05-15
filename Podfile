@@ -7,13 +7,15 @@ def test_pods
     pod 'Nimble', '~> 5.0.0'
 end
 
+def shared_pods
+    pod 'ObjectMapper', '~> 2.0'
+    pod 'XCGLogger', '~> 4.0.0'
+    pod 'RealmSwift', '2.0.3'
+    pod 'KeychainAccess', '~> 3.0.1'
+end
+
 target 'CreatubblesAPIClient' do
-
-pod 'ObjectMapper', '~> 2.0'
-pod 'XCGLogger', '~> 4.0.0'
-pod 'RealmSwift', '2.0.3'
-pod 'KeychainAccess', '~> 3.0.1'
-
+    shared_pods
 end
 
 target 'CreatubblesAPIClientUnitTests' do
@@ -22,6 +24,11 @@ end
 
 target 'CreatubblesAPIClientIntegrationTests' do
     test_pods
+end
+
+target 'CreatubblesAPIClientDemo' do
+    shared_pods
+    pod 'CreatubblesAPIClient', :git => 'https://github.com/creatubbles/ctb-api-swift.git', :branch => 'develop'
 end
 
 post_install do |installer|
