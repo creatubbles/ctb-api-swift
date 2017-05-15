@@ -3,7 +3,7 @@
 //  CreatubblesAPIClientDemo
 //
 //  Created by Benjamin Hendricks on 4/28/17.
-//  Copyright © 2017 Nomtek. All rights reserved.
+//  Copyright © 2017 Creatubbles. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
