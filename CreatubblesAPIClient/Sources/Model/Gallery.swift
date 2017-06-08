@@ -69,7 +69,7 @@ open class Gallery: NSObject, Identifiable
         bubblesCount = mapper.bubblesCount!
         commentsCount = mapper.commentsCount!
         shortUrl = mapper.shortUrl!
-        previewImageUrls = mapper.previewImageUrls!
+        previewImageUrls = mapper.previewImageUrls ?? []
         
         lastBubbledAt = mapper.lastBubbledAt as Date?
         lastCommentedAt = mapper.lastCommentedAt as Date?

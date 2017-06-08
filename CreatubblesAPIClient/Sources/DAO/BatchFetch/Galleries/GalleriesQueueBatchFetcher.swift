@@ -25,7 +25,7 @@
 
 class GalleriesQueueBatchFetcher: Cancelable
 {
-    private let pageSize = 20
+    private let pageSize = 100
     private let requestSender: RequestSender
     
     private let userId: String?
