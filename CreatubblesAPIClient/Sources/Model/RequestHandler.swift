@@ -23,21 +23,17 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 @objc
-open class RequestHandler: NSObject, Cancelable
-{
+open class RequestHandler: NSObject, Cancelable {
     fileprivate let object: Cancelable
-    
-    init(object: Cancelable)
-    {
+
+    init(object: Cancelable) {
         self.object = object
     }
-    
-    open func cancel()
-    {
+
+    open func cancel() {
         object.cancel()
     }
 }

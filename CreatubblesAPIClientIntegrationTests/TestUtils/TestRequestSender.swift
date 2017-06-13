@@ -25,18 +25,15 @@
 import UIKit
 @testable import CreatubblesAPIClient
 
-public class TestRequestSender: RequestSender
-{
+public class TestRequestSender: RequestSender {
     fileprivate var isLoggedIn = false
-    
-    override init(settings: APIClientSettings)
-    {
+
+    override init(settings: APIClientSettings) {
         super.init(settings: settings)
     }
-    
-    //MARK: - Interface
-    override public func login(_ username: String, password: String, completion: ErrorClosure?) -> RequestHandler
-    {
+
+    // MARK: - Interface
+    override public func login(_ username: String, password: String, completion: ErrorClosure?) -> RequestHandler {
         let authorized = username == TestConfiguration.username &&
                          password == TestConfiguration.password
 
@@ -45,78 +42,60 @@ public class TestRequestSender: RequestSender
         completion?(error)
         return TestRequestHandler()
     }
-    
-    override public func logout()
-    {
+
+    override public func logout() {
         isLoggedIn = false
     }
-    
-    override public func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
-    {
+
+    override public func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler {
         Logger.log(.debug, "Sending request: \(type(of: request))")
-        if(isLoggedIn)
-        {
+        if(isLoggedIn) {
             handler.handleResponse(responseForRequest(request), error: nil)
-        }
-        else
-        {
+        } else {
             let error = APIClientError.genericLoginError
             handler.handleResponse(nil, error: error)
         }
         return TestRequestHandler()
     }
-    
-    fileprivate func responseForRequest(_ request: Request) -> Dictionary<String, AnyObject>
-    {
-        if request is ProfileRequest
-        {
+
+    fileprivate func responseForRequest(_ request: Request) -> Dictionary<String, AnyObject> {
+        if request is ProfileRequest {
             return TestResponses.profileTestResponse
         }
-        if request is CreatorsAndManagersRequest
-        {
+        if request is CreatorsAndManagersRequest {
             return TestResponses.creatorsAndManagersTestResponse
         }
-        if request is NewCreatorRequest
-        {
+        if request is NewCreatorRequest {
             return TestResponses.newCreatorTestResponse
         }
-        if request is GalleriesRequest && request.endpoint.contains("/")
-        {
+        if request is GalleriesRequest && request.endpoint.contains("/") {
             return TestResponses.singleGalleryTestResponse
         }
-        if request is GalleriesRequest && !request.endpoint.contains("/")
-        {
+        if request is GalleriesRequest && !request.endpoint.contains("/") {
             return TestResponses.galleriesTestResponse
         }
-        if request is NewGalleryRequest
-        {
+        if request is NewGalleryRequest {
             return TestResponses.newGalleryTestResponse
         }
-        if request is NewCreationRequest
-        {
+        if request is NewCreationRequest {
             return TestResponses.newCreationTestResponse
         }
-        if request is NewCreationUploadRequest
-        {
+        if request is NewCreationUploadRequest {
             return TestResponses.newCreationUploadTestResponse
         }
-        if request is FetchCreationsRequest
-        {
+        if request is FetchCreationsRequest {
             return TestResponses.fetchCreationsTestResponse
         }
-        if request is GallerySubmissionRequest
-        {
+        if request is GallerySubmissionRequest {
             return TestResponses.gallerySubmissionTestResponse
         }
-        if request is BubblesFetchReqest
-        {
+        if request is BubblesFetchReqest {
             return TestResponses.bubblesFetchTestResponse
         }
-        if request is NewBubbleRequest
-        {
+        if request is NewBubbleRequest {
             return TestResponses.newBubbleTestResponse
         }
-                
+
         return Dictionary<String, AnyObject>()
     }
 }

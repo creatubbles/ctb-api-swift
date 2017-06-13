@@ -27,14 +27,14 @@ import UIKit
 
 public class LocalizationConfigurator: NSObject {
     static fileprivate let forcedLanguageKey = "com.creatubbles.apiclient.forcedlanguage"
-    
+
     // This method is used to force a specific language. At this point it's only used by String+Localized extension.
     public class var forcedLanguage: String? {
         set {
             UserDefaults.standard.set(newValue, forKey: forcedLanguageKey)
             UserDefaults.standard.synchronize()
         }
-        
+
         get { return UserDefaults.standard.string(forKey: forcedLanguageKey) }
     }
 }

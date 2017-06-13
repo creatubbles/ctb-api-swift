@@ -23,50 +23,40 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class GalleriesRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Galleries request")
-        {
-            it("Should have proper method")
-            {
+class GalleriesRequestSpec: QuickSpec {
+    override func spec() {
+        describe("Galleries request") {
+            it("Should have proper method") {
                 let request = GalleriesRequest(galleryId: "TestGalleryId")
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
-            it("Should have proper endpoint for specified gallery")
-            {
+
+            it("Should have proper endpoint for specified gallery") {
                 let id = "TestGalleryId"
                 let request = GalleriesRequest(galleryId: id)
-                expect(request.endpoint).to(equal("galleries/"+id))
+                expect(request.endpoint) == "galleries/"+id
             }
-            
-            it("Should have proper endpoint for list of galleries")
-            {
+
+            it("Should have proper endpoint for list of galleries") {
                 let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, userId: nil, query: nil)
-                expect(request.endpoint).to(equal("galleries"))
+                expect(request.endpoint) == "galleries"
             }
-            
-            it("Should have proper endpoint for list of creation galleries")
-            {
+
+            it("Should have proper endpoint for list of creation galleries") {
                 let id = "TestCreationId"
                 let request = GalleriesRequest(creationId: id, page: 1, perPage: 20, sort: .recent)
-                expect(request.endpoint).to(equal("creations/\(id)/galleries"))
+                expect(request.endpoint) == "creations/\(id)/galleries"
             }
-            
-            it("Should have proper endpoint for list of user galleries")
-            {
+
+            it("Should have proper endpoint for list of user galleries") {
                 let userId = "TestUserId"
                 let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, userId: userId, query: nil)
-                expect(request.endpoint).to(equal("users/\(userId)/galleries"))
-            }                        
+                expect(request.endpoint) == "users/\(userId)/galleries"
+            }
         }
     }
 }
-

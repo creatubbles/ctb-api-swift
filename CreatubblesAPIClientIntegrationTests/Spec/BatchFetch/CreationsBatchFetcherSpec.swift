@@ -27,32 +27,25 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class CreationsBatchFetcherSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("CreationsBatchFetcher")
-        {
-            it("Should batch fetch creations using operation client")
-            {
+class CreationsBatchFetcherSpec: QuickSpec {
+    override func spec() {
+        describe("CreationsBatchFetcher") {
+            it("Should batch fetch creations using operation client") {
                 guard TestConfiguration.shoulTestBatchFetchers,
                       let identifier = TestConfiguration.testUserIdentifier
                 else { return }
-                
+
                 let sender = TestComponentsFactory.requestSender
                 var batchFetcher: CreationsQueueBatchFetcher!
-                waitUntil(timeout: TestConfiguration.timeoutLong)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutLong) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(sender.isLoggedIn()).to(beTrue())
-                        
+
                         let beginTime = CFAbsoluteTimeGetCurrent()
-                        batchFetcher = CreationsQueueBatchFetcher(requestSender: sender, userId: identifier, galleryId: nil, keyword: nil, partnerApplicationId: nil, sort: nil, onlyPublic: false)
-                        {
+                        batchFetcher = CreationsQueueBatchFetcher(requestSender: sender, userId: identifier, galleryId: nil, keyword: nil, partnerApplicationId: nil, sort: nil, onlyPublic: false) {
                             (creations, error) -> (Void) in
                             expect(creations).notTo(beNil())
                             expect(creations).notTo(beEmpty())
@@ -62,7 +55,7 @@ class CreationsBatchFetcherSpec: QuickSpec
                             done()
                         }
                         batchFetcher.fetch()
-                        
+
                     })
                 }
             }

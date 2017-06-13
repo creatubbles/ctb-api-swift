@@ -23,34 +23,26 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class CommentsResponseHandler: ResponseHandler
-{
+class CommentsResponseHandler: ResponseHandler {
     fileprivate let completion: CommentsClosure?
-    
-    init(completion: CommentsClosure?)
-    {
+
+    init(completion: CommentsClosure?) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
-        if  let response = response,
-            let mappers = Mapper<CommentMapper>().mapArray(JSONObject: response["data"])
 
-        {
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
+        if  let response = response,
+            let mappers = Mapper<CommentMapper>().mapArray(JSONObject: response["data"]) {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
             let comments = mappers.map({ Comment(mapper: $0, dataMapper: dataMapper, metadata: metadata) })
-                    
+
             executeOnMainQueue { self.completion?(comments, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
-        }
-        else
-        {
+        } else {
             executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }

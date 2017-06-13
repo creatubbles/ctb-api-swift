@@ -23,31 +23,26 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 @objc
-open class NameTranslationObject: NSObject
-{
+open class NameTranslationObject: NSObject {
     open let code: String?
     open let name: String?
     open let original: Bool?
-    
-    init(mapper: NameTranslationObjectMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
-    {
+
+    init(mapper: NameTranslationObjectMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil) {
         code = mapper.code
         name = mapper.name
         original = mapper.original
     }
-    
-    init(nameTranslationObjectEntity: NameTranslationObjectEntity)
-    {
+
+    init(nameTranslationObjectEntity: NameTranslationObjectEntity) {
         code = nameTranslationObjectEntity.code
         name = nameTranslationObjectEntity.name
         original = nameTranslationObjectEntity.original.value
     }
-    
-    init (code: String, name: String, original: Bool)
-    {
+
+    init (code: String, name: String, original: Bool) {
         self.code = code
         self.name = name
         self.original = original

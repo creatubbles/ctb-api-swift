@@ -23,12 +23,10 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import RealmSwift
 
-class NameTranslationObjectEntity: Object
-{
+class NameTranslationObjectEntity: Object {
     dynamic var code: String?
     dynamic var name: String?
     var original = RealmOptional<Bool>()

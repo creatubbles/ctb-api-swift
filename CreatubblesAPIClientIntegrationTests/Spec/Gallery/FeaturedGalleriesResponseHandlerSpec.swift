@@ -23,31 +23,23 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class FeaturedGalleriesResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Featured galleries response handler")
-        {
-            it("Should return correct values after login")
-            {
+class FeaturedGalleriesResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("Featured galleries response handler") {
+            it("Should return correct values after login") {
                 let request = FeaturedGalleriesRequest(page: 1, perPage: 10)
-                let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler()
-                        {
-                            (galleries: Array<Gallery>?,pageInfo: PagingInfo?, error: Error?) -> Void in
+                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler {
+                            (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                             expect(galleries).notTo(beNil())
                             expect(error).to(beNil())
                             expect(pageInfo).notTo(beNil())
@@ -57,18 +49,15 @@ class FeaturedGalleriesResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should return correct values when not logged in")
-            {
+
+            it("Should return correct values when not logged in") {
                 let request = FeaturedGalleriesRequest(page: 1, perPage: 10)
-                let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
                     _ = sender.logout()
-                    _ = sender.send(request, withResponseHandler:GalleriesResponseHandler()
-                    {
-                        (galleries: Array<Gallery>?,pageInfo: PagingInfo?, error: Error?) -> Void in
+                    _ = sender.send(request, withResponseHandler:GalleriesResponseHandler {
+                        (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                         expect(galleries).notTo(beNil())
                         expect(error).to(beNil())
                         expect(pageInfo).notTo(beNil())

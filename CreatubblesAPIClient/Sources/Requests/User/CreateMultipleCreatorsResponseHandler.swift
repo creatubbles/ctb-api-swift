@@ -23,10 +23,8 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class CreateMultipleCreatorsResponseHandler: ErrorResponseHandler
-{
-    
+class CreateMultipleCreatorsResponseHandler: ErrorResponseHandler {
+
 }

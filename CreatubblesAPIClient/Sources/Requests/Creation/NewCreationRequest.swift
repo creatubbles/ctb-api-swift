@@ -24,53 +24,42 @@
 
 import UIKit
 
-class NewCreationRequest: Request
-{
-    override var method: RequestMethod  { return .post }
-    override var endpoint: String       { return "creations" }
+class NewCreationRequest: Request {
+    override var method: RequestMethod { return .post }
+    override var endpoint: String { return "creations" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParams() }
 
     fileprivate let creationData: NewCreationData
-    
-    
-    override init()
-    {
+
+    override init() {
         self.creationData = NewCreationData(image: UIImage(), uploadExtension: .jpeg)
     }
-    
-    init(creationData: NewCreationData)
-    {
+
+    init(creationData: NewCreationData) {
         self.creationData = creationData
     }
-    
-    fileprivate func prepareParams() -> Dictionary<String, AnyObject>
-    {
+
+    fileprivate func prepareParams() -> Dictionary<String, AnyObject> {
         var params = Dictionary<String, AnyObject>()
-        if let name = creationData.name
-        {
+        if let name = creationData.name {
             params["name"] = name as AnyObject?
         }
-        if let creatorIds = creationData.creatorIds
-        {
+        if let creatorIds = creationData.creatorIds {
             params["creator_ids"] = creatorIds.joined(separator: ",") as AnyObject?
         }
-        if let creationMonth = creationData.creationMonth
-        {
+        if let creationMonth = creationData.creationMonth {
             params["created_at_month"] = creationMonth as AnyObject?
         }
-        if let creationYear = creationData.creationYear
-        {
+        if let creationYear = creationData.creationYear {
             params["created_at_year"] = creationYear as AnyObject?
         }
-        if let reflectionText = creationData.reflectionText
-        {
+        if let reflectionText = creationData.reflectionText {
             params["reflection_text"] = reflectionText as AnyObject?
         }
-        if let reflectionVideoUrl = creationData.reflectionVideoUrl
-        {
+        if let reflectionVideoUrl = creationData.reflectionVideoUrl {
             params["reflection_video_url"] = reflectionVideoUrl as AnyObject?
         }
-        
+
         return params
     }
 }

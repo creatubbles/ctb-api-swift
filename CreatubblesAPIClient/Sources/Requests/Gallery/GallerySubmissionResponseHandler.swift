@@ -24,7 +24,6 @@
 
 import UIKit
 
-class GallerySubmissionResponseHandler: ErrorResponseHandler
-{
+class GallerySubmissionResponseHandler: ErrorResponseHandler {
 
 }

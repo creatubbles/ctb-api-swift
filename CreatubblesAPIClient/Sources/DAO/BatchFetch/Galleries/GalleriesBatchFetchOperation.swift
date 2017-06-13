@@ -23,45 +23,40 @@
 //  THE SOFTWARE.
 //
 
-class GalleriesBatchFetchOperation: ConcurrentOperation
-{
+class GalleriesBatchFetchOperation: ConcurrentOperation {
     private let requestSender: RequestSender
-    
+
     private let userId: String?
-    private let sort:SortOrder?
+    private let sort: SortOrder?
     private let query: String?
-    
+
     let pagingData: PagingData
     private(set) var galleries: Array<Gallery>?
     private var requestHandler: RequestHandler?
-    
-    init(requestSender: RequestSender, userId: String?, query: String?, sort:SortOrder?, pagingData: PagingData, complete: OperationCompleteClosure?)
-    {
+
+    init(requestSender: RequestSender, userId: String?, query: String?, sort: SortOrder?, pagingData: PagingData, complete: OperationCompleteClosure?) {
         self.requestSender = requestSender
         self.userId = userId
         self.sort = sort
         self.pagingData = pagingData
         self.query = query
-        
+
         super.init(complete: complete)
     }
-    
-    override func main()
-    {
+
+    override func main() {
         guard isCancelled == false else { return }
 
-        let request =  GalleriesRequest(page: pagingData.page, perPage: pagingData.pageSize, sort: sort, userId: userId, query: query)
-        let handler = GalleriesResponseHandler()
-        {
-            [weak self](galleries, pagingInfo, error) -> (Void) in
+        let request = GalleriesRequest(page: pagingData.page, perPage: pagingData.pageSize, sort: sort, userId: userId, query: query)
+        let handler = GalleriesResponseHandler {
+            [weak self](galleries, _, error) -> (Void) in
             self?.galleries = galleries
             self?.finish(error)
         }
         requestHandler = requestSender.send(request, withResponseHandler: handler)
     }
-    
-    override func cancel()
-    {
+
+    override func cancel() {
         requestHandler?.cancel()
         super.cancel()
     }

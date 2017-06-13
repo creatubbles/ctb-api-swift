@@ -23,28 +23,21 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NewCommentResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("NewComment response handler")
-        {
-            it("Should return error when not logged in")
-            {
+class NewCommentResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("NewComment response handler") {
+            it("Should return error when not logged in") {
                 let data = NewCommentData(userId: "TestUserId", text: "Test")
                 let request = NewCommentRequest(data: data)
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
                     sender.logout()
-                    _ = sender.send(request, withResponseHandler:NewCommentResponseHandler()
-                    {
+                    _ = sender.send(request, withResponseHandler:NewCommentResponseHandler {
                         (error) -> (Void) in
                         expect(error).notTo(beNil())
                         sender.logout()
@@ -52,24 +45,20 @@ class NewCommentResponseHandlerSpec: QuickSpec
                     })
                 }
             }
-            
-            it("Should comment gallery when logged in")
-            {
+
+            it("Should comment gallery when logged in") {
                 guard let galleryId = TestConfiguration.testGalleryIdentifier
                     else { return }
-                
+
                 let data = NewCommentData(galleryId: galleryId, text: "TestGalleryComment")
                 let request = NewCommentRequest(data: data)
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(request, withResponseHandler:NewCommentResponseHandler()
-                        {
+                        _ = sender.send(request, withResponseHandler:NewCommentResponseHandler {
                             (error) -> (Void) in
                             expect(error).to(beNil())
                             sender.logout()
@@ -78,24 +67,20 @@ class NewCommentResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should comment profile when logged in")
-            {
+
+            it("Should comment profile when logged in") {
                 guard let userId = TestConfiguration.testUserIdentifier
                     else { return }
-                
+
                 let data = NewCommentData(userId: userId, text: "TestProfileComment")
                 let request = NewCommentRequest(data: data)
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(request, withResponseHandler:NewCommentResponseHandler()
-                        {
+                        _ = sender.send(request, withResponseHandler:NewCommentResponseHandler {
                             (error) -> (Void) in
                             expect(error).to(beNil())
                             sender.logout()
@@ -104,24 +89,20 @@ class NewCommentResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should comment creation when logged in")
-            {
+
+            it("Should comment creation when logged in") {
                 guard let creationId = TestConfiguration.testCreationIdentifier
                     else { return }
-                
+
                 let data = NewCommentData(creationId: creationId, text: "TestCreationComment")
                 let request = NewCommentRequest(data: data)
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(request, withResponseHandler:NewCommentResponseHandler()
-                            {
+                        _ = sender.send(request, withResponseHandler:NewCommentResponseHandler {
                                 (error) -> (Void) in
                                 expect(error).to(beNil())
                                 sender.logout()
@@ -130,7 +111,7 @@ class NewCommentResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
+
         }
     }
 }

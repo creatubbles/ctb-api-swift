@@ -27,31 +27,24 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class UsersBatchFetcherSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("UsersBatchFetcher")
-        {
-            it("Should batch fetch users using operation client")
-            {
+class UsersBatchFetcherSpec: QuickSpec {
+    override func spec() {
+        describe("UsersBatchFetcher") {
+            it("Should batch fetch users using operation client") {
                 guard TestConfiguration.shoulTestBatchFetchers,
                       let identifier = TestConfiguration.testUserIdentifier
                 else { return }
-                
+
                 let sender = TestComponentsFactory.requestSender
                 var batchFetcher: UsersQueueBatchFetcher!
-                waitUntil(timeout: TestConfiguration.timeoutLong)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutLong) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(sender.isLoggedIn()).to(beTrue())
-                        
-                        batchFetcher = UsersQueueBatchFetcher(requestSender: sender, userId: identifier, query:nil, scope: .Creators)
-                        {
+
+                        batchFetcher = UsersQueueBatchFetcher(requestSender: sender, userId: identifier, query:nil, scope: .Creators) {
                             (users, error) -> (Void) in
                             expect(users).notTo(beNil())
                             expect(users).notTo(beEmpty())
@@ -62,26 +55,22 @@ class UsersBatchFetcherSpec: QuickSpec
                     })
                 }
             }
-            
-            it("Should batch fetch group users using operation client")
-            {
+
+            it("Should batch fetch group users using operation client") {
                 guard TestConfiguration.shoulTestBatchFetchers,
                       let identifier = TestConfiguration.testGroupIdentifier
                 else { return }
-                
+
                 let sender = TestComponentsFactory.requestSender
                 var batchFetcher: GroupUsersQueueBatchFetcher!
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(sender.isLoggedIn()).to(beTrue())
-                        
-                        batchFetcher = GroupUsersQueueBatchFetcher(requestSender: sender, groupId: identifier)
-                        {
+
+                        batchFetcher = GroupUsersQueueBatchFetcher(requestSender: sender, groupId: identifier) {
                             (users, error) -> (Void) in
                             expect(users).notTo(beNil())
                             expect(users).notTo(beEmpty())

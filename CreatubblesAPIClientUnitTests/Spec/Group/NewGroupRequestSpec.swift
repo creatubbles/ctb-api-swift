@@ -23,37 +23,30 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NewGroupRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("New Group Request")
-        {
-            it("Should have proper method")
-            {
+class NewGroupRequestSpec: QuickSpec {
+    override func spec() {
+        describe("New Group Request") {
+            it("Should have proper method") {
                 let request = NewGroupRequest(data: NewGroupData(name: ""))
-                expect(request.method).to(equal(RequestMethod.post))
+                expect(request.method) == RequestMethod.post
             }
-            
-            it("Should have proper endpoint")
-            {
+
+            it("Should have proper endpoint") {
                 let request = NewGroupRequest(data: NewGroupData(name: ""))
-                expect(request.endpoint).to(equal("groups"))
+                expect(request.endpoint) == "groups"
             }
-            
-            it("Should have proper parameters set")
-            {
-                let data = NewGroupData(name: "TestGroupName", avatarCreationIdentifier: "TestAvatarIdentifier")                                
+
+            it("Should have proper parameters set") {
+                let data = NewGroupData(name: "TestGroupName", avatarCreationIdentifier: "TestAvatarIdentifier")
                 let request = NewGroupRequest(data: data)
-                
-                expect((request.parameters as NSDictionary).value(forKeyPath: "data.type") as? String).to(equal("groups"))
-                expect((request.parameters as NSDictionary).value(forKeyPath: "data.attributes.name") as? String).to(equal("TestGroupName"))
-                expect((request.parameters as NSDictionary).value(forKeyPath: "data.relationships.avatar_creation.data.id") as? String).to(equal("TestAvatarIdentifier"))
+
+                expect((request.parameters as NSDictionary).value(forKeyPath: "data.type") as? String) == "groups"
+                expect((request.parameters as NSDictionary).value(forKeyPath: "data.attributes.name") as? String) == "TestGroupName"
+                expect((request.parameters as NSDictionary).value(forKeyPath: "data.relationships.avatar_creation.data.id") as? String) == "TestAvatarIdentifier"
             }
         }
     }

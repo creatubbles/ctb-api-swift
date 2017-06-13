@@ -23,25 +23,24 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
 class ActivitiesRequestSpec: QuickSpec {
-    
+
     override func spec() {
-        
+
         describe("Activities request") {
             URLCache.shared.removeAllCachedResponses()
-            
+
             it("Should have a proper method") {
                 let request = ActivitiesRequest(page: nil, perPage: nil)
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
+
             it("Should have a proper endpoint for activities source") {
-                expect(ActivitiesRequest(page: nil, perPage: nil).endpoint).to(equal("activities"))
+                expect(ActivitiesRequest(page: nil, perPage: nil).endpoint) == "activities"
             }
         }
     }

@@ -23,28 +23,21 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NotificationsFetchResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("NotificationsFetchResponseHandler")
-        {
-            it("Should return error when user is not logged in")
-            {
+class NotificationsFetchResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("NotificationsFetchResponseHandler") {
+            it("Should return error when user is not logged in") {
                 let request = NotificationsFetchRequest()
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    _ = sender.send(request, withResponseHandler:NotificationsFetchResponseHandler()
-                    {
+                    _ = sender.send(request, withResponseHandler:NotificationsFetchResponseHandler {
                         (responseData, unreadNotificationsCount) -> (Void) in
                         expect(responseData?.objects).to(beNil())
                         expect(responseData?.pagingInfo).to(beNil())
@@ -54,20 +47,16 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec
                     })
                 }
             }
-            
-            it("Should fetch notificaions when user is logged in")
-            {
+
+            it("Should fetch notificaions when user is logged in") {
                 let request = NotificationsFetchRequest()
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(request, withResponseHandler:NotificationsFetchResponseHandler()
-                        {
+                        _ = sender.send(request, withResponseHandler:NotificationsFetchResponseHandler {
                             (responseData, unreadNotificationsCount) -> (Void) in
                             expect(responseData?.objects).notTo(beNil())
                             expect(responseData?.objects).notTo(beEmpty())

@@ -23,13 +23,11 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 @objc
 //See https://partners.creatubbles.com/api/#ability-details for details.
-public enum AbilityOperation: Int
-{
+public enum AbilityOperation: Int {
     case unknown
     case edit
     case report
@@ -49,17 +47,15 @@ public enum AbilityOperation: Int
 }
 
 @objc
-open class Ability: NSObject
-{
+open class Ability: NSObject {
     open let identifier: String
     open let type: String
     open let resourceType: String
     open let resourceIdentifier: String?
     open let operation: AbilityOperation
     open let permission: Bool
-    
-    init(mapper: AbilityMapper)
-    {
+
+    init(mapper: AbilityMapper) {
         identifier = mapper.identifier!
         type = mapper.type!
         resourceType = mapper.resourceType!
@@ -67,9 +63,8 @@ open class Ability: NSObject
         operation = Ability.parseOperation(mapper.operation!)
         permission = mapper.permission!
     }
-    
-    fileprivate static func parseOperation(_ operationString: String) -> AbilityOperation
-    {
+
+    fileprivate static func parseOperation(_ operationString: String) -> AbilityOperation {
         switch operationString {
             case "edit":                    return .edit
             case "report":                  return .report
@@ -86,11 +81,11 @@ open class Ability: NSObject
             case "submit_to":               return .submitTo
             case "destroy":                 return .destroy
             case "see_connection_filters":  return .seeConnectionFilters
-            
+
             default:
                 Logger.log(.warning, "Unknown operation type: \(operationString)")
                 return .unknown
-            
+
         }
     }
 }

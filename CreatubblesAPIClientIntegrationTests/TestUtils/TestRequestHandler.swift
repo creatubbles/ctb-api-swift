@@ -23,23 +23,18 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 @testable import CreatubblesAPIClient
 
-class TestCancelable: Cancelable
-{
-    func cancel()
-    {
+class TestCancelable: Cancelable {
+    func cancel() {
         //Ignore
     }
 }
 
-class TestRequestHandler: RequestHandler
-{
-    init()
-    {
+class TestRequestHandler: RequestHandler {
+    init() {
         super.init(object: TestCancelable())
     }
 }

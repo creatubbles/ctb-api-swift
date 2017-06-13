@@ -24,11 +24,9 @@
 
 import UIKit
 
-class AvatarSuggestionsFetchRequest: Request
-{
-    override var method: RequestMethod  { return .get }
-    override var endpoint: String
-    {
+class AvatarSuggestionsFetchRequest: Request {
+    override var method: RequestMethod { return .get }
+    override var endpoint: String {
         return "avatar_suggestions"
     }
 }

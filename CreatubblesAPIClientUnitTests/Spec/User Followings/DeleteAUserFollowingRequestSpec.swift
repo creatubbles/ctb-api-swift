@@ -23,31 +23,25 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class DeleteAUserFollowingRequestSpec: QuickSpec
-{
+class DeleteAUserFollowingRequestSpec: QuickSpec {
     fileprivate let userId = "TestUserId"
-    
-    override func spec()
-    {
-        describe("Delete A Usser Following Request")
-        {
+
+    override func spec() {
+        describe("Delete A Usser Following Request") {
             let deleteUserFollowingRequest = DeleteAUserFollowingRequest(userId: self.userId)
-            
-            it("Should have proper endpoint")
-            {
+
+            it("Should have proper endpoint") {
                 let request = deleteUserFollowingRequest
-                expect(request.endpoint).to(equal("users/"+self.userId+"/following"))
+                expect(request.endpoint) == "users/"+self.userId+"/following"
             }
-            
-            it("Should have proper method")
-            {
+
+            it("Should have proper method") {
                 let request = deleteUserFollowingRequest
-                expect(request.method).to(equal(RequestMethod.delete))
+                expect(request.method) == RequestMethod.delete
             }
         }
     }

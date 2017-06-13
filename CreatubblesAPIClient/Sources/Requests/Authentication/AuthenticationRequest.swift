@@ -23,11 +23,10 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 public class AuthenticationRequest: Request {
-    override public var method: RequestMethod  { return .post }
+    override public var method: RequestMethod { return .post }
     override public var endpoint: String { return settings.tokenUri }
     override public var onlyPath: Bool { return false }
     override public var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
@@ -55,8 +54,8 @@ public class AuthenticationRequest: Request {
         self.redirectURI = nil
     }
 
-    fileprivate func prepareParameters() -> Dictionary<String,AnyObject> {
-        var params = Dictionary<String,AnyObject>()
+    fileprivate func prepareParameters() -> Dictionary<String, AnyObject> {
+        var params = Dictionary<String, AnyObject>()
 
         if let code = code as AnyObject? {
             params["code"] = code
@@ -79,15 +78,14 @@ public class AuthenticationRequest: Request {
         } else {
             params["grant_type"] = "client_credentials" as AnyObject?
         }
-        
-        if let scope = settings.oauthScope
-        {
+
+        if let scope = settings.oauthScope {
             params["scope"] = scope	 as AnyObject?
         }
 
         params["client_id"] = settings.appId as AnyObject?
         params["client_secret"] = settings.appSecret as AnyObject?
-        
+
         return params
     }
 }

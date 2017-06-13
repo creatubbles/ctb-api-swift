@@ -23,25 +23,22 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-public class Metadata: NSObject
-{
+public class Metadata: NSObject {
     let bubbledCreationIdentifiers: Array<String>
     let bubbledUserIdentifiers: Array<String>
     let bubbledGalleryIdentifiers: Array<String>
     let abilities: Array<Ability>
-    
+
     let userFollowedUsersIdentifiers: Array<String>
-    
-    init(mapper: MetadataMapper)
-    {
+
+    init(mapper: MetadataMapper) {
         bubbledCreationIdentifiers = mapper.bubbledCreationIdentifiers ?? []
         bubbledUserIdentifiers = mapper.bubbledUserIdentifiers ?? []
         bubbledGalleryIdentifiers = mapper.bubbledGalleryIdentifiers ?? []
-        abilities = mapper.abilityMappers?.map({ Ability(mapper: $0)}).filter({ $0.operation != .unknown }) ?? []
-        
+        abilities = mapper.abilityMappers?.map({ Ability(mapper: $0) }).filter({ $0.operation != .unknown }) ?? []
+
         userFollowedUsersIdentifiers = mapper.userFollowedUsersIdentifiers ?? []
     }
 }

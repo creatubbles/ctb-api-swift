@@ -23,32 +23,24 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class GroupResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Single Group response handler")
-        {
-            it("Should return proper value after logging in")
-            {
+class GroupResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("Single Group response handler") {
+            it("Should return proper value after logging in") {
                 guard let groupIdentifier = TestConfiguration.testGroupIdentifier
                 else { return }
-                
+
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(GroupsRequest(groupId: groupIdentifier), withResponseHandler: GroupResponseHandler()
-                        {
+                        sender.send(GroupsRequest(groupId: groupIdentifier), withResponseHandler: GroupResponseHandler {
                             (group, error) -> (Void) in
                             expect(error).to(beNil())
                             expect(group).notTo(beNil())

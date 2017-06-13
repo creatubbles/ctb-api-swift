@@ -23,44 +23,35 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NewCreatorResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("New creator response handler")
-        {
+class NewCreatorResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("New creator response handler") {
             guard let timestamp = TestConfiguration.newCreatorResponseHandlerSpecTestTimestamp,
                   TestConfiguration.shouldTestAddingNewCreator
-            else
-            {
+            else {
                 return
             }
 
             let name = "MMCreator"+timestamp
             let displayName = "MMCreator"+timestamp
-            let birthYear = 2000
+            let birthYear = 2_000
             let birthMonth = 10
             let countryCode = "PL"
             let gender = Gender.male
             var creatorRequest: NewCreatorRequest { return NewCreatorRequest(name: name, displayName: displayName, birthYear: birthYear,
                                                                              birthMonth: birthMonth, countryCode: countryCode, gender: gender) }
-            it("Should return correct value after login")
-            {
+            it("Should return correct value after login") {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(creatorRequest, withResponseHandler:NewCreatorResponseHandler()
-                            {
+                        _ = sender.send(creatorRequest, withResponseHandler:NewCreatorResponseHandler {
                                 (user: User?, error: Error?) -> Void in
                                 expect(error).to(beNil())
                                 expect(user).notTo(beNil())
@@ -69,16 +60,13 @@ class NewCreatorResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should return error when not logged in")
-            {
+
+            it("Should return error when not logged in") {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    _ = sender.send(creatorRequest, withResponseHandler:NewCreatorResponseHandler()
-                        {
+                    _ = sender.send(creatorRequest, withResponseHandler:NewCreatorResponseHandler {
                             (user: User?, error: Error?) -> Void in
                             expect(error).notTo(beNil())
                             expect(user).to(beNil())
@@ -89,4 +77,3 @@ class NewCreatorResponseHandlerSpec: QuickSpec
         }
     }
 }
-

@@ -23,13 +23,11 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class CreateMultipleCreatorsResponseHandlerSpec: QuickSpec
-{
+class CreateMultipleCreatorsResponseHandlerSpec: QuickSpec {
 //    override func spec()
 //    {
 //        describe("Create Multiple Creators response handler")

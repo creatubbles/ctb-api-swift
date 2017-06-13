@@ -1,4 +1,3 @@
-
 //
 //  AvatarDAO.swift
 //  CreatubblesAPIClient
@@ -25,24 +24,20 @@
 
 import UIKit
 
-class AvatarDAO: NSObject, APIClientDAO
-{
+class AvatarDAO: NSObject, APIClientDAO {
     fileprivate let requestSender: RequestSender
-    
-    required init(dependencies: DAODependencies)
-    {
+
+    required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
-    
-    open func getSuggestedAvatars(completion: AvatarSuggestionsClosure?) -> RequestHandler
-    {
+
+    open func getSuggestedAvatars(completion: AvatarSuggestionsClosure?) -> RequestHandler {
         let request = AvatarSuggestionsFetchRequest()
         let handler = AvatarSuggestionsFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    open func updateUserAvatar(userId: String, data: UpdateAvatarData, completion: ErrorClosure?) -> RequestHandler
-    {
+
+    open func updateUserAvatar(userId: String, data: UpdateAvatarData, completion: ErrorClosure?) -> RequestHandler {
         let request = UpdateUserAvatarRequest(userId: userId, data: data)
         let handler = UpdateUserAvatarResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)

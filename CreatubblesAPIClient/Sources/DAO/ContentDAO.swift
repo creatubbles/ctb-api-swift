@@ -23,62 +23,52 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class ContentDAO: NSObject, APIClientDAO
-{
+class ContentDAO: NSObject, APIClientDAO {
     fileprivate let requestSender: RequestSender
-    
-    required init(dependencies: DAODependencies)
-    {
+
+    required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
-    
-    func getTrendingContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
-    {
+
+    func getTrendingContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler {
         let request = ContentRequest(type: .Trending, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ContentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getRecentContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
-    {
+
+    func getRecentContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler {
         let request = ContentRequest(type: .Recent, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ContentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getUserBubbledContent(userIdentifier userId: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
-    {
+
+    func getUserBubbledContent(userIdentifier userId: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler {
         let request = ContentRequest(type: .BubbledContents, page: pagingData?.page, perPage: pagingData?.pageSize, userId: userId)
         let handler = ContentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getMyConnectionsContent(pagingData: PagingData?,  completion: ContentEntryClosure?) -> RequestHandler
-    {
+
+    func getMyConnectionsContent(pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler {
         let request = ContentRequest(type: .Connected, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ContentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getContentsByAUser(userIdentfier userId: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
-    {
+
+    func getContentsByAUser(userIdentfier userId: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler {
         let request = ContentRequest(type: .ContentsByAUser, page: pagingData?.page, perPage: pagingData?.pageSize, userId: userId)
         let handler = ContentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getFollowedContents(_ pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
-    {
+
+    func getFollowedContents(_ pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler {
         let request = ContentRequest(type: .Followed, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ContentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getSearchedContents(query: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler
-    {
+
+    func getSearchedContents(query: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler {
         let request = ContentSearchRequest(query: query, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ContentSearchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)

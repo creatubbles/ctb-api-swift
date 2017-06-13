@@ -24,8 +24,7 @@
 
 import UIKit
 
-public enum RequestMethod: String
-{
+public enum RequestMethod: String {
     case options = "OPTIONS"
     case get     = "GET"
     case head    = "HEAD"
@@ -37,28 +36,24 @@ public enum RequestMethod: String
     case connect = "CONNECT"
 }
 
-open class Request: NSObject, Cancelable
-{
-    open var method: RequestMethod   { return .get }
-    open var endpoint: String        { return ""   }
-    open var onlyPath: Bool          { return true }
-    
+open class Request: NSObject, Cancelable {
+    open var method: RequestMethod { return .get }
+    open var endpoint: String { return "" }
+    open var onlyPath: Bool { return true }
+
     //If set to true, version infix won't be set in RequestSender
     open var useExternalNamespace: Bool { return false }
-    
+
     open var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
 
-    class func sortOrderStringValue(_ sortOrder: SortOrder) -> String
-    {
-        switch sortOrder
-        {
+    class func sortOrderStringValue(_ sortOrder: SortOrder) -> String {
+        switch sortOrder {
             case .popular:  return "popular"
             case .recent:   return "recent"
         }
     }
 
-    public func cancel()
-    {
+    public func cancel() {
 
     }
 }

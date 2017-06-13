@@ -23,30 +23,22 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NewCreationUploadResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("New Creation Upload response handler")
-        {
-            it("Should return correct value after login")
-            {
+class NewCreationUploadResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("New Creation Upload response handler") {
+            it("Should return correct value after login") {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(NewCreationUploadRequest(creationId: "hkwIetSk"), withResponseHandler:NewCreationUploadResponseHandler()
-                        {
-                            (creationUpload: CreationUpload?, error:Error?) -> Void in
+                        sender.send(NewCreationUploadRequest(creationId: "hkwIetSk"), withResponseHandler:NewCreationUploadResponseHandler {
+                            (creationUpload: CreationUpload?, error: Error?) -> Void in
                             expect(error).to(beNil())
                             expect(creationUpload).notTo(beNil())
                             done()
@@ -54,17 +46,14 @@ class NewCreationUploadResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should return error when not logged in")
-            {
+
+            it("Should return error when not logged in") {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.send(NewCreationUploadRequest(creationId: "TestCreation"), withResponseHandler:NewCreationUploadResponseHandler()
-                    {
-                        (creationUpload: CreationUpload?, error:Error?) -> Void in
+                    sender.send(NewCreationUploadRequest(creationId: "TestCreation"), withResponseHandler:NewCreationUploadResponseHandler {
+                        (creationUpload: CreationUpload?, error: Error?) -> Void in
                         expect(error).notTo(beNil())
                         expect(creationUpload).to(beNil())
                         done()
@@ -72,7 +61,6 @@ class NewCreationUploadResponseHandlerSpec: QuickSpec
                 }
             }
         }
-        
+
     }
 }
-

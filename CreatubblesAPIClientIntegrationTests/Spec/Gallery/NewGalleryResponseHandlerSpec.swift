@@ -23,42 +23,33 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NewGalleryResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("New Gallery response handler")
-        {
+class NewGalleryResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("New Gallery response handler") {
             guard let timestamp = TestConfiguration.newGalleryResponseHandlerSpecTestTimestamp,
                   let testUserIdentifier = TestConfiguration.testUserIdentifier
-            else
-            {
+            else {
                 return
             }
-            
+
             let name = "MMTestGallery"+timestamp
             let galleryDescription = "MMTestGalleryDescription"+timestamp
             let openForAll = false
             let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: testUserIdentifier)
-            
-            it("Should return correct value after login")
-            {
+
+            it("Should return correct value after login") {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:NewGalleryResponseHandler
-                            {
-                                (gallery: Gallery?, error:Error?) -> Void in
+                        sender.send(request, withResponseHandler:NewGalleryResponseHandler {
+                                (gallery: Gallery?, error: Error?) -> Void in
                                 expect(error).to(beNil())
                                 expect(gallery).notTo(beNil())
                                 done()
@@ -66,28 +57,24 @@ class NewGalleryResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should return error when not logged in")
-            {
+
+            it("Should return error when not logged in") {
                 guard let timestamp = TestConfiguration.newGalleryResponseHandlerSpecTestTimestamp,
                       let testUserIdentifier = TestConfiguration.testUserIdentifier
-                else
-                {
+                else {
                     return
                 }
-                
+
                 let name = "MMTestGallery1"+timestamp
                 let galleryDescription = "MMTestGalleryDescription1"+timestamp
-                
+
                 let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: testUserIdentifier)
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.send(request, withResponseHandler:NewGalleryResponseHandler
-                    {
-                        (gallery: Gallery?, error:Error?) -> Void in
+                    sender.send(request, withResponseHandler:NewGalleryResponseHandler {
+                        (gallery: Gallery?, error: Error?) -> Void in
                         expect(error).notTo(beNil())
                         expect(gallery).to(beNil())
                         done()
@@ -97,4 +84,3 @@ class NewGalleryResponseHandlerSpec: QuickSpec
         }
     }
 }
-

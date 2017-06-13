@@ -23,42 +23,34 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NotificationsFetchRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("NotificationsFetchRequest")
-        {
-            it("Should use GET method")
-            {
+class NotificationsFetchRequestSpec: QuickSpec {
+    override func spec() {
+        describe("NotificationsFetchRequest") {
+            it("Should use GET method") {
                 let request = NotificationsFetchRequest()
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
-            it("Should have 'notifications' endpoint")
-            {
+
+            it("Should have 'notifications' endpoint") {
                 let request = NotificationsFetchRequest()
-                expect(request.endpoint).to(equal("notifications"))
+                expect(request.endpoint) == "notifications"
             }
-            
-            it("Should return empty parameters list when not pagable")
-            {
+
+            it("Should return empty parameters list when not pagable") {
                 let request = NotificationsFetchRequest()
                 expect(request.parameters).to(beEmpty())
             }
-            
-            it("Should be pageable")
-            {
+
+            it("Should be pageable") {
                 let request = NotificationsFetchRequest(page: 1, perPage: 10)
-                expect(request.parameters["page"] as? Int).to(equal(1))
-                expect(request.parameters["per_page"] as? Int).to(equal(10))
+                expect(request.parameters["page"] as? Int) == 1
+                expect(request.parameters["per_page"] as? Int) == 10
             }
-            
+
         }
     }
 }

@@ -25,15 +25,13 @@
 import UIKit
 
 @objc
-open class NewGalleryData: NSObject
-{
+open class NewGalleryData: NSObject {
     open let name: String
     open let galleryDescription: String
     open let openForAll: Bool
     open var ownerId: String?
-    
-    public init(name: String, galleryDescription: String, openForAll: Bool, ownerId: String?)
-    {
+
+    public init(name: String, galleryDescription: String, openForAll: Bool, ownerId: String?) {
         self.name = name
         self.galleryDescription = galleryDescription
         self.openForAll = openForAll

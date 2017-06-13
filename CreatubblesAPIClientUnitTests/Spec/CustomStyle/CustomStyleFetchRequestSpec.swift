@@ -23,34 +23,26 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-
-class CustomStyleFetchRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("CustomStyleFetchRequest")
-        {
-            it("Should be created with userId")
-            {
+class CustomStyleFetchRequestSpec: QuickSpec {
+    override func spec() {
+        describe("CustomStyleFetchRequest") {
+            it("Should be created with userId") {
                 _ = CustomStyleFetchRequest(userIdentifier: "")
             }
-            
-            it("Should have GET method")
-            {
+
+            it("Should have GET method") {
                 let request = CustomStyleFetchRequest(userIdentifier: "")
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
-            it("Should have 'users/USER_IDENTIFIER/custom_style' endpoint")
-            {
+
+            it("Should have 'users/USER_IDENTIFIER/custom_style' endpoint") {
                 let identifier = "TestUserIdentifier"
                 let request = CustomStyleFetchRequest(userIdentifier: identifier)
-                expect(request.endpoint).to(equal("users/\(identifier)/custom_style"))
+                expect(request.endpoint) == "users/\(identifier)/custom_style"
             }
         }
     }

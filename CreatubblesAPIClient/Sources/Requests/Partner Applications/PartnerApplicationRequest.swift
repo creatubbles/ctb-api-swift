@@ -23,24 +23,20 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class PartnerApplicationRequest: Request
-{
-    override var method: RequestMethod   { return .get }
-    override var endpoint: String        { return "partner_applications/\(id)" }
+class PartnerApplicationRequest: Request {
+    override var method: RequestMethod { return .get }
+    override var endpoint: String { return "partner_applications/\(id)" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
-    
+
     fileprivate let id: String
-    
-    init(id: String)
-    {
+
+    init(id: String) {
         self.id = id
     }
-    
-    func prepareParameters() -> Dictionary<String, AnyObject>
-    {
+
+    func prepareParameters() -> Dictionary<String, AnyObject> {
         var params = Dictionary<String, AnyObject>()
 
         params["id"] = id as AnyObject?

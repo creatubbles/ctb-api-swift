@@ -23,36 +23,28 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class EditGroupResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Edit Group response handler")
-        {
-            it("Should Edit group when only name is passed")
-            {
+class EditGroupResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("Edit Group response handler") {
+            it("Should Edit group when only name is passed") {
                 guard let identifier = TestConfiguration.testGroupIdentifier,
                       let name = TestConfiguration.testEditGroupName
                 else { return }
-                
+
                 let data = EditGroupData()
                 data.name = name
-                
+
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(EditGroupRequest(identifier: identifier, data:data), withResponseHandler: EditGroupResponseHandler()
-                        {
+                        _ = sender.send(EditGroupRequest(identifier: identifier, data:data), withResponseHandler: EditGroupResponseHandler {
                             (error) -> (Void) in
                             expect(error).to(beNil())
                             sender.logout()
@@ -62,26 +54,22 @@ class EditGroupResponseHandlerSpec: QuickSpec
                 }
             }
             //TODO: uncomment/remove when status is determined on api - for now creating with creation's id as avatar does not work
-            xit("Should edit group when name and avatar_id are passed")
-            {
+            xit("Should edit group when name and avatar_id are passed") {
                 guard let groupIdentifier = TestConfiguration.testGroupIdentifier,
                       let creationIdentifier = TestConfiguration.testCreationIdentifier
                 else { return }
-                
+
                 let data = EditGroupData()
-                data.name =  TestConfiguration.testEditGroupName
+                data.name = TestConfiguration.testEditGroupName
                 data.avatarCreationIdentifier = creationIdentifier
-                
+
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(EditGroupRequest(identifier: groupIdentifier, data:data), withResponseHandler: EditGroupResponseHandler()
-                        {
+                        _ = sender.send(EditGroupRequest(identifier: groupIdentifier, data:data), withResponseHandler: EditGroupResponseHandler {
                             (error) -> (Void) in
                             expect(error).to(beNil())
                             sender.logout()

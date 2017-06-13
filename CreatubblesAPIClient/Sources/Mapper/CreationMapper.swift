@@ -25,16 +25,15 @@
 import UIKit
 import ObjectMapper
 
-class CreationMapper: Mappable
-{
+class CreationMapper: Mappable {
     var identifier: String?
     var name: String?
     var translatedNamesMap: Array<NameTranslationObjectMapper>?
-    
+
     var createdAt: Date?
     var updatedAt: Date?
     var imageStatus: Int?
-    
+
     var imageOriginalUrl: String?
     var imageFullViewUrl: String?
     var imageListViewUrl: String?
@@ -44,18 +43,18 @@ class CreationMapper: Mappable
     var imageGalleryMobileUrl: String?
     var imageExploreMobileUrl: String?
     var imageShareUrl: String?
-    
+
     var video480Url: String?
     var video720Url: String?
 
     var bubblesCount: Int?
     var commentsCount: Int?
     var viewsCount: Int?
-    
+
     var lastBubbledAt: Date?
     var lastCommentedAt: Date?
     var lastSubmittedAt: Date?
-    
+
     var approved: Bool?
     var approvalStatus: String?
     var shortUrl: String?
@@ -64,29 +63,28 @@ class CreationMapper: Mappable
 
     var userRelationship: RelationshipMapper?
     var creatorRelationships: Array<RelationshipMapper>?
-    
+
     var reflectionText: String?
     var reflectionVideoUrl: String?
-    
+
     var objFileUrl: String?
     var playIFrameUrl: String?
-    
+
     var contentType: String?
-    
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
-        identifier  <- map["id"]
+
+    func mapping(map: Map) {
+        identifier <- map["id"]
         name <- map["attributes.name"]
-        
+
         translatedNamesMap <- map["attributes.translated_names"]
-        
+
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
         updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
-        
+
         imageStatus <- map["attributes.image_status"]
-        
+
         imageOriginalUrl <- map["attributes.image.links.original"]
         imageFullViewUrl <- map["attributes.image.links.full_view"]
         imageListViewUrl <- map["attributes.image.links.list_view"]
@@ -96,18 +94,18 @@ class CreationMapper: Mappable
         imageGalleryMobileUrl <- map["attributes.image.links.gallery_mobile"]
         imageExploreMobileUrl <- map["attributes.image.links.explore_mobile"]
         imageShareUrl <- map["attributes.image.links.share"]
-        
+
         video480Url <- map["attributes.video_480_url"]
         video720Url <- map["attributes.video_720_url"]
-        
+
         bubblesCount <- map["attributes.bubbles_count"]
         commentsCount <- map["attributes.comments_count"]
         viewsCount <- map["attributes.views_count"]
-        
+
         lastBubbledAt <- (map["attributes.last_bubbled_at"], APIClientDateTransform.sharedTransform)
         lastCommentedAt <- (map["attributes.last_commented_at"], APIClientDateTransform.sharedTransform)
         lastSubmittedAt <- (map["attributes.last_submitted_at"], APIClientDateTransform.sharedTransform)
-        
+
         approved <- map["attributes.approved"]
         approvalStatus <- map["attributes.approval_status"]
         shortUrl <- map["attributes.short_url"]
@@ -116,38 +114,33 @@ class CreationMapper: Mappable
 
         userRelationship <- map["relationships.user.data"]
         creatorRelationships <- map["relationships.creators.data"]
-        
+
         reflectionText <- map["attributes.reflection_text"]
         reflectionVideoUrl <- map["attributes.reflection_video_url"]
-        
+
         objFileUrl <- map["attributes.obj_file_url"]
         playIFrameUrl <- map["attributes.play_iframe_url"]
-        
+
         contentType <- map["attributes.content_type"]
     }
-    
-    //MARK: Parsing
-    func parseCreatorRelationships() -> Array<Relationship>?
-    {
-        if let relationships = creatorRelationships
-        {
-            return relationships.map({ Relationship(mapper: $0 )})
+
+    // MARK: Parsing
+    func parseCreatorRelationships() -> Array<Relationship>? {
+        if let relationships = creatorRelationships {
+            return relationships.map({ Relationship(mapper: $0 ) })
         }
         return nil
     }
 
-    func parseUserRelationship() -> Relationship?
-    {
-        return MappingUtils.relationshipFromMapper(userRelationship)        
+    func parseUserRelationship() -> Relationship? {
+        return MappingUtils.relationshipFromMapper(userRelationship)
     }
-    
-    func parseApprovalStatus() -> ApprovalStatus
-    {
+
+    func parseApprovalStatus() -> ApprovalStatus {
         guard let approvalStatus = approvalStatus
         else { return .unknown }
-        
-        switch approvalStatus
-        {
+
+        switch approvalStatus {
             case "approved": return .approved
             case "unapproved": return .unapproved
             case "rejected" :return .rejected

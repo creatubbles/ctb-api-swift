@@ -23,28 +23,24 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class NameTranslationObjectMapper: Mappable
-{
+class NameTranslationObjectMapper: Mappable {
     var code: String?
     var name: String?
     var original: Bool?
-    
-    //MARK: - Mappable
+
+    // MARK: - Mappable
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
+
+    func mapping(map: Map) {
         code <- map["code"]
         name <- map["name"]
         original <- map["original"]
     }
-    
-    func isValid() -> Bool
-    {
+
+    func isValid() -> Bool {
         return code != nil && name != nil && original != nil
     }
 }

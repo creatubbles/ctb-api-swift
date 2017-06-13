@@ -27,24 +27,21 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class LocalizationConfiguratorSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Forcing a default language")
-        {
-            afterEach { () -> () in
+class LocalizationConfiguratorSpec: QuickSpec {
+    override func spec() {
+        describe("Forcing a default language") {
+            afterEach { () -> Void in
                 LocalizationConfigurator.forcedLanguage = nil
             }
-            
+
             it("Should return nil if the property not set") {
                 expect(LocalizationConfigurator.forcedLanguage).to(beNil())
             }
-            
+
             it("Should return correct value if it's set") {
                 let localization = "de"
                 LocalizationConfigurator.forcedLanguage = localization
-                expect(LocalizationConfigurator.forcedLanguage).to(equal(localization))
+                expect(LocalizationConfigurator.forcedLanguage) == localization
             }
         }
     }

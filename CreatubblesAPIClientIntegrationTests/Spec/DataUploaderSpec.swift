@@ -29,8 +29,7 @@ import Realm
 
 @testable import CreatubblesAPIClient
 
-class DataUploaderSpec: QuickSpec
-{
+class DataUploaderSpec: QuickSpec {
 //    override func spec()
 //    {
 //        describe("Creation upload session")
@@ -172,4 +171,3 @@ class DataUploaderSpec: QuickSpec
 //        }
 //    }
 }
-

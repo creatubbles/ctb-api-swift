@@ -24,25 +24,20 @@
 
 import UIKit
 
-class ConcurrentOperation: Operation
-{
-    typealias OperationCompleteClosure = (_ operation: Operation?, _ error: Error?) -> ()
+class ConcurrentOperation: Operation {
+    typealias OperationCompleteClosure = (_ operation: Operation?, _ error: Error?) -> Void
     fileprivate let complete: OperationCompleteClosure?
 
-    init(complete: OperationCompleteClosure?)
-    {
+    init(complete: OperationCompleteClosure?) {
         self.complete = complete
         super.init()
     }
 
     // MARK: - Types
-    enum State
-    {
+    enum State {
         case ready, executing, finished
-        func keyPath() -> String
-        {
-            switch self
-            {
+        func keyPath() -> String {
+            switch self {
             case .ready:
                 return "isReady"
             case .executing:
@@ -54,16 +49,13 @@ class ConcurrentOperation: Operation
     }
 
     // MARK: - Properties
-    var state = State.ready
-    {
-        willSet
-        {
+    var state = State.ready {
+        willSet {
             self.willChangeValue(forKey: newValue.keyPath())
             self.willChangeValue(forKey: state.keyPath())
         }
 
-        didSet
-        {
+        didSet {
             self.didChangeValue(forKey: oldValue.keyPath())
             self.didChangeValue(forKey: state.keyPath())
         }
@@ -76,34 +68,27 @@ class ConcurrentOperation: Operation
     override var isAsynchronous: Bool { return true }
 
     // MARK: - Methods
-    override func start()
-    {
-        guard Thread.isMainThread else
-        {
+    override func start() {
+        guard Thread.isMainThread else {
             self.performSelector(onMainThread: #selector(Operation.start), with: nil, waitUntilDone: false)
             return
         }
 
-        if self.isCancelled
-        {
+        if self.isCancelled {
             self.finish()
-        }
-        else
-        {
+        } else {
             self.state = .executing
-            
+
             DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
                 self.main()
             }
         }
     }
 
-    final func finish(_ error: Error? = nil)
-    {
+    final func finish(_ error: Error? = nil) {
         DispatchQueue.main.async { [weak self] in
 
-            if let strongSelf = self
-            {
+            if let strongSelf = self {
                 strongSelf.state = .finished
                 strongSelf.complete?(strongSelf, error)
             }

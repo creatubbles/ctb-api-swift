@@ -25,16 +25,14 @@
 import UIKit
 import ObjectMapper
 
-class PagingInfoMapper: Mappable
-{
+class PagingInfoMapper: Mappable {
     var totalPages: Int?
     var totalCount: Int?
-    
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
+
+    func mapping(map: Map) {
         totalPages <- map["total_pages"]
-        totalCount <- map["total_count"]        
+        totalCount <- map["total_count"]
     }
 }

@@ -23,35 +23,27 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class UsersFollowedByAUserResponseHandlerSpec: QuickSpec
-{
+class UsersFollowedByAUserResponseHandlerSpec: QuickSpec {
     fileprivate let page = 1
     fileprivate let pageCount = 10
     fileprivate let userId = TestConfiguration.testUserIdentifier
-    
-    override func spec()
-    {
-        describe("Users Followed By A User Response Handler")
-        {
-            it("Should return correct value after login")
-            {
+
+    override func spec() {
+        describe("Users Followed By A User Response Handler") {
+            it("Should return correct value after login") {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(UsersFollowedByAUserRequest(page: self.page, perPage: self.pageCount, userId: self.userId!) , withResponseHandler:
-                            UsersFollowedByAUserResponseHandler()
-                        {
-                            (users: Array<User>?,pageInfo: PagingInfo?, error: Error?) -> Void in
+                        sender.send(UsersFollowedByAUserRequest(page: self.page, perPage: self.pageCount, userId: self.userId!), withResponseHandler:
+                            UsersFollowedByAUserResponseHandler {
+                            (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                             expect(error).to(beNil())
                             expect(users).notTo(beNil())
                             expect(pageInfo).notTo(beNil())
@@ -60,17 +52,14 @@ class UsersFollowedByAUserResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should not return errors when not logged in")
-            {
+
+            it("Should not return errors when not logged in") {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.send(UsersFollowedByAUserRequest(page: self.page, perPage: self.pageCount, userId: self.userId!) , withResponseHandler:
-                        UsersFollowedByAUserResponseHandler()
-                    {
+                    sender.send(UsersFollowedByAUserRequest(page: self.page, perPage: self.pageCount, userId: self.userId!), withResponseHandler:
+                        UsersFollowedByAUserResponseHandler {
                         (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                         expect(error).to(beNil())
                         expect(users).notTo(beNil())

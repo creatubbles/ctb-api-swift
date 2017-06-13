@@ -23,32 +23,24 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class FetchToybooCreationResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Fetch Toyboo Creation response handler")
-        {
-            it("Should return a correct creation after login")
-            {
+class FetchToybooCreationResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("Fetch Toyboo Creation response handler") {
+            it("Should return a correct creation after login") {
                 guard let creationId = TestConfiguration.toybooCreationIdentifier
                 else { return }
                 let request = FetchToybooCreationRequest(creationId: creationId)
-                let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler: FetchToybooCreationResponseHandler
-                        {
+                        sender.send(request, withResponseHandler: FetchToybooCreationResponseHandler {
                             (creation, error) -> (Void) in
                             expect(creation).notTo(beNil())
                             expect(error).to(beNil())
@@ -58,19 +50,16 @@ class FetchToybooCreationResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should return an error when not logged in")
-            {
+
+            it("Should return an error when not logged in") {
                 guard let creationId = TestConfiguration.toybooCreationIdentifier
                     else { return }
                 let request = FetchToybooCreationRequest(creationId: creationId)
-                let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
                     sender.logout()
-                    sender.send(request, withResponseHandler: FetchToybooCreationResponseHandler
-                    {
+                    sender.send(request, withResponseHandler: FetchToybooCreationResponseHandler {
                         (creation, error) -> (Void) in
                         expect(creation).to(beNil())
                         expect(error).notTo(beNil())

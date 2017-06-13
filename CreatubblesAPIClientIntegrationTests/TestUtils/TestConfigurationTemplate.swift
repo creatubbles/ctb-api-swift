@@ -25,26 +25,24 @@
 import UIKit
 import CreatubblesAPIClient
 
-class TestConfigurationTemplate: NSObject
-{
+class TestConfigurationTemplate: NSObject {
     static let appId = "TEST_APP_ID"
     static let appSecret = "TEST_APP_SECRET"
     static let tokenUri = "TEST_TOKEN_URI"
     static let authorizeUri = "TEST_AUTH_URI"
     static let baseUrl = "TEST_BASE_URL"
     static let apiVersion = "TEST_API_VERSION"
-    
+
     static let username = "TEST_USERNAME"
     static let password = "TEST_PASSWORD"
-    
+
     static let testCreationIdentifier: String? = nil
     static let testUserIdentifier: String? = nil
     static let testGalleryIdentifier: String? = nil
     static let testCommentIdentifier: String? = nil
     static let testBubbleIdentifier: String? = nil
-    
-    static var settings: APIClientSettings
-    {
+
+    static var settings: APIClientSettings {
         return APIClientSettings(
                 appId: appId,
                 appSecret: appSecret,

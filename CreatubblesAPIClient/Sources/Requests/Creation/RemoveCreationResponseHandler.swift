@@ -23,10 +23,8 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class RemoveCreationResponseHandler: ErrorResponseHandler
-{
+class RemoveCreationResponseHandler: ErrorResponseHandler {
 
 }

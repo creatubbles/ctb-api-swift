@@ -23,35 +23,27 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NotificationReadResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("NotificationReadResponseHandler")
-        {
-            it("Should return error when not logged in")
-            {
+class NotificationReadResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("NotificationReadResponseHandler") {
+            it("Should return error when not logged in") {
                 guard let identifier = TestConfiguration.testNotificationIdentifier
                 else { return }
-                
-                let request = NotificationReadRequest(notificationIdentifier: identifier)                                
+
+                let request = NotificationReadRequest(notificationIdentifier: identifier)
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.authenticate()
-                    {
+                    sender.authenticate {
                         (err) -> (Void) in
                         expect(err).to(beNil())
-                        sender.send(request, withResponseHandler:NotificationReadResponseHandler()
-                        {
+                        sender.send(request, withResponseHandler:NotificationReadResponseHandler {
                             (error) -> (Void) in
                             expect(error).notTo(beNil())
                             done()
@@ -59,24 +51,20 @@ class NotificationReadResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should not return error when logged in")
-            {
+
+            it("Should not return error when logged in") {
                 guard let identifier = TestConfiguration.testNotificationIdentifier
                 else { return }
-                
+
                 let request = NotificationReadRequest(notificationIdentifier: identifier)
                 let sender = TestComponentsFactory.requestSender
-                
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:NotificationReadResponseHandler()
-                        {
+                        sender.send(request, withResponseHandler:NotificationReadResponseHandler {
                             (error) -> (Void) in
                             expect(error).to(beNil())
                             done()

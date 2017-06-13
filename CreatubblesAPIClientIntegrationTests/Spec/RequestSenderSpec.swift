@@ -27,53 +27,43 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class RequestSenderSpec: QuickSpec
-{
-    override func spec()
-    {
-        afterEach
-        {
-            () -> () in
+class RequestSenderSpec: QuickSpec {
+    override func spec() {
+        afterEach {
+            () -> Void in
             let settings = TestConfiguration.settings
             let sender = RequestSender(settings: settings)
             sender.logout()
-            
+
         }
-        
-        describe("Request Sender")
-        {
-            it("Should login with proper credentials")
-            {
+
+        describe("Request Sender") {
+            it("Should login with proper credentials") {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
                         done()
                     })
                 }
             }
-            
-            it("Should throw error with wrong credentials")
-            {
+
+            it("Should throw error with wrong credentials") {
                 guard TestConfiguration.mode == .useAPI
                 else { return }
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login("wrongEmail@wrong.com", password: "wrong password", completion:
-                    {
+                    sender.login("wrongEmail@wrong.com", password: "wrong password", completion: {
                         (error: Error?) -> Void in
                         expect(error).notTo(beNil())
                         done()
                     })
                 }
-            }                        
+            }
         }
     }
 }

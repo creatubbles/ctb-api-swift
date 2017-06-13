@@ -23,10 +23,8 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class DeleteGroupResponseHandler: ErrorResponseHandler
-{
+class DeleteGroupResponseHandler: ErrorResponseHandler {
 
 }

@@ -23,27 +23,21 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class FetchToybooCreationRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Creations request")
-        {
-            it("Should have a proper method")
-            {
+class FetchToybooCreationRequestSpec: QuickSpec {
+    override func spec() {
+        describe("Creations request") {
+            it("Should have a proper method") {
                 let request = FetchToybooCreationRequest(creationId: "")
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
-            it("Should have a proper endpoint")
-            {
+
+            it("Should have a proper endpoint") {
                 let request = FetchToybooCreationRequest(creationId: "test")
-                expect(request.endpoint).to(equal("creations/test/toyboo_details"))
+                expect(request.endpoint) == "creations/test/toyboo_details"
             }
         }
     }

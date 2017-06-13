@@ -23,28 +23,21 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class AvatarSuggestionsFetchResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("AvatarSuggestionsFetch response handler")
-        {
-            it("Should return error when not logged in")
-            {
+class AvatarSuggestionsFetchResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("AvatarSuggestionsFetch response handler") {
+            it("Should return error when not logged in") {
                 let request = AvatarSuggestionsFetchRequest()
-                
+
                 let requestSender = TestComponentsFactory.requestSender
                 requestSender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    requestSender.send(request, withResponseHandler: AvatarSuggestionsFetchResponseHandler()
-                    {
+                    requestSender.send(request, withResponseHandler: AvatarSuggestionsFetchResponseHandler {
                         (avatarSuggestions, error) -> (Void) in
                         expect(avatarSuggestions).to(beNil())
                         expect(error).notTo(beNil())
@@ -52,20 +45,16 @@ class AvatarSuggestionsFetchResponseHandlerSpec: QuickSpec
                     })
                 }
             }
-            it("Should return an array of AvatarSuggestion when logged in")
-            {
+            it("Should return an array of AvatarSuggestion when logged in") {
                 let request = AvatarSuggestionsFetchRequest()
-                
+
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:AvatarSuggestionsFetchResponseHandler()
-                        {
+                        sender.send(request, withResponseHandler:AvatarSuggestionsFetchResponseHandler {
                             (avatarSuggestions, error) -> (Void) in
                             expect(avatarSuggestions).notTo(beNil())
                             expect(error).to(beNil())

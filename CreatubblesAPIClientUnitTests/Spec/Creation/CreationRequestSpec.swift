@@ -23,53 +23,45 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class CreationRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Creations request")
-        {
-            it("Should have a proper method")
-            {
+class CreationRequestSpec: QuickSpec {
+    override func spec() {
+        describe("Creations request") {
+            it("Should have a proper method") {
                 let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .recent, keyword: nil, onlyPublic: true)
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
-            it("Should have a proper endpoint")
-            {
+
+            it("Should have a proper endpoint") {
                 let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: nil, userId: nil, sort: .recent, keyword: nil, onlyPublic: true)
-                expect(request.endpoint).to(equal("creations"))
+                expect(request.endpoint) == "creations"
             }
-            
-            it("Should have a proper parameters set")
-            {
+
+            it("Should have a proper parameters set") {
                 let testGalleryIdentifier = "TestGalleryIdentifier"
                 let testUserIdentifier = "TestUserIdentifier"
                 let testKeyword = "TestKeyword"
                 let sortType = SortOrder.recent
-                
+
                 let request = FetchCreationsRequest(page: 1, perPage: 10, galleryId: testGalleryIdentifier, userId: testUserIdentifier, sort: sortType, keyword: testKeyword, onlyPublic: true)
-                
-                expect(request.parameters["gallery_id"] as? String).to(equal(testGalleryIdentifier))
-                expect(request.parameters["user_id"] as? String).to(equal(testUserIdentifier))
-                expect(request.parameters["search"] as? String).to(equal(testKeyword))
-                expect(request.parameters["sort"] as? String).to(equal(Request.sortOrderStringValue(sortType)))
-                expect(request.parameters["only_public"] as? Bool).to(equal(true))
+
+                expect(request.parameters["gallery_id"] as? String) == testGalleryIdentifier
+                expect(request.parameters["user_id"] as? String) == testUserIdentifier
+                expect(request.parameters["search"] as? String) == testKeyword
+                expect(request.parameters["sort"] as? String) == Request.sortOrderStringValue(sortType)
+                expect(request.parameters["only_public"] as? Bool) == true
             }
-            
-            it("Should have proper endpoint for fetching recommended creations")
-            {
+
+            it("Should have proper endpoint for fetching recommended creations") {
                 let identifier = "TestIdentifier"
                 let creationRequest = FetchCreationsRequest(page: 1, perPage: 0, recommendedCreationId: identifier)
                 let userRequest = FetchCreationsRequest(page: 1, perPage: 0, recommendedUserId: identifier)
-                
-                expect(creationRequest.endpoint).to(equal("creations/\(identifier)/recommended_creations"))
-                expect(userRequest.endpoint).to(equal("users/\(identifier)/recommended_creations"))
+
+                expect(creationRequest.endpoint) == "creations/\(identifier)/recommended_creations"
+                expect(userRequest.endpoint) == "users/\(identifier)/recommended_creations"
             }
         }
     }

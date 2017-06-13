@@ -23,31 +23,23 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class GalleriesResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Galleries response handler")
-        {
-            it("Should return correct value for many galleries after login")
-            {
+class GalleriesResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("Galleries response handler") {
+            it("Should return correct value for many galleries after login") {
                 let request = GalleriesRequest(page: 1, perPage: 10, sort: .popular, userId: nil, query: nil)
-                let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler()
-                        {
-                            (galleries: Array<Gallery>?,pageInfo: PagingInfo?, error: Error?) -> Void in
+                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler {
+                            (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                             expect(galleries).notTo(beNil())
                             expect(error).to(beNil())
                             expect(pageInfo).notTo(beNil())
@@ -57,20 +49,16 @@ class GalleriesResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should return correct value for single gallery after login ")
-            {
+
+            it("Should return correct value for single gallery after login ") {
                 let request = GalleriesRequest(galleryId: "NrLLiMVC")
-                let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler()
-                            {
+                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler {
                                 (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                                 expect(galleries).notTo(beNil())
                                 expect(error).to(beNil())
@@ -81,23 +69,19 @@ class GalleriesResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should list creation galleries when logged in")
-            {
+
+            it("Should list creation galleries when logged in") {
                 guard let identifier = TestConfiguration.testCreationIdentifier
                 else { return }
-                
+
                 let request = GalleriesRequest(creationId: identifier, page: nil, perPage: nil, sort: nil)
-                let sender =  TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler()
-                            {
+                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler {
                                 (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                                 expect(galleries).notTo(beNil())
                                 expect(error).to(beNil())
@@ -109,17 +93,14 @@ class GalleriesResponseHandlerSpec: QuickSpec
                 }
 
             }
-            
-            it("Should not return errors when not logged in")
-            {
+
+            it("Should not return errors when not logged in") {
                 let request = GalleriesRequest(page: 0, perPage: 20, sort: .recent, userId: nil, query: nil)
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    _ = sender.send(request, withResponseHandler:GalleriesResponseHandler()
-                    {
+                    _ = sender.send(request, withResponseHandler:GalleriesResponseHandler {
                         (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                         expect(galleries).notTo(beNil())
                         expect(error).to(beNil())
@@ -132,4 +113,3 @@ class GalleriesResponseHandlerSpec: QuickSpec
         }
     }
 }
-

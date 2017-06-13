@@ -24,61 +24,48 @@
 
 import UIKit
 
-public protocol APIClientDAO: class
-{
+public protocol APIClientDAO: class {
     init(dependencies: DAODependencies)
 }
 
-public class DAODependencies
-{
+public class DAODependencies {
     public let requestSender: RequestSender
-    
-    public init(requestSender: RequestSender)
-    {
+
+    public init(requestSender: RequestSender) {
         self.requestSender = requestSender
     }
 }
 
-public class DAOAssembly
-{
+public class DAOAssembly {
     private var store: Dictionary<String, AnyObject>
     private let dependencies: DAODependencies
-    
-    init(dependencies: DAODependencies)
-    {
+
+    init(dependencies: DAODependencies) {
         self.dependencies = dependencies
         store = Dictionary<String, AnyObject>()
     }
-    
-    public func register(dao: APIClientDAO)
-    {
+
+    public func register(dao: APIClientDAO) {
         let identifier = identifierFrom(daoClass: type(of: dao))
         store[identifier] = dao
     }
-    
-    public func assembly<T: APIClientDAO>(_ type: T.Type) -> T
-    {
+
+    public func assembly<T: APIClientDAO>(_ type: T.Type) -> T {
         let identifier = identifierFrom(daoClass: type)
-        if let dao = store[identifier] as? T
-        {
+        if let dao = store[identifier] as? T {
             return dao
-        }
-        else
-        {
+        } else {
             assertionFailure("DAO with identifier: \(identifier) was not registered yet.")
             return T(dependencies: dependencies)
         }
     }
-    
-    public func isDAORegistered<T: APIClientDAO>(_ type: T.Type) -> Bool
-    {
+
+    public func isDAORegistered<T: APIClientDAO>(_ type: T.Type) -> Bool {
         let identifier = identifierFrom(daoClass: type)
         return store[identifier] as? T != nil
     }
-    
-    
-    private func identifierFrom(daoClass: AnyClass) -> String
-    {
+
+    private func identifierFrom(daoClass: AnyClass) -> String {
         return String(describing: daoClass)
     }
 }

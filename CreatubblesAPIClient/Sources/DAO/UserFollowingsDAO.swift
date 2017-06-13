@@ -23,27 +23,22 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class UserFollowingsDAO: NSObject, APIClientDAO
-{
+class UserFollowingsDAO: NSObject, APIClientDAO {
     fileprivate let requestSender: RequestSender
-    
-    required init(dependencies: DAODependencies)
-    {
+
+    required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
-    
-    func createAUserFollowing(_ userId: String, completion: ErrorClosure?) -> RequestHandler
-    {
+
+    func createAUserFollowing(_ userId: String, completion: ErrorClosure?) -> RequestHandler {
         let request = CreateAUserFollowingRequest(userId: userId)
         let handler = CreateAUserFollowingResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func deleteAUserFollowing(_ userId: String, completion: ErrorClosure?) -> RequestHandler
-    {
+
+    func deleteAUserFollowing(_ userId: String, completion: ErrorClosure?) -> RequestHandler {
         let request = DeleteAUserFollowingRequest(userId: userId)
         let handler = DeleteAUserFollowingResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)

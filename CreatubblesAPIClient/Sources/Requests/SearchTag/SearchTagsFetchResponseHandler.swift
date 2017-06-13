@@ -24,7 +24,6 @@
 
 import UIKit
 
-class SearchTagsFetchResponseHandler: ResponseHandler
-{
+class SearchTagsFetchResponseHandler: ResponseHandler {
     //Empty until it's ready on API's side
 }

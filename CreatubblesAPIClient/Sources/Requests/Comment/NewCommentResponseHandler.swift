@@ -23,10 +23,8 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class NewCommentResponseHandler: ErrorResponseHandler
-{
+class NewCommentResponseHandler: ErrorResponseHandler {
 
 }

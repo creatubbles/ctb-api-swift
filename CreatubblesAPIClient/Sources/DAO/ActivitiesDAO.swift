@@ -23,18 +23,15 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class ActivitiesDAO: NSObject, APIClientDAO
-{
+class ActivitiesDAO: NSObject, APIClientDAO {
     fileprivate let requestSender: RequestSender
-    
-    required init(dependencies: DAODependencies)
-    {
+
+    required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
-    
+
     func getActivities(_ pagingData: PagingData?, completion: ActivitiesClosure?) -> RequestHandler {
         let request = ActivitiesRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ActivitiesResponseHandler(completion: completion)

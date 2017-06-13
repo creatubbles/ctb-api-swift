@@ -26,22 +26,19 @@
 import Foundation
 import ObjectMapper
 
-open class RelationshipMapper: Mappable
-{
+open class RelationshipMapper: Mappable {
     var type: String?
     var identifier: String?
-    
-    var isValid: Bool
-    {
+
+    var isValid: Bool {
         return type != nil && identifier != nil
     }
-    
+
     public required init?(map: Map) { /* Intentionally left empty  */ }
 
-    public func mapping(map: Map)
-    {
+    public func mapping(map: Map) {
         type <- map["type"]
         identifier <- map["id"]
     }
-    
+
 }

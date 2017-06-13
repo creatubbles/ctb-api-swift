@@ -24,58 +24,49 @@
 
 import UIKit
 
-enum CreatorsAndManagersScopeElement: String
-{
+enum CreatorsAndManagersScopeElement: String {
     case Managers = "managers"
     case Creators = "creators"
 }
 
-class CreatorsAndManagersRequest: Request
-{
-    override var method: RequestMethod  { return .get }
-    override var endpoint: String       { return "users" }
+class CreatorsAndManagersRequest: Request {
+    override var method: RequestMethod { return .get }
+    override var endpoint: String { return "users" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
-    
+
     fileprivate let userId: String?
     fileprivate let query: String?
     fileprivate let page: Int?
     fileprivate let perPage: Int?
     fileprivate let scope: CreatorsAndManagersScopeElement?
-    
-    init(userId: String? = nil, query: String? = nil, page: Int? = nil, perPage: Int? = nil, scope:CreatorsAndManagersScopeElement? = nil)
-    {
+
+    init(userId: String? = nil, query: String? = nil, page: Int? = nil, perPage: Int? = nil, scope: CreatorsAndManagersScopeElement? = nil) {
         self.userId = userId
         self.page = page
         self.perPage = perPage
         self.scope = scope
         self.query = query
     }
-    
-    fileprivate func prepareParameters() -> Dictionary<String, AnyObject>
-    {
+
+    fileprivate func prepareParameters() -> Dictionary<String, AnyObject> {
         var params = Dictionary<String, AnyObject>()
-        
-        if let userId = userId
-        {
+
+        if let userId = userId {
             params["user_id"] = userId as AnyObject?
         }
-        if let page = page
-        {
+        if let page = page {
             params["page"] = page as AnyObject?
         }
-        if let perPage = perPage
-        {
+        if let perPage = perPage {
             params["per_page"] = perPage as AnyObject?
         }
-        if let scope = scope
-        {
+        if let scope = scope {
             params["scope"] = scope.rawValue as AnyObject?
         }
-        if let query = query
-        {
+        if let query = query {
             params["query"] = query as AnyObject?
         }
-        
+
         return params
     }
 

@@ -23,27 +23,22 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class CustomStyleDAO: NSObject, APIClientDAO
-{
+class CustomStyleDAO: NSObject, APIClientDAO {
     fileprivate let requestSender: RequestSender
-    
-    required init(dependencies: DAODependencies)
-    {
+
+    required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
-    
-    func fetchCustomStyleForUser(userIdentifier identifier: String, completion: CustomStyleClosure?) -> RequestHandler
-    {
+
+    func fetchCustomStyleForUser(userIdentifier identifier: String, completion: CustomStyleClosure?) -> RequestHandler {
         let request = CustomStyleFetchRequest(userIdentifier: identifier)
         let handler = CustomStyleFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func editCustomStyleForUser(userIdentifier identifier: String, withData data: CustomStyleEditData, completion: CustomStyleClosure?) -> RequestHandler
-    {
+
+    func editCustomStyleForUser(userIdentifier identifier: String, withData data: CustomStyleEditData, completion: CustomStyleClosure?) -> RequestHandler {
         let request = CustomStyleEditRequest(userIdentifier: identifier, data: data)
         let handler = CustomStyleEditResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)

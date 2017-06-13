@@ -23,45 +23,37 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class EditProfileResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("EditProfileResponseHandlerSpec")
-        {
-            it("Should edit creation when logged in")
-            {
+class EditProfileResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("EditProfileResponseHandlerSpec") {
+            it("Should edit creation when logged in") {
                 guard let profileIdentifier = TestConfiguration.testUserIdentifier,
                       let creationIdentifier = TestConfiguration.testCreationIdentifier
                 else { return }
-                
+
                 let data = EditProfileData()
                 data.avatarCreationIdentifier = creationIdentifier
-                
+
                 let request = EditProfileRequest(identifier: profileIdentifier, data: data)
                 let sender = TestComponentsFactory.requestSender
-                
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:EditProfileResponseHandler()
-                        {
+                        sender.send(request, withResponseHandler:EditProfileResponseHandler {
                             (error: Error?) -> Void in
                             expect(error).to(beNil())
                             done()
                         })
                     }
                 }
-                
+
             }
         }
     }

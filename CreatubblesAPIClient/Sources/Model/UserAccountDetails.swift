@@ -23,12 +23,10 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 @objc
-open class UserAccountDetails: NSObject
-{
+open class UserAccountDetails: NSObject {
     open let identifier: String
     open let username: String
     open let displayName: String
@@ -54,15 +52,14 @@ open class UserAccountDetails: NSObject
     open let createdAt: Date
     open let updatedAt: Date
     open let abilities: Array<Ability>
-    
-    public init(mapper: UserAccountDetailsMapper, metadata: Metadata?)
-    {
+
+    public init(mapper: UserAccountDetailsMapper, metadata: Metadata?) {
         identifier = mapper.identifier!
-        username  = mapper.username!
+        username = mapper.username!
         displayName = mapper.displayName!
         email = mapper.email
         role = mapper.role
-        
+
         birthYear = mapper.birthYear
         birthMonth = mapper.birthMonth
         ageDisplayType = mapper.ageDisplayType!

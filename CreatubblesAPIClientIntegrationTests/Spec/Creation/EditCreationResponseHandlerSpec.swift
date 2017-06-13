@@ -23,47 +23,39 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class EditCreationResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("EditCreationResponseHandlerSpec")
-        {
+class EditCreationResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("EditCreationResponseHandlerSpec") {
             let data = EditCreationData()
             data.name = "TestEditCreationName"
             data.reflectionText = "Hello darkness my old friend"
             data.reflectionVideoURL = "https://www.youtube.com/watch?v=4zLfCnGVeL4"
-            data.creationDate = NSDate(timeIntervalSince1970: 1460751998) as Date
-            
-            it("Should edit creation when logged in")
-            {
+            data.creationDate = NSDate(timeIntervalSince1970: 1_460_751_998) as Date
+
+            it("Should edit creation when logged in") {
                 guard let identifier = TestConfiguration.testCreationIdentifier
                 else { return }
-                
+
                 let request = EditCreationRequest(identifier: identifier, data: data)
                 let sender = TestComponentsFactory.requestSender
-                
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(request, withResponseHandler:EditCreationResponseHandler()
-                        {
+                        _ = sender.send(request, withResponseHandler:EditCreationResponseHandler {
                             (error: Error?) -> Void in
                             expect(error).to(beNil())
                             done()
                         })
                     }
                 }
-                
+
             }
         }
     }

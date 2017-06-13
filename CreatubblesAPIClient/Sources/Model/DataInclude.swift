@@ -25,7 +25,6 @@
 
 import Foundation
 
-class DataInclude
-{
+class DataInclude {
 
 }

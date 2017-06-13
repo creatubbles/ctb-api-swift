@@ -23,10 +23,8 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class NotificationReadResponseHandler: ErrorResponseHandler
-{
+class NotificationReadResponseHandler: ErrorResponseHandler {
 
 }

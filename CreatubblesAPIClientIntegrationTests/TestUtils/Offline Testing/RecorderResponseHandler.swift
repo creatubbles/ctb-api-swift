@@ -26,28 +26,24 @@
 import UIKit
 @testable import CreatubblesAPIClient
 
-class RecorderResponseHandler: ResponseHandler
-{
+class RecorderResponseHandler: ResponseHandler {
     private let originalResponseHandler: ResponseHandler
     private let fileToSavePath: String?
     private let isLoggedIn: Bool?
-    
-    init(originalHandler: ResponseHandler, fileToSavePath: String?, isLoggedIn: Bool?)
-    {
+
+    init(originalHandler: ResponseHandler, fileToSavePath: String?, isLoggedIn: Bool?) {
         self.originalResponseHandler = originalHandler
         self.fileToSavePath = fileToSavePath
         self.isLoggedIn = isLoggedIn
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
-    
-        if let _ = fileToSavePath
-        {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
+
+        if let _ = fileToSavePath {
             let testRecorder = TestRecorder(isLoggedIn: isLoggedIn)
             testRecorder.saveResponseToFile(response, fileToSavePath: fileToSavePath, error: error)
         }
-        
+
         originalResponseHandler.handleResponse(response, error: error)
     }
 }

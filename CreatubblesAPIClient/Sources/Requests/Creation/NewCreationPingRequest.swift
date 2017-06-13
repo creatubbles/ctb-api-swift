@@ -24,24 +24,20 @@
 
 import UIKit
 
-class NewCreationPingRequest: Request
-{
-    override var method: RequestMethod   { return .put }
+class NewCreationPingRequest: Request {
+    override var method: RequestMethod { return .put }
     override var endpoint: String { return "uploads/"+uploadId }
-    override var parameters: Dictionary<String, AnyObject>
-    {
-        if let err = abortError
-        {
-            return ["aborted_with":err as AnyObject]
+    override var parameters: Dictionary<String, AnyObject> {
+        if let err = abortError {
+            return ["aborted_with": err as AnyObject]
         }
         return Dictionary<String, AnyObject>()
     }
-    
+
     fileprivate let uploadId: String
     fileprivate let abortError: String?
-    
-    init(uploadId: String, abortError: String? = nil)
-    {
+
+    init(uploadId: String, abortError: String? = nil) {
         self.uploadId = uploadId
         self.abortError = abortError
     }

@@ -25,19 +25,16 @@
 import UIKit
 @testable import CreatubblesAPIClient
 
-class DummyResponseHandler: ResponseHandler
-{
-    fileprivate let completion: (_ response: Dictionary<String, AnyObject>?, _ error:Error?) -> Void
-    
-    init(completion: @escaping (_ response: Dictionary<String, AnyObject>?, _ error:Error?) -> Void)
-    {
+class DummyResponseHandler: ResponseHandler {
+    fileprivate let completion: (_ response: Dictionary<String, AnyObject>?, _ error: Error?) -> Void
+
+    init(completion: @escaping (_ response: Dictionary<String, AnyObject>?, _ error: Error?) -> Void) {
         self.completion = completion
-        
+
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         completion(response, error)
     }
-    
+
 }

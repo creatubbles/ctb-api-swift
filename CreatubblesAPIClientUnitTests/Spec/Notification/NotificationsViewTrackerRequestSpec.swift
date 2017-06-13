@@ -23,28 +23,22 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NotificationsViewTrackerRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Notifications View Tracker Request")
-        {
-            it("Should use PUT method")
-            {
+class NotificationsViewTrackerRequestSpec: QuickSpec {
+    override func spec() {
+        describe("Notifications View Tracker Request") {
+            it("Should use PUT method") {
                 let request = NotificationsViewTrackerRequest()
-                expect(request.method).to(equal(RequestMethod.put))
+                expect(request.method) == RequestMethod.put
             }
-            
-            it("Should have 'notifications/view_tracker' endpoint")
-            {
+
+            it("Should have 'notifications/view_tracker' endpoint") {
                 let request = NotificationsViewTrackerRequest()
-                
-                expect(request.endpoint).to(equal("notifications/view_tracker"))
+
+                expect(request.endpoint) == "notifications/view_tracker"
             }
         }
     }

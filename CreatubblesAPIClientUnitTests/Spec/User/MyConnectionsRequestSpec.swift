@@ -23,47 +23,39 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class MyConnectionsRequestSpec: QuickSpec
-{
+class MyConnectionsRequestSpec: QuickSpec {
     fileprivate let page = 1
     fileprivate let pageCount = 10
     fileprivate let userId = "TestUserId"
-    
-    override func spec()
-    {
-        describe("Creators and Managers request")
-        {
-            it("Should have proper endpoint for current user's connections")
-            {
+
+    override func spec() {
+        describe("Creators and Managers request") {
+            it("Should have proper endpoint for current user's connections") {
                 let request = MyConnectionsRequest()
-                expect(request.endpoint).to(equal("users/me/connected_users"))
+                expect(request.endpoint) == "users/me/connected_users"
             }
-            
-            it("Should have a proper endpoint for other user's connections")
-            {
+
+            it("Should have a proper endpoint for other user's connections") {
                 let request = MyConnectionsRequest(page: self.page, perPage: self.pageCount, userId: self.userId)
-                expect(request.endpoint).to(equal("users/"+self.userId+"/connected_users"))
+                expect(request.endpoint) == "users/"+self.userId+"/connected_users"
             }
-            
-            it("Should have proper method")
-            {
+
+            it("Should have proper method") {
                 let request = MyConnectionsRequest()
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
-            it("Should have proper parameters set")
-            {
+
+            it("Should have proper parameters set") {
                 let request = MyConnectionsRequest(page: self.page, perPage: self.pageCount, userId: self.userId)
                 let params = request.parameters
-                expect(params["page"] as? Int).to(equal(self.page))
-                expect(params["per_page"] as? Int).to(equal(self.pageCount))
-                expect(params["user_id"] as? String).to(equal(self.userId))
+                expect(params["page"] as? Int) == self.page
+                expect(params["per_page"] as? Int) == self.pageCount
+                expect(params["user_id"] as? String) == self.userId
             }
-        }        
+        }
     }
 }

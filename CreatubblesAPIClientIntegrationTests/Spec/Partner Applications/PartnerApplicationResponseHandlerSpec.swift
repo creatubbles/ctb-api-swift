@@ -23,31 +23,23 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class PartnerApplicationsResponseHandlerSpec: QuickSpec
-{
+class PartnerApplicationsResponseHandlerSpec: QuickSpec {
     let id = "hueanimation"
 
-    override func spec()
-    {
-        describe("Partner Applications response handler")
-        {
-            it("Should return correct value after login")
-            {
+    override func spec() {
+        describe("Partner Applications response handler") {
+            it("Should return correct value after login") {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler: PartnerApplicationResponseHandler()
-                        {
+                        sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler: PartnerApplicationResponseHandler {
                             (partnerApplication: PartnerApplication?, error: Error?) -> Void in
                             expect(error).to(beNil())
                             expect(partnerApplication).notTo(beNil())
@@ -56,16 +48,13 @@ class PartnerApplicationsResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should not return errors when not logged in")
-            {
+
+            it("Should not return errors when not logged in") {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler:PartnerApplicationResponseHandler()
-                    {
+                    sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler:PartnerApplicationResponseHandler {
                         (partnerApplication: PartnerApplication?, error: Error?) -> Void in
                         expect(error).to(beNil())
                         expect(partnerApplication).notTo(beNil())

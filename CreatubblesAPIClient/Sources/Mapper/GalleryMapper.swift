@@ -24,8 +24,7 @@
 import UIKit
 import ObjectMapper
 
-class GalleryMapper: Mappable
-{
+class GalleryMapper: Mappable {
     var identifier: String?
     var name: String?
     var galleryDescription: String?
@@ -40,19 +39,18 @@ class GalleryMapper: Mappable
     var shortUrl: String?
     var previewImageUrls: Array<String>?
     var ownerRelationship: RelationshipMapper?
-    
+
     var bannerOriginalUrl: String?
     var bannerListViewUrl: String?
     var bannerListViewRetinaUrl: String?
     var bannerMatrixViewUrl: String?
     var bannerMatrixViewRetinaUrl: String?
     var bannerExploreMobileUrl: String?
-    
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
-        identifier  <- map["id"]
+
+    func mapping(map: Map) {
+        identifier <- map["id"]
         name <- map["attributes.name"]
         galleryDescription <- map["attributes.description"]
         openForAll <- map["attributes.open_for_all"]
@@ -66,19 +64,18 @@ class GalleryMapper: Mappable
         shortUrl <- map["attributes.short_url"]
         previewImageUrls <- map["attributes.preview_image_urls"]
         ownerRelationship <- map["relationships.owner.data"]
-        
+
         bannerOriginalUrl <- map["attributes.banner.links.original"]
         bannerListViewUrl <- map["attributes.banner.links.list_view"]
         bannerListViewRetinaUrl <- map["attributes.banner.links.list_view_retina"]
         bannerMatrixViewUrl <- map["banner.links.matrix_view"]
         bannerMatrixViewRetinaUrl <- map["banner.links.matrix_view_retina"]
         bannerExploreMobileUrl <- map["banner.links.explore_mobile"]
-        
+
     }
-    
-    //MARK: Parsing
-    func parseOwnerRelationship() -> Relationship?
-    {
+
+    // MARK: Parsing
+    func parseOwnerRelationship() -> Relationship? {
         return MappingUtils.relationshipFromMapper(ownerRelationship)
     }
 }

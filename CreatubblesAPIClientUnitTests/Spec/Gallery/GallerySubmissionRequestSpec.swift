@@ -23,39 +23,30 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
+class GallerySubmissionRequestSpec: QuickSpec {
+    override func spec() {
+        describe("Gallery Submission request") {
+            it("Should have proper method") {
+                let request = GallerySubmissionRequest(galleryId: "12345", creationId: "12345")
+                expect(request.method) == RequestMethod.post
+            }
 
-class GallerySubmissionRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Gallery Submission request")
-        {
-            it("Should have proper method")
-            {
+            it("Should have proper endpoint") {
                 let request = GallerySubmissionRequest(galleryId: "12345", creationId: "12345")
-                expect(request.method).to(equal(RequestMethod.post))
+                expect(request.endpoint) == "gallery_submissions"
             }
-            
-            it("Should have proper endpoint")
-            {
-                let request = GallerySubmissionRequest(galleryId: "12345", creationId: "12345")
-                expect(request.endpoint).to(equal("gallery_submissions"))
-            }
-            
-            it("Should have proper parameters")
-            {
+
+            it("Should have proper parameters") {
                 let creationId = "TestCreationId"
                 let galleryId = "TestGalleryId"
                 let request = GallerySubmissionRequest(galleryId: galleryId, creationId: creationId)
-                expect(request.parameters["gallery_id"] as? String).to(equal(galleryId))
-                expect(request.parameters["creation_id"] as? String).to(equal(creationId))
-            }                        
+                expect(request.parameters["gallery_id"] as? String) == galleryId
+                expect(request.parameters["creation_id"] as? String) == creationId
+            }
         }
     }
 }
-

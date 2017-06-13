@@ -23,41 +23,39 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class PartnerApplicationsMapper: Mappable
-{
+class PartnerApplicationsMapper: Mappable {
     var identifier: String?
     var name: String?
     var slug: String?
     var shorturl: String?
-    
+
     var headerBgLinksOriginal: String?
     var headerBgLinksListViewRetina: String?
     var headerBgLinksListview: String?
     var headerBgLinksMagrixViewRetina: String?
     var headerBgLinksMatrixView: String?
     var headerBgLinksExploreMobile: String?
-    
+
     var bodyBgLinksOriginal: String?
     var bodyBgLinksListViewRetina: String?
     var bodyBgLinksListView: String?
     var bodyBgLinksMatrixViewRetina: String?
     var bodyBgLinksMatrixView: String?
     var bodyBgLinksExploreMobile: String?
-    
+
     var ownerName: String?
     var ownerCountry: String?
     var partnerDescription: String?
-    
+
     var ctaLoggedInLabel: String?
     var ctaLoggedOutLabel: String?
     var requestCtaForYoungsters: Bool?
     var ctaForYoungsters: String?
     var ctaHref: String?
-    
+
     var categories: String?
     var age: String?
     var languages: String?
@@ -77,8 +75,8 @@ class PartnerApplicationsMapper: Mappable
     var avatarUrl: String?
     var createdAt: Date?
     var updatedAt: Date?
-    
-    //MARK: Relationships
+
+    // MARK: Relationships
     var userRelationship: RelationshipMapper?
     var user: User?
     var galleryRelationship: RelationshipMapper?
@@ -87,35 +85,34 @@ class PartnerApplicationsMapper: Mappable
     var galleries: Array<Gallery>?
     var appScreenshotsRelationships: Array<RelationshipMapper>?
     var appScreenshots: Array<AppScreenshot>?
-    
-    //MARK: - Mappable
+
+    // MARK: - Mappable
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
+
+    func mapping(map: Map) {
         identifier <- map["id"]
         name <- map["attributes.name"]
         slug <- map["attributes.slug"]
         shorturl <- map["attributes.short_url"]
-        
+
         headerBgLinksOriginal <- map["attributes.header_bg.links.original"]
         headerBgLinksListViewRetina <- map["attributes.header_bg.links.list_view_retina"]
         headerBgLinksListview <- map["attributes.header_bg.links.list_view"]
         headerBgLinksMagrixViewRetina <- map["attributes.header_bg.links.matrix_view_retina"]
         headerBgLinksMatrixView <- map["attributes.header_bg.links.matrix_view"]
         headerBgLinksExploreMobile <- map["attributes.header_bg.links.explore_mobile"]
-        
+
         bodyBgLinksOriginal <- map["attributes.body_bg.links.original"]
         bodyBgLinksListViewRetina <- map["attributes.body_bg.links.list_view_retina"]
         bodyBgLinksListView <- map["attributes.body_bg.links.list_view"]
         bodyBgLinksMatrixViewRetina <- map["attributes.body_bg.links.matrix_view_retina"]
         bodyBgLinksMatrixView <- map["attributes.body_bg.links.matrix_view"]
         bodyBgLinksExploreMobile <- map["attributes.body_bg.links.explore_mobile"]
-        
+
         ownerName <- map["attributes.owner_name"]
         ownerCountry <- map["attributes.owner_country"]
         partnerDescription <- map["attributes.description"]
-        
+
         ctaLoggedInLabel <- map["attributes.cta_logged_in_label"]
         ctaLoggedOutLabel <- map["attributes.cta_logged_out_label"]
 
@@ -141,44 +138,36 @@ class PartnerApplicationsMapper: Mappable
         avatarUrl <- map["attributes.avatar_url"]
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
         updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
-        
+
         userRelationship <- map["relationships.user.data"]
         galleryRelationship <- map["relationships.gallery.data"]
         galleriesRelationships <- map["relationships.galleries.data"]
         appScreenshotsRelationships <- map["relationships.app_screenshots.data"]
     }
-    
-    func parseUserRelationship() -> Relationship?
-    {
+
+    func parseUserRelationship() -> Relationship? {
         return MappingUtils.relationshipFromMapper(userRelationship)
     }
-    
-    func parseGalleryRelationship() -> Relationship?
-    {
+
+    func parseGalleryRelationship() -> Relationship? {
         return MappingUtils.relationshipFromMapper(galleryRelationship)
     }
-    
-    func parseGalleriesRelationships() -> Array<Relationship>?
-    {
-        if let galleriesRelationships = galleriesRelationships
-        {
+
+    func parseGalleriesRelationships() -> Array<Relationship>? {
+        if let galleriesRelationships = galleriesRelationships {
             var relationships = Array<Relationship>()
-            for relationship in galleriesRelationships
-            {
+            for relationship in galleriesRelationships {
                 relationships.append(MappingUtils.relationshipFromMapper(relationship)!)
             }
             return relationships
         }
         return nil
     }
-    
-    func parseAppScreenshotsRelationships() -> Array<Relationship>?
-    {
-        if let appScreenshotsRelationships = appScreenshotsRelationships
-        {
+
+    func parseAppScreenshotsRelationships() -> Array<Relationship>? {
+        if let appScreenshotsRelationships = appScreenshotsRelationships {
             var relationships = Array<Relationship>()
-            for relationship in appScreenshotsRelationships
-            {
+            for relationship in appScreenshotsRelationships {
                 relationships.append(MappingUtils.relationshipFromMapper(relationship)!)
             }
             return relationships

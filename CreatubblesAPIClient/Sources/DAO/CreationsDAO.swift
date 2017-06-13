@@ -24,80 +24,68 @@
 
 import UIKit
 
-class CreationsDAO: NSObject, APIClientDAO
-{
+class CreationsDAO: NSObject, APIClientDAO {
     fileprivate let requestSender: RequestSender
-    
-    required init(dependencies: DAODependencies)
-    {
+
+    required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
-    
-    func getCreation(creationIdentifier creationId: String, completion: CreationClosure?) -> RequestHandler
-    {
+
+    func getCreation(creationIdentifier creationId: String, completion: CreationClosure?) -> RequestHandler {
         let request = FetchCreationsRequest(creationId: creationId)
-        let handler = FetchCreationsResponseHandler
-        {
-            (creations, pageInfo, error) -> (Void) in
+        let handler = FetchCreationsResponseHandler {
+            (creations, _, error) -> (Void) in
             completion?(creations?.first, error)
         }
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func reportCreation(creationIdentifier creationId: String, message: String, completion: ErrorClosure?) -> RequestHandler
-    {
+
+    func reportCreation(creationIdentifier creationId: String, message: String, completion: ErrorClosure?) -> RequestHandler {
         let request = ReportCreationRequest(creationId: creationId, message: message)
         let handler = ReportCreationResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getRecomendedCreationsByUser(userIdentifier userId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
-    {
+
+    func getRecomendedCreationsByUser(userIdentifier userId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler {
         let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, recommendedUserId: userId)
         let handler = FetchCreationsResponseHandler(completion: completon)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getRecomendedCreationsByCreation(creationIdentifier creationId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler
-    {
+
+    func getRecomendedCreationsByCreation(creationIdentifier creationId: String, pagingData: PagingData?, completon: CreationsClosure?) -> RequestHandler {
         let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, recommendedCreationId: creationId)
         let handler = FetchCreationsResponseHandler(completion: completon)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getCreations(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, partnerApplicationId: String?, onlyPublic: Bool, completion: CreationsClosure?) -> RequestHandler
-    {
+
+    func getCreations(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, pagingData: PagingData?, sortOrder: SortOrder?, partnerApplicationId: String?, onlyPublic: Bool, completion: CreationsClosure?) -> RequestHandler {
         let request = FetchCreationsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, galleryId: galleryId, userId: userId, sort: sortOrder, keyword: keyword, partnerApplicationId: partnerApplicationId, onlyPublic: onlyPublic)
         let handler = FetchCreationsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func editCreation(creationIdentifier creationId: String, data: EditCreationData, completion: ErrorClosure?) -> RequestHandler
-    {
+
+    func editCreation(creationIdentifier creationId: String, data: EditCreationData, completion: ErrorClosure?) -> RequestHandler {
         let request = EditCreationRequest(identifier: creationId, data: data)
         let handler = EditCreationResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func removeCreation(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler
-    {
+
+    func removeCreation(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler {
 
         let request = RemoveCreationRequest(creationId: creationId)
         let handler = RemoveCreationResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getToybooCreation(creationIdentifier creationId: String, completion: ToybooCreationClosure?) -> RequestHandler
-    {
+
+    func getToybooCreation(creationIdentifier creationId: String, completion: ToybooCreationClosure?) -> RequestHandler {
         let request = FetchToybooCreationRequest(creationId: creationId)
         let handler = FetchToybooCreationResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    //MARK: BatchMode
-    func getCreationsInBatchMode(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, partnerApplicationId: String?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler
-    {        
-        let fetcher =  CreationsQueueBatchFetcher(requestSender: requestSender,userId: userId, galleryId: galleryId, keyword: keyword, partnerApplicationId: partnerApplicationId, sort: sortOrder, onlyPublic: onlyPublic, completion: completion)
+
+    // MARK: BatchMode
+    func getCreationsInBatchMode(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, partnerApplicationId: String?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler {
+        let fetcher = CreationsQueueBatchFetcher(requestSender: requestSender, userId: userId, galleryId: galleryId, keyword: keyword, partnerApplicationId: partnerApplicationId, sort: sortOrder, onlyPublic: onlyPublic, completion: completion)
         return fetcher.fetch()
     }
 }

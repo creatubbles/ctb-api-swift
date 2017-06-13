@@ -23,27 +23,21 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class AvatarSuggestionsFetchRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("AvatarSuggestions request")
-        {
-            it("Should have a proper endpoint")
-            {
+class AvatarSuggestionsFetchRequestSpec: QuickSpec {
+    override func spec() {
+        describe("AvatarSuggestions request") {
+            it("Should have a proper endpoint") {
                 let request = AvatarSuggestionsFetchRequest()
-                expect(request.endpoint).to(equal("avatar_suggestions"))
+                expect(request.endpoint) == "avatar_suggestions"
             }
-            
-            it("Should have a proper method")
-            {
+
+            it("Should have a proper method") {
                 let request = AvatarSuggestionsFetchRequest()
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
         }
     }

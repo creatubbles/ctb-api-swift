@@ -23,29 +23,23 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class UpdateUserAvatarRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("AvatarUpdate request")
-        {
-            it("Should have a proper endpoint")
-            {
+class UpdateUserAvatarRequestSpec: QuickSpec {
+    override func spec() {
+        describe("AvatarUpdate request") {
+            it("Should have a proper endpoint") {
                 let userId = "TestUserIdentifier"
                 let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.endpoint).to(equal("users/\(userId)/user_avatar"))
+                expect(request.endpoint) == "users/\(userId)/user_avatar"
             }
-            
-            it("Should have a proper method")
-            {                
+
+            it("Should have a proper method") {
                 let userId = "TestUserIdentifier"
                 let request = UpdateUserAvatarRequest(userId: userId, data: UpdateAvatarData())
-                expect(request.method).to(equal(RequestMethod.put))
+                expect(request.method) == RequestMethod.put
             }
         }
     }

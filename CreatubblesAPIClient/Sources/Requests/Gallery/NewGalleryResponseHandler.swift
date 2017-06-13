@@ -25,27 +25,21 @@
 import UIKit
 import ObjectMapper
 
-class NewGalleryResponseHandler: ResponseHandler
-{
+class NewGalleryResponseHandler: ResponseHandler {
     fileprivate let completion: GalleryClosure?
-    init(completion: GalleryClosure?)
-    {
+    init(completion: GalleryClosure?) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if let response = response,
-           let mapper = Mapper<GalleryMapper>().map(JSONObject: response["data"])
-        {
+           let mapper = Mapper<GalleryMapper>().map(JSONObject: response["data"]) {
             let metadata = MappingUtils.metadataFromResponse(response)
-            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)                       
-            
+            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
+
             let gallery = Gallery(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
             executeOnMainQueue { self.completion?(gallery, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
-        }
-        else
-        {
+        } else {
             executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
         }
     }

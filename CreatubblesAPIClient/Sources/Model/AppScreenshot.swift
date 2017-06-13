@@ -33,9 +33,8 @@ open class AppScreenshot: NSObject, Identifiable {
     open let provider: AppScreenshotProvider
     open let thumbnailURL: String?
     open let position: Int
-    
-    init(mapper: AppScreenshotMapper)
-    {
+
+    init(mapper: AppScreenshotMapper) {
         self.identifier = mapper.identifier!
         self.imageURL = mapper.imageURL
         self.isVideo = mapper.isVideo!

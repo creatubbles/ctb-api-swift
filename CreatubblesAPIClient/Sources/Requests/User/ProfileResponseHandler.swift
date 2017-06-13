@@ -25,28 +25,22 @@
 import UIKit
 import ObjectMapper
 
-class ProfileResponseHandler: ResponseHandler
-{
+class ProfileResponseHandler: ResponseHandler {
     fileprivate let completion: UserClosure?
-    
-    init(completion: UserClosure?)
-    {
+
+    init(completion: UserClosure?) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
-            let userMapper = Mapper<UserMapper>().map(JSONObject: response["data"])
-        {
+            let userMapper = Mapper<UserMapper>().map(JSONObject: response["data"]) {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-                            
+
             let user = User(mapper: userMapper, dataMapper: dataMapper, metadata: metadata)
             executeOnMainQueue { self.completion?(user, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
-        }
-        else
-        {
+        } else {
             executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
         }
     }

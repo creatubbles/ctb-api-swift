@@ -23,18 +23,15 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 @objc
-public class ToybooCreation: NSObject
-{
+public class ToybooCreation: NSObject {
     public let identifier: String
     public let uzpbUrl: String
     public let contentUrl: String
-    
-    init(mapper: ToybooCreationMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
-    {
+
+    init(mapper: ToybooCreationMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil) {
         self.identifier = mapper.identifier!
         self.uzpbUrl = mapper.uzpbUrl!
         self.contentUrl = mapper.contentUrl!

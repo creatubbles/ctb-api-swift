@@ -23,54 +23,45 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NewCreatorRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("New creator request")
-        {
+class NewCreatorRequestSpec: QuickSpec {
+    override func spec() {
+        describe("New creator request") {
             let name = "TestCreatorName"
             let displayName = "TestCreatorDisplayName"
-            let birthYear = 2000
+            let birthYear = 2_000
             let birthMonth = 10
             let countryCode = "PL"
             let gender = Gender.male
-            var creatorRequest: NewCreatorRequest
-            {
+            var creatorRequest: NewCreatorRequest {
                 return NewCreatorRequest(name: name, displayName: displayName,
                                          birthYear: birthYear, birthMonth: birthMonth,
                                          countryCode: countryCode, gender: gender)
             }
-            
-            it("Should have proper endpoint")
-            {
+
+            it("Should have proper endpoint") {
                 let request = creatorRequest
-                expect(request.endpoint).to(equal("creators"))
+                expect(request.endpoint) == "creators"
             }
-            
-            it("Should have proper method")
-            {
+
+            it("Should have proper method") {
                 let request = creatorRequest
-                expect(request.method).to(equal(RequestMethod.post))
+                expect(request.method) == RequestMethod.post
             }
-            
-            it("Should have proper parameters")
-            {
+
+            it("Should have proper parameters") {
                 let request = creatorRequest
                 let params = request.parameters
-                expect(params["name"] as? String).to(equal(name))
-                expect(params["display_name"] as? String).to(equal(displayName))
-                expect(params["birth_year"] as? Int).to(equal(birthYear))
-                expect(params["birth_month"] as? Int).to(equal(birthMonth))
-                expect(params["country"] as? String).to(equal(countryCode))
-                expect(params["gender"] as? Int).to(equal(gender.rawValue))
-            }                    
+                expect(params["name"] as? String) == name
+                expect(params["display_name"] as? String) == displayName
+                expect(params["birth_year"] as? Int) == birthYear
+                expect(params["birth_month"] as? Int) == birthMonth
+                expect(params["country"] as? String) == countryCode
+                expect(params["gender"] as? Int) == gender.rawValue
+            }
         }
     }
 }
-

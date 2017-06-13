@@ -23,46 +23,38 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class CreateMultipleCreatorsRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("New creator request")
-        {
+class CreateMultipleCreatorsRequestSpec: QuickSpec {
+    override func spec() {
+        describe("New creator request") {
             let amount = 15
-            let birthYear = 2000
+            let birthYear = 2_000
             let group = "test"
 
-            var multipleCreatorsRequest: CreateMultipleCreatorsRequest
-            {
+            var multipleCreatorsRequest: CreateMultipleCreatorsRequest {
                 return CreateMultipleCreatorsRequest(amount: amount, birthYear: birthYear, groupName: group)
             }
-            
-            it("Should have proper endpoint")
-            {
+
+            it("Should have proper endpoint") {
                 let request = multipleCreatorsRequest
-                expect(request.endpoint).to(equal("creator_builder_jobs"))
+                expect(request.endpoint) == "creator_builder_jobs"
             }
-            
-            it("Should have proper method")
-            {
+
+            it("Should have proper method") {
                 let request = multipleCreatorsRequest
-                expect(request.method).to(equal(RequestMethod.post))
+                expect(request.method) == RequestMethod.post
             }
-            
-            it("Should have proper parameters")
-            {
+
+            it("Should have proper parameters") {
                 let request = multipleCreatorsRequest
                 let params = request.parameters
-                
-                expect(params["amount"] as? Int).to(equal(amount))
-                expect(params["birth_year"] as? Int).to(equal(birthYear))
-                expect(params["group"] as? String).to(equal(group))
+
+                expect(params["amount"] as? Int) == amount
+                expect(params["birth_year"] as? Int) == birthYear
+                expect(params["group"] as? String) == group
             }
         }
     }

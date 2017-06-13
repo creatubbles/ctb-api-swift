@@ -23,11 +23,9 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-open class CustomStyleEditData: NSObject
-{
+open class CustomStyleEditData: NSObject {
     open var headerBackgroundIndex: Int?
     open var bodyBackgroundIndex: Int?
     open var fontName: String?
@@ -35,16 +33,14 @@ open class CustomStyleEditData: NSObject
     open var bodyColors: Array<UIColor>?
     open var headerColors: Array<UIColor>?
     open var headerCreationIdentifier: String?
-    open var bodyCreationIdentifier: String?    
-    
+    open var bodyCreationIdentifier: String?
+
     //Computed properties
-    var headerBackgroundIdentifier: String?
-    {
+    var headerBackgroundIdentifier: String? {
         return headerBackgroundIndex == nil ? nil : "pattern\(String(headerBackgroundIndex!))"
     }
-    
-    var bodyBackgroundIdentifier: String?
-    {
+
+    var bodyBackgroundIdentifier: String? {
         return bodyBackgroundIndex == nil ? nil : "pattern\(String(bodyBackgroundIndex!))"
     }
 }

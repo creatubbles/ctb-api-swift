@@ -23,55 +23,45 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class MyConnectionsRequest: Request
-{
-    override var method: RequestMethod  { return .get }
-    override var endpoint: String
-    {
+class MyConnectionsRequest: Request {
+    override var method: RequestMethod { return .get }
+    override var endpoint: String {
         let user = userId ?? "me"
         return "users/"+user+"/connected_users"
     }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
-    
+
     fileprivate let page: Int?
     fileprivate let perPage: Int?
-    
+
     fileprivate let userId: String?
     fileprivate let query: String?
 
-    
-    init(page: Int? = nil, perPage: Int? = nil, userId: String? = nil, query: String? = nil)
-    {
+    init(page: Int? = nil, perPage: Int? = nil, userId: String? = nil, query: String? = nil) {
         self.page = page
         self.perPage = perPage
         self.userId = userId
         self.query = query
     }
-    
-    fileprivate func prepareParameters() -> Dictionary<String, AnyObject>
-    {
+
+    fileprivate func prepareParameters() -> Dictionary<String, AnyObject> {
         var params = Dictionary<String, AnyObject>()
-        
-        if let page = page
-        {
+
+        if let page = page {
             params["page"] = page as AnyObject?
         }
-        if let perPage = perPage
-        {
+        if let perPage = perPage {
             params["per_page"] = perPage as AnyObject?
         }
-        if let userId = userId
-        {
+        if let userId = userId {
             params["user_id"] = userId as AnyObject?
         }
-        if let query = query
-        {
+        if let query = query {
             params["query"] = query as AnyObject?
         }
         return params
     }
-    
+
 }

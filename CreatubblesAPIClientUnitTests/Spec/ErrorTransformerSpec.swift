@@ -26,32 +26,26 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-
-class ErrorTransformerSpec: QuickSpec
-{
+class ErrorTransformerSpec: QuickSpec {
     private let jsonAPIErrorJSON = "{\"errors\":[{\"code\":\"object-gallery_submission-invalid-creation_id\",\"status\":\"422\",\"title\":\"validation error\",\"detail\":\"has already been taken\",\"source\":{\"pointer\":\"/data/attributes/creation_id\"}}]}"
     private let serverErrorJSON  = "{\"status\":422,\"error\":\"Unprocessable Entity\"}"
-    
-    override func spec()
-    {
-        describe("Error transformer")
-        {
-            it("Should parse JSONAPI error")
-            {
+
+    override func spec() {
+        describe("Error transformer") {
+            it("Should parse JSONAPI error") {
                 let dictionary = JSONUtils.dictionaryFromJSONString(self.jsonAPIErrorJSON)
                 let errors = ErrorTransformer.errorsFromResponse(dictionary)
                 let error = errors.first
                 expect(errors).notTo(beNil())
                 expect(errors).notTo(beEmpty())
                 expect(error).notTo(beNil())
-                expect(error?.code).to(equal("object-gallery_submission-invalid-creation_id"))
-                expect(error?.status).to(equal(422))
-                expect(error?.title).to(equal("validation error"))
-                expect(error?.detail).to(equal("has already been taken"))
+                expect(error?.code) == "object-gallery_submission-invalid-creation_id"
+                expect(error?.status) == 422
+                expect(error?.title) == "validation error"
+                expect(error?.detail) == "has already been taken"
             }
-            
-            it("Should parse non-JSONAPI error")
-            {
+
+            it("Should parse non-JSONAPI error") {
                 let dictionary = JSONUtils.dictionaryFromJSONString(self.serverErrorJSON)
                 let errors = ErrorTransformer.errorsFromResponse(dictionary)
                 let error = errors.first
@@ -59,11 +53,11 @@ class ErrorTransformerSpec: QuickSpec
                 expect(errors).notTo(beNil())
                 expect(errors).notTo(beEmpty())
                 expect(error).notTo(beNil())
-                expect(error?.status).to(equal(422))
-                expect(error?.title).to(equal("Unprocessable Entity"))
-   
+                expect(error?.status) == 422
+                expect(error?.title) == "Unprocessable Entity"
+
             }
         }
     }
-    
+
 }
