@@ -126,7 +126,6 @@
 		185E30E51E714C670077E9A8 /* OAuth2KeychainClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E30E41E714C670077E9A8 /* OAuth2KeychainClient.swift */; };
 		185E30E71E714C820077E9A8 /* OAuth2InMemoryClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E30E61E714C820077E9A8 /* OAuth2InMemoryClient.swift */; };
 		185E31681E71559E0077E9A8 /* CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1815D5421C63658000EF4C38 /* CreatubblesAPIClient.framework */; };
-		185E31691E71559E0077E9A8 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EC80FB40DC05B38396DFBE /* Pods_CreatubblesAPIClientTests.framework */; };
 		185E320C1E7157160077E9A8 /* creatubbles_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 185E31781E7157160077E9A8 /* creatubbles_logo.jpg */; };
 		185E320D1E7157160077E9A8 /* test.zip in Resources */ = {isa = PBXBuildFile; fileRef = 185E31791E7157160077E9A8 /* test.zip */; };
 		185E320E1E7157160077E9A8 /* testVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 185E317A1E7157160077E9A8 /* testVideo.mp4 */; };
@@ -412,7 +411,6 @@
 		B225DF7A1EB31F2200AB6F4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF781EB31F2200AB6F4C /* LaunchScreen.storyboard */; };
 		DCB6AE268E81388D94B0CE09 /* Pods_CreatubblesAPIClientDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45942E9020B7B23E59F429AC /* Pods_CreatubblesAPIClientDemo.framework */; };
 		DF413EEFCF6E24450841A6BB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D5DF300DAE4BC13E0AD21 /* Pods_CreatubblesAPIClient.framework */; };
-		E4B817A3F6801889CE0CF655 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EC80FB40DC05B38396DFBE /* Pods_CreatubblesAPIClientTests.framework */; };
 		FE0EAC71BB3B3D2D33C67AA0 /* Pods_CreatubblesAPIClientUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -864,30 +862,15 @@
 		2B7184408A7E06B801847505 /* Pods_CreatubblesAPIClientIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		365569ACBF6DA2AABD7377FF /* Pods-CreatubblesAPIClientIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientIntegrationTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientIntegrationTests/Pods-CreatubblesAPIClientIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		39E1EB9D8152D4F185B9A736 /* Pods-CreatubblesAPIClientIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientIntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientIntegrationTests/Pods-CreatubblesAPIClientIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
-		3F7AD4431EB70B6C0044F6D6 /* DemoWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoWelcomeViewController.swift; sourceTree = "<group>"; };
-		3F7AD4451EB70F540044F6D6 /* DemoAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAPIClient.swift; sourceTree = "<group>"; };
-		40A50E16F47F77C926108587 /* Pods-CreatubblesAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		445A3A5A1DD29F7400986BBB /* String+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		445A3A5D1DD2A8CD00986BBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		445A3A5F1DD2A8DA00986BBB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		445A3A601DD2A8E100986BBB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
-		45942E9020B7B23E59F429AC /* Pods_CreatubblesAPIClientDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4835B8FFF725B1C29D80C1B6 /* Pods-CreatubblesAPIClientDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo.release.xcconfig"; sourceTree = "<group>"; };
-		52EC80FB40DC05B38396DFBE /* Pods_CreatubblesAPIClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B225DF6B1EB31F2200AB6F4C /* CreatubblesAPIClientDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CreatubblesAPIClientDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B225DF6D1EB31F2200AB6F4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B225DF711EB31F2200AB6F4C /* DemoAuthenticatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAuthenticatedViewController.swift; sourceTree = "<group>"; };
-		B225DF741EB31F2200AB6F4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B225DF761EB31F2200AB6F4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B225DF791EB31F2200AB6F4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B225DF7B1EB31F2200AB6F4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D304F60C707EA93E6195508E /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
 		DA9EC9D915023C993B9C5639 /* Pods-CreatubblesAPIClientUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		EF9D5DF300DAE4BC13E0AD21 /* Pods_CreatubblesAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0EF0A53BD3DF55EB3FFF1EC /* Pods-CreatubblesAPIClientUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		FD53B985CEF587E5717E98B7 /* Pods-CreatubblesAPIClientDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		FF141048CEF687AAB6454656 /* Pods-CreatubblesAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientTests/Pods-CreatubblesAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -904,7 +887,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1815D54D1C63658000EF4C38 /* CreatubblesAPIClient.framework in Frameworks */,
-				E4B817A3F6801889CE0CF655 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */,
 				FE0EAC71BB3B3D2D33C67AA0 /* Pods_CreatubblesAPIClientUnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -914,7 +896,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				185E31681E71559E0077E9A8 /* CreatubblesAPIClient.framework in Frameworks */,
-				185E31691E71559E0077E9A8 /* Pods_CreatubblesAPIClientTests.framework in Frameworks */,
 				5D916F1D7C0D528FDCA37ADB /* Pods_CreatubblesAPIClientIntegrationTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2046,7 +2027,6 @@
 			isa = PBXGroup;
 			children = (
 				EF9D5DF300DAE4BC13E0AD21 /* Pods_CreatubblesAPIClient.framework */,
-				52EC80FB40DC05B38396DFBE /* Pods_CreatubblesAPIClientTests.framework */,
 				2B7184408A7E06B801847505 /* Pods_CreatubblesAPIClientIntegrationTests.framework */,
 				C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */,
 				45942E9020B7B23E59F429AC /* Pods_CreatubblesAPIClientDemo.framework */,
@@ -2059,8 +2039,6 @@
 			children = (
 				D304F60C707EA93E6195508E /* Pods-CreatubblesAPIClient.debug.xcconfig */,
 				1D777662A08D2D2B325E6B63 /* Pods-CreatubblesAPIClient.release.xcconfig */,
-				40A50E16F47F77C926108587 /* Pods-CreatubblesAPIClientTests.debug.xcconfig */,
-				FF141048CEF687AAB6454656 /* Pods-CreatubblesAPIClientTests.release.xcconfig */,
 				39E1EB9D8152D4F185B9A736 /* Pods-CreatubblesAPIClientIntegrationTests.debug.xcconfig */,
 				365569ACBF6DA2AABD7377FF /* Pods-CreatubblesAPIClientIntegrationTests.release.xcconfig */,
 				F0EF0A53BD3DF55EB3FFF1EC /* Pods-CreatubblesAPIClientUnitTests.debug.xcconfig */,

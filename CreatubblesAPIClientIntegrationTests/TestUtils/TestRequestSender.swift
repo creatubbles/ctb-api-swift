@@ -35,7 +35,7 @@ public class TestRequestSender: RequestSender
     }
     
     //MARK: - Interface
-    override func login(_ username: String, password: String, completion: ErrorClosure?) -> RequestHandler
+    override public func login(_ username: String, password: String, completion: ErrorClosure?) -> RequestHandler
     {
         let authorized = username == TestConfiguration.username &&
                          password == TestConfiguration.password
@@ -46,12 +46,12 @@ public class TestRequestSender: RequestSender
         return TestRequestHandler()
     }
     
-    override func logout()
+    override public func logout()
     {
         isLoggedIn = false
     }
     
-    override func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
+    override public func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
     {
         Logger.log(.debug, "Sending request: \(type(of: request))")
         if(isLoggedIn)
