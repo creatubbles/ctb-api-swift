@@ -22,43 +22,31 @@ opt_in_rules:
 
 # fix these later -- lots of little tedious changes
 disabled_rules:
-  # no rules -- 8150 total
-  # - line_length # ~18k of these warnings
-  # - closure_parameter_position # ~500
-  # - sorted_imports # ~400 of these warnings
-  # - identifier_name # ~300 of these warnings
-  # - syntactic_sugar # ~300
-  # - force_cast # ~ 100
-  # - empty_count # ~ < 100
-  # - function_body_length # ~ < 100
-  # - unused_optional_binding # ~ < 100
-  # - type_name  # ~ < 100
-  # - function_parameter_count # ~ < 100
-  # - private_outlet # ~ < 100
-  # - attributes # ~ < 100
-  # - control_statement # ~ < 100
-  # - legacy_constructor # ~ < 100
-  # - implicit_getter # ~ 40
-  # - overridden_super_call # ~ < 40
-  # - file_length # ~ < 40
-  # - mark # ~ < 40
-  # - valid_ibinspectable # ~ < 40
-  # - cyclomatic_complexity # ~ < 40
-  # - todo # ~ 20
-  # - first_where # ~ 20
-  # - nesting # ~ < 20
-  # - large_tuple # ~ < 20
-  # - operator_whitespace # ~ < 20
-  # - type_body_length # ~ < 20
-  # - shorthand_operator # ~ < 20
-  # - vertical_parameter_alignment # ~ < 20
-  # - closure_end_indentation # ~ < 20
-  # - empty_enum_arguments # ~ < 20
-  # - for_where # ~ < 10
-  # - unused_enumerated # ~ < 10
-  # - object_literal # ~ < 5
-  # - redundant_string_enum_value # ~ < 5
-  # - force_try # 3
+  # no rules -- 8150 total (~6k autocorrected)
+  - closure_parameter_position # ~700 of these warnings
+  - line_length # ~500 of these warnings
+  - syntactic_sugar # ~500 of these warnings
+  - sorted_imports # ~300 of these warnings
+  - identifier_name # ~100 of these warnings
+  - force_cast # ~ < 100
+  - object_literal # ~ < 50
+  - closure_end_indentation # ~ < 40
+  - todo # ~ 20
+  - cyclomatic_complexity # ~ < 20
+  - function_body_length # ~ < 20
+  - attributes # ~ < 20
+  - control_statement # ~ < 20
+  - implicit_getter # ~ < 20
+  - unused_optional_binding # ~ < 10
+  - type_name  # ~ < 10
+  - function_parameter_count # ~ < 10
+  - empty_count # ~ 5
+  - first_where # ~ < 5
+  - file_length # ~ < 5
+  - mark # ~ < 5
+  - type_body_length # ~ < 5
+  - closure_spacing # 1
+  - force_try # 1
 
 included:
   - CreatubblesAPIClient
