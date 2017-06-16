@@ -25,33 +25,28 @@
 import UIKit
 import ObjectMapper
 
-
-
-class LandingURLMapper: Mappable
-{
+class LandingURLMapper: Mappable {
     var destination: String?
     fileprivate var typeString: String?
-    
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
+
+    func mapping(map: Map) {
         destination <- map["attributes.url"]
         typeString <- map["id"]
     }
-    
-    var type: LandingURLType
-    {
-        if typeString == "ctb-about_us"          { return LandingURLType.aboutUs }
-        if typeString == "ctb-terms_of_use"      { return LandingURLType.termsOfUse }
-        if typeString == "ctb-privacy_policy"    { return LandingURLType.privacyPolicy }
-        if typeString == "ctb-user_profile"      { return LandingURLType.userProfile }
-        if typeString == "ctb-registration"      { return LandingURLType.registration }
-        if typeString == "ctb-explore"           { return LandingURLType.explore }
-        if typeString == "ctb-forgot_password"   { return LandingURLType.forgotPassword }
+
+    var type: LandingURLType {
+        if typeString == "ctb-about_us" { return LandingURLType.aboutUs }
+        if typeString == "ctb-terms_of_use" { return LandingURLType.termsOfUse }
+        if typeString == "ctb-privacy_policy" { return LandingURLType.privacyPolicy }
+        if typeString == "ctb-user_profile" { return LandingURLType.userProfile }
+        if typeString == "ctb-registration" { return LandingURLType.registration }
+        if typeString == "ctb-explore" { return LandingURLType.explore }
+        if typeString == "ctb-forgot_password" { return LandingURLType.forgotPassword }
         if typeString == "cte-account_dashboard" { return LandingURLType.accountDashboard }
         if typeString == "cte-upload_guidelines" { return LandingURLType.uploadGuidelines }
-        
+
         Logger.log(.warning, "Unknown landingURL: \(String(describing: self.typeString))")
         return .unknown
     }

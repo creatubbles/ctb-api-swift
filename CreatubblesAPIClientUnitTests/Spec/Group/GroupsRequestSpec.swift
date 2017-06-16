@@ -23,34 +23,27 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class GroupsRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Groups request")
-        {
-            it("Should have proper method")
-            {
+class GroupsRequestSpec: QuickSpec {
+    override func spec() {
+        describe("Groups request") {
+            it("Should have proper method") {
                 let request = GroupsRequest()
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
-            it("Should have proper endpoint for general groups request")
-            {
+
+            it("Should have proper endpoint for general groups request") {
                 let request = GroupsRequest()
-                expect(request.endpoint).to(equal("groups"))
+                expect(request.endpoint) == "groups"
             }
-            
-            it("Should have proper endpoint for single group request")
-            {
+
+            it("Should have proper endpoint for single group request") {
                 let identifier = "TestIdentifier"
                 let request = GroupsRequest(groupId: identifier)
-                expect(request.endpoint).to(equal("groups/\(identifier)"))
+                expect(request.endpoint) == "groups/\(identifier)"
             }
         }
     }

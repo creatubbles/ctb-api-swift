@@ -25,18 +25,15 @@
 import Foundation
 import RealmSwift
 
-class CreatorIdString: Object
-{
+class CreatorIdString: Object {
     dynamic var creatorIdString: String?
 }
 
-class GalleryIdString: Object
-{
+class GalleryIdString: Object {
     dynamic var galleryIdString: String?
 }
 
-class NewCreationDataEntity: Object
-{
+class NewCreationDataEntity: Object {
     dynamic var name: String?
     dynamic var creationIdentifier: String?
     dynamic var localIdentifier: String?
@@ -44,33 +41,30 @@ class NewCreationDataEntity: Object
     dynamic var reflectionVideoUrl: String?
     dynamic var galleryId: String?
     dynamic var uploadExtensionRaw: String?
-    
+
     var creatorIds = List<CreatorIdString>()
     var galleryIds = List<GalleryIdString>()
-    
+
     var creationYear = RealmOptional<Int>()
     var creationMonth = RealmOptional<Int>()
-    
+
     var dataTypeRaw = RealmOptional<Int>()
-    
-    var dataType: CreationDataType
-    {
-        get
-        {
+
+    var dataType: CreationDataType {
+        get {
             return CreationDataType(rawValue: dataTypeRaw.value!)!
         }
     }
-    
+
     var storageTypeRaw = RealmOptional<Int>()
-    
+
     var storageType: CreationDataStorageType {
         get {
             return CreationDataStorageType(rawValue: storageTypeRaw.value!)!
         }
     }
-    
-    var uploadExtension: UploadExtension
-    {
+
+    var uploadExtension: UploadExtension {
         return UploadExtension.fromString(uploadExtensionRaw!)!
     }
 }

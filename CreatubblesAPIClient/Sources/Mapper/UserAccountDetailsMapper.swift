@@ -23,12 +23,10 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-public class UserAccountDetailsMapper: Mappable
-{
+public class UserAccountDetailsMapper: Mappable {
     var identifier: String?
     var username: String?
     var displayName: String?
@@ -53,11 +51,10 @@ public class UserAccountDetailsMapper: Mappable
     var currentSignInAt: Date?
     var createdAt: Date?
     var updatedAt: Date?
-    
+
     public required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    public func mapping(map: Map)
-    {
+
+    public func mapping(map: Map) {
         identifier <- map["id"]
         username <- map["attributes.username"]
         displayName <- map["attributes.display_name"]
@@ -78,26 +75,24 @@ public class UserAccountDetailsMapper: Mappable
         countryCode <- map["attributes.country_code"]
         receiveNotifications <- map["attributes.receive_notifications"]
         receiveNewsletter <- map["attributes.newsletter"]
-        
+
         passwordUpdatedAt <- (map["attributes.password_updated_at"], APIClientDateTransform.sharedTransform)
         currentSignInAt <- (map["attributes.current_sign_in_at"], APIClientDateTransform.sharedTransform)
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
         updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
     }
-    
-    var role: Role
-    {
-        if roleString == "parent"     { return .parent }
+
+    var role: Role {
+        if roleString == "parent" { return .parent }
         if roleString == "instructor" { return .instructor }
-        if roleString == "creator"    { return .creator }
-        
+        if roleString == "creator" { return .creator }
+
         Logger.log(.warning, "Unkown or missing role string in user account detail")
         return Role.creator
     }
-    
-    var gender: Gender
-    {
-        if genderString == "male"   { return .male }
+
+    var gender: Gender {
+        if genderString == "male" { return .male }
         if genderString == "female" { return .female }
         return .unknown
     }

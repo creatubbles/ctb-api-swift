@@ -23,12 +23,10 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class CustomStyleMapper: Mappable
-{
+class CustomStyleMapper: Mappable {
     var identifier: String?
     var headerBackgroundIdentifier: String?
     var bodyBackgroundIdentifier: String?
@@ -38,32 +36,31 @@ class CustomStyleMapper: Mappable
     var headerColorStrings: Array<String>?
     var bodyCreationURL: String?
     var headerCreationURL: String?
-    
+
     var createdAt: Date?
     var updatedAt: Date?
-    
+
     var userRelationship: RelationshipMapper?
     var headerCreationRelationship: RelationshipMapper?
     var bodyCreationRelationship: RelationshipMapper?
-    
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
+
+    func mapping(map: Map) {
         identifier <- map["id"]
-        
+
         headerBackgroundIdentifier <- map["attributes.header_background_id"]
         bodyBackgroundIdentifier <- map["attributes.body_background_id"]
         fontName <- map["attributes.font"]
-        bio <- map["attributes.bio"]        
+        bio <- map["attributes.bio"]
         bodyColorStrings <- map["attributes.body_colors"]
         headerColorStrings <- map["attributes.header_colors"]
         bodyCreationURL <- map["attributes.body_creation_url"]
         headerCreationURL <- map["attributes.header_creation_url"]
-        
+
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
         updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
-        
+
         userRelationship <- map["relationships.user.data"]
         headerCreationRelationship <- map["relationships.header_creation.data"]
         bodyCreationRelationship <- map["relationships.body_creation.data"]

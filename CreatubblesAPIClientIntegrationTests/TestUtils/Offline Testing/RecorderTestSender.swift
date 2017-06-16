@@ -26,41 +26,31 @@
 import UIKit
 @testable import CreatubblesAPIClient
 
-class RecorderTestSender: RequestSender
-{
+class RecorderTestSender: RequestSender {
     var isLoggedIn: Bool?
-    
-    override func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler
-    {
+
+    override func send(_ request: Request, withResponseHandler handler: ResponseHandler) -> RequestHandler {
         let fileName = TestRecorderNameUtils.filenameForRequest(request: request, isLoggedIn: isLoggedIn)
         let filePath = TestRecorderNameUtils.getInputFilePathForFileName(fileName: fileName)
-        
+
         let recorderHandler = RecorderResponseHandler(originalHandler: handler, fileToSavePath: filePath, isLoggedIn: isLoggedIn)
-        
-        if TestConfiguration.mode == .useRecordedResponses
-        {
+
+        if TestConfiguration.mode == .useRecordedResponses {
             let testRecorder = TestRecorder(isLoggedIn: isLoggedIn)
             return testRecorder.handleRequest(request: request, recorderHandler: recorderHandler)
         }
-        
-        if TestConfiguration.mode == .useAPIAndRecord
-        {
+
+        if TestConfiguration.mode == .useAPIAndRecord {
             return super.send(request, withResponseHandler: recorderHandler)
-        }
-        else
-        {
+        } else {
             return super.send(request, withResponseHandler: handler)
         }
     }
-    
-    override func login(_ username: String, password: String, completion: ErrorClosure?) -> RequestHandler
-    {
-        if TestConfiguration.mode == .useAPIAndRecord
-        {
+
+    override func login(_ username: String, password: String, completion: ErrorClosure?) -> RequestHandler {
+        if TestConfiguration.mode == .useAPIAndRecord {
             isLoggedIn = true
-        }
-        else if TestConfiguration.mode == .useRecordedResponses
-        {
+        } else if TestConfiguration.mode == .useRecordedResponses {
             isLoggedIn = true
             let request = AuthenticationRequest(username: username, password: password, settings: TestConfiguration.settings)
             completion?(nil)
@@ -68,10 +58,9 @@ class RecorderTestSender: RequestSender
         }
         return super.login(username, password: password, completion: completion)
     }
-    
-    override func logout()
-    {
-        if TestConfiguration.mode == .useRecordedResponses || TestConfiguration.mode == .useRecordedResponses        {
+
+    override func logout() {
+        if TestConfiguration.mode == .useRecordedResponses || TestConfiguration.mode == .useRecordedResponses {
             isLoggedIn = false
         }
         super.logout()

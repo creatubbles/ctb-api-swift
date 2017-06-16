@@ -23,43 +23,34 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NewCreationUploadRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("New creation upload request")
-        {
-            it("Should have proper method")
-            {
+class NewCreationUploadRequestSpec: QuickSpec {
+    override func spec() {
+        describe("New creation upload request") {
+            it("Should have proper method") {
                 let request = NewCreationUploadRequest(creationId: "TestId")
-                expect(request.method).to(equal(RequestMethod.post))
+                expect(request.method) == RequestMethod.post
             }
-            
-            it("Should have proper endpoint")
-            {
+
+            it("Should have proper endpoint") {
                 let identifier = "TestId"
                 let request = NewCreationUploadRequest(creationId: identifier)
-                expect(request.endpoint).to(equal("creations/"+identifier+"/uploads"))
+                expect(request.endpoint) == "creations/"+identifier+"/uploads"
             }
-            
-            it("Should have proper params")
-            {
+
+            it("Should have proper params") {
                 let defaultRequest = NewCreationUploadRequest(creationId: "TestId")
                 expect(defaultRequest.parameters["extension"]).to(beNil())
-                
+
                 let availableExtensions = [UploadExtension.png, UploadExtension.jpg, UploadExtension.jpeg, UploadExtension.h264, UploadExtension.mpeg4, UploadExtension.wmv, UploadExtension.webm, UploadExtension.flv, UploadExtension.ogg, UploadExtension.ogv, UploadExtension.mp4, UploadExtension.m4V, UploadExtension.mov]
-                for availableExtension in availableExtensions
-                {
+                for availableExtension in availableExtensions {
                     let  request = NewCreationUploadRequest(creationId: "TestId", creationExtension: availableExtension)
-                    expect(request.parameters["extension"] as? String).to(equal(availableExtension.stringValue))
+                    expect(request.parameters["extension"] as? String) == availableExtension.stringValue
                 }
             }
         }
     }
 }
-

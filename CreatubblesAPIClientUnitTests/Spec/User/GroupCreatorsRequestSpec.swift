@@ -23,41 +23,40 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
 class GroupCreatorsRequestSpec: QuickSpec {
-    
+
     override func spec() {
-        
+
         describe("Group creators request") {
-            
+
             it("Should have proper endpoint for group") {
                 let groupId = "groupId"
                 let page = 1
                 let pageCount = 10
                 let request = GroupCreatorsRequest(groupId: groupId, page: page, perPage: pageCount)
-                expect(request.endpoint).to(equal("groups/\(groupId)/creators"))
+                expect(request.endpoint) == "groups/\(groupId)/creators"
             }
-            
+
             it("Should have proper method") {
                 let groupId = "groupId"
                 let page = 1
                 let pageCount = 10
                 let request = GroupCreatorsRequest(groupId: groupId, page: page, perPage: pageCount)
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
+
             it("Should have proper parameters set") {
                 let groupId = "groupId"
                 let page = 1
                 let pageCount = 10
                 let request = GroupCreatorsRequest(groupId: groupId, page: page, perPage: pageCount)
                 let params = request.parameters
-                expect(params["page"] as? Int).to(equal(page))
-                expect(params["per_page"] as? Int).to(equal(pageCount))
+                expect(params["page"] as? Int) == page
+                expect(params["per_page"] as? Int) == pageCount
             }
         }
     }

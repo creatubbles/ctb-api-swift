@@ -1,4 +1,3 @@
-
 //
 //  CustomStyleFetchResponseHandlerSpec.swift
 //  CreatubblesAPIClient
@@ -24,38 +23,29 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-
-class CustomStyleFetchResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("CustomStyleResponseHandler")
-        {
-            it("Should return custom style for user without login")
-            {
+class CustomStyleFetchResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("CustomStyleResponseHandler") {
+            it("Should return custom style for user without login") {
                 guard let identifier = TestConfiguration.testUserIdentifier
                 else { return }
-                
+
                 //For now API returns error 500 for some users, valid identifier: a60rC05Y
                 let request = CustomStyleFetchRequest(userIdentifier: identifier)
                 let sender = TestComponentsFactory.requestSender
-                
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    sender.authenticate()
-                    {
+                    sender.authenticate {
                         (err) -> Void in
                         expect(err).to(beNil())
-                        sender.send(request, withResponseHandler: CustomStyleFetchResponseHandler()
-                        {
+                        sender.send(request, withResponseHandler: CustomStyleFetchResponseHandler {
                             (style: CustomStyle?, error: APIClientError?) -> Void in
                             expect(style).notTo(beNil())
                             expect(error).to(beNil())
@@ -63,7 +53,7 @@ class CustomStyleFetchResponseHandlerSpec: QuickSpec
                         })
                     }
                 }
-            }            
+            }
         }
     }
 }

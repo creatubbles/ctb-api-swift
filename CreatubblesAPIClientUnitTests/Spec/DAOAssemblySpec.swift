@@ -28,21 +28,16 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class DAOAssemblySpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("DAOAssembly")
-        {
-            it("Should register new DAO")
-            {
+class DAOAssemblySpec: QuickSpec {
+    override func spec() {
+        describe("DAOAssembly") {
+            it("Should register new DAO") {
                 let dao = DatabaseDAO()
                 let assembly = DAOAssembly(dependencies: DAODependencies.testDependencies())
                 assembly.register(dao: dao)
             }
-            
-            it("Should assembly DAO after register")
-            {
+
+            it("Should assembly DAO after register") {
                 let dao = DatabaseDAO()
                 let assembly = DAOAssembly(dependencies: DAODependencies.testDependencies())
                 assembly.register(dao: dao)

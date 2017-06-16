@@ -24,17 +24,14 @@
 
 import UIKit
 
-class NewCreationPingResponseHandler: ResponseHandler
-{
-    fileprivate let completion: (_ error:Error?) -> Void
-    
-    init(completion: @escaping (_ error:Error?) -> Void)
-    {
+class NewCreationPingResponseHandler: ResponseHandler {
+    fileprivate let completion: (_ error: Error?) -> Void
+
+    init(completion: @escaping (_ error: Error?) -> Void) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         executeOnMainQueue { self.completion(ErrorTransformer.errorFromResponse(response, error: error)) }
     }
 }

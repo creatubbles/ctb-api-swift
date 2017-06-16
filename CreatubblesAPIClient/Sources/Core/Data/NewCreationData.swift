@@ -24,125 +24,105 @@
 
 import UIKit
 
-enum CreationDataType: Int
-{
+enum CreationDataType: Int {
     case image = 0
     case url = 1
     case data = 2
 }
 
-public enum CreationDataStorageType: Int
-{
+public enum CreationDataStorageType: Int {
     case documentsDirectory = 0
     case appGroupDirectory = 1
 }
 
 @objc
-open class NewCreationData: NSObject
-{
+open class NewCreationData: NSObject {
     open let uploadExtension: UploadExtension
-    
+
     open var data: Data?
     open var image: UIImage?
     open var url: URL?
     open var creationIdentifier: String?
     open var localIdentifier: String?
-    
-    open var name: String? = nil
-    open var reflectionText: String? = nil
-    open var reflectionVideoUrl: String? = nil
-    open var galleryIds: Array<String>? = nil
-    open var creatorIds: Array<String>? = nil
-    open var creationYear: Int? = nil
-    open var creationMonth: Int? = nil
-    
+
+    open var name: String?
+    open var reflectionText: String?
+    open var reflectionVideoUrl: String?
+    open var galleryIds: Array<String>?
+    open var creatorIds: Array<String>?
+    open var creationYear: Int?
+    open var creationMonth: Int?
+
     let dataType: CreationDataType
     let storageType: CreationDataStorageType
-    
-    public init(data: Data, uploadExtension: UploadExtension)
-    {
+
+    public init(data: Data, uploadExtension: UploadExtension) {
         self.data = data
         self.dataType = .data
         self.uploadExtension = uploadExtension
         self.storageType = .documentsDirectory
     }
-    public init(image: UIImage, uploadExtension: UploadExtension)
-    {
+    public init(image: UIImage, uploadExtension: UploadExtension) {
         self.image = image
         self.dataType = .image
         self.uploadExtension = uploadExtension
         self.storageType = .documentsDirectory
     }
-    public init(url: URL, uploadExtension: UploadExtension, storageType: CreationDataStorageType = .documentsDirectory)
-    {
+    public init(url: URL, uploadExtension: UploadExtension, storageType: CreationDataStorageType = .documentsDirectory) {
         self.url = url
         self.dataType = .url
         self.uploadExtension = uploadExtension
         self.storageType = storageType
     }
-    
-    init(creationDataEntity: NewCreationDataEntity, url: URL)
-    {
+
+    init(creationDataEntity: NewCreationDataEntity, url: URL) {
         self.creationIdentifier = creationDataEntity.creationIdentifier
         self.localIdentifier = creationDataEntity.localIdentifier
         self.name = creationDataEntity.name
         self.reflectionText = creationDataEntity.reflectionText
         self.reflectionVideoUrl = creationDataEntity.reflectionVideoUrl
-        
+
         self.uploadExtension = creationDataEntity.uploadExtension
         self.creationMonth = creationDataEntity.creationMonth.value
         self.creationYear = creationDataEntity.creationYear.value
         self.dataType = creationDataEntity.dataType
         self.storageType = creationDataEntity.storageType
-        
+
         self.creatorIds = creationDataEntity.creatorIds.flatMap({ $0.creatorIdString })
         self.galleryIds = creationDataEntity.galleryIds.flatMap({ $0.galleryIdString })
-        
-        if(dataType.rawValue == 0)
-        {
+
+        if(dataType.rawValue == 0) {
             self.image = UIImage(contentsOfFile: url.path)
-        }
-        else if(dataType.rawValue == 1)
-        {
+        } else if(dataType.rawValue == 1) {
             self.url = url
-        }
-        else if(dataType.rawValue == 2)
-        {
+        } else if(dataType.rawValue == 2) {
             self.data = try? Data(contentsOf: url)
         }
     }
-    
-    //MARK: objc compability
-    open func getCreationYear() -> NSNumber?
-    {
-        if let year = creationYear
-        {
+
+    // MARK: objc compability
+    open func getCreationYear() -> NSNumber? {
+        if let year = creationYear {
             return NSNumber(value: year as Int)
         }
         return nil
     }
-    
-    open func getCreationMonth() -> NSNumber?
-    {
-        if let month = creationMonth
-        {
+
+    open func getCreationMonth() -> NSNumber? {
+        if let month = creationMonth {
             return NSNumber(value: month as Int)
         }
         return nil
     }
-    
-    open func setCreationYear(_ year: NSNumber?)
-    {
-        if let year = year
-        {
-            creationYear = year.intValue;
+
+    open func setCreationYear(_ year: NSNumber?) {
+        if let year = year {
+            creationYear = year.intValue
         }
     }
-    
-    open func setCreationMonth(_ month: NSNumber?)
-    {
-        if let month = month
-        {
+
+    open func setCreationMonth(_ month: NSNumber?) {
+        if let month = month {
             creationMonth = month.intValue
         }
     }

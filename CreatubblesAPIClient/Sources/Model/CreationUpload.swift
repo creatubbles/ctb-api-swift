@@ -25,25 +25,22 @@
 import UIKit
 
 @objc
-class CreationUpload: NSObject, Identifiable
-{
+class CreationUpload: NSObject, Identifiable {
     let identifier: String
     let uploadUrl: String
     let contentType: String
     let pingUrl: String
     let completedAt: Date?
 
-    init(mapper: CreationUploadMapper)
-    {
+    init(mapper: CreationUploadMapper) {
         identifier = mapper.identifier!
         uploadUrl = mapper.uploadUrl!
         contentType = mapper.contentType!
         pingUrl = mapper.pingUrl!
         completedAt = mapper.completedAt as Date?
     }
-    
-    init(creationUploadEntity: CreationUploadEntity)
-    {
+
+    init(creationUploadEntity: CreationUploadEntity) {
         identifier = creationUploadEntity.identifier!
         uploadUrl = creationUploadEntity.uploadUrl!
         contentType = creationUploadEntity.contentType!

@@ -23,23 +23,19 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class GroupsRequest: Request
-{
-    override var method: RequestMethod   { return .get }
+class GroupsRequest: Request {
+    override var method: RequestMethod { return .get }
     override var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
-    override var endpoint: String
-    {
-        if let identifier = identifier { return "groups/\(identifier)"}
+    override var endpoint: String {
+        if let identifier = identifier { return "groups/\(identifier)" }
         return "groups"
     }
-    
+
     let identifier: String?
-    
-    init(groupId: String? = nil)
-    {
+
+    init(groupId: String? = nil) {
         identifier = groupId
     }
 }

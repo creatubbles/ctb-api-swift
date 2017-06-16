@@ -25,7 +25,6 @@
 import UIKit
 
 //Response is the same as in ProfileResponseHandler
-class NewCreatorResponseHandler: ProfileResponseHandler
-{
+class NewCreatorResponseHandler: ProfileResponseHandler {
 
 }

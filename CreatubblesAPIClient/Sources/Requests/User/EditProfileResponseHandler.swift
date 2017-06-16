@@ -23,10 +23,8 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class EditProfileResponseHandler: ErrorResponseHandler
-{
+class EditProfileResponseHandler: ErrorResponseHandler {
 
 }

@@ -25,23 +25,20 @@
 import Foundation
 import ObjectMapper
 
-class ServerErrorMapper:  Mappable
-{
+class ServerErrorMapper: Mappable {
     var status: Int?
     var statusAsString: String? //ObjectMapper has a bug when mapping Ints, so we also try to map status as String
     var error: String?
-    
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
+
+    func mapping(map: Map) {
         status <- map["status"]
         statusAsString <- map["status"]
         error <- map["error"]
     }
-    
-    var isValid: Bool
-    {
+
+    var isValid: Bool {
         return (status != nil || statusAsString != nil) && error != nil
     }
 }

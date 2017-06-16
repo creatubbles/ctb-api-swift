@@ -24,23 +24,20 @@
 
 import UIKit
 
-class GallerySubmissionRequest: Request
-{
-    override var method: RequestMethod   { return .post }
+class GallerySubmissionRequest: Request {
+    override var method: RequestMethod { return .post }
     override var endpoint: String { return "gallery_submissions" }
-    override var parameters: Dictionary<String, AnyObject>
-    {
+    override var parameters: Dictionary<String, AnyObject> {
         return [
-            "gallery_id" : galleryId as AnyObject,
-            "creation_id" : creationid as AnyObject
+            "gallery_id": galleryId as AnyObject,
+            "creation_id": creationid as AnyObject
         ]
     }
 
     fileprivate let galleryId: String
     fileprivate let creationid: String
-    
-    init(galleryId: String, creationId: String)
-    {
+
+    init(galleryId: String, creationId: String) {
         self.galleryId = galleryId
         self.creationid = creationId
     }

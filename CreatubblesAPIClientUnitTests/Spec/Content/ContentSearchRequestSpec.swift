@@ -23,28 +23,22 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class ContentSearchRequestSpec: QuickSpec
-{
-    override func spec()
-    {
+class ContentSearchRequestSpec: QuickSpec {
+    override func spec() {
 
-        describe("Fetch content search request")
-        {
-            it("Should have a proper method")
-            {
+        describe("Fetch content search request") {
+            it("Should have a proper method") {
                 let request = ContentSearchRequest(query: "hanaG", page: 1, perPage: 20)
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
-            it("Should have a proper endpoint")
-            {
+
+            it("Should have a proper endpoint") {
                 let request = ContentSearchRequest(query: "hanaG", page: 1, perPage: 20)
-                expect(request.endpoint).to(equal("contents"))
+                expect(request.endpoint) == "contents"
             }
         }
     }

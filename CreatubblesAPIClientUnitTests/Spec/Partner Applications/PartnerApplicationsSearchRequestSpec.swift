@@ -23,28 +23,22 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class PartnerApplicationsSearchRequestSpec: QuickSpec
-{
+class PartnerApplicationsSearchRequestSpec: QuickSpec {
     let query = "example-app"
-    override func spec()
-    {
-        describe("Partner Applications Search Request")
-        {
-            it("Should have proper endpoint")
-            {
+    override func spec() {
+        describe("Partner Applications Search Request") {
+            it("Should have proper endpoint") {
                 let request = PartnerApplicationsSearchRequest(query: self.query)
-                expect(request.endpoint).to(equal("partner_applications"))
+                expect(request.endpoint) == "partner_applications"
             }
-            
-            it("Should have proper method")
-            {
+
+            it("Should have proper method") {
                 let request = PartnerApplicationsSearchRequest(query: self.query)
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
         }
     }

@@ -23,7 +23,6 @@
 //  THE SOFTWARE.
 //
 
-
 import Foundation
 
 /**
@@ -32,128 +31,123 @@ import Foundation
  The response errors return a description as defined in the spec: http://tools.ietf.org/html/rfc6749#section-4.1.2.1
  */
 public enum AuthenticationError: Error, CustomStringConvertible {
-    
+
     /// An error for which we don't have a specific one.
     case generic(String)
-    
+
     /// An error holding on to an NSError.
     case nsError(Foundation.NSError)
-    
+
     /// Invalid URL components, failed to create a URL
     case invalidURLComponents(URLComponents)
-    
-    
+
     // MARK: - Client errors
-    
+
     /// There is no client id.
     case noClientId
-    
+
     /// There is no client secret.
     case noClientSecret
-    
+
     /// There is no redirect URL.
     case noRedirectURL
-    
+
     /// There is no username.
     case noUsername
-    
+
     /// There is no password.
     case noPassword
-    
+
     /// The client is already authorizing.
     case alreadyAuthorizing
-    
+
     /// There is no authorization context.
     case noAuthorizationContext
-    
+
     /// The authorization context is invalid.
     case invalidAuthorizationContext
-    
+
     /// The redirect URL is invalid; with explanation.
     case invalidRedirectURL(String)
-    
+
     /// There is no refresh token.
     case noRefreshToken
-    
+
     /// There is no registration URL.
     case noRegistrationURL
-    
-    
+
     // MARK: - Request errors
-    
+
     /// The request is not using SSL/TLS.
     case notUsingTLS
-    
+
     /// Unable to open the authorize URL.
     case unableToOpenAuthorizeURL
-    
+
     /// The request is invalid.
     case invalidRequest
-    
+
     /// The request was cancelled.
     case requestCancelled
-    
-    
+
     // MARK: - Response Errors
-    
+
     /// There was no token type in the response.
     case noTokenType
-    
+
     /// The token type is not supported.
     case unsupportedTokenType(String)
-    
+
     /// There was no data in the response.
     case noDataInResponse
-    
+
     /// Some prerequisite failed; with explanation.
     case prerequisiteFailed(String)
-    
+
     /// The state parameter was missing in the response.
     case missingState
-    
+
     /// The state parameter was invalid.
     case invalidState
-    
+
     /// The JSON response could not be parsed.
     case jsonParserError
-    
+
     /// Unable to UTF-8 encode.
     case utf8EncodeError
-    
+
     /// Unable to decode to UTF-8.
     case utf8DecodeError
-    
 
     // MARK: - OAuth2 errors
-    
+
     /// The client is unauthorized (HTTP status 401).
     case unauthorizedClient
-    
+
     /// The request was forbidden (HTTP status 403).
     case forbidden
-    
+
     /// Username or password was wrong (HTTP status 403 on password grant).
     case wrongUsernamePassword
-    
+
     /// Access was denied.
     case accessDenied
-    
+
     /// Response type is not supported.
     case unsupportedResponseType
-    
+
     /// Scope was invalid.
     case invalidScope
-    
+
     /// A 500 was thrown.
     case serverError
-    
+
     /// The service is temporarily unavailable.
     case temporarilyUnavailable
-    
+
     /// Other response error, as defined in its String.
     case responseError(String)
-    
-    
+
     /**
      Instantiate the error corresponding to the OAuth2 response code, if it is known.
      
@@ -181,7 +175,7 @@ public enum AuthenticationError: Error, CustomStringConvertible {
             return .responseError(fallback ?? "Authorization error: \(code)")
         }
     }
-    
+
     /// Human understandable error string.
     public var description: String {
         switch self {
@@ -191,7 +185,7 @@ public enum AuthenticationError: Error, CustomStringConvertible {
             return error.localizedDescription
         case .invalidURLComponents(let components):
             return "Failed to create URL from components: \(components)"
-            
+
         case .noClientId:
             return "error_auth_noClientId".localized
         case .noClientSecret:
@@ -212,10 +206,10 @@ public enum AuthenticationError: Error, CustomStringConvertible {
             return String(format: "error_auth_invalidRedirectURL".localized, url)
         case .noRefreshToken:
             return "error_auth_noRefreshToken".localized
-            
+
         case .noRegistrationURL:
             return "error_auth_noRegistrationURL".localized
-            
+
         case .notUsingTLS:
             return "error_auth_notUsingTLS".localized
         case .unableToOpenAuthorizeURL:
@@ -242,7 +236,7 @@ public enum AuthenticationError: Error, CustomStringConvertible {
             return "error_auth_utf8EncodeError".localized
         case .utf8DecodeError:
             return "error_auth_utf8DecodeError".localized
-            
+
         case .unauthorizedClient:
             return "error_auth_unauthorizedClient".localized
         case .forbidden:

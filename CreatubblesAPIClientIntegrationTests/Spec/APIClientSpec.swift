@@ -27,22 +27,16 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class APIClientSpec: QuickSpec
-{
-    override func spec()
-    {        
-        describe("APIClient")
-        {
-            //MARK: - Authentication
-            it("Should login and logout")
-            {
+class APIClientSpec: QuickSpec {
+    override func spec() {
+        describe("APIClient") {
+            // MARK: - Authentication
+            it("Should login and logout") {
                 let client = APIClient(settings: TestConfiguration.settings)
                 client.logout()
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
@@ -52,17 +46,14 @@ class APIClientSpec: QuickSpec
                     })
                 }
             }
-            
-            //MARK: - Authentication
-            it("Should return error on failed login attempt")
-            {
+
+            // MARK: - Authentication
+            it("Should return error on failed login attempt") {
                 let client = APIClient(settings: TestConfiguration.settings)
                 client.logout()
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    client.login(username: "WrongUsername", password: "WrongPassword", completion:
-                    {
+                    client.login(username: "WrongUsername", password: "WrongPassword", completion: {
                         (error) -> (Void) in
                         expect(error).notTo(beNil())
                         expect(client.isLoggedIn()).to(beFalse())
@@ -73,20 +64,16 @@ class APIClientSpec: QuickSpec
                 }
             }
 
-            //MARK: - Profile
-            it("Should fetch current user")
-            {
+            // MARK: - Profile
+            it("Should fetch current user") {
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        _ = client.getCurrentUser(
-                        {
+                        _ = client.getCurrentUser({
                             (user, error) -> (Void) in
                             expect(user).notTo(beNil())
                             expect(error).to(beNil())
@@ -95,49 +82,41 @@ class APIClientSpec: QuickSpec
                     })
                 }
             }
-            
-            it("Should fetch user with provided id")
-            {
+
+            it("Should fetch user with provided id") {
                 guard TestConfiguration.testUserIdentifier != nil else { return }
-                
+
                 let identifier = TestConfiguration.testUserIdentifier!
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        _ = client.getUser(userId: identifier)
-                        {
+                        _ = client.getUser(userId: identifier) {
                             (user, error) -> (Void) in
                             expect(user).notTo(beNil())
-                            expect(user?.identifier).to(equal(identifier))
+                            expect(user?.identifier) == identifier
                             expect(error).to(beNil())
                             done()
                         }
                     })
                 }
             }
-            
-            it("Should fetch creators of user")
-            {
+
+            it("Should fetch creators of user") {
                 guard TestConfiguration.testUserIdentifier != nil else { return }
-                
+
                 let identifier = TestConfiguration.testUserIdentifier!
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        _ = client.getCreators(userId: identifier, query: nil, pagingData: nil)
-                        {
+                        _ = client.getCreators(userId: identifier, query: nil, pagingData: nil) {
                             (users, pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
                             expect(pageInfo).notTo(beNil())
@@ -147,24 +126,20 @@ class APIClientSpec: QuickSpec
                     })
                 }
             }
-            
-            it("Should fetch managers of user")
-            {
+
+            it("Should fetch managers of user") {
                 guard TestConfiguration.testUserIdentifier != nil else { return }
-                
+
                 let identifier = TestConfiguration.testUserIdentifier!
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        _ = client.getManagers(userId: identifier, query: nil, pagingData: nil)
-                        {
-                            (users,pageInfo, error) -> (Void) in
+                        _ = client.getManagers(userId: identifier, query: nil, pagingData: nil) {
+                            (users, pageInfo, error) -> (Void) in
                             expect(users).notTo(beNil())
                             expect(pageInfo).notTo(beNil())
                             expect(error).to(beNil())
@@ -173,9 +148,8 @@ class APIClientSpec: QuickSpec
                     })
                 }
             }
-            
-            it("Should add new creator")
-            {
+
+            it("Should add new creator") {
                 //MM: Commented for now
 //                let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(Double: 1000))))
 //                let data = NewCreatorData(name: "CTBAPITestCreator_"+timestamp, displayName: "CTBAPITestCreator_"+timestamp, birthYear: 2016, birthMonth: 1, countryCode: "UK", gender: .Male)
@@ -205,104 +179,23 @@ class APIClientSpec: QuickSpec
 //                    }
 //                }
             }
-            
-            //MARK: - Gallery
-            it("Should fetch gallery with identifier")
-            {
+
+            // MARK: - Gallery
+            it("Should fetch gallery with identifier") {
                 guard TestConfiguration.testGalleryIdentifier != nil else { return }
-                
+
                 let identifier = TestConfiguration.testGalleryIdentifier!
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        _ = client.getGallery(galleryId: identifier)
-                        {
+                        _ = client.getGallery(galleryId: identifier) {
                             (gallery, error) -> (Void) in
                             expect(gallery).notTo(beNil())
-                            expect(gallery?.identifier).to(equal(identifier))
-                            expect(error).to(beNil())
-                            done()
-                        }
-                    })
-                }
-            }
-            
-            it("Should fetch galleries from given user")
-            {
-                guard TestConfiguration.testUserIdentifier != nil else { return }
-                
-                let identifier = TestConfiguration.testUserIdentifier!
-                let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
-                    done in
-                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
-                        (error) -> (Void) in
-                        expect(error).to(beNil())
-                        expect(client.isLoggedIn()).to(beTrue())
-                        _ = client.getGalleries(userId: identifier, pagingData: nil, sort: nil)
-                        {
-                            (galleries, pageInfo, error) -> (Void) in
-                            expect(galleries).notTo(beNil())
-                            expect(galleries).notTo(beEmpty())
-                            expect(pageInfo).notTo(beNil())
-                            expect(error).to(beNil())
-                            done()
-                        }
-                    })
-                }
-            }
-            
-            it("Should fetch some public popular galleries")
-            {
-                let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
-                    done in
-                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
-                        (error) -> (Void) in
-                        expect(error).to(beNil())
-                        expect(client.isLoggedIn()).to(beTrue())
-                        _ = client.getGalleries(userId: nil, query: nil, pagingData: nil, sort: .popular)
-                        {
-                            (galleries, pageInfo, error) -> (Void) in
-                            expect(galleries).notTo(beNil())
-                            expect(galleries).notTo(beEmpty())
-                            expect(pageInfo).notTo(beNil())
-                            expect(error).to(beNil())
-                            done()
-                        }
-                    })
-                }
-            }
-            
-            it("Should create new gallery")
-            {
-                let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(dividingBy: 1000))))
-                let data = NewGalleryData(name: "TestGallery_\(timestamp)", galleryDescription: "TestDescription_\(timestamp)", openForAll: false, ownerId: nil)
-                let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
-                    done in
-                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
-                        (error) -> (Void) in
-                        expect(error).to(beNil())
-                        expect(client.isLoggedIn()).to(beTrue())
-                        _ = client.newGallery(data: data)
-                        {
-                            (gallery, error) -> (Void) in
-                            expect(gallery).notTo(beNil())
-                            expect(gallery?.name).to(equal(data.name))
-                            expect(gallery?.galleryDescription).to(equal(data.galleryDescription))
+                            expect(gallery?.identifier) == identifier
                             expect(error).to(beNil())
                             done()
                         }
@@ -310,42 +203,100 @@ class APIClientSpec: QuickSpec
                 }
             }
 
-            //MARK: - Creation
-            it("Should fetch specific creation")
-            {
-                guard TestConfiguration.testCreationIdentifier != nil else { return }
-                
-                let identifier = TestConfiguration.testCreationIdentifier!
+            it("Should fetch galleries from given user") {
+                guard TestConfiguration.testUserIdentifier != nil else { return }
+
+                let identifier = TestConfiguration.testUserIdentifier!
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())
-                        _ = client.getCreation(creationId: identifier, completion:
-                        {
-                            (creation, error) -> (Void) in
-                            expect(creation).notTo(beNil())
-                            expect(creation?.identifier).to(equal(identifier))
+                        _ = client.getGalleries(userId: identifier, pagingData: nil, sort: nil) {
+                            (galleries, pageInfo, error) -> (Void) in
+                            expect(galleries).notTo(beNil())
+                            expect(galleries).notTo(beEmpty())
+                            expect(pageInfo).notTo(beNil())
                             expect(error).to(beNil())
                             done()
-        
+                        }
+                    })
+                }
+            }
+
+            it("Should fetch some public popular galleries") {
+                let client = APIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
+                    done in
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion: {
+                        (error) -> (Void) in
+                        expect(error).to(beNil())
+                        expect(client.isLoggedIn()).to(beTrue())
+                        _ = client.getGalleries(userId: nil, query: nil, pagingData: nil, sort: .popular) {
+                            (galleries, pageInfo, error) -> (Void) in
+                            expect(galleries).notTo(beNil())
+                            expect(galleries).notTo(beEmpty())
+                            expect(pageInfo).notTo(beNil())
+                            expect(error).to(beNil())
+                            done()
+                        }
+                    })
+                }
+            }
+
+            it("Should create new gallery") {
+                let timestamp = String(Int(round(NSDate().timeIntervalSince1970 .truncatingRemainder(dividingBy: 1_000))))
+                let data = NewGalleryData(name: "TestGallery_\(timestamp)", galleryDescription: "TestDescription_\(timestamp)", openForAll: false, ownerId: nil)
+                let client = APIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
+                    done in
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion: {
+                        (error) -> (Void) in
+                        expect(error).to(beNil())
+                        expect(client.isLoggedIn()).to(beTrue())
+                        _ = client.newGallery(data: data) {
+                            (gallery, error) -> (Void) in
+                            expect(gallery).notTo(beNil())
+                            expect(gallery?.name) == data.name
+                            expect(gallery?.galleryDescription) == data.galleryDescription
+                            expect(error).to(beNil())
+                            done()
+                        }
+                    })
+                }
+            }
+
+            // MARK: - Creation
+            it("Should fetch specific creation") {
+                guard TestConfiguration.testCreationIdentifier != nil else { return }
+
+                let identifier = TestConfiguration.testCreationIdentifier!
+                let client = APIClient(settings: TestConfiguration.settings)
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
+                    done in
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion: {
+                        (error) -> (Void) in
+                        expect(error).to(beNil())
+                        expect(client.isLoggedIn()).to(beTrue())
+                        _ = client.getCreation(creationId: identifier, completion: {
+                            (creation, error) -> (Void) in
+                            expect(creation).notTo(beNil())
+                            expect(creation?.identifier) == identifier
+                            expect(error).to(beNil())
+                            done()
+
                         })
                     })
                 }
             }
-            
-            it("Should fetch all finished UploadSessions")
-            {
+
+            it("Should fetch all finished UploadSessions") {
                 let client = APIClient(settings: TestConfiguration.settings)
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    client.login(username: TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(client.isLoggedIn()).to(beTrue())

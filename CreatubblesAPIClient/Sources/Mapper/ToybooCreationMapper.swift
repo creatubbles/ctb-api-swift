@@ -23,21 +23,18 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class ToybooCreationMapper: Mappable
-{
+class ToybooCreationMapper: Mappable {
     var identifier: String?
     var uzpbUrl: String?
     var contentUrl: String?
-    
-    //MARK: - Mappable
+
+    // MARK: - Mappable
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
+
+    func mapping(map: Map) {
         identifier <- map["id"]
         uzpbUrl <- map["attributes.uzpb_url"]
         contentUrl <- map["attributes.content_url"]

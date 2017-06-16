@@ -26,10 +26,8 @@
 import Foundation
 @testable import CreatubblesAPIClient
 
-extension DAODependencies
-{
-    class func testDependencies() -> DAODependencies
-    {
+extension DAODependencies {
+    class func testDependencies() -> DAODependencies {
         let settings = APIClientSettings(appId: "test", appSecret: "test")
         return DAODependencies(requestSender: RequestSender(settings: settings))
     }

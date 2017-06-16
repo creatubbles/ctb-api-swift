@@ -23,10 +23,8 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class CreateAUserFollowingResponseHandler: ErrorResponseHandler
-{
-    
+class CreateAUserFollowingResponseHandler: ErrorResponseHandler {
+
 }

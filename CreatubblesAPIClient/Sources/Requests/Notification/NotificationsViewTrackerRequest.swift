@@ -23,11 +23,9 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class NotificationsViewTrackerRequest: Request
-{
+class NotificationsViewTrackerRequest: Request {
     override var method: RequestMethod { return .put }
     override var endpoint: String { return "notifications/view_tracker" }
 }

@@ -23,38 +23,37 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
 class ReportCommentRequestSpec: QuickSpec {
-    
+
     override func spec() {
-        
+
         describe("Report comment request") {
-            
+
             it("Should have proper endpoint for comment") {
                 let commentId = "commentId"
                 let message = "message"
                 let request = ReportCommentRequest(commentId: commentId, message: message)
-                expect(request.endpoint).to(equal("comments/\(commentId)/report"))
+                expect(request.endpoint) == "comments/\(commentId)/report"
             }
-            
+
             it("Should have proper method") {
                 let commentId = "commentId"
                 let message = "message"
                 let request = ReportCommentRequest(commentId: commentId, message: message)
-                expect(request.method).to(equal(RequestMethod.post))
+                expect(request.method) == RequestMethod.post
             }
-            
+
             it("Should have proper parameters set") {
                 let commentId = "commentId"
                 let message = "message"
-                
+
                 let request = ReportCommentRequest(commentId: commentId, message: message)
                 let params = request.parameters
-                expect(params["message"] as? String).to(equal(message))
+                expect(params["message"] as? String) == message
             }
         }
     }

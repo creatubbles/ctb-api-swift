@@ -27,21 +27,21 @@ import Nimble
 @testable import CreatubblesAPIClient
 
 class DeclineCommentRequestSpec: QuickSpec {
-    
+
     override func spec() {
-        
+
         describe("Decline a comment request") {
-            
+
             it("Should have proper endpoint for comment") {
                 let commentId = "commentId"
                 let request = DeclineCommentRequest(commentId: commentId)
-                expect(request.endpoint).to(equal("comments/\(commentId)/approval"))
+                expect(request.endpoint) == "comments/\(commentId)/approval"
             }
-            
+
             it("Should have proper method") {
                 let commentId = "commentId"
                 let request = DeclineCommentRequest(commentId: commentId)
-                expect(request.method).to(equal(RequestMethod.delete))
+                expect(request.method) == RequestMethod.delete
             }
         }
     }

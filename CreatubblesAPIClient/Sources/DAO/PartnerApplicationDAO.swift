@@ -23,27 +23,22 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class PartnerApplicationDAO: NSObject, APIClientDAO
-{
+class PartnerApplicationDAO: NSObject, APIClientDAO {
     fileprivate let requestSender: RequestSender
 
-    required init(dependencies: DAODependencies)
-    {
+    required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
-    
-    func getPartnerApplication(_ id: String, completion: PartnerApplicationClosure?) -> RequestHandler
-    {
+
+    func getPartnerApplication(_ id: String, completion: PartnerApplicationClosure?) -> RequestHandler {
         let request = PartnerApplicationRequest(id: id)
         let handler = PartnerApplicationResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func searchPartnerApplications(_ query: String, completion: PartnerApplicationsClosure?) -> RequestHandler
-    {
+
+    func searchPartnerApplications(_ query: String, completion: PartnerApplicationsClosure?) -> RequestHandler {
         let request = PartnerApplicationsSearchRequest(query: query)
         let handler = PartnerApplicationsSearchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)

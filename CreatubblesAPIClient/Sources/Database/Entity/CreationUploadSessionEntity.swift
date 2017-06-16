@@ -25,28 +25,23 @@
 import Foundation
 import RealmSwift
 
-class CreationUploadSessionEntity: Object
-{
+class CreationUploadSessionEntity: Object {
     dynamic var localIdentifier: String?
     var stateRaw = RealmOptional<Int>()
     dynamic var creationDataEntity: NewCreationDataEntity?
     dynamic var imageFileName: String?
     dynamic var relativeImageFilePath: String?
-    
+
     dynamic var creationEntity: CreationEntity?
     dynamic var creationUploadEntity: CreationUploadEntity?
-    
-    var state: CreationUploadSessionState
-    {
-        get
-        {
+
+    var state: CreationUploadSessionState {
+        get {
             return CreationUploadSessionState(rawValue: stateRaw.value!)!
         }
     }
-    
-    override static func primaryKey() -> String?
-    {
+
+    override static func primaryKey() -> String? {
         return "localIdentifier"
     }
 }
-

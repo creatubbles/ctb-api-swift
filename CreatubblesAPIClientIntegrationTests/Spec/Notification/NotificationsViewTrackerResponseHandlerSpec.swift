@@ -23,50 +23,39 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NotificationsViewTrackerResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
+class NotificationsViewTrackerResponseHandlerSpec: QuickSpec {
+    override func spec() {
 
-        describe("Notifications View Tracker Response Handler")
-        {
-            it("Should return error when user is not logged in")
-            {
+        describe("Notifications View Tracker Response Handler") {
+            it("Should return error when user is not logged in") {
                 let request = NotificationsViewTrackerRequest()
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.send(request, withResponseHandler:NotificationsViewTrackerResponseHandler()
-                    {
+                    sender.send(request, withResponseHandler:NotificationsViewTrackerResponseHandler {
                         (error) in
                         expect(error).notTo(beNil())
                         done()
                     })
                 }
             }
-            
-            it("Shouldn't return any errors when user is logged in")
-            {
+
+            it("Shouldn't return any errors when user is logged in") {
                 let request = NotificationsViewTrackerRequest()
                 let sender = TestComponentsFactory.requestSender
-                
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion: {
                         error in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:NotificationsViewTrackerResponseHandler()
-                        {
+                        sender.send(request, withResponseHandler:NotificationsViewTrackerResponseHandler {
                             (error) in
                             expect(error).to(beNil())
                             done()

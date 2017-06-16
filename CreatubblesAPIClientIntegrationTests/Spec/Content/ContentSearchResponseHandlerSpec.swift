@@ -23,31 +23,23 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class ContentSearchResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Content search response handler")
-        {
-            it("Should return recent content after login")
-            {
+class ContentSearchResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("Content search response handler") {
+            it("Should return recent content after login") {
                 let request = ContentSearchRequest(query: "plant", page: 1, perPage: 20)
                 let sender = TestComponentsFactory.requestSender
-                
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler: ContentSearchResponseHandler()
-                        {
+                        sender.send(request, withResponseHandler: ContentSearchResponseHandler {
                             (responseData) -> (Void) in
                             expect(responseData.error).to(beNil())
                             expect(responseData.objects).notTo(beNil())
@@ -59,18 +51,15 @@ class ContentSearchResponseHandlerSpec: QuickSpec
                 }
             }
         }
-        
-        it("Should return error when not logged in")
-        {
+
+        it("Should return error when not logged in") {
             let request = ContentSearchRequest(query: "plant", page: 1, perPage: 20)
             let sender = TestComponentsFactory.requestSender
-            
+
             sender.logout()
-            waitUntil(timeout: TestConfiguration.timeoutShort)
-            {
+            waitUntil(timeout: TestConfiguration.timeoutShort) {
                 done in
-                sender.send(request, withResponseHandler: ContentSearchResponseHandler()
-                {
+                sender.send(request, withResponseHandler: ContentSearchResponseHandler {
                     (responseData) -> (Void) in
                     expect(responseData.error).notTo(beNil())
                     expect(responseData.objects).to(beEmpty())

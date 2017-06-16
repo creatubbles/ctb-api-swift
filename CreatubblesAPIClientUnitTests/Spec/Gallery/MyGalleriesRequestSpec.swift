@@ -23,48 +23,39 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class MyGalleriesRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Galleries request")
-        {
-            it("Should have proper method")
-            {
+class MyGalleriesRequestSpec: QuickSpec {
+    override func spec() {
+        describe("Galleries request") {
+            it("Should have proper method") {
                 let request = MyGalleriesRequest(page: 1, perPage: 20, filter: .none)
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
-            it("Should have proper endpoint for list of galleries")
-            {
+
+            it("Should have proper endpoint for list of galleries") {
                 let request = MyGalleriesRequest(page: 1, perPage: 20, filter: .none)
-                expect(request.endpoint).to(equal("users/me/galleries"))
+                expect(request.endpoint) == "users/me/galleries"
             }
-            
-            it("Shouldn't have gallery_filter parameter for all galleries")
-            {
+
+            it("Shouldn't have gallery_filter parameter for all galleries") {
                 let request = MyGalleriesRequest(page: 1, perPage: 20, filter: .none)
                 let params = request.parameters
                 expect(params["gallery_filter"] as? String).to(beNil())
             }
-            
-            it("Shouldn have gallery_filter parameter for shared galleries")
-            {
+
+            it("Shouldn have gallery_filter parameter for shared galleries") {
                 let request = MyGalleriesRequest(page: 1, perPage: 20, filter: .owned)
                 let params = request.parameters
-                expect(params["gallery_filter"] as? String).to(equal("only_owned"))
+                expect(params["gallery_filter"] as? String) == "only_owned"
             }
-            
-            it("Shouldn't have gallery_filter parameter for owned galleries")
-            {
+
+            it("Shouldn't have gallery_filter parameter for owned galleries") {
                 let request = MyGalleriesRequest(page: 1, perPage: 20, filter: .shared)
                 let params = request.parameters
-                expect(params["gallery_filter"] as? String).to(equal("only_shared"))
+                expect(params["gallery_filter"] as? String) == "only_shared"
             }
         }
     }

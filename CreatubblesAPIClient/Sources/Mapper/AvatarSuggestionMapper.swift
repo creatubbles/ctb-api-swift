@@ -25,16 +25,14 @@
 import UIKit
 import ObjectMapper
 
-class AvatarSuggestionMapper: Mappable
-{
+class AvatarSuggestionMapper: Mappable {
     var id: String?
     var avatarURL: String?
-    
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
-        id <-  map["id"]
+
+    func mapping(map: Map) {
+        id <- map["id"]
         avatarURL <- map["attributes.url"]
     }
 }

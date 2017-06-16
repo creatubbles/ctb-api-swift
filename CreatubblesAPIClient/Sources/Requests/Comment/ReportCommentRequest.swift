@@ -23,27 +23,26 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 class ReportCommentRequest: Request {
-    
-    override var method: RequestMethod  { return .post }
-    override var endpoint: String       { return "comments/\(commentId)/report" }
+
+    override var method: RequestMethod { return .post }
+    override var endpoint: String { return "comments/\(commentId)/report" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
-    
+
     fileprivate let commentId: String
     fileprivate let message: String
-    
+
     init(commentId: String, message: String) {
         self.commentId = commentId
         self.message = message
     }
-    
-    fileprivate func prepareParameters() -> Dictionary<String,AnyObject> {
-        var params = Dictionary<String,AnyObject>()
+
+    fileprivate func prepareParameters() -> Dictionary<String, AnyObject> {
+        var params = Dictionary<String, AnyObject>()
         params["message"] = message as AnyObject?
-        
+
         return params
     }
 }

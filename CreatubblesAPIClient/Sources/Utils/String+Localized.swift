@@ -24,18 +24,16 @@
 
 import Foundation
 
-extension String
-{
-    var localized: String
-    {
+extension String {
+    var localized: String {
         // The main language can be forced with the LocalizationConfigurator.
         if let language = LocalizationConfigurator.forcedLanguage,
             let path = Bundle.main.path(forResource: language, ofType: "lproj"),
             let bundle = Bundle(path: path) {
-            
+
             return NSLocalizedString(self, bundle: bundle, comment: "")
         }
-        
+
         return NSLocalizedString(self, comment: "")
     }
 }

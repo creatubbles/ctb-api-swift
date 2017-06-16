@@ -23,42 +23,34 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NewGalleryRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("New Gallery request")
-        {
+class NewGalleryRequestSpec: QuickSpec {
+    override func spec() {
+        describe("New Gallery request") {
             let name = "TestGallery"
             let galleryDescription = "TestGallery"
             let openForAll = false
             let ownerId = "TestOwnerId"
             let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: ownerId)
-            
-            it("Should have proper method")
-            {
-                expect(request.method).to(equal(RequestMethod.post))
+
+            it("Should have proper method") {
+                expect(request.method) == RequestMethod.post
             }
-            
-            it("Should have proper endpoint")
-            {
-                expect(request.endpoint).to(equal("galleries"))
+
+            it("Should have proper endpoint") {
+                expect(request.endpoint) == "galleries"
             }
-            
-            it("Should have proper parameters set")
-            {
+
+            it("Should have proper parameters set") {
                 let params = request.parameters
-                expect(params["name"] as? String).to(equal(name))
-                expect(params["description"] as? String).to(equal(galleryDescription))
-                expect(params["open_for_all"] as? Bool).to(equal(openForAll))
-                expect(params["owner_id"] as? String).to(equal(ownerId))
+                expect(params["name"] as? String) == name
+                expect(params["description"] as? String) == galleryDescription
+                expect(params["open_for_all"] as? Bool) == openForAll
+                expect(params["owner_id"] as? String) == ownerId
             }
         }
     }
 }
-

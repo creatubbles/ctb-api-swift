@@ -23,40 +23,32 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class CreationPingRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Creation ping request")
-        {
-            it("Should have proper method")
-            {
+class CreationPingRequestSpec: QuickSpec {
+    override func spec() {
+        describe("Creation ping request") {
+            it("Should have proper method") {
                 let request = NewCreationPingRequest(uploadId: "12345")
-                expect(request.method).to(equal(RequestMethod.put))
+                expect(request.method) == RequestMethod.put
             }
-            
-            it("Should have proper endpoint")
-            {
+
+            it("Should have proper endpoint") {
                 let uploadId = "12345"
                 let request = NewCreationPingRequest(uploadId: uploadId)
-                expect(request.endpoint).to(equal("uploads/"+uploadId))
+                expect(request.endpoint) == "uploads/"+uploadId
             }
-            
-            it("Should have proper parameters")
-            {
+
+            it("Should have proper parameters") {
                 let abortError = "AbortError"
                 let successfulRequest = NewCreationPingRequest(uploadId: "12345")
                 let failedRequest = NewCreationPingRequest(uploadId: "12345", abortError: abortError)
                 expect(successfulRequest.parameters).to(beEmpty())
-                expect(failedRequest.parameters["aborted_with"] as? String).to(equal(abortError))
+                expect(failedRequest.parameters["aborted_with"] as? String) == abortError
             }
         }
 
     }
 }
-

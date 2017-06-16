@@ -23,30 +23,23 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class BubbleResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-     
-        describe("NewBubble response handler")
-        {
-            it("Should return error when not logged in")
-            {
+class BubbleResponseHandlerSpec: QuickSpec {
+    override func spec() {
+
+        describe("NewBubble response handler") {
+            it("Should return error when not logged in") {
                 let data = NewBubbleData(userId: "TestId")
                 let request = NewBubbleRequest(data: data)
-                
+
                 let requestSender = TestComponentsFactory.requestSender
                 requestSender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    requestSender.send(request, withResponseHandler: NewBubbleResponseHandler()
-                    {
+                    requestSender.send(request, withResponseHandler: NewBubbleResponseHandler {
                         (bubble, error) -> (Void) in
                         expect(bubble).to(beNil())
                         expect(error).notTo(beNil())
@@ -54,25 +47,21 @@ class BubbleResponseHandlerSpec: QuickSpec
                     })
                 }
             }
-            
-            it("Shouldn't return error when logged in")
-            {
+
+            it("Shouldn't return error when logged in") {
                 guard let identifier = TestConfiguration.testCreationIdentifier
                 else { return }
-                                
+
                 let data = NewBubbleData(creationId: identifier, colorName: nil, xPosition: nil, yPosition: nil)
                 let request = NewBubbleRequest(data: data)
-                
+
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:NewBubbleResponseHandler()
-                        {
+                        sender.send(request, withResponseHandler:NewBubbleResponseHandler {
                             (bubble, error) -> (Void) in
                             expect(bubble).notTo(beNil())
                             expect(error).to(beNil())
@@ -83,21 +72,17 @@ class BubbleResponseHandlerSpec: QuickSpec
                 }
             }
         }
-        
-        describe("UpdateBubble response handler")
-        {
-            it("Should return error when not logged in")
-            {
+
+        describe("UpdateBubble response handler") {
+            it("Should return error when not logged in") {
                 let data = UpdateBubbleData(bubbleId: "Identifier", colorName: "blue")
                 let request = UpdateBubbleRequest(data:data)
-                
+
                 let requestSender = TestComponentsFactory.requestSender
                 requestSender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    requestSender.send(request, withResponseHandler: UpdateBubbleResponseHandler()
-                    {
+                    requestSender.send(request, withResponseHandler: UpdateBubbleResponseHandler {
                         (bubble, error) -> (Void) in
                         expect(bubble).to(beNil())
                         expect(error).notTo(beNil())
@@ -105,24 +90,20 @@ class BubbleResponseHandlerSpec: QuickSpec
                     })
                 }
             }
-            
-            it("Shouldn't return error when logged in")
-            {
+
+            it("Shouldn't return error when logged in") {
                 guard TestConfiguration.testBubbleIdentifier != nil else { return }
-                
+
                 let data = UpdateBubbleData(bubbleId: TestConfiguration.testBubbleIdentifier!, colorName: "blue")
                 let request = UpdateBubbleRequest(data:data)
-                
+
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:UpdateBubbleResponseHandler()
-                        {
+                        sender.send(request, withResponseHandler:UpdateBubbleResponseHandler {
                             (bubble, error) -> (Void) in
                             expect(bubble).notTo(beNil())
                             expect(error).to(beNil())
@@ -133,23 +114,18 @@ class BubbleResponseHandlerSpec: QuickSpec
                 }
             }
         }
-        
-        describe("BubblesFetch Response Handler")
-        {
-            it("Should return bubbles")
-            {
+
+        describe("BubblesFetch Response Handler") {
+            it("Should return bubbles") {
                 guard TestConfiguration.testUserIdentifier != nil else { return }
-                
+
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(BubblesFetchReqest(userId: TestConfiguration.testUserIdentifier!, page: nil, perPage: nil), withResponseHandler:BubblesFetchResponseHandler()
-                        {
+                        sender.send(BubblesFetchReqest(userId: TestConfiguration.testUserIdentifier!, page: nil, perPage: nil), withResponseHandler:BubblesFetchResponseHandler {
                             (bubbles, pInfo, error) -> (Void) in
                             expect(error).to(beNil())
                             expect(pInfo).notTo(beNil())

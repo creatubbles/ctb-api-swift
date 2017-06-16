@@ -23,7 +23,6 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 @objc open class SessionData: NSObject {
@@ -31,7 +30,7 @@ import UIKit
     let idToken: String?
     let accessTokenExpiry: Date?
     let refreshToken: String?
-    
+
     init(accessToken: String?, idToken: String?, accessTokenExpiry: Date?, refreshToken: String?) {
         self.accessToken = accessToken
         self.idToken = idToken

@@ -23,16 +23,13 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-public class APIClientDateTransform: NSObject
-{
+public class APIClientDateTransform: NSObject {
     public static let sharedTransform = CustomDateFormatTransform(formatString: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
 }
 
-class APIClientShortDateTransform: NSObject
-{
+class APIClientShortDateTransform: NSObject {
     static let sharedTransform = CustomDateFormatTransform(formatString: "yyyy-MM-dd")
 }

@@ -23,29 +23,21 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class LandingURLResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("LandingURL Response Handler")
-        {
-            it("Should return all basic urls when logged in")
-            {
+class LandingURLResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("LandingURL Response Handler") {
+            it("Should return all basic urls when logged in") {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(LandingURLRequest(type: nil), withResponseHandler:LandingURLResponseHandler()
-                            {
+                        _ = sender.send(LandingURLRequest(type: nil), withResponseHandler:LandingURLResponseHandler {
                                 (landingUrls, error) -> (Void) in
                                 expect(error).to(beNil())
                                 expect(landingUrls).notTo(beNil())
@@ -56,74 +48,62 @@ class LandingURLResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should return single value when logged in")
-            {
+
+            it("Should return single value when logged in") {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(LandingURLRequest(type: .explore), withResponseHandler:LandingURLResponseHandler()
-                            {
+                        sender.send(LandingURLRequest(type: .explore), withResponseHandler:LandingURLResponseHandler {
                                 (landingUrls, error) -> (Void) in
                                 expect(error).to(beNil())
                                 expect(landingUrls).notTo(beNil())
                                 expect(landingUrls).notTo(beEmpty())
-                                expect(landingUrls?.count).to(equal(1))
+                                expect(landingUrls?.count) == 1
                                 sender.logout()
                                 done()
                             })
                     }
                 }
             }
-            
-            it("Should return landing url for creation value when logged in")
-            {
+
+            it("Should return landing url for creation value when logged in") {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(LandingURLRequest(creationId: "YNzO8Rmv"), withResponseHandler:LandingURLResponseHandler()
-                            {
+                        sender.send(LandingURLRequest(creationId: "YNzO8Rmv"), withResponseHandler:LandingURLResponseHandler {
                                 (landingUrls, error) -> (Void) in
                                 expect(error).to(beNil())
                                 expect(landingUrls).notTo(beNil())
                                 expect(landingUrls).notTo(beEmpty())
-                                expect(landingUrls?.count).to(equal(1))
+                                expect(landingUrls?.count) == 1
                                 sender.logout()
                                 done()
                             })
                     }
                 }
             }
-            
-            it("Should return landing url for forgotten password when not logged in")
-            {
+
+            it("Should return landing url for forgotten password when not logged in") {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
-                    done in                    
+
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
+                    done in
                     //Have to wait for sender to login with Public Grant
-                    sender.authenticate()
-                    {
-                        (err) -> (Void) in                                                
-                        sender.send(LandingURLRequest(type: .forgotPassword), withResponseHandler:LandingURLResponseHandler()
-                        {
+                    sender.authenticate {
+                        (_) -> (Void) in
+                        sender.send(LandingURLRequest(type: .forgotPassword), withResponseHandler:LandingURLResponseHandler {
                             (landingUrls, error) -> (Void) in
                             expect(error).to(beNil())
                             expect(landingUrls).notTo(beNil())
                             expect(landingUrls).notTo(beEmpty())
-                            expect(landingUrls?.count).to(equal(1))
+                            expect(landingUrls?.count) == 1
                             sender.logout()
                             done()
                         })
@@ -133,4 +113,3 @@ class LandingURLResponseHandlerSpec: QuickSpec
         }
     }
 }
-

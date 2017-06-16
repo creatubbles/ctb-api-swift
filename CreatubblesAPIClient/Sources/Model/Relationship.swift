@@ -25,13 +25,11 @@
 
 import Foundation
 
-open class Relationship
-{
+open class Relationship {
     open let type: String
     open let identifier: String
 
-    init(mapper: RelationshipMapper)
-    {
+    init(mapper: RelationshipMapper) {
         type = mapper.type!
         identifier = mapper.identifier!
     }

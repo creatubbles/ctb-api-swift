@@ -23,33 +23,25 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class DeleteAUserFollowingResponseHandlerSpec: QuickSpec
-{
+class DeleteAUserFollowingResponseHandlerSpec: QuickSpec {
     fileprivate let userId = TestConfiguration.testUserIdentifier
-    
-    override func spec()
-    {
-        describe("Delete A User following Response Handler")
-        {
+
+    override func spec() {
+        describe("Delete A User following Response Handler") {
             let deleteAUserFollowing = DeleteAUserFollowingRequest(userId: self.userId!)
-            
-            it("Should return correct value after login")
-            {
+
+            it("Should return correct value after login") {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        _ = sender.send(deleteAUserFollowing, withResponseHandler:DeleteAUserFollowingResponseHandler()
-                        {
+                        _ = sender.send(deleteAUserFollowing, withResponseHandler:DeleteAUserFollowingResponseHandler {
                             (error: Error?) -> Void in
                             expect(error).to(beNil())
                             done()
@@ -57,16 +49,13 @@ class DeleteAUserFollowingResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should return error when not logged in")
-            {
+
+            it("Should return error when not logged in") {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    _ = sender.send(deleteAUserFollowing, withResponseHandler:DeleteAUserFollowingResponseHandler()
-                    {
+                    _ = sender.send(deleteAUserFollowing, withResponseHandler:DeleteAUserFollowingResponseHandler {
                         (error: Error?) -> Void in
                         expect(error).notTo(beNil())
                         done()

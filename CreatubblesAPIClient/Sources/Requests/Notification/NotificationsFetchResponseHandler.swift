@@ -23,39 +23,32 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class NotificationsFetchResponseHandler: ResponseHandler
-{
+class NotificationsFetchResponseHandler: ResponseHandler {
     fileprivate let completion: NotificationsClosure?
-    
-    init(completion: NotificationsClosure?)
-    {
+
+    init(completion: NotificationsClosure?) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
-            let mappers = Mapper<NotificationMapper>().mapArray(JSONObject: response["data"])
-        {
+            let mappers = Mapper<NotificationMapper>().mapArray(JSONObject: response["data"]) {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
             let notificationMetadata = MappingUtils.notificationMetadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
             let notifications = mappers.map({ Notification(mapper: $0, dataMapper: dataMapper) })
-            
+
             let validNotifications = notifications.filter({ $0.isValid })
             let invalidNotifications = notifications.filter({ !$0.isValid })
-            
-            let responseData = ResponseData<Notification>(objects: validNotifications, rejectedObjects: invalidNotifications, pagingInfo: pageInfo, error: ErrorTransformer.errorFromResponse(response ,error: error))
+
+            let responseData = ResponseData<Notification>(objects: validNotifications, rejectedObjects: invalidNotifications, pagingInfo: pageInfo, error: ErrorTransformer.errorFromResponse(response, error: error))
 
             executeOnMainQueue { self.completion?(responseData, notificationMetadata?.totalUnreadCount) }
-        }
-        else
-        {
+        } else {
             let responseData = ResponseData<Notification>(objects: nil, rejectedObjects: nil, pagingInfo: nil, error:  ErrorTransformer.errorFromResponse(response, error: error))
             executeOnMainQueue { self.completion?(responseData, nil) }
         }

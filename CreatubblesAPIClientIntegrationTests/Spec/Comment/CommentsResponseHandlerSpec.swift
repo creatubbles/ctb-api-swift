@@ -23,34 +23,26 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class CommentsResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Comment response handler")
-        {
-            it("Should return comments for Creation")
-            {
+class CommentsResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("Comment response handler") {
+            it("Should return comments for Creation") {
                 guard let creationId = TestConfiguration.testCreationIdentifier
                     else { return }
-                
+
                 let request = CommentsRequest(creationId: creationId, page: nil, perPage: nil)
                 let sender = TestComponentsFactory.requestSender
-                
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:CommentsResponseHandler()
-                            {
+                        sender.send(request, withResponseHandler:CommentsResponseHandler {
                                 (comments, pageInfo, error) -> (Void) in
                                 expect(error).to(beNil())
                                 expect(comments).notTo(beNil())
@@ -61,24 +53,20 @@ class CommentsResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should return comments for Gallery")
-            {
+
+            it("Should return comments for Gallery") {
                 guard let galleryId = TestConfiguration.testGalleryIdentifier
                     else { return }
-                
+
                 let request = CommentsRequest(galleryId: galleryId, page: nil, perPage: nil)
                 let sender = TestComponentsFactory.requestSender
-                
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:CommentsResponseHandler()
-                        {
+                        sender.send(request, withResponseHandler:CommentsResponseHandler {
                             (comments, pageInfo, error) -> (Void) in
                             expect(error).to(beNil())
                             expect(comments).notTo(beNil())
@@ -89,24 +77,20 @@ class CommentsResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should return comments for Profile")
-            {
+
+            it("Should return comments for Profile") {
                 guard let userId = TestConfiguration.testUserIdentifier
                     else { return }
-                
+
                 let request = CommentsRequest(userId: userId, page: nil, perPage: nil)
                 let sender = TestComponentsFactory.requestSender
-                
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:CommentsResponseHandler()
-                            {
+                        sender.send(request, withResponseHandler:CommentsResponseHandler {
                                 (comments, pData, error) -> (Void) in
                                 expect(error).to(beNil())
                                 expect(comments).notTo(beNil())

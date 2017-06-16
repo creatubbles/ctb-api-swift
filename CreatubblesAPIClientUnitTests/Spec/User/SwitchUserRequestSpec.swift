@@ -23,38 +23,37 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
 class SwitchUserRequestSpec: QuickSpec {
-    
+
     override func spec() {
-        
+
         describe("Switch user request") {
-            
+
             it("Should have proper endpoint for me") {
                 let request = SwitchUserRequest()
-                expect(request.endpoint).to(equal("oauth/token"))
+                expect(request.endpoint) == "oauth/token"
             }
-            
+
             it("Should have proper method") {
                 let request = SwitchUserRequest()
-                expect(request.method).to(equal(RequestMethod.post))
+                expect(request.method) == RequestMethod.post
             }
-            
+
             it("Should have proper parameters set") {
                 let targetUserId = "TargetUserId"
                 let accessToken = "AccessToken"
                 let grantType = "user_switch"
-                
+
                 let request = SwitchUserRequest(targetUserId: targetUserId, accessToken: accessToken)
                 let params = request.parameters
-                expect(params["target_user_id"] as? String).to(equal(targetUserId))
-                expect(params["access_token"] as? String).to(equal(accessToken))
-                expect(params["grant_type"] as? String).to(equal(grantType))
+                expect(params["target_user_id"] as? String) == targetUserId
+                expect(params["access_token"] as? String) == accessToken
+                expect(params["grant_type"] as? String) == grantType
             }
-        }        
+        }
     }
 }

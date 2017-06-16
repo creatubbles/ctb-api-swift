@@ -23,18 +23,15 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class DeleteAUserFollowingRequest: Request
-{
-    override var method: RequestMethod  { return .delete }
-    override var endpoint: String       { return "users/"+userId+"/following" }
-    
+class DeleteAUserFollowingRequest: Request {
+    override var method: RequestMethod { return .delete }
+    override var endpoint: String { return "users/"+userId+"/following" }
+
     fileprivate let userId: String
-    
-    init(userId: String)
-    {
+
+    init(userId: String) {
         self.userId = userId
     }
 }

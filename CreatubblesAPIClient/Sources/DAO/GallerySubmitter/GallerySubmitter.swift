@@ -23,61 +23,52 @@
 //  THE SOFTWARE.
 //
 
-class GallerySubmitter: Cancelable
-{
+class GallerySubmitter: Cancelable {
     private let requestSender: RequestSender
     private let creationId: String
     private let galleryIdentifiers: Array<String>
     private let completion: ErrorClosure?
-    
+
     private var operationQueue: OperationQueue?
     private var errors: Array<APIClientError>
-    
-    init(requestSender: RequestSender, creationId: String, galleryIdentifiers: Array<String>, completion: ErrorClosure?)
-    {
+
+    init(requestSender: RequestSender, creationId: String, galleryIdentifiers: Array<String>, completion: ErrorClosure?) {
         self.requestSender = requestSender
         self.creationId = creationId
         self.galleryIdentifiers = galleryIdentifiers
         self.completion = completion
         self.errors = Array<APIClientError>()
     }
-    
-    func cancel()
-    {
+
+    func cancel() {
         operationQueue?.cancelAllOperations()
     }
-    
-    func submit() -> RequestHandler
-    {
+
+    func submit() -> RequestHandler {
         guard operationQueue == nil
-        else
-        {
+        else {
             assert(false) //Fetch should be called only once
             return RequestHandler(object: self)
         }
-        
+
         operationQueue = OperationQueue()
         operationQueue!.maxConcurrentOperationCount = 4
-        
+
         let finishOperation = BlockOperation()
-        finishOperation.addExecutionBlock()
-        {
+        finishOperation.addExecutionBlock {
             [unowned finishOperation, weak self] in
             guard let strongSelf = self, !finishOperation.isCancelled else { return }
             let error = strongSelf.errors.first
-            
-            DispatchQueue.main.async
-            {
+
+            DispatchQueue.main.async {
                 [weak self] in
                 self?.completion?(error)
             }
         }
-        
-        galleryIdentifiers.forEach
-        {
+
+        galleryIdentifiers.forEach {
             (galleryId) in
-            let operation = GallerySubmitOperation(requestSender: requestSender, galleryId: galleryId, creationId: creationId)
-            {
+            let operation = GallerySubmitOperation(requestSender: requestSender, galleryId: galleryId, creationId: creationId) {
                 [weak self](operation, error) in
                 guard operation is GallerySubmitOperation,
                       let error = error as? APIClientError,
@@ -85,12 +76,12 @@ class GallerySubmitter: Cancelable
                 else { return }
                 strongSelf.errors.append(error)
             }
-            
+
             finishOperation.addDependency(operation)
             operationQueue!.addOperation(operation)
         }
         operationQueue!.addOperation(finishOperation)
-        
+
         return RequestHandler(object: self)
     }
 }

@@ -24,25 +24,22 @@
 
 import UIKit
 
-class NewCreatorRequest: Request
-{
-    override var method: RequestMethod  { return .post }
-    override var endpoint: String       { return "creators" }
-    override var parameters: Dictionary<String, AnyObject>
-    {
+class NewCreatorRequest: Request {
+    override var method: RequestMethod { return .post }
+    override var endpoint: String { return "creators" }
+    override var parameters: Dictionary<String, AnyObject> {
         return prepareParams()
-        
+
     }
-    
+
     fileprivate let name: String
     fileprivate let displayName: String?
     fileprivate let birthYear: Int?
     fileprivate let birthMonth: Int?
     fileprivate let countryCode: String?
     fileprivate let gender: Gender?
-    
-    init(name: String, displayName: String?, birthYear: Int?, birthMonth: Int?, countryCode: String?, gender: Gender?)
-    {
+
+    init(name: String, displayName: String?, birthYear: Int?, birthMonth: Int?, countryCode: String?, gender: Gender?) {
         self.name = name
         self.displayName = displayName
         self.birthYear = birthYear
@@ -50,33 +47,27 @@ class NewCreatorRequest: Request
         self.countryCode = countryCode
         self.gender = gender
     }
-    
-    fileprivate func prepareParams() -> Dictionary<String, AnyObject>
-    {
+
+    fileprivate func prepareParams() -> Dictionary<String, AnyObject> {
         var params = Dictionary<String, AnyObject>()
         params["name"] = name as AnyObject?
-        
-        if let displayName = displayName
-        {
+
+        if let displayName = displayName {
             params["display_name"] = displayName as AnyObject?
         }
-        if let birthYear = birthYear
-        {
+        if let birthYear = birthYear {
             params["birth_year"] = birthYear as AnyObject?
         }
-        if let birthMonth = birthMonth
-        {
+        if let birthMonth = birthMonth {
             params["birth_month"] = birthMonth as AnyObject?
         }
-        if let countryCode = countryCode
-        {
+        if let countryCode = countryCode {
             params["country"] = countryCode as AnyObject?
         }
-        if let gender = gender
-        {
+        if let gender = gender {
             params["gender"] = gender.rawValue as AnyObject?
         }
-        
+
         return params
     }
 }

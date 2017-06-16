@@ -23,49 +23,38 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class CreateAUserFollowingResponseHandlerSpec: QuickSpec
-{
+class CreateAUserFollowingResponseHandlerSpec: QuickSpec {
     fileprivate let userId = TestConfiguration.testUserIdentifier
 
-    override func spec()
-    {
-        describe("Create A User following Response Handler")
-        {
+    override func spec() {
+        describe("Create A User following Response Handler") {
             let createAUserFollowing = CreateAUserFollowingRequest(userId: self.userId!)
-            
-            it("Should return correct value after login")
-            {
+
+            it("Should return correct value after login") {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(createAUserFollowing, withResponseHandler:CreateAUserFollowingResponseHandler()
-                        {
-                            (error: Error?) -> Void in
+                        sender.send(createAUserFollowing, withResponseHandler:CreateAUserFollowingResponseHandler {
+                            (_: Error?) -> Void in
                             done()
                         })
                     }
                 }
             }
-            
-            it("Should return error when not logged in")
-            {
+
+            it("Should return error when not logged in") {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.send(createAUserFollowing, withResponseHandler:CreateAUserFollowingResponseHandler()
-                    {
+                    sender.send(createAUserFollowing, withResponseHandler:CreateAUserFollowingResponseHandler {
                         (error: Error?) -> Void in
                         expect(error).notTo(beNil())
                         done()

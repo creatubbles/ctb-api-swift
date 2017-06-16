@@ -27,29 +27,22 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class GalleriesBatchFetcherSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("GalleriesBatchFetcher")
-        {
-            it("Should batch fetch galleries using operation client")
-            {
+class GalleriesBatchFetcherSpec: QuickSpec {
+    override func spec() {
+        describe("GalleriesBatchFetcher") {
+            it("Should batch fetch galleries using operation client") {
                 guard TestConfiguration.shoulTestBatchFetchers else { return }
 
                 let sender = TestComponentsFactory.requestSender
                 var batchFetcher: GalleriesQueueBatchFetcher!
-                waitUntil(timeout: TestConfiguration.timeoutLong)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutLong) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(sender.isLoggedIn()).to(beTrue())
-                        
-                        batchFetcher = GalleriesQueueBatchFetcher(requestSender: sender, userId: nil, query: nil, sort: nil)
-                        {
+
+                        batchFetcher = GalleriesQueueBatchFetcher(requestSender: sender, userId: nil, query: nil, sort: nil) {
                             (galleries, error) -> (Void) in
                             expect(galleries).notTo(beNil())
                             expect(galleries).notTo(beEmpty())
@@ -60,24 +53,20 @@ class GalleriesBatchFetcherSpec: QuickSpec
                     })
                 }
             }
-            
-            it("Should batch fetch favorite galleries using operation client")
-            {
+
+            it("Should batch fetch favorite galleries using operation client") {
                 guard TestConfiguration.shoulTestBatchFetchers else { return }
 
                 let sender = TestComponentsFactory.requestSender
                 var batchFetcher: FavoriteGalleriesQueueBatchFetcher!
-                waitUntil(timeout: TestConfiguration.timeoutLong)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutLong) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(sender.isLoggedIn()).to(beTrue())
-                        
-                        batchFetcher = FavoriteGalleriesQueueBatchFetcher(requestSender: sender)
-                        {
+
+                        batchFetcher = FavoriteGalleriesQueueBatchFetcher(requestSender: sender) {
                             (galleries, error) -> (Void) in
                             expect(galleries).notTo(beNil())
                             expect(galleries).notTo(beEmpty())
@@ -88,24 +77,20 @@ class GalleriesBatchFetcherSpec: QuickSpec
                     })
                 }
             }
-            
-            it("Should batch fetch featured galleries using operation client")
-            {
+
+            it("Should batch fetch featured galleries using operation client") {
                 guard TestConfiguration.shoulTestBatchFetchers else { return }
-                
+
                 let sender = TestComponentsFactory.requestSender
                 var batchFetcher: FeaturedGalleriesQueueBatchFetcher!
-                waitUntil(timeout: TestConfiguration.timeoutLong)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutLong) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(sender.isLoggedIn()).to(beTrue())
-                        
-                        batchFetcher = FeaturedGalleriesQueueBatchFetcher(requestSender: sender)
-                        {
+
+                        batchFetcher = FeaturedGalleriesQueueBatchFetcher(requestSender: sender) {
                             (galleries, error) -> (Void) in
                             expect(galleries).notTo(beNil())
                             expect(galleries).notTo(beEmpty())
@@ -116,24 +101,20 @@ class GalleriesBatchFetcherSpec: QuickSpec
                     })
                 }
             }
-            
-            it("Should batch fetch currently logged in user's galleries using operation client")
-            {
+
+            it("Should batch fetch currently logged in user's galleries using operation client") {
                 guard TestConfiguration.shoulTestBatchFetchers else { return }
-                
+
                 let sender = TestComponentsFactory.requestSender
                 var batchFetcher: MyGalleriesQueueBatchFetcher!
-                waitUntil(timeout: TestConfiguration.timeoutLong)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutLong) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion:
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password, completion: {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(sender.isLoggedIn()).to(beTrue())
-                        
-                        batchFetcher = MyGalleriesQueueBatchFetcher(requestSender: sender, filter: .none)
-                        {
+
+                        batchFetcher = MyGalleriesQueueBatchFetcher(requestSender: sender, filter: .none) {
                             (galleries, error) -> (Void) in
                             expect(galleries).notTo(beNil())
                             expect(galleries).notTo(beEmpty())

@@ -23,44 +23,39 @@
 //  THE SOFTWARE.
 //
 
-class UsersBatchFetchOperation: ConcurrentOperation
-{
+class UsersBatchFetchOperation: ConcurrentOperation {
     private let requestSender: RequestSender
     private let userId: String?
     private let query: String?
     private let scope: CreatorsAndManagersScopeElement
-    
+
     let pagingData: PagingData
     private(set) var users: Array<User>?
     private var requestHandler: RequestHandler?
-    
-    init(requestSender: RequestSender,  userId: String?, query: String?, scope: CreatorsAndManagersScopeElement, pagingData: PagingData ,complete: OperationCompleteClosure?)
-    {
+
+    init(requestSender: RequestSender, userId: String?, query: String?, scope: CreatorsAndManagersScopeElement, pagingData: PagingData, complete: OperationCompleteClosure?) {
         self.requestSender = requestSender
         self.userId = userId
         self.scope = scope
         self.pagingData = pagingData
         self.query = query
-        
+
         super.init(complete: complete)
     }
-    
-    override func main()
-    {
+
+    override func main() {
         guard isCancelled == false else { return }
 
         let request = CreatorsAndManagersRequest(userId: userId, query: query, page: pagingData.page, perPage: pagingData.pageSize, scope: scope)
-        let handler = CreatorsAndManagersResponseHandler()
-        {
-            [weak self](users, pagingInfo, error) -> (Void) in
+        let handler = CreatorsAndManagersResponseHandler {
+            [weak self](users, _, error) -> (Void) in
             self?.users = users
             self?.finish(error)
         }
         requestHandler = requestSender.send(request, withResponseHandler: handler)
     }
-    
-    override func cancel()
-    {
+
+    override func cancel() {
         requestHandler?.cancel()
         super.cancel()
     }

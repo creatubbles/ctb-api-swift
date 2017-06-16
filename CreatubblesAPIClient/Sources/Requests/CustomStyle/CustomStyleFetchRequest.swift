@@ -23,18 +23,15 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class CustomStyleFetchRequest: Request
-{
-    override var method: RequestMethod   { return .get }
-    override var endpoint: String        { return "users/\(userIdentifier)/custom_style" }
+class CustomStyleFetchRequest: Request {
+    override var method: RequestMethod { return .get }
+    override var endpoint: String { return "users/\(userIdentifier)/custom_style" }
     override var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
-    
+
     fileprivate let userIdentifier: String
-    init(userIdentifier: String)
-    {
+    init(userIdentifier: String) {
         self.userIdentifier = userIdentifier
     }
 }

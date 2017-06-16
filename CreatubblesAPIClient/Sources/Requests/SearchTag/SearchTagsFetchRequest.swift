@@ -24,7 +24,6 @@
 
 import UIKit
 
-class SearchTagsFetchRequest: Request
-{
+class SearchTagsFetchRequest: Request {
     //Empty until it's ready on API's side
 }

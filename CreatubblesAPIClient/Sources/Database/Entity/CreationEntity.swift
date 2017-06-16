@@ -25,20 +25,18 @@
 import Foundation
 import RealmSwift
 
-class CreatedAtAgePerCreatorDict: Object
-{
+class CreatedAtAgePerCreatorDict: Object {
     dynamic var key: String?
     dynamic var value: String?
 }
 
-class CreationEntity: Object
-{
+class CreationEntity: Object {
     dynamic var identifier: String?
     dynamic var name: String?
     var translatedNameEntities = List<NameTranslationObjectEntity>()
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
-    
+
     dynamic var imageOriginalUrl: String?
     dynamic var imageFullViewUrl: String?
     dynamic var imageListViewUrl: String?
@@ -48,30 +46,30 @@ class CreationEntity: Object
     dynamic var imageGalleryMobileUrl: String?
     dynamic var imageExploreMobileUrl: String?
     dynamic var imageShareUrl: String?
-    
+
     dynamic var video480Url: String?
     dynamic var video720Url: String?
-        
+
     var imageStatus = RealmOptional<Int>()
-    
+
     var bubblesCount = RealmOptional<Int>()
     var commentsCount = RealmOptional<Int>()
     var viewsCount = RealmOptional<Int>()
     var createdAtAgePerCreatorDict: List<CreatedAtAgePerCreatorDict>?
-    
+
     dynamic var lastBubbledAt: Date?
     dynamic var lastCommentedAt: Date?
     dynamic var lastSubmittedAt: Date?
-    
+
     var approved = RealmOptional<Bool>()
     dynamic var shortUrl: String?
     dynamic var createdAtAge: String?
-    
+
     dynamic var reflectionText: String?
     dynamic var reflectionVideoUrl: String?
-    
+
     dynamic var objFileUrl: String?
     dynamic var playIFrameUrl: String?
-    
+
     dynamic var contentType: String?
 }

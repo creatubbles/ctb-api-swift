@@ -23,34 +23,26 @@
 //  THE SOFTWARE.
 //
 
-
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class EditCreationRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("EditCreationRequest")
-        {
-            it("Should use PUT method")
-            {
+class EditCreationRequestSpec: QuickSpec {
+    override func spec() {
+        describe("EditCreationRequest") {
+            it("Should use PUT method") {
                 let request = EditCreationRequest(identifier: "", data: EditCreationData())
-                expect(request.method).to(equal(RequestMethod.put))
+                expect(request.method) == RequestMethod.put
             }
-            
-            it("Should use 'creations/IDENTIFIER endpoint")
-            {
+
+            it("Should use 'creations/IDENTIFIER endpoint") {
                 let identifier = "TestIdentifier"
                 let request = EditCreationRequest(identifier: identifier, data: EditCreationData())
-                expect(request.endpoint).to(equal("creations/\(identifier)"))
+                expect(request.endpoint) == "creations/\(identifier)"
             }
-            
-            it("Should return proper parameters")
-            {
-            
+
+            it("Should return proper parameters") {
+
             }
         }
     }

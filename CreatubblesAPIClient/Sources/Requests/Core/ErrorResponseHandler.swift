@@ -23,20 +23,16 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-open class ErrorResponseHandler: ResponseHandler
-{
+open class ErrorResponseHandler: ResponseHandler {
     fileprivate let completion: ErrorClosure?
-    
-    public init(completion: ErrorClosure?)
-    {
+
+    public init(completion: ErrorClosure?) {
         self.completion = completion
     }
-    
-    override open func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override open func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         executeOnMainQueue { self.completion?( ErrorTransformer.errorFromResponse(response, error: error)) }
     }
 }

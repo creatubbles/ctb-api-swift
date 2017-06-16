@@ -23,30 +23,24 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class RemoveCreationRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        
-        describe("Remove Creation Request")
-        {
-            it("Should have a proper endpoint")
-            {
+class RemoveCreationRequestSpec: QuickSpec {
+    override func spec() {
+
+        describe("Remove Creation Request") {
+            it("Should have a proper endpoint") {
                 let creationId = "creationId"
                 let request = RemoveCreationRequest(creationId: creationId)
-                
-                expect(request.endpoint).to(equal("creations/\(creationId)"))
+
+                expect(request.endpoint) == "creations/\(creationId)"
             }
         }
-        it("Should use DELETE method")
-        {
+        it("Should use DELETE method") {
             let request = RemoveCreationRequest(creationId: "")
-            expect(request.method).to(equal(RequestMethod.delete))
+            expect(request.method) == RequestMethod.delete
         }
     }
 }

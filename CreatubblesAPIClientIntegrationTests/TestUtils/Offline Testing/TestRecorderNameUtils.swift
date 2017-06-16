@@ -26,29 +26,25 @@
 import UIKit
 @testable import CreatubblesAPIClient
 
-class TestRecorderNameUtils
-{
-    class func filenameForRequest(request: Request, isLoggedIn: Bool?) -> String
-    {
+class TestRecorderNameUtils {
+    class func filenameForRequest(request: Request, isLoggedIn: Bool?) -> String {
         var nameComponents = Array<String>()
         nameComponents.append(request.endpoint)
         nameComponents.append(request.method.rawValue)
         nameComponents.append(String(String(describing: request.parameters).hashValue))
         nameComponents.append("loggedIn;\(isLoggedIn)")
-        
+
         nameComponents = [nameComponents.joined(separator: "_")]
-        
-        let name =  String(nameComponents.first!.characters.map { $0 == "/" ? "." : $0 })
+
+        let name = String(nameComponents.first!.characters.map { $0 == "/" ? "." : $0 })
         return name.trimmingCharacters(in: .whitespacesAndNewlines)
     }
-    
-    class func getInputFilePathForFileName(fileName: String) -> String?
-    {
+
+    class func getInputFilePathForFileName(fileName: String) -> String? {
         let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
-        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
-        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
-        if let dirPath          = paths.first
-        {
+        let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        if let dirPath = paths.first {
             return dirPath.stringByAppendingPathComponent(fileName)
         }
         return nil

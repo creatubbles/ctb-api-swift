@@ -23,56 +23,48 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class ContentEntryMapper: Mappable
-{
+class ContentEntryMapper: Mappable {
     var identifier: String?
     var type: String?
-    
+
     var userRelationship: RelationshipMapper?
     var creationRelationship: RelationshipMapper?
     var galleryRelationship: RelationshipMapper?
     var partnerApplicationRelationship: RelationshipMapper?
-    
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
+
+    func mapping(map: Map) {
         identifier <- map["id"]
         type <- map["attributes.type"]
-        
+
         userRelationship <- map["relationships.user.data"]
         creationRelationship <- map["relationships.creation.data"]
         galleryRelationship <- map["relationships.gallery.data"]
         partnerApplicationRelationship <- map["relationships.partner_application.data"]
     }
-    
-    func parseCreationRelationship() -> Relationship?
-    {
+
+    func parseCreationRelationship() -> Relationship? {
         return MappingUtils.relationshipFromMapper(creationRelationship)
     }
-    func parseGalleryRelationship() -> Relationship?
-    {
+    func parseGalleryRelationship() -> Relationship? {
         return MappingUtils.relationshipFromMapper(galleryRelationship)
     }
-    func parseUserRelationship() -> Relationship?
-    {
+    func parseUserRelationship() -> Relationship? {
         return MappingUtils.relationshipFromMapper(userRelationship)
     }
-    func parsePartnerApplicationRelationship() -> Relationship?
-    {
+    func parsePartnerApplicationRelationship() -> Relationship? {
         return MappingUtils.relationshipFromMapper(partnerApplicationRelationship)
     }
-    
-    func parseType() -> ContentEntryType
-    {
-        if type == "creation"               { return .creation           }
-        if type == "gallery"                { return .gallery            }
-        if type == "user"                   { return .user               }
-        if type == "partner_application"    { return .partnerApplication }
+
+    func parseType() -> ContentEntryType {
+        if type == "creation" { return .creation }
+        if type == "gallery" { return .gallery }
+        if type == "user" { return .user }
+        if type == "partner_application" { return .partnerApplication }
         return .unknown
     }
 }

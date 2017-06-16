@@ -23,31 +23,25 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class CreateAUserFollowingRequestSpec: QuickSpec
-{
+class CreateAUserFollowingRequestSpec: QuickSpec {
     fileprivate let userId = "TestUserId"
 
-    override func spec()
-    {
-        describe("Create A User Following Request")
-        {
+    override func spec() {
+        describe("Create A User Following Request") {
             let createUserFollowingRequest = CreateAUserFollowingRequest(userId: self.userId)
-            
-            it("Should have proper endpoint")
-            {
+
+            it("Should have proper endpoint") {
                 let request = createUserFollowingRequest
-                expect(request.endpoint).to(equal("users/"+self.userId+"/following"))
+                expect(request.endpoint) == "users/"+self.userId+"/following"
             }
-            
-            it("Should have proper method")
-            {
+
+            it("Should have proper method") {
                 let request = createUserFollowingRequest
-                expect(request.method).to(equal(RequestMethod.post))
+                expect(request.method) == RequestMethod.post
             }
         }
     }

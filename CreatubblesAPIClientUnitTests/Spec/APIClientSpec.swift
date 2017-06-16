@@ -27,46 +27,40 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class APIClientSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("ApiClient Settings")
-        {
-            it("Have proper fields set")
-            {
+class APIClientSpec: QuickSpec {
+    override func spec() {
+        describe("ApiClient Settings") {
+            it("Have proper fields set") {
                 let appId = "TestAppId"
                 let appSecret = "TestAppSecret"
                 let tokenUri = "TestTokenUri"
                 let authorizeUri = "TestAuthorizeUri"
                 let baseUrl = "TestBaseUrl"
                 let apiVersion = "TestApiVersion"
-                
+
                 let settings = APIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion)
-                
-                expect(settings.appId).to(equal(appId))
-                expect(settings.appSecret).to(equal(appSecret))
-                expect(settings.tokenUri).to(equal(tokenUri))            
-                expect(settings.authorizeUri).to(equal(authorizeUri))
-                expect(settings.baseUrl).to(equal(baseUrl))
-                expect(settings.apiVersion).to(equal(apiVersion))
+
+                expect(settings.appId) == appId
+                expect(settings.appSecret) == appSecret
+                expect(settings.tokenUri) == tokenUri
+                expect(settings.authorizeUri) == authorizeUri
+                expect(settings.baseUrl) == baseUrl
+                expect(settings.apiVersion) == apiVersion
             }
         }
-        
-        describe("APIClient")
-        {
-            //MARK: - Should have all public DA
-            it("Should have all public DAO's registered")
-            {
+
+        describe("APIClient") {
+            // MARK: - Should have all public DA
+            it("Should have all public DAO's registered") {
                 let appId = "TestAppId"
                 let appSecret = "TestAppSecret"
                 let tokenUri = "TestTokenUri"
                 let authorizeUri = "TestAuthorizeUri"
                 let baseUrl = "TestBaseUrl"
                 let apiVersion = "TestApiVersion"
-                
+
                 let settings = APIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion)
-                
+
                 let client = APIClient(settings: settings)
                 expect(client.daoAssembly.assembly(GroupDAO.self)).notTo(beNil())
                 expect(client.daoAssembly.assembly(AvatarDAO.self)).notTo(beNil())

@@ -23,32 +23,25 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class GroupResponseHandler: ResponseHandler
-{
+class GroupResponseHandler: ResponseHandler {
     fileprivate let completion: GroupClosure?
-    
-    init(completion: GroupClosure?)
-    {
+
+    init(completion: GroupClosure?) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
-            let mapper = Mapper<GroupMapper>().map(JSON: response["data"] as! [String : Any])
-        {
+            let mapper = Mapper<GroupMapper>().map(JSON: response["data"] as! [String : Any]) {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let group    =  Group(mapper: mapper, dataMapper: dataMapper)
-            
+            let group = Group(mapper: mapper, dataMapper: dataMapper)
+
             executeOnMainQueue { self.completion?(group, ErrorTransformer.errorFromResponse(response, error: error)) }
-        }
-        else
-        {
+        } else {
             executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }

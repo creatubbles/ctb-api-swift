@@ -25,8 +25,7 @@
 import UIKit
 import ObjectMapper
 
-class UserMapper: Mappable
-{
+class UserMapper: Mappable {
     var identifier: String?
     var username: String?
     var displayName: String?
@@ -42,7 +41,7 @@ class UserMapper: Mappable
     var countryName: String?
     var age: String?
     var shortUrl: String?
-    
+
     var bubblesCount: Int?
     var addedBubblesCount: Int?
     var activitiesCount: Int?
@@ -51,24 +50,23 @@ class UserMapper: Mappable
     var creatorsCount: Int?
     var galleriesCount: Int?
     var managersCount: Int?
-    
+
     var homeSchooling: Bool?
     var signedUpAsInstructor: Bool?
-    
+
     var gender: String?
     var customStyleRelationship: RelationshipMapper?
-    
+
     var whatDoYouTeach: String?
-    var interests : String?
-    
-    //MARK: - Mappable
+    var interests: String?
+
+    // MARK: - Mappable
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
-        identifier  <- map["id"]
-        username  <- map["attributes.username"]
-        displayName  <- map["attributes.display_name"]
+
+    func mapping(map: Map) {
+        identifier <- map["id"]
+        username <- map["attributes.username"]
+        displayName <- map["attributes.display_name"]
         listName <- map["attributes.list_name"]
         name <- map["attributes.name"]
         role <- map["attributes.role"]
@@ -81,42 +79,39 @@ class UserMapper: Mappable
         countryName <- map["attributes.country_name"]
         age <- map["attributes.age"]
         shortUrl <- map["attributes.short_url"]
-        
+
         bubblesCount <- map["attributes.bubbles_count"]
         addedBubblesCount <- map["attributes.added_bubbles_count"]
         activitiesCount <- map["attributes.activities_count"]
         commentsCount <- map["attributes.comments_count"]
         creationsCount <- map["attributes.creations_count"]
-        
+
         galleriesCount <- map["attributes.galleries_count"]
         creatorsCount <- map["attributes.creators_count"]
         managersCount <- map["attributes.managers_count"]
-        
+
         homeSchooling <- map["attributes.home_schooling"]
         signedUpAsInstructor <- map["attributes.signed_up_as_instructor"]
         gender <- map["attributes.gender"]
-        
+
         customStyleRelationship <- map["relationships.custom_style.data"]
-        
+
         whatDoYouTeach <- map["attributes.what_do_you_teach"]
         interests <- map["attributes.interests"]
     }
-    
-    //MARK: - Parsing
-    func parseRole() -> Role
-    {
-        switch self.role!
-        {
+
+    // MARK: - Parsing
+    func parseRole() -> Role {
+        switch self.role! {
             case "parent":  return Role.parent
             case "instructor": return Role.instructor
             case "creator": return Role.creator
             default:        return Role.creator
         }
     }
-    
-    func parseGender() -> Gender
-    {
-        if gender == "male"   { return .male }
+
+    func parseGender() -> Gender {
+        if gender == "male" { return .male }
         if gender == "female" { return .female }
         return .unknown
     }

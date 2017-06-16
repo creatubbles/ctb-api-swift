@@ -23,35 +23,26 @@
 //  THE SOFTWARE.
 //
 
-
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class NewGroupResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("New Group response handler")
-        {
-            it("Should create new group when only name is passed")
-            {
+class NewGroupResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("New Group response handler") {
+            it("Should create new group when only name is passed") {
                 guard let name = TestConfiguration.testNewGroupDataName
                 else { return }
-                
+
                 let data = NewGroupData(name: name)
-                
+
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(NewGroupRequest(data: data), withResponseHandler: NewGroupResponseHandler()
-                        {
+                        sender.send(NewGroupRequest(data: data), withResponseHandler: NewGroupResponseHandler {
                             (group, error) -> (Void) in
                             expect(group).notTo(beNil())
                             expect(error).to(beNil())
@@ -62,24 +53,20 @@ class NewGroupResponseHandlerSpec: QuickSpec
                 }
             }
             //TODO: uncomment/remove when status is determined on api - for now creating with creation's id as avatar does not work
-            xit("Should create new group when name and avatar_id are passed")
-            {
+            xit("Should create new group when name and avatar_id are passed") {
                 guard let name = TestConfiguration.testNewGroupDataName,
                       let creationIdentifier = TestConfiguration.testCreationIdentifier
                 else { return }
-                
+
                 let data = NewGroupData(name: "test\(name)", avatarCreationIdentifier: creationIdentifier)
-                
+
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(NewGroupRequest(data: data), withResponseHandler: NewGroupResponseHandler()
-                        {
+                        sender.send(NewGroupRequest(data: data), withResponseHandler: NewGroupResponseHandler {
                             (group, error) -> (Void) in
                             expect(group).notTo(beNil())
                             expect(error).to(beNil())

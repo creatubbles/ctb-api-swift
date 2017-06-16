@@ -25,8 +25,7 @@
 import UIKit
 
 @objc
-open class Gallery: NSObject, Identifiable
-{
+open class Gallery: NSObject, Identifiable {
     open let identifier: String
     open let name: String
     open let createdAt: Date
@@ -36,31 +35,29 @@ open class Gallery: NSObject, Identifiable
     open let commentsCount: Int
     open let shortUrl: String
     open let previewImageUrls: Array<String>
-    
+
     open let lastBubbledAt: Date?
     open let lastCommentedAt: Date?
     open let galleryDescription: String?
-    
+
     open let openForAll: Bool
-    
+
     open let bannerOriginalUrl: String?
     open let bannerListViewUrl: String?
     open let bannerListViewRetinaUrl: String?
     open let bannerMatrixViewUrl: String?
     open let bannerMatrixViewRetinaUrl: String?
     open let bannerExploreMobileUrl: String?
-    
-    
-    //MARK: - Relationships
+
+    // MARK: - Relationships
     open let owner: User?
     open let ownerRelationship: Relationship?
-    
-    //MARK: - Metadata
+
+    // MARK: - Metadata
     open let isBubbled: Bool
     open let abilities: Array<Ability>
-    
-    init(mapper: GalleryMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
-    {
+
+    init(mapper: GalleryMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil) {
         identifier = mapper.identifier!
         name = mapper.name!
         createdAt = mapper.createdAt! as Date
@@ -70,24 +67,24 @@ open class Gallery: NSObject, Identifiable
         commentsCount = mapper.commentsCount!
         shortUrl = mapper.shortUrl!
         previewImageUrls = mapper.previewImageUrls ?? []
-        
+
         lastBubbledAt = mapper.lastBubbledAt as Date?
         lastCommentedAt = mapper.lastCommentedAt as Date?
         galleryDescription = mapper.galleryDescription
-        
+
         openForAll = mapper.openForAll!
-        
+
         bannerOriginalUrl = mapper.bannerOriginalUrl
         bannerListViewUrl = mapper.bannerListViewUrl
         bannerListViewRetinaUrl = mapper.bannerListViewRetinaUrl
         bannerMatrixViewUrl = mapper.bannerMatrixViewUrl
         bannerMatrixViewRetinaUrl = mapper.bannerMatrixViewRetinaUrl
         bannerExploreMobileUrl = mapper.bannerExploreMobileUrl
-                
+
         isBubbled = MappingUtils.bubbledStateFrom(metadata: metadata, forObjectWithIdentifier: identifier)
         abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
-        
+
         ownerRelationship = mapper.parseOwnerRelationship()
-        owner = MappingUtils.objectFromMapper(dataMapper, relationship: ownerRelationship, type: User.self)                
+        owner = MappingUtils.objectFromMapper(dataMapper, relationship: ownerRelationship, type: User.self)
     }
 }

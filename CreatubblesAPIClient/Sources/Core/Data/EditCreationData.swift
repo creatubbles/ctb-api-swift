@@ -23,12 +23,10 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 @objc
-open class EditCreationData: NSObject
-{
+open class EditCreationData: NSObject {
     open var name: String?
     open var reflectionText: String?
     open var reflectionVideoURL: String?

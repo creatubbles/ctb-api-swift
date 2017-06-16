@@ -23,27 +23,26 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 class ReportCreationRequest: Request {
-    
-    override var method: RequestMethod  { return .post }
-    override var endpoint: String       { return "creations/\(creationId)/report" }
+
+    override var method: RequestMethod { return .post }
+    override var endpoint: String { return "creations/\(creationId)/report" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
-    
+
     fileprivate let creationId: String
     fileprivate let message: String
-    
+
     init(creationId: String, message: String) {
         self.creationId = creationId
         self.message = message
     }
-    
-    fileprivate func prepareParameters() -> Dictionary<String,AnyObject> {
-        var params = Dictionary<String,AnyObject>()
+
+    fileprivate func prepareParameters() -> Dictionary<String, AnyObject> {
+        var params = Dictionary<String, AnyObject>()
         params["message"] = message as AnyObject?
-        
+
         return params
     }
 }

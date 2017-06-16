@@ -23,28 +23,27 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
 class SwitchUserResponseHandlerSpec: QuickSpec {
-    
-    override func spec()  {
+
+    override func spec() {
         describe("Switch user response handler") {
-            
+
             it("Should return correct value for the student after signing in as a teacher") {
                 let sender = TestComponentsFactory.requestSender
                 guard let teacherUsername = TestConfiguration.teacherUsername,
                       let teacherPassword = TestConfiguration.teacherPassword,
                       let studentIdentifier = TestConfiguration.studentIdentifier
                 else { return }
-                
+
                 waitUntil(timeout: TestConfiguration.timeoutShort) { done in
                     sender.login(teacherUsername, password: teacherPassword) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                    sender.send(SwitchUserRequest(targetUserId: studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler() {
+                    sender.send(SwitchUserRequest(targetUserId: studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler {
                             (accessToken, error) -> Void in
                             expect(accessToken).notTo(beNil())
                             expect(error).to(beNil())
@@ -54,23 +53,21 @@ class SwitchUserResponseHandlerSpec: QuickSpec {
                     }
                 }
             }
-            
+
             it("Should return error when not logged in") {
                 guard let studentIdentifier = TestConfiguration.studentIdentifier
                 else { return }
-                
+
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    sender.authenticate()
-                    {
+                    sender.authenticate {
                         (err) -> Void in
                         expect(err).to(beNil())
-                        
-                        sender.send(SwitchUserRequest(targetUserId: studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler() {
+
+                        sender.send(SwitchUserRequest(targetUserId: studentIdentifier, accessToken: sender.authenticationToken), withResponseHandler: SwitchUserResponseHandler {
                             (accessToken, error) -> Void in
                             expect(error).to(beNil())
                             expect(accessToken).to(beNil())

@@ -23,16 +23,12 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class GallerySubmissionResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
+class GallerySubmissionResponseHandlerSpec: QuickSpec {
+    override func spec() {
         //Empty. See ErrorResponseHandler
     }
 }
-

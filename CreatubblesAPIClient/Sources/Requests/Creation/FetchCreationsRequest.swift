@@ -24,29 +24,24 @@
 
 import UIKit
 
-class FetchCreationsRequest: Request
-{
-    override var method: RequestMethod  { return .get }
-    override var endpoint: String
-    {
-        if let creationId = creationId
-        {
+class FetchCreationsRequest: Request {
+    override var method: RequestMethod { return .get }
+    override var endpoint: String {
+        if let creationId = creationId {
             return "creations/"+creationId
         }
-        if let recommendedUserId = recommendedUserId
-        {
+        if let recommendedUserId = recommendedUserId {
             return "users/\(recommendedUserId)/recommended_creations"
         }
-        if let recommendedCreationId = recommendedCreationId
-        {
+        if let recommendedCreationId = recommendedCreationId {
             return "creations/\(recommendedCreationId)/recommended_creations"
         }
         //when listed by: partner_application, user, submitted to gallery, recent, by name and only public should return "creations"
         return "creations"
     }
-    
+
     override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
-    
+
     fileprivate let page: Int?
     fileprivate let perPage: Int?
     fileprivate let galleryId: String?
@@ -54,14 +49,13 @@ class FetchCreationsRequest: Request
     fileprivate let sort: SortOrder?
     fileprivate let keyword: String?
     fileprivate let onlyPublic: Bool
-    
+
     fileprivate let creationId: String?
     fileprivate let recommendedCreationId: String?
     fileprivate let recommendedUserId: String?
     fileprivate let partnerApplicationId: String?
-    
-    init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: SortOrder?, keyword: String?, partnerApplicationId: String? = nil, onlyPublic: Bool)
-    {
+
+    init(page: Int?, perPage: Int?, galleryId: String?, userId: String?, sort: SortOrder?, keyword: String?, partnerApplicationId: String? = nil, onlyPublic: Bool) {
         self.page = page
         self.perPage = perPage
         self.galleryId = galleryId
@@ -74,9 +68,8 @@ class FetchCreationsRequest: Request
         self.recommendedCreationId = nil
         self.partnerApplicationId = partnerApplicationId
     }
-    
-    init(creationId: String)
-    {
+
+    init(creationId: String) {
         self.page = nil
         self.perPage = nil
         self.galleryId = nil
@@ -89,9 +82,8 @@ class FetchCreationsRequest: Request
         self.recommendedCreationId = nil
         self.partnerApplicationId = nil
     }
-    
-    init(page: Int?, perPage: Int?, recommendedCreationId: String)
-    {
+
+    init(page: Int?, perPage: Int?, recommendedCreationId: String) {
         self.page = page
         self.perPage = perPage
         self.galleryId = nil
@@ -104,9 +96,8 @@ class FetchCreationsRequest: Request
         self.recommendedCreationId = recommendedCreationId
         self.partnerApplicationId = nil
     }
-    
-    init(page: Int?, perPage: Int?, recommendedUserId: String)
-    {
+
+    init(page: Int?, perPage: Int?, recommendedUserId: String) {
         self.page = page
         self.perPage = perPage
         self.galleryId = nil
@@ -119,44 +110,34 @@ class FetchCreationsRequest: Request
         self.recommendedCreationId = nil
         self.partnerApplicationId = nil
     }
-    
-    func prepareParametersDictionary() -> Dictionary<String, AnyObject>
-    {
+
+    func prepareParametersDictionary() -> Dictionary<String, AnyObject> {
         var params = Dictionary<String, AnyObject>()
-        
-        if let page = page
-        {
+
+        if let page = page {
             params["page"] = page as AnyObject?
         }
-        if let perPage = perPage
-        {
+        if let perPage = perPage {
             params["per_page"] = perPage as AnyObject?
         }
-        if let galleryId = galleryId
-        {
+        if let galleryId = galleryId {
             params["gallery_id"] = galleryId as AnyObject?
         }
-        if let userId = userId
-        {
+        if let userId = userId {
             params["user_id"] = userId as AnyObject?
         }
-        if let sort = sort
-        {
+        if let sort = sort {
             params["sort"] = Request.sortOrderStringValue(sort) as AnyObject?
         }
-        if onlyPublic
-        {
+        if onlyPublic {
             params["only_public"] = onlyPublic as AnyObject?
         }
-        if let keyword = keyword
-        {
+        if let keyword = keyword {
             params["search"] = keyword as AnyObject?
         }
-        if let partnerApplicationId = partnerApplicationId as AnyObject?
-        {
+        if let partnerApplicationId = partnerApplicationId as AnyObject? {
             params["partner_application_id"] = partnerApplicationId
         }
         return params
     }
 }
-

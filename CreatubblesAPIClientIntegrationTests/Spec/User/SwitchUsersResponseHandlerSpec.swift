@@ -23,27 +23,25 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
 class SwitchUsersResponseHandlerSpec: QuickSpec {
-    
-    override func spec()  {
+
+    override func spec() {
         describe("Switch users response handler") {
-            
+
             it("Should correctly return users available for switching") {
                 let sender = TestComponentsFactory.requestSender
-                
+
                 waitUntil(timeout: TestConfiguration.timeoutShort) { done in
                     _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
                         let page = 1
                         let pageCount = 10
-                        _ = sender.send(SwitchUsersRequest(page: page, perPage: pageCount), withResponseHandler: SwitchUsersResponseHandler()
-                            {
+                        _ = sender.send(SwitchUsersRequest(page: page, perPage: pageCount), withResponseHandler: SwitchUsersResponseHandler {
                                 (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                                 expect(error).to(beNil())
                                 expect(users).notTo(beNil())

@@ -23,55 +23,44 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class ContentRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Fetch content request")
-        {
-            it("Should have a proper method")
-            {
+class ContentRequestSpec: QuickSpec {
+    override func spec() {
+        describe("Fetch content request") {
+            it("Should have a proper method") {
                 let request = ContentRequest(type: .Recent, page: nil, perPage: nil, userId: nil)
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
-            it("Should have a proper endpoint when fetching Recent content")
-            {
+
+            it("Should have a proper endpoint when fetching Recent content") {
                 let request = ContentRequest(type: .Recent, page: nil, perPage: nil, userId: nil)
-                expect(request.endpoint).to(equal("contents/recent"))
+                expect(request.endpoint) == "contents/recent"
             }
-            
-            it("Should have a proper endpoint when fetching Trending content")
-            {
+
+            it("Should have a proper endpoint when fetching Trending content") {
                 let request = ContentRequest(type: .Trending, page: nil, perPage: nil, userId: nil)
-                expect(request.endpoint).to(equal("contents/trending"))
+                expect(request.endpoint) == "contents/trending"
             }
-            it("Should have a proper endpoint when fetching User Bubbled contents")
-            {
+            it("Should have a proper endpoint when fetching User Bubbled contents") {
                 let testId = "testId"
                 let request = ContentRequest(type: .BubbledContents, page: nil, perPage: nil, userId: testId)
-                expect(request.endpoint).to(equal("users/testId/bubbled_contents"))
+                expect(request.endpoint) == "users/testId/bubbled_contents"
             }
-            it("Should have a proper endpoint when fetching User Connected contents")
-            {
+            it("Should have a proper endpoint when fetching User Connected contents") {
                 let request = ContentRequest(type: .Connected, page: nil, perPage: nil)
-                expect(request.endpoint).to(equal("contents/connected"))
+                expect(request.endpoint) == "contents/connected"
             }
-            it("Should have a proper endpoint when fetching Contents By A User")
-            {
+            it("Should have a proper endpoint when fetching Contents By A User") {
                 let testId = "testId"
                 let request = ContentRequest(type: .ContentsByAUser, page: nil, perPage: nil, userId: testId)
-                expect(request.endpoint).to(equal("users/testId/contents"))
+                expect(request.endpoint) == "users/testId/contents"
             }
-            it("Should have a proper endpoint when fetching contents based on Followed Users")
-            {
+            it("Should have a proper endpoint when fetching contents based on Followed Users") {
                 let request = ContentRequest(type: .Followed, page: nil, perPage: nil)
-                expect(request.endpoint).to(equal("contents/followed"))
+                expect(request.endpoint) == "contents/followed"
             }
         }
     }

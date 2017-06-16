@@ -1,0 +1,59 @@
+opt_in_rules:
+  - trailing_semicolon
+  - vertical_whitespace
+  - weak_delegate
+  - leading_whitespace
+  - empty_count
+  - explicit_init
+  - closure_spacing
+  - overridden_super_call
+  - redundant_nil_coalescing
+  - private_outlet
+  - nimble_operator
+  - attributes
+  - operator_usage_whitespace
+  - closure_end_indentation
+  - first_where
+  - sorted_imports
+  - object_literal
+  - number_separator
+  - prohibited_super_call
+  - fatal_error_message
+
+# fix these later -- lots of little tedious changes
+disabled_rules:
+  # no rules -- 8150 total (~6k autocorrected)
+  - closure_parameter_position # ~700 of these warnings
+  - line_length # ~500 of these warnings
+  - syntactic_sugar # ~500 of these warnings
+  - sorted_imports # ~300 of these warnings
+  - identifier_name # ~100 of these warnings
+  - force_cast # ~ < 100
+  - object_literal # ~ < 50
+  - closure_end_indentation # ~ < 40
+  - todo # ~ 20
+  - cyclomatic_complexity # ~ < 20
+  - function_body_length # ~ < 20
+  - attributes # ~ < 20
+  - control_statement # ~ < 20
+  - implicit_getter # ~ < 20
+  - unused_optional_binding # ~ < 10
+  - type_name  # ~ < 10
+  - function_parameter_count # ~ < 10
+  - empty_count # ~ 5
+  - first_where # ~ < 5
+  - file_length # ~ < 5
+  - mark # ~ < 5
+  - type_body_length # ~ < 5
+  - closure_spacing # 1
+  - force_try # 1
+
+included:
+  - CreatubblesAPIClient
+  - CreatubblesAPIClientIntegrationTests
+  - CreatubblesAPIClientUnitTests
+  - ObjectiveC_APIClient
+
+excluded:
+  - Pods
+

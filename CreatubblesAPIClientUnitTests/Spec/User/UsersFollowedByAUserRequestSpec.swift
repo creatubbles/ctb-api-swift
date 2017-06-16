@@ -23,40 +23,33 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class UsersFollowedByAUserRequestSpec: QuickSpec
-{
+class UsersFollowedByAUserRequestSpec: QuickSpec {
     fileprivate let page = 1
     fileprivate let pageCount = 10
     fileprivate let userId = "TestUserId"
-    
-    override func spec()
-    {
-        describe("Users Followed By A User Request")
-        {
-            it("Should have a proper endpoint")
-            {
+
+    override func spec() {
+        describe("Users Followed By A User Request") {
+            it("Should have a proper endpoint") {
                 let request = UsersFollowedByAUserRequest(page: self.page, perPage: self.pageCount, userId: self.userId)
-                expect(request.endpoint).to(equal("users/"+self.userId+"/followed_users"))
+                expect(request.endpoint) == "users/"+self.userId+"/followed_users"
             }
-            
-            it("Should have proper method")
-            {
+
+            it("Should have proper method") {
                 let request = UsersFollowedByAUserRequest(userId: self.userId)
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
-            it("Should have proper parameters set")
-            {
+
+            it("Should have proper parameters set") {
                 let request = UsersFollowedByAUserRequest(page: self.page, perPage: self.pageCount, userId: self.userId)
                 let params = request.parameters
-                expect(params["page"] as? Int).to(equal(self.page))
-                expect(params["per_page"] as? Int).to(equal(self.pageCount))
-                expect(params["user_id"] as? String).to(equal(self.userId))
+                expect(params["page"] as? Int) == self.page
+                expect(params["per_page"] as? Int) == self.pageCount
+                expect(params["user_id"] as? String) == self.userId
             }
         }
     }

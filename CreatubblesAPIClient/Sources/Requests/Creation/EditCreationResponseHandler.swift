@@ -23,10 +23,8 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class EditCreationResponseHandler: ErrorResponseHandler
-{
+class EditCreationResponseHandler: ErrorResponseHandler {
 
 }

@@ -30,29 +30,28 @@ class NetworkManager: NSObject {
         configuration.httpAdditionalHeaders = HTTPHeadersBuilder.defaultHTTPHeaders
         return URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
     }()
-    
+
     private let settings: APIClientSettings
     let authClient: OAuth2Client
-    
-    public init(settings: APIClientSettings)
-    {
+
+    public init(settings: APIClientSettings) {
         self.settings = settings
         self.authClient = settings.oauth2Client
     }
-    
-    func dataTask(request: Request, completion: @escaping (_ response: AnyObject?, _ error: APIClientError?) -> ()) {
+
+    func dataTask(request: Request, completion: @escaping (_ response: AnyObject?, _ error: APIClientError?) -> Void) {
         let urlRequest = clientURLRequest(request: request)
-        
+
         Logger.log(.debug, "cURL: \(urlRequest.cURLRepresentation(session: self.session))")
         session.dataTask(with: urlRequest) { (data, response, error) -> Void in
             if let data = data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])
-                if let response = response as? HTTPURLResponse , 200...299 ~= response.statusCode {
-                    
+                if let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode {
+
                     let err: APIClientError? = error == nil ? nil : ErrorTransformer.errorFromNSError(error! as NSError)
                     completion(json as AnyObject?, err)
                 } else {
-                    
+
                     let err: APIClientError? = error == nil ? APIClientError.invalidServerResponseError : ErrorTransformer.errorFromNSError(error! as NSError)
                     completion(json as AnyObject?, err)
                 }
@@ -62,26 +61,26 @@ class NetworkManager: NSObject {
             }
         }.resume()
     }
-    
+
     private func clientURLRequest(request: Request) -> URLRequest {
         var urlRequest = URLRequest(url: URL(string: request.onlyPath ? urlStringWithRequest(request) : request.endpoint)!)
         urlRequest.httpMethod = request.method.rawValue
-        
+
         if let locale = settings.locale {
             urlRequest.setValue(locale, forHTTPHeaderField: "Accept-Language")
         }
-        
-        if let accessToken = authClient.privateAccessToken ?? authClient.publicAccessToken  {
+
+        if let accessToken = authClient.privateAccessToken ?? authClient.publicAccessToken {
             urlRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
-        
+
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        
+
         if request.parameters.count == 0 { return urlRequest }
         guard let url = urlRequest.url else { return urlRequest }
-        
+
         let parametersEncoder = ParametersEncoder()
-        
+
         if encodesParametersInURL(with: request.method) {
             if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false), !request.parameters.isEmpty {
                 let percentEncodedQuery = (urlComponents.percentEncodedQuery.map { $0 + "&" } ?? "") + parametersEncoder.encode(request.parameters)
@@ -92,18 +91,18 @@ class NetworkManager: NSObject {
             if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
                 urlRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
             }
-        
+
             urlRequest.httpBody = parametersEncoder.encode(request.parameters).data(using: .utf8, allowLossyConversion: false)
         }
-        
+
         return urlRequest
     }
-    
+
     private func urlStringWithRequest(_ request: Request) -> String {
         return request.useExternalNamespace ? String(format: "%@/%@", arguments: [settings.baseUrl, request.endpoint]) :
                                               String(format: "%@/%@/%@", arguments: [settings.baseUrl, settings.apiVersion, request.endpoint])
     }
-    
+
     private func encodesParametersInURL(with method: RequestMethod) -> Bool {
         switch method {
             case .get, .head, .delete:

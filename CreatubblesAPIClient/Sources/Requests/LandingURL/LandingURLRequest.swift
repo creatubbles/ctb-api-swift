@@ -23,45 +23,36 @@
 //  THE SOFTWARE.
 import UIKit
 
-class LandingURLRequest: Request
-{
-    override var method: RequestMethod   { return .get }
-    override var endpoint: String
-    {
-        if let creationId = creationId
-        {
+class LandingURLRequest: Request {
+    override var method: RequestMethod { return .get }
+    override var endpoint: String {
+        if let creationId = creationId {
             return "creations/\(creationId)/landing_url"
         }
-        if let typeStr = LandingURLRequest.typeStringFromType(type)
-        {
+        if let typeStr = LandingURLRequest.typeStringFromType(type) {
             return "landing_urls/\(typeStr)"
         }
         return "landing_urls"
     }
-    
+
     fileprivate let type: LandingURLType?
     fileprivate let creationId: String?
-    
-    init(type: LandingURLType?)
-    {
+
+    init(type: LandingURLType?) {
         assert(type != .creation, "Please use init(creationId: String), to obtain LandingURL for creation.")
         assert(type != .unknown, "Unkown type is for read-only purposes. Please don't use it in LandingURL requests.")
         self.type = type
-        self.creationId = nil;
+        self.creationId = nil
     }
-    
-    init(creationId: String)
-    {
+
+    init(creationId: String) {
         self.type = .creation
         self.creationId = creationId
     }
-    
-    fileprivate class func typeStringFromType(_ type: LandingURLType?) -> String?
-    {
-        if let type = type
-        {
-            switch type
-            {
+
+    fileprivate class func typeStringFromType(_ type: LandingURLType?) -> String? {
+        if let type = type {
+            switch type {
                 case .aboutUs:        return "ctb-about_us"
                 case .termsOfUse:     return "ctb-terms_of_use"
                 case .privacyPolicy:  return "ctb-privacy_policy"

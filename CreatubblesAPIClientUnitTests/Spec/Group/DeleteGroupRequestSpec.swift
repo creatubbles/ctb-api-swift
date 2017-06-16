@@ -23,32 +23,25 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class DeleteGroupRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Delete Group Request")
-        {
-            it("Should have proper method")
-            {
+class DeleteGroupRequestSpec: QuickSpec {
+    override func spec() {
+        describe("Delete Group Request") {
+            it("Should have proper method") {
                 let request = DeleteGroupRequest(identifier: "")
-                expect(request.method).to(equal(RequestMethod.delete))
+                expect(request.method) == RequestMethod.delete
             }
-            
-            it("Should have proper endpoint")
-            {
+
+            it("Should have proper endpoint") {
                 let identifier = "GroupIdentifier"
                 let request = DeleteGroupRequest(identifier: identifier)
-                expect(request.endpoint).to(equal("groups/\(identifier)"))
+                expect(request.endpoint) == "groups/\(identifier)"
             }
-            
-            it("Should have no parameters set")
-            {
+
+            it("Should have no parameters set") {
                 let request = DeleteGroupRequest(identifier: "")
                 expect(request.parameters).to(beEmpty())
             }

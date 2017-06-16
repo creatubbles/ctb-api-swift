@@ -23,14 +23,11 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 @objc
-open class CreationUploadSessionPublicData: NSObject
-{
-    public enum Status: Equatable
-    {
+open class CreationUploadSessionPublicData: NSObject {
+    public enum Status: Equatable {
         case inProgress
         // completed successfully
         case completed
@@ -45,28 +42,20 @@ open class CreationUploadSessionPublicData: NSObject
     open let creation: Creation?
     open let error: Error?
     open let status: Status
-    
-    init(creationUploadSession: CreationUploadSession)
-    {
+
+    init(creationUploadSession: CreationUploadSession) {
         identifier = creationUploadSession.localIdentifier
         creation = creationUploadSession.creation
         creationData = creationUploadSession.creationData
         error = creationUploadSession.error
 
-        if creationUploadSession.isFailed
-        {
+        if creationUploadSession.isFailed {
             status = .failed
-        }
-        else if creationUploadSession.isAlreadyFinished
-        {
+        } else if creationUploadSession.isAlreadyFinished {
             status = .completed
-        }
-        else if creationUploadSession.isCancelled
-        {
+        } else if creationUploadSession.isCancelled {
             status = .cancelled
-        }
-        else
-        {
+        } else {
             status = .inProgress
         }
     }

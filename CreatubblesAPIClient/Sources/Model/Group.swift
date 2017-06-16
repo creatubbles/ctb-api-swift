@@ -25,25 +25,23 @@
 import UIKit
 
 @objc
-open class Group: NSObject, Identifiable
-{
+open class Group: NSObject, Identifiable {
     open let identifier: String
     open let name: String
     open let slug: String
     open let creatorsCount: Int
     open let avatarUrl: String?
-    
+
     open let avatarCreation: Creation?
     open let avatarCreationRelationship: Relationship?
-    
-    init(mapper: GroupMapper, dataMapper: DataIncludeMapper? = nil)
-    {
+
+    init(mapper: GroupMapper, dataMapper: DataIncludeMapper? = nil) {
         identifier = mapper.identifier!
         name = mapper.name!
         slug = mapper.slug!
         creatorsCount = mapper.creatorsCount!
         avatarUrl = mapper.avatarUrl
-        
+
         avatarCreationRelationship = MappingUtils.relationshipFromMapper(mapper.avatarCreationRelationship)
         avatarCreation = MappingUtils.objectFromMapper(dataMapper, relationship: avatarCreationRelationship, type: Creation.self)
     }

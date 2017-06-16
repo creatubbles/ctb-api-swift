@@ -23,31 +23,23 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class PartnerApplicationsSearchResponseHandlerSpec: QuickSpec
-{    
+class PartnerApplicationsSearchResponseHandlerSpec: QuickSpec {
     let query = "hue"
-    
-    override func spec()
-    {
-        describe("Partner Applications Search response handler")
-        {
-            it("Should return correct value after login")
-            {
+
+    override func spec() {
+        describe("Partner Applications Search response handler") {
+            it("Should return correct value after login") {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(PartnerApplicationsSearchRequest(query: self.query), withResponseHandler: PartnerApplicationsSearchResponseHandler()
-                        {
+                        sender.send(PartnerApplicationsSearchRequest(query: self.query), withResponseHandler: PartnerApplicationsSearchResponseHandler {
                             (partnerApplications: Array<PartnerApplication>?, error: Error?) -> Void in
                             expect(error).to(beNil())
                             expect(partnerApplications).notTo(beNil())
@@ -56,16 +48,13 @@ class PartnerApplicationsSearchResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should not return errors when not logged in")
-            {
+
+            it("Should not return errors when not logged in") {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.send(PartnerApplicationsSearchRequest(query: self.query), withResponseHandler:PartnerApplicationsSearchResponseHandler()
-                    {
+                    sender.send(PartnerApplicationsSearchRequest(query: self.query), withResponseHandler:PartnerApplicationsSearchResponseHandler {
                         (partnerApplications: Array<PartnerApplication>?, error: Error?) -> Void in
                         expect(error).to(beNil())
                         expect(partnerApplications).notTo(beNil())

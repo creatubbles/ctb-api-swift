@@ -24,67 +24,65 @@
 
 import UIKit
 
-open class APIClientSettings: NSObject
-{
+open class APIClientSettings: NSObject {
     /*
      Personal application identifier. Please contact support@creatubbles.com to obtain it.
     */
     public let appId: String
-    
+
     /*
      Personal application secret. Please contact support@creatubbles.com to obtain it.
      */
     public let appSecret: String
-    
+
     /*
         OAuth2 token uri. https://api.creatubbles.com/v2/oauth/token by default.
      */
     public let tokenUri: String
-    
+
     /*
         OAuth2 authorization uri. https://api.creatubbles.com/v2/oauth/token by default.
     */
     let authorizeUri: String
-    
+
     /*
         API base url.https://api.creatubbles.com by default.
     */
     let baseUrl: String
-    
+
     /*
         API version string. 'v2' by defaults.
     */
     let apiVersion: String
-    
+
     /*
         Background session configuration identifier.
         If set, application will upload creation using background sessions.
     */
     let backgroundSessionConfigurationIdentifier: String?
-    
+
     /*
         Locale code used for getting localized responses from servers. Example values: “en”, “pl”, “de”.
         See: https://partners.creatubbles.com/api/#locales for details
     */
     let locale: String?
-    
+
     /*
         Internal logging level. '.warning' by default
      */
     let logLevel: LogLevel
-    
+
     /*
         Scope used in some OAuth requests. 'nil` by default
      */
     let oauthScope: String?
-    
+
     /*
         Client used to store OAuth2 tokens. Keychain by default
      */
     let oauth2Client: OAuth2Client
-    
-    public init(appId: String, appSecret: String, backgroundSessionConfigurationIdentifier: String? = nil, locale: String? = nil, logLevel: LogLevel = .warning, oauthScope: String? = nil, oauth2Client: OAuth2Client = OAuth2KeychainClient())
-    {
+
+    public init(appId: String, appSecret: String, backgroundSessionConfigurationIdentifier: String? = nil, locale: String? = nil, logLevel: LogLevel = .warning, oauthScope: String? = nil, oauth2Client: OAuth2Client = OAuth2KeychainClient()) {
         self.appId = appId
         self.appSecret = appSecret
         self.tokenUri = "https://api.creatubbles.com/v2/oauth/token"
@@ -97,9 +95,8 @@ open class APIClientSettings: NSObject
         self.oauthScope = oauthScope
         self.oauth2Client = oauth2Client
     }
-    
-    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, locale: String? = nil, logLevel: LogLevel = .warning,  backgroundSessionConfigurationIdentifier: String? = nil, oauthScope: String? = nil, oauth2Client: OAuth2Client = OAuth2KeychainClient())
-    {
+
+    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, locale: String? = nil, logLevel: LogLevel = .warning, backgroundSessionConfigurationIdentifier: String? = nil, oauthScope: String? = nil, oauth2Client: OAuth2Client = OAuth2KeychainClient()) {
         self.appId = appId
         self.appSecret = appSecret
         self.tokenUri = tokenUri

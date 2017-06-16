@@ -23,16 +23,12 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class CreationPingResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
+class CreationPingResponseHandlerSpec: QuickSpec {
+    override func spec() {
         //Empty 
     }
 }
-

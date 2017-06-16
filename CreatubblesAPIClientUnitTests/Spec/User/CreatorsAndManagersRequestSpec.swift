@@ -23,46 +23,38 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class CreatorsAndManagersRequestSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Creators and Managers request")
-        {
-            it("Should have proper endpoint")
-            {
+class CreatorsAndManagersRequestSpec: QuickSpec {
+    override func spec() {
+        describe("Creators and Managers request") {
+            it("Should have proper endpoint") {
                 let request = CreatorsAndManagersRequest()
-                expect(request.endpoint).to(equal("users"))
+                expect(request.endpoint) == "users"
             }
-            
-            it("Should have proper method")
-            {
+
+            it("Should have proper method") {
                 let request = CreatorsAndManagersRequest()
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
-            
-            it("Should have proper parameters set")
-            {
+
+            it("Should have proper parameters set") {
                 let userId = "TestUserId"
                 let query = "TestQuery"
                 let page = 1
                 let pageCount = 10
                 let scope = CreatorsAndManagersScopeElement.Creators
-                
-                
+
                 let request = CreatorsAndManagersRequest(userId: userId, query: query, page: page, perPage: pageCount, scope: scope)
                 let params = request.parameters
-                expect(params["page"] as? Int).to(equal(page))
-                expect(params["per_page"] as? Int).to(equal(pageCount))
-                expect(params["user_id"] as? String).to(equal(userId))
-                expect(params["query"] as? String).to(equal(query))
-                expect(params["scope"] as? String).to(equal(scope.rawValue))
-            }            
+                expect(params["page"] as? Int) == page
+                expect(params["per_page"] as? Int) == pageCount
+                expect(params["user_id"] as? String) == userId
+                expect(params["query"] as? String) == query
+                expect(params["scope"] as? String) == scope.rawValue
+            }
         }
     }
 }

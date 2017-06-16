@@ -25,26 +25,20 @@
 import UIKit
 import ObjectMapper
 
-class AvatarSuggestionsFetchResponseHandler: ResponseHandler
-{
+class AvatarSuggestionsFetchResponseHandler: ResponseHandler {
     fileprivate let completion: AvatarSuggestionsClosure?
-    
-    init(completion: AvatarSuggestionsClosure?)
-    {
+
+    init(completion: AvatarSuggestionsClosure?) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
-            let mappers = Mapper<AvatarSuggestionMapper>().mapArray(JSONObject: response["data"])
-        {
-            let avatarSuggestions = mappers.map({AvatarSuggestion(mapper: $0)})
-            
+            let mappers = Mapper<AvatarSuggestionMapper>().mapArray(JSONObject: response["data"]) {
+            let avatarSuggestions = mappers.map({ AvatarSuggestion(mapper: $0) })
+
             executeOnMainQueue { self.completion?(avatarSuggestions, ErrorTransformer.errorFromResponse(response, error: error)) }
-        }
-        else
-        {
+        } else {
             executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }

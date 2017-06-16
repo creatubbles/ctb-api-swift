@@ -23,29 +23,21 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class ProfileResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Profile response handler")
-        {
-            it("Should return correct value after login")
-            {
+class ProfileResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("Profile response handler") {
+            it("Should return correct value after login") {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(ProfileRequest(), withResponseHandler:ProfileResponseHandler()
-                        {
+                        sender.send(ProfileRequest(), withResponseHandler:ProfileResponseHandler {
                             (user: User?, error: Error?) -> Void in
                             expect(error).to(beNil())
                             expect(user).notTo(beNil())
@@ -54,16 +46,13 @@ class ProfileResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should return error when not logged in")
-            {
+
+            it("Should return error when not logged in") {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.send(ProfileRequest(), withResponseHandler:ProfileResponseHandler()
-                    {
+                    sender.send(ProfileRequest(), withResponseHandler:ProfileResponseHandler {
                         (user: User?, error: Error?) -> Void in
                         expect(error).notTo(beNil())
                         expect(user).to(beNil())

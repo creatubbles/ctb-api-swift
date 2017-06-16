@@ -24,7 +24,6 @@
 //
 
 import Foundation
-public protocol Identifiable
-{
+public protocol Identifiable {
     var identifier: String { get }
 }

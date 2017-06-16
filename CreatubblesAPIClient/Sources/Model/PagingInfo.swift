@@ -25,20 +25,16 @@
 import UIKit
 
 @objc
-open class PagingInfo: NSObject
-{
+open class PagingInfo: NSObject {
     open let totalPages: Int
     open let totalCount: Int
 
-    
-    public init(totalPages: Int, totalCount: Int)
-    {
+    public init(totalPages: Int, totalCount: Int) {
         self.totalPages = totalPages
         self.totalCount = totalCount
     }
-    
-    init(mapper: PagingInfoMapper)
-    {
+
+    init(mapper: PagingInfoMapper) {
         self.totalCount = mapper.totalCount!
         self.totalPages = mapper.totalPages!
     }

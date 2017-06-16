@@ -23,8 +23,7 @@
 //  THE SOFTWARE.
 //
 
-public class AppGroupConfigurator: NSObject
-{
+public class AppGroupConfigurator: NSObject {
     public static var identifier: String? = "group.com.creatubbles"
     public static var keychainIdentifier: String? = "group.com.creatubbles"
 }

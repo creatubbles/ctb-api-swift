@@ -23,18 +23,15 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class CreateAUserFollowingRequest: Request
-{
-    override var method: RequestMethod  { return .post }
-    override var endpoint: String       { return "users/"+userId+"/following" }
-    
+class CreateAUserFollowingRequest: Request {
+    override var method: RequestMethod { return .post }
+    override var endpoint: String { return "users/"+userId+"/following" }
+
     fileprivate let userId: String
 
-    init(userId: String)
-    {
+    init(userId: String) {
         self.userId = userId
     }
 }

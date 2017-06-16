@@ -25,38 +25,30 @@
 import UIKit
 import ObjectMapper
 
-class FetchCreationsResponseHandler: ResponseHandler
-{
+class FetchCreationsResponseHandler: ResponseHandler {
     fileprivate let completion: CreationsClosure?
-    
-    init(completion: CreationsClosure?)
-    {
+
+    init(completion: CreationsClosure?) {
         self.completion = completion
     }
 
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
-            let mappers = Mapper<CreationMapper>().mapArray(JSONObject: response["data"])
-        {
+            let mappers = Mapper<CreationMapper>().mapArray(JSONObject: response["data"]) {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let creations = mappers.map({ Creation(mapper: $0, dataMapper: dataMapper, metadata: metadata)})
-            
-            executeOnMainQueue { self.completion?(creations,pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
-        }
-        else if let response = response,
-                let mapper = Mapper<CreationMapper>().map(JSON: response["data"] as! [String : Any])
-        {
+            let creations = mappers.map({ Creation(mapper: $0, dataMapper: dataMapper, metadata: metadata) })
+
+            executeOnMainQueue { self.completion?(creations, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
+        } else if let response = response,
+                let mapper = Mapper<CreationMapper>().map(JSON: response["data"] as! [String : Any]) {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
             let creation = Creation(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
-            
+
             executeOnMainQueue { self.completion?([creation], nil, ErrorTransformer.errorFromResponse(response, error: error)) }
-        }
-        else
-        {
+        } else {
             executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }

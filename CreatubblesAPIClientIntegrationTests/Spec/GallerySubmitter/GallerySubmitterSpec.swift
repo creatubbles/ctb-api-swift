@@ -27,46 +27,37 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class GallerySubmitterSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("GallerySubmitter")
-        {
-            it("Should submit creation to gallery")
-            {
+class GallerySubmitterSpec: QuickSpec {
+    override func spec() {
+        describe("GallerySubmitter") {
+            it("Should submit creation to gallery") {
                 guard TestConfiguration.shoulTestBatchFetchers,
                       let galleryIdentifiers = TestConfiguration.testGalleryIdentifiers
                 else { return }
-                
+
                 let sender = TestComponentsFactory.requestSender
                 var submitter: GallerySubmitter!
-                
-                waitUntil(timeout: TestConfiguration.timeoutLong)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutLong) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error) -> (Void) in
                         expect(error).to(beNil())
                         expect(sender.isLoggedIn()).to(beTrue())
-                        
+
                         //We have to create a new unique creation - all creations in a single gallery must have unique id
-                        sender.send(NewCreationRequest(creationData: NewCreationData(image: UIImage(), uploadExtension: .jpeg)), withResponseHandler:NewCreationResponseHandler()
-                        {
-                            (creation: Creation?, error:Error?) -> Void in
+                        sender.send(NewCreationRequest(creationData: NewCreationData(image: UIImage(), uploadExtension: .jpeg)), withResponseHandler:NewCreationResponseHandler {
+                            (creation: Creation?, error: Error?) -> Void in
                             expect(error).to(beNil())
                             expect(creation).notTo(beNil())
-                            
+
                             guard let identifier = creation?.identifier
-                            else
-                            {
+                            else {
                                 fail("Creation's identifier should not be nil")
                                 return
                             }
-                            
-                            submitter = GallerySubmitter(requestSender: sender, creationId: identifier, galleryIdentifiers: galleryIdentifiers)
-                            {
+
+                            submitter = GallerySubmitter(requestSender: sender, creationId: identifier, galleryIdentifiers: galleryIdentifiers) {
                                 (error) -> (Void) in
                                 expect(error).to(beNil())
                                 done()

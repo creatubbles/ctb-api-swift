@@ -23,31 +23,23 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class ContentResponseHandlerSpec: QuickSpec
-{
-    override func spec()
-    {
-        describe("Content response handler")
-        {
-            it("Should return recent content after login")
-            {
+class ContentResponseHandlerSpec: QuickSpec {
+    override func spec() {
+        describe("Content response handler") {
+            it("Should return recent content after login") {
                 let request = ContentRequest(type: .Recent, page: 1, perPage: 20, userId: nil)
                 let sender = TestComponentsFactory.requestSender
-                
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:ContentResponseHandler()
-                            {
+                        sender.send(request, withResponseHandler:ContentResponseHandler {
                                 (responseData) -> (Void) in
                                 expect(responseData.error).to(beNil())
                                 expect(responseData.objects).notTo(beNil())
@@ -58,21 +50,17 @@ class ContentResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should return trending content after login")
-            {
+
+            it("Should return trending content after login") {
                 let request = ContentRequest(type: .Trending, page: 1, perPage: 20, userId: nil)
                 let sender = TestComponentsFactory.requestSender
-                
-                waitUntil(timeout: TestConfiguration.timeoutShort)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:ContentResponseHandler()
-                        {
+                        sender.send(request, withResponseHandler:ContentResponseHandler {
                             (responseData) -> (Void) in
                             expect(responseData.error).to(beNil())
                             expect(responseData.objects).notTo(beNil())
@@ -83,21 +71,17 @@ class ContentResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
-            it("Should return Connected contents after login")
-            {
+
+            it("Should return Connected contents after login") {
                 let request = ContentRequest(type: .Connected, page: 1, perPage: 20, userId: nil)
                 let sender = TestComponentsFactory.requestSender
-                
-                waitUntil(timeout: TestConfiguration.timeoutMedium)
-                {
+
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                    {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(request, withResponseHandler:ContentResponseHandler()
-                        {
+                        sender.send(request, withResponseHandler:ContentResponseHandler {
                             (responseData) -> (Void) in
                             expect(responseData.error).to(beNil())
                             expect(responseData.objects).notTo(beNil())
@@ -110,20 +94,16 @@ class ContentResponseHandlerSpec: QuickSpec
             }
 
         }
-        it("Should return User Bubbled Contents after login")
-        {
+        it("Should return User Bubbled Contents after login") {
             let request = ContentRequest(type: .BubbledContents, page: 1, perPage: 20, userId: TestConfiguration.testUserIdentifier)
             let sender = TestComponentsFactory.requestSender
-            
-            waitUntil(timeout: TestConfiguration.timeoutMedium)
-            {
+
+            waitUntil(timeout: TestConfiguration.timeoutMedium) {
                 done in
-                sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                {
+                sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                     (error: Error?) -> Void in
                     expect(error).to(beNil())
-                    sender.send(request, withResponseHandler: ContentResponseHandler()
-                    {
+                    sender.send(request, withResponseHandler: ContentResponseHandler {
                         (responseData) -> (Void) in
                         expect(responseData.error).to(beNil())
                         expect(responseData.objects).notTo(beNil())
@@ -134,20 +114,16 @@ class ContentResponseHandlerSpec: QuickSpec
                 }
             }
         }
-        it("Should return Contents By A User after login")
-        {
+        it("Should return Contents By A User after login") {
             let request = ContentRequest(type: .ContentsByAUser, page: 1, perPage: 20, userId: TestConfiguration.testUserIdentifier)
             let sender = TestComponentsFactory.requestSender
-            
-            waitUntil(timeout: TestConfiguration.timeoutMedium)
-            {
+
+            waitUntil(timeout: TestConfiguration.timeoutMedium) {
                 done in
-                sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                {
+                sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                     (error: Error?) -> Void in
                     expect(error).to(beNil())
-                    sender.send(request, withResponseHandler: ContentResponseHandler()
-                    {
+                    sender.send(request, withResponseHandler: ContentResponseHandler {
                         (responseData) -> (Void) in
                         expect(responseData.error).to(beNil())
                         expect(responseData.objects).notTo(beNil())
@@ -158,20 +134,16 @@ class ContentResponseHandlerSpec: QuickSpec
                 }
             }
         }
-        it("Should return Contents based on Followed Users after login")
-        {
+        it("Should return Contents based on Followed Users after login") {
             let request = ContentRequest(type: .Followed, page: 1, perPage: 20, userId: nil)
             let sender = TestComponentsFactory.requestSender
-            
-            waitUntil(timeout: TestConfiguration.timeoutMedium)
-            {
+
+            waitUntil(timeout: TestConfiguration.timeoutMedium) {
                 done in
-                sender.login(TestConfiguration.username, password: TestConfiguration.password)
-                {
+                sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                     (error: Error?) -> Void in
                     expect(error).to(beNil())
-                    sender.send(request, withResponseHandler: ContentResponseHandler()
-                    {
+                    sender.send(request, withResponseHandler: ContentResponseHandler {
                         (responseData) -> (Void) in
                         expect(responseData.error).to(beNil())
                         expect(responseData.objects).notTo(beNil())

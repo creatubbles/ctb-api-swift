@@ -26,12 +26,12 @@
 import UIKit
 
 class DeclineCommentRequest: Request {
-    
-    override var method: RequestMethod  { return .delete }
-    override var endpoint: String       { return "comments/\(commentId)/approval" }
-    
+
+    override var method: RequestMethod { return .delete }
+    override var endpoint: String { return "comments/\(commentId)/approval" }
+
     fileprivate let commentId: String
-    
+
     init(commentId: String) {
         self.commentId = commentId
     }

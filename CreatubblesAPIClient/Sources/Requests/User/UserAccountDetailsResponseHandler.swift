@@ -23,29 +23,22 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class UserAccountDetailsResponseHandler: ResponseHandler
-{
+class UserAccountDetailsResponseHandler: ResponseHandler {
     fileprivate let completion: UserAccountDetailsClosure?
-    init(completion: UserAccountDetailsClosure?)
-    {
+    init(completion: UserAccountDetailsClosure?) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
-            let mapper = Mapper<UserAccountDetailsMapper>().map(JSON: response["data"] as! [String : Any])
-        {
+            let mapper = Mapper<UserAccountDetailsMapper>().map(JSON: response["data"] as! [String : Any]) {
             let metadata = MappingUtils.metadataFromResponse(response)
             let details = UserAccountDetails(mapper: mapper, metadata: metadata)
             executeOnMainQueue { self.completion?(details, ErrorTransformer.errorFromResponse(response, error: error)) }
-        }
-        else
-        {
+        } else {
             executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }

@@ -23,28 +23,22 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class PartnerApplicationRequestSpec: QuickSpec
-{
+class PartnerApplicationRequestSpec: QuickSpec {
     let id = "test"
-    override func spec()
-    {
-        describe("Partner Applications Request")
-        {
-            it("Should have proper endpoint")
-            {
+    override func spec() {
+        describe("Partner Applications Request") {
+            it("Should have proper endpoint") {
                 let request = PartnerApplicationRequest(id: self.id)
-                expect(request.endpoint).to(equal("partner_applications/test"))
+                expect(request.endpoint) == "partner_applications/test"
             }
-            
-            it("Should have proper method")
-            {
+
+            it("Should have proper method") {
                 let request = PartnerApplicationRequest(id: self.id)
-                expect(request.method).to(equal(RequestMethod.get))
+                expect(request.method) == RequestMethod.get
             }
         }
     }

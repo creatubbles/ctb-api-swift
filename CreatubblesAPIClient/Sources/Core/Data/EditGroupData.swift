@@ -23,12 +23,10 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 @objc
-open class EditGroupData: NSObject
-{
+open class EditGroupData: NSObject {
     var name: String?
     var avatarCreationIdentifier: String?
 }
