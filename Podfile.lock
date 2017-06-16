@@ -13,6 +13,7 @@ PODS:
   - Realm/Headers (2.0.3)
   - RealmSwift (2.0.3):
     - Realm (= 2.0.3)
+  - SwiftLint (0.19.0)
   - XCGLogger (4.0.0):
     - XCGLogger/Core (= 4.0.0)
   - XCGLogger/Core (4.0.0)
@@ -24,6 +25,7 @@ DEPENDENCIES:
   - ObjectMapper (~> 2.0)
   - Quick (~> 0.10.0)
   - RealmSwift (= 2.0.3)
+  - SwiftLint
   - XCGLogger (~> 4.0.0)
 
 EXTERNAL SOURCES:
@@ -44,8 +46,9 @@ SPEC CHECKSUMS:
   Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
   Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
   RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
+  SwiftLint: 3537a05b34060e78e7510f04fb7537d738247803
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: 831493faca854228a67bc74f22950c9db6147b0b
+PODFILE CHECKSUM: 49f35055dbccfeeb8fddde878795bc7af6351950
 
 COCOAPODS: 1.2.1

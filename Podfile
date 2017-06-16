@@ -12,6 +12,7 @@ def shared_pods
     pod 'XCGLogger', '~> 4.0.0'
     pod 'RealmSwift', '2.0.3'
     pod 'KeychainAccess', '~> 3.0.1'
+    pod 'SwiftLint'
 end
 
 target 'CreatubblesAPIClient' do
