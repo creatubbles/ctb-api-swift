@@ -69,6 +69,7 @@ class CreationMapper: Mappable {
 
     var objFileUrl: String?
     var playIFrameUrl: String?
+    var playIFrameUrlIsMobileReady: Bool?
 
     var contentType: String?
 
@@ -120,6 +121,7 @@ class CreationMapper: Mappable {
 
         objFileUrl <- map["attributes.obj_file_url"]
         playIFrameUrl <- map["attributes.play_iframe_url"]
+        playIFrameUrlIsMobileReady <- map["attributes.play_iframe_url_is_mobile_ready"]
 
         contentType <- map["attributes.content_type"]
     }
