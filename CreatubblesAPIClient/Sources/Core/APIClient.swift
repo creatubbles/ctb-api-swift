@@ -125,6 +125,7 @@ open class ResponseData<T> {
     case customizeTip
     case galleriesTip
     case bubblesTip
+    case uploadTip
 }
 
 @objc public enum ActivityType: Int {
