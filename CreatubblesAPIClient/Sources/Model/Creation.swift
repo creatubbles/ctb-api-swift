@@ -66,7 +66,7 @@ open class Creation: NSObject, Identifiable {
 
     open let objFileUrl: String?
     open let playIFrameUrl: String?
-    open let playIFrameUrlIsMobileReady: Bool?
+    open let playIFrameUrlIsMobileReady: Bool
 
     open let contentType: String
 
@@ -127,7 +127,7 @@ open class Creation: NSObject, Identifiable {
 
         objFileUrl = mapper.objFileUrl
         playIFrameUrl = mapper.playIFrameUrl
-        playIFrameUrlIsMobileReady = mapper.playIFrameUrlIsMobileReady
+        playIFrameUrlIsMobileReady = mapper.playIFrameUrlIsMobileReady ?? false
 
         contentType = mapper.contentType ?? ""
 
@@ -185,7 +185,7 @@ open class Creation: NSObject, Identifiable {
 
         objFileUrl = creationEntity.objFileUrl
         playIFrameUrl = creationEntity.playIFrameUrl
-        playIFrameUrlIsMobileReady = creationEntity.playIFrameUrlIsMobileReady.value
+        playIFrameUrlIsMobileReady = creationEntity.playIFrameUrlIsMobileReady.value ?? false
 
         contentType = creationEntity.contentType ?? ""
 
