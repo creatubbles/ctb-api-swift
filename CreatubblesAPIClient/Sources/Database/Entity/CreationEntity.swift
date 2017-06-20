@@ -70,6 +70,7 @@ class CreationEntity: Object {
 
     dynamic var objFileUrl: String?
     dynamic var playIFrameUrl: String?
+    var playIFrameUrlIsMobileReady = RealmOptional<Bool>()
 
     dynamic var contentType: String?
 }

@@ -300,6 +300,7 @@ class DatabaseService: NSObject {
 
         creationEntity.objFileUrl = creation.objFileUrl
         creationEntity.playIFrameUrl = creation.playIFrameUrl
+        creationEntity.playIFrameUrlIsMobileReady.value = creation.playIFrameUrlIsMobileReady
 
         creationEntity.contentType = creation.contentType
 
