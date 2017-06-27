@@ -37,3 +37,5 @@
 "error_auth_invalidScope" = "The requested scope is invalid, unknown, or malformed.";
 "error_auth_serverError" = "The authorization server encountered an unexpected condition that prevented it from fulfilling the request.";
 "error_auth_temporarilyUnavailable" = "The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.";
+"error_permission_slip_invalid_guardian_email_title" = "Invalid email address";
+"error_permission_slip_invalid_guardian_email_detail" = "The email address is incorrect";
