@@ -29,6 +29,9 @@ import ObjectMapper
 public class ErrorTransformer {
     public static func errorFromResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) -> APIClientError? {
         if let err = error as? APIClientError {
+            if err.code == APIClientError.PermissionSlipInvalidGuardianEmailCode {
+                return APIClientError.permissionSlipInvalidGuardianEmailError
+            }
             return err
         }
         if let err = errorsFromResponse(response).first {

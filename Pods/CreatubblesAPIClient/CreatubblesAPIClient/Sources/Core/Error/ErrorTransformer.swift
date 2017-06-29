@@ -32,9 +32,6 @@ public class ErrorTransformer
     {
         if let err = error as? APIClientError
         {
-            if err.code == APIClientError.PermissionSlipInvalidGuardianEmailCode {
-                return APIClientError.permissionSlipInvalidGuardianEmailError
-            }
             return err
         }
         if let err = errorsFromResponse(response).first
