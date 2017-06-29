@@ -39,6 +39,7 @@ extension APIClientError
     public static let InvalidResponseDataCode:   String = "invalid-response-error"
     public static let MissingResponseDataCode:   String = "missing-response-error"
     public static let MissingCreationToRefreshCode:   String = "missing-creation-identifier-error"
+    public static let PermissionSlipInvalidGuardianEmailCode:   String = "object-permission_slip-invalid-guardian_email"
 }
 
 //MARK: Error codes
@@ -51,6 +52,7 @@ extension APIClientError
     public static let InvalidResponseDataStatus: Int = -6005
     public static let DuplicatedUploadLocalIdentifierStatus: Int = -6006
     public static let MissingCreationToRefreshStatus: Int = -6007
+    public static let PermissionSlipInvalidGuardianEmailStatus: Int = -6008
 }
 
 //  For error documentation, please check:
@@ -156,6 +158,15 @@ public extension APIClientError
                               title:  "error_invalid_response_title".localized,
                               source: APIClientError.DefaultSource,
                               detail: "error_invalid_response_detail".localized)
+    }
+    
+    class var permissionSlipInvalidGuardianEmailError: APIClientError
+    {
+        return APIClientError(status: APIClientError.PermissionSlipInvalidGuardianEmailStatus,
+                              code:   APIClientError.PermissionSlipInvalidGuardianEmailCode,
+                              title:  "error_permission_slip_invalid_guardian_email_title".localized,
+                              source: APIClientError.DefaultSource,
+                              detail: "error_permission_slip_invalid_guardian_email_detail".localized)
     }
     
     static func genericError(_ status: Int? = nil, code: String? = nil, title: String? = nil, source: String? = nil, detail: String? = nil, domain: String? = nil) -> APIClientError
