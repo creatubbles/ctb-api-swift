@@ -402,7 +402,7 @@
 		3F7AD4441EB70B6C0044F6D6 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3F7AD4461EB70F540044F6D6 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		445A3A5B1DD29F7400986BBB /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A3A5A1DD29F7400986BBB /* String+Localized.swift */; };
-		445A3A5C1DD2A8CD00986BBB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 445A3A5E1DD2A8CD00986BBB /* Localizable.strings */; };
+		445A3A5C1DD2A8CD00986BBB /* APIClientLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 445A3A5E1DD2A8CD00986BBB /* APIClientLocalizable.strings */; };
 		5D916F1D7C0D528FDCA37ADB /* Pods_CreatubblesAPIClientIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7184408A7E06B801847505 /* Pods_CreatubblesAPIClientIntegrationTests.framework */; };
 		86CE8BC34ACB6D32207ABAE0 /* Pods_CreatubblesAPIClientDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29F3593FA73048027A65EE1 /* Pods_CreatubblesAPIClientDemo.framework */; };
 		B225DF6E1EB31F2200AB6F4C /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -865,9 +865,9 @@
 		3673F5DB0D2ADC187438EFE5 /* Pods-CreatubblesAPIClientDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo.release.xcconfig"; sourceTree = "<group>"; };
 		39E1EB9D8152D4F185B9A736 /* Pods-CreatubblesAPIClientIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientIntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientIntegrationTests/Pods-CreatubblesAPIClientIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		445A3A5A1DD29F7400986BBB /* String+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
-		445A3A5D1DD2A8CD00986BBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		445A3A5F1DD2A8DA00986BBB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		445A3A601DD2A8E100986BBB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		445A3A5D1DD2A8CD00986BBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/APIClientLocalizable.strings; sourceTree = "<group>"; };
+		445A3A5F1DD2A8DA00986BBB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/APIClientLocalizable.strings; sourceTree = "<group>"; };
+		445A3A601DD2A8E100986BBB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/APIClientLocalizable.strings; sourceTree = "<group>"; };
 		7997D36B21B419F654577C4A /* Pods-CreatubblesAPIClientDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D304F60C707EA93E6195508E /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2022,7 +2022,7 @@
 		445A3A571DD297E300986BBB /* Localizations */ = {
 			isa = PBXGroup;
 			children = (
-				445A3A5E1DD2A8CD00986BBB /* Localizable.strings */,
+				445A3A5E1DD2A8CD00986BBB /* APIClientLocalizable.strings */,
 			);
 			path = Localizations;
 			sourceTree = "<group>";
@@ -2215,7 +2215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				445A3A5C1DD2A8CD00986BBB /* Localizable.strings in Resources */,
+				445A3A5C1DD2A8CD00986BBB /* APIClientLocalizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2909,14 +2909,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		445A3A5E1DD2A8CD00986BBB /* Localizable.strings */ = {
+		445A3A5E1DD2A8CD00986BBB /* APIClientLocalizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				445A3A5D1DD2A8CD00986BBB /* en */,
 				445A3A5F1DD2A8DA00986BBB /* ja */,
 				445A3A601DD2A8E100986BBB /* it */,
 			);
-			name = Localizable.strings;
+			name = APIClientLocalizable.strings;
 			sourceTree = "<group>";
 		};
 		B225DF731EB31F2200AB6F4C /* Main.storyboard */ = {
