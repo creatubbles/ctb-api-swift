@@ -91,7 +91,7 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
+  s.resources = "CreatubblesAPIClient/Resources/Localizations/**/*.strings"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
