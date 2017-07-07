@@ -37,3 +37,5 @@
 "error_auth_invalidScope" = "リクエストされた範囲は無効、不明、または不正な形式です。";
 "error_auth_serverError" = "認可サーバーがリクエスト実行を妨げる予期しない状態に遭遇しました。";
 "error_auth_temporarilyUnavailable" = "認可サーバーは現在、サーバーの一時的な過負荷またはメンテナンスのためにリクエストを処理することができなくなっています。";
+"error_permission_slip_invalid_guardian_email_title" = "メールアドレスが無効です";
+"error_permission_slip_invalid_guardian_email_detail" = "メールアドレスが間違っています";
