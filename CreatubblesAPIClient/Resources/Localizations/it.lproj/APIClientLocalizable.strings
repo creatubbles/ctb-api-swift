@@ -37,3 +37,5 @@
 "error_auth_invalidScope" = "L'ambito richiesto è invalido, sconosciuto o errato.";
 "error_auth_serverError" = "Il server di autorizzazione ha riscontrato una condizione imprevista che ha impedito di soddisfare la richiesta.";
 "error_auth_temporarilyUnavailable" = "Il server di autorizzazione non è attualmente in grado di elaborare la richiesta a causa di temporaneo sovraccarico o manutenzione del server.";
+"error_permission_slip_invalid_guardian_email_title" = "indirizzo email non valido";
+"error_permission_slip_invalid_guardian_email_detail" = "L'indirizzo email non è corretto";
