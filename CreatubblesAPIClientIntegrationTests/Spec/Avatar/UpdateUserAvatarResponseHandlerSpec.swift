@@ -49,7 +49,7 @@ class UpdateUserAvatarResponseHandlerSpec: QuickSpec {
                     })
                 }
             }
-            it("Should return an array of AvatarSuggestion when logged in") {
+            it("Should update the avatar") {
                 guard let userId = TestConfiguration.testUserIdentifier
                 else { return }
 
