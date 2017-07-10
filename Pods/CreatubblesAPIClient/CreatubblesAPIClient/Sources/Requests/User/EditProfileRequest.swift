@@ -63,9 +63,7 @@ class EditProfileRequest: Request
         if let value = data.receiveNotifications {attributesDict["receive_notifications"] = value as AnyObject? }
         if let value = data.receiveNewswletter {attributesDict["newsletter"] = value as AnyObject? }
         if let value = data.preApproveComments {attributesDict["preapprove_comments"] = value as AnyObject? }
-        
-        if let value = data.avatarCreationIdentifier   { relationshipsDict["avatar_creation"] = ["data" : ["id" : value]] as AnyObject? }
-        
+                
         dataDict["attributes"] = attributesDict as AnyObject?
         dataDict["relationships"] = relationshipsDict as AnyObject?
         
