@@ -30,13 +30,13 @@ import Nimble
 class EditProfileResponseHandlerSpec: QuickSpec {
     override func spec() {
         describe("EditProfileResponseHandlerSpec") {
-            it("Should edit creation when logged in") {
+            it("Should edit interests when logged in") {
                 guard let profileIdentifier = TestConfiguration.testUserIdentifier,
-                      let creationIdentifier = TestConfiguration.testCreationIdentifier
+                      let timestamp = TestConfiguration.editProfileResponseHandlerSpecTestTimestamp
                 else { return }
 
                 let data = EditProfileData()
-                data.avatarCreationIdentifier = creationIdentifier
+                data.interests = "I'm Interested in numbers! \(timestamp)"
 
                 let request = EditProfileRequest(identifier: profileIdentifier, data: data)
                 let sender = TestComponentsFactory.requestSender
