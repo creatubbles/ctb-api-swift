@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 
 import UIKit
+import AVFoundation
 
 enum CreationDataType: Int {
     case image = 0
@@ -52,6 +53,7 @@ open class NewCreationData: NSObject {
     open var creatorIds: Array<String>?
     open var creationYear: Int?
     open var creationMonth: Int?
+    open var asset: AVURLAsset?
 
     let dataType: CreationDataType
     let storageType: CreationDataStorageType
