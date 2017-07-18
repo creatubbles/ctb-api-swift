@@ -15,16 +15,5 @@ dependencies:
 test:
   override:
     - set -o pipefail
-    - xcodebuild \
-      -workspace CreatubblesAPIClient.xcworkspace \
-      -scheme CreatubblesAPIClientIntegrationTests \
-      -sdk iphonesimulator \
-      -destination 'platform=iOS Simulator,name=iPhone 6' \
-      test 
-    - xcodebuild \
-      -workspace CreatubblesAPIClient.xcworkspace \
-      -scheme CreatubblesAPIClientUnitTests \
-      -sdk iphonesimulator \
-      -destination 'platform=iOS Simulator,name=iPhone 6' \
-      test 
-
+    - xcodebuild test -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClientIntegrationTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6' -configuration Debug
+    - xcodebuild test -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClientUnitTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug
