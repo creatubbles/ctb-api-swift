@@ -11,8 +11,6 @@ general:
 dependencies:
   cache_directories:
     - "/Users/distiller/.cocoapods/"
-  override:
-    - bundle install
 
 test:
   override:
