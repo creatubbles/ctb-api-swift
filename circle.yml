@@ -1,0 +1,20 @@
+machine:
+  timezone: Europe/London
+  xcode:
+    version: "8.3.2"
+  environment:
+    LC_CTYPE: en_US.UTF-8
+    MATCH_KEYCHAIN_NAME: "circle"
+    MATCH_KEYCHAIN_PASSWORD: "circle"
+general:
+  build_dir: .
+dependencies:
+  cache_directories:
+    - "/Users/distiller/.cocoapods/"
+
+test:
+  override:
+    - set -o pipefail
+    - openssl aes-256-cbc -d -in ./CreatubblesAPIClientIntegrationTests/TestUtils/TestConfiguration.enc -out ./CreatubblesAPIClientIntegrationTests/TestUtils/TestConfiguration.swift -k $TEST_CONFIGURATION_PW
+    - xcodebuild test -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClientUnitTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug
+    - xcodebuild test -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClientIntegrationTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6' -configuration Debug
