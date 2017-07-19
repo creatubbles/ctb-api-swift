@@ -29,7 +29,7 @@ import UIKit
 open class RequestHandler: NSObject, Cancelable {
     fileprivate let object: Cancelable
 
-    init(object: Cancelable) {
+    public init(object: Cancelable) {
         self.object = object
     }
 
