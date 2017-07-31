@@ -46,7 +46,7 @@ class EditCreationRequest: Request {
         if let value = data.reflectionText { attributesDict["reflection_text"] = value as AnyObject? }
         if let value = data.reflectionVideoURL { attributesDict["reflection_video_url"] = value as AnyObject? }
         if let value = data.tags { attributesDict["tags"] = value as AnyObject? }
-        
+
         if let value = data.creationDate {
             let calendar = Calendar.current
             let components = (calendar as NSCalendar).components([.year, .month], from: value as Date)

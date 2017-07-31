@@ -33,7 +33,7 @@ extension String {
         {
             return NSLocalizedString(self, bundle:  Bundle.main, comment: "")
         }
-        
+
         // The main language can be forced with the LocalizationConfigurator.
         if let language = LocalizationConfigurator.forcedLanguage,
             let path = bundle.path(forResource: language, ofType: "lproj"),
@@ -41,7 +41,7 @@ extension String {
         {
             return NSLocalizedString(self, bundle: forcedLanguageBundle, comment: "")
         }
-        
+
         return NSLocalizedString(self, bundle:  bundle, comment: "")
     }
 }

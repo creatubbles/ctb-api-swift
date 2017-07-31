@@ -146,7 +146,7 @@ public extension APIClientError {
                               source: APIClientError.DefaultSource,
                               detail: "error_invalid_response_detail".localized)
     }
-    
+
     class var permissionSlipInvalidGuardianEmailError: APIClientError {
         return APIClientError(status: APIClientError.PermissionSlipInvalidGuardianEmailStatus,
                               code:   APIClientError.PermissionSlipInvalidGuardianEmailCode,
