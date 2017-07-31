@@ -30,6 +30,10 @@ class CreatedAtAgePerCreatorDict: Object {
     dynamic var value: String?
 }
 
+class CreationTagString: Object {
+    dynamic var tag: String?
+}
+
 class CreationEntity: Object {
     dynamic var identifier: String?
     dynamic var name: String?
@@ -73,4 +77,5 @@ class CreationEntity: Object {
     var playIFrameUrlIsMobileReady = RealmOptional<Bool>()
 
     dynamic var contentType: String?
+    var tags = List<CreationTagString>()
 }

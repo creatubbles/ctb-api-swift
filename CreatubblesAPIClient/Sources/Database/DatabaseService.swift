@@ -303,6 +303,12 @@ class DatabaseService: NSObject {
         creationEntity.playIFrameUrlIsMobileReady.value = creation.playIFrameUrlIsMobileReady
 
         creationEntity.contentType = creation.contentType
+        creation.tags?.forEach {
+            creationTag in
+            let tagString = CreationTagString()
+            tagString.tag = creationTag
+            creationEntity.tags.append(tagString)
+        }
 
         return creationEntity
     }

@@ -72,6 +72,7 @@ class CreationMapper: Mappable {
     var playIFrameUrlIsMobileReady: Bool?
 
     var contentType: String?
+    var tags: Array<String>?
 
     required init?(map: Map) { /* Intentionally left empty  */ }
 
@@ -124,6 +125,7 @@ class CreationMapper: Mappable {
         playIFrameUrlIsMobileReady <- map["attributes.play_iframe_url_is_mobile_ready"]
 
         contentType <- map["attributes.content_type"]
+        contentType <- map["attributes.tags"]
     }
 
     // MARK: Parsing

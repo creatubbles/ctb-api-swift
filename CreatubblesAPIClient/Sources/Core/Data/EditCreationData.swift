@@ -31,4 +31,5 @@ open class EditCreationData: NSObject {
     open var reflectionText: String?
     open var reflectionVideoURL: String?
     open var creationDate: Date? //Only year and month is necessary
+    open var tags: Array<String>?
 }
