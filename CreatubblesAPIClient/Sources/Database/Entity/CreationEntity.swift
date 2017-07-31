@@ -34,7 +34,6 @@ class CreationTagString: Object {
     dynamic var tag: String?
 }
 
-
 class CreationEntity: Object {
     dynamic var identifier: String?
     dynamic var name: String?
