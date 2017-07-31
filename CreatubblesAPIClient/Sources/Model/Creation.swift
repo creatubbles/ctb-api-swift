@@ -69,6 +69,7 @@ open class Creation: NSObject, Identifiable {
     open let playIFrameUrlIsMobileReady: Bool
 
     open let contentType: String
+    open let tags: Array<String>?
 
     // MARK: - Relationships
     open let owner: User?
@@ -130,6 +131,7 @@ open class Creation: NSObject, Identifiable {
         playIFrameUrlIsMobileReady = mapper.playIFrameUrlIsMobileReady ?? false
 
         contentType = mapper.contentType ?? ""
+        tags = mapper.tags
 
         owner = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)
 
@@ -188,6 +190,9 @@ open class Creation: NSObject, Identifiable {
         playIFrameUrlIsMobileReady = creationEntity.playIFrameUrlIsMobileReady.value ?? false
 
         contentType = creationEntity.contentType ?? ""
+
+        let entityTags: Array<String> = creationEntity.tags.flatMap { $0.tag }
+        tags = entityTags.isEmpty ? nil : entityTags
 
         //TODO: Do we need relationships here?
         owner = nil
