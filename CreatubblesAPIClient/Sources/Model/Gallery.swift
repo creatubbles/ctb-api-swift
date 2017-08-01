@@ -49,10 +49,15 @@ open class Gallery: NSObject, Identifiable {
     open let bannerMatrixViewRetinaUrl: String?
     open let bannerExploreMobileUrl: String?
 
+    open let challengePublishedAt: Date?
+    
     // MARK: - Relationships
     open let owner: User?
     open let ownerRelationship: Relationship?
 
+    open let galleryInstructionRelationships: Array<Relationship>?
+    open let galleryInstructions: Array<GalleryInstruction>?
+    
     // MARK: - Metadata
     open let isBubbled: Bool
     open let abilities: Array<Ability>
@@ -81,10 +86,15 @@ open class Gallery: NSObject, Identifiable {
         bannerMatrixViewRetinaUrl = mapper.bannerMatrixViewRetinaUrl
         bannerExploreMobileUrl = mapper.bannerExploreMobileUrl
 
+        challengePublishedAt = mapper.challengePublishedAt
+        
         isBubbled = MappingUtils.bubbledStateFrom(metadata: metadata, forObjectWithIdentifier: identifier)
         abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
 
         ownerRelationship = mapper.parseOwnerRelationship()
         owner = MappingUtils.objectFromMapper(dataMapper, relationship: ownerRelationship, type: User.self)
+        
+        galleryInstructionRelationships = mapper.parseGalleryInstructionRelationships()
+        galleryInstructions = galleryInstructionRelationships?.flatMap { MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: GalleryInstruction.self) }
     }
 }

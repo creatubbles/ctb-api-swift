@@ -47,6 +47,8 @@ disabled_rules:
   - type_body_length # ~ < 5
   - closure_spacing # 1
   - force_try # 1
+  - trailing_whitespace
+  - opening_brace
 
 included:
   - CreatubblesAPIClient
