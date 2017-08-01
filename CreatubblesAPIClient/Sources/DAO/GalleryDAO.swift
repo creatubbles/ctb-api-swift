@@ -105,12 +105,18 @@ class GalleryDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
 
+    func getChallengeGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler {
+        let request = ChallengesGalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
+        let handler = GalleriesResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func newGallery(data galleryData: NewGalleryData, completion: GalleryClosure?) -> RequestHandler {
         let request = NewGalleryRequest(name: galleryData.name, galleryDescription: galleryData.galleryDescription, openForAll: galleryData.openForAll, ownerId: galleryData.ownerId)
         let handler = NewGalleryResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-
+    
     // MARK: Batch Mode    
     func getGalleriesInBatchMode(userIdentifier userId: String?, query: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler {
         let fetcher = GalleriesQueueBatchFetcher(requestSender: requestSender, userId: userId, query: query, sort: sort, completion: completion)

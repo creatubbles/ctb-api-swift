@@ -9,7 +9,6 @@ opt_in_rules:
   - overridden_super_call
   - redundant_nil_coalescing
   - private_outlet
-  - nimble_operator
   - attributes
   - operator_usage_whitespace
   - closure_end_indentation
