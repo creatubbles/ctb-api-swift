@@ -40,7 +40,7 @@ class ChallengesGalleriesRequest: Request {
     
     fileprivate func prepareParameters() -> Dictionary<String, AnyObject> {
         var params = Dictionary<String, AnyObject>()
-        params["filter"] = "challenge" as AnyObject
+        params["filter[challenge]"] = true as AnyObject
         params["sort"] = "challenge_published_at" as AnyObject
         
         if let page = page {

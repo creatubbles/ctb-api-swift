@@ -31,7 +31,7 @@ class ChallengesGalleriesResponseHandlerSpec: QuickSpec {
     override func spec() {
         describe("Challenges galleries response handler") {
             it("Should return correct values after login") {
-                let request = ChallengesGalleriesRequest(page: 1, perPage: 10)
+                let request = ChallengesGalleriesRequest(page: 1, perPage: 20)
                 let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
@@ -58,14 +58,18 @@ class ChallengesGalleriesResponseHandlerSpec: QuickSpec {
                 waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
                     _ = sender.logout()
-                    _ = sender.send(request, withResponseHandler:GalleriesResponseHandler {
-                        (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
-                        expect(galleries).notTo(beNil())
+                    sender.authenticate(completion:  {
+                        (error) -> (Void) in
                         expect(error).to(beNil())
-                        expect(pageInfo).notTo(beNil())
-                        expect(galleries?.first?.challengePublishedAt).notTo(beNil())
-                        
-                        done()
+                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler {
+                            (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
+                            expect(galleries).notTo(beNil())
+                            expect(error).to(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            expect(galleries?.first?.challengePublishedAt).notTo(beNil())
+                            
+                            done()
+                        })
                     })
                 }
             }

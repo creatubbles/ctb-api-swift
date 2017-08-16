@@ -45,7 +45,7 @@ class ChallengesGalleriesSpec: QuickSpec {
             {
                 expect(request.parameters["page"] as? Int).to(equal(1))
                 expect(request.parameters["per_page"] as? Int).to(equal(20))
-                expect(request.parameters["filter"] as? String).to(equal("challenge"))
+                expect(request.parameters["filter[challenge]"] as? Bool).to(beTrue())
                 expect(request.parameters["sort"] as? String).to(equal("challenge_published_at"))
             }
         }
