@@ -52,19 +52,23 @@ class ContentSearchResponseHandlerSpec: QuickSpec {
             }
         }
 
-        it("Should return error when not logged in") {
+        it("Should return content when authenticated, and not logged in") {
             let request = ContentSearchRequest(query: "plant", page: 1, perPage: 20)
             let sender = TestComponentsFactory.requestSender
 
             sender.logout()
             waitUntil(timeout: TestConfiguration.timeoutShort) {
                 done in
-                sender.send(request, withResponseHandler: ContentSearchResponseHandler {
-                    (responseData) -> (Void) in
-                    expect(responseData.error).notTo(beNil())
-                    expect(responseData.objects).to(beEmpty())
-                    expect(responseData.pagingInfo).to(beNil())
-                    done()
+                sender.authenticate(completion: { (error) -> (Void) in
+                    expect(error).to(beNil())
+                    sender.send(request, withResponseHandler: ContentSearchResponseHandler {
+                        (responseData) -> (Void) in
+                        expect(responseData.error).to(beNil())
+                        expect(responseData.objects).notTo(beNil())
+                        expect(responseData.pagingInfo).notTo(beNil())
+                        sender.logout()
+                        done()
+                    })
                 })
             }
         }
