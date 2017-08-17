@@ -364,6 +364,10 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(GalleryDAO.self).getFeaturedGalleries(pagingData, completion: completion)
     }
 
+    open func getChallengeGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(GalleryDAO.self).getChallengeGalleries(pagingData, completion: completion)
+    }
+    
     open func getMyGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler {
         return daoAssembly.assembly(GalleryDAO.self).getMyGalleriesInBatchMode(completion)
     }

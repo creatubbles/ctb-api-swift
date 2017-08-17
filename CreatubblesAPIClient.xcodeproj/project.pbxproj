@@ -262,6 +262,11 @@
 		187902021C6C8BAF008F5302 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187902011C6C8BAF008F5302 /* Gallery.swift */; };
 		188BCEAF1C64E19D00EA4F11 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEAD1C64E19D00EA4F11 /* APIClient.swift */; };
 		188BCEB01C64E19D00EA4F11 /* APIClientSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BCEAE1C64E19D00EA4F11 /* APIClientSettings.swift */; };
+		188E033B1F3052E8005630D0 /* GalleryInstructionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188E033A1F3052E8005630D0 /* GalleryInstructionMapper.swift */; };
+		188E033D1F305553005630D0 /* GalleryInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188E033C1F305553005630D0 /* GalleryInstruction.swift */; };
+		188E033F1F3081D0005630D0 /* ChallengesGalleriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188E033E1F3081D0005630D0 /* ChallengesGalleriesRequest.swift */; };
+		188E03411F3087B4005630D0 /* ChallengesGalleriesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188E03401F3087B4005630D0 /* ChallengesGalleriesSpec.swift */; };
+		188E03431F308AEA005630D0 /* ChallengesGalleriesResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188E03421F308AEA005630D0 /* ChallengesGalleriesResponseHandlerSpec.swift */; };
 		188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF5D1C71E91B00AFEE4F /* CreationUpload.swift */; };
 		188ECF701C74703200AFEE4F /* CreationUploadSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF6F1C74703200AFEE4F /* CreationUploadSession.swift */; };
 		188ECF731C747FDE00AFEE4F /* String+Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188ECF721C747FDE00AFEE4F /* String+Path.swift */; };
@@ -722,6 +727,11 @@
 		187902011C6C8BAF008F5302 /* Gallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		188BCEAD1C64E19D00EA4F11 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		188BCEAE1C64E19D00EA4F11 /* APIClientSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientSettings.swift; sourceTree = "<group>"; };
+		188E033A1F3052E8005630D0 /* GalleryInstructionMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryInstructionMapper.swift; sourceTree = "<group>"; };
+		188E033C1F305553005630D0 /* GalleryInstruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryInstruction.swift; sourceTree = "<group>"; };
+		188E033E1F3081D0005630D0 /* ChallengesGalleriesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesGalleriesRequest.swift; sourceTree = "<group>"; };
+		188E03401F3087B4005630D0 /* ChallengesGalleriesSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesGalleriesSpec.swift; sourceTree = "<group>"; };
+		188E03421F308AEA005630D0 /* ChallengesGalleriesResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesGalleriesResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		188ECF5D1C71E91B00AFEE4F /* CreationUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUpload.swift; sourceTree = "<group>"; };
 		188ECF6F1C74703200AFEE4F /* CreationUploadSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationUploadSession.swift; sourceTree = "<group>"; };
 		188ECF721C747FDE00AFEE4F /* String+Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Path.swift"; sourceTree = "<group>"; };
@@ -1107,6 +1117,7 @@
 				213B29EE1DCA390E003E7314 /* ToybooCreation.swift */,
 				21CC9E3F1DF834A100C6538C /* SearchTag.swift */,
 				08C781E71E1CFFA60005864F /* AppScreenshot.swift */,
+				188E033C1F305553005630D0 /* GalleryInstruction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1318,6 +1329,7 @@
 				2114A86F1E719D93004DD420 /* FavoriteGalleriesResponseHandlerSpec.swift */,
 				2114A8711E719DB9004DD420 /* MyGalleriesResponseHandlerSpec.swift */,
 				2114A8731E719DD1004DD420 /* FeaturedGalleriesResponseHandlerSpec.swift */,
+				188E03421F308AEA005630D0 /* ChallengesGalleriesResponseHandlerSpec.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -1521,6 +1533,7 @@
 				185E32CF1E71571E0077E9A8 /* NewGalleryRequestSpec.swift */,
 				185E32D11E71571E0077E9A8 /* ReportGalleryRequestSpec.swift */,
 				185E32D31E71571E0077E9A8 /* UpdateGalleryRequestSpec.swift */,
+				188E03401F3087B4005630D0 /* ChallengesGalleriesSpec.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -1757,6 +1770,7 @@
 				189D9F561C84B36100857CC6 /* CreationUploadMapper.swift */,
 				189D9F571C84B36100857CC6 /* ErrorMapper.swift */,
 				189D9F581C84B36100857CC6 /* GalleryMapper.swift */,
+				188E033A1F3052E8005630D0 /* GalleryInstructionMapper.swift */,
 				189D9F591C84B36100857CC6 /* GroupMapper.swift */,
 				189D9F5A1C84B36100857CC6 /* PagingInfoMapper.swift */,
 				189D9F5B1C84B36100857CC6 /* UserMapper.swift */,
@@ -1902,6 +1916,7 @@
 				08E6934E1D7C9DA0007A79B7 /* MyGalleriesRequest.swift */,
 				08BBFE351D7EB120005F1F11 /* FavoriteGalleriesRequest.swift */,
 				08BBFE371D7EB13D005F1F11 /* FeaturedGalleriesRequest.swift */,
+				188E033E1F3081D0005630D0 /* ChallengesGalleriesRequest.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -2477,6 +2492,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18290AE71D06B24B000EA216 /* GallerySubmission.swift in Sources */,
+				188E033D1F305553005630D0 /* GalleryInstruction.swift in Sources */,
 				18F6E8861D021B6500AAC5FB /* NewBubbleRequest.swift in Sources */,
 				189D9F621C84B36100857CC6 /* UserMapper.swift in Sources */,
 				083785871D378714006EF69E /* ReportCommentRequest.swift in Sources */,
@@ -2533,6 +2549,7 @@
 				18F6E8951D021B6500AAC5FB /* NewCreationPingRequest.swift in Sources */,
 				0846DD531E07E20E002722ED /* DeclineCommentRequest.swift in Sources */,
 				181E76E41CC5353600A1546A /* BubbleDAO.swift in Sources */,
+				188E033F1F3081D0005630D0 /* ChallengesGalleriesRequest.swift in Sources */,
 				21B9334A1D2AEC2900FCD248 /* MyConnectionsRequest.swift in Sources */,
 				08C781EA1E1D03B80005864F /* AppScreenshotMapper.swift in Sources */,
 				21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */,
@@ -2629,6 +2646,7 @@
 				187671431C7CA0F700733E9E /* PagingData.swift in Sources */,
 				08AC6A5D1D424A5F004A35C3 /* ActivitiesDAO.swift in Sources */,
 				212A12221D53582F001BA35A /* PartnerApplicationsSearchRequest.swift in Sources */,
+				188E033B1F3052E8005630D0 /* GalleryInstructionMapper.swift in Sources */,
 				18290AF31D070551000EA216 /* NotificationReadRequest.swift in Sources */,
 				18C744FE1C84611600A07E4C /* NewCreationDataEntity.swift in Sources */,
 				212A12151D50DD74001BA35A /* PartnerApplicationRequest.swift in Sources */,
@@ -2751,6 +2769,7 @@
 				185E33811E71571E0077E9A8 /* NewCreatorRequestSpec.swift in Sources */,
 				185E334D1E71571E0077E9A8 /* CustomStyleEditRequestSpec.swift in Sources */,
 				185E33721E71571E0077E9A8 /* PartnerApplicationRequestSpec.swift in Sources */,
+				188E03411F3087B4005630D0 /* ChallengesGalleriesSpec.swift in Sources */,
 				185E335E1E71571E0077E9A8 /* UpdateGalleryRequestSpec.swift in Sources */,
 				185E338F1E71571E0077E9A8 /* CreateAUserFollowingRequestSpec.swift in Sources */,
 				185E336C1E71571E0077E9A8 /* NotificationReadRequestSpec.swift in Sources */,
@@ -2837,6 +2856,7 @@
 				185E32661E7157170077E9A8 /* EditProfileResponseHandlerSpec.swift in Sources */,
 				185E32341E7157160077E9A8 /* RemoveCreationResponseHandlerSpec.swift in Sources */,
 				185E33CA1E715C270077E9A8 /* TestRecorderNameUtils.swift in Sources */,
+				188E03431F308AEA005630D0 /* ChallengesGalleriesResponseHandlerSpec.swift in Sources */,
 				185E324F1E7157170077E9A8 /* GroupResponseHandlerSpec.swift in Sources */,
 				185E33CE1E715C270077E9A8 /* TestRequestHandler.swift in Sources */,
 				185E322C1E7157160077E9A8 /* EditCreationResponseHandlerSpec.swift in Sources */,

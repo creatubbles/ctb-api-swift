@@ -9,7 +9,6 @@ opt_in_rules:
   - overridden_super_call
   - redundant_nil_coalescing
   - private_outlet
-  - nimble_operator
   - attributes
   - operator_usage_whitespace
   - closure_end_indentation
@@ -47,6 +46,8 @@ disabled_rules:
   - type_body_length # ~ < 5
   - closure_spacing # 1
   - force_try # 1
+  - trailing_whitespace
+  - opening_brace
 
 included:
   - CreatubblesAPIClient

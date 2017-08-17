@@ -47,6 +47,9 @@ class GalleryMapper: Mappable {
     var bannerMatrixViewRetinaUrl: String?
     var bannerExploreMobileUrl: String?
 
+    var challengePublishedAt: Date?
+    var galleryInstructionRelationships: Array<RelationshipMapper>?
+
     required init?(map: Map) { /* Intentionally left empty  */ }
 
     func mapping(map: Map) {
@@ -72,10 +75,16 @@ class GalleryMapper: Mappable {
         bannerMatrixViewRetinaUrl <- map["banner.links.matrix_view_retina"]
         bannerExploreMobileUrl <- map["banner.links.explore_mobile"]
 
+        challengePublishedAt <- (map["attributes.challenge_published_at"], APIClientDateTransform.sharedTransform)
+        galleryInstructionRelationships <- map["relationships.gallery_howto_sections.data"]
     }
 
     // MARK: Parsing
     func parseOwnerRelationship() -> Relationship? {
         return MappingUtils.relationshipFromMapper(ownerRelationship)
+    }
+    
+    func parseGalleryInstructionRelationships() -> Array<Relationship>? {
+        return galleryInstructionRelationships?.flatMap { MappingUtils.relationshipFromMapper($0) }
     }
 }
