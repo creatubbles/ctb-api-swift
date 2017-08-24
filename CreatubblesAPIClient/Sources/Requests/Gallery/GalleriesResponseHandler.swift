@@ -25,13 +25,13 @@
 import UIKit
 import ObjectMapper
 
-class GalleriesResponseHandler: ResponseHandler {
+public class GalleriesResponseHandler: ResponseHandler {
     fileprivate let completion: GalleriesClosure?
-    init(completion: GalleriesClosure?) {
+    public init(completion: GalleriesClosure?) {
         self.completion = completion
     }
 
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
+    override public func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
             let mappers = Mapper<GalleryMapper>().mapArray(JSONObject: response["data"]) {
             let metadata = MappingUtils.metadataFromResponse(response)

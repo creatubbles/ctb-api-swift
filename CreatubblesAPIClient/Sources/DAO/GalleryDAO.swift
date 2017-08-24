@@ -24,10 +24,10 @@
 
 import UIKit
 
-class GalleryDAO: NSObject, APIClientDAO {
-    fileprivate let requestSender: RequestSender
+public class GalleryDAO: NSObject, APIClientDAO {
+    public let requestSender: RequestSender
 
-    required init(dependencies: DAODependencies) {
+    public required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
 
@@ -37,7 +37,7 @@ class GalleryDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
 
-    open func submitCreationToGalleries(creationId: String, galleryIdentifiers: Array<String>, completion: ErrorClosure?) -> RequestHandler {
+    func submitCreationToGalleries(creationId: String, galleryIdentifiers: Array<String>, completion: ErrorClosure?) -> RequestHandler {
         let submitter = GallerySubmitter(requestSender: requestSender, creationId: creationId, galleryIdentifiers: galleryIdentifiers, completion: completion)
         return submitter.submit()
     }
