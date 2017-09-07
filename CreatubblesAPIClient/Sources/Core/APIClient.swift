@@ -60,7 +60,7 @@ public typealias UserAccountDetailsClosure = (UserAccountDetails?, APIClientErro
 public typealias PartnerApplicationsClosure = (Array<PartnerApplication>?, APIClientError?) -> (Void)
 public typealias PartnerApplicationClosure = (PartnerApplication?, APIClientError?) -> (Void)
 
-public typealias SearchTagsClosure = (Array<SearchTag>?, APIClientError?) -> (Void)
+public typealias SearchTagsClosure = (Array<SearchTag>?, PagingInfo?, APIClientError?) -> (Void)
 
 public typealias AvatarSuggestionsClosure = (Array<AvatarSuggestion>?, APIClientError?) -> (Void)
 

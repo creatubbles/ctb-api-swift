@@ -44,4 +44,20 @@ open class SearchTag: NSObject, Identifiable {
         self.imageURL = imageURL
         self.translatedNames = translatedNames
     }
+    
+    init(mapper: SearchTagMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
+    {
+        identifier = mapper.identifier!
+        name = mapper.name!
+        imageURL = mapper.imageURL!
+        
+        if let translatedNamesMappers = mapper.translatedNamesMap
+        {
+            translatedNames = translatedNamesMappers.flatMap({ $0.isValid() ? NameTranslationObject(mapper: $0) : nil })
+        }
+        else
+        {
+            translatedNames = []
+        }
+    }
 }
