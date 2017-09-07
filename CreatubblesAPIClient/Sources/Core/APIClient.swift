@@ -655,8 +655,8 @@ open func getCreation(creationId: String, completion: CreationClosure?) -> Reque
     }
 
     // MARK: - SearchTags
-    open func getSearchTags(completion: SearchTagsClosure?) -> RequestHandler {
-        return daoAssembly.assembly(SearchTagDAO.self).fetchSearchTags(completion: completion)
+    open func getSearchTags(pagingData: PagingData?, completion: SearchTagsClosure?) -> RequestHandler {
+        return daoAssembly.assembly(SearchTagDAO.self).fetchSearchTags(pagingData: pagingData, completion: completion)
     }
 
     // MARK: - Log listener

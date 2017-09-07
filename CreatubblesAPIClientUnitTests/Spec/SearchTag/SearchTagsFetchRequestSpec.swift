@@ -1,5 +1,5 @@
 //
-//  CreatubblesAPIClient.swift
+//  CreateAUserFollowingRequestSpec.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -21,38 +21,27 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
-import UIKit
+import Quick
+import Nimble
+@testable import CreatubblesAPIClient
 
-class SearchTagsFetchRequest: Request
+class SearchTagsFetchRequestSpec: QuickSpec
 {
-    override var method: RequestMethod { return .get }
-    override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
-    override var endpoint: String
+    override func spec()
     {
-        return "categories"
-    }
-    
-    fileprivate let page: Int?
-    fileprivate let perPage: Int?
-    
-    init(page: Int?, perPage: Int?) {
-        self.page = page
-        self.perPage = perPage
-    }
-    
-    fileprivate func prepareParameters() -> Dictionary<String, AnyObject>
-    {
-        var params = Dictionary<String, AnyObject>()
-        if let page = page
+        describe("Search Tags request")
         {
-            params["page"] = page as AnyObject?
+            it("Should have a proper method") {
+                let request = SearchTagsFetchRequest(page: 1, perPage: 10)
+                expect(request.method) == RequestMethod.get
+            }
+            
+            it("Should have a proper endpoint") {
+                let request = SearchTagsFetchRequest(page: 1, perPage: 10)
+                expect(request.endpoint) == "categories"
+            }
         }
-        
-        if let perPage = perPage
-        {
-            params["per_page"] = perPage as AnyObject?
-        }
-        return params
     }
 }
