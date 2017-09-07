@@ -67,9 +67,9 @@ class SearchTagsFetchResponseHandlerSpec: QuickSpec
                         sender.send(request, withResponseHandler: SearchTagsFetchResponseHandler
                     {
                         (searchTags, pInfo, error) -> (Void) in
-                        expect(searchTags).notTo(beNil())
-                        expect(error).to(beNil())
-                        expect(pInfo).notTo(beNil())
+                        expect(searchTags).to(beNil())
+                        expect(error).notTo(beNil())
+                        expect(pInfo).to(beNil())
                         sender.logout()
                         done()
                     })

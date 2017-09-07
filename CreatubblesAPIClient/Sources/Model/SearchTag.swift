@@ -25,7 +25,6 @@
 import UIKit
 
 open class SearchTag: NSObject, Identifiable {
-    // Mock of the model until implemented on API side
     open let identifier: String
     open let name: String
     open let imageURL: String

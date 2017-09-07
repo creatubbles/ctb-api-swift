@@ -38,7 +38,7 @@ class SearchTagMapper: Mappable
     {
         identifier <- map["id"]
         translatedNamesMap <- map["attributes.translatedNames"]
-        name <- map["attributes.name"]
-        imageURL <- map["attributes.imageURL"]
+        name <- map["attributes.title"]
+        imageURL <- map["attributes.image.links.original"]
     }
 }
