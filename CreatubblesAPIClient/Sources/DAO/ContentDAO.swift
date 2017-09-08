@@ -25,10 +25,10 @@
 
 import UIKit
 
-class ContentDAO: NSObject, APIClientDAO {
-    fileprivate let requestSender: RequestSender
+public class ContentDAO: NSObject, APIClientDAO {
+    public let requestSender: RequestSender
 
-    required init(dependencies: DAODependencies) {
+    public required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
 

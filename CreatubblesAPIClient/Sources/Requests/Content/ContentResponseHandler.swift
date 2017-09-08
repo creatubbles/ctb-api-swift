@@ -26,15 +26,15 @@
 import UIKit
 import ObjectMapper
 
-class ContentResponseHandler: ResponseHandler {
+public class ContentResponseHandler: ResponseHandler {
     fileprivate let completion: ContentEntryClosure?
     fileprivate let validator: Validatable = ContentDataFilter()
 
-    init(completion: ContentEntryClosure?) {
+    public init(completion: ContentEntryClosure?) {
         self.completion = completion
     }
 
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
+    override public func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         var validEntries: [ContentEntry] = []
         var invalidEntries: [ContentEntry] = []
 
