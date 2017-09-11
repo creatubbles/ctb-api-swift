@@ -56,4 +56,9 @@ public class OAuth2KeychainClient: NSObject, OAuth2Client {
     public func logout() {
         privateAccessToken = nil
     }
+    
+    public func clearPublicToken()
+    {
+        publicAccessToken = nil
+    }
 }

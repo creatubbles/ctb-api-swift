@@ -65,7 +65,7 @@ class SearchTagsFetchResponseHandlerSpec: QuickSpec
                 {
                     done in
                     sender.logout()
-                    sender.clearCredentials()
+                    sender.clearPublicCredentials()
                     
                     expect(sender.isLoggedIn()).to(beFalse())
                     sender.send(request, withResponseHandler: SearchTagsFetchResponseHandler
@@ -74,7 +74,6 @@ class SearchTagsFetchResponseHandlerSpec: QuickSpec
                         expect(searchTags).to(beNil())
                         expect(error).notTo(beNil())
                         expect(pInfo).to(beNil())
-                        sender.logout()
                         done()
                     })
                 }

@@ -122,10 +122,9 @@ public class RequestSender: NSObject {
         return networkManager.authClient.privateAccessToken != nil
     }
     
-    func clearCredentials()
+    func clearPublicCredentials()
     {
-        networkManager.authClient.privateAccessToken = nil
-        networkManager.authClient.publicAccessToken = nil
+        networkManager.authClient.clearPublicToken()
     }
 
     // MARK: - Request sending
