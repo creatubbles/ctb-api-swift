@@ -54,12 +54,16 @@ class PartnerApplicationsSearchResponseHandlerSpec: QuickSpec {
                 sender.logout()
                 waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.send(PartnerApplicationsSearchRequest(query: self.query), withResponseHandler:PartnerApplicationsSearchResponseHandler {
-                        (partnerApplications: Array<PartnerApplication>?, error: Error?) -> Void in
-                        expect(error).to(beNil())
-                        expect(partnerApplications).notTo(beNil())
-                        done()
-                    })
+                    sender.authenticate()
+                    {
+                        error in
+                        sender.send(PartnerApplicationsSearchRequest(query: self.query), withResponseHandler:PartnerApplicationsSearchResponseHandler {
+                            (partnerApplications: Array<PartnerApplication>?, error: Error?) -> Void in
+                            expect(error).to(beNil())
+                            expect(partnerApplications).notTo(beNil())
+                            done()
+                        })
+                    }
                 }
             }
         }

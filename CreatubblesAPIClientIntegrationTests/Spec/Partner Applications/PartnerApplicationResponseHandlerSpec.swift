@@ -54,12 +54,16 @@ class PartnerApplicationsResponseHandlerSpec: QuickSpec {
                 sender.logout()
                 waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler:PartnerApplicationResponseHandler {
-                        (partnerApplication: PartnerApplication?, error: Error?) -> Void in
-                        expect(error).to(beNil())
-                        expect(partnerApplication).notTo(beNil())
-                        done()
-                    })
+                    sender.authenticate()
+                    {
+                        error in
+                        sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler:PartnerApplicationResponseHandler {
+                            (partnerApplication: PartnerApplication?, error: Error?) -> Void in
+                            expect(error).to(beNil())
+                            expect(partnerApplication).notTo(beNil())
+                            done()
+                        })
+                    }
                 }
             }
         }

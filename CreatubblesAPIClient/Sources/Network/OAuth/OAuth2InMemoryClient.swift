@@ -26,14 +26,15 @@ import UIKit
 
 public class OAuth2InMemoryClient: NSObject, OAuth2Client {
 
-
+    override public init()
+    {
+        super.init()
+    }
+    
     public var privateAccessToken: String?
     public var publicAccessToken: String?
 
     public func logout() {
         privateAccessToken = nil
-    }
-    public func clearPublicToken() {
-        publicAccessToken = nil
     }
 }

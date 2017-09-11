@@ -74,14 +74,20 @@ class MyConnectionsResponseHandlerSpec: QuickSpec {
                 let userId = TestConfiguration.testUserIdentifier
                 waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.send(MyConnectionsRequest(page: page, perPage: perPage, userId: userId), withResponseHandler:
-                        MyConnectionsResponseHandler {
-                        (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
-                        expect(error).to(beNil())
-                        expect(users).notTo(beNil())
-                        expect(pageInfo).notTo(beNil())
-                        done()
-                    })
+                    
+                    sender.authenticate()
+                    {
+                        error in
+                        sender.send(MyConnectionsRequest(page: page, perPage: perPage, userId: userId), withResponseHandler:
+                            MyConnectionsResponseHandler
+                            {
+                                (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
+                                expect(error).to(beNil())
+                                expect(users).notTo(beNil())
+                                expect(pageInfo).notTo(beNil())
+                                done()
+                        })
+                    }
                 }
             }
 

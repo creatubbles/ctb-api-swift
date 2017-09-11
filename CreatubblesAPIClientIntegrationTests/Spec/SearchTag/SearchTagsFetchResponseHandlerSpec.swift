@@ -65,7 +65,6 @@ class SearchTagsFetchResponseHandlerSpec: QuickSpec
                 {
                     done in
                     sender.logout()
-                    sender.clearPublicCredentials()
                     
                     expect(sender.isLoggedIn()).to(beFalse())
                     sender.send(request, withResponseHandler: SearchTagsFetchResponseHandler

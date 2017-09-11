@@ -25,9 +25,10 @@
 import UIKit
 @testable import CreatubblesAPIClient
 
-class TestComponentsFactory: NSObject {
-    fileprivate static let settings = TestConfiguration.settings
-
+class TestComponentsFactory: NSObject
+{
+    fileprivate static var settings: APIClientSettings { return TestConfiguration.settings }
+    
     static var requestSender: RequestSender {
         if TestConfiguration.mode == .useAPI {
             return RequestSender(settings: settings)

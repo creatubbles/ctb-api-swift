@@ -58,14 +58,19 @@ class UsersFollowedByAUserResponseHandlerSpec: QuickSpec {
                 sender.logout()
                 waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.send(UsersFollowedByAUserRequest(page: self.page, perPage: self.pageCount, userId: self.userId!), withResponseHandler:
-                        UsersFollowedByAUserResponseHandler {
-                        (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
-                        expect(error).to(beNil())
-                        expect(users).notTo(beNil())
-                        expect(pageInfo).notTo(beNil())
-                        done()
-                    })
+                    
+                    sender.authenticate()
+                    {
+                        error in
+                        sender.send(UsersFollowedByAUserRequest(page: self.page, perPage: self.pageCount, userId: self.userId!), withResponseHandler:
+                            UsersFollowedByAUserResponseHandler {
+                                (users: Array<User>?, pageInfo: PagingInfo?, error: Error?) -> Void in
+                                expect(error).to(beNil())
+                                expect(users).notTo(beNil())
+                                expect(pageInfo).notTo(beNil())
+                                done()
+                        })
+                    }
                 }
             }
         }
