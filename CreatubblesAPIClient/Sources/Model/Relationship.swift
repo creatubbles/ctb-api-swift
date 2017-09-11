@@ -33,4 +33,9 @@ open class Relationship {
         type = mapper.type!
         identifier = mapper.identifier!
     }
+    
+    public init(type: String, identifier: String) {
+        self.type = type
+        self.identifier = identifier
+    }
 }
