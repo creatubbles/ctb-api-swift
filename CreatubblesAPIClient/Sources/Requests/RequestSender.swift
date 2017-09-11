@@ -121,6 +121,12 @@ public class RequestSender: NSObject {
     func isLoggedIn() -> Bool {
         return networkManager.authClient.privateAccessToken != nil
     }
+    
+    func clearCredentials()
+    {
+        networkManager.authClient.privateAccessToken = nil
+        networkManager.authClient.publicAccessToken = nil
+    }
 
     // MARK: - Request sending
 

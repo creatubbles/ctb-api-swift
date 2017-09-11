@@ -29,7 +29,8 @@ import Nimble
 
 class SearchTagsFetchResponseHandlerSpec: QuickSpec
 {
-    override func spec() {
+    override func spec()
+    {
         describe("Fetch Search Tags")
         {
             it("Should return search tags when logged in")
@@ -55,7 +56,7 @@ class SearchTagsFetchResponseHandlerSpec: QuickSpec
                     }
                 }
             }
-            
+
             it("Should return error when not logged in")
             {
                 let request = SearchTagsFetchRequest(page: 1, perPage: 10)
@@ -64,7 +65,10 @@ class SearchTagsFetchResponseHandlerSpec: QuickSpec
                 {
                     done in
                     sender.logout()
-                        sender.send(request, withResponseHandler: SearchTagsFetchResponseHandler
+                    sender.clearCredentials()
+                    
+                    expect(sender.isLoggedIn()).to(beFalse())
+                    sender.send(request, withResponseHandler: SearchTagsFetchResponseHandler
                     {
                         (searchTags, pInfo, error) -> (Void) in
                         expect(searchTags).to(beNil())
