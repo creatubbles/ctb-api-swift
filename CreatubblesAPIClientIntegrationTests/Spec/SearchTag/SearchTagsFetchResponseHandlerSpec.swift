@@ -1,5 +1,5 @@
 //
-//  PartnerApplicationsResponseHandler.swift
+//  CreateAUserFollowingRequestSpec.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -27,43 +27,54 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class PartnerApplicationsResponseHandlerSpec: QuickSpec {
-    let id = "hueanimation"
-
-    override func spec() {
-        describe("Partner Applications response handler") {
-            it("Should return correct value after login") {
+class SearchTagsFetchResponseHandlerSpec: QuickSpec
+{
+    override func spec()
+    {
+        describe("Fetch Search Tags")
+        {
+            it("Should return search tags when logged in")
+            {
+                let request = SearchTagsFetchRequest(page: 1, perPage: 10)
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort) {
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
+                {
                     done in
-                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password)
+                    {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler: PartnerApplicationResponseHandler {
-                            (partnerApplication: PartnerApplication?, error: Error?) -> Void in
+                        sender.send(request, withResponseHandler: SearchTagsFetchResponseHandler
+                        {
+                            (searchTags, pInfo, error) -> (Void) in
+                            expect(searchTags).notTo(beNil())
                             expect(error).to(beNil())
-                            expect(partnerApplication).notTo(beNil())
+                            expect(pInfo).notTo(beNil())
+                            sender.logout()
                             done()
                         })
                     }
                 }
             }
 
-            it("Should not return errors when not logged in") {
+            it("Should return error when not logged in")
+            {
+                let request = SearchTagsFetchRequest(page: 1, perPage: 10)
                 let sender = TestComponentsFactory.requestSender
-                sender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutShort) {
+                waitUntil(timeout: TestConfiguration.timeoutMedium)
+                {
                     done in
-                    sender.authenticate()
+                    sender.logout()
+                    
+                    expect(sender.isLoggedIn()).to(beFalse())
+                    sender.send(request, withResponseHandler: SearchTagsFetchResponseHandler
                     {
-                        error in
-                        sender.send(PartnerApplicationRequest(id: self.id), withResponseHandler:PartnerApplicationResponseHandler {
-                            (partnerApplication: PartnerApplication?, error: Error?) -> Void in
-                            expect(error).to(beNil())
-                            expect(partnerApplication).notTo(beNil())
-                            done()
-                        })
-                    }
+                        (searchTags, pInfo, error) -> (Void) in
+                        expect(searchTags).to(beNil())
+                        expect(error).notTo(beNil())
+                        expect(pInfo).to(beNil())
+                        done()
+                    })
                 }
             }
         }

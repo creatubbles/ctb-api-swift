@@ -100,14 +100,19 @@ class GalleriesResponseHandlerSpec: QuickSpec {
                 sender.logout()
                 waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
-                    _ = sender.send(request, withResponseHandler:GalleriesResponseHandler {
-                        (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
-                        expect(galleries).notTo(beNil())
-                        expect(error).to(beNil())
-                        expect(pageInfo).notTo(beNil())
-                        sender.logout()
-                        done()
-                    })
+                    sender.authenticate()
+                    {
+                        error in
+                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler {
+                            (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
+                            expect(galleries).notTo(beNil())
+                            expect(error).to(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+
+                    }
                 }
             }
         }

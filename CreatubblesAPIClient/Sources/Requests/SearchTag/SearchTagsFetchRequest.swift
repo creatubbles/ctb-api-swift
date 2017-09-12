@@ -24,6 +24,35 @@
 
 import UIKit
 
-class SearchTagsFetchRequest: Request {
-    //Empty until it's ready on API's side
+class SearchTagsFetchRequest: Request
+{
+    override var method: RequestMethod { return .get }
+    override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
+    override var endpoint: String
+    {
+        return "categories"
+    }
+    
+    fileprivate let page: Int?
+    fileprivate let perPage: Int?
+    
+    init(page: Int?, perPage: Int?) {
+        self.page = page
+        self.perPage = perPage
+    }
+    
+    fileprivate func prepareParameters() -> Dictionary<String, AnyObject>
+    {
+        var params = Dictionary<String, AnyObject>()
+        if let page = page
+        {
+            params["page"] = page as AnyObject?
+        }
+        
+        if let perPage = perPage
+        {
+            params["per_page"] = perPage as AnyObject?
+        }
+        return params
+    }
 }

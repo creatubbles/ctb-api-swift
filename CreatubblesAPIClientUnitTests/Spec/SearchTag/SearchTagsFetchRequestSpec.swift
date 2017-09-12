@@ -1,5 +1,5 @@
 //
-//  TestComponentsFactory.swift
+//  CreateAUserFollowingRequestSpec.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -21,19 +21,27 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
-import UIKit
+import Quick
+import Nimble
 @testable import CreatubblesAPIClient
 
-class TestComponentsFactory: NSObject
+class SearchTagsFetchRequestSpec: QuickSpec
 {
-    fileprivate static var settings: APIClientSettings { return TestConfiguration.settings }
-    
-    static var requestSender: RequestSender {
-        if TestConfiguration.mode == .useAPI {
-            return RequestSender(settings: settings)
-        } else {
-            return RecorderTestSender(settings: settings)
+    override func spec()
+    {
+        describe("Search Tags request")
+        {
+            it("Should have a proper method") {
+                let request = SearchTagsFetchRequest(page: 1, perPage: 10)
+                expect(request.method) == RequestMethod.get
+            }
+            
+            it("Should have a proper endpoint") {
+                let request = SearchTagsFetchRequest(page: 1, perPage: 10)
+                expect(request.endpoint) == "categories"
+            }
         }
     }
 }

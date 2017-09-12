@@ -1,5 +1,5 @@
 //
-//  TestComponentsFactory.swift
+//  CreatubblesAPIClient.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -23,17 +23,22 @@
 //  THE SOFTWARE.
 
 import UIKit
-@testable import CreatubblesAPIClient
+import ObjectMapper
 
-class TestComponentsFactory: NSObject
+class SearchTagMapper: Mappable
 {
-    fileprivate static var settings: APIClientSettings { return TestConfiguration.settings }
+    var identifier: String?
+    var translatedNamesMap: Array<NameTranslationObjectMapper>?
+    var name: String?
+    var imageURL: String?
     
-    static var requestSender: RequestSender {
-        if TestConfiguration.mode == .useAPI {
-            return RequestSender(settings: settings)
-        } else {
-            return RecorderTestSender(settings: settings)
-        }
+    required init?(map: Map) { /* Intentionally left empty  */ }
+    
+    func mapping(map: Map)
+    {
+        identifier <- map["id"]
+        translatedNamesMap <- map["attributes.translatedNames"]
+        name <- map["attributes.title"]
+        imageURL <- map["attributes.image.links.original"]
     }
 }
