@@ -31,6 +31,9 @@ class APIClientSpec: QuickSpec {
     override func spec() {
         describe("ApiClient Settings") {
             it("Have proper fields set") {
+                
+                expect(false).to(beTrue()) //should be removed
+                
                 let appId = "TestAppId"
                 let appSecret = "TestAppSecret"
                 let tokenUri = "TestTokenUri"
