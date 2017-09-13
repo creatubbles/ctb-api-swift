@@ -15,7 +15,7 @@ dependencies:
 test:
   override:
     - set -o pipefail
-    - xcodebuild -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClient -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug
+    - xcodebuild -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClient -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug | xcpretty
     - openssl aes-256-cbc -d -in ./CreatubblesAPIClientIntegrationTests/TestUtils/TestConfiguration.enc -out ./CreatubblesAPIClientIntegrationTests/TestUtils/TestConfiguration.swift -k $TEST_CONFIGURATION_PW
-    - xcodebuild test -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClientUnitTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug
-    - xcodebuild test -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClientIntegrationTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug
+    - set -o pipefail && xcodebuild test -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClientUnitTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug | xcpretty
+    - set -o pipefail && xcodebuild test -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClientIntegrationTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug | xcpretty

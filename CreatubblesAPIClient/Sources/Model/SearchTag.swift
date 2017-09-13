@@ -53,8 +53,7 @@ open class SearchTag: NSObject, Identifiable {
         if let translatedNamesMappers = mapper.translatedNamesMap
         {
             translatedNames = translatedNamesMappers.flatMap({ $0.isValid() ? NameTranslationObject(mapper: $0) : nil })
-        }
-        else
+        } else
         {
             translatedNames = []
         }

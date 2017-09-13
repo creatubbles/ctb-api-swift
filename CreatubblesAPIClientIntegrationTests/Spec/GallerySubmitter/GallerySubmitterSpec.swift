@@ -62,7 +62,7 @@ class GallerySubmitterSpec: QuickSpec {
                                 expect(error).to(beNil())
                                 done()
                             }
-                            submitter.submit()
+                            _ = submitter.submit()
                         })
                     }
                 }

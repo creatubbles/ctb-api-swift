@@ -28,7 +28,7 @@ import Foundation
 
 extension DAODependencies {
     class func testDependencies() -> DAODependencies {
-        let settings = APIClientSettings(appId: "test", appSecret: "test")
+        let settings = APIClientSettings(appId: "test", appSecret: "test", deviceType: .phone)
         return DAODependencies(requestSender: RequestSender(settings: settings))
     }
 }

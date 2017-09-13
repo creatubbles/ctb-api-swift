@@ -22,7 +22,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
+import Foundation
+
+public enum APIClientDeviceType: String
+{
+    case phone
+    case tablet
+}
 
 open class APIClientSettings: NSObject {
     /*
@@ -81,8 +87,13 @@ open class APIClientSettings: NSObject {
         Client used to store OAuth2 tokens. Keychain by default
      */
     let oauth2Client: OAuth2Client
-
-    public init(appId: String, appSecret: String, backgroundSessionConfigurationIdentifier: String? = nil, locale: String? = nil, logLevel: LogLevel = .warning, oauthScope: String? = nil, oauth2Client: OAuth2Client = OAuth2KeychainClient()) {
+    
+    /*
+     
+     */
+    let deviceType: APIClientDeviceType
+    
+    public init(appId: String, appSecret: String, deviceType: APIClientDeviceType, backgroundSessionConfigurationIdentifier: String? = nil, locale: String? = nil, logLevel: LogLevel = .warning, oauthScope: String? = nil, oauth2Client: OAuth2Client = OAuth2KeychainClient()) {
         self.appId = appId
         self.appSecret = appSecret
         self.tokenUri = "https://api.creatubbles.com/v2/oauth/token"
@@ -94,9 +105,10 @@ open class APIClientSettings: NSObject {
         self.backgroundSessionConfigurationIdentifier = backgroundSessionConfigurationIdentifier
         self.oauthScope = oauthScope
         self.oauth2Client = oauth2Client
+        self.deviceType = deviceType
     }
 
-    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, locale: String? = nil, logLevel: LogLevel = .warning, backgroundSessionConfigurationIdentifier: String? = nil, oauthScope: String? = nil, oauth2Client: OAuth2Client = OAuth2KeychainClient()) {
+    public init(appId: String, appSecret: String, tokenUri: String, authorizeUri: String, baseUrl: String, apiVersion: String, deviceType: APIClientDeviceType, locale: String? = nil, logLevel: LogLevel = .warning, backgroundSessionConfigurationIdentifier: String? = nil, oauthScope: String? = nil, oauth2Client: OAuth2Client = OAuth2KeychainClient()) {
         self.appId = appId
         self.appSecret = appSecret
         self.tokenUri = tokenUri
@@ -108,5 +120,6 @@ open class APIClientSettings: NSObject {
         self.backgroundSessionConfigurationIdentifier = backgroundSessionConfigurationIdentifier
         self.oauthScope = oauthScope
         self.oauth2Client = oauth2Client
+        self.deviceType = deviceType
     }
 }

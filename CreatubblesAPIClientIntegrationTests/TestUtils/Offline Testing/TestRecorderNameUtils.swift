@@ -32,7 +32,7 @@ class TestRecorderNameUtils {
         nameComponents.append(request.endpoint)
         nameComponents.append(request.method.rawValue)
         nameComponents.append(String(String(describing: request.parameters).hashValue))
-        nameComponents.append("loggedIn;\(isLoggedIn)")
+        nameComponents.append("loggedIn;\(String(describing: isLoggedIn))")
 
         nameComponents = [nameComponents.joined(separator: "_")]
 

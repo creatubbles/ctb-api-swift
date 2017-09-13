@@ -31,6 +31,7 @@ class APIClientSpec: QuickSpec {
     override func spec() {
         describe("ApiClient Settings") {
             it("Have proper fields set") {
+        
                 let appId = "TestAppId"
                 let appSecret = "TestAppSecret"
                 let tokenUri = "TestTokenUri"
@@ -38,7 +39,7 @@ class APIClientSpec: QuickSpec {
                 let baseUrl = "TestBaseUrl"
                 let apiVersion = "TestApiVersion"
 
-                let settings = APIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion)
+                let settings = APIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion, deviceType: .phone)
 
                 expect(settings.appId) == appId
                 expect(settings.appSecret) == appSecret
@@ -46,6 +47,7 @@ class APIClientSpec: QuickSpec {
                 expect(settings.authorizeUri) == authorizeUri
                 expect(settings.baseUrl) == baseUrl
                 expect(settings.apiVersion) == apiVersion
+                expect(settings.deviceType) == APIClientDeviceType.phone
             }
         }
 
@@ -59,7 +61,7 @@ class APIClientSpec: QuickSpec {
                 let baseUrl = "TestBaseUrl"
                 let apiVersion = "TestApiVersion"
 
-                let settings = APIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion)
+                let settings = APIClientSettings(appId: appId, appSecret: appSecret, tokenUri: tokenUri, authorizeUri: authorizeUri, baseUrl: baseUrl, apiVersion: apiVersion, deviceType: .phone)
 
                 let client = APIClient(settings: settings)
                 expect(client.daoAssembly.assembly(GroupDAO.self)).notTo(beNil())

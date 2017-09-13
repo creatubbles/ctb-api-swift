@@ -74,6 +74,7 @@ class NetworkManager: NSObject {
             urlRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
 
+        urlRequest.addValue(settings.deviceType.rawValue, forHTTPHeaderField: "X-Device-Type")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
 
         if request.parameters.count == 0 { return urlRequest }
