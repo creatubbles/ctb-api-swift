@@ -51,7 +51,7 @@ class UsersBatchFetcherSpec: QuickSpec {
                             expect(error).to(beNil())
                             done()
                         }
-                        batchFetcher.fetch()
+                        _ = batchFetcher.fetch()
                     })
                 }
             }
@@ -77,7 +77,7 @@ class UsersBatchFetcherSpec: QuickSpec {
                             expect(error).to(beNil())
                             done()
                         }
-                        batchFetcher.fetch()
+                        _ = batchFetcher.fetch()
                     })
                 }
             }
