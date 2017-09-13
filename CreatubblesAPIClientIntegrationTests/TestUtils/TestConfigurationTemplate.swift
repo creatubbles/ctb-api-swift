@@ -49,7 +49,8 @@ class TestConfigurationTemplate: NSObject {
                 tokenUri: tokenUri,
                 authorizeUri: authorizeUri,
                 baseUrl: baseUrl,
-                apiVersion: apiVersion
+                apiVersion: apiVersion,
+                deviceType: APIClientDeviceType.phone
             )
     }
 }

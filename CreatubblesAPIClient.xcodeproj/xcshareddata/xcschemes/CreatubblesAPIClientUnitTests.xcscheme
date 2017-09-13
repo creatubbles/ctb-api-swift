@@ -22,6 +22,16 @@
                ReferencedContainer = "container:CreatubblesAPIClient.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "185E30E81E71559E0077E9A8"
+               BuildableName = "CreatubblesAPIClientIntegrationTests.xctest"
+               BlueprintName = "CreatubblesAPIClientIntegrationTests"
+               ReferencedContainer = "container:CreatubblesAPIClient.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <AdditionalOptions>
       </AdditionalOptions>
