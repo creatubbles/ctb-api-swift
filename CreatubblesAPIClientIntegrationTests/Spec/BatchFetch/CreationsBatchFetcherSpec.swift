@@ -54,8 +54,7 @@ class CreationsBatchFetcherSpec: QuickSpec {
                             print("FETCH NEW: \(endTime - beginTime)")
                             done()
                         }
-                        batchFetcher.fetch()
-
+                        _ = batchFetcher.fetch()
                     })
                 }
             }
