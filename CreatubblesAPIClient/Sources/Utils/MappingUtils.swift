@@ -65,7 +65,7 @@ public class MappingUtils {
     }
 
     public class func bubbledStateFrom(metadata: Metadata?, forObjectWithIdentifier identifier: String) -> Bool {
-        return metadata?.bubbledCreationIdentifiers.contains(identifier) ?? false
+        return (metadata?.bubbledCreationIdentifiers.contains(identifier) ?? false) || (metadata?.bubbledUserIdentifiers.contains(identifier) ?? false) || (metadata?.bubbledGalleryIdentifiers.contains(identifier) ?? false)
     }
 
     public class func abilitiesFrom(metadata: Metadata?, forObjectWithIdentifier identifier: String) -> Array<Ability> {
