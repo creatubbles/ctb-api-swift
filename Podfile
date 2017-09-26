@@ -29,7 +29,7 @@ end
 
 target 'CreatubblesAPIClientDemo' do
     shared_pods
-    pod 'CreatubblesAPIClient', :git => 'https://github.com/creatubbles/ctb-api-swift.git', :branch => 'feature/469_xcode_9'
+    pod 'CreatubblesAPIClient', :git => 'https://github.com/creatubbles/ctb-api-swift.git', :branch => 'develop'
 end
 
 post_install do |installer|
