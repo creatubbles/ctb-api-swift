@@ -23,32 +23,25 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class CustomStyleFetchResponseHandler: ResponseHandler
-{
+class CustomStyleFetchResponseHandler: ResponseHandler {
     fileprivate let completion: CustomStyleClosure?
-    
-    init(completion: CustomStyleClosure?)
-    {
+
+    init(completion: CustomStyleClosure?) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
-            let mapper = Mapper<CustomStyleMapper>().map(JSON: response["data"] as! [String : Any])
-        {
+            let mapper = Mapper<CustomStyleMapper>().map(JSON: response["data"] as! [String : Any]) {
             let metadata = MappingUtils.metadataFromResponse(response)
-            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)                        
-            
+            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
+
             let style = CustomStyle(mapper: mapper, dataMapper: dataMapper)
             executeOnMainQueue { self.completion?(style, ErrorTransformer.errorFromResponse(response, error: error)) }
-        }
-        else
-        {
+        } else {
             executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }

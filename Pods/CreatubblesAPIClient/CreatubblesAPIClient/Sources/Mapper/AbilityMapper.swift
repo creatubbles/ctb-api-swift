@@ -23,26 +23,23 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class AbilityMapper: Mappable
-{
+class AbilityMapper: Mappable {
     var identifier: String?
     var type: String?
     var resourceType: String?
     var resourceIdentifier: String?
     var operation: String?
-    var permission: Bool?    
-    
+    var permission: Bool?
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
-        identifier  <- map["id"]
+
+    func mapping(map: Map) {
+        identifier <- map["id"]
         type <- map["type"]
-        
+
         resourceType <- map["attributes.resource_type"]
         resourceIdentifier <- map["attributes.resource_id"]
         operation <- map["attributes.operation"]

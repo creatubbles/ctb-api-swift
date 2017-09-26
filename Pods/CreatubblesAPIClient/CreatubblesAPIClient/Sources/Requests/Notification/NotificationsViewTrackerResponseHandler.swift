@@ -23,10 +23,8 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class NotificationsViewTrackerResponseHandler: ErrorResponseHandler
-{
+class NotificationsViewTrackerResponseHandler: ErrorResponseHandler {
 
 }

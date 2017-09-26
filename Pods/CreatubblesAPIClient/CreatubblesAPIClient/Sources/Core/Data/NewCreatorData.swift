@@ -25,18 +25,16 @@
 import UIKit
 
 @objc
-open class NewCreatorData: NSObject
-{
+open class NewCreatorData: NSObject {
     open let name: String
     open let displayName: String?
     open let birthYear: Int?
     open let birthMonth: Int?
     open let countryCode: String?
     open let gender: Gender?
-    
+
     public init(name: String, displayName: String? = nil, birthYear: Int? = nil, birthMonth: Int? = nil,
-                countryCode: String? = nil, gender: Gender? = nil)
-    {
+                countryCode: String? = nil, gender: Gender? = nil) {
         self.name = name
         self.displayName = displayName
         self.birthMonth = birthMonth
@@ -44,15 +42,14 @@ open class NewCreatorData: NSObject
         self.countryCode = countryCode
         self.gender = gender
     }
-    
+
     //ObjC Compability
-    public init(name: String, gender: Gender, birthYear: Int, birthMonth: Int, displayName: String? = nil, countryCode: String? = nil)
-    {
+    public init(name: String, gender: Gender, birthYear: Int, birthMonth: Int, displayName: String? = nil, countryCode: String? = nil) {
         self.name = name
         self.displayName = displayName
         self.birthMonth = birthMonth
         self.birthYear = birthYear
         self.countryCode = countryCode
         self.gender = gender
-    }    
+    }
 }

@@ -25,13 +25,11 @@
 import UIKit
 
 @objc
-open class AvatarSuggestion: NSObject
-{
+open class AvatarSuggestion: NSObject {
     open let id: String
     open let avatarURL: String
-    
-    init(mapper: AvatarSuggestionMapper)
-    {
+
+    init(mapper: AvatarSuggestionMapper) {
         id = mapper.id!
         avatarURL = mapper.avatarURL!
     }

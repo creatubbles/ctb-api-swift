@@ -25,19 +25,17 @@
 import UIKit
 import ObjectMapper
 
-class CreationUploadMapper: NSObject, Mappable
-{
+class CreationUploadMapper: NSObject, Mappable {
     var identifier: String?
     var uploadUrl: String?
     var contentType: String?
     var pingUrl: String?
     var completedAt: Date?
-        
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
-        identifier  <- map["id"]
+
+    func mapping(map: Map) {
+        identifier <- map["id"]
         uploadUrl <- map["attributes.url"]
         pingUrl <- map["attributes.ping_url"]
         contentType <- map["attributes.content_type"]

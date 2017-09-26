@@ -25,20 +25,16 @@
 import UIKit
 
 @objc
-open class LandingURL: NSObject
-{
+open class LandingURL: NSObject {
     open let destination: String
     open let type: LandingURLType
-    
- 
-    init(mapper: LandingURLMapper)
-    {
+
+    init(mapper: LandingURLMapper) {
         self.destination = mapper.destination!
         self.type = mapper.type
     }
-    
-    init(destination: String, type: LandingURLType)
-    {
+
+    init(destination: String, type: LandingURLType) {
         self.destination = destination
         self.type = type
     }

@@ -23,18 +23,15 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 @objc
-open class CreateMultipleCreatorsData: NSObject
-{
+open class CreateMultipleCreatorsData: NSObject {
     open let amount: Int
     open let birthYear: Int
     open let groupName: String?
-    
-    public init(amount: Int, birthYear: Int, groupName: String? = nil)
-    {
+
+    public init(amount: Int, birthYear: Int, groupName: String? = nil) {
         self.amount = amount
         self.birthYear = birthYear
         self.groupName = groupName

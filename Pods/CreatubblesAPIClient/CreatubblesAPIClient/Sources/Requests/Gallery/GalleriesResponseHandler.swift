@@ -25,37 +25,29 @@
 import UIKit
 import ObjectMapper
 
-class GalleriesResponseHandler: ResponseHandler
-{
+public class GalleriesResponseHandler: ResponseHandler {
     fileprivate let completion: GalleriesClosure?
-    init(completion: GalleriesClosure?)
-    {
+    public init(completion: GalleriesClosure?) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {        
+
+    override public func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
-            let mappers = Mapper<GalleryMapper>().mapArray(JSONObject: response["data"])
-        {
+            let mappers = Mapper<GalleryMapper>().mapArray(JSONObject: response["data"]) {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let galleries = mappers.map({Gallery(mapper: $0, dataMapper: dataMapper, metadata: metadata)})
-            
+            let galleries = mappers.map({ Gallery(mapper: $0, dataMapper: dataMapper, metadata: metadata) })
+
             executeOnMainQueue { self.completion?(galleries, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
-        }
-        else if let response = response,
-                let mapper = Mapper<GalleryMapper>().map(JSON: response["data"] as! [String : Any])
-        {
+        } else if let response = response,
+                let mapper = Mapper<GalleryMapper>().map(JSON: response["data"] as! [String : Any]) {
             let metadata = MappingUtils.metadataFromResponse(response)
-            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)                        
-            
+            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
+
             let gallery = Gallery(mapper: mapper, dataMapper: dataMapper, metadata: metadata)
             executeOnMainQueue { self.completion?([gallery], nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
-        }
-        else
-        {
+        } else {
             executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
         }
     }

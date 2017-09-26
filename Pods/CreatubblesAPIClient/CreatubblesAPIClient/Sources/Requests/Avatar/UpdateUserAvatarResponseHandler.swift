@@ -24,7 +24,6 @@
 
 import UIKit
 
-class UpdateUserAvatarResponseHandler: ErrorResponseHandler
-{
+class UpdateUserAvatarResponseHandler: ErrorResponseHandler {
 
 }

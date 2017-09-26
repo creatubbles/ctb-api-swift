@@ -23,55 +23,46 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class BubbleDAO: NSObject, APIClientDAO
-{
+class BubbleDAO: NSObject, APIClientDAO {
     fileprivate let requestSender: RequestSender
-    
-    required init(dependencies: DAODependencies)
-    {
+
+    required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
-    
-    func getBubbles(creationIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure?) -> RequestHandler
-    {
+
+    func getBubbles(creationIdentifier identifier: String, pagingData: PagingData?, completion: BubblesClousure?) -> RequestHandler {
         let request = BubblesFetchReqest(creationId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = BubblesFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getBubbles(userIdentifier identifier: String, pagingData: PagingData?, completion: @escaping BubblesClousure) -> RequestHandler
-    {
+
+    func getBubbles(userIdentifier identifier: String, pagingData: PagingData?, completion: @escaping BubblesClousure) -> RequestHandler {
         let request = BubblesFetchReqest(userId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = BubblesFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getBubbles(galleryIdentifier identifier: String, pagingData: PagingData?, completion: @escaping BubblesClousure) -> RequestHandler
-    {
+
+    func getBubbles(galleryIdentifier identifier: String, pagingData: PagingData?, completion: @escaping BubblesClousure) -> RequestHandler {
         let request = BubblesFetchReqest(galleryId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = BubblesFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func newBubble(data: NewBubbleData, completion: BubbleClousure?) -> RequestHandler
-    {
+
+    func newBubble(data: NewBubbleData, completion: BubbleClousure?) -> RequestHandler {
         let request = NewBubbleRequest(data: data)
         let handler = NewBubbleResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func updateBubble(data: UpdateBubbleData, completion: BubbleClousure?) -> RequestHandler
-    {
+
+    func updateBubble(data: UpdateBubbleData, completion: BubbleClousure?) -> RequestHandler {
         let request = UpdateBubbleRequest(data: data)
         let handler = UpdateBubbleResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func deleteBubble(bubbleIdentifier bubbleId: String, completion: ErrorClosure?) -> RequestHandler
-    {
+
+    func deleteBubble(bubbleIdentifier bubbleId: String, completion: ErrorClosure?) -> RequestHandler {
         let request = DeleteBubbleRequest(bubbleId: bubbleId)
         let handler = DeleteBubbleResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)

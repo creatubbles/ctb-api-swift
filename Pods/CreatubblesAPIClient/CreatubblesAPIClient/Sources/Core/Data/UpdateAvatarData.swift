@@ -25,8 +25,7 @@
 import UIKit
 @objc
 
-open class UpdateAvatarData: NSObject
-{
+open class UpdateAvatarData: NSObject {
     open var avatarCreationIdentifier: String?
     open var avatarSuggestionIdentifier: String?
 }

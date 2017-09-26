@@ -49,7 +49,7 @@ class GalleriesBatchFetcherSpec: QuickSpec {
                             expect(error).to(beNil())
                             done()
                         }
-                        batchFetcher.fetch()
+                        _ = batchFetcher.fetch()
                     })
                 }
             }
@@ -73,7 +73,7 @@ class GalleriesBatchFetcherSpec: QuickSpec {
                             expect(error).to(beNil())
                             done()
                         }
-                        batchFetcher.fetch()
+                        _ = batchFetcher.fetch()
                     })
                 }
             }
@@ -97,7 +97,7 @@ class GalleriesBatchFetcherSpec: QuickSpec {
                             expect(error).to(beNil())
                             done()
                         }
-                        batchFetcher.fetch()
+                        _ = batchFetcher.fetch()
                     })
                 }
             }
@@ -121,7 +121,7 @@ class GalleriesBatchFetcherSpec: QuickSpec {
                             expect(error).to(beNil())
                             done()
                         }
-                        batchFetcher.fetch()
+                        _ = batchFetcher.fetch()
                     })
                 }
             }

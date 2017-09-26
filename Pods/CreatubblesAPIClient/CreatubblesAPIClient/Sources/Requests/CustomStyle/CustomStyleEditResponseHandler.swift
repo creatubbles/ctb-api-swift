@@ -23,10 +23,8 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class CustomStyleEditResponseHandler: CustomStyleFetchResponseHandler
-{
+class CustomStyleEditResponseHandler: CustomStyleFetchResponseHandler {
 
 }

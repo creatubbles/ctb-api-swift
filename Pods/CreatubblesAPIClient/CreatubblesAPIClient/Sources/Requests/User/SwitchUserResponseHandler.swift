@@ -23,21 +23,17 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class SwitchUserResponseHandler: ResponseHandler
-{
+class SwitchUserResponseHandler: ResponseHandler {
     fileprivate let completion: SwitchUserClosure?
-    
-    init(completion: SwitchUserClosure?)
-    {
+
+    init(completion: SwitchUserClosure?) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
             let accessToken = response["access_token"] as? String {
             executeOnMainQueue { self.completion?(accessToken, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }

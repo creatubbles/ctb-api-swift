@@ -25,38 +25,33 @@
 
 import UIKit
 
-class GallerySubmitOperation: ConcurrentOperation
-{
+class GallerySubmitOperation: ConcurrentOperation {
     private let requestSender: RequestSender
     private let galleryId: String
     private let creationId: String
     private var requestHandler: RequestHandler?
-    
-    init(requestSender: RequestSender, galleryId: String, creationId: String, complete: OperationCompleteClosure?)
-    {
+
+    init(requestSender: RequestSender, galleryId: String, creationId: String, complete: OperationCompleteClosure?) {
         self.requestSender = requestSender
         self.creationId = creationId
         self.galleryId = galleryId
-        
+
         super.init(complete: complete)
     }
-    
-    override func main()
-    {
+
+    override func main() {
         guard isCancelled == false else { return }
-        
+
         let request = GallerySubmissionRequest(galleryId: galleryId, creationId: creationId)
-        let handler = GallerySubmissionResponseHandler()
-        {
+        let handler = GallerySubmissionResponseHandler {
             [weak self](error) -> (Void) in
             self?.finish(error)
         }
-        
+
         requestHandler = requestSender.send(request, withResponseHandler: handler)
     }
-    
-    override func cancel()
-    {
+
+    override func cancel() {
         requestHandler?.cancel()
         super.cancel()
     }

@@ -23,19 +23,16 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class UserAccountDetailsRequest: Request
-{
+class UserAccountDetailsRequest: Request {
     override var method: RequestMethod { return .get }
     override var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
-    override var endpoint: String  { return "users/\(userId)/account" }
-    
+    override var endpoint: String { return "users/\(userId)/account" }
+
     fileprivate let userId: String
-    
-    init(userId: String)
-    {
+
+    init(userId: String) {
         self.userId = userId
     }
 }

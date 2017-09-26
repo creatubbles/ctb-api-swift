@@ -23,22 +23,19 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class GallerySubmissionMapper: Mappable
-{
+class GallerySubmissionMapper: Mappable {
     var identifier: String?
-    
+
     var creationRelationship: RelationshipMapper?
-    var galleryRelationship:  RelationshipMapper?
-    
+    var galleryRelationship: RelationshipMapper?
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
-        identifier  <- map["id"]
+
+    func mapping(map: Map) {
+        identifier <- map["id"]
         creationRelationship <- map["relationships.creation.data"]
         galleryRelationship <- map["relationships.gallery.data"]
     }

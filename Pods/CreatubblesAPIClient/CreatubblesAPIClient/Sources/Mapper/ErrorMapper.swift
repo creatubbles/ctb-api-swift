@@ -24,8 +24,7 @@
 import UIKit
 import ObjectMapper
 
-class ErrorMapper: Mappable
-{
+class ErrorMapper: Mappable {
     var status: Int?
     var code: String?
     var source: String?
@@ -33,11 +32,10 @@ class ErrorMapper: Mappable
     var detail: String?
     //ObjectMapper has a bug when mapping Ints, so we also try to map status as String
     var statusAsString: String?
-    
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
+
+    func mapping(map: Map) {
         status <- map["status"]
         statusAsString <- map["status"]
         code <- map["code"]

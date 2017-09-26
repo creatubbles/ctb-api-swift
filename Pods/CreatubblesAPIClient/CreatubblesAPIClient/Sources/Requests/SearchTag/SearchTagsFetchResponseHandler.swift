@@ -23,8 +23,32 @@
 //  THE SOFTWARE.
 
 import UIKit
+import ObjectMapper
 
 class SearchTagsFetchResponseHandler: ResponseHandler
 {
-    //Empty until it's ready on API's side
+    fileprivate let completion: SearchTagsClosure?
+    
+    init(completion: SearchTagsClosure?)
+    {
+        self.completion = completion
+    }
+    
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
+    {
+        if  let response = response,
+            let mappers = Mapper<SearchTagMapper>().mapArray(JSONObject: response["data"])
+        {
+            let metadata = MappingUtils.metadataFromResponse(response)
+            let pageInfo = MappingUtils.pagingInfoFromResponse(response)
+            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
+            let searchTags = mappers.map({ SearchTag(mapper: $0, dataMapper: dataMapper, metadata: metadata) })
+            
+            executeOnMainQueue { self.completion?(searchTags, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
+        }
+        else
+        {
+            executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
+        }
+    }
 }

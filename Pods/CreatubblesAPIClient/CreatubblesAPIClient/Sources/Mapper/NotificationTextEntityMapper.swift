@@ -23,40 +23,36 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class NotificationTextEntityMapper: Mappable
-{
+class NotificationTextEntityMapper: Mappable {
     var identifier: String?
     var startIndex: Int?
     var endIndex: Int?
     var type: String?
-    
+
     var userRelationship: RelationshipMapper?
     var creationRelationship: RelationshipMapper?
     var galleryRelationship: RelationshipMapper?
-    
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
+
+    func mapping(map: Map) {
         identifier <- map["id"]
         type <- map["type"]
         startIndex <- map["attributes.start_pos"]
-        endIndex   <- map["attributes.end_pos"]
-        
-        userRelationship     <- map["relationships.user.data"]
+        endIndex <- map["attributes.end_pos"]
+
+        userRelationship <- map["relationships.user.data"]
         creationRelationship <- map["relationships.creation.data"]
-        galleryRelationship  <- map["relationships.gallery.data"]
+        galleryRelationship <- map["relationships.gallery.data"]
     }
-    
-    func parseType() -> NotificationTextEntityType
-    {
-        if (type == "creation_entities")    { return .creation }
-        if (type == "user_entities")        { return .user}
-        if (type == "gallery_entities")     { return .gallery }
+
+    func parseType() -> NotificationTextEntityType {
+        if (type == "creation_entities") { return .creation }
+        if (type == "user_entities") { return .user }
+        if (type == "gallery_entities") { return .gallery }
         return .unknown
     }
 }

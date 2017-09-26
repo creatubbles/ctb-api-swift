@@ -23,12 +23,10 @@
 //  THE SOFTWARE.
 //
 
-
 import Foundation
 
 @objc
-open class EditProfileData: NSObject
-{
+open class EditProfileData: NSObject {
     open var username: String?
     open var displayName: String?
     open var name: String?
@@ -44,5 +42,5 @@ open class EditProfileData: NSObject
     open var countryCode: String?
     open var receiveNotifications: Bool?
     open var receiveNewswletter: Bool?
-    open var avatarCreationIdentifier: String?        
+    open var avatarCreationIdentifier: String?
 }

@@ -24,27 +24,38 @@
 
 import UIKit
 
-open class SearchTag: NSObject, Identifiable
-{
-    // Mock of the model until implemented on API side
+open class SearchTag: NSObject, Identifiable {
     open let identifier: String
     open let name: String
     open let imageURL: String
     open let translatedNames: Array<NameTranslationObject>
-    
-    init(name: String, imageURL: String)
-    {
+
+    init(name: String, imageURL: String) {
         self.name = name
         self.imageURL = imageURL
         self.identifier = NSUUID().uuidString
         self.translatedNames = []
     }
-    
-    init(name: String, imageURL: String, identifier: String, translatedNames: Array<NameTranslationObject>)
-    {
+
+    init(name: String, imageURL: String, identifier: String, translatedNames: Array<NameTranslationObject>) {
         self.identifier = identifier
         self.name = name
         self.imageURL = imageURL
         self.translatedNames = translatedNames
+    }
+    
+    init(mapper: SearchTagMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
+    {
+        identifier = mapper.identifier!
+        name = mapper.name!
+        imageURL = mapper.imageURL!
+        
+        if let translatedNamesMappers = mapper.translatedNamesMap
+        {
+            translatedNames = translatedNamesMappers.flatMap({ $0.isValid() ? NameTranslationObject(mapper: $0) : nil })
+        } else
+        {
+            translatedNames = []
+        }
     }
 }

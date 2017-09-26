@@ -23,40 +23,35 @@
 //  THE SOFTWARE.
 //
 
-class GroupUsersBatchFetchOperation: ConcurrentOperation
-{
+class GroupUsersBatchFetchOperation: ConcurrentOperation {
     private let requestSender: RequestSender
     private let groupId: String
-    
+
     let pagingData: PagingData
     private(set) var users: Array<User>?
     private var requestHandler: RequestHandler?
-    
-    init(requestSender: RequestSender,  groupId: String, pagingData: PagingData, complete: OperationCompleteClosure?)
-    {
+
+    init(requestSender: RequestSender, groupId: String, pagingData: PagingData, complete: OperationCompleteClosure?) {
         self.requestSender = requestSender
         self.groupId = groupId
         self.pagingData = pagingData
-        
+
         super.init(complete: complete)
     }
-    
-    override func main()
-    {
+
+    override func main() {
         guard isCancelled == false else { return }
 
-        let request = GroupCreatorsRequest(groupId: groupId,page: pagingData.page, perPage: pagingData.pageSize)
-        let handler = GroupCreatorsResponseHandler()
-        {
-            [weak self](users, pagingInfo, error) -> (Void) in
+        let request = GroupCreatorsRequest(groupId: groupId, page: pagingData.page, perPage: pagingData.pageSize)
+        let handler = GroupCreatorsResponseHandler {
+            [weak self](users, _, error) -> (Void) in
             self?.users = users
             self?.finish(error)
         }
         requestHandler = requestSender.send(request, withResponseHandler: handler)
     }
-    
-    override func cancel()
-    {
+
+    override func cancel() {
         requestHandler?.cancel()
         super.cancel()
     }

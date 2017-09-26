@@ -24,16 +24,13 @@
 
 import UIKit
 
-@objc public enum Role: Int
-{
+@objc public enum Role: Int {
     case parent
     case instructor
-    case creator        
-    
-    public var stringValue: String
-    {
-        switch self
-        {
+    case creator
+
+    public var stringValue: String {
+        switch self {
             case .parent:   return "parent"
             case .instructor:  return "instructor"
             case .creator:  return "creator"
@@ -42,8 +39,7 @@ import UIKit
 }
 
 @objc
-open class User: NSObject, Identifiable
-{
+open class User: NSObject, Identifiable {
     open let identifier: String
     open let username: String
     open let displayName: String
@@ -60,7 +56,7 @@ open class User: NSObject, Identifiable
     open let age: String?
     open let gender: Gender
     open let shortUrl: String
-    
+
     open let bubblesCount: Int
     open let addedBubblesCount: Int
     open let activitiesCount: Int
@@ -69,23 +65,22 @@ open class User: NSObject, Identifiable
     open let creatorsCount: Int
     open let galleriesCount: Int
     open let managersCount: Int
-    
+
     open let homeSchooling: Bool
     open let signedUpAsInstructor: Bool
     open let whatDoYouTeach: String?
     open let interests: String?
-    
-    //MARK: - Metadata
+
+    // MARK: - Metadata
     open let isBubbled: Bool
     open let abilities: Array<Ability>
-    
+
     open let customStyleRelationship: Relationship?
     open let customStyle: CustomStyle?
-    
+
     open let isFollowed: Bool
-    
-    init(mapper: UserMapper, dataMapper: DataIncludeMapper?, metadata: Metadata? = nil)
-    {
+
+    init(mapper: UserMapper, dataMapper: DataIncludeMapper?, metadata: Metadata? = nil) {
         identifier = mapper.identifier!
         username = mapper.username!
         displayName = mapper.displayName!
@@ -102,7 +97,7 @@ open class User: NSObject, Identifiable
         age = mapper.age
         gender = mapper.parseGender()
         shortUrl = mapper.shortUrl!
-        
+
         bubblesCount = mapper.bubblesCount!
         addedBubblesCount = mapper.addedBubblesCount!
         activitiesCount = mapper.activitiesCount!
@@ -114,15 +109,15 @@ open class User: NSObject, Identifiable
 
         homeSchooling = mapper.homeSchooling!
         signedUpAsInstructor = mapper.signedUpAsInstructor!
-        
+
         isBubbled = MappingUtils.bubbledStateFrom(metadata: metadata, forObjectWithIdentifier: identifier)
         abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
-    
+
         isFollowed = metadata?.userFollowedUsersIdentifiers.contains(mapper.identifier!) ?? false
-        
+
         customStyleRelationship = MappingUtils.relationshipFromMapper(mapper.customStyleRelationship)
         customStyle = MappingUtils.objectFromMapper(dataMapper, relationship: customStyleRelationship, type: CustomStyle.self)
-        
+
         whatDoYouTeach = mapper.whatDoYouTeach
         interests = mapper.interests
     }

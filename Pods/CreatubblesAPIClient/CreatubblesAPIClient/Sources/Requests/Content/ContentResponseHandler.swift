@@ -23,44 +23,37 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class ContentResponseHandler: ResponseHandler
-{
+public class ContentResponseHandler: ResponseHandler {
     fileprivate let completion: ContentEntryClosure?
     fileprivate let validator: Validatable = ContentDataFilter()
-    
-    init(completion: ContentEntryClosure?)
-    {
+
+    public init(completion: ContentEntryClosure?) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override public func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         var validEntries: [ContentEntry] = []
         var invalidEntries: [ContentEntry] = []
-        
+
         if  let response = response,
-            let mappers = Mapper<ContentEntryMapper>().mapArray(JSONObject: response["data"])
-        {
+            let mappers = Mapper<ContentEntryMapper>().mapArray(JSONObject: response["data"]) {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            
+
             mappers.forEach({ (mapper) in
                 let contentEntry = ContentEntry(mapper: mapper, dataMapper: dataMapper)
-                
+
                 validator.isValid(contentEntry) ? validEntries.append(contentEntry) : invalidEntries.append(contentEntry)
             })
-            
-            let responseData = ResponseData(objects: validEntries, rejectedObjects: invalidEntries, pagingInfo: pageInfo, error: ErrorTransformer.errorFromResponse(response ,error: error))
+
+            let responseData = ResponseData(objects: validEntries, rejectedObjects: invalidEntries, pagingInfo: pageInfo, error: ErrorTransformer.errorFromResponse(response, error: error))
             executeOnMainQueue { self.completion?(responseData) }
-        }
-        else
-        {
-            let responseData = ResponseData(objects: validEntries, rejectedObjects: validEntries, pagingInfo: nil, error: ErrorTransformer.errorFromResponse(response ,error: error))
+        } else {
+            let responseData = ResponseData(objects: validEntries, rejectedObjects: validEntries, pagingInfo: nil, error: ErrorTransformer.errorFromResponse(response, error: error))
             executeOnMainQueue { self.completion?(responseData) }
         }
     }

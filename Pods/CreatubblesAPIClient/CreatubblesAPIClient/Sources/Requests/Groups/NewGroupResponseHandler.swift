@@ -23,10 +23,8 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class NewGroupResponseHandler: GroupResponseHandler
-{
+class NewGroupResponseHandler: GroupResponseHandler {
 
 }

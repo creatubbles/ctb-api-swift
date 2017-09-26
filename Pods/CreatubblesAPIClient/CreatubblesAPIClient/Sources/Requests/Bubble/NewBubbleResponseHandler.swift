@@ -23,32 +23,25 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class NewBubbleResponseHandler: ResponseHandler
-{
+class NewBubbleResponseHandler: ResponseHandler {
     fileprivate let completion: BubbleClousure?
-    
-    init(completion: BubbleClousure?)
-    {
+
+    init(completion: BubbleClousure?) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
-            let mapper = Mapper<BubbleMapper>().map(JSON: response["data"] as! [String : Any])
-        {
-            let metadata = MappingUtils.metadataFromResponse(response)            
+            let mapper = Mapper<BubbleMapper>().map(JSON: response["data"] as! [String : Any]) {
+            let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            
+
             let bubble = Bubble(mapper: mapper, dataMapper: dataMapper)
             executeOnMainQueue { self.completion?(bubble, ErrorTransformer.errorFromResponse(response, error: error)) }
-        }
-        else
-        {
+        } else {
             executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }

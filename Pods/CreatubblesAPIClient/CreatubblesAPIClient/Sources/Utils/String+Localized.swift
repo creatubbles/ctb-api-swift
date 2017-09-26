@@ -24,18 +24,24 @@
 
 import Foundation
 
-extension String
-{
+extension String {
     var localized: String
     {
+        guard let path = Bundle(for: CreatubblesAPIClient.APIClient.self).path(forResource: "CreatubblesAPIClient", ofType: "bundle"),
+            let bundle = Bundle(path: path)
+            else
+        {
+            return NSLocalizedString(self, bundle:  Bundle.main, comment: "")
+        }
+
         // The main language can be forced with the LocalizationConfigurator.
         if let language = LocalizationConfigurator.forcedLanguage,
-            let path = Bundle.main.path(forResource: language, ofType: "lproj"),
-            let bundle = Bundle(path: path) {
-            
-            return NSLocalizedString(self, bundle: bundle, comment: "")
+            let path = bundle.path(forResource: language, ofType: "lproj"),
+            let forcedLanguageBundle = Bundle(path: path)
+        {
+            return NSLocalizedString(self, bundle: forcedLanguageBundle, comment: "")
         }
-        
-        return NSLocalizedString(self, comment: "")
+
+        return NSLocalizedString(self, bundle:  bundle, comment: "")
     }
 }

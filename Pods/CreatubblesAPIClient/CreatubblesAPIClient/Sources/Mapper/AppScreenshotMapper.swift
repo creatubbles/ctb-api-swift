@@ -23,12 +23,10 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class AppScreenshotMapper: Mappable
-{
+class AppScreenshotMapper: Mappable {
     var identifier: String?
     var imageURL: String?
     var isVideo: Bool?
@@ -37,12 +35,11 @@ class AppScreenshotMapper: Mappable
     var provider: String?
     var thumbnailURL: String?
     var position: Int?
-    
-    //MARK: - Mappable
+
+    // MARK: - Mappable
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
+
+    func mapping(map: Map) {
         identifier <- map["id"]
         imageURL <- map["attributes.url"]
         isVideo <- map["attributes.is_video"]
@@ -52,12 +49,12 @@ class AppScreenshotMapper: Mappable
         thumbnailURL <- map["attributes.thumbnail_url"]
         position <- map["attributes.position"]
     }
-    
+
     func parseProvider() -> AppScreenshotProvider {
         if isVideo == false { return .unknown }
         if provider == "vimeo" { return .vimeo }
         if provider == "youtube" { return .youtube }
-        
+
         Logger.log(.warning, "Unknown provider: \(String(describing: self.provider))")
         return .unknown
     }

@@ -25,15 +25,13 @@
 import UIKit
 
 @objc
-open class PagingData: NSObject
-{
+open class PagingData: NSObject {
     open let page: Int
     open let pageSize: Int
-    
-    public init(page: Int, pageSize: Int)
-    {
+
+    public init(page: Int, pageSize: Int) {
         assert(page >= 1, "Page indexing starts from 1")
         self.page = page
         self.pageSize = pageSize
-    }    
+    }
 }

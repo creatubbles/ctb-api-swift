@@ -26,54 +26,45 @@
 import Foundation
 import ObjectMapper
 
-public class ErrorTransformer
-{
-    public static func errorFromResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) -> APIClientError?
-    {
-        if let err = error as? APIClientError
-        {
+public class ErrorTransformer {
+    public static func errorFromResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) -> APIClientError? {
+        if let err = error as? APIClientError {
+            if err.code == APIClientError.PermissionSlipInvalidGuardianEmailCode {
+                return APIClientError.permissionSlipInvalidGuardianEmailError
+            }
             return err
         }
-        if let err = errorsFromResponse(response).first
-        {
+        if let err = errorsFromResponse(response).first {
             return err
         }
-        if let err = error
-        {
+        if let err = error {
             return errorFromNSError(err as NSError)
         }
         return nil
     }
-    
-    static func errorsFromResponse(_ response: Dictionary<String, AnyObject>?) -> Array<APIClientError>
-    {
+
+    static func errorsFromResponse(_ response: Dictionary<String, AnyObject>?) -> Array<APIClientError> {
         if let response = response,
-           let mappers = Mapper<ErrorMapper>().mapArray(JSONObject: response["errors"])
-        {
+           let mappers = Mapper<ErrorMapper>().mapArray(JSONObject: response["errors"]) {
             var errorsArray = Array<APIClientError>()
-            for mapper in mappers
-            {
-                if mapper.status != nil || mapper.statusAsString != nil || mapper.code != nil || mapper.title != nil || mapper.source != nil || mapper.detail != nil
-                {
+            for mapper in mappers {
+                if mapper.status != nil || mapper.statusAsString != nil || mapper.code != nil || mapper.title != nil || mapper.source != nil || mapper.detail != nil {
                     errorsArray.append(APIClientError(status: mapper.status ?? (mapper.statusAsString != nil ? Int(mapper.statusAsString!) : nil), code: mapper.code, title: mapper.title, source: mapper.source, detail: mapper.detail))
                 }
             }
             return errorsArray
-        }
-        else if let response = response,
+        } else if let response = response,
                 let mapper = Mapper<ServerErrorMapper>().map(JSONObject: response),
-                mapper.isValid
-        {
+                mapper.isValid {
             let status = mapper.status ?? (mapper.statusAsString != nil ? Int(mapper.statusAsString!) : nil)
             let error = APIClientError(status: status, code: nil, title: mapper.error, source: nil, detail: nil)
             return [error]
         }
-                
+
          return Array<APIClientError>()
     }
-    
-    static func errorFromNSError(_ error: NSError) -> APIClientError
-    {        
+
+    static func errorFromNSError(_ error: NSError) -> APIClientError {
         return APIClientError(status: error.code,
                               code: APIClientError.DefaultCode,
                               title: error.localizedDescription,
@@ -81,9 +72,8 @@ public class ErrorTransformer
                               detail: error.localizedFailureReason ?? APIClientError.DefaultDomain,
                               domain: error.domain)
     }
-    
-    static func errorFromAuthenticationError(_ authenticationError: AuthenticationError) -> APIClientError
-    {
+
+    static func errorFromAuthenticationError(_ authenticationError: AuthenticationError) -> APIClientError {
         return APIClientError(status: APIClientError.LoginStatus,
                               code: APIClientError.DefaultAuthenticationCode,
                               title: authenticationError.description,

@@ -23,34 +23,28 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class NotificationDAO: NSObject, APIClientDAO
-{
+class NotificationDAO: NSObject, APIClientDAO {
     fileprivate let requestSender: RequestSender
-    
-    required init(dependencies: DAODependencies)
-    {
+
+    required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
-  
-    func getNotifications(pagingData: PagingData?, completion: NotificationsClosure?) -> RequestHandler
-    {
+
+    func getNotifications(pagingData: PagingData?, completion: NotificationsClosure?) -> RequestHandler {
         let request = NotificationsFetchRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = NotificationsFetchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func markNotificationAsRead(notificationIdentifier identifier: String, completion: ErrorClosure?) -> RequestHandler
-    {
+
+    func markNotificationAsRead(notificationIdentifier identifier: String, completion: ErrorClosure?) -> RequestHandler {
         let request = NotificationReadRequest(notificationIdentifier: identifier)
         let handler = NotificationReadResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func trackWhenNotificationsWereViewed(completion: ErrorClosure?) -> RequestHandler
-    {
+
+    func trackWhenNotificationsWereViewed(completion: ErrorClosure?) -> RequestHandler {
         let request = NotificationsViewTrackerRequest()
         let handler = NotificationsViewTrackerResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)

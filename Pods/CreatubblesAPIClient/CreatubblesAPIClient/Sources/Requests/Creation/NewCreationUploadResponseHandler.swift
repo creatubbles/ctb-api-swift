@@ -25,24 +25,18 @@
 import UIKit
 import ObjectMapper
 
-class NewCreationUploadResponseHandler: ResponseHandler
-{
+class NewCreationUploadResponseHandler: ResponseHandler {
     fileprivate let completion: (_ creationUpload: CreationUpload?, _ error: Error?) -> Void
-    init(completion: @escaping (_ creationUpload: CreationUpload?, _ error: Error?) -> Void)
-    {
+    init(completion: @escaping (_ creationUpload: CreationUpload?, _ error: Error?) -> Void) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
-            let mapper = Mapper<CreationUploadMapper>().map(JSON: response["data"] as! [String : Any])
-        {
+            let mapper = Mapper<CreationUploadMapper>().map(JSON: response["data"] as! [String : Any]) {
             let creationUpload = CreationUpload(mapper: mapper)
             executeOnMainQueue { self.completion(creationUpload, error) }
-        }
-        else
-        {
+        } else {
             executeOnMainQueue { self.completion(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }

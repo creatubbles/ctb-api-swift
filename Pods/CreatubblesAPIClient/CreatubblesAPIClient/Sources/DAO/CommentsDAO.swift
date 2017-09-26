@@ -23,55 +23,46 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class CommentsDAO: NSObject, APIClientDAO
-{
+class CommentsDAO: NSObject, APIClientDAO {
     fileprivate let requestSender: RequestSender
-    
-    required init(dependencies: DAODependencies)
-    {
+
+    required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
-    
-    func addComment(commendData data: NewCommentData, completion: ErrorClosure?) -> RequestHandler
-    {
+
+    func addComment(commendData data: NewCommentData, completion: ErrorClosure?) -> RequestHandler {
         let request = NewCommentRequest(data: data)
         let handler = NewCommentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func declineComment(commentIdentifier commentId: String, completion: ErrorClosure?) -> RequestHandler
-    {
+
+    func declineComment(commentIdentifier commentId: String, completion: ErrorClosure?) -> RequestHandler {
         let request = DeclineCommentRequest(commentId: commentId)
         let handler = DeclineCommentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func reportComment(commentIdentifier commentId: String, message: String, completion: ErrorClosure?) -> RequestHandler
-    {
+
+    func reportComment(commentIdentifier commentId: String, message: String, completion: ErrorClosure?) -> RequestHandler {
         let request = ReportCommentRequest(commentId: commentId, message: message)
         let handler = ReportCommentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getComments(creationIdentifier identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
-    {
+
+    func getComments(creationIdentifier identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler {
         let request = CommentsRequest(creationId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = CommentsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getComments(userIdentifier identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
-    {
+
+    func getComments(userIdentifier identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler {
         let request = CommentsRequest(userId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = CommentsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-    
-    func getComments(galleryIdentifier identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler
-    {
+
+    func getComments(galleryIdentifier identifier: String, pagingData: PagingData?, completion: CommentsClosure?) -> RequestHandler {
         let request = CommentsRequest(galleryId: identifier, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = CommentsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)

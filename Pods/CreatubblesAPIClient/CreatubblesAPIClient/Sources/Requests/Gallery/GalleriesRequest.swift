@@ -24,29 +24,26 @@
 
 import UIKit
 
-class GalleriesRequest: Request
-{
-    override var method: RequestMethod   { return .get }
+class GalleriesRequest: Request {
+    override var method: RequestMethod { return .get }
     override var parameters: Dictionary<String, AnyObject> { return prepareParametersDict() }
-    override var endpoint: String
-    {
-        if let id = galleryId  { return "galleries/"+id }
-        if let id = userId     { return "users/\(id)/galleries" }
+    override var endpoint: String {
+        if let id = galleryId { return "galleries/"+id }
+        if let id = userId { return "users/\(id)/galleries" }
         if let id = creationId { return "creations/\(id)/galleries" }
         return "galleries"
     }
-    
+
     fileprivate let galleryId: String?
     fileprivate let userId: String?
     fileprivate let creationId: String?
-    
+
     fileprivate let page: Int?
     fileprivate let perPage: Int?
     fileprivate let sort: SortOrder?
     fileprivate let query: String?
-    
-    init(galleryId: String)
-    {
+
+    init(galleryId: String) {
         self.galleryId = galleryId
         self.page = nil
         self.perPage = nil
@@ -55,9 +52,8 @@ class GalleriesRequest: Request
         self.userId = nil
         self.query = nil
     }
-    
-    init(page: Int?, perPage: Int?, sort: SortOrder?, userId: String?, query: String?)
-    {
+
+    init(page: Int?, perPage: Int?, sort: SortOrder?, userId: String?, query: String?) {
         self.galleryId = nil
         self.page = page
         self.perPage = perPage
@@ -66,9 +62,8 @@ class GalleriesRequest: Request
         self.userId = userId
         self.query = query
     }
-    
-    init(creationId: String, page: Int?, perPage: Int?, sort: SortOrder?)
-    {
+
+    init(creationId: String, page: Int?, perPage: Int?, sort: SortOrder?) {
         self.galleryId = nil
         self.page = page
         self.perPage = perPage
@@ -77,33 +72,25 @@ class GalleriesRequest: Request
         self.userId = nil
         self.query = nil
     }
-    
-    fileprivate func prepareParametersDict() -> Dictionary<String, AnyObject>
-    {
-        if let _ = galleryId
-        {
+
+    fileprivate func prepareParametersDict() -> Dictionary<String, AnyObject> {
+        if let _ = galleryId {
             return Dictionary<String, AnyObject>()
-        }
-        else
-        {
+        } else {
             var dict = Dictionary<String, AnyObject>()
-            if let page = page
-            {
+            if let page = page {
                 dict["page"] = page as AnyObject?
             }
-            if let perPage = perPage
-            {
+            if let perPage = perPage {
                 dict["per_page"] = perPage as AnyObject?
             }
-            if let sort = sort
-            {
+            if let sort = sort {
                 dict["sort"] = Request.sortOrderStringValue(sort) as AnyObject?
             }
-            if let query = query
-            {
+            if let query = query {
                 dict["query"] = query as AnyObject?
             }
-            
+
             return dict
         }
     }

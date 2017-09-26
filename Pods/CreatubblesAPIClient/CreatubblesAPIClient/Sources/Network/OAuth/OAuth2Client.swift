@@ -25,11 +25,9 @@
 import UIKit
 import KeychainAccess
 
-
 public protocol OAuth2Client: class
 {
     var privateAccessToken: String? { get set }
     var publicAccessToken: String? { get set }
     func logout()
 }
-

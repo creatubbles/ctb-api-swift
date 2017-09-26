@@ -3,14 +3,14 @@ use_frameworks!
 inhibit_all_warnings!
 
 def test_pods
-    pod 'Quick', '~> 0.10.0'
-    pod 'Nimble', '~> 5.0.0'
+    pod 'Quick', '~> 1.1.0'
+    pod 'Nimble', '~> 7.0.0'
 end
 
 def shared_pods
     pod 'ObjectMapper', '~> 2.0'
     pod 'XCGLogger', '~> 4.0.0'
-    pod 'RealmSwift', '2.0.3'
+    pod 'RealmSwift',  '~> 2.10.1'
     pod 'KeychainAccess', '~> 3.0.1'
     pod 'SwiftLint'
 end

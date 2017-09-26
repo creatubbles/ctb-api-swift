@@ -23,18 +23,15 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 import ObjectMapper
 
-class NotificationMetadataMapper: Mappable
-{
+class NotificationMetadataMapper: Mappable {
     var totalUnreadCount: Int?
-    
+
     required init?(map: Map) { /* Intentionally left empty  */ }
-    
-    func mapping(map: Map)
-    {
+
+    func mapping(map: Map) {
         totalUnreadCount <- map["total_unread_count"]
     }
 }

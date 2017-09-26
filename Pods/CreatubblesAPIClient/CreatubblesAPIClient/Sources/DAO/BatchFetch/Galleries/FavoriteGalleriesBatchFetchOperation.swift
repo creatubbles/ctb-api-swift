@@ -23,38 +23,33 @@
 //  THE SOFTWARE.
 //
 
-class FavoriteGalleriesBatchFetchOperation: ConcurrentOperation
-{
+class FavoriteGalleriesBatchFetchOperation: ConcurrentOperation {
     private let requestSender: RequestSender
-    
+
     let pagingData: PagingData
     private(set) var galleries: Array<Gallery>?
     private var requestHandler: RequestHandler?
-    
-    init(requestSender: RequestSender, pagingData: PagingData, complete: OperationCompleteClosure?)
-    {
+
+    init(requestSender: RequestSender, pagingData: PagingData, complete: OperationCompleteClosure?) {
         self.requestSender = requestSender
         self.pagingData = pagingData
-        
+
         super.init(complete: complete)
     }
-    
-    override func main()
-    {
+
+    override func main() {
         guard isCancelled == false else { return }
 
-        let request =  FavoriteGalleriesRequest(page: pagingData.page, perPage: pagingData.pageSize)
-        let handler = GalleriesResponseHandler()
-        {
-            [weak self](galleries, pagingInfo, error) -> (Void) in
+        let request = FavoriteGalleriesRequest(page: pagingData.page, perPage: pagingData.pageSize)
+        let handler = GalleriesResponseHandler {
+            [weak self](galleries, _, error) -> (Void) in
             self?.galleries = galleries
             self?.finish(error)
         }
         requestHandler = requestSender.send(request, withResponseHandler: handler)
     }
-    
-    override func cancel()
-    {
+
+    override func cancel() {
         requestHandler?.cancel()
         super.cancel()
     }

@@ -23,17 +23,14 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 @objc
-open class NewGroupData: NSObject
-{
+open class NewGroupData: NSObject {
     let name: String
     let avatarCreationIdentifier: String?
-    
-    init(name: String, avatarCreationIdentifier: String? = nil)
-    {
+
+    init(name: String, avatarCreationIdentifier: String? = nil) {
         self.name = name
         self.avatarCreationIdentifier = avatarCreationIdentifier
     }

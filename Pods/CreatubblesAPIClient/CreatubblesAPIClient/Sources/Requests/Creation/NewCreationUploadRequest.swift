@@ -24,8 +24,7 @@
 
 import UIKit
 
-@objc public enum UploadExtension: Int
-{
+@objc public enum UploadExtension: Int {
     case png
     case jpg
     case jpeg
@@ -41,11 +40,9 @@ import UIKit
     case mov
     case uzpb
     case zip
-    
-    var stringValue: String
-    {
-        switch self
-        {
+
+    var stringValue: String {
+        switch self {
             case .png: return "png"
             case .jpg: return "jpg"
             case .jpeg: return "jpeg"
@@ -63,45 +60,40 @@ import UIKit
             case .zip: return "zip"
         }
     }
-    
-    static func fromString(_ stringValue: String) -> UploadExtension?
-    {
-        if stringValue == "png"   { return .png }
-        if stringValue == "jpg"   { return .jpg }
-        if stringValue == "jpeg"  { return .jpeg }
-        if stringValue == "h264"  { return .h264 }
+
+    static func fromString(_ stringValue: String) -> UploadExtension? {
+        if stringValue == "png" { return .png }
+        if stringValue == "jpg" { return .jpg }
+        if stringValue == "jpeg" { return .jpeg }
+        if stringValue == "h264" { return .h264 }
         if stringValue == "mpeg4" { return .mpeg4 }
-        if stringValue == "wmv"   { return .wmv }
-        if stringValue == "webm"  { return .webm }
-        if stringValue == "flv"   { return .flv }
-        if stringValue == "ogg"   { return .ogg }
-        if stringValue == "ogv"   { return .ogv }
-        if stringValue == "mp4"   { return .mp4 }
-        if stringValue == "m4v"   { return .m4V }
-        if stringValue == "mov"   { return .mov }
-        if stringValue == "uzpb"  { return .uzpb }
+        if stringValue == "wmv" { return .wmv }
+        if stringValue == "webm" { return .webm }
+        if stringValue == "flv" { return .flv }
+        if stringValue == "ogg" { return .ogg }
+        if stringValue == "ogv" { return .ogv }
+        if stringValue == "mp4" { return .mp4 }
+        if stringValue == "m4v" { return .m4V }
+        if stringValue == "mov" { return .mov }
+        if stringValue == "uzpb" { return .uzpb }
         return nil
     }
 }
 
-class NewCreationUploadRequest: Request
-{
-    override var method: RequestMethod  { return .post }
-    override var endpoint: String       { return "creations/"+creationId+"/uploads" }
-    override var parameters: Dictionary<String, AnyObject>
-    {
-        if let ext = creationExtension
-        {
+class NewCreationUploadRequest: Request {
+    override var method: RequestMethod { return .post }
+    override var endpoint: String { return "creations/"+creationId+"/uploads" }
+    override var parameters: Dictionary<String, AnyObject> {
+        if let ext = creationExtension {
             return ["extension": ext.stringValue as AnyObject]
         }
         return Dictionary<String, AnyObject>()
     }
-    
+
     fileprivate let creationId: String
     fileprivate let creationExtension: UploadExtension?
-    
-    init(creationId: String, creationExtension: UploadExtension? = nil)
-    {
+
+    init(creationId: String, creationExtension: UploadExtension? = nil) {
         self.creationId = creationId
         self.creationExtension = creationExtension
     }

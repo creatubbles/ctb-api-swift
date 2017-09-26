@@ -23,18 +23,15 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class DeleteBubbleRequest: Request
-{
-    override var method: RequestMethod  { return .delete }
-    override var parameters: Dictionary<String, AnyObject> { return Dictionary<String,AnyObject>() }
+class DeleteBubbleRequest: Request {
+    override var method: RequestMethod { return .delete }
+    override var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
     override var endpoint: String { return "bubbles/\(identifier)" }
-    
+
     fileprivate let identifier: String
-    init(bubbleId: String)
-    {
+    init(bubbleId: String) {
         self.identifier = bubbleId
     }
 }

@@ -25,30 +25,22 @@
 import UIKit
 import ObjectMapper
 
-class LandingURLResponseHandler: ResponseHandler
-{
+class LandingURLResponseHandler: ResponseHandler {
     fileprivate let completion: LandingURLClosure?
-    init(completion: LandingURLClosure?)
-    {
+    init(completion: LandingURLClosure?) {
         self.completion = completion
     }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
-    {
+
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
-            let mappers = Mapper<LandingURLMapper>().mapArray(JSONObject: response["data"])
-        {
+            let mappers = Mapper<LandingURLMapper>().mapArray(JSONObject: response["data"]) {
             let landingUrls = mappers.map({ LandingURL(mapper: $0) })
             executeOnMainQueue { self.completion?(landingUrls, ErrorTransformer.errorFromResponse(response, error: error)) }
-        }
-        else if let response = response,
-                let mapper = Mapper<LandingURLMapper>().map(JSON: response["data"] as! [String : Any])
-        {
+        } else if let response = response,
+                let mapper = Mapper<LandingURLMapper>().map(JSON: response["data"] as! [String : Any]) {
             let landingURL = LandingURL(mapper: mapper)
             executeOnMainQueue { self.completion?([landingURL], ErrorTransformer.errorFromResponse(response, error: error)) }
-        }
-        else
-        {
+        } else {
             executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }

@@ -25,8 +25,7 @@
 import Foundation
 import RealmSwift
 
-class CreationUploadEntity: Object
-{
+class CreationUploadEntity: Object {
     dynamic var identifier: String?
     dynamic var uploadUrl: String?
     dynamic var contentType: String?

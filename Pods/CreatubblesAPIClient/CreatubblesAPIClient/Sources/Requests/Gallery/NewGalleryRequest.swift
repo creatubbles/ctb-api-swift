@@ -24,37 +24,33 @@
 
 import UIKit
 
-class NewGalleryRequest: Request
-{
-    override var method: RequestMethod  { return .post }
-    override var endpoint: String       { return "galleries" }
+class NewGalleryRequest: Request {
+    override var method: RequestMethod { return .post }
+    override var endpoint: String { return "galleries" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
-    
+
     fileprivate let name: String
     fileprivate let galleryDescription: String
     fileprivate let openForAll: Bool
     fileprivate let ownerId: String?
-    
-    init(name: String, galleryDescription: String, openForAll: Bool = false, ownerId: String? = nil)
-    {
+
+    init(name: String, galleryDescription: String, openForAll: Bool = false, ownerId: String? = nil) {
         self.name = name
         self.galleryDescription = galleryDescription
         self.openForAll = openForAll
         self.ownerId = ownerId
     }
-    
-    fileprivate func prepareParameters() -> Dictionary<String, AnyObject>
-    {
+
+    fileprivate func prepareParameters() -> Dictionary<String, AnyObject> {
         var params = Dictionary<String, AnyObject>()
         params["name"] = name as AnyObject?
         params["description"] = galleryDescription as AnyObject?
         params["open_for_all"] = openForAll ? true as AnyObject? : false as AnyObject?
-        
-        if let ownerId = ownerId
-        {
+
+        if let ownerId = ownerId {
             params["owner_id"] = ownerId as AnyObject?
         }
-        
+
         return params
     }
 }

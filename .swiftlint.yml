@@ -48,7 +48,9 @@ disabled_rules:
   - force_try # 1
   - trailing_whitespace
   - opening_brace
-
+  - void_return
+  - empty_parentheses_with_trailing_closure
+  - operator_usage_whitespace
 included:
   - CreatubblesAPIClient
   - CreatubblesAPIClientIntegrationTests
@@ -57,4 +59,3 @@ included:
 
 excluded:
   - Pods
-

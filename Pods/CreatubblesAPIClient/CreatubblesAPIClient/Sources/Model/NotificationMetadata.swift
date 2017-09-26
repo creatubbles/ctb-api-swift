@@ -23,15 +23,12 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class NotificationMetadata: NSObject
-{
+class NotificationMetadata: NSObject {
     let totalUnreadCount: Int?
-    
-    init(mapper: NotificationMetadataMapper)
-    {
+
+    init(mapper: NotificationMetadataMapper) {
         totalUnreadCount = mapper.totalUnreadCount ?? 0
     }
 }

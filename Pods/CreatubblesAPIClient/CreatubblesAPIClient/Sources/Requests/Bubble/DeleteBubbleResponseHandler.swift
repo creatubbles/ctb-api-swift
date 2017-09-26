@@ -23,10 +23,8 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
-class DeleteBubbleResponseHandler: ErrorResponseHandler
-{
+class DeleteBubbleResponseHandler: ErrorResponseHandler {
 
 }

@@ -24,62 +24,50 @@
 
 import UIKit
 
-class DatabaseDAO: NSObject, APIClientDAO
-{
+class DatabaseDAO: NSObject, APIClientDAO {
     private let databaseService = DatabaseService()
-    
-    required init(dependencies: DAODependencies)
-    {
+
+    required init(dependencies: DAODependencies) {
         //Required by APIClientDAO. Intentionally left empty.
     }
-    
-    override init()
-    {
+
+    override init() {
         //Intentionally left empty
     }
-    
-    func saveCreationUploadSessionToDatabase(_ creationUploadSession: CreationUploadSession)
-    {
+
+    func saveCreationUploadSessionToDatabase(_ creationUploadSession: CreationUploadSession) {
         databaseService.saveCreationUploadSessionToDatabase(creationUploadSession)
     }
-    
-    func fetchAllCreationUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession>
-    {
+
+    func fetchAllCreationUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession> {
         return databaseService.fetchAllCreationUploadSessions(requestSender)
     }
-    
-    func fetchASingleCreationUploadSessionWithLocalIdentifier(_ localIdentifier: String) -> CreationUploadSessionEntity?
-    {
+
+    func fetchASingleCreationUploadSessionWithLocalIdentifier(_ localIdentifier: String) -> CreationUploadSessionEntity? {
         return databaseService.fetchASingleCreationUploadSessionWithLocalIdentifier(localIdentifier)
     }
-    
-    func fetchAllFinishedUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession>
-    {
+
+    func fetchAllFinishedUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession> {
         return databaseService.getAllFinishedUploadSessions(requestSender)
     }
-    
-    func fetchAllActiveUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession>
-    {
+
+    func fetchAllActiveUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession> {
         return databaseService.getAllActiveUploadSessions(requestSender)
     }
-    
-    func getAllActiveUploadSessionsPublicData(_ requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
-    {
+
+    func getAllActiveUploadSessionsPublicData(_ requestSender: RequestSender) -> Array<CreationUploadSessionPublicData> {
         return databaseService.getAllActiveUploadSessionsPublicData(requestSender)
     }
-    
-    func getAllFinishedUploadSessionsPublicData(_ requestSender: RequestSender) -> Array<CreationUploadSessionPublicData>
-    {
+
+    func getAllFinishedUploadSessionsPublicData(_ requestSender: RequestSender) -> Array<CreationUploadSessionPublicData> {
         return databaseService.getAllFinishedUploadSessionPublicData(requestSender)
     }
-    
-    func removeUploadSession(withIdentifier identifier: String)
-    {
+
+    func removeUploadSession(withIdentifier identifier: String) {
         databaseService.removeUploadSession(withIdentifier: identifier)
     }
-    
-    func removeAllUploadSessions()
-    {
+
+    func removeAllUploadSessions() {
         databaseService.removeAllUploadSessions()
     }
 }

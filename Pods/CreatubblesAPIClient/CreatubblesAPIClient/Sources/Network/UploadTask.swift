@@ -23,7 +23,6 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 typealias UploadProgressHandler = (Progress) -> Void
@@ -33,21 +32,21 @@ class UploadTask: NSObject, Cancelable {
     private var uploadProgress: Progress = Progress(totalUnitCount: 0)
     var uploadProgressHandler: UploadProgressHandler?
     var completionHandler: UploadCompletionHandler?
-    
+
     let task: URLSessionTask
-     
+
     init(task: URLSessionTask) {
         self.task = task
     }
-    
+
     func cancel() {
         task.cancel()
     }
-    
+
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         uploadProgress.totalUnitCount = totalBytesExpectedToSend
         uploadProgress.completedUnitCount = totalBytesSent
-        
+
         uploadProgressHandler?(uploadProgress)
     }
 }

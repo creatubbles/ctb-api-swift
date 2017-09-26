@@ -23,7 +23,6 @@
 //  THE SOFTWARE.
 //
 
-
 import UIKit
 
 protocol Validatable {
@@ -31,14 +30,14 @@ protocol Validatable {
 }
 
 class ContentDataFilter: NSObject, Validatable {
-    
+
     func isValid(_ object: AnyObject) -> Bool {
         guard let contentEntry = object as? ContentEntry else { return false }
-        
+
         if contentEntry.type == .none {
             return false
         }
-        
+
         return contentEntry.user != nil || contentEntry.gallery != nil || contentEntry.creation != nil || contentEntry.partnerApplication != nil
     }
 }
