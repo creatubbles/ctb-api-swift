@@ -89,7 +89,7 @@ open class APIClientSettings: NSObject {
     let oauth2Client: OAuth2Client
     
     /*
-     
+        Device type used to communicate with Creatubbles. Available devices: iPad or iPhone.
      */
     let deviceType: APIClientDeviceType
     

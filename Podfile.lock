@@ -19,7 +19,7 @@ PODS:
   - XCGLogger/Core (4.0.0)
 
 DEPENDENCIES:
-  - CreatubblesAPIClient (from `https://github.com/creatubbles/ctb-api-swift.git`, branch `feature/469_xcode_9`)
+  - CreatubblesAPIClient (from `https://github.com/creatubbles/ctb-api-swift.git`, branch `develop`)
   - KeychainAccess (~> 3.0.1)
   - Nimble (~> 7.0.0)
   - ObjectMapper (~> 2.0)
@@ -30,12 +30,12 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   CreatubblesAPIClient:
-    :branch: feature/469_xcode_9
+    :branch: develop
     :git: https://github.com/creatubbles/ctb-api-swift.git
 
 CHECKOUT OPTIONS:
   CreatubblesAPIClient:
-    :commit: b91e5c8026816c117596f39bcb60a52b88cab1c2
+    :commit: 531805ee39bbf6a157fdaedf3ef32595d81d6fe2
     :git: https://github.com/creatubbles/ctb-api-swift.git
 
 SPEC CHECKSUMS:
@@ -49,6 +49,6 @@ SPEC CHECKSUMS:
   SwiftLint: 1134786caedd2caab0560d2f36b76414a5a56808
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: e4ee83bdbb23b3862d8d377e2d8210c6d1bd1567
+PODFILE CHECKSUM: 7b2b89173957fddf1cc4bd5737f17e58bd7e1404
 
 COCOAPODS: 1.3.1
