@@ -1,5 +1,5 @@
 //
-//  DeclineCommentRequestSpec.swift
+//  ApproveCommentResponseHandlerSpec.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -26,22 +26,28 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class DeclineCommentRequestSpec: QuickSpec {
-
+class ApproveCommentResponseHandlerSpec: QuickSpec {
+    
     override func spec() {
-
-        describe("Decline a comment request") {
-
-            it("Should have proper endpoint for comment") {
-                let commentId = "commentId"
-                let request = DeclineCommentRequest(commentId: commentId)
-                expect(request.endpoint) == "comments/\(commentId)/approval"
-            }
-
-            it("Should have proper method") {
-                let commentId = "commentId"
-                let request = DeclineCommentRequest(commentId: commentId)
-                expect(request.method) == RequestMethod.delete
+        describe("Approve a comment response handler") {
+            
+            it("Should correctly approve a comment") {
+                let sender = TestComponentsFactory.requestSender
+                
+                guard let commentIdentifier = TestConfiguration.testCommentIdentifierToApprove else { return }
+                
+                waitUntil(timeout: TestConfiguration.timeoutShort) { done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
+                        (error: Error?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(ApproveCommentRequest(commentId: commentIdentifier), withResponseHandler: ApproveCommentResponseHandler {
+                            (error) -> Void in
+                            expect(error).to(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
             }
         }
     }

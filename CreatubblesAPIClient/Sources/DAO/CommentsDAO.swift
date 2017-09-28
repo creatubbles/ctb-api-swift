@@ -37,6 +37,12 @@ class CommentsDAO: NSObject, APIClientDAO {
         let handler = NewCommentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func approveComment(commentIdentifier commentId: String, completion: ErrorClosure?) -> RequestHandler {
+        let request = ApproveCommentRequest(commentId: commentId)
+        let handler = ApproveCommentResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 
     func declineComment(commentIdentifier commentId: String, completion: ErrorClosure?) -> RequestHandler {
         let request = DeclineCommentRequest(commentId: commentId)
