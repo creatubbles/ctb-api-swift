@@ -547,6 +547,10 @@ open func getCreation(creationId: String, completion: CreationClosure?) -> Reque
     open func addComment(data: NewCommentData, completion: ErrorClosure?) -> RequestHandler {
         return daoAssembly.assembly(CommentsDAO.self).addComment(commendData: data, completion: completion)
     }
+    
+    open func approveComment(commentId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CommentsDAO.self).approveComment(commentIdentifier: commentId, completion: completion)
+    }
 
     open func declineComment(commentId: String, completion: ErrorClosure?) -> RequestHandler {
         return daoAssembly.assembly(CommentsDAO.self).declineComment(commentIdentifier: commentId, completion: completion)

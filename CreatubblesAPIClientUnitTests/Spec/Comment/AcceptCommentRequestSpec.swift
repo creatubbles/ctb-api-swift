@@ -1,5 +1,5 @@
 //
-//  DeclineCommentRequestSpec.swift
+//  ApproveCommentRequestSpec.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -26,22 +26,22 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class DeclineCommentRequestSpec: QuickSpec {
-
+class ApproveCommentRequestSpec: QuickSpec {
+    
     override func spec() {
-
-        describe("Decline a comment request") {
-
+        
+        describe("Approve a comment request") {
+            
             it("Should have proper endpoint for comment") {
                 let commentId = "commentId"
-                let request = DeclineCommentRequest(commentId: commentId)
+                let request = ApproveCommentRequest(commentId: commentId)
                 expect(request.endpoint) == "comments/\(commentId)/approval"
             }
-
+            
             it("Should have proper method") {
                 let commentId = "commentId"
-                let request = DeclineCommentRequest(commentId: commentId)
-                expect(request.method) == RequestMethod.delete
+                let request = ApproveCommentRequest(commentId: commentId)
+                expect(request.method) == RequestMethod.post
             }
         }
     }

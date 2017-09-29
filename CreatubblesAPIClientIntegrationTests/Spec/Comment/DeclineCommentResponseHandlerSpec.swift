@@ -1,5 +1,5 @@
 //
-//  CreationUploadMapper.swift
+//  DeclineCommentResponseHandlerSpec.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
