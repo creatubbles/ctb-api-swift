@@ -38,11 +38,13 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec {
                 waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
                     _ = sender.send(request, withResponseHandler:NotificationsFetchResponseHandler {
-                        (responseData, unreadNotificationsCount) -> (Void) in
+                        (responseData, newNotificationsCount, unreadNotificationsCount, hasUnreadNotifications) -> (Void) in
                         expect(responseData?.objects).to(beNil())
                         expect(responseData?.pagingInfo).to(beNil())
                         expect(responseData?.error).notTo(beNil())
+                        expect(newNotificationsCount).to(beNil())
                         expect(unreadNotificationsCount).to(beNil())
+                        expect(hasUnreadNotifications).to(beNil())
                         done()
                     })
                 }
@@ -57,12 +59,14 @@ class NotificationsFetchResponseHandlerSpec: QuickSpec {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
                         _ = sender.send(request, withResponseHandler:NotificationsFetchResponseHandler {
-                            (responseData, unreadNotificationsCount) -> (Void) in
+                            (responseData, newNotificationsCount, unreadNotificationsCount, hasUnreadNotifications) -> (Void) in
                             expect(responseData?.objects).notTo(beNil())
                             expect(responseData?.objects).notTo(beEmpty())
                             expect(responseData?.pagingInfo).notTo(beNil())
                             expect(responseData?.error).to(beNil())
+                            expect(newNotificationsCount).notTo(beNil())
                             expect(unreadNotificationsCount).notTo(beNil())
+                            expect(hasUnreadNotifications).notTo(beNil())
                             done()
                         })
                     }
