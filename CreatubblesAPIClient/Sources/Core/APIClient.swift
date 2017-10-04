@@ -52,7 +52,7 @@ public typealias BubblesClousure = (Array<Bubble>?, PagingInfo?, APIClientError?
 
 public typealias ContentEntryClosure = (ResponseData<ContentEntry>) -> (Void)
 public typealias CustomStyleClosure = (CustomStyle?, APIClientError?) -> (Void)
-public typealias NotificationsClosure = (ResponseData<Notification>?, _ unreadNotificationsCount: Int?) -> (Void)
+public typealias NotificationsClosure = (ResponseData<Notification>?, _ newNotificationsCount: Int?, _ unreadNotificationsCount: Int?, _ hasUnreadNotifications: Bool?) -> (Void)
 
 public typealias SwitchUserClosure = (String?, APIClientError?) -> (Void)
 public typealias UserAccountDetailsClosure = (UserAccountDetails?, APIClientError?) -> (Void)
