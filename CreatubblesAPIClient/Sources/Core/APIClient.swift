@@ -121,6 +121,7 @@ open class ResponseData<T> {
     case anotherComment
     case newCommentForCreationUsers
     case multipleCreatorsCreated
+    case receivedFavorite
     case translationTip
     case customizeTip
     case galleriesTip
