@@ -82,6 +82,7 @@ class NotificationMapper: Mappable {
         if type == "another_comment" { return .anotherComment }
         if type == "new_comment_for_creation_users" { return .newCommentForCreationUsers }
         if type == "multiple_creators_created" { return .multipleCreatorsCreated }
+        if type == "received_favorite" { return .receivedFavorite}
         if type == "translation_tip" { return .translationTip }
         if type == "customize_tip" { return .customizeTip }
         if type == "galleries_tip" { return .galleriesTip }
