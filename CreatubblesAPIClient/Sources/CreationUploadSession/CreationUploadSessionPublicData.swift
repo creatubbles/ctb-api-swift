@@ -59,4 +59,8 @@ open class CreationUploadSessionPublicData: NSObject {
             status = .inProgress
         }
     }
+
+    open func includesSubmittingToGallery(withIdentifier galleryIdentifier: String) -> Bool {
+        return creationData.galleryIds?.contains(galleryIdentifier) ?? false
+    }
 }
