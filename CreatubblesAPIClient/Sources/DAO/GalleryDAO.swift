@@ -150,7 +150,7 @@ public class GalleryDAO: NSObject, APIClientDAO {
     
     func incrementViewsCount(galleryIdentifier galleryId: String, completion: ErrorClosure?) -> RequestHandler {
         let request = GalleryViewsCountIncrementRequest(galleryIdentifier: galleryId)
-        let handler = ErrorResponseHandler(completion: completion)
+        let handler = GalleryViewsCountIncrementResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
 }

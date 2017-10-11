@@ -84,7 +84,7 @@ class CreationsDAO: NSObject, APIClientDAO {
     
     func incrementViewsCount(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler {
         let request = CreationViewsCountIncrementRequest(creationIdentifier: creationId)
-        let handler = ErrorResponseHandler(completion: completion)
+        let handler = CreationViewsCountIncrementResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
 
