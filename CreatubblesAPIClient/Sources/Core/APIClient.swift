@@ -408,11 +408,15 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     open func submitCreationToGalleries(creationId: String, galleryIdentifiers: Array<String>, completion: ErrorClosure?) -> RequestHandler {
         return daoAssembly.assembly(GalleryDAO.self).submitCreationToGalleries(creationId: creationId, galleryIdentifiers: galleryIdentifiers, completion: completion)
     }
-
+    
+    open func incrementViewsCount(galleryIdentifier galleryId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(GalleryDAO.self).incrementViewsCount(galleryIdentifier: galleryId, completion: completion)
+    }
+    
     // MARK: - Creation managment
-open func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler {
-    return daoAssembly.assembly(CreationsDAO.self).getCreation(creationIdentifier: creationId, completion: completion)
-}
+    open func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CreationsDAO.self).getCreation(creationIdentifier: creationId, completion: completion)
+    }
 
     open func reportCreation(creationId: String, message: String, completion: ErrorClosure?) -> RequestHandler {
         return daoAssembly.assembly(CreationsDAO.self).reportCreation(creationIdentifier: creationId, message: message, completion: completion)
@@ -445,7 +449,11 @@ open func getCreation(creationId: String, completion: CreationClosure?) -> Reque
     open func getToybooCreation(creationId: String, completion: ToybooCreationClosure?) -> RequestHandler {
         return daoAssembly.assembly(CreationsDAO.self).getToybooCreation(creationIdentifier: creationId, completion: completion)
     }
-
+    
+    open func incrementViewsCount(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CreationsDAO.self).incrementViewsCount(creationIdentifier: creationId, completion: completion)
+    }
+    
     // MARK: - Upload Sessions
     open func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData> {
         return creationUploadService.getAllActiveUploadSessionsPublicData()

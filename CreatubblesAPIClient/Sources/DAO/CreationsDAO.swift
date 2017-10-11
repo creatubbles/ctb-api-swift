@@ -71,7 +71,6 @@ class CreationsDAO: NSObject, APIClientDAO {
     }
 
     func removeCreation(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler {
-
         let request = RemoveCreationRequest(creationId: creationId)
         let handler = RemoveCreationResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
@@ -80,6 +79,12 @@ class CreationsDAO: NSObject, APIClientDAO {
     func getToybooCreation(creationIdentifier creationId: String, completion: ToybooCreationClosure?) -> RequestHandler {
         let request = FetchToybooCreationRequest(creationId: creationId)
         let handler = FetchToybooCreationResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func incrementViewsCount(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler {
+        let request = CreationViewsCountIncrementRequest(creationIdentifier: creationId)
+        let handler = ErrorResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
 

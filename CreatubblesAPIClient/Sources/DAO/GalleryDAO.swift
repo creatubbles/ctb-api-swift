@@ -147,4 +147,10 @@ public class GalleryDAO: NSObject, APIClientDAO {
         let fetcher = FeaturedGalleriesQueueBatchFetcher(requestSender: requestSender, completion: completion)
         return fetcher.fetch()
     }
+    
+    func incrementViewsCount(galleryIdentifier galleryId: String, completion: ErrorClosure?) -> RequestHandler {
+        let request = GalleryViewsCountIncrementRequest(galleryIdentifier: galleryId)
+        let handler = ErrorResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 }
