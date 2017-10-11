@@ -23,7 +23,6 @@
 //  THE SOFTWARE.
 //
 
-
 import Quick
 import Nimble
 @testable import CreatubblesAPIClient
@@ -60,7 +59,7 @@ class CreationViewsCountIncrementResponseHandlerSpec: QuickSpec
             
             context("User not logged in")
             {
-                it("Should return an error")
+                it("Should increment creation views count")
                 {
                     guard let creationIdentifier = TestConfiguration.testCreationIdentifier
                         else { return }
@@ -74,7 +73,7 @@ class CreationViewsCountIncrementResponseHandlerSpec: QuickSpec
                             expect(error).to(beNil())
                             _ = requestSender.send(request, withResponseHandler: CreationViewsCountIncrementResponseHandler(completion: {
                                 (error) -> (Void) in
-                                expect(error).notTo(beNil())
+                                expect(error).to(beNil())
                                 done()
                             }))
                         }
