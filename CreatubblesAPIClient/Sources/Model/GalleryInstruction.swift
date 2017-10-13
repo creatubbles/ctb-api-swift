@@ -31,8 +31,9 @@ public class GalleryInstruction: NSObject, Identifiable {
     public let title: String?
     public let descriptionText: String?
     public let imageUrl: String?
-    public let videoUrl: String?
-    
+    public let video480Url: String?
+    public let video720Url: String?
+
     init(mapper: GalleryInstructionMapper)
     {
         identifier = mapper.identifier!
@@ -40,6 +41,7 @@ public class GalleryInstruction: NSObject, Identifiable {
         title = mapper.title
         descriptionText = mapper.descriptionText
         imageUrl = mapper.imageUrl
-        videoUrl = mapper.videoUrl
+        video480Url = mapper.video480Url
+        video720Url = mapper.video720Url
     }
 }

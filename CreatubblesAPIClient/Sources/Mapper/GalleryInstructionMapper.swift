@@ -32,7 +32,8 @@ class GalleryInstructionMapper: Mappable {
     var title: String?
     var descriptionText: String?
     var imageUrl: String?
-    var videoUrl: String?
+    var video480Url: String?
+    var video720Url: String?
     
     required init?(map: Map) { /* Intentionally left empty  */ }
     
@@ -43,6 +44,7 @@ class GalleryInstructionMapper: Mappable {
         title <- map["attributes.title"]
         descriptionText <- map["attributes.content"]
         imageUrl <- map["attributes.image.links.list_view"]
-        videoUrl <- map["attributes.video"]
+        video480Url <- map["attributes.video_480_url"]
+        video720Url <- map["attributes.video_720_url"]
     }
 }
