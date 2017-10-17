@@ -58,7 +58,6 @@ open class Gallery: NSObject, Identifiable {
     open let galleryInstructionRelationships: Array<Relationship>?
     open let galleryInstructions: Array<GalleryInstruction>?
     open let galleryConnectedPartnersRelationships: Array<Relationship>?
-    open let galleryConnectedPartners: Array<PartnerApplication>?
 
     // MARK: - Metadata
     open let isBubbled: Bool
@@ -100,6 +99,5 @@ open class Gallery: NSObject, Identifiable {
         galleryInstructions = galleryInstructionRelationships?.flatMap { MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: GalleryInstruction.self) }
         
         galleryConnectedPartnersRelationships = mapper.parseConnectedPartnersRelashionships()
-        galleryConnectedPartners = galleryConnectedPartnersRelationships?.flatMap { MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: PartnerApplication.self) }
     }
 }
