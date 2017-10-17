@@ -49,7 +49,8 @@ class GalleryMapper: Mappable {
 
     var challengePublishedAt: Date?
     var galleryInstructionRelationships: Array<RelationshipMapper>?
-
+    var connectedPartnersRelashionships: Array<RelationshipMapper>?
+    
     required init?(map: Map) { /* Intentionally left empty  */ }
 
     func mapping(map: Map) {
@@ -77,6 +78,7 @@ class GalleryMapper: Mappable {
 
         challengePublishedAt <- (map["attributes.challenge_published_at"], APIClientDateTransform.sharedTransform)
         galleryInstructionRelationships <- map["relationships.gallery_howto_sections.data"]
+        connectedPartnersRelashionships <- map["relationships.connected_partner_applications.data"]
     }
 
     // MARK: Parsing
@@ -86,5 +88,9 @@ class GalleryMapper: Mappable {
     
     func parseGalleryInstructionRelationships() -> Array<Relationship>? {
         return galleryInstructionRelationships?.flatMap { MappingUtils.relationshipFromMapper($0) }
+    }
+    
+    func parseConnectedPartnersRelashionships() -> Array<Relationship>? {
+        return connectedPartnersRelashionships?.flatMap { MappingUtils.relationshipFromMapper($0) }
     }
 }
