@@ -49,7 +49,31 @@ class GalleriesResponseHandlerSpec: QuickSpec {
                     }
                 }
             }
+            
+            fit("Should return galleries owned by a user if .owned filter passed") {
+                guard let userIdentifier = TestConfiguration.testUserIdentifier
+                else { return }
+                
+                let request = GalleriesRequest(page: nil, perPage: nil, sort: nil, filter: .owned, userId: userIdentifier, query: nil)
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
+                    done in
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
+                        (error: Error?) -> Void in
+                        expect(error).to(beNil())
+                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler {
+                            (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
+                            expect(galleries).notTo(beNil())
+                            expect(error).to(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
 
+            }
+            
             it("Should return correct value for single gallery after login ") {
                 let request = GalleriesRequest(galleryId: "NrLLiMVC")
                 let sender = TestComponentsFactory.requestSender
@@ -91,7 +115,6 @@ class GalleriesResponseHandlerSpec: QuickSpec {
                             })
                     }
                 }
-
             }
 
             it("Should not return errors when not logged in") {
