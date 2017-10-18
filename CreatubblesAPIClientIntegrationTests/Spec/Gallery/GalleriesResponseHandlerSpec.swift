@@ -66,6 +66,9 @@ class GalleriesResponseHandlerSpec: QuickSpec {
                             expect(galleries).notTo(beNil())
                             expect(error).to(beNil())
                             expect(pageInfo).notTo(beNil())
+                            galleries?.forEach {
+                                expect($0.owner?.identifier).to(equal(userIdentifier))
+                            }
                             sender.logout()
                             done()
                         })
