@@ -51,7 +51,7 @@ class GalleriesResponseHandlerSpec: QuickSpec {
             }
 
             it("Should return correct value for single gallery after login ") {
-                let request = GalleriesRequest(galleryId: "NrLLiMVC")
+                let request = GalleriesRequest(galleryId: "wkGDesdl")
                 let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in

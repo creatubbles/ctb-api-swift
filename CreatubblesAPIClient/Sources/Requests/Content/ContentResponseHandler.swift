@@ -42,7 +42,7 @@ public class ContentResponseHandler: ResponseHandler {
             let mappers = Mapper<ContentEntryMapper>().mapArray(JSONObject: response["data"]) {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
-            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
+            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata, allow2ndLevelRelationships: false)
 
             mappers.forEach({ (mapper) in
                 let contentEntry = ContentEntry(mapper: mapper, dataMapper: dataMapper)

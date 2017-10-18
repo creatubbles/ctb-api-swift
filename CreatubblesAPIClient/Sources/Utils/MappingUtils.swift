@@ -59,9 +59,9 @@ public class MappingUtils {
         return ( metadataMapper != nil ) ? NotificationMetadata(mapper: metadataMapper!) : nil
     }
 
-    public class func dataIncludeMapperFromResponse(_ response: Dictionary<String, AnyObject>, metadata: Metadata?) -> DataIncludeMapper? {
+    public class func dataIncludeMapperFromResponse(_ response: Dictionary<String, AnyObject>, metadata: Metadata?, allow2ndLevelRelationships: Bool = true) -> DataIncludeMapper? {
         let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
-        return ( includedResponse == nil ) ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
+        return ( includedResponse == nil ) ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata, allow2ndLevelRelationships: allow2ndLevelRelationships)
     }
 
     public class func bubbledStateFrom(metadata: Metadata?, forObjectWithIdentifier identifier: String) -> Bool {

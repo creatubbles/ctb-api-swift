@@ -430,8 +430,6 @@
 		B225DF751EB31F2200AB6F4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF731EB31F2200AB6F4C /* Main.storyboard */; };
 		B225DF771EB31F2200AB6F4C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		B225DF7A1EB31F2200AB6F4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF781EB31F2200AB6F4C /* LaunchScreen.storyboard */; };
-		C9447B5B1F97403C005719FF /* PartnerApplicationsShortMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9447B5A1F97403C005719FF /* PartnerApplicationsShortMapper.swift */; };
-		C9447B5D1F97413B005719FF /* PartnerApplicationShort.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9447B5C1F97413B005719FF /* PartnerApplicationShort.swift */; };
 		DCB6AE268E81388D94B0CE09 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		DF413EEFCF6E24450841A6BB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D5DF300DAE4BC13E0AD21 /* Pods_CreatubblesAPIClient.framework */; };
 		FE0EAC71BB3B3D2D33C67AA0 /* Pods_CreatubblesAPIClientUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */; };
@@ -912,8 +910,6 @@
 		6B416A741F617AC900A63478 /* SearchTagsFetchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTagsFetchResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		7997D36B21B419F654577C4A /* Pods-CreatubblesAPIClientDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9447B5A1F97403C005719FF /* PartnerApplicationsShortMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerApplicationsShortMapper.swift; sourceTree = "<group>"; };
-		C9447B5C1F97413B005719FF /* PartnerApplicationShort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerApplicationShort.swift; sourceTree = "<group>"; };
 		D304F60C707EA93E6195508E /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
 		DA9EC9D915023C993B9C5639 /* Pods-CreatubblesAPIClientUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		E29F3593FA73048027A65EE1 /* Pods_CreatubblesAPIClientDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1152,7 +1148,6 @@
 				21CC9E3F1DF834A100C6538C /* SearchTag.swift */,
 				08C781E71E1CFFA60005864F /* AppScreenshot.swift */,
 				188E033C1F305553005630D0 /* GalleryInstruction.swift */,
-				C9447B5C1F97413B005719FF /* PartnerApplicationShort.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1832,7 +1827,6 @@
 				08C781E91E1D03B80005864F /* AppScreenshotMapper.swift */,
 				1854883B1E719C310047AC3B /* ServerErrorMapper.swift */,
 				6B416A6E1F616A5000A63478 /* SearchTagMapper.swift */,
-				C9447B5A1F97403C005719FF /* PartnerApplicationsShortMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -2710,7 +2704,6 @@
 				18F6E8831D021B6500AAC5FB /* BubblesFetchResponseHandler.swift in Sources */,
 				18431BC81E12A65400CEDE83 /* GallerySubmitOperation.swift in Sources */,
 				18290AED1D06E44B000EA216 /* NotificationTextEntity.swift in Sources */,
-				C9447B5B1F97403C005719FF /* PartnerApplicationsShortMapper.swift in Sources */,
 				18F91EAD1F8E0BE60021F1BF /* CreationViewsCountIncrementResponseHandler.swift in Sources */,
 				6B416A6F1F616A5000A63478 /* SearchTagMapper.swift in Sources */,
 				180C97B11C6DEA4100BC682D /* Creation.swift in Sources */,
@@ -2866,7 +2859,6 @@
 				18C744FB1C84611600A07E4C /* CreationEntity.swift in Sources */,
 				083785911D378B28006EF69E /* ReportGalleryResponseHandler.swift in Sources */,
 				181E76FB1CC5485100A1546A /* NewCommentData.swift in Sources */,
-				C9447B5D1F97413B005719FF /* PartnerApplicationShort.swift in Sources */,
 				217745101DD9C9880012FFDC /* UpdateUserAvatarRequest.swift in Sources */,
 				18F6E89B1D021B6500AAC5FB /* GalleriesRequest.swift in Sources */,
 				188ECF5E1C71E91B00AFEE4F /* CreationUpload.swift in Sources */,
