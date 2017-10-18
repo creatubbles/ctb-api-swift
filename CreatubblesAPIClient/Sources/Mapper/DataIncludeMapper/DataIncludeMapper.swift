@@ -28,7 +28,7 @@ import ObjectMapper
 
 public protocol DataIncludeMapperParser {
     func dataIncludeMapper(sender: DataIncludeMapper, mapperFor json: [String: Any], typeString: String) -> Mappable?
-    func dataIncludeMapper(sender: DataIncludeMapper, objectFor mapper: Mappable, metadata: Metadata?) -> Identifiable?
+    func dataIncludeMapper(sender: DataIncludeMapper, objectFor mapper: Mappable, metadata: Metadata?, shouldMap2ndLevelRelationships: Bool) -> Identifiable?
 }
 
 public class DataIncludeMapper {
@@ -54,19 +54,19 @@ public class DataIncludeMapper {
         return mappers
     }
 
-    func objectWithIdentifier<T: Identifiable>(_ identifier: String, type: T.Type) -> T? {
+    func objectWithIdentifier<T: Identifiable>(_ identifier: String, type: T.Type, shouldMap2ndLevelRelationships: Bool = true) -> T? {
         guard let mapper = mappers[identifier]
-        else { return nil }
+            else { return nil }
 
-        return parser.dataIncludeMapper(sender: self, objectFor: mapper, metadata: metadata) as? T
+        return parser.dataIncludeMapper(sender: self, objectFor: mapper, metadata: metadata, shouldMap2ndLevelRelationships: shouldMap2ndLevelRelationships) as? T
     }
 
     // MARK: - Included response parse
     fileprivate func mapperForObject(_ obj: Dictionary<String, AnyObject>) -> (identifier: String, mapper: Mappable)? {
         guard   let typeString = obj["type"] as? String,
                 let identifierString = obj["id"] as? String
-        else { return nil }
-
+            else { return nil }
+        
         let mapper = parser.dataIncludeMapper(sender: self, mapperFor: obj, typeString: typeString)
 
         if (mapper == nil) { Logger.log(.warning, "Unknown typeString: \(typeString)") }
