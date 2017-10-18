@@ -25,7 +25,7 @@
 
 import UIKit
 
-enum MyGalleriesRequestFilter {
+enum GalleriesRequestFilter {
     case none
     case owned
     case shared
@@ -38,9 +38,9 @@ class MyGalleriesRequest: Request {
 
     fileprivate let page: Int?
     fileprivate let perPage: Int?
-    fileprivate let filter: MyGalleriesRequestFilter
+    fileprivate let filter: GalleriesRequestFilter
 
-    init(page: Int?, perPage: Int?, filter: MyGalleriesRequestFilter?) {
+    init(page: Int?, perPage: Int?, filter: GalleriesRequestFilter?) {
         self.page = page
         self.perPage = perPage
         self.filter = filter ?? .none
