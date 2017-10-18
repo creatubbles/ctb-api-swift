@@ -53,7 +53,7 @@ class GalleriesRequest: Request {
         self.query = nil
     }
 
-    init(page: Int?, perPage: Int?, sort: SortOrder?, userId: String?, query: String?) {
+    init(page: Int?, perPage: Int?, sort: SortOrder?, filter: GalleriesRequestFilter?, userId: String?, query: String?) {
         self.galleryId = nil
         self.page = page
         self.perPage = perPage
@@ -63,7 +63,7 @@ class GalleriesRequest: Request {
         self.query = query
     }
 
-    init(creationId: String, page: Int?, perPage: Int?, sort: SortOrder?) {
+    init(creationId: String, page: Int?, perPage: Int?, sort: SortOrder?, filter: GalleriesRequestFilter?) {
         self.galleryId = nil
         self.page = page
         self.perPage = perPage

@@ -25,7 +25,7 @@
 
 import UIKit
 
-enum GalleriesRequestFilter {
+public enum GalleriesRequestFilter {
     case none
     case owned
     case shared

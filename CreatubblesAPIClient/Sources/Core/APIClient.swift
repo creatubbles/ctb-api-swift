@@ -333,16 +333,16 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(GalleryDAO.self).getGallery(galleryIdentifier: galleryId, completion: completion)
     }
 
-    open func getGalleries(creationId: String, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler {
-        return daoAssembly.assembly(GalleryDAO.self).getGalleries(creationIdentifier: creationId, pagingData: pagingData, sort: sort, completion: completion)
+    open func getGalleries(creationId: String, pagingData: PagingData?, sort: SortOrder?, filter: GalleriesRequestFilter?, completion: GalleriesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(GalleryDAO.self).getGalleries(creationIdentifier: creationId, pagingData: pagingData, sort: sort, filter: filter, completion: completion)
     }
 
-    open func getGalleries(userId: String?, query: String? = nil, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler {
-        return daoAssembly.assembly(GalleryDAO.self).getGalleries(userIdentifier: userId, query: query, pagingData: pagingData, sort: sort, completion: completion)
+    open func getGalleries(userId: String?, query: String? = nil, pagingData: PagingData?, sort: SortOrder?, filter: GalleriesRequestFilter?, completion: GalleriesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(GalleryDAO.self).getGalleries(userIdentifier: userId, query: query, pagingData: pagingData, sort: sort, filter: filter, completion: completion)
     }
 
-    open func getGalleriesInBatchMode(userId: String?, query: String? = nil, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler {
-        return daoAssembly.assembly(GalleryDAO.self).getGalleriesInBatchMode(userIdentifier: userId, query:query, sort: sort, completion: completion)
+    open func getGalleriesInBatchMode(userId: String?, query: String? = nil, sort: SortOrder?, filter: GalleriesRequestFilter?, completion: GalleriesBatchClosure?) -> RequestHandler {
+        return daoAssembly.assembly(GalleryDAO.self).getGalleriesInBatchMode(userIdentifier: userId, query:query, sort: sort, filter: filter, completion: completion)
     }
 
     open func getMyGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler {
