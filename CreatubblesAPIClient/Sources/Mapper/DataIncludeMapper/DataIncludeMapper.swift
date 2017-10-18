@@ -36,13 +36,11 @@ public class DataIncludeMapper {
     private let includeResponse: Array<Dictionary<String, AnyObject>>
     private lazy var mappers: Dictionary<String, Mappable> = self.parseMappers()
     private let parser: DataIncludeMapperParser
-    private let allow2ndLevelRelationships: Bool
 
-    public init(includeResponse: Array<Dictionary<String, AnyObject>>, metadata: Metadata?, parser: DataIncludeMapperParser = DataIncludeMapperDefaultParser(), allow2ndLevelRelationships: Bool) {
+    public init(includeResponse: Array<Dictionary<String, AnyObject>>, metadata: Metadata?, parser: DataIncludeMapperParser = DataIncludeMapperDefaultParser()) {
         self.metadata = metadata
         self.includeResponse = includeResponse
         self.parser = parser
-        self.allow2ndLevelRelationships = allow2ndLevelRelationships
     }
 
     fileprivate func parseMappers() -> Dictionary<String, Mappable> {
@@ -56,11 +54,11 @@ public class DataIncludeMapper {
         return mappers
     }
 
-    func objectWithIdentifier<T: Identifiable>(_ identifier: String, type: T.Type) -> T? {
+    func objectWithIdentifier<T: Identifiable>(_ identifier: String, type: T.Type, shouldMap2ndLevelRelationships: Bool = true) -> T? {
         guard let mapper = mappers[identifier]
             else { return nil }
 
-        return parser.dataIncludeMapper(sender: self, objectFor: mapper, metadata: metadata, shouldMap2ndLevelRelationships: allow2ndLevelRelationships) as? T
+        return parser.dataIncludeMapper(sender: self, objectFor: mapper, metadata: metadata, shouldMap2ndLevelRelationships: shouldMap2ndLevelRelationships) as? T
     }
 
     // MARK: - Included response parse

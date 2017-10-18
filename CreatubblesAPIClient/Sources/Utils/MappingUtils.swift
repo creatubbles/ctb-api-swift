@@ -36,11 +36,11 @@ public class MappingUtils {
         return Relationship(mapper: mapper)
     }
 
-    public class func objectFromMapper<T: Identifiable>(_ mapper: DataIncludeMapper?, relationship: Relationship?, type: T.Type) -> T? {
+    public class func objectFromMapper<T: Identifiable>(_ mapper: DataIncludeMapper?, relationship: Relationship?, type: T.Type, shouldMap2ndLevelRelationships: Bool = true) -> T? {
         guard   let mapper = mapper,
         let relationship = relationship
         else { return nil }
-        return mapper.objectWithIdentifier(relationship.identifier, type: T.self)
+        return mapper.objectWithIdentifier(relationship.identifier, type: T.self, shouldMap2ndLevelRelationships: shouldMap2ndLevelRelationships)
     }
 
     public class func pagingInfoFromResponse(_ response: Dictionary<String, AnyObject>) -> PagingInfo {
@@ -59,9 +59,9 @@ public class MappingUtils {
         return ( metadataMapper != nil ) ? NotificationMetadata(mapper: metadataMapper!) : nil
     }
 
-    public class func dataIncludeMapperFromResponse(_ response: Dictionary<String, AnyObject>, metadata: Metadata?, allow2ndLevelRelationships: Bool = true) -> DataIncludeMapper? {
+    public class func dataIncludeMapperFromResponse(_ response: Dictionary<String, AnyObject>, metadata: Metadata?) -> DataIncludeMapper? {
         let includedResponse = response["included"] as? Array<Dictionary<String, AnyObject>>
-        return ( includedResponse == nil ) ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata, allow2ndLevelRelationships: allow2ndLevelRelationships)
+        return ( includedResponse == nil ) ? nil : DataIncludeMapper(includeResponse: includedResponse!, metadata: metadata)
     }
 
     public class func bubbledStateFrom(metadata: Metadata?, forObjectWithIdentifier identifier: String) -> Bool {

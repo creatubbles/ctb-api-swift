@@ -100,6 +100,6 @@ open class Gallery: NSObject, Identifiable {
         galleryInstructions = galleryInstructionRelationships?.flatMap { MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: GalleryInstruction.self) }
         
         galleryConnectedPartnersRelationships = mapper.parseConnectedPartnersRelashionships()
-        galleryConnectedPartners = galleryConnectedPartnersRelationships?.flatMap { MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: PartnerApplication.self) }
+        galleryConnectedPartners = galleryConnectedPartnersRelationships?.flatMap { MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: PartnerApplication.self, shouldMap2ndLevelRelationships: false) }
     }
 }
