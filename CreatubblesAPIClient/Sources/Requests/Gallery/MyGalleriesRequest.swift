@@ -26,7 +26,6 @@
 import UIKit
 
 public enum GalleriesRequestFilter {
-    case none
     case owned
     case shared
 }
@@ -38,12 +37,12 @@ class MyGalleriesRequest: Request {
 
     fileprivate let page: Int?
     fileprivate let perPage: Int?
-    fileprivate let filter: GalleriesRequestFilter
+    fileprivate let filter: GalleriesRequestFilter?
 
     init(page: Int?, perPage: Int?, filter: GalleriesRequestFilter?) {
         self.page = page
         self.perPage = perPage
-        self.filter = filter ?? .none
+        self.filter = filter
     }
 
     fileprivate func prepareParameters() -> Dictionary<String, AnyObject> {
@@ -56,14 +55,13 @@ class MyGalleriesRequest: Request {
             params["per_page"] = perPage as AnyObject?
         }
 
-        switch filter {
-        case .owned:
+        if filter == GalleriesRequestFilter.owned {
             params["gallery_filter"] = "only_owned" as AnyObject?
-        case .shared:
-            params["gallery_filter"] = "only_shared" as AnyObject?
-        default: break
         }
-
+        if filter == GalleriesRequestFilter.shared {
+            params["gallery_filter"] = "only_shared" as AnyObject?
+        }
+        
         return params
     }
 }
