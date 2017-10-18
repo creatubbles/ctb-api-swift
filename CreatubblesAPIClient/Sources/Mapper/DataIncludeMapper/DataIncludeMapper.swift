@@ -33,7 +33,7 @@ public protocol DataIncludeMapperParser {
 
 public class DataIncludeMapper {
     private let metadata: Metadata?
-    private let includeResponse: Array<Dictionary<String, AnyObject>>
+    private var includeResponse: Array<Dictionary<String, AnyObject>>
     private lazy var mappers: Dictionary<String, Mappable> = self.parseMappers()
     private let parser: DataIncludeMapperParser
 
@@ -71,5 +71,20 @@ public class DataIncludeMapper {
 
         if (mapper == nil) { Logger.log(.warning, "Unknown typeString: \(typeString)") }
         return mapper == nil ? nil : (identifierString, mapper!)
+    }
+    
+    func updateMapperType(from initialType: String, to finalType: String) {
+        var includeResponseCopy = Array<Dictionary<String, AnyObject>>()
+        includeResponse.forEach { (dict) in
+            if dict["type"] as? String == initialType {
+                var newDict = dict
+                newDict["type"] = finalType as AnyObject
+                includeResponseCopy.append(newDict)
+            } else {
+                includeResponseCopy.append(dict)
+            }
+        }
+        includeResponse = includeResponseCopy
+        mappers = self.parseMappers()
     }
 }

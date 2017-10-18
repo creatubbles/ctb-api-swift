@@ -58,6 +58,7 @@ open class Gallery: NSObject, Identifiable {
     open let galleryInstructionRelationships: Array<Relationship>?
     open let galleryInstructions: Array<GalleryInstruction>?
     open let galleryConnectedPartnersRelationships: Array<Relationship>?
+    open let galleryConnectedPartners: Array<PartnerApplicationShort>?
 
     // MARK: - Metadata
     open let isBubbled: Bool
@@ -98,6 +99,9 @@ open class Gallery: NSObject, Identifiable {
         galleryInstructionRelationships = mapper.parseGalleryInstructionRelationships()
         galleryInstructions = galleryInstructionRelationships?.flatMap { MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: GalleryInstruction.self) }
         
+        // Needed to avoid infinite loop mapping gallery/partner
+        dataMapper?.updateMapperType(from: "partner_applications", to: "partner_applications_short")
         galleryConnectedPartnersRelationships = mapper.parseConnectedPartnersRelashionships()
+        galleryConnectedPartners = galleryConnectedPartnersRelationships?.flatMap { MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: PartnerApplicationShort.self) }
     }
 }

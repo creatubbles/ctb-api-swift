@@ -44,6 +44,7 @@ open class DataIncludeMapperDefaultParser: NSObject, DataIncludeMapperParser {
             case "partner_applications": mapper = Mapper<PartnerApplicationsMapper>().map(JSON: json)
             case "app_screenshots": mapper = Mapper<AppScreenshotMapper>().map(JSON: json)
             case "gallery_howto_sections": mapper = Mapper<GalleryInstructionMapper>().map(JSON: json)
+            case "partner_applications_short": mapper = Mapper<PartnerApplicationsShortMapper>().map(JSON: json)
             default: mapper = nil
         }
 
@@ -64,6 +65,7 @@ open class DataIncludeMapperDefaultParser: NSObject, DataIncludeMapperParser {
         //DataIncludeMapper isn't passed here intentionally to get rid of infinite recurrence User -> CustomStyle -> User -> ...
         if let mapper = mapper as? CustomStyleMapper { return CustomStyle(mapper: mapper) }
         if let mapper = mapper as? GalleryInstructionMapper { return GalleryInstruction(mapper: mapper) }
+        if let mapper = mapper as? PartnerApplicationsShortMapper { return PartnerApplicationShort(mapper: mapper) }
 
         return nil
     }
