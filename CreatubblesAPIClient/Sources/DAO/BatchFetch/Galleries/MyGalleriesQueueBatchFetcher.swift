@@ -27,7 +27,7 @@ class MyGalleriesQueueBatchFetcher: Cancelable {
     private let pageSize = 20
     private let requestSender: RequestSender
 
-    private let filter: MyGalleriesRequestFilter
+    private let filter: GalleriesRequestFilter
     private let completion: GalleriesBatchClosure?
 
     private var operationQueue: OperationQueue?
@@ -36,7 +36,7 @@ class MyGalleriesQueueBatchFetcher: Cancelable {
     private var objectsByPage: Dictionary<PagingData, Array<Gallery>>
     private var errorsByPage: Dictionary<PagingData, APIClientError>
 
-    init(requestSender: RequestSender, filter: MyGalleriesRequestFilter, completion: GalleriesBatchClosure?) {
+    init(requestSender: RequestSender, filter: GalleriesRequestFilter, completion: GalleriesBatchClosure?) {
         self.requestSender = requestSender
         self.filter = filter
 

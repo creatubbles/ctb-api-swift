@@ -42,6 +42,7 @@ class GalleriesRequest: Request {
     fileprivate let perPage: Int?
     fileprivate let sort: SortOrder?
     fileprivate let query: String?
+    fileprivate let filter: GalleriesRequestFilter?
 
     init(galleryId: String) {
         self.galleryId = galleryId
@@ -51,9 +52,10 @@ class GalleriesRequest: Request {
         self.creationId = nil
         self.userId = nil
         self.query = nil
+        self.filter = nil
     }
 
-    init(page: Int?, perPage: Int?, sort: SortOrder?, userId: String?, query: String?) {
+    init(page: Int?, perPage: Int?, sort: SortOrder?, filter: GalleriesRequestFilter?, userId: String?, query: String?) {
         self.galleryId = nil
         self.page = page
         self.perPage = perPage
@@ -61,14 +63,16 @@ class GalleriesRequest: Request {
         self.creationId = nil
         self.userId = userId
         self.query = query
+        self.filter = filter
     }
 
-    init(creationId: String, page: Int?, perPage: Int?, sort: SortOrder?) {
+    init(creationId: String, page: Int?, perPage: Int?, sort: SortOrder?, filter: GalleriesRequestFilter?) {
         self.galleryId = nil
         self.page = page
         self.perPage = perPage
         self.sort = sort
         self.creationId = creationId
+        self.filter = filter
         self.userId = nil
         self.query = nil
     }
@@ -90,7 +94,13 @@ class GalleriesRequest: Request {
             if let query = query {
                 dict["query"] = query as AnyObject?
             }
-
+            if filter == GalleriesRequestFilter.owned {
+                dict["filter[owned_by]"] = true as AnyObject
+            }
+            if filter == GalleriesRequestFilter.shared {
+                dict["filter[shared_with]"] = true as AnyObject
+            }
+            
             return dict
         }
     }

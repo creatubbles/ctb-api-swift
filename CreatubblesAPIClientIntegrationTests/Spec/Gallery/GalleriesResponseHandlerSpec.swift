@@ -31,7 +31,7 @@ class GalleriesResponseHandlerSpec: QuickSpec {
     override func spec() {
         describe("Galleries response handler") {
             it("Should return correct value for many galleries after login") {
-                let request = GalleriesRequest(page: 1, perPage: 10, sort: .popular, userId: nil, query: nil)
+                let request = GalleriesRequest(page: 1, perPage: 10, sort: .popular, filter: nil, userId: nil, query: nil)
                 let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
@@ -49,7 +49,56 @@ class GalleriesResponseHandlerSpec: QuickSpec {
                     }
                 }
             }
-
+            
+            it("Should return galleries owned by a user if .owned filter passed") {
+                guard let userIdentifier = TestConfiguration.testUserIdentifier
+                else { return }
+                
+                let request = GalleriesRequest(page: nil, perPage: nil, sort: nil, filter: .owned, userId: userIdentifier, query: nil)
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
+                    done in
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
+                        (error: Error?) -> Void in
+                        expect(error).to(beNil())
+                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler {
+                            (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
+                            expect(galleries).notTo(beNil())
+                            expect(error).to(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            galleries?.forEach {
+                                expect($0.owner?.identifier).to(equal(userIdentifier))
+                            }
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+            
+            it("Should return galleries collaborated by a user if .shared filter passed") {
+                guard let userIdentifier = TestConfiguration.testUserIdentifier
+                    else { return }
+                
+                let request = GalleriesRequest(page: nil, perPage: nil, sort: nil, filter: .shared, userId: userIdentifier, query: nil)
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
+                    done in
+                    _ = sender.login(TestConfiguration.username, password: TestConfiguration.password) {
+                        (error: Error?) -> Void in
+                        expect(error).to(beNil())
+                        _ = sender.send(request, withResponseHandler:GalleriesResponseHandler {
+                            (galleries: Array<Gallery>?, pageInfo: PagingInfo?, error: Error?) -> Void in
+                            expect(galleries).notTo(beNil())
+                            expect(error).to(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+            
             it("Should return correct value for single gallery after login ") {
                 let request = GalleriesRequest(galleryId: "NrLLiMVC")
                 let sender = TestComponentsFactory.requestSender
@@ -74,7 +123,7 @@ class GalleriesResponseHandlerSpec: QuickSpec {
                 guard let identifier = TestConfiguration.testCreationIdentifier
                 else { return }
 
-                let request = GalleriesRequest(creationId: identifier, page: nil, perPage: nil, sort: nil)
+                let request = GalleriesRequest(creationId: identifier, page: nil, perPage: nil, sort: nil, filter: nil)
                 let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
@@ -91,11 +140,10 @@ class GalleriesResponseHandlerSpec: QuickSpec {
                             })
                     }
                 }
-
             }
 
             it("Should not return errors when not logged in") {
-                let request = GalleriesRequest(page: 0, perPage: 20, sort: .recent, userId: nil, query: nil)
+                let request = GalleriesRequest(page: 0, perPage: 20, sort: .recent, filter: nil, userId: nil, query: nil)
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 waitUntil(timeout: TestConfiguration.timeoutMedium) {

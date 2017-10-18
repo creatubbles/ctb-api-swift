@@ -31,6 +31,7 @@ class GalleriesQueueBatchFetcher: Cancelable {
     private let query: String?
     private let sort: SortOrder?
     private let completion: GalleriesBatchClosure?
+    private let filter: GalleriesRequestFilter?
 
     private var operationQueue: OperationQueue?
     private var firstRequestHandler: RequestHandler?
@@ -38,12 +39,13 @@ class GalleriesQueueBatchFetcher: Cancelable {
     private var objectsByPage: Dictionary<PagingData, Array<Gallery>>
     private var errorsByPage: Dictionary<PagingData, APIClientError>
 
-    init(requestSender: RequestSender, userId: String?, query: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) {
+    init(requestSender: RequestSender, userId: String?, query: String?, sort: SortOrder?, filter: GalleriesRequestFilter?, completion: GalleriesBatchClosure?) {
         self.requestSender = requestSender
         self.userId = userId
         self.sort = sort
         self.query = query
         self.completion = completion
+        self.filter = filter
         self.objectsByPage = Dictionary<PagingData, Array<Gallery>>()
         self.errorsByPage = Dictionary<PagingData, APIClientError>()
     }
@@ -60,7 +62,7 @@ class GalleriesQueueBatchFetcher: Cancelable {
             return RequestHandler(object: self)
         }
 
-        let request = GalleriesRequest(page: 1, perPage: pageSize, sort: sort, userId: userId, query: query)
+        let request = GalleriesRequest(page: 1, perPage: pageSize, sort: sort, filter: filter, userId: userId, query: query)
         let handler = GalleriesResponseHandler {
             [weak self](galleries, pagingInfo, error) -> (Void) in
             guard let strongSelf = self
@@ -98,7 +100,7 @@ class GalleriesQueueBatchFetcher: Cancelable {
         if pagingInfo.totalPages > 1 {
             for page in 2...pagingInfo.totalPages {
                 let pagingData = PagingData(page: page, pageSize: pageSize)
-                let operation = GalleriesBatchFetchOperation(requestSender: requestSender, userId: userId, query: query, sort: sort, pagingData: pagingData) {
+                let operation = GalleriesBatchFetchOperation(requestSender: requestSender, userId: userId, query: query, sort: sort, filter: filter, pagingData: pagingData) {
                     [weak self](operation, error) in
                     guard let strongSelf = self,
                           let operation = operation as? GalleriesBatchFetchOperation
