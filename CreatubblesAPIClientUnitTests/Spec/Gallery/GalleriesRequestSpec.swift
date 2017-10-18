@@ -43,19 +43,33 @@ class GalleriesRequestSpec: QuickSpec {
 
             it("Should have proper endpoint for list of galleries") {
                 let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, filter: nil, userId: nil, query: nil)
-                expect(request.endpoint) == "galleries"
+                expect(request.endpoint).to(equal("galleries"))
             }
 
             it("Should have proper endpoint for list of creation galleries") {
                 let id = "TestCreationId"
                 let request = GalleriesRequest(creationId: id, page: 1, perPage: 20, sort: .recent, filter: nil)
-                expect(request.endpoint) == "creations/\(id)/galleries"
+                expect(request.endpoint).to(equal("creations/\(id)/galleries"))
             }
 
             it("Should have proper endpoint for list of user galleries") {
                 let userId = "TestUserId"
                 let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, filter: nil, userId: userId, query: nil)
-                expect(request.endpoint) == "users/\(userId)/galleries"
+                expect(request.endpoint).to(equal("users/\(userId)/galleries"))
+            }
+            
+            context("Parameters") {
+                it("Should have 'filter[owned_by]' parameter set to true when .owned filter is passed") {
+                    let userId = "TestUserId"
+                    let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, filter: GalleriesRequestFilter.owned, userId: userId, query: nil)
+                    expect(request.parameters["filter[owned_by]"] as? Bool).to(beTrue())
+                }
+                
+                it("Should have 'filter[shared_with]' parameter set to true when .owned filter is passed") {
+                    let userId = "TestUserId"
+                    let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, filter: GalleriesRequestFilter.shared, userId: userId, query: nil)
+                    expect(request.parameters["filter[shared_with]"] as? Bool).to(beTrue())
+                }
             }
         }
     }
