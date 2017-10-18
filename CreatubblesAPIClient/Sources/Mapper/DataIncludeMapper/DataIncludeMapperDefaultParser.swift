@@ -27,30 +27,30 @@ import Foundation
 import ObjectMapper
 
 open class DataIncludeMapperDefaultParser: NSObject, DataIncludeMapperParser {
-    
+
     open func dataIncludeMapper(sender: DataIncludeMapper, mapperFor json: [String: Any], typeString: String) -> Mappable? {
         var mapper: Mappable? = nil
-        
+
         switch typeString {
-        case "users":     mapper = Mapper<UserMapper>().map(JSON: json)
-        case "creations": mapper = Mapper<CreationMapper>().map(JSON: json)
-        case "galleries": mapper = Mapper<GalleryMapper>().map(JSON: json)
-        case "partner_applications": mapper = Mapper<PartnerApplicationsMapper>().map(JSON: json)
-        case "custom_styles": mapper = Mapper<CustomStyleMapper>().map(JSON: json)
-        case "gallery_submissions": mapper = Mapper<GallerySubmissionMapper>().map(JSON: json)
-        case "user_entities": mapper = Mapper<NotificationTextEntityMapper>().map(JSON: json)
-        case "creation_entities": mapper = Mapper<NotificationTextEntityMapper>().map(JSON: json)
-        case "gallery_entities": mapper = Mapper<NotificationTextEntityMapper>().map(JSON: json)
-        case "comments": mapper = Mapper<CommentMapper>().map(JSON: json)
-        case "partner_applications": mapper = Mapper<PartnerApplicationsMapper>().map(JSON: json)
-        case "app_screenshots": mapper = Mapper<AppScreenshotMapper>().map(JSON: json)
-        case "gallery_howto_sections": mapper = Mapper<GalleryInstructionMapper>().map(JSON: json)
-        default: mapper = nil
+            case "users": mapper = Mapper<UserMapper>().map(JSON: json)
+            case "creations": mapper = Mapper<CreationMapper>().map(JSON: json)
+            case "galleries": mapper = Mapper<GalleryMapper>().map(JSON: json)
+            case "partner_applications": mapper = Mapper<PartnerApplicationsMapper>().map(JSON: json)
+            case "custom_styles": mapper = Mapper<CustomStyleMapper>().map(JSON: json)
+            case "gallery_submissions": mapper = Mapper<GallerySubmissionMapper>().map(JSON: json)
+            case "user_entities": mapper = Mapper<NotificationTextEntityMapper>().map(JSON: json)
+            case "creation_entities": mapper = Mapper<NotificationTextEntityMapper>().map(JSON: json)
+            case "gallery_entities": mapper = Mapper<NotificationTextEntityMapper>().map(JSON: json)
+            case "comments": mapper = Mapper<CommentMapper>().map(JSON: json)
+            case "partner_applications": mapper = Mapper<PartnerApplicationsMapper>().map(JSON: json)
+            case "app_screenshots": mapper = Mapper<AppScreenshotMapper>().map(JSON: json)
+            case "gallery_howto_sections": mapper = Mapper<GalleryInstructionMapper>().map(JSON: json)
+            default: mapper = nil
         }
-        
+
         return mapper
     }
-    
+
     open func dataIncludeMapper(sender: DataIncludeMapper, objectFor mapper: Mappable, metadata: Metadata?, shouldMap2ndLevelRelationships: Bool) -> Identifiable? {
         var datamapper: DataIncludeMapper?
         if shouldMap2ndLevelRelationships {
@@ -65,7 +65,7 @@ open class DataIncludeMapperDefaultParser: NSObject, DataIncludeMapperParser {
         if let mapper = mapper as? NotificationTextEntityMapper { return NotificationTextEntity(mapper: mapper, dataMapper: datamapper) }
         if let mapper = mapper as? PartnerApplicationsMapper { return PartnerApplication(mapper: mapper, dataMapper:datamapper) }
         if let mapper = mapper as? AppScreenshotMapper { return AppScreenshot(mapper: mapper) }
-        
+
         //DataIncludeMapper isn't passed here intentionally to get rid of infinite recurrence User -> CustomStyle -> User -> ...
         if let mapper = mapper as? CustomStyleMapper { return CustomStyle(mapper: mapper) }
         if let mapper = mapper as? GalleryInstructionMapper { return GalleryInstruction(mapper: mapper) }
