@@ -95,10 +95,10 @@ class GalleriesRequest: Request {
                 dict["query"] = query as AnyObject?
             }
             if filter == GalleriesRequestFilter.owned {
-                dict["filter[owned_by]"] = true as AnyObject
+                dict["filter[only_owned]"] = "true" as AnyObject    //has to be sent as string
             }
             if filter == GalleriesRequestFilter.shared {
-                dict["filter[shared_with]"] = true as AnyObject
+                dict["filter[only_shared]"] = "true" as AnyObject   //has to be sent as string
             }
             
             return dict

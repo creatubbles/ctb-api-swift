@@ -62,13 +62,13 @@ class GalleriesRequestSpec: QuickSpec {
                 it("Should have 'filter[owned_by]' parameter set to true when .owned filter is passed") {
                     let userId = "TestUserId"
                     let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, filter: GalleriesRequestFilter.owned, userId: userId, query: nil)
-                    expect(request.parameters["filter[owned_by]"] as? Bool).to(beTrue())
+                    expect(request.parameters["filter[only_owned]"] as? String).to(equal("true"))
                 }
                 
                 it("Should have 'filter[shared_with]' parameter set to true when .owned filter is passed") {
                     let userId = "TestUserId"
                     let request = GalleriesRequest(page: 1, perPage: 20, sort: .recent, filter: GalleriesRequestFilter.shared, userId: userId, query: nil)
-                    expect(request.parameters["filter[shared_with]"] as? Bool).to(beTrue())
+                    expect(request.parameters["filter[only_shared]"] as? String).to(equal("true"))
                 }
             }
         }
