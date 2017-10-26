@@ -54,12 +54,12 @@ class MyGalleriesRequest: Request {
         if let perPage = perPage {
             params["per_page"] = perPage as AnyObject?
         }
-
-        if filter == GalleriesRequestFilter.owned {
-            params["gallery_filter"] = "only_owned" as AnyObject?
-        }
-        if filter == GalleriesRequestFilter.shared {
-            params["gallery_filter"] = "only_shared" as AnyObject?
+        
+        if let filter = filter {
+            switch filter {
+                case .owned: params["gallery_filter"] = "only_owned" as AnyObject?
+                case .shared: params["gallery_filter"] = "only_shared" as AnyObject?
+            }
         }
         
         return params
