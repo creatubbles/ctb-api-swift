@@ -25,13 +25,13 @@
 
 class MyGalleriesBatchFetchOperation: ConcurrentOperation {
     private let requestSender: RequestSender
-    private let filter: GalleriesRequestFilter
+    private let filter: GalleriesRequestFilter?
 
     let pagingData: PagingData
     private(set) var galleries: Array<Gallery>?
     private var requestHandler: RequestHandler?
 
-    init(requestSender: RequestSender, filter: GalleriesRequestFilter, pagingData: PagingData, complete: OperationCompleteClosure?) {
+    init(requestSender: RequestSender, filter: GalleriesRequestFilter?, pagingData: PagingData, complete: OperationCompleteClosure?) {
         self.requestSender = requestSender
         self.filter = filter
         self.pagingData = pagingData

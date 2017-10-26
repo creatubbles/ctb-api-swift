@@ -124,7 +124,7 @@ public class GalleryDAO: NSObject, APIClientDAO {
     }
 
     func getMyGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler {
-        let fetcher = MyGalleriesQueueBatchFetcher(requestSender: requestSender, filter: .none, completion: completion)
+        let fetcher = MyGalleriesQueueBatchFetcher(requestSender: requestSender, filter: nil, completion: completion)
         return fetcher.fetch()
     }
 
