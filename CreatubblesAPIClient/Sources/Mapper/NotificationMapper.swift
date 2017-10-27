@@ -33,6 +33,7 @@ class NotificationMapper: Mappable {
     var text: String?
     var shortText: String?
     var isNew: Bool?
+    var isUnread: Bool?
 
     var createdAt: Date?
 
@@ -57,6 +58,7 @@ class NotificationMapper: Mappable {
         text <- map["attributes.text"]
         shortText <- map["attributes.short_text"]
         isNew <- map["attributes.is_new"]
+        isUnread <- map["attributes.is_unread"]
 
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
 
