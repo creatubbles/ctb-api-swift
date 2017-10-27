@@ -34,6 +34,7 @@ open class Notification: NSObject, Identifiable {
     open let text: String
     open let shortText: String
     open let isNew: Bool
+    open let isUnread: Bool
 
     open let creation: Creation?
     open let user: User?
@@ -61,6 +62,7 @@ open class Notification: NSObject, Identifiable {
         text = mapper.text!
         shortText = mapper.shortText!
         isNew = mapper.isNew!
+        isUnread = mapper.isUnread!
         createdAt = mapper.createdAt! as Date
         type = mapper.parseType()
 
