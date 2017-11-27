@@ -69,10 +69,13 @@ class NetworkManager: NSObject {
         if let locale = settings.locale {
             urlRequest.setValue(locale, forHTTPHeaderField: "Accept-Language")
         }
-
-        if let accessToken = authClient.privateAccessToken ?? authClient.publicAccessToken {
+        
+        if let accessToken: String = request.forcePublicAuthentication ?
+                                   authClient.publicAccessToken :
+                                   (authClient.privateAccessToken ?? authClient.publicAccessToken) {
             urlRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
+
 
         urlRequest.addValue(settings.deviceType.rawValue, forHTTPHeaderField: "X-Device-Type")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")

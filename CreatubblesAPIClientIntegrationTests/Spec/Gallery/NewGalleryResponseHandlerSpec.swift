@@ -43,7 +43,7 @@ class NewGalleryResponseHandlerSpec: QuickSpec {
 
             it("Should return correct value after login") {
                 let sender = TestComponentsFactory.requestSender
-                waitUntil(timeout: TestConfiguration.timeoutShort) {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
                     sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
@@ -71,7 +71,7 @@ class NewGalleryResponseHandlerSpec: QuickSpec {
                 let request = NewGalleryRequest(name: name, galleryDescription: galleryDescription, openForAll: openForAll, ownerId: testUserIdentifier)
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
-                waitUntil(timeout: TestConfiguration.timeoutShort) {
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
                     done in
                     sender.send(request, withResponseHandler:NewGalleryResponseHandler {
                         (gallery: Gallery?, error: Error?) -> Void in
