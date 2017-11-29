@@ -73,8 +73,8 @@ class UserDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
 
-    func getSwitchUsers(pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
-        let request = SwitchUsersRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
+    func getSwitchUsers(query: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
+        let request = SwitchUsersRequest(query: query, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = SwitchUsersResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }

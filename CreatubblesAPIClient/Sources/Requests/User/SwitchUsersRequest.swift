@@ -30,12 +30,14 @@ class SwitchUsersRequest: Request {
     override var endpoint: String { return "user_switch/users" }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
 
+    fileprivate let query: String?
     fileprivate let page: Int?
     fileprivate let perPage: Int?
 
-    init(page: Int? = nil, perPage: Int? = nil) {
+    init(query: String? = nil, page: Int? = nil, perPage: Int? = nil) {
         self.page = page
         self.perPage = perPage
+        self.query = query
     }
 
     fileprivate func prepareParameters() -> Dictionary<String, AnyObject> {
@@ -47,6 +49,10 @@ class SwitchUsersRequest: Request {
 
         if let perPage = perPage {
             params["per_page"] = perPage as AnyObject?
+        }
+        
+        if let query = query {
+            params["query"] = query as AnyObject?
         }
 
         return params
