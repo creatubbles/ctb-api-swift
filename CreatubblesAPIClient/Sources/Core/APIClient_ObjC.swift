@@ -104,8 +104,8 @@ extension APIClient {
         }
     }
 
-    public func _getSwitchUsers(pagingData: PagingData?, completion: ((Array<User>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler {
-        return getSwitchUsers(pagingData) {
+    public func _getSwitchUsers(query: String?, pagingData: PagingData?, completion: ((Array<User>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler {
+        return getSwitchUsers(query: query, pagingData: pagingData) {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
         }

@@ -280,8 +280,8 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(UserDAO.self).getUsers(query: query, pagingData: pagingData, completion: completion)
     }
 
-    open func getSwitchUsers(_ pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
-        return daoAssembly.assembly(UserDAO.self).getSwitchUsers(pagingData: pagingData, completion: completion)
+    open func getSwitchUsers(query: String? = nil, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
+        return daoAssembly.assembly(UserDAO.self).getSwitchUsers(query: query, pagingData: pagingData, completion: completion)
     }
 
     open func getManagers(userId: String?, query: String? = nil, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
