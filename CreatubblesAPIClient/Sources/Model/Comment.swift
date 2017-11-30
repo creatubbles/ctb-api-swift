@@ -50,7 +50,7 @@ open class Comment: NSObject, Identifiable {
 
     open let abilities: Array<Ability>
 
-    init(mapper: CommentMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil) {
+    public init(mapper: CommentMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil) {
         identifier = mapper.identifier!
         text = mapper.text!
         approved = mapper.approved!

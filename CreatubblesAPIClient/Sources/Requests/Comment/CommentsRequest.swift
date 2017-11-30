@@ -25,10 +25,10 @@
 
 import UIKit
 
-class CommentsRequest: Request {
-    override var method: RequestMethod { return .get }
-    override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
-    override var endpoint: String {
+public class CommentsRequest: Request {
+    public override var method: RequestMethod { return .get }
+    public override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
+    public override var endpoint: String {
         if let creationId = creationId {
             return "creations/\(creationId)/comments"
         }
@@ -48,7 +48,7 @@ class CommentsRequest: Request {
     fileprivate let page: Int?
     fileprivate let perPage: Int?
 
-    init(creationId: String, page: Int?, perPage: Int?) {
+    public init(creationId: String, page: Int?, perPage: Int?) {
         self.creationId = creationId
         self.page = page
         self.perPage = perPage
@@ -56,7 +56,7 @@ class CommentsRequest: Request {
         self.userId = nil
     }
 
-    init(galleryId: String, page: Int?, perPage: Int?) {
+    public init(galleryId: String, page: Int?, perPage: Int?) {
         self.creationId = nil
         self.page = page
         self.perPage = perPage
@@ -64,7 +64,7 @@ class CommentsRequest: Request {
         self.userId = nil
     }
 
-    init(userId: String, page: Int?, perPage: Int?) {
+    public init(userId: String, page: Int?, perPage: Int?) {
         self.creationId = nil
         self.page = page
         self.perPage = perPage
