@@ -26,7 +26,7 @@
 import UIKit
 import ObjectMapper
 
-class CommentMapper: Mappable {
+open class CommentMapper: Mappable {
     var identifier: String?
     var text: String?
     var approved: Bool?
@@ -43,9 +43,9 @@ class CommentMapper: Mappable {
     var commentedGalleryRelationship: RelationshipMapper?
     var commentedUserRelationship: RelationshipMapper?
 
-    required init?(map: Map) { /* Intentionally left empty  */ }
+    public required init?(map: Map) { /* Intentionally left empty  */ }
 
-    func mapping(map: Map) {
+    open func mapping(map: Map) {
         identifier <- map["id"]
         text <- map["attributes.text"]
         approved <- map["attributes.approved"]
