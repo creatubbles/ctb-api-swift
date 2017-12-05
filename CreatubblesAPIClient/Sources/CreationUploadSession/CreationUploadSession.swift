@@ -192,10 +192,6 @@ class CreationUploadSession: NSObject, Cancelable {
             completion(error)
             return
         }
-        if state.rawValue >= CreationUploadSessionState.creationAllocated.rawValue {
-            completion(nil)
-            return
-        }
 
         if let creationIdentifier = creationData.creationIdentifier {
             let request = FetchCreationsRequest(creationId: creationIdentifier)
