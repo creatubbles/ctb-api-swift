@@ -121,6 +121,10 @@ public class RequestSender: NSObject {
     func isLoggedIn() -> Bool {
         return networkManager.authClient.privateAccessToken != nil
     }
+    
+    public func cancelAllUploadTasks(completionHandler: @escaping () -> Void) {
+        uploadManager.cancelAllUploadTasks(completionHandler: completionHandler)
+    }
 
     // MARK: - Request sending
 

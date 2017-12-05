@@ -54,6 +54,18 @@ class UploadManager: NSObject {
         }
 
     }
+    
+    func cancelAllUploadTasks(completionHandler: @escaping () -> Void) {
+        self.session.getTasksWithCompletionHandler({ (dataTasks, uploadTasks, downloadTasks) in
+            uploadTasks.forEach({ (task) in
+                task.cancel()
+            })
+            
+            DispatchQueue.main.async {
+                completionHandler()
+            }
+        })
+    }
 
     func upload(request: URLRequest, fromData data: Data) -> UploadTask {
         let isBackgroundSession = session.configuration.identifier != nil

@@ -71,7 +71,7 @@ class CreationUploadSession: NSObject, Cancelable {
         self.state = .initialized
         self.requestSender = requestSender
         self.creationData = data
-        self.imageFileName = localIdentifier+"_creation"
+        self.imageFileName = localIdentifier+"_creation.\(self.creationData.uploadExtension.stringValue)"
 
         if let fileURL = data.url, data.storageType == .appGroupDirectory {
             self.relativeFilePath = fileURL.lastPathComponent
@@ -251,10 +251,6 @@ class CreationUploadSession: NSObject, Cancelable {
             completion(error)
             return
         }
-        if state.rawValue >= CreationUploadSessionState.imageUploaded.rawValue {
-            completion(nil)
-            return
-        }
 
         currentRequest = requestSender.send(creationData, uploadData: creationUpload!,
                                              progressChanged: {
@@ -424,18 +420,25 @@ class CreationUploadSession: NSObject, Cancelable {
     }
 
     fileprivate func storeCreation(_ completion: ((Error?) -> Void) ) {
-        var data: Data!
-
-        if let creationData = self.creationData.data { data = creationData } else if let image = self.creationData.image { data = UIImageJPEGRepresentation(image, 1)! } else if let url = self.creationData.url { data = try? Data(contentsOf: url) }
-
+        var data: Data?
+        
+        if let creationData = self.creationData.data { data = creationData } else if let image = self.creationData.image { data = UIImageJPEGRepresentation(image, 1) } else if let url = self.creationData.url { data = try? Data(contentsOf: url) }
+        
+        if data == nil {
+            Logger.log(.error, "Creation data cannot be retrieved")
+            completion(APIClientError.genericUploadCancelledError as Error)
+            
+            return
+        }
+        
         var url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
-
+        
         if let appGroupDirectory = CreationUploadSession.appGroupDirectory(), creationData.storageType == .appGroupDirectory {
             url = URL(fileURLWithPath: (appGroupDirectory+"/"+relativeFilePath))
         }
-
+        
         let fileManager = FileManager.default
-
+        
         if !fileManager.fileExists(atPath: url.path.stringByDeletingLastPathComponent) {
             do {
                 try fileManager.createDirectory(atPath: url.path.stringByDeletingLastPathComponent, withIntermediateDirectories: true, attributes: nil)
@@ -448,9 +451,10 @@ class CreationUploadSession: NSObject, Cancelable {
                 completion(error)
             }
         }
-
+        
         do {
-            try data.write(to: url, options: [.atomic])
+            try data?.write(to: url, options: [.atomic])
+            self.creationData.url = url
             completion(nil)
         } catch let error {
             Logger.log(.error, "File save error: \(error)")

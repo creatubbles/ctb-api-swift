@@ -41,7 +41,7 @@ import UIKit
     case uzpb
     case zip
 
-    var stringValue: String {
+    public var stringValue: String {
         switch self {
             case .png: return "png"
             case .jpg: return "jpg"

@@ -32,17 +32,37 @@ protocol CreationUploadServiceDelegate: class {
 }
 
 class CreationUploadService: CreationUploadSessionDelegate {
+    fileprivate static let currentStructureVersionKey = "CreationUploadDAO.currentStructureVersion"
+    
+    // We are versioning this class to avoid some unexpected crashes after applying some breaking changes. We should increase it if there is a possibility that some stored upload session objects are not valid anymore
+    fileprivate let structureVersion = 1
+    
     weak var delegate: CreationUploadServiceDelegate?
 
     fileprivate let databaseDAO: DatabaseDAO
     fileprivate let requestSender: RequestSender
     fileprivate var uploadSessions: Array<CreationUploadSession>
+    fileprivate let operationQueue: OperationQueue
 
     init(requestSender: RequestSender) {
         self.requestSender = requestSender
         self.databaseDAO = DatabaseDAO()
         self.uploadSessions = Array<CreationUploadSession>()
+        
+        self.operationQueue = OperationQueue()
+        self.operationQueue.maxConcurrentOperationCount = 10
+        
         setupSessions()
+    }
+    
+    private func updateCurrentStructureVersion() {
+        let userDefaults = UserDefaults.standard
+        if userDefaults.integer(forKey: CreationUploadService.currentStructureVersionKey) < structureVersion {
+            userDefaults.set(structureVersion, forKey: CreationUploadService.currentStructureVersionKey)
+            userDefaults.synchronize()
+            
+            removeAllUploadSessions()
+        }
     }
 
     fileprivate func setupSessions() {
@@ -64,17 +84,25 @@ class CreationUploadService: CreationUploadSessionDelegate {
     }
 
     func startAllNotFinishedUploadSessions(_ completion: CreationClosure?) {
+        updateCurrentStructureVersion()
+        
         // We have to check if there are some new sessions that should consider
-        var newUploadSessions: [CreationUploadSession] = []
-        databaseDAO.fetchAllCreationUploadSessions(requestSender).forEach { (uploadSession) in
-            if uploadSessions.filter({ $0.localIdentifier == uploadSession.localIdentifier }).isEmpty {
-                uploadSession.delegate = self
-                newUploadSessions.append(uploadSession)
+        requestSender.cancelAllUploadTasks { [weak self] in
+            guard let strongSelf = self else { return }
+            var newUploadSessions: [CreationUploadSession] = []
+            strongSelf.databaseDAO.fetchAllCreationUploadSessions(strongSelf.requestSender).forEach { (uploadSession) in
+                if strongSelf.uploadSessions.filter({ $0.localIdentifier == uploadSession.localIdentifier }).isEmpty {
+                    uploadSession.delegate = strongSelf
+                    newUploadSessions.append(uploadSession)
+                }
+            }
+            
+            strongSelf.uploadSessions.append(contentsOf: newUploadSessions)
+            strongSelf.uploadSessions.filter({ !$0.isActive }).forEach { (uploadSession) in
+                let operation = CreationUploadSessionOperation(session: uploadSession, completion: completion)
+                strongSelf.operationQueue.addOperation(operation)
             }
         }
-
-        uploadSessions.append(contentsOf: newUploadSessions)
-        uploadSessions.filter({ !$0.isActive }).forEach({ $0.start(completion) })
     }
 
     func startUploadSession(sessionIdentifier sessionId: String) {
@@ -125,8 +153,11 @@ class CreationUploadService: CreationUploadSessionDelegate {
         uploadSessions.append(session)
         databaseDAO.saveCreationUploadSessionToDatabase(session)
         session.delegate = self
-        session.start(completion)
         delegate?.creationUploadService(self, newSessionAdded: session)
+        
+        let operation = CreationUploadSessionOperation(session: session, completion: completion)
+        operationQueue.addOperation(operation)
+        
         return CreationUploadSessionPublicData(creationUploadSession: session)
     }
 
