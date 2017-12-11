@@ -28,11 +28,13 @@ import ObjectMapper
 class PagingInfoMapper: Mappable {
     var totalPages: Int?
     var totalCount: Int?
-
+    var feedTrackingId: String?
+    
     required init?(map: Map) { /* Intentionally left empty  */ }
 
     func mapping(map: Map) {
         totalPages <- map["total_pages"]
         totalCount <- map["total_count"]
+        feedTrackingId <- map["feed_tracking_id"]
     }
 }
