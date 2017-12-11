@@ -28,14 +28,17 @@ import UIKit
 open class PagingInfo: NSObject {
     open let totalPages: Int
     open let totalCount: Int
-
-    public init(totalPages: Int, totalCount: Int) {
+    open let feedTrackingId: String?
+    
+    public init(totalPages: Int, totalCount: Int, feedTrackingId: String?) {
         self.totalPages = totalPages
         self.totalCount = totalCount
+        self.feedTrackingId = feedTrackingId
     }
 
     init(mapper: PagingInfoMapper) {
         self.totalCount = mapper.totalCount!
         self.totalPages = mapper.totalPages!
+        self.feedTrackingId = mapper.feedTrackingId
     }
 }
