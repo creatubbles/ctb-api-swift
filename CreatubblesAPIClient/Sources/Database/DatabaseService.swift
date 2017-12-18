@@ -53,7 +53,7 @@ class DatabaseService: NSObject {
         return configuration
     }
 
-    fileprivate class func prepareRealm() -> Realm {
+    fileprivate class func prepareRealm() -> Realm? {
         let realmConfiguration = prepareRealmConfig()
         do {
 
@@ -61,13 +61,17 @@ class DatabaseService: NSObject {
         } catch let realmError {
             Logger.log(.error, "Realm error error: \(realmError)")
             do {
-                let url = realmConfiguration.fileURL
-                try FileManager.default.removeItem(at: url!)
+                guard let url = realmConfiguration.fileURL else {
+                    Logger.log(.error, "Error unwrapping realm fileURL")
+                    return nil
+                }
+                try FileManager.default.removeItem(at: url)
             } catch let fileManagerError {
                 Logger.log(.error, "File manager error: \(fileManagerError)")
             }
+            
+            return try? Realm(configuration: realmConfiguration)
         }
-        return try! Realm(configuration: realmConfiguration)
     }
 
     func saveCreationUploadSessionToDatabase(_ creationUploadSession: CreationUploadSession) {
@@ -75,7 +79,7 @@ class DatabaseService: NSObject {
 
         if let creationUploadSessionEntityFromDatabase = fetchASingleCreationUploadSessionWithLocalIdentifier(creationUploadSession.localIdentifier) {
             do {
-                try realm.write({ () -> Void in
+                try realm?.write({ () -> Void in
                     deleteOldDatabaseObjects(creationUploadSessionEntityFromDatabase)
                 })
             } catch let error {
@@ -84,8 +88,8 @@ class DatabaseService: NSObject {
         }
 
         do {
-            try realm.write({ () -> Void in
-                realm.add(creationUploadSessionEntity, update: true)
+            try realm?.write({ () -> Void in
+                realm?.add(creationUploadSessionEntity, update: true)
             })
         } catch let error {
             print(error)
@@ -94,20 +98,23 @@ class DatabaseService: NSObject {
 
     func deleteOldDatabaseObjects(_ creationUploadSessionEntity: CreationUploadSessionEntity) {
         if let creationEntity = creationUploadSessionEntity.creationEntity {
-            realm.delete(creationEntity)
+            realm?.delete(creationEntity)
         }
         if let creationUploadEntity = creationUploadSessionEntity.creationUploadEntity {
-            realm.delete(creationUploadEntity)
+            realm?.delete(creationUploadEntity)
         }
         if let creationDataEntity = creationUploadSessionEntity.creationDataEntity {
-            realm.delete(creationDataEntity)
+            realm?.delete(creationDataEntity)
         }
     }
 
     func fetchAllCreationUploadSessionEntities() -> Array<CreationUploadSessionEntity> {
-        let realmObjects = realm.objects(CreationUploadSessionEntity.self)
         var creationUploadSessionEntitiesArray = [CreationUploadSessionEntity]()
-
+    
+        guard let realmObjects = realm?.objects(CreationUploadSessionEntity.self) else {
+            return creationUploadSessionEntitiesArray
+        }
+        
         for entity in realmObjects {
             creationUploadSessionEntitiesArray.append(entity)
         }
@@ -127,15 +134,17 @@ class DatabaseService: NSObject {
     }
 
     func fetchASingleCreationUploadSessionWithLocalIdentifier(_ localIdentifier: String) -> CreationUploadSessionEntity? {
-        let creationUploadSessionEntities = realm.objects(CreationUploadSessionEntity.self).filter("localIdentifier = %@", localIdentifier)
-        return creationUploadSessionEntities.first
+        let creationUploadSessionEntities = realm?.objects(CreationUploadSessionEntity.self).filter("localIdentifier = %@", localIdentifier)
+        return creationUploadSessionEntities?.first
     }
 
     func getAllActiveUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession> {
         var activeUploadSessions = [CreationUploadSession]()
 
         let predicate = NSPredicate(format: "stateRaw < \(CreationUploadSessionState.serverNotified.rawValue)")
-        let uploadSessionEntities = realm.objects(CreationUploadSessionEntity.self).filter(predicate)
+        guard let uploadSessionEntities = realm?.objects(CreationUploadSessionEntity.self).filter(predicate) else {
+            return activeUploadSessions
+        }
 
         for uploadSessionEntity in uploadSessionEntities {
             activeUploadSessions.append(CreationUploadSession(creationUploadSessionEntity: uploadSessionEntity, requestSender: requestSender))
@@ -147,7 +156,9 @@ class DatabaseService: NSObject {
     func getAllFinishedUploadSessions(_ requestSender: RequestSender) -> Array<CreationUploadSession> {
         var finishedUploadSessions = [CreationUploadSession]()
         let predicate = NSPredicate(format: "stateRaw >= \(CreationUploadSessionState.serverNotified.rawValue)")
-        let uploadSessionEntities = realm.objects(CreationUploadSessionEntity.self).filter(predicate)
+        guard let uploadSessionEntities = realm?.objects(CreationUploadSessionEntity.self).filter(predicate) else {
+            return finishedUploadSessions
+        }
 
         for uploadSessionEntity in uploadSessionEntities {
             finishedUploadSessions.append(CreationUploadSession(creationUploadSessionEntity: uploadSessionEntity, requestSender: requestSender))
@@ -177,10 +188,10 @@ class DatabaseService: NSObject {
     }
 
     func removeUploadSession(withIdentifier identifier: String) {
-        if let entity = realm.object(ofType: CreationUploadSessionEntity.self, forPrimaryKey: identifier) {
+        if let entity = realm?.object(ofType: CreationUploadSessionEntity.self, forPrimaryKey: identifier) {
             do {
-                try realm.write {
-                    realm.delete(entity)
+                try realm?.write {
+                    realm?.delete(entity)
                 }
             } catch let error {
                 Logger.log(.error, "Error during removing upload session: \(error)")
@@ -190,8 +201,8 @@ class DatabaseService: NSObject {
 
     func removeAllUploadSessions() {
         do {
-            try realm.write {
-                realm.deleteAll()
+            try realm?.write {
+                realm?.deleteAll()
             }
         } catch let error {
             Logger.log(.error, "Error duting database clear: \(error)")
