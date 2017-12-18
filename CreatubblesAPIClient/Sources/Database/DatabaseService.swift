@@ -61,13 +61,17 @@ class DatabaseService: NSObject {
         } catch let realmError {
             Logger.log(.error, "Realm error error: \(realmError)")
             do {
-                let url = realmConfiguration.fileURL
-                try FileManager.default.removeItem(at: url!)
+                guard let url = realmConfiguration.fileURL else {
+                    Logger.log(.error, "Error unwrapping realm fileURL")
+                    return
+                }
+                try FileManager.default.removeItem(at: url)
             } catch let fileManagerError {
                 Logger.log(.error, "File manager error: \(fileManagerError)")
             }
+            
+            return try? Realm(configuration: realmConfiguration)
         }
-        return try! Realm(configuration: realmConfiguration)
     }
 
     func saveCreationUploadSessionToDatabase(_ creationUploadSession: CreationUploadSession) {
