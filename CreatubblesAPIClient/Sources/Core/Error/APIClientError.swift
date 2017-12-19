@@ -38,6 +38,7 @@ extension APIClientError {
     public static let InvalidResponseDataCode: String = "invalid-response-error"
     public static let MissingResponseDataCode: String = "missing-response-error"
     public static let MissingCreationToRefreshCode: String = "missing-creation-identifier-error"
+    public static let OperationCancelledCode: String = "operation-cancelled"
     public static let PermissionSlipInvalidGuardianEmailCode: String = "object-permission_slip-invalid-guardian_email"
 }
 

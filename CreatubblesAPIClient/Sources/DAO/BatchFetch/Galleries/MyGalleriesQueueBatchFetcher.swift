@@ -83,7 +83,12 @@ class MyGalleriesQueueBatchFetcher: Cancelable {
         let finishOperation = BlockOperation()
         finishOperation.addExecutionBlock {
             [unowned finishOperation, weak self] in
-            guard !finishOperation.isCancelled else { return }
+            
+            guard let strongSelf = self else  { return }
+            if finishOperation.isCancelled {
+                strongSelf.completion?(nil, APIClientError.genericError(code: APIClientError.OperationCancelledCode))
+                return
+            }
             
             DispatchQueue.main.async {
                 [weak self] in
