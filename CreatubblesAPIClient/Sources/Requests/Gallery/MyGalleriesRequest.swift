@@ -57,8 +57,8 @@ class MyGalleriesRequest: Request {
         
         if let filter = filter {
             switch filter {
-                case .owned: params["gallery_filter"] = "only_owned" as AnyObject?
-                case .shared: params["gallery_filter"] = "only_shared" as AnyObject?
+                case .owned: params["filter[only_owned]"] = true as AnyObject?
+                case .shared: params["filter[only_shared]"] = true as AnyObject?
             }
         }
         
