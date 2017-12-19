@@ -47,8 +47,8 @@ class CreationUploadSession: NSObject, Cancelable {
     fileprivate let requestSender: RequestSender
     let localIdentifier: String
     let creationData: NewCreationData
-    let imageFileName: String
-    let relativeFilePath: String
+    var imageFileName: String
+    var relativeFilePath: String
 
     fileprivate (set) var state: CreationUploadSessionState
     fileprivate (set) var isActive: Bool
@@ -71,7 +71,7 @@ class CreationUploadSession: NSObject, Cancelable {
         self.state = .initialized
         self.requestSender = requestSender
         self.creationData = data
-        self.imageFileName = localIdentifier+"_creation"
+        self.imageFileName = localIdentifier+"_creation.\(self.creationData.uploadExtension.stringValue)"
 
         if let fileURL = data.url, data.storageType == .appGroupDirectory {
             self.relativeFilePath = fileURL.lastPathComponent
@@ -103,14 +103,30 @@ class CreationUploadSession: NSObject, Cancelable {
             self.creation = Creation(creationEntity: creationEntity)
         }
     }
+    
+    func configureImageFileName(newImageFileName: String) {
+        self.imageFileName = newImageFileName
+        
+        if let fileURL = creationData.url, creationData.storageType == .appGroupDirectory {
+            self.relativeFilePath = fileURL.lastPathComponent
+        } else {
+            self.relativeFilePath = "creations/"+imageFileName
+        }
+    }
 
     func cancel() {
         currentRequest?.cancel()
         state = .cancelled
-        delegate?.creationUploadSessionChangedState(self)
+        notifyDelegateSessionChanged()
 
         if !isActive && !isAlreadyFinished {
-            delegate?.creationUploadSessionUploadFailed(self, error: APIClientError.genericUploadCancelledError as Error)
+            notifyDelegateSessionChanged(error: APIClientError.genericUploadCancelledError as Error)
+        }
+    }
+    
+    func prepare(completion: @escaping (Error?) -> Void) {
+        saveImageOnDisk(nil) { (error) -> Void in
+            completion(error)
         }
     }
 
@@ -125,19 +141,19 @@ class CreationUploadSession: NSObject, Cancelable {
         saveImageOnDisk(nil) { [weak self](error) -> Void in
             if let weakSelf = self {
                 weakSelf.allocateCreation(error, completion: { (error) -> Void in
-                    weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                    weakSelf.notifyDelegateSessionChanged()
 
                     weakSelf.obtainUploadPath(error, completion: { (error) -> Void in
-                        weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                        weakSelf.notifyDelegateSessionChanged()
 
                         weakSelf.uploadImage(error, completion: { (error) -> Void in
-                            weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                            weakSelf.notifyDelegateSessionChanged()
 
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
-                                weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                                weakSelf.notifyDelegateSessionChanged()
 
                                 weakSelf.uploadToGallery(error: error, completion: { (error) in
-                                    weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                                    weakSelf.notifyDelegateSessionChanged()
 
                                     weakSelf.refreshCreationStatus(error: error, completion: { (error) in
                                         weakSelf.error = error
@@ -145,11 +161,11 @@ class CreationUploadSession: NSObject, Cancelable {
 
                                         if let error = error {
                                             Logger.log(.error, "Upload \(weakSelf.localIdentifier) finished with error: \(error)")
-                                            weakSelf.delegate?.creationUploadSessionUploadFailed(weakSelf, error: error)
+                                            weakSelf.notifyDelegateSessionChanged(error: error)
                                         } else if weakSelf.state == .confirmedOnServer || weakSelf.state == .completed {
                                             Logger.log(.debug, "Upload \(weakSelf.localIdentifier) finished successfully")
                                             weakSelf.state = .completed
-                                            weakSelf.delegate?.creationUploadSessionChangedState(weakSelf)
+                                            weakSelf.notifyDelegateSessionChanged()
                                         } else {
                                             weakSelf.setupAutoRefreshTimer()
                                         }
@@ -406,7 +422,7 @@ class CreationUploadSession: NSObject, Cancelable {
             else { return }
             strongSelf.confirmedOnServerRefreshTimer?.invalidate()
             strongSelf.confirmedOnServerRefreshTimer = nil
-            strongSelf.delegate?.creationUploadSessionChangedState(strongSelf)
+            strongSelf.notifyDelegateSessionChanged()
         }
     }
 
@@ -424,9 +440,22 @@ class CreationUploadSession: NSObject, Cancelable {
     }
 
     fileprivate func storeCreation(_ completion: ((Error?) -> Void) ) {
-        var data: Data!
-
-        if let creationData = self.creationData.data { data = creationData } else if let image = self.creationData.image { data = UIImageJPEGRepresentation(image, 1)! } else if let url = self.creationData.url { data = try? Data(contentsOf: url) }
+        // Because of the data object created inside this method I recommend to execute this method only in the background thread.
+        var data: Data?
+        
+        if let creationData = self.creationData.data {
+            data = creationData
+        } else if let image = self.creationData.image {
+            data = UIImageJPEGRepresentation(image, 1)
+        } else if let url = self.creationData.url {
+            data = try? Data(contentsOf: url)
+        }
+        
+        if data == nil {
+            Logger.log(.error, "Creation data cannot be retrieved")
+            completion(APIClientError.genericUploadCancelledError as Error)
+            return
+        }
 
         var url = URL(fileURLWithPath: (CreationUploadSession.documentsDirectory()+"/"+relativeFilePath))
 
@@ -450,15 +479,23 @@ class CreationUploadSession: NSObject, Cancelable {
         }
 
         do {
-            try data.write(to: url, options: [.atomic])
+            try data?.write(to: url, options: [.atomic])
+            self.creationData.url = url
             completion(nil)
         } catch let error {
             Logger.log(.error, "File save error: \(error)")
             completion(APIClientError.genericUploadCancelledError as Error)
         }
     }
-
-    fileprivate func notifyDelegateSessionChanged() {
-        delegate?.creationUploadSessionChangedState(self)
+    
+    fileprivate func notifyDelegateSessionChanged(error: Error? = nil) {
+        // We have to make sure that all delegate calls are in the main thread. The delegate may execute some operations strictly related to this thread (i.e. operation on the database, NOTE: Realm object is created in the main thread and all requests have to be executed in the same context). Based on the testing session this was one of the reasons of crashes that are really hard to track.
+        DispatchQueue.main.async {
+            if let error = error {
+                self.delegate?.creationUploadSessionUploadFailed(self, error: error)
+            } else {
+                self.delegate?.creationUploadSessionChangedState(self)
+            }
+        }
     }
 }
