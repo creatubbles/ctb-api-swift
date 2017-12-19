@@ -40,22 +40,23 @@ class MyGalleriesRequestSpec: QuickSpec {
                 expect(request.endpoint) == "users/me/galleries"
             }
 
-            it("Shouldn't have gallery_filter parameter for all galleries") {
+            it("Shouldn't have filter parameter for all galleries") {
                 let request = MyGalleriesRequest(page: 1, perPage: 20, filter: .none)
                 let params = request.parameters
-                expect(params["gallery_filter"] as? String).to(beNil())
+                expect(params["filter[only_owned]"] as? Bool).to(beNil())
+                expect(params["filter[only_shared]"] as? Bool).to(beNil())
             }
 
-            it("Shouldn have gallery_filter parameter for shared galleries") {
+            it("Should have filter[only_owned] parameter for owned galleries") {
                 let request = MyGalleriesRequest(page: 1, perPage: 20, filter: .owned)
                 let params = request.parameters
-                expect(params["gallery_filter"] as? String) == "only_owned"
+                expect(params["filter[only_owned]"] as? Bool).to(beTrue())
             }
 
-            it("Shouldn't have gallery_filter parameter for owned galleries") {
+            it("Should have filter[only_shared] parameter for shared galleries") {
                 let request = MyGalleriesRequest(page: 1, perPage: 20, filter: .shared)
                 let params = request.parameters
-                expect(params["gallery_filter"] as? String) == "only_shared"
+                expect(params["filter[only_shared]"] as? Bool).to(beTrue())
             }
         }
     }
