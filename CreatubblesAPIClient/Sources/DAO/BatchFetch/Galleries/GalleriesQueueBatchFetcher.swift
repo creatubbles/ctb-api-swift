@@ -88,12 +88,20 @@ class GalleriesQueueBatchFetcher: Cancelable {
         let finishOperation = BlockOperation()
         finishOperation.addExecutionBlock {
             [unowned finishOperation, weak self] in
-            guard let strongSelf = self, !finishOperation.isCancelled else { return }
-            let objects = strongSelf.objectsByPage.sorted(by: { $0.key.page > $1.key.page }).flatMap({ $0.value })
-            let error = strongSelf.errorsByPage.values.first
+            guard let strongSelf = self else  { return }
+            if finishOperation.isCancelled {
+                strongSelf.completion?(nil, APIClientError.genericError(code: APIClientError.OperationCancelledCode))
+                return
+            }
+            
             DispatchQueue.main.async {
                 [weak self] in
-                self?.completion?(objects, error)
+                
+                guard let strongSelf = self else  { return }
+                let objects = strongSelf.objectsByPage.sorted(by: { $0.key.page > $1.key.page }).flatMap({ $0.value })
+                let error = strongSelf.errorsByPage.values.first
+                
+                strongSelf.completion?(objects, error)
             }
         }
 
