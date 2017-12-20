@@ -61,7 +61,7 @@ import UIKit
         }
     }
 
-    static func fromString(_ stringValue: String) -> UploadExtension? {
+    public static func fromString(_ stringValue: String) -> UploadExtension? {
         if stringValue == "png" { return .png }
         if stringValue == "jpg" { return .jpg }
         if stringValue == "jpeg" { return .jpeg }

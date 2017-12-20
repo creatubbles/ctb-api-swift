@@ -48,7 +48,7 @@ class CreationUploadSession: NSObject, Cancelable {
     let localIdentifier: String
     let creationData: NewCreationData
     var imageFileName: String
-    var relativeFilePath: String
+    private(set) var relativeFilePath: String
 
     fileprivate (set) var state: CreationUploadSessionState
     fileprivate (set) var isActive: Bool

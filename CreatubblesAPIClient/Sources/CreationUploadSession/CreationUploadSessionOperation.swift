@@ -45,6 +45,10 @@ class CreationUploadSessionOperation: ConcurrentOperation {
     
     override func cancel() {
         session.cancel()
+        
+        let error = APIClientError.genericUploadCancelledError
+        completion?(nil, error)
+        
         super.cancel()
     }
 }
