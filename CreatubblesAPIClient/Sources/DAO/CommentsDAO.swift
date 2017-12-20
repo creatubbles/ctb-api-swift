@@ -26,7 +26,7 @@
 import UIKit
 
 open class CommentsDAO: NSObject, APIClientDAO {
-    fileprivate let requestSender: RequestSender
+    public let requestSender: RequestSender
 
     public required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
