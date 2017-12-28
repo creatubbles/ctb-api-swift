@@ -32,6 +32,8 @@ class CreationUploadSessionFileLocationValidator: CreationUploadSessionValidatin
     }
     
     func isValid() -> Bool {
+        if session.creationData.dataType == .image { return true }
+        
         guard let fileURL = session.creationData.url else { return false }
         return fileURL.pathExtension == session.creationData.uploadExtension.stringValue
     }

@@ -32,7 +32,7 @@ class CreationUploadSessionDataTypeValidator: CreationUploadSessionValidating {
     }
     
     func isValid() -> Bool {
-        if session.creationData.dataType == .url { return true }
+        if session.creationData.dataType == .url || session.creationData.dataType == .image { return true }
         
         return false
     }
