@@ -1,5 +1,5 @@
 //
-//  CreationUploadSessionDataTypeMigration.swift
+//  CreationUploadSessionDataTypeValidator.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -24,27 +24,15 @@
 
 import UIKit
 
-class CreationUploadSessionDataTypeMigration: CreationUploadSessionMigrating {
-    private(set) var executed: Bool = false
-    private(set) var error: Error?
-    fileprivate let databaseDAO: DatabaseDAO
+class CreationUploadSessionDataTypeValidator: CreationUploadSessionValidating {
     fileprivate let session: CreationUploadSession
     
-    required init(session: CreationUploadSession, databaseDAO: DatabaseDAO) {
-        self.databaseDAO = databaseDAO
+    required init(session: CreationUploadSession) {
         self.session = session
     }
     
-    func start() {
-        guard shouldBeMigrated() else { return }
-        
-        session.creationData.dataType = .url
-        databaseDAO.saveCreationUploadSessionToDatabase(session)
-        executed = true
-    }
-    
-    private func shouldBeMigrated() -> Bool {
-        if session.creationData.dataType == .data { return true }
+    func isValid() -> Bool {
+        if session.creationData.dataType == .url { return true }
         
         return false
     }

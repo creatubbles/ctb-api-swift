@@ -1,5 +1,5 @@
 //
-//  CreationUploadSessionMigrating.swift
+//  CreationUploadSessionFileLocationValidator.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -24,9 +24,15 @@
 
 import UIKit
 
-protocol CreationUploadSessionMigrating {
-    var executed: Bool { get }
-    var error: Error? { get }
-    init(session: CreationUploadSession, databaseDAO: DatabaseDAO)
-    func start()
+class CreationUploadSessionFileLocationValidator: CreationUploadSessionValidating {
+    fileprivate let session: CreationUploadSession
+    
+    required init(session: CreationUploadSession) {
+        self.session = session
+    }
+    
+    func isValid() -> Bool {
+        guard let fileURL = session.creationData.url else { return false }
+        return fileURL.pathExtension == session.creationData.uploadExtension.stringValue
+    }
 }
