@@ -46,10 +46,10 @@ class GalleriesRequest: Request {
     fileprivate let query: String?
     fileprivate let filter: GalleriesRequestFilter?
 
-    init(partnerApplicationId: String) {
+    init(partnerApplicationId: String, pagingData: PagingData) {
         self.galleryId = nil
-        self.page = nil
-        self.perPage = nil
+        self.page = pagingData.page
+        self.perPage = pagingData.pageSize
         self.sort = nil
         self.creationId = nil
         self.userId = nil

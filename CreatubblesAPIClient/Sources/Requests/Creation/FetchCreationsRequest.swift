@@ -86,9 +86,9 @@ class FetchCreationsRequest: Request {
         self.partnerApplicationId = nil
     }
     
-    init(partnerApplicationId: String) {
-        self.page = nil
-        self.perPage = nil
+    init(partnerApplicationId: String, pagingData: PagingData) {
+        self.page = pagingData.page
+        self.perPage = pagingData.pageSize
         self.galleryId = nil
         self.userId = nil
         self.sort = nil
