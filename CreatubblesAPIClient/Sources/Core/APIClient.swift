@@ -656,6 +656,14 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     open func searchPartnerApplications(_ query: String, completion: PartnerApplicationsClosure?) -> RequestHandler {
         return daoAssembly.assembly(PartnerApplicationDAO.self).searchPartnerApplications(query, completion: completion)
     }
+    
+    open func getPartnerApplicationGalleries(_ id: String, completion: GalleriesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(PartnerApplicationDAO.self).getPartnerApplicationGalleries(id, completion: completion)
+    }
+    
+    open func getPartnerApplicationCreations(_ id: String, completion: CreationsClosure?) -> RequestHandler {
+        return daoAssembly.assembly(PartnerApplicationDAO.self).getPartnerApplicationCreations(id, completion: completion)
+    }
 
     // MARK: - Avatar
 
