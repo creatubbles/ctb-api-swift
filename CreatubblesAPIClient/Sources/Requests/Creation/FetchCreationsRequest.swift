@@ -22,7 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
+import Foundation
 
 class FetchCreationsRequest: Request {
     override var method: RequestMethod { return .get }
@@ -36,7 +36,10 @@ class FetchCreationsRequest: Request {
         if let recommendedCreationId = recommendedCreationId {
             return "creations/\(recommendedCreationId)/recommended_creations"
         }
-        //when listed by: partner_application, user, submitted to gallery, recent, by name and only public should return "creations"
+        if let partnerApplicationId = partnerApplicationId {
+            return "partner_applications/\(partnerApplicationId)/creations"
+        }
+        //when listed by: user, submitted to gallery, recent, by name and only public should return "creations"
         return "creations"
     }
 

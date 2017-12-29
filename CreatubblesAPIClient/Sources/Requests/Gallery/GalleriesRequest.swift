@@ -31,19 +31,33 @@ class GalleriesRequest: Request {
         if let id = galleryId { return "galleries/"+id }
         if let id = userId { return "users/\(id)/galleries" }
         if let id = creationId { return "creations/\(id)/galleries" }
+        if let id = partnerApplicationId { return "partner_applications/\(id)/galleries" }
         return "galleries"
     }
 
     fileprivate let galleryId: String?
     fileprivate let userId: String?
     fileprivate let creationId: String?
-
+    fileprivate let partnerApplicationId: String?
+    
     fileprivate let page: Int?
     fileprivate let perPage: Int?
     fileprivate let sort: SortOrder?
     fileprivate let query: String?
     fileprivate let filter: GalleriesRequestFilter?
 
+    init(partnerApplicationId: String) {
+        self.galleryId = nil
+        self.page = nil
+        self.perPage = nil
+        self.sort = nil
+        self.creationId = nil
+        self.userId = nil
+        self.query = nil
+        self.filter = nil
+        self.partnerApplicationId = partnerApplicationId
+    }
+    
     init(galleryId: String) {
         self.galleryId = galleryId
         self.page = nil
@@ -53,6 +67,7 @@ class GalleriesRequest: Request {
         self.userId = nil
         self.query = nil
         self.filter = nil
+        self.partnerApplicationId = nil
     }
 
     init(page: Int?, perPage: Int?, sort: SortOrder?, filter: GalleriesRequestFilter?, userId: String?, query: String?) {
@@ -64,6 +79,7 @@ class GalleriesRequest: Request {
         self.userId = userId
         self.query = query
         self.filter = filter
+        self.partnerApplicationId = nil
     }
 
     init(creationId: String, page: Int?, perPage: Int?, sort: SortOrder?, filter: GalleriesRequestFilter?) {
@@ -75,6 +91,7 @@ class GalleriesRequest: Request {
         self.filter = filter
         self.userId = nil
         self.query = nil
+        self.partnerApplicationId = nil
     }
 
     fileprivate func prepareParametersDict() -> Dictionary<String, AnyObject> {
