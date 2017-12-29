@@ -68,7 +68,7 @@ class FetchCreationsRequest: Request {
         self.recommendedCreationId = nil
         self.partnerApplicationId = partnerApplicationId
     }
-
+    
     init(creationId: String) {
         self.page = nil
         self.perPage = nil

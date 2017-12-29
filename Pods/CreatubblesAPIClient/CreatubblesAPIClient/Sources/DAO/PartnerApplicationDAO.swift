@@ -31,7 +31,7 @@ class PartnerApplicationDAO: NSObject, APIClientDAO {
     required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
-
+  
     func getPartnerApplication(_ id: String, completion: PartnerApplicationClosure?) -> RequestHandler {
         let request = PartnerApplicationRequest(id: id)
         let handler = PartnerApplicationResponseHandler(completion: completion)

@@ -32,6 +32,18 @@ class PartnerApplicationDAO: NSObject, APIClientDAO {
         self.requestSender = dependencies.requestSender
     }
 
+    func getPartnerApplicationCreations(_ id: String, completion: CreationsClosure?) -> RequestHandler {
+        let request = FetchCreationsRequest(partnerApplicationId: id)
+        let handler = FetchCreationsResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func getPartnerApplicationGalleries(_ id: String, completion: GalleriesClosure?) -> RequestHandler {
+        let request = GalleriesRequest(partnerApplicationId: id)
+        let handler = GalleriesResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getPartnerApplication(_ id: String, completion: PartnerApplicationClosure?) -> RequestHandler {
         let request = PartnerApplicationRequest(id: id)
         let handler = PartnerApplicationResponseHandler(completion: completion)

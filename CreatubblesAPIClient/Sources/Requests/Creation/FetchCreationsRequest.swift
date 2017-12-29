@@ -85,6 +85,20 @@ class FetchCreationsRequest: Request {
         self.recommendedCreationId = nil
         self.partnerApplicationId = nil
     }
+    
+    init(partnerApplicationId: String) {
+        self.page = nil
+        self.perPage = nil
+        self.galleryId = nil
+        self.userId = nil
+        self.sort = nil
+        self.keyword = nil
+        self.onlyPublic = false // this is the case when a single creation is returned, so onlyPublic value is irrelevant
+        self.creationId = nil
+        self.recommendedUserId = nil
+        self.recommendedCreationId = nil
+        self.partnerApplicationId = partnerApplicationId
+    }
 
     init(page: Int?, perPage: Int?, recommendedCreationId: String) {
         self.page = page
