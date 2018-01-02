@@ -34,6 +34,7 @@ class CreationUploadSessionOperation: ConcurrentOperation {
     }
     
     override func main() {
+        // completion is called in the cancel() method so we just return here
         guard isCancelled == false else { return }
         
         session.start { [weak self] (creation, error) -> (Void) in

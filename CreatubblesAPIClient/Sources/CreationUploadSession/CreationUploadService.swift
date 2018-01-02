@@ -206,14 +206,7 @@ class CreationUploadService: CreationUploadSessionDelegate {
     private func removeInvalidUploadSessions() {
         var invalidUploadSessions: [CreationUploadSession] = []
         databaseDAO.fetchAllCreationUploadSessions(requestSender).forEach { (uploadSession) in
-            let validators: [CreationUploadSessionValidating] = [CreationUploadSessionDataTypeValidator(session: uploadSession), CreationUploadSessionFileLocationValidator(session: uploadSession)]
-            
-            var isValid: Bool = true
-            validators.forEach({ (validator) in
-                isValid = isValid && validator.isValid()
-            })
-            
-            if !isValid {
+            if !uploadSession.isValid() {
                 invalidUploadSessions.append(uploadSession)
             }
         }

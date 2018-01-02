@@ -181,6 +181,16 @@ class CreationUploadSession: NSObject, Cancelable {
         }
     }
 
+    func isValid() -> Bool {
+        switch creationData.dataType {
+        case .data: return false
+        case .image: return true
+        case .url:
+            guard let fileURL = creationData.url else { return false }
+            return fileURL.pathExtension == creationData.uploadExtension.stringValue
+        }
+    }
+
     // MARK: Upload Flow
     fileprivate func saveImageOnDisk(_ error: Error?, completion: @escaping (Error?) -> Void) {
         if let error = error {
