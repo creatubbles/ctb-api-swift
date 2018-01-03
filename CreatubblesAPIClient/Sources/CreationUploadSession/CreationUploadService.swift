@@ -37,11 +37,21 @@ class CreationUploadService: CreationUploadSessionDelegate {
     fileprivate let databaseDAO: DatabaseDAO
     fileprivate let requestSender: RequestSender
     fileprivate var uploadSessions: Array<CreationUploadSession>
+    fileprivate let operationQueue: OperationQueue
+    fileprivate let preparationQueue: OperationQueue
 
     init(requestSender: RequestSender) {
         self.requestSender = requestSender
         self.databaseDAO = DatabaseDAO()
         self.uploadSessions = Array<CreationUploadSession>()
+        
+        self.operationQueue = OperationQueue()
+        self.operationQueue.maxConcurrentOperationCount = 1
+        
+        // To make sure that upload sessions can be retried we have to define a preparation stage. Basically, it's responsible for saving all required data locally and shouldn't be related to API calls.
+        self.preparationQueue = OperationQueue()
+        self.preparationQueue.maxConcurrentOperationCount = 1
+        
         setupSessions()
     }
 
@@ -64,7 +74,9 @@ class CreationUploadService: CreationUploadSessionDelegate {
     }
 
     func startAllNotFinishedUploadSessions(_ completion: CreationClosure?) {
-        // We have to check if there are some new sessions that should consider
+        // Before we start all unfinished sessions we have make sure that upload sessions has a correct state
+        removeInvalidUploadSessions()
+        
         var newUploadSessions: [CreationUploadSession] = []
         databaseDAO.fetchAllCreationUploadSessions(requestSender).forEach { (uploadSession) in
             if uploadSessions.filter({ $0.localIdentifier == uploadSession.localIdentifier }).isEmpty {
@@ -74,7 +86,11 @@ class CreationUploadService: CreationUploadSessionDelegate {
         }
 
         uploadSessions.append(contentsOf: newUploadSessions)
-        uploadSessions.filter({ !$0.isActive }).forEach({ $0.start(completion) })
+        uploadSessions.filter({ !$0.isActive }).forEach { (uploadSession) in
+            let operation = CreationUploadSessionOperation(session: uploadSession, completion: completion)
+            operationQueue.addOperation(operation)
+        }
+
     }
 
     func startUploadSession(sessionIdentifier sessionId: String) {
@@ -112,21 +128,50 @@ class CreationUploadService: CreationUploadSessionDelegate {
         uploadSessions = databaseDAO.fetchAllCreationUploadSessions(requestSender)
     }
 
-    func uploadCreation(data: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData? {
+    func uploadCreation(data: NewCreationData, localDataPreparationCompletion: ((_ error: Error?) -> Void)?, completion: CreationClosure?) -> CreationUploadSessionPublicData? {
         let session = CreationUploadSession(data: data, requestSender: requestSender)
         if let _ = uploadSessions.filter({ $0.localIdentifier == data.localIdentifier }).first {
             let error = APIClientError.duplicatedUploadLocalIdentifierError
+            localDataPreparationCompletion?(error)
             completion?(nil, error)
             delegate?.creationUploadService(self, uploadFailed: session, withError: error)
 
             return nil
         }
 
-        uploadSessions.append(session)
-        databaseDAO.saveCreationUploadSessionToDatabase(session)
-        session.delegate = self
-        session.start(completion)
-        delegate?.creationUploadService(self, newSessionAdded: session)
+        // Before adding a new upload session we have to make sure that it has been prepared correctly. This step is required to have a possibility to retry the upload sessions at the later stage (i.e. reopening the app)
+        let operation = BlockOperation()
+        operation.addExecutionBlock { [unowned operation, weak self] in
+            guard !operation.isCancelled else {
+                let error = APIClientError.genericUploadCancelledError
+                localDataPreparationCompletion?(error)
+                completion?(nil, error)
+                return
+            }
+            
+            session.prepare() { [weak self] (error) in
+                guard let strongSelf = self, error == nil else {
+                    localDataPreparationCompletion?(error)
+                    completion?(nil, APIClientError.genericUploadCancelledError)
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    strongSelf.uploadSessions.append(session)
+                    strongSelf.databaseDAO.saveCreationUploadSessionToDatabase(session)
+                    session.delegate = strongSelf
+                    strongSelf.delegate?.creationUploadService(strongSelf, newSessionAdded: session)
+                
+                    let operation = CreationUploadSessionOperation(session: session, completion: completion)
+                    strongSelf.operationQueue.addOperation(operation)
+                
+                    localDataPreparationCompletion?(nil)
+                }
+            }
+        }
+        
+        preparationQueue.addOperation(operation)
+        
         return CreationUploadSessionPublicData(creationUploadSession: session)
     }
 
@@ -154,5 +199,23 @@ class CreationUploadService: CreationUploadSessionDelegate {
 
     func creationUploadSessionUploadFailed(_ creationUploadSession: CreationUploadSession, error: Error) {
         delegate?.creationUploadService(self, uploadFailed: creationUploadSession, withError: error)
+    }
+    
+    // MARK: - Validation
+    
+    private func removeInvalidUploadSessions() {
+        var invalidUploadSessions: [CreationUploadSession] = []
+        databaseDAO.fetchAllCreationUploadSessions(requestSender).forEach { (uploadSession) in
+            if !uploadSession.isValid() {
+                invalidUploadSessions.append(uploadSession)
+            }
+        }
+        
+        invalidUploadSessions.forEach { (session) in
+            if let existingUploadSession = uploadSessions.filter({ $0.localIdentifier == session.localIdentifier }).first, let index = uploadSessions.index(of: existingUploadSession) {
+                uploadSessions.remove(at: index)
+                databaseDAO.removeUploadSession(withIdentifier: existingUploadSession.localIdentifier)
+            }
+        }
     }
 }
