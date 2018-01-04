@@ -55,7 +55,7 @@ open class NewCreationData: NSObject {
     open var creationMonth: Int?
     open var asset: AVURLAsset?
 
-    let dataType: CreationDataType
+    var dataType: CreationDataType
     let storageType: CreationDataStorageType
 
     public init(data: Data, uploadExtension: UploadExtension) {

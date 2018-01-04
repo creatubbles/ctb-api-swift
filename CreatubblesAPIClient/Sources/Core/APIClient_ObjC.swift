@@ -308,12 +308,13 @@ extension APIClient {
             completion?(creations, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
-
-    public func _newCreation(_ creationData: NewCreationData, completion: ((Creation?, NSError?) -> (Void))?) -> CreationUploadSessionPublicData? {
-        return newCreation(data: creationData) {
-            (creation, error) -> (Void) in
+    public func _newCreation(_ creationData: NewCreationData, localDataPreparationCompletion: ((NSError?) -> (Void))?, completion: ((Creation?, NSError?) -> (Void))?) -> CreationUploadSessionPublicData? {
+        return newCreation(data: creationData, localDataPreparationCompletion: {
+            (error) -> (Void) in
+            localDataPreparationCompletion?(APIClient.errorTypeToNSError(error))
+        }, completion: { (creation, error) -> (Void) in
             completion?(creation, APIClient.errorTypeToNSError(error))
-        }
+        })
     }
 
     public func _reportCreation(creationId: String, message: String, completion: ((NSError?) -> (Void))?) -> RequestHandler {
