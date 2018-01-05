@@ -23,6 +23,23 @@
 
 import UIKit
 
+// REFACTORING NOTES:
+// Sebastian: From my perspective refactoring effort should start with discussion on how should the upload work from user perspective: reporting progress (multi step?), reporting errors (currently just X - not useful), possibly error recovery options - we should know what is needed from the user perspective so that we can design a minimal upload API satisfying those requirements
+// 0. current setup of upload classes is constrained by the fact, that it's located in the API client - it's higher level logic and we could consider moving it
+//    (or more likely adding new one) to base app target
+// 1. currently there are 2 methods of reporting progress - completion block and delegate - I think we should use just one, preferably, observers
+// 2. right now upload session notifier subscribes pusher's "creation processing" events and handles notifying upload session FROM THE OUTSIDE, that it should update it's state
+//    upload session should handle the monitoring and react to changes internally - all cases where a delegate/observer method might be called should be visible in the upload session
+// 3. upload is multistage and complex mainly because some steps run independently from each other e.g. image/video processing and submitting to gallery
+//    and even further submitting to gallery is optional (not all uploads include submission to gallery)) - it's very important to express that as clearly as possible and
+//    handle error cases properly (pusher event about failed processing), as well as make the progress reporting as clear and reliable as possible (avoid duplicated or missed notifications for example)
+// 4. in general, logic related to upload session itself should be separated e.g. it shouldn't handle file setup
+//    all observer/delegate notifications should happen in that extracted code, so it's always visible which event causes given notification to be triggered
+// 5. local processing completion block could probably be replaced with just an observer notification - previously uploads were added to list one by one as local processing was finished and it seemed to work well
+// 6. the behavior of the upload session/service should be verified with tests
+// 7. see UploadSessionsNotifier.swift for example of handling upload-related pusher events
+// 8. how to determine failed processing if we miss pusher event (app killed before receiving notification)? do we need to support such case e.g. will current code retake the upload step, giving another go at the processing?
+
 enum CreationUploadSessionState: Int {
     case initialized = 0
     case imageSavedOnDisk = 1
@@ -33,7 +50,6 @@ enum CreationUploadSessionState: Int {
     case submittedToGallery = 6
     case cancelled = 7
     case confirmedOnServer = 8
-
     case completed = 9
 }
 
@@ -61,7 +77,18 @@ class CreationUploadSession: NSObject, Cancelable {
     var isFailed: Bool { return error != nil }
 
     fileprivate var currentRequest: RequestHandler?
+
+    fileprivate static let confirmedOnServerRecheckInterval: TimeInterval = 3.0 // [s]
+    // not really sure what value to assign here - processing longer or higher quality videos might take more than this
+    // we should probably discuss how to handle this cross-team - reporting different steps could be done locally
+    // reporting processing progress for example would likely require some changes on the backend
+    // users would definitely like to know the progress of processing or rather when will the upload really be completed, which we currently don't report (stuck at 95%)
+    fileprivate static let confirmedOnServerRecheckTimeout: TimeInterval = 600.0 // [s]
     fileprivate var confirmedOnServerRefreshTimer: Timer?
+    fileprivate var confirmedOnServerRefreshCompletion: CreationClosure?
+    fileprivate var confirmedOnServerRefreshCompletionWasCalled: Bool = false
+    fileprivate var confirmedOnServerRechecksPerformedCount: Int = 0
+    fileprivate var creationProcessingFailed: Bool = false
 
     weak var delegate: CreationUploadSessionDelegate?
 
@@ -136,6 +163,7 @@ class CreationUploadSession: NSObject, Cancelable {
             return
         }
 
+        creationProcessingFailed = false
         self.error = nil        //MM: Should we clear error when we restart session?
         self.isActive = true
         saveImageOnDisk(nil) { [weak self](error) -> Void in
@@ -152,25 +180,27 @@ class CreationUploadSession: NSObject, Cancelable {
                             weakSelf.notifyServer(error, completion: { (error) -> Void in
                                 weakSelf.notifyDelegateSessionChanged()
 
+                                // if there's no gallery to submit to, it completes with success immediately
                                 weakSelf.uploadToGallery(error: error, completion: { (error) in
                                     weakSelf.notifyDelegateSessionChanged()
 
                                     weakSelf.refreshCreationStatus(error: error, completion: { (error) in
                                         weakSelf.error = error
-                                        weakSelf.isActive = false
 
                                         if let error = error {
                                             Logger.log(.error, "Upload \(weakSelf.localIdentifier) finished with error: \(error)")
+                                            weakSelf.isActive = false
                                             weakSelf.notifyDelegateSessionChanged(error: error)
+                                            completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
                                         } else if weakSelf.state == .confirmedOnServer || weakSelf.state == .completed {
                                             Logger.log(.debug, "Upload \(weakSelf.localIdentifier) finished successfully")
+                                            weakSelf.isActive = false
                                             weakSelf.state = .completed
                                             weakSelf.notifyDelegateSessionChanged()
+                                            completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
                                         } else {
-                                            weakSelf.setupAutoRefreshTimer()
+                                            weakSelf.setupAutoRefreshTimer(refreshCompletion: completion)
                                         }
-
-                                        completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
                                     })
                                 })
                             })
@@ -333,6 +363,7 @@ class CreationUploadSession: NSObject, Cancelable {
             return
         }
 
+        // if there's no gallery to submit to, we just consider it done
         guard let galleryIdentifiers = creationData.galleryIds,
                   !galleryIdentifiers.isEmpty
         else {
@@ -405,38 +436,80 @@ class CreationUploadSession: NSObject, Cancelable {
             }
         }
     }
+    
+    // happens when image or video processing connected to creation fails on Amazon
+    // notified from the outside in reaction to pusher event (not part of API client)
+    func setCreationProcessingFailed() {
+        creationProcessingFailed = true
+    }
 
-    fileprivate func setupAutoRefreshTimer() {
+    fileprivate func setupAutoRefreshTimer(refreshCompletion: CreationClosure?) {
         if let timer = confirmedOnServerRefreshTimer {
             timer.invalidate()
             confirmedOnServerRefreshTimer = nil
         }
 
-        confirmedOnServerRefreshTimer = Timer.scheduledTimer(timeInterval: 15.0, target: self, selector: #selector(autoRefreshCreationFromTimer), userInfo: nil, repeats: true)
+        confirmedOnServerRefreshCompletion = refreshCompletion
+        confirmedOnServerRechecksPerformedCount = 0
+        confirmedOnServerRefreshTimer = Timer.scheduledTimer(timeInterval: CreationUploadSession.confirmedOnServerRecheckInterval,
+                                                             target: self,
+                                                             selector: #selector(autoRefreshCreationFromTimer),
+                                                             userInfo: nil,
+                                                             repeats: true)
     }
 
     func autoRefreshCreationFromTimer() {
-        if state == CreationUploadSessionState.confirmedOnServer {
-            confirmedOnServerRefreshTimer?.invalidate()
-            confirmedOnServerRefreshTimer = nil
-            return
+        confirmedOnServerRechecksPerformedCount += 1
+        let confirmedOnServerRecheckTimeSpent = Double(confirmedOnServerRechecksPerformedCount) * CreationUploadSession.confirmedOnServerRecheckInterval
+        let exceededRefreshTimeout = confirmedOnServerRecheckTimeSpent > CreationUploadSession.confirmedOnServerRecheckTimeout
+        
+        var uploadError: APIClientError?
+        if exceededRefreshTimeout {
+            uploadError = APIClientError.genericError(title: "Upload error! Creation didn't finish processing before retry timeout.")
         }
-        if (state.rawValue < CreationUploadSessionState.serverNotified.rawValue) {
-            //To early to refresh creation. Server hadn't chance to process it
+        else if creationProcessingFailed {
+            uploadError = APIClientError.genericError(title: "Upload error! Image or video processing failed.")
+        }
+        
+        // fail when we exceeded the timeout or the processing failed
+        if let error = uploadError {
+            self.error = error
+            isActive = false
+            notifyDelegateSessionChanged(error: error)
+            confirmedOnServerRefreshCompletion?(nil, error)
+            clearRefreshTimerAndCompletion()
             return
         }
 
-        self.refreshCreationStatus(error: nil) {
-            [weak self] _ in
-            guard let strongSelf = self, strongSelf.state == CreationUploadSessionState.confirmedOnServer
-            else { return }
-            strongSelf.confirmedOnServerRefreshTimer?.invalidate()
-            strongSelf.confirmedOnServerRefreshTimer = nil
+        if state == CreationUploadSessionState.confirmedOnServer {
+            clearRefreshTimerAndCompletion()
+            return
+        }
+
+        // this seems to only be needed if "processing completed" pusher event is supported (currently disabled)
+        if (state.rawValue < CreationUploadSessionState.serverNotified.rawValue) {
+            // Too early to refresh creation. Server hadn't chance to process it
+            return
+        }
+
+        refreshCreationStatus(error: nil) { [weak self] _ in
+            // only call the completion when the request succeeds - when it fails we'll make further attempts using refresh timer
+            guard let strongSelf = self, strongSelf.state == CreationUploadSessionState.confirmedOnServer else { return }
+            
+            strongSelf.isActive = false
             strongSelf.notifyDelegateSessionChanged()
+            strongSelf.confirmedOnServerRefreshCompletion?(strongSelf.creation, nil)
+            strongSelf.clearRefreshTimerAndCompletion()
         }
     }
 
     // MARK: - Utils
+    fileprivate func clearRefreshTimerAndCompletion() {
+        confirmedOnServerRefreshTimer?.invalidate()
+        confirmedOnServerRefreshTimer = nil
+        confirmedOnServerRefreshCompletion = nil
+    }
+    
     fileprivate class func documentsDirectory() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         return paths.first!

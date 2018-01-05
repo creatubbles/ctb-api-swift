@@ -491,6 +491,10 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         creationUploadService.refreshCreationStatusInUploadSession(creationId: creationId)
     }
 
+    open func notifyCreationProcessingFailed(creationId: String) {
+        creationUploadService.notifyCreationProcessingFailed(creationId: creationId)
+    }
+
     // MARK: - Creation flow
     open func newCreation(data creationData: NewCreationData, localDataPreparationCompletion: ((_ error: Error?) -> Void)?, completion: CreationClosure?) -> CreationUploadSessionPublicData? {
         return creationUploadService.uploadCreation(data: creationData, localDataPreparationCompletion: localDataPreparationCompletion, completion: completion)
