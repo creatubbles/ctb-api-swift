@@ -185,6 +185,11 @@ class CreationUploadService: CreationUploadSessionDelegate {
         sessions.forEach({ $0.refreshCreation(completion: nil) })
     }
 
+    open func notifyCreationProcessingFailed(creationId: String) {
+        let sessions = uploadSessions.filter({ $0.creation?.identifier == creationId })
+        sessions.forEach({ $0.setCreationProcessingFailed() })
+    }
+
     // MARK: - CreationUploadSessionDelegate
     func creationUploadSessionChangedState(_ creationUploadSession: CreationUploadSession) {
         databaseDAO.saveCreationUploadSessionToDatabase(creationUploadSession)
