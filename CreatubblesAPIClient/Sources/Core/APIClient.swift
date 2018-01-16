@@ -454,6 +454,10 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(CreationsDAO.self).incrementViewsCount(creationIdentifier: creationId, completion: completion)
     }
     
+    open func getTrendingCreations(pagingData: PagingData?, completion: CreationsClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CreationsDAO.self).getTrendingCreations(pagingData: pagingData, completion: completion)
+    }
+    
     // MARK: - Upload Sessions
     open func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData> {
         return creationUploadService.getAllActiveUploadSessionsPublicData()

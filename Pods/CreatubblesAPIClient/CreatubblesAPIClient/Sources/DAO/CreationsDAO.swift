@@ -82,7 +82,7 @@ class CreationsDAO: NSObject, APIClientDAO {
         let handler = FetchToybooCreationResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-
+    
     // MARK: BatchMode
     func getCreationsInBatchMode(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, partnerApplicationId: String?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler {
         let fetcher = CreationsQueueBatchFetcher(requestSender: requestSender, userId: userId, galleryId: galleryId, keyword: keyword, partnerApplicationId: partnerApplicationId, sort: sortOrder, onlyPublic: onlyPublic, completion: completion)

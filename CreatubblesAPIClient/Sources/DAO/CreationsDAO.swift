@@ -87,6 +87,12 @@ class CreationsDAO: NSObject, APIClientDAO {
         let handler = CreationViewsCountIncrementResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func getTrendingCreations(pagingData: PagingData?, completion: CreationsClosure?) -> RequestHandler {
+        let request = FetchTrendingCreationsRequest()
+        let handler = FetchTrendingCreationsResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 
     // MARK: BatchMode
     func getCreationsInBatchMode(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, partnerApplicationId: String?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler {

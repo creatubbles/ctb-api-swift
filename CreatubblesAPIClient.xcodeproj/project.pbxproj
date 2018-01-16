@@ -431,6 +431,8 @@
 		B225DF751EB31F2200AB6F4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF731EB31F2200AB6F4C /* Main.storyboard */; };
 		B225DF771EB31F2200AB6F4C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		B225DF7A1EB31F2200AB6F4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF781EB31F2200AB6F4C /* LaunchScreen.storyboard */; };
+		C9B73248200E4043004288A9 /* FetchTrendingCreationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B73247200E4043004288A9 /* FetchTrendingCreationsRequest.swift */; };
+		C9B7324A200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B73249200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift */; };
 		DCB6AE268E81388D94B0CE09 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		DF413EEFCF6E24450841A6BB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D5DF300DAE4BC13E0AD21 /* Pods_CreatubblesAPIClient.framework */; };
 		FE0EAC71BB3B3D2D33C67AA0 /* Pods_CreatubblesAPIClientUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */; };
@@ -912,6 +914,8 @@
 		6B416A741F617AC900A63478 /* SearchTagsFetchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTagsFetchResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		7997D36B21B419F654577C4A /* Pods-CreatubblesAPIClientDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9B73247200E4043004288A9 /* FetchTrendingCreationsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingCreationsRequest.swift; sourceTree = "<group>"; };
+		C9B73249200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingCreationsResponseHandler.swift; sourceTree = "<group>"; };
 		D304F60C707EA93E6195508E /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
 		DA9EC9D915023C993B9C5639 /* Pods-CreatubblesAPIClientUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		E29F3593FA73048027A65EE1 /* Pods_CreatubblesAPIClientDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1942,6 +1946,8 @@
 				213B29F71DCA3946003E7314 /* FetchToybooCreationResponseHandler.swift */,
 				18F91EA21F8E07D10021F1BF /* CreationViewsCountIncrementRequest.swift */,
 				18F91EAC1F8E0BE60021F1BF /* CreationViewsCountIncrementResponseHandler.swift */,
+				C9B73247200E4043004288A9 /* FetchTrendingCreationsRequest.swift */,
+				C9B73249200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -2677,6 +2683,7 @@
 				1859FAA81D39052F0023A6B6 /* GroupResponseHandler.swift in Sources */,
 				18F6E8971D021B6500AAC5FB /* NewCreationRequest.swift in Sources */,
 				18F6E88C1D021B6500AAC5FB /* NewCommentRequest.swift in Sources */,
+				C9B73248200E4043004288A9 /* FetchTrendingCreationsRequest.swift in Sources */,
 				21C349931C904B38002972EC /* NewCreationData.swift in Sources */,
 				183635421CB5013900ED778A /* DataInclude.swift in Sources */,
 				1859FAA71D39052F0023A6B6 /* EditGroupResponseHandler.swift in Sources */,
@@ -2818,6 +2825,7 @@
 				1859FAAA1D39052F0023A6B6 /* GroupsResponseHandler.swift in Sources */,
 				21297EB51DAFADC1003CCF75 /* NotificationsViewTrackerRequest.swift in Sources */,
 				215279771D464F2600B67313 /* ContentSearchResponseHandler.swift in Sources */,
+				C9B7324A200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift in Sources */,
 				21297EAB1DAFAC7B003CCF75 /* RemoveCreationResponseHandler.swift in Sources */,
 				18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */,
 				183635441CB5013900ED778A /* Relationship.swift in Sources */,
