@@ -88,7 +88,7 @@ class CreationsDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getTrendingCreations(pagingData: PagingData?, completion: CreationsClosure?) -> RequestHandler {
+    func getTrendingCreations(completion: CreationsClosure?) -> RequestHandler {
         let request = FetchTrendingCreationsRequest()
         let handler = FetchTrendingCreationsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
