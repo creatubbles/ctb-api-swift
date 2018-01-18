@@ -1,7 +1,7 @@
 machine:
   timezone: Europe/London
   xcode:
-    version: "8.3.2"
+    version: "9.2"
   environment:
     LC_CTYPE: en_US.UTF-8
     MATCH_KEYCHAIN_NAME: "circle"
