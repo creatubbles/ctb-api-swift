@@ -73,4 +73,10 @@ public class ContentDAO: NSObject, APIClientDAO {
         let handler = ContentSearchResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func getContentsByHashtag(hashtag: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler {
+        let request = HashtagContentRequest(hashtagName: hashtag, page: pagingData?.page, perPage: pagingData?.pageSize)
+        let handler = ContentSearchResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 }
