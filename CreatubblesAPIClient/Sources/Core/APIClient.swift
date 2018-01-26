@@ -621,6 +621,10 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     open func getSearchedContents(query: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler {
         return daoAssembly.assembly(ContentDAO.self).getSearchedContents(query: query, pagingData: pagingData, completion: completion)
     }
+    
+    open func getContentsByHashtag(hashtag: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler {
+        return daoAssembly.assembly(ContentDAO.self).getContentsByHashtag(hashtag:hashtag, pagingData: pagingData, completion: completion)
+    }
 
     // MARK: - CustomStyle
     open func fetchCustomStyleForUser(userId identifier: String, completion: CustomStyleClosure?) -> RequestHandler {
