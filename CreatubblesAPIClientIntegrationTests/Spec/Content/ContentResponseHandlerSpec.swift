@@ -194,5 +194,25 @@ class ContentResponseHandlerSpec: QuickSpec {
                 }
             }
         }
+        
+        it("Should return hashtag contents") {
+            let request = HashtagContentRequest(hashtagName:"lego", page: 1, perPage: 20)
+            let sender = TestComponentsFactory.requestSender
+            
+            waitUntil(timeout: TestConfiguration.timeoutShort) {
+                done in
+                sender.login(TestConfiguration.username, password: TestConfiguration.password) {
+                    (error: Error?) -> Void in
+                    expect(error).to(beNil())
+                    sender.send(request, withResponseHandler:ContentResponseHandler {
+                        (responseData) -> (Void) in
+                        expect(responseData.error).to(beNil())
+                        expect(responseData.objects).notTo(beNil())
+                        sender.logout()
+                        done()
+                    })
+                }
+            }
+        }
     }
 }
