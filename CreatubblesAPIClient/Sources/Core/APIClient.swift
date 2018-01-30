@@ -643,8 +643,8 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(NotificationDAO.self).getNotifications(pagingData: pagingData, completion: completion)
     }
 
-    open func markNotificationAsRead(notificationId: String, completion: ErrorClosure?) -> RequestHandler {
-        return daoAssembly.assembly(NotificationDAO.self).markNotificationAsRead(notificationIdentifier: notificationId, completion: completion)
+    open func markNotificationAsRead(notificationId: String, from: String? = nil, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(NotificationDAO.self).markNotificationAsRead(notificationIdentifier: notificationId, from: from, completion: completion)
     }
 
     open func trackWhenNotificationsWereViewed(completion: ErrorClosure?) -> RequestHandler {

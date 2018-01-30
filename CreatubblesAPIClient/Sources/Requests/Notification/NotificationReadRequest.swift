@@ -31,9 +31,20 @@ class NotificationReadRequest: Request {
     override var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
 
     fileprivate let notificationIdentifier: String
+    fileprivate var from: String?
 
-    init(notificationIdentifier: String) {
+    init(notificationIdentifier: String, from: String? = nil) {
         self.notificationIdentifier = notificationIdentifier
+        self.from = from
     }
 
+    func prepareParameters() -> Dictionary<String, AnyObject> {
+        var params = Dictionary<String, AnyObject>()
+
+        if let from = from {
+            params["from"] = from as AnyObject?
+        }
+
+        return params
+    }
 }
