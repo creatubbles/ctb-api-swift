@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
 class PartnerApplicationRequest: Request {
     override var method: RequestMethod { return .get }

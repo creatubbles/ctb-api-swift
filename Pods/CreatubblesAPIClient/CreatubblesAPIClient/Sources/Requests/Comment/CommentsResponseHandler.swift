@@ -26,14 +26,14 @@
 import UIKit
 import ObjectMapper
 
-class CommentsResponseHandler: ResponseHandler {
+public class CommentsResponseHandler: ResponseHandler {
     fileprivate let completion: CommentsClosure?
 
-    init(completion: CommentsClosure?) {
+    public init(completion: CommentsClosure?) {
         self.completion = completion
     }
 
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
+    public override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
             let mappers = Mapper<CommentMapper>().mapArray(JSONObject: response["data"]) {
             let metadata = MappingUtils.metadataFromResponse(response)

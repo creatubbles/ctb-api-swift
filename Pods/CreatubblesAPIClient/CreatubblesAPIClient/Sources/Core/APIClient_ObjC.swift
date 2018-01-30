@@ -104,8 +104,8 @@ extension APIClient {
         }
     }
 
-    public func _getSwitchUsers(pagingData: PagingData?, completion: ((Array<User>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler {
-        return getSwitchUsers(pagingData) {
+    public func _getSwitchUsers(query: String?, pagingData: PagingData?, completion: ((Array<User>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler {
+        return getSwitchUsers(query: query, pagingData: pagingData) {
             (users, pInfo, error) -> (Void) in
             completion?(users, pInfo, APIClient.errorTypeToNSError(error))
         }
@@ -189,15 +189,15 @@ extension APIClient {
         }
     }
 
-    public func _getGalleries(_ userId: String?, query: String?, pagingData: PagingData?, sort: SortOrder, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler {
-        return getGalleries(userId: userId, query:query, pagingData: pagingData, sort: sort) {
+    public func _getGalleries(_ userId: String?, query: String?, pagingData: PagingData?, sort: SortOrder, filter: GalleriesRequestFilter?, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler {
+        return getGalleries(userId: userId, query:query, pagingData: pagingData, sort: sort, filter: filter) {
             (galleries, pInfo, error) -> (Void) in
             completion?(galleries, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
 
-    public func _getGalleries(creationId: String, pagingData: PagingData?, sort: SortOrder?, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler {
-        return getGalleries(creationId: creationId, pagingData: pagingData, sort: sort) {
+    public func _getGalleries(creationId: String, pagingData: PagingData?, sort: SortOrder?, filter: GalleriesRequestFilter?, completion: ((Array<Gallery>?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler {
+        return getGalleries(creationId: creationId, pagingData: pagingData, sort: sort, filter: filter) {
             (galleries, pInfo, error) -> (Void) in
             completion?(galleries, pInfo, APIClient.errorTypeToNSError(error))
         }
@@ -308,12 +308,13 @@ extension APIClient {
             completion?(creations, pInfo, APIClient.errorTypeToNSError(error))
         }
     }
-
-    public func _newCreation(_ creationData: NewCreationData, completion: ((Creation?, NSError?) -> (Void))?) -> CreationUploadSessionPublicData? {
-        return newCreation(data: creationData) {
-            (creation, error) -> (Void) in
+    public func _newCreation(_ creationData: NewCreationData, localDataPreparationCompletion: ((NSError?) -> (Void))?, completion: ((Creation?, NSError?) -> (Void))?) -> CreationUploadSessionPublicData? {
+        return newCreation(data: creationData, localDataPreparationCompletion: {
+            (error) -> (Void) in
+            localDataPreparationCompletion?(APIClient.errorTypeToNSError(error))
+        }, completion: { (creation, error) -> (Void) in
             completion?(creation, APIClient.errorTypeToNSError(error))
-        }
+        })
     }
 
     public func _reportCreation(creationId: String, message: String, completion: ((NSError?) -> (Void))?) -> RequestHandler {
@@ -359,8 +360,8 @@ extension APIClient {
         }
     }
 
-    public func _getGalleriesInBatchMode(_ userId: String?, query: String?, sort: SortOrder, completion: ((Array<Gallery>?, NSError?) -> (Void))?) -> RequestHandler {
-        return getGalleriesInBatchMode(userId: userId, query:query, sort: sort) {
+    public func _getGalleriesInBatchMode(_ userId: String?, query: String?, sort: SortOrder, filter: GalleriesRequestFilter?, completion: ((Array<Gallery>?, NSError?) -> (Void))?) -> RequestHandler {
+        return getGalleriesInBatchMode(userId: userId, query:query, sort: sort, filter: filter) {
             (galleries, error) -> (Void) in
             completion?(galleries, APIClient.errorTypeToNSError(error))
         }
@@ -600,10 +601,10 @@ extension APIClient {
     }
 
     // MARK: - Notifications
-    public func _getNotifications(pagingdata: PagingData?, completion: ((Array<Notification>?, Array<Notification>?, _ unreadNotificationsCount: Int?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler {
+    public func _getNotifications(pagingdata: PagingData?, completion: ((Array<Notification>?, Array<Notification>?, _ newNotificationsCount: Int?, _ unreadNotificationsCount: Int?, _ hasUnreadNotifications: Bool?, PagingInfo?, NSError?) -> (Void))?) -> RequestHandler {
         return getNotifications(pagingData: pagingdata) {
-            (responseData: ResponseData<Notification>?, unreadNotificationsCount: Int?) -> (Void) in
-            completion?(responseData?.objects, responseData?.rejectedObjects, unreadNotificationsCount, responseData?.pagingInfo, APIClient.errorTypeToNSError(responseData?.error))
+            (responseData: ResponseData<Notification>?, newNotificationsCount: Int?, unreadNotificationsCount: Int?, hasUnreadNotifications: Bool?) -> (Void) in
+            completion?(responseData?.objects, responseData?.rejectedObjects, newNotificationsCount, unreadNotificationsCount, hasUnreadNotifications, responseData?.pagingInfo, APIClient.errorTypeToNSError(responseData?.error))
         }
     }
 

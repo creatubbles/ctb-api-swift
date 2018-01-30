@@ -25,16 +25,22 @@
 
 import UIKit
 
-class CommentsDAO: NSObject, APIClientDAO {
-    fileprivate let requestSender: RequestSender
+open class CommentsDAO: NSObject, APIClientDAO {
+    public let requestSender: RequestSender
 
-    required init(dependencies: DAODependencies) {
+    public required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
 
     func addComment(commendData data: NewCommentData, completion: ErrorClosure?) -> RequestHandler {
         let request = NewCommentRequest(data: data)
         let handler = NewCommentResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func approveComment(commentIdentifier commentId: String, completion: ErrorClosure?) -> RequestHandler {
+        let request = ApproveCommentRequest(commentId: commentId)
+        let handler = ApproveCommentResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
 

@@ -8,7 +8,7 @@ def test_pods
 end
 
 def shared_pods
-    pod 'ObjectMapper', '~> 2.0'
+    pod 'Marshal', '~> 1.2'
     pod 'XCGLogger', '~> 4.0.0'
     pod 'RealmSwift',  '~> 2.10.1'
     pod 'KeychainAccess', '~> 3.0.1'

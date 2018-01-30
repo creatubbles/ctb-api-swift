@@ -36,11 +36,11 @@ public class MappingUtils {
         return Relationship(mapper: mapper)
     }
 
-    public class func objectFromMapper<T: Identifiable>(_ mapper: DataIncludeMapper?, relationship: Relationship?, type: T.Type) -> T? {
+    public class func objectFromMapper<T: Identifiable>(_ mapper: DataIncludeMapper?, relationship: Relationship?, type: T.Type, shouldMap2ndLevelRelationships: Bool = true) -> T? {
         guard   let mapper = mapper,
         let relationship = relationship
         else { return nil }
-        return mapper.objectWithIdentifier(relationship.identifier, type: T.self)
+        return mapper.objectWithIdentifier(relationship.identifier, type: T.self, shouldMap2ndLevelRelationships: shouldMap2ndLevelRelationships)
     }
 
     public class func pagingInfoFromResponse(_ response: Dictionary<String, AnyObject>) -> PagingInfo {

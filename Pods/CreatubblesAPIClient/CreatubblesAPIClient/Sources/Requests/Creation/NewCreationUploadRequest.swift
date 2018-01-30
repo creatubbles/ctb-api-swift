@@ -41,7 +41,7 @@ import UIKit
     case uzpb
     case zip
 
-    var stringValue: String {
+    public var stringValue: String {
         switch self {
             case .png: return "png"
             case .jpg: return "jpg"
@@ -61,7 +61,7 @@ import UIKit
         }
     }
 
-    static func fromString(_ stringValue: String) -> UploadExtension? {
+    public static func fromString(_ stringValue: String) -> UploadExtension? {
         if stringValue == "png" { return .png }
         if stringValue == "jpg" { return .jpg }
         if stringValue == "jpeg" { return .jpeg }

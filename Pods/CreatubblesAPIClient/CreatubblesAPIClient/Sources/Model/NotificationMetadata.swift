@@ -26,9 +26,13 @@
 import UIKit
 
 class NotificationMetadata: NSObject {
+    let totalNewCount: Int?
     let totalUnreadCount: Int?
-
+    let hasUnreadNotifications: Bool?
+    
     init(mapper: NotificationMetadataMapper) {
+        totalNewCount = mapper.totalNewCount ?? 0
         totalUnreadCount = mapper.totalUnreadCount ?? 0
+        hasUnreadNotifications = mapper.hasUnreadNotifications ?? false
     }
 }

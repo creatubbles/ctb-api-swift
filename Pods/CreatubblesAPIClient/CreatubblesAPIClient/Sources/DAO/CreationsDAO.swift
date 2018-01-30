@@ -71,7 +71,6 @@ class CreationsDAO: NSObject, APIClientDAO {
     }
 
     func removeCreation(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler {
-
         let request = RemoveCreationRequest(creationId: creationId)
         let handler = RemoveCreationResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
@@ -83,6 +82,18 @@ class CreationsDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func incrementViewsCount(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler {
+        let request = CreationViewsCountIncrementRequest(creationIdentifier: creationId)
+        let handler = CreationViewsCountIncrementResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func getTrendingCreations(completion: CreationsClosure?) -> RequestHandler {
+        let request = FetchTrendingCreationsRequest()
+        let handler = FetchTrendingCreationsResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+
     // MARK: BatchMode
     func getCreationsInBatchMode(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, partnerApplicationId: String?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler {
         let fetcher = CreationsQueueBatchFetcher(requestSender: requestSender, userId: userId, galleryId: galleryId, keyword: keyword, partnerApplicationId: partnerApplicationId, sort: sortOrder, onlyPublic: onlyPublic, completion: completion)

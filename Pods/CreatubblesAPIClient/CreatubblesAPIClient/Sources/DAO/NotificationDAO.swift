@@ -38,8 +38,8 @@ class NotificationDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
 
-    func markNotificationAsRead(notificationIdentifier identifier: String, completion: ErrorClosure?) -> RequestHandler {
-        let request = NotificationReadRequest(notificationIdentifier: identifier)
+    func markNotificationAsRead(notificationIdentifier identifier: String, from: String? = nil, completion: ErrorClosure?) -> RequestHandler {
+        let request = NotificationReadRequest(notificationIdentifier: identifier, from: from)
         let handler = NotificationReadResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }

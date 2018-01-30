@@ -27,11 +27,12 @@ import Foundation
 import ObjectMapper
 
 open class DataIncludeMapperDefaultParser: NSObject, DataIncludeMapperParser {
+
     open func dataIncludeMapper(sender: DataIncludeMapper, mapperFor json: [String: Any], typeString: String) -> Mappable? {
         var mapper: Mappable? = nil
 
         switch typeString {
-            case "users":     mapper = Mapper<UserMapper>().map(JSON: json)
+            case "users": mapper = Mapper<UserMapper>().map(JSON: json)
             case "creations": mapper = Mapper<CreationMapper>().map(JSON: json)
             case "galleries": mapper = Mapper<GalleryMapper>().map(JSON: json)
             case "partner_applications": mapper = Mapper<PartnerApplicationsMapper>().map(JSON: json)
@@ -50,21 +51,25 @@ open class DataIncludeMapperDefaultParser: NSObject, DataIncludeMapperParser {
         return mapper
     }
 
-    open func dataIncludeMapper(sender: DataIncludeMapper, objectFor mapper: Mappable, metadata: Metadata?) -> Identifiable? {
-        if let mapper = mapper as? UserMapper { return User(mapper: mapper, dataMapper: sender, metadata: metadata) }
-        if let mapper = mapper as? CreationMapper { return Creation(mapper: mapper, dataMapper: sender, metadata: metadata) }
-        if let mapper = mapper as? GalleryMapper { return Gallery(mapper:  mapper, dataMapper: sender, metadata: metadata) }
-        if let mapper = mapper as? PartnerApplicationsMapper { return PartnerApplication(mapper: mapper, dataMapper: sender, metadata: metadata) }
-        if let mapper = mapper as? CommentMapper { return Comment(mapper:  mapper, dataMapper: sender, metadata: metadata) }
-        if let mapper = mapper as? GallerySubmissionMapper { return GallerySubmission(mapper: mapper, dataMapper: sender) }
-        if let mapper = mapper as? NotificationTextEntityMapper { return NotificationTextEntity(mapper: mapper, dataMapper: sender) }
-        if let mapper = mapper as? PartnerApplicationsMapper { return PartnerApplication(mapper: mapper, dataMapper:sender) }
+    open func dataIncludeMapper(sender: DataIncludeMapper, objectFor mapper: Mappable, metadata: Metadata?, shouldMap2ndLevelRelationships: Bool) -> Identifiable? {
+        var datamapper: DataIncludeMapper?
+        if shouldMap2ndLevelRelationships {
+            datamapper = sender
+        }
+        if let mapper = mapper as? UserMapper { return User(mapper: mapper, dataMapper: datamapper, metadata: metadata) }
+        if let mapper = mapper as? CreationMapper { return Creation(mapper: mapper, dataMapper: datamapper, metadata: metadata) }
+        if let mapper = mapper as? GalleryMapper { return Gallery(mapper:  mapper, dataMapper: datamapper, metadata: metadata) }
+        if let mapper = mapper as? PartnerApplicationsMapper { return PartnerApplication(mapper: mapper, dataMapper: datamapper, metadata: metadata) }
+        if let mapper = mapper as? CommentMapper { return Comment(mapper:  mapper, dataMapper: datamapper, metadata: metadata) }
+        if let mapper = mapper as? GallerySubmissionMapper { return GallerySubmission(mapper: mapper, dataMapper: datamapper) }
+        if let mapper = mapper as? NotificationTextEntityMapper { return NotificationTextEntity(mapper: mapper, dataMapper: datamapper) }
+        if let mapper = mapper as? PartnerApplicationsMapper { return PartnerApplication(mapper: mapper, dataMapper:datamapper) }
         if let mapper = mapper as? AppScreenshotMapper { return AppScreenshot(mapper: mapper) }
 
         //DataIncludeMapper isn't passed here intentionally to get rid of infinite recurrence User -> CustomStyle -> User -> ...
         if let mapper = mapper as? CustomStyleMapper { return CustomStyle(mapper: mapper) }
         if let mapper = mapper as? GalleryInstructionMapper { return GalleryInstruction(mapper: mapper) }
-
+        
         return nil
     }
 }

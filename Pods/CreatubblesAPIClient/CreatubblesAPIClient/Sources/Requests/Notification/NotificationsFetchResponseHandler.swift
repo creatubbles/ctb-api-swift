@@ -47,10 +47,10 @@ class NotificationsFetchResponseHandler: ResponseHandler {
 
             let responseData = ResponseData<Notification>(objects: validNotifications, rejectedObjects: invalidNotifications, pagingInfo: pageInfo, error: ErrorTransformer.errorFromResponse(response, error: error))
 
-            executeOnMainQueue { self.completion?(responseData, notificationMetadata?.totalUnreadCount) }
+            executeOnMainQueue { self.completion?(responseData, notificationMetadata?.totalNewCount, notificationMetadata?.totalUnreadCount, notificationMetadata?.hasUnreadNotifications) }
         } else {
             let responseData = ResponseData<Notification>(objects: nil, rejectedObjects: nil, pagingInfo: nil, error:  ErrorTransformer.errorFromResponse(response, error: error))
-            executeOnMainQueue { self.completion?(responseData, nil) }
+            executeOnMainQueue { self.completion?(responseData, nil, nil, nil) }
         }
     }
 }

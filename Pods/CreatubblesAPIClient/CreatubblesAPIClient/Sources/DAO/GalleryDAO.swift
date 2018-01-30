@@ -63,14 +63,14 @@ public class GalleryDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
 
-    func getGalleries(userIdentifier userId: String?, query: String?, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler {
-        let request = GalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, sort: sort, userId: userId, query: query)
+    func getGalleries(userIdentifier userId: String?, query: String?, pagingData: PagingData?, sort: SortOrder?, filter: GalleriesRequestFilter?, completion: GalleriesClosure?) -> RequestHandler {
+        let request = GalleriesRequest(page: pagingData?.page, perPage: pagingData?.pageSize, sort: sort, filter: filter, userId: userId, query: query)
         let handler = GalleriesResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
 
-    func getGalleries(creationIdentifier creationId: String, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler {
-        let request = GalleriesRequest(creationId: creationId, page: pagingData?.page, perPage: pagingData?.pageSize, sort: sort)
+    func getGalleries(creationIdentifier creationId: String, pagingData: PagingData?, sort: SortOrder?, filter: GalleriesRequestFilter?, completion: GalleriesClosure?) -> RequestHandler {
+        let request = GalleriesRequest(creationId: creationId, page: pagingData?.page, perPage: pagingData?.pageSize, sort: sort, filter: filter)
         let handler = GalleriesResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
@@ -118,13 +118,13 @@ public class GalleryDAO: NSObject, APIClientDAO {
     }
     
     // MARK: Batch Mode    
-    func getGalleriesInBatchMode(userIdentifier userId: String?, query: String?, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler {
-        let fetcher = GalleriesQueueBatchFetcher(requestSender: requestSender, userId: userId, query: query, sort: sort, completion: completion)
+    func getGalleriesInBatchMode(userIdentifier userId: String?, query: String?, sort: SortOrder?, filter: GalleriesRequestFilter?, completion: GalleriesBatchClosure?) -> RequestHandler {
+        let fetcher = GalleriesQueueBatchFetcher(requestSender: requestSender, userId: userId, query: query, sort: sort, filter: filter, completion: completion)
         return fetcher.fetch()
     }
 
     func getMyGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler {
-        let fetcher = MyGalleriesQueueBatchFetcher(requestSender: requestSender, filter: .none, completion: completion)
+        let fetcher = MyGalleriesQueueBatchFetcher(requestSender: requestSender, filter: nil, completion: completion)
         return fetcher.fetch()
     }
 
@@ -146,5 +146,11 @@ public class GalleryDAO: NSObject, APIClientDAO {
     func getFeaturedGalleriesInBatchMode(_ completion: GalleriesBatchClosure?) -> RequestHandler {
         let fetcher = FeaturedGalleriesQueueBatchFetcher(requestSender: requestSender, completion: completion)
         return fetcher.fetch()
+    }
+    
+    func incrementViewsCount(galleryIdentifier galleryId: String, completion: ErrorClosure?) -> RequestHandler {
+        let request = GalleryViewsCountIncrementRequest(galleryIdentifier: galleryId)
+        let handler = GalleryViewsCountIncrementResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
     }
 }

@@ -40,6 +40,8 @@ open class Request: NSObject, Cancelable {
     open var method: RequestMethod { return .get }
     open var endpoint: String { return "" }
     open var onlyPath: Bool { return true }
+    //If set to true, public access token will be used even when user is logged in
+    open var forcePublicAuthentication: Bool { return false }
 
     //If set to true, version infix won't be set in RequestSender
     open var useExternalNamespace: Bool { return false }

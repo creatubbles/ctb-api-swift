@@ -24,10 +24,10 @@
 
 import UIKit
 
-class UserDAO: NSObject, APIClientDAO {
-    fileprivate let requestSender: RequestSender
+public class UserDAO: NSObject, APIClientDAO {
+    public let requestSender: RequestSender
 
-    required init(dependencies: DAODependencies) {
+    public required init(dependencies: DAODependencies) {
         self.requestSender = dependencies.requestSender
     }
 
@@ -73,8 +73,8 @@ class UserDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
 
-    func getSwitchUsers(pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
-        let request = SwitchUsersRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
+    func getSwitchUsers(query: String?, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
+        let request = SwitchUsersRequest(query: query, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = SwitchUsersResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
@@ -138,7 +138,13 @@ class UserDAO: NSObject, APIClientDAO {
         let handler = UserAccountDetailsResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
-
+    
+    func getTrendingUsers(completion: UsersClosure?) -> RequestHandler {
+        let request = FetchTrendingUsersRequest()
+        let handler = FetchTrendingUsersResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     // MARK: Batch
     func getCreatorsInBatchMode(userId: String?, query: String?, completion: UsersBatchClosure?) -> RequestHandler {
         let batchFetcher = UsersQueueBatchFetcher(requestSender: requestSender, userId: userId, query: query, scope: .Creators, completion: completion)

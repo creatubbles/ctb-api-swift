@@ -52,7 +52,7 @@ public typealias BubblesClousure = (Array<Bubble>?, PagingInfo?, APIClientError?
 
 public typealias ContentEntryClosure = (ResponseData<ContentEntry>) -> (Void)
 public typealias CustomStyleClosure = (CustomStyle?, APIClientError?) -> (Void)
-public typealias NotificationsClosure = (ResponseData<Notification>?, _ unreadNotificationsCount: Int?) -> (Void)
+public typealias NotificationsClosure = (ResponseData<Notification>?, _ newNotificationsCount: Int?, _ unreadNotificationsCount: Int?, _ hasUnreadNotifications: Bool?) -> (Void)
 
 public typealias SwitchUserClosure = (String?, APIClientError?) -> (Void)
 public typealias UserAccountDetailsClosure = (UserAccountDetails?, APIClientError?) -> (Void)
@@ -121,6 +121,7 @@ open class ResponseData<T> {
     case anotherComment
     case newCommentForCreationUsers
     case multipleCreatorsCreated
+    case receivedFavorite
     case translationTip
     case customizeTip
     case galleriesTip
@@ -279,8 +280,8 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(UserDAO.self).getUsers(query: query, pagingData: pagingData, completion: completion)
     }
 
-    open func getSwitchUsers(_ pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
-        return daoAssembly.assembly(UserDAO.self).getSwitchUsers(pagingData: pagingData, completion: completion)
+    open func getSwitchUsers(query: String? = nil, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
+        return daoAssembly.assembly(UserDAO.self).getSwitchUsers(query: query, pagingData: pagingData, completion: completion)
     }
 
     open func getManagers(userId: String?, query: String? = nil, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
@@ -326,22 +327,26 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     open func getUserAccountData(userId: String, completion: UserAccountDetailsClosure?) -> RequestHandler {
         return daoAssembly.assembly(UserDAO.self).getUserAccountData(userId: userId, completion: completion)
     }
+    
+    open func getTrendingUsers(completion: UsersClosure?) -> RequestHandler {
+        return daoAssembly.assembly(UserDAO.self).getTrendingUsers(completion: completion)
+    }
 
     // MARK: - Gallery managment
     open func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler {
         return daoAssembly.assembly(GalleryDAO.self).getGallery(galleryIdentifier: galleryId, completion: completion)
     }
 
-    open func getGalleries(creationId: String, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler {
-        return daoAssembly.assembly(GalleryDAO.self).getGalleries(creationIdentifier: creationId, pagingData: pagingData, sort: sort, completion: completion)
+    open func getGalleries(creationId: String, pagingData: PagingData?, sort: SortOrder?, filter: GalleriesRequestFilter?, completion: GalleriesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(GalleryDAO.self).getGalleries(creationIdentifier: creationId, pagingData: pagingData, sort: sort, filter: filter, completion: completion)
     }
 
-    open func getGalleries(userId: String?, query: String? = nil, pagingData: PagingData?, sort: SortOrder?, completion: GalleriesClosure?) -> RequestHandler {
-        return daoAssembly.assembly(GalleryDAO.self).getGalleries(userIdentifier: userId, query: query, pagingData: pagingData, sort: sort, completion: completion)
+    open func getGalleries(userId: String?, query: String? = nil, pagingData: PagingData?, sort: SortOrder?, filter: GalleriesRequestFilter?, completion: GalleriesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(GalleryDAO.self).getGalleries(userIdentifier: userId, query: query, pagingData: pagingData, sort: sort, filter: filter, completion: completion)
     }
 
-    open func getGalleriesInBatchMode(userId: String?, query: String? = nil, sort: SortOrder?, completion: GalleriesBatchClosure?) -> RequestHandler {
-        return daoAssembly.assembly(GalleryDAO.self).getGalleriesInBatchMode(userIdentifier: userId, query:query, sort: sort, completion: completion)
+    open func getGalleriesInBatchMode(userId: String?, query: String? = nil, sort: SortOrder?, filter: GalleriesRequestFilter?, completion: GalleriesBatchClosure?) -> RequestHandler {
+        return daoAssembly.assembly(GalleryDAO.self).getGalleriesInBatchMode(userIdentifier: userId, query:query, sort: sort, filter: filter, completion: completion)
     }
 
     open func getMyGalleries(_ pagingData: PagingData?, completion: GalleriesClosure?) -> RequestHandler {
@@ -407,11 +412,15 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     open func submitCreationToGalleries(creationId: String, galleryIdentifiers: Array<String>, completion: ErrorClosure?) -> RequestHandler {
         return daoAssembly.assembly(GalleryDAO.self).submitCreationToGalleries(creationId: creationId, galleryIdentifiers: galleryIdentifiers, completion: completion)
     }
-
+    
+    open func incrementViewsCount(galleryIdentifier galleryId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(GalleryDAO.self).incrementViewsCount(galleryIdentifier: galleryId, completion: completion)
+    }
+    
     // MARK: - Creation managment
-open func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler {
-    return daoAssembly.assembly(CreationsDAO.self).getCreation(creationIdentifier: creationId, completion: completion)
-}
+    open func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CreationsDAO.self).getCreation(creationIdentifier: creationId, completion: completion)
+    }
 
     open func reportCreation(creationId: String, message: String, completion: ErrorClosure?) -> RequestHandler {
         return daoAssembly.assembly(CreationsDAO.self).reportCreation(creationIdentifier: creationId, message: message, completion: completion)
@@ -444,7 +453,15 @@ open func getCreation(creationId: String, completion: CreationClosure?) -> Reque
     open func getToybooCreation(creationId: String, completion: ToybooCreationClosure?) -> RequestHandler {
         return daoAssembly.assembly(CreationsDAO.self).getToybooCreation(creationIdentifier: creationId, completion: completion)
     }
-
+    
+    open func incrementViewsCount(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CreationsDAO.self).incrementViewsCount(creationIdentifier: creationId, completion: completion)
+    }
+    
+    open func getTrendingCreations(completion: CreationsClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CreationsDAO.self).getTrendingCreations(completion: completion)
+    }
+    
     // MARK: - Upload Sessions
     open func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData> {
         return creationUploadService.getAllActiveUploadSessionsPublicData()
@@ -482,9 +499,13 @@ open func getCreation(creationId: String, completion: CreationClosure?) -> Reque
         creationUploadService.refreshCreationStatusInUploadSession(creationId: creationId)
     }
 
+    open func notifyCreationProcessingFailed(creationId: String) {
+        creationUploadService.notifyCreationProcessingFailed(creationId: creationId)
+    }
+
     // MARK: - Creation flow
-    open func newCreation(data creationData: NewCreationData, completion: CreationClosure?) -> CreationUploadSessionPublicData? {
-        return creationUploadService.uploadCreation(data: creationData, completion: completion)
+    open func newCreation(data creationData: NewCreationData, localDataPreparationCompletion: ((_ error: Error?) -> Void)?, completion: CreationClosure?) -> CreationUploadSessionPublicData? {
+        return creationUploadService.uploadCreation(data: creationData, localDataPreparationCompletion: localDataPreparationCompletion, completion: completion)
     }
 
     // MARK: - Background session
@@ -547,6 +568,10 @@ open func getCreation(creationId: String, completion: CreationClosure?) -> Reque
     open func addComment(data: NewCommentData, completion: ErrorClosure?) -> RequestHandler {
         return daoAssembly.assembly(CommentsDAO.self).addComment(commendData: data, completion: completion)
     }
+    
+    open func approveComment(commentId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CommentsDAO.self).approveComment(commentIdentifier: commentId, completion: completion)
+    }
 
     open func declineComment(commentId: String, completion: ErrorClosure?) -> RequestHandler {
         return daoAssembly.assembly(CommentsDAO.self).declineComment(commentIdentifier: commentId, completion: completion)
@@ -596,6 +621,10 @@ open func getCreation(creationId: String, completion: CreationClosure?) -> Reque
     open func getSearchedContents(query: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler {
         return daoAssembly.assembly(ContentDAO.self).getSearchedContents(query: query, pagingData: pagingData, completion: completion)
     }
+    
+    open func getContentsByHashtag(hashtag: String, pagingData: PagingData?, completion: ContentEntryClosure?) -> RequestHandler {
+        return daoAssembly.assembly(ContentDAO.self).getContentsByHashtag(hashtag:hashtag, pagingData: pagingData, completion: completion)
+    }
 
     // MARK: - CustomStyle
     open func fetchCustomStyleForUser(userId identifier: String, completion: CustomStyleClosure?) -> RequestHandler {
@@ -618,8 +647,8 @@ open func getCreation(creationId: String, completion: CreationClosure?) -> Reque
         return daoAssembly.assembly(NotificationDAO.self).getNotifications(pagingData: pagingData, completion: completion)
     }
 
-    open func markNotificationAsRead(notificationId: String, completion: ErrorClosure?) -> RequestHandler {
-        return daoAssembly.assembly(NotificationDAO.self).markNotificationAsRead(notificationIdentifier: notificationId, completion: completion)
+    open func markNotificationAsRead(notificationId: String, from: String? = nil, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(NotificationDAO.self).markNotificationAsRead(notificationIdentifier: notificationId, from: from, completion: completion)
     }
 
     open func trackWhenNotificationsWereViewed(completion: ErrorClosure?) -> RequestHandler {
@@ -642,6 +671,14 @@ open func getCreation(creationId: String, completion: CreationClosure?) -> Reque
 
     open func searchPartnerApplications(_ query: String, completion: PartnerApplicationsClosure?) -> RequestHandler {
         return daoAssembly.assembly(PartnerApplicationDAO.self).searchPartnerApplications(query, completion: completion)
+    }
+    
+    open func getPartnerApplicationGalleries(_ id: String, pagingData: PagingData, completion: GalleriesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(PartnerApplicationDAO.self).getPartnerApplicationGalleries(id, pagingData: pagingData, completion: completion)
+    }
+    
+    open func getPartnerApplicationCreations(_ id: String, pagingData: PagingData, completion: CreationsClosure?) -> RequestHandler {
+        return daoAssembly.assembly(PartnerApplicationDAO.self).getPartnerApplicationCreations(id, pagingData: pagingData, completion: completion)
     }
 
     // MARK: - Avatar

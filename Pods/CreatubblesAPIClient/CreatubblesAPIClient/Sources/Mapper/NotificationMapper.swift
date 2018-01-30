@@ -33,6 +33,7 @@ class NotificationMapper: Mappable {
     var text: String?
     var shortText: String?
     var isNew: Bool?
+    var isUnread: Bool?
 
     var createdAt: Date?
 
@@ -57,6 +58,7 @@ class NotificationMapper: Mappable {
         text <- map["attributes.text"]
         shortText <- map["attributes.short_text"]
         isNew <- map["attributes.is_new"]
+        isUnread <- map["attributes.is_unread"]
 
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
 
@@ -82,6 +84,7 @@ class NotificationMapper: Mappable {
         if type == "another_comment" { return .anotherComment }
         if type == "new_comment_for_creation_users" { return .newCommentForCreationUsers }
         if type == "multiple_creators_created" { return .multipleCreatorsCreated }
+        if type == "received_favorite" { return .receivedFavorite}
         if type == "translation_tip" { return .translationTip }
         if type == "customize_tip" { return .customizeTip }
         if type == "galleries_tip" { return .galleriesTip }

@@ -27,11 +27,15 @@ import UIKit
 import ObjectMapper
 
 class NotificationMetadataMapper: Mappable {
-    var totalUnreadCount: Int?
-
+    var totalNewCount: Int? // // It's a total number of new notifications that an user see for the first time. We may call a specific endpoint to mark all notifications as seen (NotificationsViewTrackerRequest class)
+    var totalUnreadCount: Int? // It's a total number of notifications that are not marked as read (NotificationReadRequest class)
+    var hasUnreadNotifications: Bool? // Indicates that there are some notifications not marked as read (NotificationReadRequest class)
+    
     required init?(map: Map) { /* Intentionally left empty  */ }
-
+    
     func mapping(map: Map) {
+        totalNewCount <- map["total_new_count"]
         totalUnreadCount <- map["total_unread_count"]
+        hasUnreadNotifications <- map["has_unread_notifications"]
     }
 }
