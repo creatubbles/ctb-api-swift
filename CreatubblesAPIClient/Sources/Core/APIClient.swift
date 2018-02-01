@@ -192,6 +192,7 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         self.daoAssembly.register(dao: PartnerApplicationDAO(dependencies: dependencies))
         self.daoAssembly.register(dao: AvatarDAO(dependencies: dependencies))
         self.daoAssembly.register(dao: SearchTagDAO(dependencies: dependencies))
+        self.daoAssembly.register(dao: HashtagDAO(dependencies: dependencies))
         self.daoAssembly.register(dao: DatabaseDAO())
 
         Logger.setup(logLevel: settings.logLevel)
