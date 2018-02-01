@@ -1,5 +1,5 @@
 //
-//  HashtagContentRequest.swift
+//  HashtagDAO.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -21,35 +21,23 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
 
-class HashtagContentRequest: Request {
-    override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
-    override var method: RequestMethod { return .get }
-    override var endpoint: String {
-        return "hashtags/"+hashtagName+"/contents"
+import UIKit
+
+class HashtagDAO: NSObject, APIClientDAO
+{
+    fileprivate let requestSender: RequestSender
+    
+    required init(dependencies: DAODependencies)
+    {
+        self.requestSender = dependencies.requestSender
     }
     
-    fileprivate let page: Int?
-    fileprivate let perPage: Int?
-    fileprivate let hashtagName: String
-    
-    init(hashtagName: String, page: Int?, perPage: Int?) {
-        self.page = page
-        self.perPage = perPage
-        self.hashtagName = hashtagName
-    }
-    
-    func prepareParametersDictionary() -> Dictionary<String, AnyObject> {
-        var params = Dictionary<String, AnyObject>()
+    func fetchSuggestedHashtags(pagingData: PagingData?, completion: HashtagsClosure?) -> RequestHandler
+    {
+        let request = SuggestedHashtagsFetchRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
+        let handler = SuggestedHashtagsFetchResponseHandler(completion: completion)
         
-        if let page = page {
-            params["page"] = page as AnyObject?
-        }
-        if let perPage = perPage {
-            params["per_page"] = perPage as AnyObject?
-        }
-        
-        return params
+        return requestSender.send(request, withResponseHandler: handler)
     }
 }
