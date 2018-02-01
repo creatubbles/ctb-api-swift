@@ -1,5 +1,5 @@
 //
-//  HashtagContentRequest.swift
+//  HashtagMapper.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -21,35 +21,21 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
 
-class HashtagContentRequest: Request {
-    override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
-    override var method: RequestMethod { return .get }
-    override var endpoint: String {
-        return "hashtags/"+hashtagName+"/contents"
-    }
+import UIKit
+import ObjectMapper
+
+class HashtagMapper: Mappable
+{
+    var identifier: String?
+    var imageURL: String?
     
-    fileprivate let page: Int?
-    fileprivate let perPage: Int?
-    fileprivate let hashtagName: String
+    required init?(map: Map) { /* Intentionally left empty  */ }
     
-    init(hashtagName: String, page: Int?, perPage: Int?) {
-        self.page = page
-        self.perPage = perPage
-        self.hashtagName = hashtagName
-    }
-    
-    func prepareParametersDictionary() -> Dictionary<String, AnyObject> {
-        var params = Dictionary<String, AnyObject>()
-        
-        if let page = page {
-            params["page"] = page as AnyObject?
-        }
-        if let perPage = perPage {
-            params["per_page"] = perPage as AnyObject?
-        }
-        
-        return params
+    func mapping(map: Map)
+    {
+        identifier <- map["id"]
+        imageURL <- map["attributes.avatar_image_url.links.original"]
     }
 }
+

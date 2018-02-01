@@ -61,6 +61,7 @@ public typealias PartnerApplicationsClosure = (Array<PartnerApplication>?, APICl
 public typealias PartnerApplicationClosure = (PartnerApplication?, APIClientError?) -> (Void)
 
 public typealias SearchTagsClosure = (Array<SearchTag>?, PagingInfo?, APIClientError?) -> (Void)
+public typealias HashtagsClosure = (Array<Hashtag>?, PagingInfo?, APIClientError?) -> (Void)
 
 public typealias AvatarSuggestionsClosure = (Array<AvatarSuggestion>?, APIClientError?) -> (Void)
 
@@ -694,6 +695,11 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     // MARK: - SearchTags
     open func getSearchTags(pagingData: PagingData?, completion: SearchTagsClosure?) -> RequestHandler {
         return daoAssembly.assembly(SearchTagDAO.self).fetchSearchTags(pagingData: pagingData, completion: completion)
+    }
+    
+    // MARK: - Hashtags
+    open func getSuggestedHashtags(pagingData: PagingData?, completion: HashtagsClosure?) -> RequestHandler {
+        return daoAssembly.assembly(HashtagDAO.self).fetchSuggestedHashtags(pagingData: pagingData, completion: completion)
     }
 
     // MARK: - Log listener

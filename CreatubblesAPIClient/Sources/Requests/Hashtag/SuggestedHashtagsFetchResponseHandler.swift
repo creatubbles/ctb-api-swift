@@ -1,5 +1,5 @@
 //
-//  HashtagContentRequest.swift
+//  SuggestedHashtagsFetchResponseHandler.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -21,35 +21,36 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
 
-class HashtagContentRequest: Request {
-    override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
-    override var method: RequestMethod { return .get }
-    override var endpoint: String {
-        return "hashtags/"+hashtagName+"/contents"
+import Foundation
+
+import UIKit
+import ObjectMapper
+
+class SuggestedHashtagsFetchResponseHandler: ResponseHandler
+{
+    fileprivate let completion: HashtagsClosure?
+    
+    init(completion: HashtagsClosure?)
+    {
+        self.completion = completion
     }
     
-    fileprivate let page: Int?
-    fileprivate let perPage: Int?
-    fileprivate let hashtagName: String
-    
-    init(hashtagName: String, page: Int?, perPage: Int?) {
-        self.page = page
-        self.perPage = perPage
-        self.hashtagName = hashtagName
-    }
-    
-    func prepareParametersDictionary() -> Dictionary<String, AnyObject> {
-        var params = Dictionary<String, AnyObject>()
-        
-        if let page = page {
-            params["page"] = page as AnyObject?
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?)
+    {
+        if  let response = response,
+            let mappers = Mapper<HashtagMapper>().mapArray(JSONObject: response["data"])
+        {
+            let metadata = MappingUtils.metadataFromResponse(response)
+            let pageInfo = MappingUtils.pagingInfoFromResponse(response)
+            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
+            let hashtags = mappers.map({ Hashtag(mapper: $0, dataMapper: dataMapper, metadata: metadata) })
+            
+            executeOnMainQueue { self.completion?(hashtags, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
-        if let perPage = perPage {
-            params["per_page"] = perPage as AnyObject?
+        else
+        {
+            executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
-        
-        return params
     }
 }

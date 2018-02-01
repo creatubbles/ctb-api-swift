@@ -432,6 +432,13 @@
 		B225DF771EB31F2200AB6F4C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		B225DF7A1EB31F2200AB6F4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF781EB31F2200AB6F4C /* LaunchScreen.storyboard */; };
 		C997CE8C201B2DB800EB1562 /* HashtagContentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C997CE8B201B2DB800EB1562 /* HashtagContentRequest.swift */; };
+		C9B5A54320231B3200C3BAF8 /* Hashtag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B5A54220231B3200C3BAF8 /* Hashtag.swift */; };
+		C9B5A54520231C0800C3BAF8 /* HashtagMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B5A54420231C0800C3BAF8 /* HashtagMapper.swift */; };
+		C9B5A54720231D4100C3BAF8 /* HashtagDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B5A54620231D4100C3BAF8 /* HashtagDAO.swift */; };
+		C9B5A54A20231DBB00C3BAF8 /* SuggestedHashtagsFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B5A54920231DBB00C3BAF8 /* SuggestedHashtagsFetchRequest.swift */; };
+		C9B5A54C20231DCB00C3BAF8 /* SuggestedHashtagsFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B5A54B20231DCB00C3BAF8 /* SuggestedHashtagsFetchResponseHandler.swift */; };
+		C9B5A5502023203700C3BAF8 /* SuggestedHashtagsFetchRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B5A54F2023203700C3BAF8 /* SuggestedHashtagsFetchRequestSpec.swift */; };
+		C9B5A5532023209B00C3BAF8 /* SuggestedHashtagsFetchResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B5A5522023209B00C3BAF8 /* SuggestedHashtagsFetchResponseHandlerSpec.swift */; };
 		C9B73248200E4043004288A9 /* FetchTrendingCreationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B73247200E4043004288A9 /* FetchTrendingCreationsRequest.swift */; };
 		C9B7324A200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B73249200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift */; };
 		C9B7324E200E480B004288A9 /* FetchTrendingUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B7324D200E480B004288A9 /* FetchTrendingUsersRequest.swift */; };
@@ -918,6 +925,13 @@
 		7997D36B21B419F654577C4A /* Pods-CreatubblesAPIClientDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C997CE8B201B2DB800EB1562 /* HashtagContentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagContentRequest.swift; sourceTree = "<group>"; };
+		C9B5A54220231B3200C3BAF8 /* Hashtag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hashtag.swift; sourceTree = "<group>"; };
+		C9B5A54420231C0800C3BAF8 /* HashtagMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagMapper.swift; sourceTree = "<group>"; };
+		C9B5A54620231D4100C3BAF8 /* HashtagDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagDAO.swift; sourceTree = "<group>"; };
+		C9B5A54920231DBB00C3BAF8 /* SuggestedHashtagsFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedHashtagsFetchRequest.swift; sourceTree = "<group>"; };
+		C9B5A54B20231DCB00C3BAF8 /* SuggestedHashtagsFetchResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedHashtagsFetchResponseHandler.swift; sourceTree = "<group>"; };
+		C9B5A54F2023203700C3BAF8 /* SuggestedHashtagsFetchRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedHashtagsFetchRequestSpec.swift; sourceTree = "<group>"; };
+		C9B5A5522023209B00C3BAF8 /* SuggestedHashtagsFetchResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedHashtagsFetchResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		C9B73247200E4043004288A9 /* FetchTrendingCreationsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingCreationsRequest.swift; sourceTree = "<group>"; };
 		C9B73249200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingCreationsResponseHandler.swift; sourceTree = "<group>"; };
 		C9B7324D200E480B004288A9 /* FetchTrendingUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingUsersRequest.swift; sourceTree = "<group>"; };
@@ -1160,6 +1174,7 @@
 				21CC9E3F1DF834A100C6538C /* SearchTag.swift */,
 				08C781E71E1CFFA60005864F /* AppScreenshot.swift */,
 				188E033C1F305553005630D0 /* GalleryInstruction.swift */,
+				C9B5A54220231B3200C3BAF8 /* Hashtag.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1167,6 +1182,7 @@
 		1815D5631C638B9C00EF4C38 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				C9B5A54820231D8800C3BAF8 /* Hashtag */,
 				18F6E87A1D021B6500AAC5FB /* RequestSender.swift */,
 				217745091DD9C9880012FFDC /* Avatar */,
 				08B4DD601DC0BD6C00EF6D67 /* Authentication */,
@@ -1257,6 +1273,7 @@
 		185E317B1E7157160077E9A8 /* Spec */ = {
 			isa = PBXGroup;
 			children = (
+				C9B5A5512023207300C3BAF8 /* Hashtag */,
 				185E317F1E7157160077E9A8 /* APIClientSpec.swift */,
 				185E31B11E7157160077E9A8 /* DataUploaderSpec.swift */,
 				185E31DC1E7157160077E9A8 /* RequestSenderSpec.swift */,
@@ -1477,6 +1494,7 @@
 		185E32901E71571E0077E9A8 /* Spec */ = {
 			isa = PBXGroup;
 			children = (
+				C9B5A54E2023201900C3BAF8 /* Hashtag */,
 				185E32941E71571E0077E9A8 /* APIClientSpec.swift */,
 				185E32C51E71571E0077E9A8 /* DAOAssemblySpec.swift */,
 				1891FE2A1E7193F70049648A /* ErrorTransformerSpec.swift */,
@@ -1747,6 +1765,7 @@
 				212A12291D537213001BA35A /* PartnerApplicationDAO.swift */,
 				21CC9E3D1DF833E100C6538C /* SearchTagDAO.swift */,
 				1823F87F1E54672100AD5517 /* DAOAssembly.swift */,
+				C9B5A54620231D4100C3BAF8 /* HashtagDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -1840,6 +1859,7 @@
 				08C781E91E1D03B80005864F /* AppScreenshotMapper.swift */,
 				1854883B1E719C310047AC3B /* ServerErrorMapper.swift */,
 				6B416A6E1F616A5000A63478 /* SearchTagMapper.swift */,
+				C9B5A54420231C0800C3BAF8 /* HashtagMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -2154,6 +2174,31 @@
 				B225DF781EB31F2200AB6F4C /* LaunchScreen.storyboard */,
 			);
 			path = CreatubblesAPIClientDemo;
+			sourceTree = "<group>";
+		};
+		C9B5A54820231D8800C3BAF8 /* Hashtag */ = {
+			isa = PBXGroup;
+			children = (
+				C9B5A54920231DBB00C3BAF8 /* SuggestedHashtagsFetchRequest.swift */,
+				C9B5A54B20231DCB00C3BAF8 /* SuggestedHashtagsFetchResponseHandler.swift */,
+			);
+			path = Hashtag;
+			sourceTree = "<group>";
+		};
+		C9B5A54E2023201900C3BAF8 /* Hashtag */ = {
+			isa = PBXGroup;
+			children = (
+				C9B5A54F2023203700C3BAF8 /* SuggestedHashtagsFetchRequestSpec.swift */,
+			);
+			path = Hashtag;
+			sourceTree = "<group>";
+		};
+		C9B5A5512023207300C3BAF8 /* Hashtag */ = {
+			isa = PBXGroup;
+			children = (
+				C9B5A5522023209B00C3BAF8 /* SuggestedHashtagsFetchResponseHandlerSpec.swift */,
+			);
+			path = Hashtag;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2628,6 +2673,7 @@
 				18290AE71D06B24B000EA216 /* GallerySubmission.swift in Sources */,
 				188E033D1F305553005630D0 /* GalleryInstruction.swift in Sources */,
 				18F6E8861D021B6500AAC5FB /* NewBubbleRequest.swift in Sources */,
+				C9B5A54720231D4100C3BAF8 /* HashtagDAO.swift in Sources */,
 				189D9F621C84B36100857CC6 /* UserMapper.swift in Sources */,
 				083785871D378714006EF69E /* ReportCommentRequest.swift in Sources */,
 				08B4DD621DC0BDA000EF6D67 /* AuthenticationRequest.swift in Sources */,
@@ -2687,6 +2733,7 @@
 				188E033F1F3081D0005630D0 /* ChallengesGalleriesRequest.swift in Sources */,
 				21B9334A1D2AEC2900FCD248 /* MyConnectionsRequest.swift in Sources */,
 				08C781EA1E1D03B80005864F /* AppScreenshotMapper.swift in Sources */,
+				C9B5A54A20231DBB00C3BAF8 /* SuggestedHashtagsFetchRequest.swift in Sources */,
 				21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */,
 				215279631D3F817D00B67313 /* DeleteAUserFollowingResponseHandler.swift in Sources */,
 				1859FAA81D39052F0023A6B6 /* GroupResponseHandler.swift in Sources */,
@@ -2745,6 +2792,7 @@
 				18F6E8881D021B6500AAC5FB /* UpdateBubbleRequest.swift in Sources */,
 				18E9D18F1D117812006F2BAB /* EditCreationRequest.swift in Sources */,
 				08B7E90E1D52302D007A30F3 /* GroupCreatorsResponseHandler.swift in Sources */,
+				C9B5A54520231C0800C3BAF8 /* HashtagMapper.swift in Sources */,
 				0846DD551E07E224002722ED /* DeclineCommentResponseHandler.swift in Sources */,
 				183B5BBF1D8BDDD200A19298 /* APIClient_ObjC.swift in Sources */,
 				217745111DD9C9880012FFDC /* UpdateUserAvatarResponseHandler.swift in Sources */,
@@ -2841,6 +2889,7 @@
 				21297EAB1DAFAC7B003CCF75 /* RemoveCreationResponseHandler.swift in Sources */,
 				18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */,
 				183635441CB5013900ED778A /* Relationship.swift in Sources */,
+				C9B5A54320231B3200C3BAF8 /* Hashtag.swift in Sources */,
 				1859FAA61D39052F0023A6B6 /* EditGroupRequest.swift in Sources */,
 				2177450E1DD9C9880012FFDC /* AvatarSuggestionsFetchRequest.swift in Sources */,
 				1814B76D1DF825CE003B3C65 /* MyGalleriesBatchFetchOperation.swift in Sources */,
@@ -2872,6 +2921,7 @@
 				08AC6A661D4259B4004A35C3 /* Activity.swift in Sources */,
 				181E76EC1CC547C000A1546A /* CommentsDAO.swift in Sources */,
 				18E9D1911D117F58006F2BAB /* EditCreationData.swift in Sources */,
+				C9B5A54C20231DCB00C3BAF8 /* SuggestedHashtagsFetchResponseHandler.swift in Sources */,
 				1859FAA41D39052F0023A6B6 /* DeleteGroupRequest.swift in Sources */,
 				189D9F5E1C84B36100857CC6 /* ErrorMapper.swift in Sources */,
 				0816F3AA1D587CEB0026A40E /* SwitchUsersResponseHandler.swift in Sources */,
@@ -2960,6 +3010,7 @@
 				185E33351E71571E0077E9A8 /* NewCommentRequestSpec.swift in Sources */,
 				185E33631E71571E0077E9A8 /* EditGroupRequestSpec.swift in Sources */,
 				185E338C1E71571E0077E9A8 /* UserAccountDetailsRequestSpec.swift in Sources */,
+				C9B5A5502023203700C3BAF8 /* SuggestedHashtagsFetchRequestSpec.swift in Sources */,
 				185E33531E71571E0077E9A8 /* FavoriteGalleriesRequestSpec.swift in Sources */,
 				185E334F1E71571E0077E9A8 /* CustomStyleFetchRequestSpec.swift in Sources */,
 				185E335A1E71571E0077E9A8 /* NewGalleryRequestSpec.swift in Sources */,
@@ -2976,6 +3027,7 @@
 			files = (
 				185E33C81E715C270077E9A8 /* RecorderTestSender.swift in Sources */,
 				185E32161E7157160077E9A8 /* CreationsBatchFetcherSpec.swift in Sources */,
+				C9B5A5532023209B00C3BAF8 /* SuggestedHashtagsFetchResponseHandlerSpec.swift in Sources */,
 				185E321E1E7157160077E9A8 /* DeclineCommentResponseHandlerSpec.swift in Sources */,
 				185E32491E7157170077E9A8 /* UpdateGalleryResponseHandlerSpec.swift in Sources */,
 				185E324A1E7157170077E9A8 /* GallerySubmitterSpec.swift in Sources */,

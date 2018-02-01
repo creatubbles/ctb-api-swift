@@ -1,5 +1,5 @@
 //
-//  HashtagContentRequest.swift
+//  SuggestedHashtagsFetchRequestSpec.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -23,33 +23,26 @@
 //  THE SOFTWARE.
 //
 
-class HashtagContentRequest: Request {
-    override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
-    override var method: RequestMethod { return .get }
-    override var endpoint: String {
-        return "hashtags/"+hashtagName+"/contents"
-    }
-    
-    fileprivate let page: Int?
-    fileprivate let perPage: Int?
-    fileprivate let hashtagName: String
-    
-    init(hashtagName: String, page: Int?, perPage: Int?) {
-        self.page = page
-        self.perPage = perPage
-        self.hashtagName = hashtagName
-    }
-    
-    func prepareParametersDictionary() -> Dictionary<String, AnyObject> {
-        var params = Dictionary<String, AnyObject>()
-        
-        if let page = page {
-            params["page"] = page as AnyObject?
+import Quick
+import Nimble
+@testable import CreatubblesAPIClient
+
+class SuggestedHashtagsFetchRequestSpec: QuickSpec
+{
+    override func spec()
+    {
+        describe("Suggested hashtags request")
+        {
+            it("Should have a proper method") {
+                let request = SuggestedHashtagsFetchRequest(page: 1, perPage: 10)
+                expect(request.method) == RequestMethod.get
+            }
+            
+            it("Should have a proper endpoint") {
+                let request = SuggestedHashtagsFetchRequest(page: 1, perPage: 10)
+                expect(request.endpoint) == "hashtags/suggested"
+            }
         }
-        if let perPage = perPage {
-            params["per_page"] = perPage as AnyObject?
-        }
-        
-        return params
     }
 }
+

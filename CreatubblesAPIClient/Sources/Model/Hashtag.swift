@@ -1,5 +1,5 @@
 //
-//  HashtagContentRequest.swift
+//  Hashtag.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -23,33 +23,20 @@
 //  THE SOFTWARE.
 //
 
-class HashtagContentRequest: Request {
-    override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
-    override var method: RequestMethod { return .get }
-    override var endpoint: String {
-        return "hashtags/"+hashtagName+"/contents"
+import UIKit
+
+open class Hashtag: NSObject, Identifiable {
+    open let identifier: String
+    open let imageURL: String?
+    
+    init(identifier: String, imageURL: String?) {
+        self.imageURL = imageURL
+        self.identifier = identifier
     }
     
-    fileprivate let page: Int?
-    fileprivate let perPage: Int?
-    fileprivate let hashtagName: String
-    
-    init(hashtagName: String, page: Int?, perPage: Int?) {
-        self.page = page
-        self.perPage = perPage
-        self.hashtagName = hashtagName
-    }
-    
-    func prepareParametersDictionary() -> Dictionary<String, AnyObject> {
-        var params = Dictionary<String, AnyObject>()
-        
-        if let page = page {
-            params["page"] = page as AnyObject?
-        }
-        if let perPage = perPage {
-            params["per_page"] = perPage as AnyObject?
-        }
-        
-        return params
+    init(mapper: HashtagMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
+    {
+        identifier = mapper.identifier!
+        imageURL = mapper.imageURL
     }
 }
