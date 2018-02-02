@@ -70,6 +70,7 @@ open class User: NSObject, Identifiable {
     open let signedUpAsInstructor: Bool
     open let whatDoYouTeach: String?
     open let interests: String?
+    open let interestsList: Array<String>?
 
     // MARK: - Metadata
     open let isBubbled: Bool
@@ -120,5 +121,6 @@ open class User: NSObject, Identifiable {
 
         whatDoYouTeach = mapper.whatDoYouTeach
         interests = mapper.interests
+        interestsList = mapper.interestsList
     }
 }

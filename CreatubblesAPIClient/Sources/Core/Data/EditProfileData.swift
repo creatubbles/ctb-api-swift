@@ -43,4 +43,5 @@ open class EditProfileData: NSObject {
     open var receiveNotifications: Bool?
     open var receiveNewswletter: Bool?
     open var avatarCreationIdentifier: String?
+    open var interestsList: Array<String>?
 }

@@ -43,6 +43,7 @@ public class UserAccountDetailsMapper: Mappable {
     var preapproveComments: Bool?
     var whatDoYouTeach: String?
     var interests: String?
+    var interestsList: Array<String>?
     var managedCreatorsCount: Int?
     var countryCode: String?
     var receiveNotifications: Bool?
@@ -75,6 +76,7 @@ public class UserAccountDetailsMapper: Mappable {
         countryCode <- map["attributes.country_code"]
         receiveNotifications <- map["attributes.receive_notifications"]
         receiveNewsletter <- map["attributes.newsletter"]
+        interestsList <- map["attributes.interests_list"]
 
         passwordUpdatedAt <- (map["attributes.password_updated_at"], APIClientDateTransform.sharedTransform)
         currentSignInAt <- (map["attributes.current_sign_in_at"], APIClientDateTransform.sharedTransform)

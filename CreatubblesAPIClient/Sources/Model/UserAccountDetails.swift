@@ -43,6 +43,7 @@ open class UserAccountDetails: NSObject {
     open let preapproveComments: Bool
     open let whatDoYouTeach: String?
     open let interests: String?
+    open let interestsList: Array<String>?
     open let managedCreatorsCount: Int
     open let countryCode: String?
     open let receiveNotifications: Bool
@@ -71,6 +72,7 @@ open class UserAccountDetails: NSObject {
         preapproveComments = mapper.preapproveComments!
         whatDoYouTeach = mapper.whatDoYouTeach
         interests = mapper.interests
+        interestsList = mapper.interestsList
         managedCreatorsCount = mapper.managedCreatorsCount!
         countryCode = mapper.countryCode
         receiveNotifications = mapper.receiveNotifications!
