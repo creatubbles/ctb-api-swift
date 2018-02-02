@@ -59,6 +59,7 @@ class UserMapper: Mappable {
 
     var whatDoYouTeach: String?
     var interests: String?
+    var interestsList: Array<String>?
 
     // MARK: - Mappable
     required init?(map: Map) { /* Intentionally left empty  */ }
@@ -98,6 +99,7 @@ class UserMapper: Mappable {
 
         whatDoYouTeach <- map["attributes.what_do_you_teach"]
         interests <- map["attributes.interests"]
+        interestsList <- map["attributes.interests_list"]
     }
 
     // MARK: - Parsing
