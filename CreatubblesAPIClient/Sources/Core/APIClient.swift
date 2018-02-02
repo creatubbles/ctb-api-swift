@@ -334,6 +334,14 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(UserDAO.self).getTrendingUsers(completion: completion)
     }
 
+    open func getCurrentUserCreators(completion: UsersClosure?) -> RequestHandler {
+        return daoAssembly.assembly(UserDAO.self).getCurrentUserCreators(completion: completion)
+    }
+
+    open func getCurrentUserManagers(completion: UsersClosure?) -> RequestHandler {
+        return daoAssembly.assembly(UserDAO.self).getCurrentUserManagers(completion: completion)
+    }
+
     // MARK: - Gallery managment
     open func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler {
         return daoAssembly.assembly(GalleryDAO.self).getGallery(galleryIdentifier: galleryId, completion: completion)

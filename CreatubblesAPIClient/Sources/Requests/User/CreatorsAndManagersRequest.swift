@@ -29,6 +29,11 @@ enum CreatorsAndManagersScopeElement: String {
     case Creators = "creators"
 }
 
+/**
+ This endpoint has been deprecated
+ https://developers.creatubbles.com/api/internal.html#users
+ This request will be removed soon.
+ */
 class CreatorsAndManagersRequest: Request {
     override var method: RequestMethod { return .get }
     override var endpoint: String { return "users" }

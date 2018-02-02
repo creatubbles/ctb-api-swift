@@ -1,7 +1,6 @@
 //
-//  CreatorsAndManagersResponseHandler.swift
-//  CreatubblesAPIClient
-//
+//  GetCurrentUserCreatorsResponseHandler.swift
+//  Created by Benjamin Hendricks on 2/2/18.
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,16 +20,12 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
-import UIKit
+import Foundation
 import ObjectMapper
 
-/**
- This endpoint has been deprecated
- https://developers.creatubbles.com/api/internal.html#users
- This request will be removed soon.
- */
-class CreatorsAndManagersResponseHandler: ResponseHandler {
+class GetCurrentUserCreatorsResponseHandler: ResponseHandler {
     fileprivate let completion: UsersClosure?
     init(completion: UsersClosure?) {
         self.completion = completion
@@ -50,3 +45,4 @@ class CreatorsAndManagersResponseHandler: ResponseHandler {
         }
     }
 }
+
