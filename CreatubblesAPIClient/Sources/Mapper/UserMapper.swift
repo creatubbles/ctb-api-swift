@@ -99,7 +99,7 @@ class UserMapper: Mappable {
 
         whatDoYouTeach <- map["attributes.what_do_you_teach"]
         interests <- map["attributes.interests"]
-        interestsList <- map["attributes.interests_list"]
+        interestsList <- map["attributes.interest_list"]
     }
 
     // MARK: - Parsing
