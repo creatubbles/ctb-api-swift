@@ -419,6 +419,10 @@
 		21CC9E451DF8362C00C6538C /* SearchTagsFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC9E441DF8362C00C6538C /* SearchTagsFetchResponseHandler.swift */; };
 		3F7AD4441EB70B6C0044F6D6 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3F7AD4461EB70F540044F6D6 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		3F7B9E732024EDEC0059E224 /* GetCurrentUserCreatorsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B9E722024EDEC0059E224 /* GetCurrentUserCreatorsRequest.swift */; };
+		3F7B9E752024EDFC0059E224 /* GetCurrentUserCreatorsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B9E742024EDFC0059E224 /* GetCurrentUserCreatorsResponseHandler.swift */; };
+		3F7B9E772024EE120059E224 /* GetCurrentUserManagersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B9E762024EE120059E224 /* GetCurrentUserManagersRequest.swift */; };
+		3F7B9E792024EE2D0059E224 /* GetCurrentUserManagersResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B9E782024EE2D0059E224 /* GetCurrentUserManagersResponseHandler.swift */; };
 		445A3A5B1DD29F7400986BBB /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A3A5A1DD29F7400986BBB /* String+Localized.swift */; };
 		445A3A5C1DD2A8CD00986BBB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 445A3A5E1DD2A8CD00986BBB /* Localizable.strings */; };
 		5D916F1D7C0D528FDCA37ADB /* Pods_CreatubblesAPIClientIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7184408A7E06B801847505 /* Pods_CreatubblesAPIClientIntegrationTests.framework */; };
@@ -915,6 +919,10 @@
 		365569ACBF6DA2AABD7377FF /* Pods-CreatubblesAPIClientIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientIntegrationTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientIntegrationTests/Pods-CreatubblesAPIClientIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		3673F5DB0D2ADC187438EFE5 /* Pods-CreatubblesAPIClientDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo.release.xcconfig"; sourceTree = "<group>"; };
 		39E1EB9D8152D4F185B9A736 /* Pods-CreatubblesAPIClientIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientIntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientIntegrationTests/Pods-CreatubblesAPIClientIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3F7B9E722024EDEC0059E224 /* GetCurrentUserCreatorsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUserCreatorsRequest.swift; sourceTree = "<group>"; };
+		3F7B9E742024EDFC0059E224 /* GetCurrentUserCreatorsResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUserCreatorsResponseHandler.swift; sourceTree = "<group>"; };
+		3F7B9E762024EE120059E224 /* GetCurrentUserManagersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUserManagersRequest.swift; sourceTree = "<group>"; };
+		3F7B9E782024EE2D0059E224 /* GetCurrentUserManagersResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUserManagersResponseHandler.swift; sourceTree = "<group>"; };
 		445A3A5A1DD29F7400986BBB /* String+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		445A3A5D1DD2A8CD00986BBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		445A3A5F1DD2A8DA00986BBB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2040,6 +2048,10 @@
 				0816F3A91D587CEB0026A40E /* SwitchUsersResponseHandler.swift */,
 				C9B7324D200E480B004288A9 /* FetchTrendingUsersRequest.swift */,
 				C9B7324F200E483B004288A9 /* FetchTrendingUsersResponseHandler.swift */,
+				3F7B9E722024EDEC0059E224 /* GetCurrentUserCreatorsRequest.swift */,
+				3F7B9E742024EDFC0059E224 /* GetCurrentUserCreatorsResponseHandler.swift */,
+				3F7B9E762024EE120059E224 /* GetCurrentUserManagersRequest.swift */,
+				3F7B9E782024EE2D0059E224 /* GetCurrentUserManagersResponseHandler.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2692,6 +2704,7 @@
 				08A75AA01DC238EA007F546D /* AuthenticationError.swift in Sources */,
 				217745181DD9C9C70012FFDC /* AvatarSuggestion.swift in Sources */,
 				18C744F21C84610800A07E4C /* DatabaseDAO.swift in Sources */,
+				3F7B9E772024EE120059E224 /* GetCurrentUserManagersRequest.swift in Sources */,
 				1CDA41081F7CE4A800823CDC /* ApproveCommentRequest.swift in Sources */,
 				18F6E88D1D021B6500AAC5FB /* NewCommentResponseHandler.swift in Sources */,
 				18F6E8AE1D021C3400AAC5FB /* CustomStyleMapper.swift in Sources */,
@@ -2738,6 +2751,7 @@
 				215279631D3F817D00B67313 /* DeleteAUserFollowingResponseHandler.swift in Sources */,
 				1859FAA81D39052F0023A6B6 /* GroupResponseHandler.swift in Sources */,
 				18F6E8971D021B6500AAC5FB /* NewCreationRequest.swift in Sources */,
+				3F7B9E752024EDFC0059E224 /* GetCurrentUserCreatorsResponseHandler.swift in Sources */,
 				18F6E88C1D021B6500AAC5FB /* NewCommentRequest.swift in Sources */,
 				C9B73248200E4043004288A9 /* FetchTrendingCreationsRequest.swift in Sources */,
 				21C349931C904B38002972EC /* NewCreationData.swift in Sources */,
@@ -2847,6 +2861,7 @@
 				18C1CFF71C75C46C00A02DE3 /* CreationsDAO.swift in Sources */,
 				18F6E89D1D021B6500AAC5FB /* GallerySubmissionRequest.swift in Sources */,
 				18F91EA51F8E094F0021F1BF /* GalleryViewsCountIncrementRequest.swift in Sources */,
+				3F7B9E792024EE2D0059E224 /* GetCurrentUserManagersResponseHandler.swift in Sources */,
 				182A36C51D4095D0005E01DC /* UserAccountDetailsMapper.swift in Sources */,
 				18F6E8891D021B6500AAC5FB /* UpdateBubbleResponseHandler.swift in Sources */,
 				18290AE51D06B09E000EA216 /* GallerySubmissionMapper.swift in Sources */,
@@ -2892,6 +2907,7 @@
 				C9B5A54320231B3200C3BAF8 /* Hashtag.swift in Sources */,
 				1859FAA61D39052F0023A6B6 /* EditGroupRequest.swift in Sources */,
 				2177450E1DD9C9880012FFDC /* AvatarSuggestionsFetchRequest.swift in Sources */,
+				3F7B9E732024EDEC0059E224 /* GetCurrentUserCreatorsRequest.swift in Sources */,
 				1814B76D1DF825CE003B3C65 /* MyGalleriesBatchFetchOperation.swift in Sources */,
 				18F6E8B11D0222AD00AAC5FB /* CustomStyleFetchRequest.swift in Sources */,
 				2177451C1DD9C9E60012FFDC /* AvatarDAO.swift in Sources */,
