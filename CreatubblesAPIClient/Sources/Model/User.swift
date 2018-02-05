@@ -80,6 +80,7 @@ open class User: NSObject, Identifiable {
     open let customStyle: CustomStyle?
 
     open let isFollowed: Bool
+    open let followersCount: Int
 
     init(mapper: UserMapper, dataMapper: DataIncludeMapper?, metadata: Metadata? = nil) {
         identifier = mapper.identifier!
@@ -122,5 +123,7 @@ open class User: NSObject, Identifiable {
         whatDoYouTeach = mapper.whatDoYouTeach
         interests = mapper.interests
         interestsList = mapper.interestsList
+        
+        followersCount = mapper.followersCount!
     }
 }
