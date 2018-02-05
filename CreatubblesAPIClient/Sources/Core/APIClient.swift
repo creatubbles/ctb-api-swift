@@ -333,6 +333,10 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     open func getTrendingUsers(completion: UsersClosure?) -> RequestHandler {
         return daoAssembly.assembly(UserDAO.self).getTrendingUsers(completion: completion)
     }
+    
+    open func getSuggestedUsers(completion: UsersClosure?) -> RequestHandler {
+        return daoAssembly.assembly(UserDAO.self).getSuggestedUsers(completion: completion)
+    }
 
     // MARK: - Gallery managment
     open func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler {
