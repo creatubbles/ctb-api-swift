@@ -337,6 +337,10 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     open func getSuggestedUsers(completion: UsersClosure?) -> RequestHandler {
         return daoAssembly.assembly(UserDAO.self).getSuggestedUsers(completion: completion)
     }
+    
+    open func batchFollow(users: [String], completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(UserDAO.self).batchFollow(users:users, completion: completion)
+    }
 
     // MARK: - Gallery managment
     open func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler {

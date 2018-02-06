@@ -151,6 +151,12 @@ public class UserDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func batchFollow(users: [String], completion: ErrorClosure?) -> RequestHandler {
+        let request = BatchFollowRequest(idsToFollow: users)
+        let handler = BatchFollowResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     // MARK: Batch
     func getCreatorsInBatchMode(userId: String?, query: String?, completion: UsersBatchClosure?) -> RequestHandler {
         let batchFetcher = UsersQueueBatchFetcher(requestSender: requestSender, userId: userId, query: query, scope: .Creators, completion: completion)

@@ -431,6 +431,9 @@
 		B225DF751EB31F2200AB6F4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF731EB31F2200AB6F4C /* Main.storyboard */; };
 		B225DF771EB31F2200AB6F4C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		B225DF7A1EB31F2200AB6F4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF781EB31F2200AB6F4C /* LaunchScreen.storyboard */; };
+		C92121A62029F8470076EBB6 /* BatchFollowRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92121A52029F8470076EBB6 /* BatchFollowRequest.swift */; };
+		C92121A82029F8E60076EBB6 /* BatchFollowResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92121A72029F8E60076EBB6 /* BatchFollowResponseHandler.swift */; };
+		C92121AB2029FAF30076EBB6 /* BastchFollowResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92121AA2029FAF30076EBB6 /* BastchFollowResponseHandlerSpec.swift */; };
 		C997CE8C201B2DB800EB1562 /* HashtagContentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C997CE8B201B2DB800EB1562 /* HashtagContentRequest.swift */; };
 		C9AE94C4202855BE00BA4262 /* FetchSuggestedUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AE94C3202855BE00BA4262 /* FetchSuggestedUsersRequest.swift */; };
 		C9AE94C62028565B00BA4262 /* FetchSuggestedUsersResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AE94C52028565B00BA4262 /* FetchSuggestedUsersResponseHandler.swift */; };
@@ -927,6 +930,9 @@
 		6B416A741F617AC900A63478 /* SearchTagsFetchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTagsFetchResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		7997D36B21B419F654577C4A /* Pods-CreatubblesAPIClientDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C92121A52029F8470076EBB6 /* BatchFollowRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchFollowRequest.swift; sourceTree = "<group>"; };
+		C92121A72029F8E60076EBB6 /* BatchFollowResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchFollowResponseHandler.swift; sourceTree = "<group>"; };
+		C92121AA2029FAF30076EBB6 /* BastchFollowResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BastchFollowResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		C997CE8B201B2DB800EB1562 /* HashtagContentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagContentRequest.swift; sourceTree = "<group>"; };
 		C9AE94C3202855BE00BA4262 /* FetchSuggestedUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSuggestedUsersRequest.swift; sourceTree = "<group>"; };
 		C9AE94C52028565B00BA4262 /* FetchSuggestedUsersResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSuggestedUsersResponseHandler.swift; sourceTree = "<group>"; };
@@ -1188,6 +1194,7 @@
 		1815D5631C638B9C00EF4C38 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				C92121A42029F72E0076EBB6 /* BatchFollow */,
 				C9B5A54820231D8800C3BAF8 /* Hashtag */,
 				18F6E87A1D021B6500AAC5FB /* RequestSender.swift */,
 				217745091DD9C9880012FFDC /* Avatar */,
@@ -1279,6 +1286,7 @@
 		185E317B1E7157160077E9A8 /* Spec */ = {
 			isa = PBXGroup;
 			children = (
+				C92121A92029FACA0076EBB6 /* BatchFollow */,
 				C9B5A5512023207300C3BAF8 /* Hashtag */,
 				185E317F1E7157160077E9A8 /* APIClientSpec.swift */,
 				185E31B11E7157160077E9A8 /* DataUploaderSpec.swift */,
@@ -2185,6 +2193,23 @@
 			path = CreatubblesAPIClientDemo;
 			sourceTree = "<group>";
 		};
+		C92121A42029F72E0076EBB6 /* BatchFollow */ = {
+			isa = PBXGroup;
+			children = (
+				C92121A52029F8470076EBB6 /* BatchFollowRequest.swift */,
+				C92121A72029F8E60076EBB6 /* BatchFollowResponseHandler.swift */,
+			);
+			path = BatchFollow;
+			sourceTree = "<group>";
+		};
+		C92121A92029FACA0076EBB6 /* BatchFollow */ = {
+			isa = PBXGroup;
+			children = (
+				C92121AA2029FAF30076EBB6 /* BastchFollowResponseHandlerSpec.swift */,
+			);
+			path = BatchFollow;
+			sourceTree = "<group>";
+		};
 		C9B5A54820231D8800C3BAF8 /* Hashtag */ = {
 			isa = PBXGroup;
 			children = (
@@ -2803,6 +2828,7 @@
 				18E9D18F1D117812006F2BAB /* EditCreationRequest.swift in Sources */,
 				08B7E90E1D52302D007A30F3 /* GroupCreatorsResponseHandler.swift in Sources */,
 				C9B5A54520231C0800C3BAF8 /* HashtagMapper.swift in Sources */,
+				C92121A62029F8470076EBB6 /* BatchFollowRequest.swift in Sources */,
 				0846DD551E07E224002722ED /* DeclineCommentResponseHandler.swift in Sources */,
 				183B5BBF1D8BDDD200A19298 /* APIClient_ObjC.swift in Sources */,
 				217745111DD9C9880012FFDC /* UpdateUserAvatarResponseHandler.swift in Sources */,
@@ -2864,6 +2890,7 @@
 				215279611D3F816700B67313 /* DeleteAUserFollowingRequest.swift in Sources */,
 				18F6E8931D021B6500AAC5FB /* FetchCreationsRequest.swift in Sources */,
 				18F6E8A21D021B6500AAC5FB /* LandingURLResponseHandler.swift in Sources */,
+				C92121A82029F8E60076EBB6 /* BatchFollowResponseHandler.swift in Sources */,
 				1895D36B1D11F7E3009B7271 /* EditProfileRequest.swift in Sources */,
 				182A36C11D4094D3005E01DC /* UserAccountDetailsRequest.swift in Sources */,
 				18290AEB1D06D410000EA216 /* NotificationsFetchResponseHandler.swift in Sources */,
@@ -3066,6 +3093,7 @@
 				185E33C91E715C270077E9A8 /* TestRecorder.swift in Sources */,
 				185E32681E7157170077E9A8 /* GroupCreatorsResponseHandlerSpec.swift in Sources */,
 				185E33CB1E715C270077E9A8 /* TestComponentsFactory.swift in Sources */,
+				C92121AB2029FAF30076EBB6 /* BastchFollowResponseHandlerSpec.swift in Sources */,
 				185E32221E7157160077E9A8 /* ReportCommentResponseHandlerSpec.swift in Sources */,
 				185E32621E7157170077E9A8 /* CreateMultipleCreatorsResponseHandlerSpec.swift in Sources */,
 				185E32721E7157170077E9A8 /* SwitchUserResponseHandlerSpec.swift in Sources */,
