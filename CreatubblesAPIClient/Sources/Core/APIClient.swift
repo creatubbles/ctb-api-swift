@@ -673,6 +673,15 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     open func deleteAUserFollowing(userId: String, completion: ErrorClosure?) -> RequestHandler {
         return daoAssembly.assembly(UserFollowingsDAO.self).deleteAUserFollowing(userId, completion: completion)
     }
+    
+    // MARK: - Hashtags Followings
+    open func createHashtagFollowing(hashtagId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(HashtagDAO.self).createAHashtagFollowing(hashtagId, completion: completion)
+    }
+    
+    open func deleteAHashtagFollowing(hashtagId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(HashtagDAO.self).deleteAHashtagFollowing(hashtagId, completion: completion)
+    }
 
     // MARK: - Partner Applications
     open func getPartnerApplication(_ id: String, completion: PartnerApplicationClosure?) -> RequestHandler {
