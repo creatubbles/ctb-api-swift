@@ -431,6 +431,10 @@
 		B225DF751EB31F2200AB6F4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF731EB31F2200AB6F4C /* Main.storyboard */; };
 		B225DF771EB31F2200AB6F4C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		B225DF7A1EB31F2200AB6F4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF781EB31F2200AB6F4C /* LaunchScreen.storyboard */; };
+		C90F44D22031995200EF2831 /* CreateAHashtagFollowingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90F44D12031995200EF2831 /* CreateAHashtagFollowingRequest.swift */; };
+		C90F44D4203199AF00EF2831 /* CreateAHashtagFollowingResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90F44D3203199AF00EF2831 /* CreateAHashtagFollowingResponseHandler.swift */; };
+		C90F44D620319A2D00EF2831 /* DeleteAHashtagFollowingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90F44D520319A2D00EF2831 /* DeleteAHashtagFollowingRequest.swift */; };
+		C90F44D820319ADD00EF2831 /* DeleteAHashtagFollowingResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90F44D720319ADD00EF2831 /* DeleteAHashtagFollowingResponseHandler.swift */; };
 		C92121A62029F8470076EBB6 /* BatchFollowRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92121A52029F8470076EBB6 /* BatchFollowRequest.swift */; };
 		C92121A82029F8E60076EBB6 /* BatchFollowResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92121A72029F8E60076EBB6 /* BatchFollowResponseHandler.swift */; };
 		C92121AB2029FAF30076EBB6 /* BastchFollowResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92121AA2029FAF30076EBB6 /* BastchFollowResponseHandlerSpec.swift */; };
@@ -449,6 +453,7 @@
 		C9B7324A200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B73249200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift */; };
 		C9B7324E200E480B004288A9 /* FetchTrendingUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B7324D200E480B004288A9 /* FetchTrendingUsersRequest.swift */; };
 		C9B73250200E483B004288A9 /* FetchTrendingUsersResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B7324F200E483B004288A9 /* FetchTrendingUsersResponseHandler.swift */; };
+		C9D3055F203461B6002FE327 /* HashtagFollowingResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D3055E203461B6002FE327 /* HashtagFollowingResponseHandlerSpec.swift */; };
 		DCB6AE268E81388D94B0CE09 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		DF413EEFCF6E24450841A6BB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D5DF300DAE4BC13E0AD21 /* Pods_CreatubblesAPIClient.framework */; };
 		FE0EAC71BB3B3D2D33C67AA0 /* Pods_CreatubblesAPIClientUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */; };
@@ -930,6 +935,10 @@
 		6B416A741F617AC900A63478 /* SearchTagsFetchResponseHandlerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTagsFetchResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		7997D36B21B419F654577C4A /* Pods-CreatubblesAPIClientDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientDemo/Pods-CreatubblesAPIClientDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C90F44D12031995200EF2831 /* CreateAHashtagFollowingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAHashtagFollowingRequest.swift; sourceTree = "<group>"; };
+		C90F44D3203199AF00EF2831 /* CreateAHashtagFollowingResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAHashtagFollowingResponseHandler.swift; sourceTree = "<group>"; };
+		C90F44D520319A2D00EF2831 /* DeleteAHashtagFollowingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAHashtagFollowingRequest.swift; sourceTree = "<group>"; };
+		C90F44D720319ADD00EF2831 /* DeleteAHashtagFollowingResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAHashtagFollowingResponseHandler.swift; sourceTree = "<group>"; };
 		C92121A52029F8470076EBB6 /* BatchFollowRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchFollowRequest.swift; sourceTree = "<group>"; };
 		C92121A72029F8E60076EBB6 /* BatchFollowResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchFollowResponseHandler.swift; sourceTree = "<group>"; };
 		C92121AA2029FAF30076EBB6 /* BastchFollowResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BastchFollowResponseHandlerSpec.swift; sourceTree = "<group>"; };
@@ -948,6 +957,7 @@
 		C9B73249200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingCreationsResponseHandler.swift; sourceTree = "<group>"; };
 		C9B7324D200E480B004288A9 /* FetchTrendingUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingUsersRequest.swift; sourceTree = "<group>"; };
 		C9B7324F200E483B004288A9 /* FetchTrendingUsersResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingUsersResponseHandler.swift; sourceTree = "<group>"; };
+		C9D3055E203461B6002FE327 /* HashtagFollowingResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagFollowingResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		D304F60C707EA93E6195508E /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
 		DA9EC9D915023C993B9C5639 /* Pods-CreatubblesAPIClientUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		E29F3593FA73048027A65EE1 /* Pods_CreatubblesAPIClientDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2215,6 +2225,10 @@
 			children = (
 				C9B5A54920231DBB00C3BAF8 /* SuggestedHashtagsFetchRequest.swift */,
 				C9B5A54B20231DCB00C3BAF8 /* SuggestedHashtagsFetchResponseHandler.swift */,
+				C90F44D12031995200EF2831 /* CreateAHashtagFollowingRequest.swift */,
+				C90F44D3203199AF00EF2831 /* CreateAHashtagFollowingResponseHandler.swift */,
+				C90F44D520319A2D00EF2831 /* DeleteAHashtagFollowingRequest.swift */,
+				C90F44D720319ADD00EF2831 /* DeleteAHashtagFollowingResponseHandler.swift */,
 			);
 			path = Hashtag;
 			sourceTree = "<group>";
@@ -2231,6 +2245,7 @@
 			isa = PBXGroup;
 			children = (
 				C9B5A5522023209B00C3BAF8 /* SuggestedHashtagsFetchResponseHandlerSpec.swift */,
+				C9D3055E203461B6002FE327 /* HashtagFollowingResponseHandlerSpec.swift */,
 			);
 			path = Hashtag;
 			sourceTree = "<group>";
@@ -2787,6 +2802,7 @@
 				0832717E1DC09D2F00DF008A /* ParametersEncoder.swift in Sources */,
 				C997CE8C201B2DB800EB1562 /* HashtagContentRequest.swift in Sources */,
 				18E4354A1D0425FA00B728C6 /* NotificationsFetchRequest.swift in Sources */,
+				C90F44D620319A2D00EF2831 /* DeleteAHashtagFollowingRequest.swift in Sources */,
 				08BB575F1D253ED700E2E297 /* SessionData.swift in Sources */,
 				18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */,
 				1CDA410A1F7CE4BA00823CDC /* ApproveCommentResponseHandler.swift in Sources */,
@@ -2829,6 +2845,7 @@
 				08B7E90E1D52302D007A30F3 /* GroupCreatorsResponseHandler.swift in Sources */,
 				C9B5A54520231C0800C3BAF8 /* HashtagMapper.swift in Sources */,
 				C92121A62029F8470076EBB6 /* BatchFollowRequest.swift in Sources */,
+				C90F44D22031995200EF2831 /* CreateAHashtagFollowingRequest.swift in Sources */,
 				0846DD551E07E224002722ED /* DeclineCommentResponseHandler.swift in Sources */,
 				183B5BBF1D8BDDD200A19298 /* APIClient_ObjC.swift in Sources */,
 				217745111DD9C9880012FFDC /* UpdateUserAvatarResponseHandler.swift in Sources */,
@@ -2839,6 +2856,7 @@
 				08E52DF81D6C422300262672 /* ContentDataFilter.swift in Sources */,
 				21CC9E401DF834A100C6538C /* SearchTag.swift in Sources */,
 				185E30E31E714C390077E9A8 /* OAuth2Client.swift in Sources */,
+				C90F44D820319ADD00EF2831 /* DeleteAHashtagFollowingResponseHandler.swift in Sources */,
 				18DB8EB61CE3EF29008B5F52 /* APIClientDateFormatter.swift in Sources */,
 				2117F8C11D3520B800304D79 /* NotificationMetadata.swift in Sources */,
 				18F6E88B1D021B6500AAC5FB /* CommentsResponseHandler.swift in Sources */,
@@ -2911,6 +2929,7 @@
 				18E30BEC1C8DAAE0000794B6 /* LandingURLMapper.swift in Sources */,
 				21A79F761C8494C4009E95D1 /* CreationUploadSessionPublicData.swift in Sources */,
 				445A3A5B1DD29F7400986BBB /* String+Localized.swift in Sources */,
+				C90F44D4203199AF00EF2831 /* CreateAHashtagFollowingResponseHandler.swift in Sources */,
 				1814B7601DF82172003B3C65 /* GalleriesBatchFetchOperation.swift in Sources */,
 				21297EAE1DAFACA8003CCF75 /* RemoveCreationRequest.swift in Sources */,
 				2152795F1D3F7F7800B67313 /* UserFollowingsDAO.swift in Sources */,
@@ -3066,6 +3085,7 @@
 				185E33C81E715C270077E9A8 /* RecorderTestSender.swift in Sources */,
 				185E32161E7157160077E9A8 /* CreationsBatchFetcherSpec.swift in Sources */,
 				C9B5A5532023209B00C3BAF8 /* SuggestedHashtagsFetchResponseHandlerSpec.swift in Sources */,
+				C9D3055F203461B6002FE327 /* HashtagFollowingResponseHandlerSpec.swift in Sources */,
 				185E321E1E7157160077E9A8 /* DeclineCommentResponseHandlerSpec.swift in Sources */,
 				185E32491E7157170077E9A8 /* UpdateGalleryResponseHandlerSpec.swift in Sources */,
 				185E324A1E7157170077E9A8 /* GallerySubmitterSpec.swift in Sources */,
