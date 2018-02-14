@@ -27,7 +27,7 @@ import UIKit
 
 class DeleteAHashtagFollowingRequest: Request {
     override var method: RequestMethod { return .delete }
-    override var endpoint: String { return "hashtags/"+hashtagId+"/following" }
+    override var endpoint: String { return "hashtags/"+hashtagId+"/follow" }
     
     fileprivate let hashtagId: String
     

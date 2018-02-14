@@ -27,7 +27,7 @@ import UIKit
 
 class CreateAHashtagFollowingRequest: Request {
     override var method: RequestMethod { return .post }
-    override var endpoint: String { return "hashtags/"+hashtagId+"/following" }
+    override var endpoint: String { return "hashtags/"+hashtagId+"/follow" }
     
     fileprivate let hashtagId: String
     
@@ -35,4 +35,3 @@ class CreateAHashtagFollowingRequest: Request {
         self.hashtagId = hashtagId
     }
 }
-
