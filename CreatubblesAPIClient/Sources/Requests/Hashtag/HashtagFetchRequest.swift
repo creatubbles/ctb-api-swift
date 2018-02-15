@@ -1,5 +1,5 @@
 //
-//  Hashtag.swift
+//  HashtagFetchRequest.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -25,24 +25,13 @@
 
 import UIKit
 
-open class Hashtag: NSObject, Identifiable {
-    open let identifier: String
-    open let imageURL: String?
-    open let isOfficial: Bool?
-    open let isFollowed: Bool?
-
-    init(identifier: String, imageURL: String?, isOfficial: Bool?, isFollowed: Bool?) {
-        self.imageURL = imageURL
-        self.identifier = identifier
-        self.isOfficial = isOfficial
-        self.isFollowed = isFollowed
-    }
+class HashtagFetchRequest: Request {
+    override var method: RequestMethod { return .get }
+    override var endpoint: String { return "hashtags/"+hashtagId }
     
-    init(mapper: HashtagMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
-    {
-        identifier = mapper.identifier!
-        imageURL = mapper.imageURL
-        isOfficial = mapper.isOfficial
-        isFollowed = metadata?.userFollowedHashtagsIdentifiers.contains(mapper.identifier!) ?? false
+    fileprivate let hashtagId: String
+    
+    init(hashtagId: String) {
+        self.hashtagId = hashtagId
     }
 }

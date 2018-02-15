@@ -41,6 +41,12 @@ class HashtagDAO: NSObject, APIClientDAO
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func fetchHashtag(_ hashtagId: String, completion: HashtagClosure?) -> RequestHandler {
+        let request = HashtagFetchRequest(hashtagId: hashtagId)
+        let handler = HashtagFetchResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func createAHashtagFollowing(_ hashtagId: String, completion: ErrorClosure?) -> RequestHandler {
         let request = CreateAHashtagFollowingRequest(hashtagId: hashtagId)
         let handler = CreateAHashtagFollowingResponseHandler(completion: completion)

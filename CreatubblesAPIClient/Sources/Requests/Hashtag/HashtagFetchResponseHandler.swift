@@ -1,5 +1,5 @@
 //
-//  Hashtag.swift
+//  HashtagFetchResponseHandler.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -21,28 +21,27 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
 
 import UIKit
+import ObjectMapper
 
-open class Hashtag: NSObject, Identifiable {
-    open let identifier: String
-    open let imageURL: String?
-    open let isOfficial: Bool?
-    open let isFollowed: Bool?
-
-    init(identifier: String, imageURL: String?, isOfficial: Bool?, isFollowed: Bool?) {
-        self.imageURL = imageURL
-        self.identifier = identifier
-        self.isOfficial = isOfficial
-        self.isFollowed = isFollowed
+class HashtagFetchResponseHandler: ResponseHandler {
+    fileprivate let completion: HashtagClosure?
+    
+    init(completion: HashtagClosure?) {
+        self.completion = completion
     }
     
-    init(mapper: HashtagMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
-    {
-        identifier = mapper.identifier!
-        imageURL = mapper.imageURL
-        isOfficial = mapper.isOfficial
-        isFollowed = metadata?.userFollowedHashtagsIdentifiers.contains(mapper.identifier!) ?? false
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
+        if  let response = response,
+            let hashtagMapper = Mapper<HashtagMapper>().map(JSONObject: response["data"]) {
+            let metadata = MappingUtils.metadataFromResponse(response)
+            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
+            
+            let hashtag = Hashtag(mapper: hashtagMapper, dataMapper: dataMapper, metadata: metadata)
+            executeOnMainQueue { self.completion?(hashtag, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
+        } else {
+            executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
+        }
     }
 }

@@ -45,4 +45,3 @@ class SuggestedHashtagsFetchRequestSpec: QuickSpec
         }
     }
 }
-

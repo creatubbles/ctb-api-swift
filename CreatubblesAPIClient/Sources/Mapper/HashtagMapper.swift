@@ -29,13 +29,14 @@ class HashtagMapper: Mappable
 {
     var identifier: String?
     var imageURL: String?
-    
+    var isOfficial: Bool?
+
     required init?(map: Map) { /* Intentionally left empty  */ }
     
     func mapping(map: Map)
     {
         identifier <- map["id"]
+        identifier <- map["is_official"]
         imageURL <- map["attributes.avatar_image_url.links.original"]
     }
 }
-
