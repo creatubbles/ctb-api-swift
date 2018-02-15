@@ -1,5 +1,5 @@
 //
-//  Hashtag.swift
+//  HashtagFetchRequestSpec.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -23,26 +23,27 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Quick
+import Nimble
+@testable import CreatubblesAPIClient
 
-open class Hashtag: NSObject, Identifiable {
-    open let identifier: String
-    open let imageURL: String?
-    open let isOfficial: Bool?
-    open let isFollowed: Bool?
-
-    init(identifier: String, imageURL: String?, isOfficial: Bool?, isFollowed: Bool?) {
-        self.imageURL = imageURL
-        self.identifier = identifier
-        self.isOfficial = isOfficial
-        self.isFollowed = isFollowed
-    }
-    
-    init(mapper: HashtagMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
+class HashtagFetchRequestSpec: QuickSpec
+{
+    override func spec()
     {
-        identifier = mapper.identifier!
-        imageURL = mapper.imageURL
-        isOfficial = mapper.isOfficial
-        isFollowed = metadata?.userFollowedHashtagsIdentifiers.contains(mapper.identifier!) ?? false
+        let hashtagId = "lego"
+
+        describe("Fetch hashtag request")
+        {
+            it("Should have a proper method") {
+                let request = HashtagFetchRequest(hashtagId: hashtagId)
+                expect(request.method) == RequestMethod.get
+            }
+            
+            it("Should have a proper endpoint") {
+                let request = HashtagFetchRequest(hashtagId: hashtagId)
+                expect(request.endpoint) == "hashtags/\(hashtagId)"
+            }
+        }
     }
 }

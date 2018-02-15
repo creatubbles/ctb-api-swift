@@ -32,6 +32,7 @@ public class Metadata: NSObject {
     let abilities: Array<Ability>
 
     let userFollowedUsersIdentifiers: Array<String>
+    let userFollowedHashtagsIdentifiers: Array<String>
 
     init(mapper: MetadataMapper) {
         bubbledCreationIdentifiers = mapper.bubbledCreationIdentifiers ?? []
@@ -40,5 +41,6 @@ public class Metadata: NSObject {
         abilities = mapper.abilityMappers?.map({ Ability(mapper: $0) }).filter({ $0.operation != .unknown }) ?? []
 
         userFollowedUsersIdentifiers = mapper.userFollowedUsersIdentifiers ?? []
+        userFollowedHashtagsIdentifiers = mapper.userFollowedHashtagsIdentifiers ?? []
     }
 }

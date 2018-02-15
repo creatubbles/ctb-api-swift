@@ -31,6 +31,7 @@ class MetadataMapper: Mappable {
     var bubbledUserIdentifiers: Array<String>?
     var bubbledGalleryIdentifiers: Array<String>?
     var abilityMappers: Array<AbilityMapper>?
+    var userFollowedHashtagsIdentifiers: Array<String>?
 
     var userFollowedUsersIdentifiers: Array<String>?
 
@@ -42,7 +43,7 @@ class MetadataMapper: Mappable {
         bubbledGalleryIdentifiers <- map["user_bubbled_galleries"]
 
         abilityMappers <- map["abilities"]
-
+        userFollowedHashtagsIdentifiers <- map["followed_hashtags"]
         userFollowedUsersIdentifiers <- map["followed_users"]
     }
 }

@@ -33,6 +33,7 @@ class MetadataMapper: Mappable {
     var abilityMappers: Array<AbilityMapper>?
 
     var userFollowedUsersIdentifiers: Array<String>?
+    var userFollowedHashtagsIdentifiers: Array<String>?
 
     required init?(map: Map) { /* Intentionally left empty  */ }
 
@@ -44,5 +45,6 @@ class MetadataMapper: Mappable {
         abilityMappers <- map["abilities"]
 
         userFollowedUsersIdentifiers <- map["followed_users"]
+        userFollowedHashtagsIdentifiers <- map["followed_hashtags"]
     }
 }
