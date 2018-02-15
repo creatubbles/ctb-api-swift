@@ -42,7 +42,7 @@ class MetadataMapper: Mappable {
         bubbledGalleryIdentifiers <- map["user_bubbled_galleries"]
 
         abilityMappers <- map["abilities"]
-        
+
         userFollowedUsersIdentifiers <- map["followed_users"]
     }
 }
