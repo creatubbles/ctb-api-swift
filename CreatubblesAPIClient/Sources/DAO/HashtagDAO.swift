@@ -58,4 +58,10 @@ class HashtagDAO: NSObject, APIClientDAO
         let handler = DeleteAHashtagFollowingResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func getFollowers(_ hashtagId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
+        let request = FetchHashtagFollowersRequest(page: pagingData?.page, perPage: pagingData?.pageSize, hashtagId: hashtagId)
+        let handler = FetchHashtagFollowersResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 }

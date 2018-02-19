@@ -157,6 +157,18 @@ public class UserDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getFollowers(_ userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
+        let request = FetchUserFollowersRequest(page: pagingData?.page, perPage: pagingData?.pageSize, userId: userId)
+        let handler = FetchUserFollowersResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func getFollowedHashtags(_ userId: String, pagingData: PagingData?, completion: HashtagsClosure?) -> RequestHandler {
+        let request = FetchFollowedHashtagsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, userId: userId)
+        let handler = FetchFollowedHashtagsResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     // MARK: Batch
     func getCreatorsInBatchMode(userId: String?, query: String?, completion: UsersBatchClosure?) -> RequestHandler {
         let batchFetcher = UsersQueueBatchFetcher(requestSender: requestSender, userId: userId, query: query, scope: .Creators, completion: completion)

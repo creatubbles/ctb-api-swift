@@ -1,5 +1,5 @@
 //
-//  BastchFollowResponseHandlerSpec.swift
+//  FetchFollowedHashtagsResponseHandlerSpec.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -27,12 +27,13 @@ import Quick
 import Nimble
 @testable import CreatubblesAPIClient
 
-class BastchFollowResponseHandlerSpec: QuickSpec {
+class FetchFollowedHashtagsResponseHandlerSpec: QuickSpec {
+    fileprivate let page = 1
+    fileprivate let pageCount = 10
+    fileprivate let userId = TestConfiguration.testUserIdentifier
     
     override func spec() {
-        describe("Batch follow a set of users") {
-            let batchFollowRequest = BatchFollowRequest(idsToFollow: ["some_id", "some_id2"])
-            
+        describe("Followed hashtags Response Handler") {
             it("Should return correct value after login") {
                 let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: TestConfiguration.timeoutShort) {
@@ -40,24 +41,36 @@ class BastchFollowResponseHandlerSpec: QuickSpec {
                     sender.login(TestConfiguration.username, password: TestConfiguration.password) {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
-                        sender.send(batchFollowRequest, withResponseHandler:BatchFollowResponseHandler {
-                            (_: Error?) -> Void in
-                            done()
+                        sender.send(FetchFollowedHashtagsRequest(page: self.page, perPage: self.pageCount, userId: self.userId!), withResponseHandler:
+                            FetchFollowedHashtagsResponseHandler {
+                                (hashtags: Array<Hashtag>?, pageInfo: PagingInfo?, error: Error?) -> Void in
+                                expect(error).to(beNil())
+                                expect(hashtags).notTo(beNil())
+                                expect(pageInfo).notTo(beNil())
+                                done()
                         })
                     }
                 }
             }
             
-            it("Should return error when not logged in") {
+            it("Should not return errors when not logged in") {
                 let sender = TestComponentsFactory.requestSender
                 sender.logout()
                 waitUntil(timeout: TestConfiguration.timeoutShort) {
                     done in
-                    sender.send(batchFollowRequest, withResponseHandler:BatchFollowResponseHandler {
-                        (error: Error?) -> Void in
-                        expect(error).notTo(beNil())
-                        done()
-                    })
+                    
+                    sender.authenticate()
+                        {
+                            error in
+                            sender.send(FetchFollowedHashtagsRequest(page: self.page, perPage: self.pageCount, userId: self.userId!), withResponseHandler:
+                                FetchFollowedHashtagsResponseHandler {
+                                    (hashtags: Array<Hashtag>?, pageInfo: PagingInfo?, error: Error?) -> Void in
+                                    expect(error).to(beNil())
+                                    expect(hashtags).notTo(beNil())
+                                    expect(pageInfo).notTo(beNil())
+                                    done()
+                            })
+                    }
                 }
             }
         }
