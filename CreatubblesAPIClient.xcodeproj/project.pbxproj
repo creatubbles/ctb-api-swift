@@ -438,6 +438,12 @@
 		C92121A62029F8470076EBB6 /* BatchFollowRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92121A52029F8470076EBB6 /* BatchFollowRequest.swift */; };
 		C92121A82029F8E60076EBB6 /* BatchFollowResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92121A72029F8E60076EBB6 /* BatchFollowResponseHandler.swift */; };
 		C92121AB2029FAF30076EBB6 /* BastchFollowResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92121AA2029FAF30076EBB6 /* BastchFollowResponseHandlerSpec.swift */; };
+		C9393C9B203B0FDC008EF0CB /* FetchUserFollowersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9393C9A203B0FDC008EF0CB /* FetchUserFollowersRequest.swift */; };
+		C9393C9D203B0FEF008EF0CB /* FetchUserFollowersResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9393C9C203B0FEF008EF0CB /* FetchUserFollowersResponseHandler.swift */; };
+		C9393C9F203B1100008EF0CB /* FetchHashtagFollowersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9393C9E203B1100008EF0CB /* FetchHashtagFollowersRequest.swift */; };
+		C9393CA1203B110F008EF0CB /* FetchHashtagFollowersResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9393CA0203B110F008EF0CB /* FetchHashtagFollowersResponseHandler.swift */; };
+		C9393CA3203B133A008EF0CB /* FetchFollowedHashtagsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9393CA2203B133A008EF0CB /* FetchFollowedHashtagsRequest.swift */; };
+		C9393CA5203B1355008EF0CB /* FetchFollowedHashtagsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9393CA4203B1355008EF0CB /* FetchFollowedHashtagsResponseHandler.swift */; };
 		C95040B82035CFE10059632F /* HashtagFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95040B72035CFE10059632F /* HashtagFetchRequest.swift */; };
 		C95040BA2035D1590059632F /* HashtagFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95040B92035D1590059632F /* HashtagFetchResponseHandler.swift */; };
 		C95040BC2035D3DC0059632F /* HashtagFetchRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95040BB2035D3DC0059632F /* HashtagFetchRequestSpec.swift */; };
@@ -946,6 +952,12 @@
 		C92121A52029F8470076EBB6 /* BatchFollowRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchFollowRequest.swift; sourceTree = "<group>"; };
 		C92121A72029F8E60076EBB6 /* BatchFollowResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchFollowResponseHandler.swift; sourceTree = "<group>"; };
 		C92121AA2029FAF30076EBB6 /* BastchFollowResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BastchFollowResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		C9393C9A203B0FDC008EF0CB /* FetchUserFollowersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserFollowersRequest.swift; sourceTree = "<group>"; };
+		C9393C9C203B0FEF008EF0CB /* FetchUserFollowersResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserFollowersResponseHandler.swift; sourceTree = "<group>"; };
+		C9393C9E203B1100008EF0CB /* FetchHashtagFollowersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchHashtagFollowersRequest.swift; sourceTree = "<group>"; };
+		C9393CA0203B110F008EF0CB /* FetchHashtagFollowersResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchHashtagFollowersResponseHandler.swift; sourceTree = "<group>"; };
+		C9393CA2203B133A008EF0CB /* FetchFollowedHashtagsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFollowedHashtagsRequest.swift; sourceTree = "<group>"; };
+		C9393CA4203B1355008EF0CB /* FetchFollowedHashtagsResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFollowedHashtagsResponseHandler.swift; sourceTree = "<group>"; };
 		C95040B72035CFE10059632F /* HashtagFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagFetchRequest.swift; sourceTree = "<group>"; };
 		C95040B92035D1590059632F /* HashtagFetchResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagFetchResponseHandler.swift; sourceTree = "<group>"; };
 		C95040BB2035D3DC0059632F /* HashtagFetchRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagFetchRequestSpec.swift; sourceTree = "<group>"; };
@@ -2075,6 +2087,10 @@
 				C9B7324F200E483B004288A9 /* FetchTrendingUsersResponseHandler.swift */,
 				C9AE94C3202855BE00BA4262 /* FetchSuggestedUsersRequest.swift */,
 				C9AE94C52028565B00BA4262 /* FetchSuggestedUsersResponseHandler.swift */,
+				C9393C9A203B0FDC008EF0CB /* FetchUserFollowersRequest.swift */,
+				C9393C9C203B0FEF008EF0CB /* FetchUserFollowersResponseHandler.swift */,
+				C9393CA2203B133A008EF0CB /* FetchFollowedHashtagsRequest.swift */,
+				C9393CA4203B1355008EF0CB /* FetchFollowedHashtagsResponseHandler.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2239,6 +2255,8 @@
 				C90F44D720319ADD00EF2831 /* DeleteAHashtagFollowingResponseHandler.swift */,
 				C95040B72035CFE10059632F /* HashtagFetchRequest.swift */,
 				C95040B92035D1590059632F /* HashtagFetchResponseHandler.swift */,
+				C9393C9E203B1100008EF0CB /* FetchHashtagFollowersRequest.swift */,
+				C9393CA0203B110F008EF0CB /* FetchHashtagFollowersResponseHandler.swift */,
 			);
 			path = Hashtag;
 			sourceTree = "<group>";
@@ -2812,9 +2830,12 @@
 				21B9334C1D2B0ADC00FCD248 /* MyConnectionsResponseHandler.swift in Sources */,
 				18290AF91D070A17000EA216 /* NotificationDAO.swift in Sources */,
 				0832717E1DC09D2F00DF008A /* ParametersEncoder.swift in Sources */,
+				C9393C9B203B0FDC008EF0CB /* FetchUserFollowersRequest.swift in Sources */,
+				C9393C9F203B1100008EF0CB /* FetchHashtagFollowersRequest.swift in Sources */,
 				C997CE8C201B2DB800EB1562 /* HashtagContentRequest.swift in Sources */,
 				18E4354A1D0425FA00B728C6 /* NotificationsFetchRequest.swift in Sources */,
 				C90F44D620319A2D00EF2831 /* DeleteAHashtagFollowingRequest.swift in Sources */,
+				C9393C9D203B0FEF008EF0CB /* FetchUserFollowersResponseHandler.swift in Sources */,
 				08BB575F1D253ED700E2E297 /* SessionData.swift in Sources */,
 				18E30BEA1C8DA7DD000794B6 /* LandingURL.swift in Sources */,
 				1CDA410A1F7CE4BA00823CDC /* ApproveCommentResponseHandler.swift in Sources */,
@@ -2851,6 +2872,7 @@
 				18366AA61D0591E200229D20 /* NotificationMapper.swift in Sources */,
 				1859FA951D3905180023A6B6 /* GroupDAO.swift in Sources */,
 				08A587431DC34E0200F570C4 /* HTTPHeadersBuilder.swift in Sources */,
+				C9393CA1203B110F008EF0CB /* FetchHashtagFollowersResponseHandler.swift in Sources */,
 				18F91EA31F8E07D10021F1BF /* CreationViewsCountIncrementRequest.swift in Sources */,
 				18F6E8881D021B6500AAC5FB /* UpdateBubbleRequest.swift in Sources */,
 				18E9D18F1D117812006F2BAB /* EditCreationRequest.swift in Sources */,
@@ -2958,6 +2980,7 @@
 				C9B7324A200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift in Sources */,
 				21297EAB1DAFAC7B003CCF75 /* RemoveCreationResponseHandler.swift in Sources */,
 				18F9EDAF1CAD008600B85DD6 /* RequestHandler.swift in Sources */,
+				C9393CA5203B1355008EF0CB /* FetchFollowedHashtagsResponseHandler.swift in Sources */,
 				183635441CB5013900ED778A /* Relationship.swift in Sources */,
 				C9B5A54320231B3200C3BAF8 /* Hashtag.swift in Sources */,
 				1859FAA61D39052F0023A6B6 /* EditGroupRequest.swift in Sources */,
@@ -2994,6 +3017,7 @@
 				18E9D1911D117F58006F2BAB /* EditCreationData.swift in Sources */,
 				C9B5A54C20231DCB00C3BAF8 /* SuggestedHashtagsFetchResponseHandler.swift in Sources */,
 				1859FAA41D39052F0023A6B6 /* DeleteGroupRequest.swift in Sources */,
+				C9393CA3203B133A008EF0CB /* FetchFollowedHashtagsRequest.swift in Sources */,
 				189D9F5E1C84B36100857CC6 /* ErrorMapper.swift in Sources */,
 				0816F3AA1D587CEB0026A40E /* SwitchUsersResponseHandler.swift in Sources */,
 				08A587411DC34BE100F570C4 /* UploadManager.swift in Sources */,

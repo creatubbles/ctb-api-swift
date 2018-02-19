@@ -343,6 +343,14 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(UserDAO.self).batchFollow(users:users, completion: completion)
     }
 
+    open func getUserFollowers(userId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
+        return daoAssembly.assembly(UserDAO.self).getFollowers(userId, pagingData: pagingData, completion: completion)
+    }
+    
+    open func getUserFollowedHashtags(userId: String, pagingData: PagingData?, completion: HashtagsClosure?) -> RequestHandler {
+        return daoAssembly.assembly(UserDAO.self).getFollowedHashtags(userId, pagingData: pagingData, completion: completion)
+    }
+    
     // MARK: - Gallery managment
     open func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler {
         return daoAssembly.assembly(GalleryDAO.self).getGallery(galleryIdentifier: galleryId, completion: completion)
@@ -686,6 +694,10 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     
     open func deleteAHashtagFollowing(hashtagId: String, completion: ErrorClosure?) -> RequestHandler {
         return daoAssembly.assembly(HashtagDAO.self).deleteAHashtagFollowing(hashtagId, completion: completion)
+    }
+    
+    open func getHashtagFollowers(hashtagId: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
+        return daoAssembly.assembly(HashtagDAO.self).getFollowers(hashtagId, pagingData: pagingData, completion: completion)
     }
 
     // MARK: - Partner Applications
