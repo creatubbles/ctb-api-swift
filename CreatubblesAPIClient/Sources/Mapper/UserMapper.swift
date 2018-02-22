@@ -62,7 +62,9 @@ class UserMapper: Mappable {
     var interestsList: Array<String>?
     
     var followersCount: Int?
-
+    var followedUsersCount: Int?
+    var followedHashtagsCount: Int?
+    
     // MARK: - Mappable
     required init?(map: Map) { /* Intentionally left empty  */ }
 
@@ -104,6 +106,8 @@ class UserMapper: Mappable {
         interestsList <- map["attributes.interest_list"]
         
         followersCount <- map["attributes.followers_count"]
+        followedUsersCount <- map["attributes.followed_users_count"]
+        followedHashtagsCount <- map["attributes.followed_hashtags_count"]
     }
 
     // MARK: - Parsing

@@ -81,6 +81,9 @@ open class User: NSObject, Identifiable {
 
     open let isFollowed: Bool
     open let followersCount: Int
+    open let followedUsersCount: Int
+    open let followedHashtagsCount: Int
+    open let followedGlobalCount: Int
 
     init(mapper: UserMapper, dataMapper: DataIncludeMapper?, metadata: Metadata? = nil) {
         identifier = mapper.identifier!
@@ -124,6 +127,9 @@ open class User: NSObject, Identifiable {
         interests = mapper.interests
         interestsList = mapper.interestsList
         
-        followersCount = mapper.followersCount!
+        followersCount = mapper.followersCount ?? 0
+        followedUsersCount = mapper.followedUsersCount ?? 0
+        followedHashtagsCount = mapper.followedHashtagsCount ?? 0
+        followedGlobalCount = followedUsersCount + followedHashtagsCount
     }
 }
