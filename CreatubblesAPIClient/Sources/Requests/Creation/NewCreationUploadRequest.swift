@@ -29,6 +29,7 @@ import UIKit
     case jpg
     case jpeg
     case h264
+    case gif
     case mpeg4
     case wmv
     case webm
@@ -47,6 +48,7 @@ import UIKit
             case .jpg: return "jpg"
             case .jpeg: return "jpeg"
             case .h264: return "h264"
+            case .gif: return "gif"
             case .mpeg4: return "mpeg4"
             case .wmv: return "wmv"
             case .webm: return "webm"
@@ -66,6 +68,7 @@ import UIKit
         if stringValue == "jpg" { return .jpg }
         if stringValue == "jpeg" { return .jpeg }
         if stringValue == "h264" { return .h264 }
+        if stringValue == "gif" { return .gif }
         if stringValue == "mpeg4" { return .mpeg4 }
         if stringValue == "wmv" { return .wmv }
         if stringValue == "webm" { return .webm }
