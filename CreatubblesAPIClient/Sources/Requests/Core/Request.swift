@@ -47,6 +47,7 @@ open class Request: NSObject, Cancelable {
     open var useExternalNamespace: Bool { return false }
 
     open var parameters: Dictionary<String, AnyObject> { return Dictionary<String, AnyObject>() }
+    open var headers: Dictionary<String, String> { return Dictionary<String, String>() }
 
     class func sortOrderStringValue(_ sortOrder: SortOrder) -> String {
         switch sortOrder {

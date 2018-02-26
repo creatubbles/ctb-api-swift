@@ -80,6 +80,12 @@ class NetworkManager: NSObject {
         urlRequest.addValue(settings.deviceType.rawValue, forHTTPHeaderField: "X-Device-Type")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
 
+        for headerKey in request.headers.keys {
+            if let headerValue = request.headers[headerKey] {
+                urlRequest.addValue(headerValue, forHTTPHeaderField: headerKey)
+            }
+        }
+        
         if request.parameters.count == 0 { return urlRequest }
         guard let url = urlRequest.url else { return urlRequest }
 
