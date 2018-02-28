@@ -60,4 +60,3 @@ class SearchInFollowedUsersRequest: Request {
         return params
     }
 }
-
