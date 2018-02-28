@@ -472,6 +472,9 @@
 		C9CEF9FF2046CA1B00047DEC /* SearchInFollowedUsersRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEF9FE2046CA1B00047DEC /* SearchInFollowedUsersRequestSpec.swift */; };
 		C9CEFA012046CB0300047DEC /* SearchInFollowersRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEFA002046CB0300047DEC /* SearchInFollowersRequestSpec.swift */; };
 		C9CEFA032046CB8000047DEC /* SearchInFollowedHashtagsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEFA022046CB8000047DEC /* SearchInFollowedHashtagsRequestSpec.swift */; };
+		C9CEFA052046CC8100047DEC /* SearchInFollowedUsersResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEFA042046CC8100047DEC /* SearchInFollowedUsersResponseHandlerSpec.swift */; };
+		C9CEFA072046CE6900047DEC /* SearchInFollowersResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEFA062046CE6900047DEC /* SearchInFollowersResponseHandlerSpec.swift */; };
+		C9CEFA092046CEC100047DEC /* SearchInFollowedHashtagsResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEFA082046CEC100047DEC /* SearchInFollowedHashtagsResponseHandlerSpec.swift */; };
 		C9D3055F203461B6002FE327 /* HashtagFollowingResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D3055E203461B6002FE327 /* HashtagFollowingResponseHandlerSpec.swift */; };
 		C9E7731A2046C31700BA6DC7 /* SearchInFollowedUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E773192046C31700BA6DC7 /* SearchInFollowedUsersRequest.swift */; };
 		C9E7731C2046C40100BA6DC7 /* SearchInFollowedUsersResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7731B2046C40100BA6DC7 /* SearchInFollowedUsersResponseHandler.swift */; };
@@ -1001,6 +1004,9 @@
 		C9CEF9FE2046CA1B00047DEC /* SearchInFollowedUsersRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowedUsersRequestSpec.swift; sourceTree = "<group>"; };
 		C9CEFA002046CB0300047DEC /* SearchInFollowersRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowersRequestSpec.swift; sourceTree = "<group>"; };
 		C9CEFA022046CB8000047DEC /* SearchInFollowedHashtagsRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowedHashtagsRequestSpec.swift; sourceTree = "<group>"; };
+		C9CEFA042046CC8100047DEC /* SearchInFollowedUsersResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowedUsersResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		C9CEFA062046CE6900047DEC /* SearchInFollowersResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowersResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		C9CEFA082046CEC100047DEC /* SearchInFollowedHashtagsResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowedHashtagsResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		C9D3055E203461B6002FE327 /* HashtagFollowingResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagFollowingResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		C9E773192046C31700BA6DC7 /* SearchInFollowedUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowedUsersRequest.swift; sourceTree = "<group>"; };
 		C9E7731B2046C40100BA6DC7 /* SearchInFollowedUsersResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowedUsersResponseHandler.swift; sourceTree = "<group>"; };
@@ -1536,6 +1542,9 @@
 				C9AE94C7202857E600BA4262 /* FetchSuggestedUsersResponseHandlerSpec.swift */,
 				C9393CAE203B3870008EF0CB /* FetchUserFollowersResponseHandlerSpec.swift */,
 				C9393CB0203B38FF008EF0CB /* FetchFollowedHashtagsResponseHandlerSpec.swift */,
+				C9CEFA042046CC8100047DEC /* SearchInFollowedUsersResponseHandlerSpec.swift */,
+				C9CEFA062046CE6900047DEC /* SearchInFollowersResponseHandlerSpec.swift */,
+				C9CEFA082046CEC100047DEC /* SearchInFollowedHashtagsResponseHandlerSpec.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -3187,6 +3196,7 @@
 				185E324A1E7157170077E9A8 /* GallerySubmitterSpec.swift in Sources */,
 				185E32471E7157170077E9A8 /* ReportGalleryResponseHandlerSpec.swift in Sources */,
 				185E32241E7157160077E9A8 /* ContentResponseHandlerSpec.swift in Sources */,
+				C9CEFA052046CC8100047DEC /* SearchInFollowedUsersResponseHandlerSpec.swift in Sources */,
 				185E32301E7157160077E9A8 /* NewCreationResponseHandlerSpec.swift in Sources */,
 				1CDA410C1F7CE5F400823CDC /* ApproveCommentResponseHandlerSpec.swift in Sources */,
 				185E324E1E7157170077E9A8 /* EditGroupResponseHandlerSpec.swift in Sources */,
@@ -3216,6 +3226,7 @@
 				185E32721E7157170077E9A8 /* SwitchUserResponseHandlerSpec.swift in Sources */,
 				C9393CAF203B3870008EF0CB /* FetchUserFollowersResponseHandlerSpec.swift in Sources */,
 				185E32321E7157160077E9A8 /* NewCreationUploadResponseHandlerSpec.swift in Sources */,
+				C9CEFA072046CE6900047DEC /* SearchInFollowersResponseHandlerSpec.swift in Sources */,
 				185E32661E7157170077E9A8 /* EditProfileResponseHandlerSpec.swift in Sources */,
 				185E32341E7157160077E9A8 /* RemoveCreationResponseHandlerSpec.swift in Sources */,
 				185E33CA1E715C270077E9A8 /* TestRecorderNameUtils.swift in Sources */,
@@ -3252,6 +3263,7 @@
 				185E322E1E7157160077E9A8 /* FetchToybooCreationResponseHandlerSpec.swift in Sources */,
 				185E327E1E7157170077E9A8 /* UIColorHexSpec.swift in Sources */,
 				185E32361E7157160077E9A8 /* ReportCreationResponseHandlerSpec.swift in Sources */,
+				C9CEFA092046CEC100047DEC /* SearchInFollowedHashtagsResponseHandlerSpec.swift in Sources */,
 				2114A8721E719DB9004DD420 /* MyGalleriesResponseHandlerSpec.swift in Sources */,
 				185E32451E7157170077E9A8 /* NewGalleryResponseHandlerSpec.swift in Sources */,
 				185E32111E7157160077E9A8 /* APIClientSpec.swift in Sources */,
