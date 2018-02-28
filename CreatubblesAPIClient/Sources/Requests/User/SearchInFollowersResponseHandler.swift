@@ -1,5 +1,5 @@
 //
-//  FetchFollowedHashtagsRequest.swift
+//  SearchInFollowersResponseHandler.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -24,36 +24,26 @@
 //
 
 import UIKit
+import ObjectMapper
 
-class FetchFollowedHashtagsRequest: Request {
-    override var method: RequestMethod { return .get }
-    override var endpoint: String {
-        let user = userId
-        return "users/"+user+"/followed_hashtags"
-    }
-    override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
-    
-    fileprivate let page: Int?
-    fileprivate let perPage: Int?
-    fileprivate let userId: String
-    
-    init(page: Int? = nil, perPage: Int? = nil, userId: String) {
-        self.page = page
-        self.perPage = perPage
-        self.userId = userId
+class SearchInFollowersResponseHandler: ResponseHandler {
+    fileprivate let completion: UsersClosure?
+    init(completion: UsersClosure?) {
+        self.completion = completion
     }
     
-    fileprivate func prepareParameters() -> Dictionary<String, AnyObject> {
-        var params = Dictionary<String, AnyObject>()
-        
-        if let page = page {
-            params["page"] = page as AnyObject?
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
+        if  let response = response,
+            let usersMapper = Mapper<UserMapper>().mapArray(JSONObject: response["data"]) {
+            let metadata = MappingUtils.metadataFromResponse(response)
+            let pageInfo = MappingUtils.pagingInfoFromResponse(response)
+            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
+            let users = usersMapper.map({ User(mapper: $0, dataMapper: dataMapper, metadata: metadata) })
+            
+            executeOnMainQueue { self.completion?(users, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
+        } else {
+            executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
-        if let perPage = perPage {
-            params["per_page"] = perPage as AnyObject?
-        }
-        
-        return params
     }
     
 }

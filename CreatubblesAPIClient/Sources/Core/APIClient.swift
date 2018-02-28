@@ -351,6 +351,18 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(UserDAO.self).getFollowedHashtags(userId, pagingData: pagingData, completion: completion)
     }
     
+    open func searchInFollowedUsers(userId: String, query: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
+        return daoAssembly.assembly(UserDAO.self).searchInFollowedUsers(userId, query: query, pagingData: pagingData, completion: completion)
+    }
+    
+    open func searchInFollowedHashtags(userId: String, query: String, pagingData: PagingData?, completion: HashtagsClosure?) -> RequestHandler {
+        return daoAssembly.assembly(UserDAO.self).searchInFollowedHashtags(userId, query: query, pagingData: pagingData, completion: completion)
+    }
+    
+    open func searchInFollowers(userId: String, query: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
+        return daoAssembly.assembly(UserDAO.self).searchInFollowers(userId, query: query, pagingData: pagingData, completion: completion)
+    }
+    
     // MARK: - Gallery managment
     open func getGallery(galleryId: String, completion: GalleryClosure?) -> RequestHandler {
         return daoAssembly.assembly(GalleryDAO.self).getGallery(galleryIdentifier: galleryId, completion: completion)

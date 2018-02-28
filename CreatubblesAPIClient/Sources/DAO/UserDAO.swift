@@ -169,6 +169,24 @@ public class UserDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func searchInFollowedHashtags(_ userId: String, query: String, pagingData: PagingData?, completion: HashtagsClosure?) -> RequestHandler {
+        let request = SearchInFollowedHashtagsRequest(page: pagingData?.page, perPage: pagingData?.pageSize, userId: userId, query: query)
+        let handler = SearchInFollowedHashtagsResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func searchInFollowedUsers(_ userId: String, query: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
+        let request = SearchInFollowedUsersRequest(page: pagingData?.page, perPage: pagingData?.pageSize, userId: userId, query: query)
+        let handler = SearchInFollowedUsersResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func searchInFollowers(_ userId: String, query: String, pagingData: PagingData?, completion: UsersClosure?) -> RequestHandler {
+        let request = SearchInFollowersRequest(page: pagingData?.page, perPage: pagingData?.pageSize, userId: userId, query: query)
+        let handler = SearchInFollowersResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     // MARK: Batch
     func getCreatorsInBatchMode(userId: String?, query: String?, completion: UsersBatchClosure?) -> RequestHandler {
         let batchFetcher = UsersQueueBatchFetcher(requestSender: requestSender, userId: userId, query: query, scope: .Creators, completion: completion)

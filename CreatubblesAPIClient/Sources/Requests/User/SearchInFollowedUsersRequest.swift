@@ -1,5 +1,5 @@
 //
-//  FetchFollowedHashtagsRequest.swift
+//  SearchInFollowedUsersRequest.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -25,22 +25,24 @@
 
 import UIKit
 
-class FetchFollowedHashtagsRequest: Request {
+class SearchInFollowedUsersRequest: Request {
     override var method: RequestMethod { return .get }
     override var endpoint: String {
         let user = userId
-        return "users/"+user+"/followed_hashtags"
+        return "users/"+user+"/followed_users"
     }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
     
     fileprivate let page: Int?
     fileprivate let perPage: Int?
     fileprivate let userId: String
-    
-    init(page: Int? = nil, perPage: Int? = nil, userId: String) {
+    fileprivate let query: String?
+
+    init(page: Int? = nil, perPage: Int? = nil, userId: String, query: String) {
         self.page = page
         self.perPage = perPage
         self.userId = userId
+        self.query = query
     }
     
     fileprivate func prepareParameters() -> Dictionary<String, AnyObject> {
@@ -52,8 +54,10 @@ class FetchFollowedHashtagsRequest: Request {
         if let perPage = perPage {
             params["per_page"] = perPage as AnyObject?
         }
-        
+        if let query = query {
+            params["filter[username]"] = query as AnyObject?
+        }
         return params
     }
-    
 }
+
