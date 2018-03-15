@@ -88,6 +88,8 @@ open class PartnerApplication: NSObject, Identifiable {
     open let appScreenshotsRelationships: Array<Relationship>?
     open let appScreenshots: Array<AppScreenshot>?
 
+    open let galleriesOwnerOverride: Bool?
+
     init(mapper: PartnerApplicationsMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil) {
         identifier = mapper.identifier!
         name = mapper.name!
@@ -139,6 +141,8 @@ open class PartnerApplication: NSObject, Identifiable {
         avatarUrl = mapper.avatarUrl
         createdAt = mapper.createdAt! as Date
         updatedAt = mapper.updatedAt! as Date
+
+        galleriesOwnerOverride = mapper.galleriesOwnerOverride
 
         userRelationship = mapper.parseUserRelationship()!
         user = MappingUtils.objectFromMapper(dataMapper, relationship: userRelationship, type: User.self)

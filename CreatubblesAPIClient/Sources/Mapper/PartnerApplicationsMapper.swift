@@ -76,6 +76,8 @@ class PartnerApplicationsMapper: Mappable {
     var createdAt: Date?
     var updatedAt: Date?
 
+    var galleriesOwnerOverride: Bool?
+    
     // MARK: Relationships
     var userRelationship: RelationshipMapper?
     var user: User?
@@ -143,6 +145,7 @@ class PartnerApplicationsMapper: Mappable {
         galleryRelationship <- map["relationships.gallery.data"]
         galleriesRelationships <- map["relationships.galleries.data"]
         appScreenshotsRelationships <- map["relationships.app_screenshots.data"]
+        galleriesOwnerOverride <- map ["attributes.galleries_owner_override"]
     }
 
     func parseUserRelationship() -> Relationship? {

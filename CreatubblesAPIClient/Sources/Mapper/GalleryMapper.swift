@@ -47,8 +47,6 @@ class GalleryMapper: Mappable {
     var bannerMatrixViewRetinaUrl: String?
     var bannerExploreMobileUrl: String?
 
-    var galleriesOwnerOverride: Bool?
-
     var challengePublishedAt: Date?
     var galleryInstructionRelationships: Array<RelationshipMapper>?
     var connectedPartnersRelashionships: Array<RelationshipMapper>?
@@ -81,7 +79,6 @@ class GalleryMapper: Mappable {
         challengePublishedAt <- (map["attributes.challenge_published_at"], APIClientDateTransform.sharedTransform)
         galleryInstructionRelationships <- map["relationships.gallery_howto_sections.data"]
         connectedPartnersRelashionships <- map["relationships.connected_partner_applications.data"]
-        galleriesOwnerOverride <- map ["attributes.galleries_owner_override"]
     }
 
     // MARK: Parsing
