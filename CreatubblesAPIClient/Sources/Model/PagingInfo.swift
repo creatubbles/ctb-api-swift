@@ -37,8 +37,8 @@ open class PagingInfo: NSObject {
     }
 
     init(mapper: PagingInfoMapper) {
-        self.totalCount = mapper.totalCount!
-        self.totalPages = mapper.totalPages!
+        self.totalCount = mapper.totalCount ?? 0
+        self.totalPages = mapper.totalPages ?? 0
         self.feedTrackingId = mapper.feedTrackingId
     }
 }
