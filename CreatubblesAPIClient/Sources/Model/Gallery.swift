@@ -51,6 +51,8 @@ open class Gallery: NSObject, Identifiable {
 
     open let challengePublishedAt: Date?
     
+    open let galleriesOwnerOverride: Bool?
+
     // MARK: - Relationships
     open let owner: User?
     open let ownerRelationship: Relationship?
@@ -89,6 +91,8 @@ open class Gallery: NSObject, Identifiable {
         bannerExploreMobileUrl = mapper.bannerExploreMobileUrl
 
         challengePublishedAt = mapper.challengePublishedAt
+        
+        galleriesOwnerOverride = mapper.galleriesOwnerOverride
         
         isBubbled = MappingUtils.bubbledStateFrom(metadata: metadata, forObjectWithIdentifier: identifier)
         abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
