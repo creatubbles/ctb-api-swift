@@ -58,6 +58,7 @@ open class User: NSObject, Identifiable {
     open let shortUrl: String
 
     open let bubblesCount: Int
+    open let bubblesOnCreationsCount: Int
     open let addedBubblesCount: Int
     open let activitiesCount: Int
     open let commentsCount: Int
@@ -104,6 +105,7 @@ open class User: NSObject, Identifiable {
         shortUrl = mapper.shortUrl!
 
         bubblesCount = mapper.bubblesCount!
+        bubblesOnCreationsCount = mapper.bubblesOnCreationsCount ?? 0
         addedBubblesCount = mapper.addedBubblesCount!
         activitiesCount = mapper.activitiesCount!
         commentsCount = mapper.commentsCount!

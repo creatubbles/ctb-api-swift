@@ -43,6 +43,7 @@ class UserMapper: Mappable {
     var shortUrl: String?
 
     var bubblesCount: Int?
+    var bubblesOnCreationsCount: Int?
     var addedBubblesCount: Int?
     var activitiesCount: Int?
     var commentsCount: Int?
@@ -86,6 +87,7 @@ class UserMapper: Mappable {
         shortUrl <- map["attributes.short_url"]
 
         bubblesCount <- map["attributes.bubbles_count"]
+        bubblesOnCreationsCount <- map["attributes.bubbles_on_creations_count"]
         addedBubblesCount <- map["attributes.added_bubbles_count"]
         activitiesCount <- map["attributes.activities_count"]
         commentsCount <- map["attributes.comments_count"]
