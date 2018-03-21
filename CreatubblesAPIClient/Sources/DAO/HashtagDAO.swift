@@ -71,4 +71,11 @@ class HashtagDAO: NSObject, APIClientDAO
         
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func searchInPopularHashtags(query: String, pagingData: PagingData?, completion: HashtagsClosure?) -> RequestHandler {
+        let request = SearchForHashtagRequest(page: pagingData?.page, perPage: pagingData?.pageSize, query: query)
+        let handler = SearchForHashtagResponseHandler(completion: completion)
+        
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 }
