@@ -64,4 +64,11 @@ class HashtagDAO: NSObject, APIClientDAO
         let handler = FetchHashtagFollowersResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func fetchPopularHashtags(pagingData: PagingData?, completion: HashtagsClosure?) -> RequestHandler {
+        let request = PopularHashtagsFetchRequest(page: pagingData?.page, perPage: pagingData?.pageSize)
+        let handler = PopularHashtagsFetchResponseHandler(completion: completion)
+        
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 }
