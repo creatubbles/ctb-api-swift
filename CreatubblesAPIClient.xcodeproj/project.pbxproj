@@ -469,6 +469,14 @@
 		C9B7324A200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B73249200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift */; };
 		C9B7324E200E480B004288A9 /* FetchTrendingUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B7324D200E480B004288A9 /* FetchTrendingUsersRequest.swift */; };
 		C9B73250200E483B004288A9 /* FetchTrendingUsersResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B7324F200E483B004288A9 /* FetchTrendingUsersResponseHandler.swift */; };
+		C9CA043720628B3400F5CCCE /* PopularHashtagsFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043620628B3400F5CCCE /* PopularHashtagsFetchRequest.swift */; };
+		C9CA043920628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043820628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift */; };
+		C9CA043B20628E3300F5CCCE /* SearchForHashtagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043A20628E3300F5CCCE /* SearchForHashtagRequest.swift */; };
+		C9CA043D20628E4500F5CCCE /* SearchForHashtagResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043C20628E4500F5CCCE /* SearchForHashtagResponseHandler.swift */; };
+		C9CA043F2062979000F5CCCE /* PopularHashtagsFetchRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043E2062979000F5CCCE /* PopularHashtagsFetchRequestSpec.swift */; };
+		C9CA04412062980300F5CCCE /* SearchInHashtagsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA04402062980300F5CCCE /* SearchInHashtagsRequestSpec.swift */; };
+		C9CA0443206298D400F5CCCE /* PopularHashtagsFetchResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA0442206298D400F5CCCE /* PopularHashtagsFetchResponseHandlerSpec.swift */; };
+		C9CA044520629A0A00F5CCCE /* SearchForHashtagResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA044420629A0A00F5CCCE /* SearchForHashtagResponseHandlerSpec.swift */; };
 		C9CEF9FF2046CA1B00047DEC /* SearchInFollowedUsersRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEF9FE2046CA1B00047DEC /* SearchInFollowedUsersRequestSpec.swift */; };
 		C9CEFA012046CB0300047DEC /* SearchInFollowersRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEFA002046CB0300047DEC /* SearchInFollowersRequestSpec.swift */; };
 		C9CEFA032046CB8000047DEC /* SearchInFollowedHashtagsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEFA022046CB8000047DEC /* SearchInFollowedHashtagsRequestSpec.swift */; };
@@ -1001,6 +1009,14 @@
 		C9B73249200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingCreationsResponseHandler.swift; sourceTree = "<group>"; };
 		C9B7324D200E480B004288A9 /* FetchTrendingUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingUsersRequest.swift; sourceTree = "<group>"; };
 		C9B7324F200E483B004288A9 /* FetchTrendingUsersResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingUsersResponseHandler.swift; sourceTree = "<group>"; };
+		C9CA043620628B3400F5CCCE /* PopularHashtagsFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularHashtagsFetchRequest.swift; sourceTree = "<group>"; };
+		C9CA043820628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularHashtagsFetchResponseHandler.swift; sourceTree = "<group>"; };
+		C9CA043A20628E3300F5CCCE /* SearchForHashtagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForHashtagRequest.swift; sourceTree = "<group>"; };
+		C9CA043C20628E4500F5CCCE /* SearchForHashtagResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForHashtagResponseHandler.swift; sourceTree = "<group>"; };
+		C9CA043E2062979000F5CCCE /* PopularHashtagsFetchRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularHashtagsFetchRequestSpec.swift; sourceTree = "<group>"; };
+		C9CA04402062980300F5CCCE /* SearchInHashtagsRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInHashtagsRequestSpec.swift; sourceTree = "<group>"; };
+		C9CA0442206298D400F5CCCE /* PopularHashtagsFetchResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularHashtagsFetchResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		C9CA044420629A0A00F5CCCE /* SearchForHashtagResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForHashtagResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		C9CEF9FE2046CA1B00047DEC /* SearchInFollowedUsersRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowedUsersRequestSpec.swift; sourceTree = "<group>"; };
 		C9CEFA002046CB0300047DEC /* SearchInFollowersRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowersRequestSpec.swift; sourceTree = "<group>"; };
 		C9CEFA022046CB8000047DEC /* SearchInFollowedHashtagsRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowedHashtagsRequestSpec.swift; sourceTree = "<group>"; };
@@ -2309,6 +2325,10 @@
 				C95040B92035D1590059632F /* HashtagFetchResponseHandler.swift */,
 				C9393C9E203B1100008EF0CB /* FetchHashtagFollowersRequest.swift */,
 				C9393CA0203B110F008EF0CB /* FetchHashtagFollowersResponseHandler.swift */,
+				C9CA043620628B3400F5CCCE /* PopularHashtagsFetchRequest.swift */,
+				C9CA043820628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift */,
+				C9CA043A20628E3300F5CCCE /* SearchForHashtagRequest.swift */,
+				C9CA043C20628E4500F5CCCE /* SearchForHashtagResponseHandler.swift */,
 			);
 			path = Hashtag;
 			sourceTree = "<group>";
@@ -2319,6 +2339,8 @@
 				C9B5A54F2023203700C3BAF8 /* SuggestedHashtagsFetchRequestSpec.swift */,
 				C95040BB2035D3DC0059632F /* HashtagFetchRequestSpec.swift */,
 				C9393CA6203B335C008EF0CB /* HashtagFollowersRequestSpec.swift */,
+				C9CA043E2062979000F5CCCE /* PopularHashtagsFetchRequestSpec.swift */,
+				C9CA04402062980300F5CCCE /* SearchInHashtagsRequestSpec.swift */,
 			);
 			path = Hashtag;
 			sourceTree = "<group>";
@@ -2330,6 +2352,8 @@
 				C9D3055E203461B6002FE327 /* HashtagFollowingResponseHandlerSpec.swift */,
 				C95040BD2035D5110059632F /* FetchHashtagResponseHandlerSpec.swift */,
 				C9393CAC203B3709008EF0CB /* FetchHashtagFollowersResponseHandlerSpec.swift */,
+				C9CA0442206298D400F5CCCE /* PopularHashtagsFetchResponseHandlerSpec.swift */,
+				C9CA044420629A0A00F5CCCE /* SearchForHashtagResponseHandlerSpec.swift */,
 			);
 			path = Hashtag;
 			sourceTree = "<group>";
@@ -2853,6 +2877,7 @@
 				182A36C31D4094DF005E01DC /* UserAccountDetailsResponseHandler.swift in Sources */,
 				0837858B1D378A85006EF69E /* ReportCreationRequest.swift in Sources */,
 				189D9F5C1C84B36100857CC6 /* CreationMapper.swift in Sources */,
+				C9CA043D20628E4500F5CCCE /* SearchForHashtagResponseHandler.swift in Sources */,
 				18F6E89F1D021B6500AAC5FB /* NewGalleryRequest.swift in Sources */,
 				2178B7301D37973F0013C251 /* CreateMultipleCreatorsResponseHandler.swift in Sources */,
 				189D9F611C84B36100857CC6 /* PagingInfoMapper.swift in Sources */,
@@ -2870,6 +2895,7 @@
 				188E033F1F3081D0005630D0 /* ChallengesGalleriesRequest.swift in Sources */,
 				21B9334A1D2AEC2900FCD248 /* MyConnectionsRequest.swift in Sources */,
 				08C781EA1E1D03B80005864F /* AppScreenshotMapper.swift in Sources */,
+				C9CA043720628B3400F5CCCE /* PopularHashtagsFetchRequest.swift in Sources */,
 				C9B5A54A20231DBB00C3BAF8 /* SuggestedHashtagsFetchRequest.swift in Sources */,
 				21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */,
 				215279631D3F817D00B67313 /* DeleteAUserFollowingResponseHandler.swift in Sources */,
@@ -2931,6 +2957,7 @@
 				1859FA951D3905180023A6B6 /* GroupDAO.swift in Sources */,
 				08A587431DC34E0200F570C4 /* HTTPHeadersBuilder.swift in Sources */,
 				C9393CA1203B110F008EF0CB /* FetchHashtagFollowersResponseHandler.swift in Sources */,
+				C9CA043920628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift in Sources */,
 				18F91EA31F8E07D10021F1BF /* CreationViewsCountIncrementRequest.swift in Sources */,
 				18F6E8881D021B6500AAC5FB /* UpdateBubbleRequest.swift in Sources */,
 				18E9D18F1D117812006F2BAB /* EditCreationRequest.swift in Sources */,
@@ -2951,6 +2978,7 @@
 				C90F44D820319ADD00EF2831 /* DeleteAHashtagFollowingResponseHandler.swift in Sources */,
 				18DB8EB61CE3EF29008B5F52 /* APIClientDateFormatter.swift in Sources */,
 				2117F8C11D3520B800304D79 /* NotificationMetadata.swift in Sources */,
+				C9CA043B20628E3300F5CCCE /* SearchForHashtagRequest.swift in Sources */,
 				18F6E88B1D021B6500AAC5FB /* CommentsResponseHandler.swift in Sources */,
 				18F6E8921D021B6500AAC5FB /* ResponseHandler.swift in Sources */,
 				1823F88C1E548E6C00AD5517 /* DataIncludeMapperDefaultParser.swift in Sources */,
@@ -3132,6 +3160,7 @@
 				185E337F1E71571E0077E9A8 /* MyConnectionsRequestSpec.swift in Sources */,
 				185E336A1E71571E0077E9A8 /* LandingURLRequestSpec.swift in Sources */,
 				185E33451E71571E0077E9A8 /* NewCreationRequestSpec.swift in Sources */,
+				C9CA043F2062979000F5CCCE /* PopularHashtagsFetchRequestSpec.swift in Sources */,
 				185E33511E71571E0077E9A8 /* DAOAssemblySpec.swift in Sources */,
 				186C4ED81EAF33A700237B7B /* DAODependencies+Utils.swift in Sources */,
 				185E333B1E71571E0077E9A8 /* ContentSearchRequestSpec.swift in Sources */,
@@ -3171,6 +3200,7 @@
 				185E33471E71571E0077E9A8 /* NewCreationUploadRequestSpec.swift in Sources */,
 				185E33351E71571E0077E9A8 /* NewCommentRequestSpec.swift in Sources */,
 				185E33631E71571E0077E9A8 /* EditGroupRequestSpec.swift in Sources */,
+				C9CA04412062980300F5CCCE /* SearchInHashtagsRequestSpec.swift in Sources */,
 				185E338C1E71571E0077E9A8 /* UserAccountDetailsRequestSpec.swift in Sources */,
 				C9B5A5502023203700C3BAF8 /* SuggestedHashtagsFetchRequestSpec.swift in Sources */,
 				185E33531E71571E0077E9A8 /* FavoriteGalleriesRequestSpec.swift in Sources */,
@@ -3207,6 +3237,7 @@
 				185E33D01E715C270077E9A8 /* TestResponses.swift in Sources */,
 				185E321C1E7157160077E9A8 /* CommentsResponseHandlerSpec.swift in Sources */,
 				185E326A1E7157170077E9A8 /* MyConnectionsResponseHandlerSpec.swift in Sources */,
+				C9CA044520629A0A00F5CCCE /* SearchForHashtagResponseHandlerSpec.swift in Sources */,
 				185E32151E7157160077E9A8 /* UpdateUserAvatarResponseHandlerSpec.swift in Sources */,
 				185E32531E7157170077E9A8 /* NewGroupResponseHandlerSpec.swift in Sources */,
 				185E322A1E7157160077E9A8 /* CreationResponseHandlerSpec.swift in Sources */,
@@ -3233,6 +3264,7 @@
 				188E03431F308AEA005630D0 /* ChallengesGalleriesResponseHandlerSpec.swift in Sources */,
 				185E324F1E7157170077E9A8 /* GroupResponseHandlerSpec.swift in Sources */,
 				185E33CE1E715C270077E9A8 /* TestRequestHandler.swift in Sources */,
+				C9CA0443206298D400F5CCCE /* PopularHashtagsFetchResponseHandlerSpec.swift in Sources */,
 				185E322C1E7157160077E9A8 /* EditCreationResponseHandlerSpec.swift in Sources */,
 				185E32751E7157170077E9A8 /* UserAccoundDetailsResponseHandlerSpec.swift in Sources */,
 				C9393CB1203B38FF008EF0CB /* FetchFollowedHashtagsResponseHandlerSpec.swift in Sources */,

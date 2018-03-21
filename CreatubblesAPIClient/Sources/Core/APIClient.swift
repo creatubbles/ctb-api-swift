@@ -748,6 +748,14 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     open func getSuggestedHashtags(pagingData: PagingData?, completion: HashtagsClosure?) -> RequestHandler {
         return daoAssembly.assembly(HashtagDAO.self).fetchSuggestedHashtags(pagingData: pagingData, completion: completion)
     }
+    
+    open func getPopularHashtags(pagingData: PagingData?, completion: HashtagsClosure?) -> RequestHandler {
+        return daoAssembly.assembly(HashtagDAO.self).fetchPopularHashtags(pagingData: pagingData, completion: completion)
+    }
+    
+    open func searchInPopularHashtags(query: String, pagingData: PagingData?, completion: HashtagsClosure?) -> RequestHandler {
+        return daoAssembly.assembly(HashtagDAO.self).searchInPopularHashtags(query: query, pagingData: pagingData, completion: completion)
+    }
 
     // MARK: - Log listener
     open func addLoggerListnerer(_ listener: LogListener) {
