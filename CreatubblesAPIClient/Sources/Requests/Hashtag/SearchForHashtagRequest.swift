@@ -1,5 +1,5 @@
 //
-//  PopularHashtagsFetchRequest.swift
+//  SearchForHashtagRequest.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -24,7 +24,7 @@
 
 import UIKit
 
-class PopularHashtagsFetchRequest: Request
+class SearchForHashtagRequest: Request
 {
     override var method: RequestMethod { return .get }
     override var parameters: Dictionary<String, AnyObject> { return prepareParameters() }
@@ -35,10 +35,12 @@ class PopularHashtagsFetchRequest: Request
     
     fileprivate let page: Int?
     fileprivate let perPage: Int?
-    
-    init(page: Int?, perPage: Int?) {
+    fileprivate let query: String?
+
+    init(page: Int?, perPage: Int?, query: String) {
         self.page = page
         self.perPage = perPage
+        self.query = query
     }
     
     fileprivate func prepareParameters() -> Dictionary<String, AnyObject>
@@ -52,6 +54,9 @@ class PopularHashtagsFetchRequest: Request
         if let perPage = perPage
         {
             params["per_page"] = perPage as AnyObject?
+        }
+        if let query = query {
+            params["filter[name]"] = query as AnyObject?
         }
         return params
     }
