@@ -473,6 +473,8 @@
 		C9CA043920628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043820628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift */; };
 		C9CA043B20628E3300F5CCCE /* SearchForHashtagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043A20628E3300F5CCCE /* SearchForHashtagRequest.swift */; };
 		C9CA043D20628E4500F5CCCE /* SearchForHashtagResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043C20628E4500F5CCCE /* SearchForHashtagResponseHandler.swift */; };
+		C9CA043F2062979000F5CCCE /* PopularHashtagsFetchRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043E2062979000F5CCCE /* PopularHashtagsFetchRequestSpec.swift */; };
+		C9CA04412062980300F5CCCE /* SearchInHashtagsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA04402062980300F5CCCE /* SearchInHashtagsRequestSpec.swift */; };
 		C9CEF9FF2046CA1B00047DEC /* SearchInFollowedUsersRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEF9FE2046CA1B00047DEC /* SearchInFollowedUsersRequestSpec.swift */; };
 		C9CEFA012046CB0300047DEC /* SearchInFollowersRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEFA002046CB0300047DEC /* SearchInFollowersRequestSpec.swift */; };
 		C9CEFA032046CB8000047DEC /* SearchInFollowedHashtagsRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEFA022046CB8000047DEC /* SearchInFollowedHashtagsRequestSpec.swift */; };
@@ -1009,6 +1011,8 @@
 		C9CA043820628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularHashtagsFetchResponseHandler.swift; sourceTree = "<group>"; };
 		C9CA043A20628E3300F5CCCE /* SearchForHashtagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForHashtagRequest.swift; sourceTree = "<group>"; };
 		C9CA043C20628E4500F5CCCE /* SearchForHashtagResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForHashtagResponseHandler.swift; sourceTree = "<group>"; };
+		C9CA043E2062979000F5CCCE /* PopularHashtagsFetchRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularHashtagsFetchRequestSpec.swift; sourceTree = "<group>"; };
+		C9CA04402062980300F5CCCE /* SearchInHashtagsRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInHashtagsRequestSpec.swift; sourceTree = "<group>"; };
 		C9CEF9FE2046CA1B00047DEC /* SearchInFollowedUsersRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowedUsersRequestSpec.swift; sourceTree = "<group>"; };
 		C9CEFA002046CB0300047DEC /* SearchInFollowersRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowersRequestSpec.swift; sourceTree = "<group>"; };
 		C9CEFA022046CB8000047DEC /* SearchInFollowedHashtagsRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFollowedHashtagsRequestSpec.swift; sourceTree = "<group>"; };
@@ -2331,6 +2335,8 @@
 				C9B5A54F2023203700C3BAF8 /* SuggestedHashtagsFetchRequestSpec.swift */,
 				C95040BB2035D3DC0059632F /* HashtagFetchRequestSpec.swift */,
 				C9393CA6203B335C008EF0CB /* HashtagFollowersRequestSpec.swift */,
+				C9CA043E2062979000F5CCCE /* PopularHashtagsFetchRequestSpec.swift */,
+				C9CA04402062980300F5CCCE /* SearchInHashtagsRequestSpec.swift */,
 			);
 			path = Hashtag;
 			sourceTree = "<group>";
@@ -3148,6 +3154,7 @@
 				185E337F1E71571E0077E9A8 /* MyConnectionsRequestSpec.swift in Sources */,
 				185E336A1E71571E0077E9A8 /* LandingURLRequestSpec.swift in Sources */,
 				185E33451E71571E0077E9A8 /* NewCreationRequestSpec.swift in Sources */,
+				C9CA043F2062979000F5CCCE /* PopularHashtagsFetchRequestSpec.swift in Sources */,
 				185E33511E71571E0077E9A8 /* DAOAssemblySpec.swift in Sources */,
 				186C4ED81EAF33A700237B7B /* DAODependencies+Utils.swift in Sources */,
 				185E333B1E71571E0077E9A8 /* ContentSearchRequestSpec.swift in Sources */,
@@ -3187,6 +3194,7 @@
 				185E33471E71571E0077E9A8 /* NewCreationUploadRequestSpec.swift in Sources */,
 				185E33351E71571E0077E9A8 /* NewCommentRequestSpec.swift in Sources */,
 				185E33631E71571E0077E9A8 /* EditGroupRequestSpec.swift in Sources */,
+				C9CA04412062980300F5CCCE /* SearchInHashtagsRequestSpec.swift in Sources */,
 				185E338C1E71571E0077E9A8 /* UserAccountDetailsRequestSpec.swift in Sources */,
 				C9B5A5502023203700C3BAF8 /* SuggestedHashtagsFetchRequestSpec.swift in Sources */,
 				185E33531E71571E0077E9A8 /* FavoriteGalleriesRequestSpec.swift in Sources */,
