@@ -31,8 +31,8 @@ public class Metadata: NSObject {
     let bubbledGalleryIdentifiers: Array<String>
     let abilities: Array<Ability>
 
-    let userFollowedUsersIdentifiers: Array<String>
-    let userFollowedHashtagsIdentifiers: Array<String>
+    public let userFollowedUsersIdentifiers: Array<String>
+    public let userFollowedHashtagsIdentifiers: Array<String>
 
     init(mapper: MetadataMapper) {
         bubbledCreationIdentifiers = mapper.bubbledCreationIdentifiers ?? []
