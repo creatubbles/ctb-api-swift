@@ -30,6 +30,7 @@ class HashtagMapper: Mappable
     var identifier: String?
     var imageURL: String?
     var isOfficial: Bool?
+    var taggingsCount: Int?
 
     required init?(map: Map) { /* Intentionally left empty  */ }
     
@@ -38,5 +39,6 @@ class HashtagMapper: Mappable
         identifier <- map["id"]
         identifier <- map["is_official"]
         imageURL <- map["attributes.avatar_image_url.links.original"]
+        taggingsCount <- map["attributes.taggings_count"]
     }
 }

@@ -30,12 +30,14 @@ open class Hashtag: NSObject, Identifiable {
     open let imageURL: String?
     open let isOfficial: Bool?
     open let isFollowed: Bool?
+    open let taggingsCount: Int?
 
-    init(identifier: String, imageURL: String?, isOfficial: Bool?, isFollowed: Bool?) {
+    init(identifier: String, imageURL: String?, isOfficial: Bool?, isFollowed: Bool?, taggingsCount: Int?) {
         self.imageURL = imageURL
         self.identifier = identifier
         self.isOfficial = isOfficial
         self.isFollowed = isFollowed
+        self.taggingsCount = taggingsCount
     }
     
     init(mapper: HashtagMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil)
@@ -43,6 +45,7 @@ open class Hashtag: NSObject, Identifiable {
         identifier = mapper.identifier!
         imageURL = mapper.imageURL
         isOfficial = mapper.isOfficial
+        taggingsCount = mapper.taggingsCount
         isFollowed = metadata?.userFollowedHashtagsIdentifiers.contains(mapper.identifier!) ?? false
     }
 }
