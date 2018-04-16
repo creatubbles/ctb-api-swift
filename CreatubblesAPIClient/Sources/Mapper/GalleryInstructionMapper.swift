@@ -43,7 +43,7 @@ class GalleryInstructionMapper: Mappable {
         position <- map["attributes.position"]
         title <- map["attributes.title"]
         descriptionText <- map["attributes.content"]
-        imageUrl <- map["attributes.image.links.list_view"]
+        imageUrl <- map["attributes.image.links.original"]
         video480Url <- map["attributes.video_480_url"]
         video720Url <- map["attributes.video_720_url"]
     }
