@@ -63,7 +63,12 @@ class NetworkManager: NSObject {
     }
 
     private func clientURLRequest(request: Request) -> URLRequest {
-        var urlRequest = URLRequest(url: URL(string: request.onlyPath ? urlStringWithRequest(request) : request.endpoint)!)
+        let stringurl = request.onlyPath ? urlStringWithRequest(request) : request.endpoint
+        var mainUrl = URL(string: stringurl)
+        if mainUrl == nil {
+            mainUrl = URL(string: stringurl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+        }
+        var urlRequest = URLRequest(url: mainUrl!)
         urlRequest.httpMethod = request.method.rawValue
 
         if let locale = settings.locale {
@@ -75,7 +80,6 @@ class NetworkManager: NSObject {
                                    (authClient.privateAccessToken ?? authClient.publicAccessToken) {
             urlRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
-
 
         urlRequest.addValue(settings.deviceType.rawValue, forHTTPHeaderField: "X-Device-Type")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
