@@ -98,7 +98,7 @@ open class User: NSObject, Identifiable {
         createdAt = mapper.createdAt! as Date
         updatedAt = mapper.updatedAt! as Date
         avatarUrl = mapper.avatarUrl!
-        countryCode = mapper.countryCode!
+        countryCode = mapper.countryCode != nil ? mapper.countryCode! : "US"
         countryName = mapper.countryName!
         age = mapper.age
         gender = mapper.parseGender()

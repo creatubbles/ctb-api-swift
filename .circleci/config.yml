@@ -24,7 +24,7 @@ jobs:
       - checkout
       - *decrypt_config_file
       - run:
-          name: Run Unit Test
+          name: Run Unit Tests
           command: xcodebuild test -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClientUnitTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug | xcpretty
 
   integration-tests:
@@ -33,17 +33,17 @@ jobs:
       - checkout
       - *decrypt_config_file
       - run:
-          name: Run Unit Test
+          name: Run Integration Tests
           command: xcodebuild test -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClientIntegrationTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug | xcpretty
 
 workflows:
   version: 2
   build-and-test:
     jobs:
-      - integration-tests
-      # - unit-tests:
-      #     requires:
-      #       - build
-      # - integration-tests:
-      #     requires:
-      #       - build
+      - build
+      - unit-tests:
+          requires:
+            - build
+      - integration-tests:
+          requires:
+            - build
