@@ -1,0 +1,49 @@
+version: 2
+
+common_config: &common_config
+  macos:
+    xcode: "9.3.0"
+
+decrypt_config_file: &decrypt_config_file
+    run:
+      name: Decrypt configuration file
+      command: openssl aes-256-cbc -d -in ./CreatubblesAPIClientIntegrationTests/TestUtils/TestConfiguration.enc -out ./CreatubblesAPIClientIntegrationTests/TestUtils/TestConfiguration.swift -k $TEST_CONFIGURATION_PW
+
+jobs:
+  build:
+    <<: *common_config
+    steps:
+      - checkout
+      - run:
+          name: Build CreatubblesAPIClient
+          command: xcodebuild -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClient -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug | xcpretty
+
+  unit-tests:
+    <<: *common_config
+    steps:
+      - checkout
+      - *decrypt_config_file
+      - run:
+          name: Run Unit Test
+          command: xcodebuild test -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClientUnitTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug | xcpretty
+
+  integration-tests:
+    <<: *common_config
+    steps:
+      - checkout
+      - *decrypt_config_file
+      - run:
+          name: Run Unit Test
+          command: xcodebuild test -workspace CreatubblesAPIClient.xcworkspace -scheme CreatubblesAPIClientIntegrationTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug | xcpretty
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build
+      - unit-tests:
+          requires:
+            - build
+      - integration-tests:
+          requires:
+            - build
