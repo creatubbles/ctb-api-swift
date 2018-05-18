@@ -40,10 +40,10 @@ workflows:
   version: 2
   build-and-test:
     jobs:
-      - build
-      - unit-tests:
-          requires:
-            - build
-      - integration-tests:
-          requires:
-            - build
+      - integration-tests
+      # - unit-tests:
+      #     requires:
+      #       - build
+      # - integration-tests:
+      #     requires:
+      #       - build
