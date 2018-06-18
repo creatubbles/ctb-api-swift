@@ -53,6 +53,7 @@ class SearchTagsFetchRequest: Request
         {
             params["per_page"] = perPage as AnyObject?
         }
+        params["filter[tag]"] = "interest" as AnyObject?
         return params
     }
 }
