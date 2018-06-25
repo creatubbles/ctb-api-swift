@@ -82,5 +82,7 @@ open class UserAccountDetails: NSObject {
         createdAt = mapper.createdAt! as Date
         updatedAt = mapper.updatedAt! as Date
         abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
+        requiresGuardianApproval = mapper.requiresGuardianApproval
+        lastGuardianApprovalEmail = mapper.lastGuardianApprovalEmail
     }
 }
