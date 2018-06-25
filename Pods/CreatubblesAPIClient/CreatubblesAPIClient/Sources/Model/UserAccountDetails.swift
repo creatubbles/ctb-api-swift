@@ -52,7 +52,9 @@ open class UserAccountDetails: NSObject {
     open let createdAt: Date
     open let updatedAt: Date
     open let abilities: Array<Ability>
-
+    open let requiresGuardianApproval: Bool?
+    open let lastGuardianApprovalEmail: String?
+    
     public init(mapper: UserAccountDetailsMapper, metadata: Metadata?) {
         identifier = mapper.identifier!
         username = mapper.username!

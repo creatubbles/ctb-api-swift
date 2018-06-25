@@ -51,6 +51,8 @@ public class UserAccountDetailsMapper: Mappable {
     var currentSignInAt: Date?
     var createdAt: Date?
     var updatedAt: Date?
+    var requiresGuardianApproval: Bool?
+    var lastGuardianApprovalEmail: String?
 
     public required init?(map: Map) { /* Intentionally left empty  */ }
 
@@ -75,6 +77,8 @@ public class UserAccountDetailsMapper: Mappable {
         countryCode <- map["attributes.country_code"]
         receiveNotifications <- map["attributes.receive_notifications"]
         receiveNewsletter <- map["attributes.newsletter"]
+        requiresGuardianApproval <- map["attributes.requires_guardian_approval"]
+        lastGuardianApprovalEmail <- map["attributes.last_guardian_approval_email"]
 
         passwordUpdatedAt <- (map["attributes.password_updated_at"], APIClientDateTransform.sharedTransform)
         currentSignInAt <- (map["attributes.current_sign_in_at"], APIClientDateTransform.sharedTransform)
