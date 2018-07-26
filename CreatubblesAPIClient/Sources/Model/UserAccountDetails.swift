@@ -55,6 +55,8 @@ open class UserAccountDetails: NSObject {
     open let abilities: Array<Ability>
     open let requiresGuardianApproval: Bool?
     open let lastGuardianApprovalEmail: String?
+    open let addedBubblesCount: Int
+    open let addedCommentsCount: Int
     
     public init(mapper: UserAccountDetailsMapper, metadata: Metadata?) {
         identifier = mapper.identifier!
@@ -83,6 +85,8 @@ open class UserAccountDetails: NSObject {
         currentSignInAt = mapper.currentSignInAt as Date?
         createdAt = mapper.createdAt! as Date
         updatedAt = mapper.updatedAt! as Date
+        addedBubblesCount = mapper.addedBubblesCount ?? 0
+        addedCommentsCount = mapper.addedCommentsCount ?? 0
         abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
         requiresGuardianApproval = mapper.requiresGuardianApproval
         lastGuardianApprovalEmail = mapper.lastGuardianApprovalEmail

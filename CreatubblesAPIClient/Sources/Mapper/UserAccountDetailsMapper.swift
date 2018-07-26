@@ -54,7 +54,9 @@ public class UserAccountDetailsMapper: Mappable {
     var updatedAt: Date?
     var requiresGuardianApproval: Bool?
     var lastGuardianApprovalEmail: String?
-    
+    var addedBubblesCount: Int?
+    var addedCommentsCount: Int?
+
     public required init?(map: Map) { /* Intentionally left empty  */ }
 
     public func mapping(map: Map) {
@@ -81,7 +83,9 @@ public class UserAccountDetailsMapper: Mappable {
         interestsList <- map["attributes.interest_list"]
         requiresGuardianApproval <- map["attributes.requires_guardian_approval"]
         lastGuardianApprovalEmail <- map["attributes.last_guardian_approval_email"]
-        
+        addedBubblesCount <- map["attributes.added_bubbles_count"]
+        addedCommentsCount <- map["attributes.added_comments_count"]
+
         passwordUpdatedAt <- (map["attributes.password_updated_at"], APIClientDateTransform.sharedTransform)
         currentSignInAt <- (map["attributes.current_sign_in_at"], APIClientDateTransform.sharedTransform)
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
