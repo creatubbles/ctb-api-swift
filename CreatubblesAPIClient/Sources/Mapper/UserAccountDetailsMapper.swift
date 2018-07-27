@@ -56,6 +56,7 @@ public class UserAccountDetailsMapper: Mappable {
     var lastGuardianApprovalEmail: String?
     var addedBubblesCount: Int?
     var addedCommentsCount: Int?
+    var creationsCount: Int?
 
     public required init?(map: Map) { /* Intentionally left empty  */ }
 
@@ -85,6 +86,7 @@ public class UserAccountDetailsMapper: Mappable {
         lastGuardianApprovalEmail <- map["attributes.last_guardian_approval_email"]
         addedBubblesCount <- map["attributes.added_bubbles_count"]
         addedCommentsCount <- map["attributes.added_comments_count"]
+        creationsCount <- map["attributes.creations_count"]
 
         passwordUpdatedAt <- (map["attributes.password_updated_at"], APIClientDateTransform.sharedTransform)
         currentSignInAt <- (map["attributes.current_sign_in_at"], APIClientDateTransform.sharedTransform)
