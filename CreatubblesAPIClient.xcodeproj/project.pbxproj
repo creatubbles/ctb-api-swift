@@ -479,6 +479,8 @@
 		C9C555A5210F39D100CBD656 /* RemoveFavoriteGalleryResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C555A4210F39D100CBD656 /* RemoveFavoriteGalleryResponseHandler.swift */; };
 		C9C555A7210F3A6200CBD656 /* FavoriteCreationRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C555A6210F3A6200CBD656 /* FavoriteCreationRequestSpec.swift */; };
 		C9C555A9210F3C4A00CBD656 /* FavoriteGalleryRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C555A8210F3C4A00CBD656 /* FavoriteGalleryRequestSpec.swift */; };
+		C9C555AB210F3D3700CBD656 /* FavoriteCreationResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C555AA210F3D3700CBD656 /* FavoriteCreationResponseHandlerSpec.swift */; };
+		C9C555AE210F44B500CBD656 /* GalleryFavoriteResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C555AD210F44B500CBD656 /* GalleryFavoriteResponseHandlerSpec.swift */; };
 		C9CA043720628B3400F5CCCE /* PopularHashtagsFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043620628B3400F5CCCE /* PopularHashtagsFetchRequest.swift */; };
 		C9CA043920628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043820628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift */; };
 		C9CA043B20628E3300F5CCCE /* SearchForHashtagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043A20628E3300F5CCCE /* SearchForHashtagRequest.swift */; };
@@ -1029,6 +1031,8 @@
 		C9C555A4210F39D100CBD656 /* RemoveFavoriteGalleryResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFavoriteGalleryResponseHandler.swift; sourceTree = "<group>"; };
 		C9C555A6210F3A6200CBD656 /* FavoriteCreationRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCreationRequestSpec.swift; sourceTree = "<group>"; };
 		C9C555A8210F3C4A00CBD656 /* FavoriteGalleryRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGalleryRequestSpec.swift; sourceTree = "<group>"; };
+		C9C555AA210F3D3700CBD656 /* FavoriteCreationResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCreationResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		C9C555AD210F44B500CBD656 /* GalleryFavoriteResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryFavoriteResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		C9CA043620628B3400F5CCCE /* PopularHashtagsFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularHashtagsFetchRequest.swift; sourceTree = "<group>"; };
 		C9CA043820628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularHashtagsFetchResponseHandler.swift; sourceTree = "<group>"; };
 		C9CA043A20628E3300F5CCCE /* SearchForHashtagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForHashtagRequest.swift; sourceTree = "<group>"; };
@@ -1483,6 +1487,7 @@
 				185E31A81E7157160077E9A8 /* RemoveCreationResponseHandlerSpec.swift */,
 				185E31AA1E7157160077E9A8 /* ReportCreationResponseHandlerSpec.swift */,
 				18F91EAA1F8E0BC30021F1BF /* CreationViewsCountIncrementResponseHandlerSpec.swift */,
+				C9C555AA210F3D3700CBD656 /* FavoriteCreationResponseHandlerSpec.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -1509,6 +1514,7 @@
 				2114A8731E719DD1004DD420 /* FeaturedGalleriesResponseHandlerSpec.swift */,
 				188E03421F308AEA005630D0 /* ChallengesGalleriesResponseHandlerSpec.swift */,
 				1840A90B1F8E0C8B000AADD1 /* GalleryViewsCountIncrementResponseHandlerSpec.swift */,
+				C9C555AD210F44B500CBD656 /* GalleryFavoriteResponseHandlerSpec.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -3295,6 +3301,7 @@
 				185E32221E7157160077E9A8 /* ReportCommentResponseHandlerSpec.swift in Sources */,
 				185E32621E7157170077E9A8 /* CreateMultipleCreatorsResponseHandlerSpec.swift in Sources */,
 				185E32721E7157170077E9A8 /* SwitchUserResponseHandlerSpec.swift in Sources */,
+				C9C555AB210F3D3700CBD656 /* FavoriteCreationResponseHandlerSpec.swift in Sources */,
 				C9393CAF203B3870008EF0CB /* FetchUserFollowersResponseHandlerSpec.swift in Sources */,
 				185E32321E7157160077E9A8 /* NewCreationUploadResponseHandlerSpec.swift in Sources */,
 				C9CEFA072046CE6900047DEC /* SearchInFollowersResponseHandlerSpec.swift in Sources */,
@@ -3345,6 +3352,7 @@
 				185E32181E7157160077E9A8 /* UsersBatchFetcherSpec.swift in Sources */,
 				185E32131E7157160077E9A8 /* AvatarSuggestionsFetchResponseHandlerSpec.swift in Sources */,
 				C9393CAD203B3709008EF0CB /* FetchHashtagFollowersResponseHandlerSpec.swift in Sources */,
+				C9C555AE210F44B500CBD656 /* GalleryFavoriteResponseHandlerSpec.swift in Sources */,
 				185E33C61E715C270077E9A8 /* DummyResponseHandler.swift in Sources */,
 				185E33CD1E715C270077E9A8 /* TestConfigurationTemplate.swift in Sources */,
 				185E32641E7157170077E9A8 /* CreatorsAndManagersResponseHandlerSpec.swift in Sources */,
