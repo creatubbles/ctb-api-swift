@@ -493,6 +493,10 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(CreationsDAO.self).getTrendingCreations(completion: completion)
     }
     
+    open func favoriteCreation(creationId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CreationsDAO.self).favoriteCreation(creationIdentifier: creationId, completion: completion)
+    }
+    
     // MARK: - Upload Sessions
     open func getAllActiveUploadSessionPublicData() -> Array<CreationUploadSessionPublicData> {
         return creationUploadService.getAllActiveUploadSessionsPublicData()

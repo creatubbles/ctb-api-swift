@@ -469,6 +469,8 @@
 		C9B7324A200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B73249200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift */; };
 		C9B7324E200E480B004288A9 /* FetchTrendingUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B7324D200E480B004288A9 /* FetchTrendingUsersRequest.swift */; };
 		C9B73250200E483B004288A9 /* FetchTrendingUsersResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B7324F200E483B004288A9 /* FetchTrendingUsersResponseHandler.swift */; };
+		C9C55597210F357F00CBD656 /* FavoriteCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C55596210F357F00CBD656 /* FavoriteCreationRequest.swift */; };
+		C9C55599210F359000CBD656 /* FavoriteCreationResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C55598210F359000CBD656 /* FavoriteCreationResponseHandler.swift */; };
 		C9CA043720628B3400F5CCCE /* PopularHashtagsFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043620628B3400F5CCCE /* PopularHashtagsFetchRequest.swift */; };
 		C9CA043920628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043820628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift */; };
 		C9CA043B20628E3300F5CCCE /* SearchForHashtagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043A20628E3300F5CCCE /* SearchForHashtagRequest.swift */; };
@@ -1009,6 +1011,8 @@
 		C9B73249200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingCreationsResponseHandler.swift; sourceTree = "<group>"; };
 		C9B7324D200E480B004288A9 /* FetchTrendingUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingUsersRequest.swift; sourceTree = "<group>"; };
 		C9B7324F200E483B004288A9 /* FetchTrendingUsersResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTrendingUsersResponseHandler.swift; sourceTree = "<group>"; };
+		C9C55596210F357F00CBD656 /* FavoriteCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCreationRequest.swift; sourceTree = "<group>"; };
+		C9C55598210F359000CBD656 /* FavoriteCreationResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCreationResponseHandler.swift; sourceTree = "<group>"; };
 		C9CA043620628B3400F5CCCE /* PopularHashtagsFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularHashtagsFetchRequest.swift; sourceTree = "<group>"; };
 		C9CA043820628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularHashtagsFetchResponseHandler.swift; sourceTree = "<group>"; };
 		C9CA043A20628E3300F5CCCE /* SearchForHashtagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForHashtagRequest.swift; sourceTree = "<group>"; };
@@ -2082,6 +2086,8 @@
 				18F91EAC1F8E0BE60021F1BF /* CreationViewsCountIncrementResponseHandler.swift */,
 				C9B73247200E4043004288A9 /* FetchTrendingCreationsRequest.swift */,
 				C9B73249200E40E1004288A9 /* FetchTrendingCreationsResponseHandler.swift */,
+				C9C55596210F357F00CBD656 /* FavoriteCreationRequest.swift */,
+				C9C55598210F359000CBD656 /* FavoriteCreationResponseHandler.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -2949,6 +2955,7 @@
 				182A36C71D409602005E01DC /* UserAccountDetails.swift in Sources */,
 				18E6E8711CFF2F24008D7B89 /* Metadata.swift in Sources */,
 				1814B76E1DF825CE003B3C65 /* MyGalleriesQueueBatchFetcher.swift in Sources */,
+				C9C55597210F357F00CBD656 /* FavoriteCreationRequest.swift in Sources */,
 				1814B7691DF825CE003B3C65 /* FavoriteGalleriesBatchFetchOperation.swift in Sources */,
 				1854883C1E719C310047AC3B /* ServerErrorMapper.swift in Sources */,
 				1814B7621DF82186003B3C65 /* GalleriesQueueBatchFetcher.swift in Sources */,
@@ -3036,6 +3043,7 @@
 				188ECF701C74703200AFEE4F /* CreationUploadSession.swift in Sources */,
 				1823F88B1E548E6C00AD5517 /* DataIncludeMapper.swift in Sources */,
 				0837858D1D378AAE006EF69E /* ReportCreationResponseHandler.swift in Sources */,
+				C9C55599210F359000CBD656 /* FavoriteCreationResponseHandler.swift in Sources */,
 				C9AE94C4202855BE00BA4262 /* FetchSuggestedUsersRequest.swift in Sources */,
 				189D64491D9002B900D92E72 /* ErrorTransformer.swift in Sources */,
 				189D64481D9002B900D92E72 /* APIClientError.swift in Sources */,
