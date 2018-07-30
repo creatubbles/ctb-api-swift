@@ -473,6 +473,8 @@
 		C9C55599210F359000CBD656 /* FavoriteCreationResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C55598210F359000CBD656 /* FavoriteCreationResponseHandler.swift */; };
 		C9C5559B210F36E500CBD656 /* RemoveFavoriteCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C5559A210F36E500CBD656 /* RemoveFavoriteCreationRequest.swift */; };
 		C9C5559D210F36F500CBD656 /* RemoveFavoriteCreationResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C5559C210F36F500CBD656 /* RemoveFavoriteCreationResponseHandler.swift */; };
+		C9C5559F210F388D00CBD656 /* FavoriteGalleryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C5559E210F388D00CBD656 /* FavoriteGalleryRequest.swift */; };
+		C9C555A1210F389F00CBD656 /* FavoriteGalleryResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C555A0210F389F00CBD656 /* FavoriteGalleryResponseHandler.swift */; };
 		C9CA043720628B3400F5CCCE /* PopularHashtagsFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043620628B3400F5CCCE /* PopularHashtagsFetchRequest.swift */; };
 		C9CA043920628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043820628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift */; };
 		C9CA043B20628E3300F5CCCE /* SearchForHashtagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA043A20628E3300F5CCCE /* SearchForHashtagRequest.swift */; };
@@ -1017,6 +1019,8 @@
 		C9C55598210F359000CBD656 /* FavoriteCreationResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCreationResponseHandler.swift; sourceTree = "<group>"; };
 		C9C5559A210F36E500CBD656 /* RemoveFavoriteCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFavoriteCreationRequest.swift; sourceTree = "<group>"; };
 		C9C5559C210F36F500CBD656 /* RemoveFavoriteCreationResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFavoriteCreationResponseHandler.swift; sourceTree = "<group>"; };
+		C9C5559E210F388D00CBD656 /* FavoriteGalleryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGalleryRequest.swift; sourceTree = "<group>"; };
+		C9C555A0210F389F00CBD656 /* FavoriteGalleryResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGalleryResponseHandler.swift; sourceTree = "<group>"; };
 		C9CA043620628B3400F5CCCE /* PopularHashtagsFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularHashtagsFetchRequest.swift; sourceTree = "<group>"; };
 		C9CA043820628B7200F5CCCE /* PopularHashtagsFetchResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularHashtagsFetchResponseHandler.swift; sourceTree = "<group>"; };
 		C9CA043A20628E3300F5CCCE /* SearchForHashtagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForHashtagRequest.swift; sourceTree = "<group>"; };
@@ -2117,6 +2121,8 @@
 				188E033E1F3081D0005630D0 /* ChallengesGalleriesRequest.swift */,
 				18F91EA41F8E094F0021F1BF /* GalleryViewsCountIncrementRequest.swift */,
 				18F91EAE1F8E0C000021F1BF /* GalleryViewsCountIncrementResponseHandler.swift */,
+				C9C5559E210F388D00CBD656 /* FavoriteGalleryRequest.swift */,
+				C9C555A0210F389F00CBD656 /* FavoriteGalleryResponseHandler.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -2887,6 +2893,7 @@
 				18F6E8A01D021B6500AAC5FB /* NewGalleryResponseHandler.swift in Sources */,
 				189D9F5D1C84B36100857CC6 /* CreationUploadMapper.swift in Sources */,
 				182A36C31D4094DF005E01DC /* UserAccountDetailsResponseHandler.swift in Sources */,
+				C9C555A1210F389F00CBD656 /* FavoriteGalleryResponseHandler.swift in Sources */,
 				0837858B1D378A85006EF69E /* ReportCreationRequest.swift in Sources */,
 				189D9F5C1C84B36100857CC6 /* CreationMapper.swift in Sources */,
 				C9CA043D20628E4500F5CCCE /* SearchForHashtagResponseHandler.swift in Sources */,
@@ -3141,6 +3148,7 @@
 				18E6E86F1CFF2E1D008D7B89 /* AbilityMapper.swift in Sources */,
 				2117F8C31D3520CE00304D79 /* NotificationMetadataMapper.swift in Sources */,
 				18F6E8841D021B6500AAC5FB /* DeleteBubbleRequest.swift in Sources */,
+				C9C5559F210F388D00CBD656 /* FavoriteGalleryRequest.swift in Sources */,
 				21297EB61DAFADC1003CCF75 /* NotificationsViewTrackerResponseHandler.swift in Sources */,
 				08F5807B1D3FAC1700EDCEE2 /* UpdateGalleryData.swift in Sources */,
 				188BCEAF1C64E19D00EA4F11 /* APIClient.swift in Sources */,

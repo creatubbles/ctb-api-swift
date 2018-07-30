@@ -448,6 +448,10 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(GalleryDAO.self).incrementViewsCount(galleryIdentifier: galleryId, completion: completion)
     }
     
+    open func favoriteGallery(galleryId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(GalleryDAO.self).favoriteGallery(galleryIdentifier: galleryId, completion: completion)
+    }
+    
     // MARK: - Creation managment
     open func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler {
         return daoAssembly.assembly(CreationsDAO.self).getCreation(creationIdentifier: creationId, completion: completion)
