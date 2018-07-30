@@ -62,6 +62,7 @@ open class Gallery: NSObject, Identifiable {
 
     // MARK: - Metadata
     open let isBubbled: Bool
+    open let isFavorite: Bool
     open let abilities: Array<Ability>
 
     init(mapper: GalleryMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil) {
@@ -91,6 +92,7 @@ open class Gallery: NSObject, Identifiable {
         challengePublishedAt = mapper.challengePublishedAt
                 
         isBubbled = MappingUtils.bubbledStateFrom(metadata: metadata, forObjectWithIdentifier: identifier)
+        isFavorite = metadata?.favoritedGallerydentifiers.contains(identifier) ?? false
         abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
 
         ownerRelationship = mapper.parseOwnerRelationship()
