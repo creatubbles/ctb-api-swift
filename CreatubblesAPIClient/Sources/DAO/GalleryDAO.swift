@@ -153,4 +153,16 @@ public class GalleryDAO: NSObject, APIClientDAO {
         let handler = GalleryViewsCountIncrementResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func favoriteGallery(galleryIdentifier galleryId: String, completion: ErrorClosure?) -> RequestHandler {
+        let request = FavoriteGalleryRequest(galleryId: galleryId)
+        let handler = FavoriteGalleryResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func removeFavoriteGallery(galleryIdentifier galleryId: String, completion: ErrorClosure?) -> RequestHandler {
+        let request = RemoveFavoriteGalleryRequest(galleryId: galleryId)
+        let handler = RemoveFavoriteGalleryResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 }

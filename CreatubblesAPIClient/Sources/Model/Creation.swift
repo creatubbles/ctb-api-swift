@@ -80,6 +80,7 @@ open class Creation: NSObject, Identifiable {
 
     // MARK: - Metadata
     open let isBubbled: Bool
+    open let isFavorite: Bool
     open let abilities: Array<Ability>
 
     init(mapper: CreationMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil) {
@@ -137,7 +138,8 @@ open class Creation: NSObject, Identifiable {
 
         isBubbled = MappingUtils.bubbledStateFrom(metadata: metadata, forObjectWithIdentifier: identifier)
         abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
-
+        isFavorite = metadata?.favoritedCreationIdentifiers.contains(identifier) ?? false
+        
         if  let dataMapper = dataMapper,
             let relationships = creatorRelationships {
             creators = relationships.flatMap({ dataMapper.objectWithIdentifier($0.identifier, type: User.self) })
@@ -200,6 +202,7 @@ open class Creation: NSObject, Identifiable {
         userRelationship = nil
         creatorRelationships = nil
         isBubbled = false
+        isFavorite = false
         abilities = []
         approvalStatus = .unknown
     }

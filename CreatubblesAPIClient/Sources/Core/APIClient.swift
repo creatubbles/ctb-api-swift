@@ -448,6 +448,14 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(GalleryDAO.self).incrementViewsCount(galleryIdentifier: galleryId, completion: completion)
     }
     
+    open func favoriteGallery(galleryId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(GalleryDAO.self).favoriteGallery(galleryIdentifier: galleryId, completion: completion)
+    }
+    
+    open func removeFavoriteGallery(galleryId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(GalleryDAO.self).removeFavoriteGallery(galleryIdentifier: galleryId, completion: completion)
+    }
+    
     // MARK: - Creation managment
     open func getCreation(creationId: String, completion: CreationClosure?) -> RequestHandler {
         return daoAssembly.assembly(CreationsDAO.self).getCreation(creationIdentifier: creationId, completion: completion)
@@ -491,6 +499,14 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     
     open func getTrendingCreations(completion: CreationsClosure?) -> RequestHandler {
         return daoAssembly.assembly(CreationsDAO.self).getTrendingCreations(completion: completion)
+    }
+    
+    open func favoriteCreation(creationId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CreationsDAO.self).favoriteCreation(creationIdentifier: creationId, completion: completion)
+    }
+    
+    open func removeFavoriteCreation(creationId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CreationsDAO.self).removeFavoriteCreation(creationIdentifier: creationId, completion: completion)
     }
     
     // MARK: - Upload Sessions

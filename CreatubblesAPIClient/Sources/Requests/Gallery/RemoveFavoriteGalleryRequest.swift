@@ -1,5 +1,5 @@
 //
-//  MetadataMapper.swift
+//  RemoveFavoriteGalleryRequest.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -24,33 +24,15 @@
 //
 
 import UIKit
-import ObjectMapper
 
-class MetadataMapper: Mappable {
-    var bubbledCreationIdentifiers: Array<String>?
-    var bubbledUserIdentifiers: Array<String>?
-    var bubbledGalleryIdentifiers: Array<String>?
-    var abilityMappers: Array<AbilityMapper>?
-
-    var userFollowedUsersIdentifiers: Array<String>?
-    var userFollowedHashtagsIdentifiers: Array<String>?
-
-    var favoritedCreationIdentifiers: Array<String>?
-    var favoritedGallerydentifiers: Array<String>?
+class RemoveFavoriteGalleryRequest: Request {
     
-    required init?(map: Map) { /* Intentionally left empty  */ }
-
-    func mapping(map: Map) {
-        bubbledCreationIdentifiers <- map["user_bubbled_creations"]
-        bubbledUserIdentifiers <- map["user_bubbled_users"]
-        bubbledGalleryIdentifiers <- map["user_bubbled_galleries"]
-
-        abilityMappers <- map["abilities"]
-
-        userFollowedUsersIdentifiers <- map["followed_users"]
-        userFollowedHashtagsIdentifiers <- map["followed_hashtags"]
-        
-        favoritedCreationIdentifiers <- map["favorite_creations"]
-        favoritedGallerydentifiers <- map["favorite_galleries"]
+    override var method: RequestMethod { return .delete }
+    override var endpoint: String { return "galleries/\(galleryId)/favorite" }
+    
+    fileprivate let galleryId: String
+    
+    init(galleryId: String) {
+        self.galleryId = galleryId
     }
 }

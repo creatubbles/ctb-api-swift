@@ -94,6 +94,18 @@ class CreationsDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
 
+    func favoriteCreation(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler {
+        let request = FavoriteCreationRequest(creationId: creationId)
+        let handler = FavoriteCreationResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func removeFavoriteCreation(creationIdentifier creationId: String, completion: ErrorClosure?) -> RequestHandler {
+        let request = RemoveFavoriteCreationRequest(creationId: creationId)
+        let handler = RemoveFavoriteCreationResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     // MARK: BatchMode
     func getCreationsInBatchMode(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, partnerApplicationId: String?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler {
         let fetcher = CreationsQueueBatchFetcher(requestSender: requestSender, userId: userId, galleryId: galleryId, keyword: keyword, partnerApplicationId: partnerApplicationId, sort: sortOrder, onlyPublic: onlyPublic, completion: completion)

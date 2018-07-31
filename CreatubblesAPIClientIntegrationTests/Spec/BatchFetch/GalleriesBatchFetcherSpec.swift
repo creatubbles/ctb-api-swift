@@ -29,7 +29,7 @@ import Nimble
 
 class GalleriesBatchFetcherSpec: QuickSpec {
     override func spec() {
-        describe("GalleriesBatchFetcher") {
+        xdescribe("GalleriesBatchFetcher") {
             it("Should batch fetch galleries using operation client") {
                 guard TestConfiguration.shoulTestBatchFetchers else { return }
 
