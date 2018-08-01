@@ -1,5 +1,5 @@
 //
-//  PagingInfo.swift
+//  ListedChallenge.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -21,24 +21,33 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
 import UIKit
 
 @objc
-open class PagingInfo: NSObject {
-    open let totalPages: Int
-    open let totalCount: Int
-    open let feedTrackingId: String?
-    
-    public init(totalPages: Int, totalCount: Int, feedTrackingId: String?) {
-        self.totalPages = totalPages
-        self.totalCount = totalCount
-        self.feedTrackingId = feedTrackingId
-    }
+open class ListedChallenge: NSObject, Identifiable {
+    open let identifier: String
+    open let name: String
+    open let bannerUrl: String
+    open let creationsCount: Int
+    open let publishedAt: Date?
+    open let endsAt: Date?
+    open let state: ChallengeState
+    open let difficulty: ChallengeDifficulty
+    open let isFavorite: Bool
+    open let hasSubmitted: Bool
 
-    init(mapper: PagingInfoMapper) {
-        self.totalCount = mapper.totalCount ?? -1 // -1 as fallback for new pagination method
-        self.totalPages = mapper.totalPages ?? -1 // -1 as fallback for new pagination method
-        self.feedTrackingId = mapper.feedTrackingId
+    init(mapper: ListedChallengeMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil) {
+        identifier = mapper.identifier ?? ""
+        name = mapper.name ?? ""
+        bannerUrl = mapper.bannerUrl ?? ""
+        creationsCount = mapper.creationsCount ?? 0
+        publishedAt = mapper.publishedAt
+        endsAt = mapper.endsAt
+        state = mapper.parseState()
+        difficulty = mapper.parseDifficulty()
+        isFavorite = metadata?.favoriteChallengesIdentifiers.contains(identifier) ?? false
+        hasSubmitted = metadata?.submittedChallengesIdentifiers.contains(identifier) ?? false
     }
 }

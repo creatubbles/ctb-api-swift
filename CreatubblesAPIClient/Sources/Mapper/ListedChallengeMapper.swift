@@ -1,5 +1,5 @@
 //
-//  MetadataMapper.swift
+//  ListedChallengeMapper.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -26,37 +26,39 @@
 import UIKit
 import ObjectMapper
 
-class MetadataMapper: Mappable {
-    var bubbledCreationIdentifiers: Array<String>?
-    var bubbledUserIdentifiers: Array<String>?
-    var bubbledGalleryIdentifiers: Array<String>?
-    var abilityMappers: Array<AbilityMapper>?
-
-    var userFollowedUsersIdentifiers: Array<String>?
-    var userFollowedHashtagsIdentifiers: Array<String>?
-
-    var favoritedCreationIdentifiers: Array<String>?
-    var favoritedGalleryIdentifiers: Array<String>?
+class ListedChallengeMapper: Mappable {
+    var identifier: String?
+    var name: String?
+    var bannerUrl: String?
+    var creationsCount: Int?
+    var publishedAt: Date?
+    var endsAt: Date?
+    var state: String?
+    var difficulty: String?
     
-    var submittedChallengesIdentifiers: Array<String>?
-    var favoriteChallengesIdentifiers: Array<String>?
-
     required init?(map: Map) { /* Intentionally left empty  */ }
-
+    
     func mapping(map: Map) {
-        bubbledCreationIdentifiers <- map["user_bubbled_creations"]
-        bubbledUserIdentifiers <- map["user_bubbled_users"]
-        bubbledGalleryIdentifiers <- map["user_bubbled_galleries"]
-
-        abilityMappers <- map["abilities"]
-
-        userFollowedUsersIdentifiers <- map["followed_users"]
-        userFollowedHashtagsIdentifiers <- map["followed_hashtags"]
-        
-        favoritedCreationIdentifiers <- map["favorite_creations"]
-        favoritedGalleryIdentifiers <- map["favorite_galleries"]
-        
-        submittedChallengesIdentifiers <- map["submitted_challenges"]
-        favoriteChallengesIdentifiers <- map["favorite_challenges"]
+        identifier <- map["id"]
+        name <- map["attributes.name"]
+        bannerUrl <- map["attributes.banner.links.list_view_retina"]
+        creationsCount <- map["attributes.creations_count"]
+        publishedAt <- (map["attributes.challenge_published_at"], APIClientDateTransform.sharedTransform)
+        endsAt <- (map["attributes.challenge_ends_at"], APIClientDateTransform.sharedTransform)
+        state <- map["attributes.challenge_state"]
+        difficulty <- map["attributes.challenge_difficulty"]
+    }
+    
+    func parseState() -> ChallengeState {
+        if state == "open" { return .open }
+        if state == "closed" { return .closed }
+        return .undefined
+    }
+    
+    func parseDifficulty() -> ChallengeDifficulty {
+        if difficulty == "beginner" { return .beginner }
+        if difficulty == "intermediary" { return .intermediary }
+        if difficulty == "advanced" { return .advanced }
+        return .undefined
     }
 }

@@ -1,5 +1,5 @@
 //
-//  PagingInfo.swift
+//  ChallengesResponseHandler.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -21,24 +21,28 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
 import UIKit
+import ObjectMapper
 
-@objc
-open class PagingInfo: NSObject {
-    open let totalPages: Int
-    open let totalCount: Int
-    open let feedTrackingId: String?
+class ChallengesResponseHandler: ResponseHandler {
+    fileprivate let completion: ListedChallengesClosure?
     
-    public init(totalPages: Int, totalCount: Int, feedTrackingId: String?) {
-        self.totalPages = totalPages
-        self.totalCount = totalCount
-        self.feedTrackingId = feedTrackingId
+    init(completion: ListedChallengesClosure?) {
+        self.completion = completion
     }
-
-    init(mapper: PagingInfoMapper) {
-        self.totalCount = mapper.totalCount ?? -1 // -1 as fallback for new pagination method
-        self.totalPages = mapper.totalPages ?? -1 // -1 as fallback for new pagination method
-        self.feedTrackingId = mapper.feedTrackingId
+    
+    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
+        if  let response = response,
+            let mappers = Mapper<ListedChallengeMapper>().mapArray(JSONObject: response["data"]) {
+            let metadata = MappingUtils.metadataFromResponse(response)
+            let pageInfo = MappingUtils.pagingInfoFromResponse(response)
+            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
+            let challenges = mappers.map({ ListedChallenge(mapper: $0, dataMapper: dataMapper, metadata: metadata) })
+            executeOnMainQueue { self.completion?(challenges, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
+        } else {
+            executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
+        }
     }
 }

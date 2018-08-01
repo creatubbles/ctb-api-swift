@@ -65,6 +65,7 @@ public typealias HashtagsClosure = (Array<Hashtag>?, PagingInfo?, APIClientError
 public typealias HashtagClosure = (Hashtag?, APIClientError?) -> (Void)
 
 public typealias AvatarSuggestionsClosure = (Array<AvatarSuggestion>?, APIClientError?) -> (Void)
+public typealias ListedChallengesClosure = (Array<ListedChallenge>?, PagingInfo?, APIClientError?) -> (Void)
 
 open class ResponseData<T> {
     open let objects: Array<T>?
@@ -129,6 +130,19 @@ open class ResponseData<T> {
     case galleriesTip
     case bubblesTip
     case uploadTip
+}
+
+@objc public enum ChallengeState: Int {
+    case undefined
+    case open
+    case closed
+}
+
+@objc public enum ChallengeDifficulty: Int {
+    case undefined
+    case beginner
+    case intermediary
+    case advanced
 }
 
 @objc public enum ActivityType: Int {
@@ -773,6 +787,19 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(HashtagDAO.self).searchInPopularHashtags(query: query, pagingData: pagingData, completion: completion)
     }
 
+    // MARK: - Challengea
+    open func getHomeChallenges(pagingData: PagingData?, completion: ListedChallengesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(ChallengeDAO.self).getHomeChallenges(pagingData: pagingData, completion: completion)
+    }
+    
+    open func getFavoriteChallenges(pagingData: PagingData?, completion: ListedChallengesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(ChallengeDAO.self).getFavoriteChallenges(pagingData: pagingData, completion: completion)
+    }
+    
+    open func getPopularChallenges(pagingData: PagingData?, completion: ListedChallengesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(ChallengeDAO.self).getPopularChallenges(pagingData: pagingData, completion: completion)
+    }
+    
     // MARK: - Log listener
     open func addLoggerListnerer(_ listener: LogListener) {
         Logger.addListener(listener: listener)

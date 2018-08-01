@@ -1,5 +1,5 @@
 //
-//  PagingInfo.swift
+//  ChallengesRequest.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -21,24 +21,44 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
 import UIKit
 
-@objc
-open class PagingInfo: NSObject {
-    open let totalPages: Int
-    open let totalCount: Int
-    open let feedTrackingId: String?
-    
-    public init(totalPages: Int, totalCount: Int, feedTrackingId: String?) {
-        self.totalPages = totalPages
-        self.totalCount = totalCount
-        self.feedTrackingId = feedTrackingId
-    }
+public enum ChallengeGroup: String {
+    case home
+    case favorite
+    case popular
+}
 
-    init(mapper: PagingInfoMapper) {
-        self.totalCount = mapper.totalCount ?? -1 // -1 as fallback for new pagination method
-        self.totalPages = mapper.totalPages ?? -1 // -1 as fallback for new pagination method
-        self.feedTrackingId = mapper.feedTrackingId
+class ChallengesRequest: Request {
+    override var method: RequestMethod { return .get }
+    override var endpoint: String { return "challenges" }
+    override var parameters: Dictionary<String, AnyObject> { return prepareParams() }
+    
+    fileprivate let group: ChallengeGroup?
+    fileprivate let page: Int?
+    fileprivate let perPage: Int?
+    
+    init(group: ChallengeGroup? = nil, page: Int? = nil, perPage: Int? = nil) {
+        self.group = group
+        self.page = page
+        self.perPage = perPage
+    }
+    
+    func prepareParams() -> Dictionary<String, AnyObject> {
+        var params = Dictionary<String, AnyObject>()
+        
+        if let group = group {
+            params["filter[group]"] = group.rawValue as AnyObject?
+        }
+        if let page = page {
+            params["page"] = page as AnyObject?
+        }
+        if let perPage = perPage {
+            params["per_page"] = perPage as AnyObject?
+        }
+        
+        return params
     }
 }
