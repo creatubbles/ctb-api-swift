@@ -40,7 +40,7 @@ class ChallengesRequest: Request {
     fileprivate let page: Int?
     fileprivate let perPage: Int?
     
-    init(group: ChallengeGroup?, page: Int? = nil, perPage: Int? = nil) {
+    init(group: ChallengeGroup? = nil, page: Int? = nil, perPage: Int? = nil) {
         self.group = group
         self.page = page
         self.perPage = perPage
