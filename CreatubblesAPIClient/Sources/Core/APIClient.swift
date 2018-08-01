@@ -131,6 +131,19 @@ open class ResponseData<T> {
     case uploadTip
 }
 
+@objc public enum ChallengeState: Int {
+    case undefined
+    case open
+    case closed
+}
+
+@objc public enum ChallengeDifficulty: Int {
+    case undefined
+    case beginner
+    case intermediary
+    case advanced
+}
+
 @objc public enum ActivityType: Int {
     case unknown
     case creationBubbled
