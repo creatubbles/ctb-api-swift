@@ -508,6 +508,7 @@
 		C9F2C9C32111ACB600295DDC /* ChallengesResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2C9C22111ACB600295DDC /* ChallengesResponseHandler.swift */; };
 		C9F2C9C52111B1D000295DDC /* ChallengeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2C9C42111B1D000295DDC /* ChallengeDAO.swift */; };
 		C9F2C9C82111B37500295DDC /* ChallengesRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2C9C72111B37500295DDC /* ChallengesRequestSpec.swift */; };
+		C9F2C9CB2111B5DC00295DDC /* ChallengesResponseHandlerSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2C9CA2111B5DC00295DDC /* ChallengesResponseHandlerSpecs.swift */; };
 		DCB6AE268E81388D94B0CE09 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		DF413EEFCF6E24450841A6BB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D5DF300DAE4BC13E0AD21 /* Pods_CreatubblesAPIClient.framework */; };
 		FE0EAC71BB3B3D2D33C67AA0 /* Pods_CreatubblesAPIClientUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */; };
@@ -1066,6 +1067,7 @@
 		C9F2C9C22111ACB600295DDC /* ChallengesResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesResponseHandler.swift; sourceTree = "<group>"; };
 		C9F2C9C42111B1D000295DDC /* ChallengeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDAO.swift; sourceTree = "<group>"; };
 		C9F2C9C72111B37500295DDC /* ChallengesRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesRequestSpec.swift; sourceTree = "<group>"; };
+		C9F2C9CA2111B5DC00295DDC /* ChallengesResponseHandlerSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesResponseHandlerSpecs.swift; sourceTree = "<group>"; };
 		D304F60C707EA93E6195508E /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
 		DA9EC9D915023C993B9C5639 /* Pods-CreatubblesAPIClientUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		E29F3593FA73048027A65EE1 /* Pods_CreatubblesAPIClientDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1406,6 +1408,7 @@
 		185E317B1E7157160077E9A8 /* Spec */ = {
 			isa = PBXGroup;
 			children = (
+				C9F2C9C92111B59900295DDC /* Challenge */,
 				C92121A92029FACA0076EBB6 /* BatchFollow */,
 				C9B5A5512023207300C3BAF8 /* Hashtag */,
 				185E317F1E7157160077E9A8 /* APIClientSpec.swift */,
@@ -2428,6 +2431,14 @@
 			path = Challenge;
 			sourceTree = "<group>";
 		};
+		C9F2C9C92111B59900295DDC /* Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				C9F2C9CA2111B5DC00295DDC /* ChallengesResponseHandlerSpecs.swift */,
+			);
+			path = Challenge;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -3329,6 +3340,7 @@
 				185E322A1E7157160077E9A8 /* CreationResponseHandlerSpec.swift in Sources */,
 				185E327A1E7157170077E9A8 /* CreateAUserFollowingResponseHandlerSpec.swift in Sources */,
 				185E323A1E7157160077E9A8 /* CustomStyleFetchResponseHandlerSpec.swift in Sources */,
+				C9F2C9CB2111B5DC00295DDC /* ChallengesResponseHandlerSpecs.swift in Sources */,
 				C9AE94C8202857E600BA4262 /* FetchSuggestedUsersResponseHandlerSpec.swift in Sources */,
 				185E327C1E7157170077E9A8 /* DeleteAUserFollowingResponseHandlerSpec.swift in Sources */,
 				185E32401E7157160077E9A8 /* GalleriesResponseHandlerSpec.swift in Sources */,
