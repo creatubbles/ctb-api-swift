@@ -35,8 +35,10 @@ open class ListedChallenge: NSObject, Identifiable {
     open let endsAt: Date?
     open let state: ChallengeState
     open let difficulty: ChallengeDifficulty
-    
-    init(mapper: ListedChallengeMapper, dataMapper: DataIncludeMapper? = nil) {
+    open let isFavorite: Bool
+    open let hasSubmitted: Bool
+
+    init(mapper: ListedChallengeMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil) {
         identifier = mapper.identifier ?? ""
         name = mapper.name ?? ""
         bannerUrl = mapper.bannerUrl ?? ""
@@ -45,5 +47,7 @@ open class ListedChallenge: NSObject, Identifiable {
         endsAt = mapper.endsAt
         state = mapper.parseState()
         difficulty = mapper.parseDifficulty()
+        isFavorite = metadata?.favoriteChallengesIdentifiers.contains(identifier) ?? false
+        hasSubmitted = metadata?.submittedChallengesIdentifiers.contains(identifier) ?? false
     }
 }

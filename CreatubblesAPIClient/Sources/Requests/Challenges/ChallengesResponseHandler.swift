@@ -39,7 +39,7 @@ class ChallengesResponseHandler: ResponseHandler {
             let metadata = MappingUtils.metadataFromResponse(response)
             let pageInfo = MappingUtils.pagingInfoFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let challenges = mappers.map({ ListedChallenge(mapper: $0, dataMapper: dataMapper) })
+            let challenges = mappers.map({ ListedChallenge(mapper: $0, dataMapper: dataMapper, metadata: metadata) })
             executeOnMainQueue { self.completion?(challenges, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
         } else {
             executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }

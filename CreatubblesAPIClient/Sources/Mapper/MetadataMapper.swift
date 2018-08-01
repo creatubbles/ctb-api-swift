@@ -36,8 +36,11 @@ class MetadataMapper: Mappable {
     var userFollowedHashtagsIdentifiers: Array<String>?
 
     var favoritedCreationIdentifiers: Array<String>?
-    var favoritedGallerydentifiers: Array<String>?
+    var favoritedGalleryIdentifiers: Array<String>?
     
+    var submittedChallengesIdentifiers: Array<String>?
+    var favoriteChallengesIdentifiers: Array<String>?
+
     required init?(map: Map) { /* Intentionally left empty  */ }
 
     func mapping(map: Map) {
@@ -51,6 +54,9 @@ class MetadataMapper: Mappable {
         userFollowedHashtagsIdentifiers <- map["followed_hashtags"]
         
         favoritedCreationIdentifiers <- map["favorite_creations"]
-        favoritedGallerydentifiers <- map["favorite_galleries"]
+        favoritedGalleryIdentifiers <- map["favorite_galleries"]
+        
+        submittedChallengesIdentifiers <- map["submitted_challenges"]
+        favoriteChallengesIdentifiers <- map["favorite_challenges"]
     }
 }
