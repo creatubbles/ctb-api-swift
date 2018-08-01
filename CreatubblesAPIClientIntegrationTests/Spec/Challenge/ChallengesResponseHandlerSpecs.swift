@@ -40,10 +40,9 @@ class ChallengesResponseHandlerSpecs: QuickSpec {
                         (error: Error?) -> Void in
                         expect(error).to(beNil())
                         sender.send(request, withResponseHandler:ChallengesResponseHandler {
-                            (challenges, pagingInfo, error) -> (Void) in
+                            (challenges, error) -> (Void) in
                             expect(error).to(beNil())
                             expect(challenges).notTo(beNil())
-                            expect(pagingInfo).notTo(beNil())
                             sender.logout()
                             done()
                         })

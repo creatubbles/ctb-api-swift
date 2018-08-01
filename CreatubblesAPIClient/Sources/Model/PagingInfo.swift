@@ -37,8 +37,8 @@ open class PagingInfo: NSObject {
     }
 
     init(mapper: PagingInfoMapper) {
-        self.totalCount = mapper.totalCount ?? -1 // -1 as fallback for new pagination method
-        self.totalPages = mapper.totalPages ?? -1 // -1 as fallback for new pagination method
+        self.totalCount = mapper.totalCount!
+        self.totalPages = mapper.totalPages!
         self.feedTrackingId = mapper.feedTrackingId
     }
 }
