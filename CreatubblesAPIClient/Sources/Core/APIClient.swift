@@ -787,6 +787,19 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(HashtagDAO.self).searchInPopularHashtags(query: query, pagingData: pagingData, completion: completion)
     }
 
+    // MARK: - Challengea
+    open func getHomeChallenges(pagingData: PagingData?, completion: ListedChallengesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(ChallengeDAO.self).getHomeChallenges(pagingData: pagingData, completion: completion)
+    }
+    
+    open func getFavoriteChallenges(pagingData: PagingData?, completion: ListedChallengesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(ChallengeDAO.self).getFavoriteChallenges(pagingData: pagingData, completion: completion)
+    }
+    
+    open func getPopularChallenges(pagingData: PagingData?, completion: ListedChallengesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(ChallengeDAO.self).getPopularChallenges(pagingData: pagingData, completion: completion)
+    }
+    
     // MARK: - Log listener
     open func addLoggerListnerer(_ listener: LogListener) {
         Logger.addListener(listener: listener)

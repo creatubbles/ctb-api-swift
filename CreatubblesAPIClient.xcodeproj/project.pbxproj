@@ -506,6 +506,7 @@
 		C9F2C9BE2111A80200295DDC /* ListedChallengeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2C9BD2111A80200295DDC /* ListedChallengeMapper.swift */; };
 		C9F2C9C12111ACA600295DDC /* ChallengesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2C9C02111ACA600295DDC /* ChallengesRequest.swift */; };
 		C9F2C9C32111ACB600295DDC /* ChallengesResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2C9C22111ACB600295DDC /* ChallengesResponseHandler.swift */; };
+		C9F2C9C52111B1D000295DDC /* ChallengeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2C9C42111B1D000295DDC /* ChallengeDAO.swift */; };
 		DCB6AE268E81388D94B0CE09 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		DF413EEFCF6E24450841A6BB /* Pods_CreatubblesAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D5DF300DAE4BC13E0AD21 /* Pods_CreatubblesAPIClient.framework */; };
 		FE0EAC71BB3B3D2D33C67AA0 /* Pods_CreatubblesAPIClientUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */; };
@@ -1062,6 +1063,7 @@
 		C9F2C9BD2111A80200295DDC /* ListedChallengeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListedChallengeMapper.swift; sourceTree = "<group>"; };
 		C9F2C9C02111ACA600295DDC /* ChallengesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesRequest.swift; sourceTree = "<group>"; };
 		C9F2C9C22111ACB600295DDC /* ChallengesResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesResponseHandler.swift; sourceTree = "<group>"; };
+		C9F2C9C42111B1D000295DDC /* ChallengeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDAO.swift; sourceTree = "<group>"; };
 		D304F60C707EA93E6195508E /* Pods-CreatubblesAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClient/Pods-CreatubblesAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
 		DA9EC9D915023C993B9C5639 /* Pods-CreatubblesAPIClientUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		E29F3593FA73048027A65EE1 /* Pods_CreatubblesAPIClientDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1911,6 +1913,7 @@
 				21CC9E3D1DF833E100C6538C /* SearchTagDAO.swift */,
 				1823F87F1E54672100AD5517 /* DAOAssembly.swift */,
 				C9B5A54620231D4100C3BAF8 /* HashtagDAO.swift */,
+				C9F2C9C42111B1D000295DDC /* ChallengeDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -2954,6 +2957,7 @@
 				188E033F1F3081D0005630D0 /* ChallengesGalleriesRequest.swift in Sources */,
 				21B9334A1D2AEC2900FCD248 /* MyConnectionsRequest.swift in Sources */,
 				08C781EA1E1D03B80005864F /* AppScreenshotMapper.swift in Sources */,
+				C9F2C9C52111B1D000295DDC /* ChallengeDAO.swift in Sources */,
 				C9CA043720628B3400F5CCCE /* PopularHashtagsFetchRequest.swift in Sources */,
 				C9B5A54A20231DBB00C3BAF8 /* SuggestedHashtagsFetchRequest.swift in Sources */,
 				21A79F671C81E6A2009E95D1 /* PagingInfo.swift in Sources */,
