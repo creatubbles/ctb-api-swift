@@ -37,13 +37,15 @@ class ChallengesRequest: Request {
     override var parameters: Dictionary<String, AnyObject> { return prepareParams() }
     
     fileprivate let group: ChallengeGroup?
+    fileprivate let state: ChallengeState?
     fileprivate let page: Int?
     fileprivate let perPage: Int?
     
-    init(group: ChallengeGroup? = nil, page: Int? = nil, perPage: Int? = nil) {
+    init(group: ChallengeGroup? = nil, state: ChallengeState? = nil, page: Int? = nil, perPage: Int? = nil) {
         self.group = group
         self.page = page
         self.perPage = perPage
+        self.state = state
     }
     
     func prepareParams() -> Dictionary<String, AnyObject> {
@@ -51,6 +53,9 @@ class ChallengesRequest: Request {
         
         if let group = group {
             params["filter[group]"] = group.rawValue as AnyObject?
+        }
+        if let state = state {
+            params["filter[state]"] = state.rawValue as AnyObject?
         }
         if let page = page {
             params["page"] = page as AnyObject?

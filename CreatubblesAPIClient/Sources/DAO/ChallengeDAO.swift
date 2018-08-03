@@ -49,4 +49,10 @@ class ChallengeDAO: NSObject, APIClientDAO {
         let handler = ChallengesResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
+    
+    func getNonPaginatedChallenges(completion: ListedChallengesClosure?) -> RequestHandler {
+        let request = ChallengesRequest(page: 1, perPage: 100)
+        let handler = ChallengesResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
 }
