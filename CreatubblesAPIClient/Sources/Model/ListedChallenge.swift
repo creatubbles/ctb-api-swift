@@ -30,6 +30,7 @@ open class ListedChallenge: NSObject, Identifiable {
     open let identifier: String
     open let name: String
     open let bannerUrl: String
+    open let gifUrl: String?
     open let creationsCount: Int
     open let publishedAt: Date?
     open let endsAt: Date?
@@ -42,6 +43,7 @@ open class ListedChallenge: NSObject, Identifiable {
         identifier = mapper.identifier ?? ""
         name = mapper.name ?? ""
         bannerUrl = mapper.bannerUrl ?? ""
+        gifUrl = mapper.gifUrl
         creationsCount = mapper.creationsCount ?? 0
         publishedAt = mapper.publishedAt
         endsAt = mapper.endsAt

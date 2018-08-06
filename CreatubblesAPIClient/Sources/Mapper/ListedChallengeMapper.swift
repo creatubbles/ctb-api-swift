@@ -30,6 +30,7 @@ class ListedChallengeMapper: Mappable {
     var identifier: String?
     var name: String?
     var bannerUrl: String?
+    var gifUrl: String?
     var creationsCount: Int?
     var publishedAt: Date?
     var endsAt: Date?
@@ -42,6 +43,7 @@ class ListedChallengeMapper: Mappable {
         identifier <- map["id"]
         name <- map["attributes.name"]
         bannerUrl <- map["attributes.banner.links.list_view_retina"]
+        gifUrl <- map["attributes.gif_url"]
         creationsCount <- map["attributes.creations_count"]
         publishedAt <- (map["attributes.challenge_published_at"], APIClientDateTransform.sharedTransform)
         endsAt <- (map["attributes.challenge_ends_at"], APIClientDateTransform.sharedTransform)
