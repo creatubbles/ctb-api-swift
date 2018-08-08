@@ -63,7 +63,6 @@ open class Challenge: NSObject, Identifiable {
         endsAt = mapper.endsAt
         state = mapper.parseState()
         difficulty = mapper.parseDifficulty()
-        originalPartnerAppId = mapper.originalPartnerAppId
         isFavorite = metadata?.favoriteChallengesIdentifiers.contains(identifier) ?? false
         hasSubmitted = metadata?.submittedChallengesIdentifiers.contains(identifier) ?? false
         
@@ -78,5 +77,13 @@ open class Challenge: NSObject, Identifiable {
         
         connectedPartnersRelationships = mapper.parseConnectedPartnersRelashionships()
         connectedPartners = connectedPartnersRelationships?.flatMap { MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: PartnerApplicationProfile.self, shouldMap2ndLevelRelationships: false) }
+        
+        if mapper.originalPartnerAppId != nil {
+            originalPartnerAppId =  mapper.originalPartnerAppId
+        } else if let partners = connectedPartners, partners.count == 1 {
+            originalPartnerAppId = partners.first?.identifier
+        } else {
+            originalPartnerAppId = nil
+        }
     }
 }
