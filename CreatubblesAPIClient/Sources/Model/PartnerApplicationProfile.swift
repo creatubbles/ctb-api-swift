@@ -1,5 +1,5 @@
 //
-//  ChallengesResponseHandler.swift
+//  PartnerApplicationProfile.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -24,24 +24,16 @@
 //
 
 import UIKit
-import ObjectMapper
 
-class ChallengesResponseHandler: ResponseHandler {
-    fileprivate let completion: ChallengesClosure?
-    
-    init(completion: ChallengesClosure?) {
-        self.completion = completion
-    }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
-        if  let response = response,
-            let mappers = Mapper<ChallengeMapper>().mapArray(JSONObject: response["data"]) {
-            let metadata = MappingUtils.metadataFromResponse(response)
-            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let challenges = mappers.map({ Challenge(mapper: $0, dataMapper: dataMapper, metadata: metadata) })
-            executeOnMainQueue { self.completion?(challenges, ErrorTransformer.errorFromResponse(response, error: error)) }
-        } else {
-            executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
-        }
+@objc
+open class PartnerApplicationProfile: NSObject, Identifiable {
+    open let identifier: String
+    open let name: String
+    open let avatarUrl: String
+
+    init(mapper: PartnerApplicationProfileMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil) {
+        identifier = mapper.identifier!
+        name = mapper.name!
+        avatarUrl = mapper.avatarUrl!
     }
 }

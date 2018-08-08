@@ -65,7 +65,8 @@ public typealias HashtagsClosure = (Array<Hashtag>?, PagingInfo?, APIClientError
 public typealias HashtagClosure = (Hashtag?, APIClientError?) -> (Void)
 
 public typealias AvatarSuggestionsClosure = (Array<AvatarSuggestion>?, APIClientError?) -> (Void)
-public typealias ListedChallengesClosure = (Array<ListedChallenge>?, APIClientError?) -> (Void)
+public typealias ChallengesClosure = (Array<Challenge>?, APIClientError?) -> (Void)
+public typealias ChallengeClosure = (Challenge?, APIClientError?) -> (Void)
 
 open class ResponseData<T> {
     open let objects: Array<T>?
@@ -789,20 +790,24 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     }
 
     // MARK: - Challengea
-    open func getHomeChallenges(pagingData: PagingData?, completion: ListedChallengesClosure?) -> RequestHandler {
+    open func getHomeChallenges(pagingData: PagingData?, completion: ChallengesClosure?) -> RequestHandler {
         return daoAssembly.assembly(ChallengeDAO.self).getHomeChallenges(pagingData: pagingData, completion: completion)
     }
     
-    open func getFavoriteChallenges(pagingData: PagingData?, completion: ListedChallengesClosure?) -> RequestHandler {
+    open func getFavoriteChallenges(pagingData: PagingData?, completion: ChallengesClosure?) -> RequestHandler {
         return daoAssembly.assembly(ChallengeDAO.self).getFavoriteChallenges(pagingData: pagingData, completion: completion)
     }
     
-    open func getPopularChallenges(pagingData: PagingData?, completion: ListedChallengesClosure?) -> RequestHandler {
+    open func getPopularChallenges(pagingData: PagingData?, completion: ChallengesClosure?) -> RequestHandler {
         return daoAssembly.assembly(ChallengeDAO.self).getPopularChallenges(pagingData: pagingData, completion: completion)
     }
     
-    open func getChallengesNotPaginated(completion: ListedChallengesClosure?) -> RequestHandler {
+    open func getChallengesNotPaginated(completion: ChallengesClosure?) -> RequestHandler {
         return daoAssembly.assembly(ChallengeDAO.self).getNonPaginatedChallenges(completion: completion)
+    }
+    
+    open func getChallengeDetails(id: String, completion: ChallengeClosure?) -> RequestHandler {
+        return daoAssembly.assembly(ChallengeDAO.self).getChallengeDetails(id: id, completion: completion)
     }
     
     // MARK: - Log listener

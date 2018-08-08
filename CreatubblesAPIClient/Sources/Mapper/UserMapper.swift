@@ -114,7 +114,7 @@ class UserMapper: Mappable {
 
     // MARK: - Parsing
     func parseRole() -> Role {
-        switch self.role! {
+        switch self.role {
             case "parent":  return Role.parent
             case "instructor": return Role.instructor
             case "creator": return Role.creator

@@ -1,5 +1,5 @@
 //
-//  ListedChallenge.swift
+//  ChallengeRequest.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -23,33 +23,15 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-@objc
-open class ListedChallenge: NSObject, Identifiable {
-    open let identifier: String
-    open let name: String
-    open let bannerUrl: String
-    open let gifUrl: String?
-    open let creationsCount: Int
-    open let publishedAt: Date?
-    open let endsAt: Date?
-    open let state: ChallengeState
-    open let difficulty: ChallengeDifficulty
-    open let isFavorite: Bool
-    open let hasSubmitted: Bool
-
-    init(mapper: ListedChallengeMapper, dataMapper: DataIncludeMapper? = nil, metadata: Metadata? = nil) {
-        identifier = mapper.identifier ?? ""
-        name = mapper.name ?? ""
-        bannerUrl = mapper.bannerUrl ?? ""
-        gifUrl = mapper.gifUrl
-        creationsCount = mapper.creationsCount ?? 0
-        publishedAt = mapper.publishedAt
-        endsAt = mapper.endsAt
-        state = mapper.parseState()
-        difficulty = mapper.parseDifficulty()
-        isFavorite = metadata?.favoriteChallengesIdentifiers.contains(identifier) ?? false
-        hasSubmitted = metadata?.submittedChallengesIdentifiers.contains(identifier) ?? false
+class ChallengeRequest: Request {
+    override var method: RequestMethod { return .get }
+    override var endpoint: String { return "challenges/\(id)" }
+    
+    fileprivate let id: String
+    
+    init(id: String) {
+        self.id = id
     }
 }

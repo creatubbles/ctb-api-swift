@@ -1,5 +1,5 @@
 //
-//  ChallengesResponseHandler.swift
+//  ChallengeRequestSpec.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -23,25 +23,25 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
-import ObjectMapper
+import Quick
+import Nimble
+@testable import CreatubblesAPIClient
 
-class ChallengesResponseHandler: ResponseHandler {
-    fileprivate let completion: ChallengesClosure?
-    
-    init(completion: ChallengesClosure?) {
-        self.completion = completion
-    }
-    
-    override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
-        if  let response = response,
-            let mappers = Mapper<ChallengeMapper>().mapArray(JSONObject: response["data"]) {
-            let metadata = MappingUtils.metadataFromResponse(response)
-            let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let challenges = mappers.map({ Challenge(mapper: $0, dataMapper: dataMapper, metadata: metadata) })
-            executeOnMainQueue { self.completion?(challenges, ErrorTransformer.errorFromResponse(response, error: error)) }
-        } else {
-            executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
+class ChallengeRequestSpec: QuickSpec {
+    override func spec() {
+        
+        let challengeId = "challengeId"
+        
+        describe("Challenge request") {
+            it("Should have proper method") {
+                let request = ChallengeRequest(id: challengeId)
+                expect(request.method) == RequestMethod.get
+            }
+            
+            it("Should have proper endpoint") {
+                let request = ChallengeRequest(id: challengeId)
+                expect(request.endpoint).to(equal("challenges/\(challengeId)"))
+            }
         }
     }
 }

@@ -49,6 +49,46 @@ class ChallengesResponseHandlerSpecs: QuickSpec {
                     }
                 }
             }
+            
+            it("Should return favorite challenges after login") {
+                let request = ChallengesRequest(group: .favorite, page: 1, perPage: 20)
+                let sender = TestComponentsFactory.requestSender
+                
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
+                        (error: Error?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:ChallengesResponseHandler {
+                            (challenges, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(challenges).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
+            
+            it("Should return challenge details after login") {
+                let request = ChallengeRequest(id: "1vIikLL2")
+                let sender = TestComponentsFactory.requestSender
+                
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
+                        (error: Error?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:ChallengeResponseHandler {
+                            (challenge, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(challenge).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
         }
     }
 }

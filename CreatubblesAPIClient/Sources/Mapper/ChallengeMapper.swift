@@ -1,5 +1,5 @@
 //
-//  ListedChallengeMapper.swift
+//  ChallengeMapper.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -26,7 +26,7 @@
 import UIKit
 import ObjectMapper
 
-class ListedChallengeMapper: Mappable {
+class ChallengeMapper: Mappable {
     var identifier: String?
     var name: String?
     var bannerUrl: String?
@@ -36,6 +36,12 @@ class ListedChallengeMapper: Mappable {
     var endsAt: Date?
     var state: String?
     var difficulty: String?
+    var originalPartnerAppId: String?
+
+    var ownerRelationship: RelationshipMapper?
+    var bannerSectionRelationship: RelationshipMapper?
+    var instructionRelationships: Array<RelationshipMapper>?
+    var connectedPartnersRelashionships: Array<RelationshipMapper>?
     
     required init?(map: Map) { /* Intentionally left empty  */ }
     
@@ -49,8 +55,15 @@ class ListedChallengeMapper: Mappable {
         endsAt <- (map["attributes.challenge_ends_at"], APIClientDateTransform.sharedTransform)
         state <- map["attributes.challenge_state"]
         difficulty <- map["attributes.challenge_difficulty"]
+        originalPartnerAppId <- map["attributes.original_partner_application_id"]
+        
+        ownerRelationship <- map["relationships.owner.data"]
+        bannerSectionRelationship <- map["relationships.banner_section.data"]
+        instructionRelationships <- map["relationships.steps_sections.data"]
+        connectedPartnersRelashionships <- map["relationships.partner_application_profiles.data"]
     }
     
+    // MARK: Parsing
     func parseState() -> ChallengeState {
         if state == "open" { return .open }
         if state == "closed" { return .closed }
@@ -62,5 +75,21 @@ class ListedChallengeMapper: Mappable {
         if difficulty == "intermediary" { return .intermediary }
         if difficulty == "advanced" { return .advanced }
         return .undefined
+    }
+    
+    func parseOwnerRelationship() -> Relationship? {
+        return MappingUtils.relationshipFromMapper(ownerRelationship)
+    }
+    
+    func parseBannerSectionRelationship() -> Relationship? {
+        return MappingUtils.relationshipFromMapper(bannerSectionRelationship)
+    }
+    
+    func parseInstructionRelationships() -> Array<Relationship>? {
+        return instructionRelationships?.flatMap { MappingUtils.relationshipFromMapper($0) }
+    }
+    
+    func parseConnectedPartnersRelashionships() -> Array<Relationship>? {
+        return connectedPartnersRelashionships?.flatMap { MappingUtils.relationshipFromMapper($0) }
     }
 }

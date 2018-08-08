@@ -90,32 +90,32 @@ open class User: NSObject, Identifiable {
         identifier = mapper.identifier!
         username = mapper.username!
         displayName = mapper.displayName!
-        listName = mapper.listName!
-        name = mapper.name!
+        listName = mapper.listName ?? ""
+        name = mapper.name ?? ""
         role = mapper.parseRole()
         lastBubbledAt = mapper.lastBubbledAt as Date?
         lastCommentedAt = mapper.lastCommentedAt as Date?
-        createdAt = mapper.createdAt! as Date
-        updatedAt = mapper.updatedAt! as Date
+        createdAt = mapper.createdAt ?? Date()
+        updatedAt = mapper.updatedAt ?? Date()
         avatarUrl = mapper.avatarUrl!
         countryCode = mapper.countryCode != nil ? mapper.countryCode! : "US"
-        countryName = mapper.countryName!
+        countryName = mapper.countryName ?? ""
         age = mapper.age
         gender = mapper.parseGender()
-        shortUrl = mapper.shortUrl!
+        shortUrl = mapper.shortUrl ?? ""
 
-        bubblesCount = mapper.bubblesCount!
+        bubblesCount = mapper.bubblesCount ?? 0
         bubblesOnCreationsCount = mapper.bubblesOnCreationsCount ?? 0
-        addedBubblesCount = mapper.addedBubblesCount!
-        activitiesCount = mapper.activitiesCount!
-        commentsCount = mapper.commentsCount!
-        creationsCount = mapper.creationsCount!
-        creatorsCount = mapper.creatorsCount!
-        galleriesCount = mapper.galleriesCount!
-        managersCount = mapper.managersCount!
+        addedBubblesCount = mapper.addedBubblesCount ?? 0
+        activitiesCount = mapper.activitiesCount ?? 0
+        commentsCount = mapper.commentsCount ?? 0
+        creationsCount = mapper.creationsCount ?? 0
+        creatorsCount = mapper.creatorsCount ?? 0
+        galleriesCount = mapper.galleriesCount ?? 0
+        managersCount = mapper.managersCount ?? 0
 
-        homeSchooling = mapper.homeSchooling!
-        signedUpAsInstructor = mapper.signedUpAsInstructor!
+        homeSchooling = mapper.homeSchooling ?? false
+        signedUpAsInstructor = mapper.signedUpAsInstructor ?? false
 
         isBubbled = MappingUtils.bubbledStateFrom(metadata: metadata, forObjectWithIdentifier: identifier)
         abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
