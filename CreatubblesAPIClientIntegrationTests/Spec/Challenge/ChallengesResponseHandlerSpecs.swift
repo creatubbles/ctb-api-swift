@@ -69,6 +69,26 @@ class ChallengesResponseHandlerSpecs: QuickSpec {
                     }
                 }
             }
+            
+            fit("Should return challenge details after login") {
+                let request = ChallengeRequest(id: "1vIikLL2")
+                let sender = TestComponentsFactory.requestSender
+                
+                waitUntil(timeout: TestConfiguration.timeoutShort) {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
+                        (error: Error?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:ChallengeResponseHandler {
+                            (challenge, error) -> (Void) in
+                            expect(error).to(beNil())
+                            expect(challenge).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
         }
     }
 }

@@ -32,6 +32,7 @@ open class DataIncludeMapperDefaultParser: NSObject, DataIncludeMapperParser {
 
         switch typeString {
             case "users":     mapper = Mapper<UserMapper>().map(JSON: json)
+            case "user_profiles":     mapper = Mapper<UserMapper>().map(JSON: json)
             case "creations": mapper = Mapper<CreationMapper>().map(JSON: json)
             case "galleries": mapper = Mapper<GalleryMapper>().map(JSON: json)
             case "partner_applications": mapper = Mapper<PartnerApplicationsMapper>().map(JSON: json)
