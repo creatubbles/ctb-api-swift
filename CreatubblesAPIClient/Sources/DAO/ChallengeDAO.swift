@@ -32,27 +32,33 @@ class ChallengeDAO: NSObject, APIClientDAO {
         self.requestSender = dependencies.requestSender
     }
     
-    func getHomeChallenges(pagingData: PagingData?, completion: ListedChallengesClosure?) -> RequestHandler {
+    func getHomeChallenges(pagingData: PagingData?, completion: ChallengesClosure?) -> RequestHandler {
         let request = ChallengesRequest(group: .home, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ChallengesResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getFavoriteChallenges(pagingData: PagingData?, completion: ListedChallengesClosure?) -> RequestHandler {
+    func getFavoriteChallenges(pagingData: PagingData?, completion: ChallengesClosure?) -> RequestHandler {
         let request = ChallengesRequest(group: .favorite, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ChallengesResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getPopularChallenges(pagingData: PagingData?, completion: ListedChallengesClosure?) -> RequestHandler {
+    func getPopularChallenges(pagingData: PagingData?, completion: ChallengesClosure?) -> RequestHandler {
         let request = ChallengesRequest(group: .popular, page: pagingData?.page, perPage: pagingData?.pageSize)
         let handler = ChallengesResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
     
-    func getNonPaginatedChallenges(completion: ListedChallengesClosure?) -> RequestHandler {
+    func getNonPaginatedChallenges(completion: ChallengesClosure?) -> RequestHandler {
         let request = ChallengesRequest(page: 1, perPage: 100)
         let handler = ChallengesResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
+    func getChallengeDetails(id: String, completion: ChallengeClosure?) -> RequestHandler {
+        let request = ChallengeRequest(id: id)
+        let handler = ChallengeResponseHandler(completion: completion)
         return requestSender.send(request, withResponseHandler: handler)
     }
 }

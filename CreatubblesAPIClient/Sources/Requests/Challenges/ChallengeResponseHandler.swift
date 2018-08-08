@@ -1,5 +1,5 @@
 //
-//  ChallengesResponseHandler.swift
+//  ChallengeResponseHandler.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -26,20 +26,20 @@
 import UIKit
 import ObjectMapper
 
-class ChallengesResponseHandler: ResponseHandler {
-    fileprivate let completion: ChallengesClosure?
-    
-    init(completion: ChallengesClosure?) {
+class ChallengeResponseHandler: ResponseHandler {
+    fileprivate let completion: ChallengeClosure?
+    init(completion: ChallengeClosure?) {
         self.completion = completion
     }
     
     override func handleResponse(_ response: Dictionary<String, AnyObject>?, error: Error?) {
         if  let response = response,
-            let mappers = Mapper<ChallengeMapper>().mapArray(JSONObject: response["data"]) {
+            let challengeMapper = Mapper<ChallengeMapper>().map(JSON: response["data"] as! [String : Any]) {
             let metadata = MappingUtils.metadataFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
-            let challenges = mappers.map({ Challenge(mapper: $0, dataMapper: dataMapper, metadata: metadata) })
-            executeOnMainQueue { self.completion?(challenges, ErrorTransformer.errorFromResponse(response, error: error)) }
+            let challenge = Challenge(mapper: challengeMapper, dataMapper: dataMapper, metadata: metadata)
+            
+            executeOnMainQueue { self.completion?(challenge, ErrorTransformer.errorFromResponse(response, error: ErrorTransformer.errorFromResponse(response, error: error))) }
         } else {
             executeOnMainQueue { self.completion?(nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
