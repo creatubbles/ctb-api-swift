@@ -70,7 +70,7 @@ class ChallengesResponseHandlerSpecs: QuickSpec {
                 }
             }
             
-            fit("Should return challenge details after login") {
+            it("Should return challenge details after login") {
                 let request = ChallengeRequest(id: "1vIikLL2")
                 let sender = TestComponentsFactory.requestSender
                 

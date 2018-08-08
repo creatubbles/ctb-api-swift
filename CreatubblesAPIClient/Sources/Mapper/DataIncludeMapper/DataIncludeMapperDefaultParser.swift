@@ -70,7 +70,7 @@ open class DataIncludeMapperDefaultParser: NSObject, DataIncludeMapperParser {
         //DataIncludeMapper isn't passed here intentionally to get rid of infinite recurrence User -> CustomStyle -> User -> ...
         if let mapper = mapper as? CustomStyleMapper { return CustomStyle(mapper: mapper) }
         if let mapper = mapper as? GalleryInstructionMapper { return GalleryInstruction(mapper: mapper) }
-        if let mapper = mapper as? ChallengeMapper { return Challenge(mapper: mapper) }
+        if let mapper = mapper as? PartnerApplicationProfileMapper { return PartnerApplicationProfile(mapper: mapper) }
 
         return nil
     }
