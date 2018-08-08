@@ -65,7 +65,7 @@ public typealias HashtagsClosure = (Array<Hashtag>?, PagingInfo?, APIClientError
 public typealias HashtagClosure = (Hashtag?, APIClientError?) -> (Void)
 
 public typealias AvatarSuggestionsClosure = (Array<AvatarSuggestion>?, APIClientError?) -> (Void)
-public typealias ListedChallengesClosure = (Array<ListedChallenge>?, APIClientError?) -> (Void)
+public typealias ListedChallengesClosure = (Array<Challenge>?, APIClientError?) -> (Void)
 
 open class ResponseData<T> {
     open let objects: Array<T>?

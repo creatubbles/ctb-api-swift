@@ -42,7 +42,7 @@ open class DataIncludeMapperDefaultParser: NSObject, DataIncludeMapperParser {
             case "creation_entities": mapper = Mapper<NotificationTextEntityMapper>().map(JSON: json)
             case "gallery_entities": mapper = Mapper<NotificationTextEntityMapper>().map(JSON: json)
             case "comments": mapper = Mapper<CommentMapper>().map(JSON: json)
-            case "partner_applications": mapper = Mapper<PartnerApplicationsMapper>().map(JSON: json)
+            case "partner-application-profiles": mapper = Mapper<PartnerApplicationProfileMapper>().map(JSON: json)
             case "app_screenshots": mapper = Mapper<AppScreenshotMapper>().map(JSON: json)
             case "gallery_howto_sections": mapper = Mapper<GalleryInstructionMapper>().map(JSON: json)
             default: mapper = nil
