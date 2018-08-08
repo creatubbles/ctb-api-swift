@@ -1,5 +1,5 @@
 //
-//  ChallengeRequest.swift
+//  ChallengeRequestSpec.swift
 //  CreatubblesAPIClient
 //
 //  Copyright (c) 2017 Creatubbles Pte. Ltd.
@@ -23,15 +23,25 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import Quick
+import Nimble
+@testable import CreatubblesAPIClient
 
-class ChallengeRequest: Request {
-    override var method: RequestMethod { return .get }
-    override var endpoint: String { return "challenges/\(id)" }
-    
-    fileprivate let id: String
-    
-    init(id: String) {
-        self.id = id
+class ChallengeRequestSpec: QuickSpec {
+    override func spec() {
+        
+        let challengeId = "challengeId"
+        
+        describe("Challenge request") {
+            it("Should have proper method") {
+                let request = ChallengeRequest(id: challengeId)
+                expect(request.method) == RequestMethod.get
+            }
+            
+            it("Should have proper endpoint") {
+                let request = ChallengeRequest(id: challengeId)
+                expect(request.endpoint).to(equal("challenges/\(challengeId)"))
+            }
+        }
     }
 }

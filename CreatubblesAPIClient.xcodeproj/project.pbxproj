@@ -473,6 +473,7 @@
 		C9C49F50211B01590012A1C8 /* PartnerApplicationProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C49F4F211B01590012A1C8 /* PartnerApplicationProfile.swift */; };
 		C9C49F53211B0EC30012A1C8 /* ChallengeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C49F52211B0EC30012A1C8 /* ChallengeRequest.swift */; };
 		C9C49F55211B0ED50012A1C8 /* ChallengeResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C49F54211B0ED50012A1C8 /* ChallengeResponseHandler.swift */; };
+		C9C49F57211B14660012A1C8 /* ChallengeRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C49F56211B14660012A1C8 /* ChallengeRequestSpec.swift */; };
 		C9C55597210F357F00CBD656 /* FavoriteCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C55596210F357F00CBD656 /* FavoriteCreationRequest.swift */; };
 		C9C55599210F359000CBD656 /* FavoriteCreationResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C55598210F359000CBD656 /* FavoriteCreationResponseHandler.swift */; };
 		C9C5559B210F36E500CBD656 /* RemoveFavoriteCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C5559A210F36E500CBD656 /* RemoveFavoriteCreationRequest.swift */; };
@@ -1036,6 +1037,7 @@
 		C9C49F4F211B01590012A1C8 /* PartnerApplicationProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerApplicationProfile.swift; sourceTree = "<group>"; };
 		C9C49F52211B0EC30012A1C8 /* ChallengeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRequest.swift; sourceTree = "<group>"; };
 		C9C49F54211B0ED50012A1C8 /* ChallengeResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeResponseHandler.swift; sourceTree = "<group>"; };
+		C9C49F56211B14660012A1C8 /* ChallengeRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRequestSpec.swift; sourceTree = "<group>"; };
 		C9C55596210F357F00CBD656 /* FavoriteCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCreationRequest.swift; sourceTree = "<group>"; };
 		C9C55598210F359000CBD656 /* FavoriteCreationResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCreationResponseHandler.swift; sourceTree = "<group>"; };
 		C9C5559A210F36E500CBD656 /* RemoveFavoriteCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFavoriteCreationRequest.swift; sourceTree = "<group>"; };
@@ -2439,6 +2441,7 @@
 			isa = PBXGroup;
 			children = (
 				C9F2C9C72111B37500295DDC /* ChallengesRequestSpec.swift */,
+				C9C49F56211B14660012A1C8 /* ChallengeRequestSpec.swift */,
 			);
 			path = Challenge;
 			sourceTree = "<group>";
@@ -3290,6 +3293,7 @@
 				C9CEF9FF2046CA1B00047DEC /* SearchInFollowedUsersRequestSpec.swift in Sources */,
 				C95040BC2035D3DC0059632F /* HashtagFetchRequestSpec.swift in Sources */,
 				185E33371E71571E0077E9A8 /* ReportCommentRequestSpec.swift in Sources */,
+				C9C49F57211B14660012A1C8 /* ChallengeRequestSpec.swift in Sources */,
 				185E33791E71571E0077E9A8 /* CreatorsAndManagersRequestSpec.swift in Sources */,
 				185E33871E71571E0077E9A8 /* SwitchUserRequestSpec.swift in Sources */,
 				185E33281E71571E0077E9A8 /* AvatarSuggestionsFetchRequestSpec.swift in Sources */,
