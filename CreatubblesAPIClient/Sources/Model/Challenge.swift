@@ -31,6 +31,7 @@ open class Challenge: NSObject, Identifiable {
     open let name: String
     open let bannerUrl: String
     open let gifUrl: String?
+    open let descriptionText: String?
     open let creationsCount: Int
     open let publishedAt: Date?
     open let endsAt: Date?
@@ -61,6 +62,7 @@ open class Challenge: NSObject, Identifiable {
         creationsCount = mapper.creationsCount ?? 0
         publishedAt = mapper.publishedAt
         endsAt = mapper.endsAt
+        descriptionText = mapper.descriptionText
         state = mapper.parseState()
         difficulty = mapper.parseDifficulty()
         isFavorite = metadata?.favoriteChallengesIdentifiers.contains(identifier) ?? false
