@@ -94,16 +94,16 @@ open class Creation: NSObject, Identifiable {
         }
 
         createdAt = mapper.createdAt! as Date
-        updatedAt = mapper.updatedAt! as Date
-        imageStatus = mapper.imageStatus!
-        bubblesCount = mapper.bubblesCount!
-        commentsCount = mapper.commentsCount!
-        viewsCount = mapper.viewsCount!
+        updatedAt = mapper.updatedAt ?? createdAt
+        imageStatus = mapper.imageStatus ?? 0
+        bubblesCount = mapper.bubblesCount ?? 0
+        commentsCount = mapper.commentsCount ?? 0
+        viewsCount = mapper.viewsCount ?? 0
         lastBubbledAt = mapper.lastBubbledAt as Date?
         lastCommentedAt = mapper.lastCommentedAt as Date?
         lastSubmittedAt = mapper.lastSubmittedAt as Date?
-        approved = mapper.approved!
-        shortUrl = mapper.shortUrl!
+        approved = mapper.approved ?? true
+        shortUrl = mapper.shortUrl ?? ""
         createdAtAge = mapper.createdAtAge
         createdAtAgePerCreator = mapper.createdAtAgePerCreator
 
