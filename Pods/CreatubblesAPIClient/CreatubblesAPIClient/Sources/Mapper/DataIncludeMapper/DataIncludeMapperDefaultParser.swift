@@ -34,6 +34,7 @@ open class DataIncludeMapperDefaultParser: NSObject, DataIncludeMapperParser {
             case "users":     mapper = Mapper<UserMapper>().map(JSON: json)
             case "user_profiles":     mapper = Mapper<UserMapper>().map(JSON: json)
             case "creations": mapper = Mapper<CreationMapper>().map(JSON: json)
+            case "listed-creations": mapper = Mapper<CreationMapper>().map(JSON: json)
             case "galleries": mapper = Mapper<GalleryMapper>().map(JSON: json)
             case "partner_applications": mapper = Mapper<PartnerApplicationsMapper>().map(JSON: json)
             case "custom_styles": mapper = Mapper<CustomStyleMapper>().map(JSON: json)
