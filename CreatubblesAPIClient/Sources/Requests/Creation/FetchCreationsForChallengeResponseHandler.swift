@@ -36,11 +36,10 @@ class FetchCreationsForChallengeResponseHandler: ResponseHandler {
         if  let response = response,
             let mappers = Mapper<CreationMapper>().mapArray(JSONObject: response["data"]) {
             let metadata = MappingUtils.metadataFromResponse(response)
-            let pageInfo = MappingUtils.pagingInfoFromResponse(response)
             let dataMapper = MappingUtils.dataIncludeMapperFromResponse(response, metadata: metadata)
             let creations = mappers.map({ Creation(mapper: $0, dataMapper: dataMapper, metadata: metadata) })
             
-            executeOnMainQueue { self.completion?(creations, pageInfo, ErrorTransformer.errorFromResponse(response, error: error)) }
+            executeOnMainQueue { self.completion?(creations, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         } else {
             executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }

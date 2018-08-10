@@ -94,7 +94,7 @@ open class Creation: NSObject, Identifiable {
         }
 
         createdAt = mapper.createdAt! as Date
-        updatedAt = mapper.updatedAt ?? createdAt
+        updatedAt = mapper.updatedAt ?? mapper.createdAt!
         imageStatus = mapper.imageStatus ?? 0
         bubblesCount = mapper.bubblesCount ?? 0
         commentsCount = mapper.commentsCount ?? 0

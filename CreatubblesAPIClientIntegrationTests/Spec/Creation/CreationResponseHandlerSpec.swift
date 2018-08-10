@@ -143,6 +143,26 @@ class CreationResponseHandlerSpec: QuickSpec {
                     }
                 }
             }
+            
+            it("Should return correct value for creations in challenge after login") {
+                let request = FetchCreationsForChallengeRequest(page: nil, perPage: nil, challengeId: "1vIikLL2", sort: .createdAtDesc)
+                let sender = TestComponentsFactory.requestSender
+                waitUntil(timeout: TestConfiguration.timeoutMedium) {
+                    done in
+                    sender.login(TestConfiguration.username, password: TestConfiguration.password) {
+                        (error: Error?) -> Void in
+                        expect(error).to(beNil())
+                        sender.send(request, withResponseHandler:FetchCreationsForChallengeResponseHandler {
+                            (creations: Array<Creation>?, pageInfo: PagingInfo?, error: Error?) -> Void in
+                            expect(creations).notTo(beNil())
+                            expect(error).to(beNil())
+                            expect(pageInfo).notTo(beNil())
+                            sender.logout()
+                            done()
+                        })
+                    }
+                }
+            }
         }
     }
 }
