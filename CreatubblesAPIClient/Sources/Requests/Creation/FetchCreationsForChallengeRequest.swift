@@ -29,6 +29,7 @@ class FetchCreationsForChallengeRequest: Request {
     override var endpoint: String {
         return "v3/creations"
     }
+    override var useExternalNamespace: Bool { return true }
     
     override var parameters: Dictionary<String, AnyObject> { return prepareParametersDictionary() }
     
@@ -37,14 +38,12 @@ class FetchCreationsForChallengeRequest: Request {
     fileprivate let challengeId: String?
     fileprivate let sort: SortMethod?
     
-    
     init(page: Int?, perPage: Int?, challengeId: String?, sort: SortMethod?) {
         self.page = page
         self.perPage = perPage
         self.challengeId = challengeId
         self.sort = sort
     }
-    
     
     func prepareParametersDictionary() -> Dictionary<String, AnyObject> {
         var params = Dictionary<String, AnyObject>()
