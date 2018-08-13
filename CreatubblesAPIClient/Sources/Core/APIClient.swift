@@ -94,6 +94,13 @@ open class ResponseData<T> {
     case recent
 }
 
+public enum SortMethod: String {
+    case createdAtDesc = "created_at_desc"
+    case createdAtAsc = "created_at_asc"
+    case bubbleCountDesc = "bubble_count_desc"
+    case bubbleCountAsc = "bubble_count_asc"
+}
+
 @objc public enum LandingURLType: Int {
     case unknown //Read only
     case aboutUs
@@ -523,6 +530,10 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     
     open func removeFavoriteCreation(creationId: String, completion: ErrorClosure?) -> RequestHandler {
         return daoAssembly.assembly(CreationsDAO.self).removeFavoriteCreation(creationIdentifier: creationId, completion: completion)
+    }
+    
+    open func getCreationsForChallenge(challengeId: String?, pagingData: PagingData?, sortOrder: SortMethod?, completion: CreationsClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CreationsDAO.self).getCreationsForChallenge(challengeIdentifier:challengeId, pagingData: pagingData, sortOrder: sortOrder, completion: completion)
     }
     
     // MARK: - Upload Sessions

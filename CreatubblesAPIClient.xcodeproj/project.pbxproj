@@ -454,6 +454,9 @@
 		C95040BA2035D1590059632F /* HashtagFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95040B92035D1590059632F /* HashtagFetchResponseHandler.swift */; };
 		C95040BC2035D3DC0059632F /* HashtagFetchRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95040BB2035D3DC0059632F /* HashtagFetchRequestSpec.swift */; };
 		C95040BE2035D5110059632F /* FetchHashtagResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95040BD2035D5110059632F /* FetchHashtagResponseHandlerSpec.swift */; };
+		C989E387211DC9A8002D25B9 /* FetchCreationsForChallengeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C989E386211DC9A8002D25B9 /* FetchCreationsForChallengeRequest.swift */; };
+		C989E389211DC9BA002D25B9 /* FetchCreationsForChallengeResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C989E388211DC9BA002D25B9 /* FetchCreationsForChallengeResponseHandler.swift */; };
+		C989E38B211DD67B002D25B9 /* FetchCreationsForChallengeRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C989E38A211DD67B002D25B9 /* FetchCreationsForChallengeRequestSpec.swift */; };
 		C997CE8C201B2DB800EB1562 /* HashtagContentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C997CE8B201B2DB800EB1562 /* HashtagContentRequest.swift */; };
 		C9AE94C4202855BE00BA4262 /* FetchSuggestedUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AE94C3202855BE00BA4262 /* FetchSuggestedUsersRequest.swift */; };
 		C9AE94C62028565B00BA4262 /* FetchSuggestedUsersResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AE94C52028565B00BA4262 /* FetchSuggestedUsersResponseHandler.swift */; };
@@ -1018,6 +1021,9 @@
 		C95040B92035D1590059632F /* HashtagFetchResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagFetchResponseHandler.swift; sourceTree = "<group>"; };
 		C95040BB2035D3DC0059632F /* HashtagFetchRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagFetchRequestSpec.swift; sourceTree = "<group>"; };
 		C95040BD2035D5110059632F /* FetchHashtagResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchHashtagResponseHandlerSpec.swift; sourceTree = "<group>"; };
+		C989E386211DC9A8002D25B9 /* FetchCreationsForChallengeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreationsForChallengeRequest.swift; sourceTree = "<group>"; };
+		C989E388211DC9BA002D25B9 /* FetchCreationsForChallengeResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreationsForChallengeResponseHandler.swift; sourceTree = "<group>"; };
+		C989E38A211DD67B002D25B9 /* FetchCreationsForChallengeRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreationsForChallengeRequestSpec.swift; sourceTree = "<group>"; };
 		C997CE8B201B2DB800EB1562 /* HashtagContentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagContentRequest.swift; sourceTree = "<group>"; };
 		C9AE94C3202855BE00BA4262 /* FetchSuggestedUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSuggestedUsersRequest.swift; sourceTree = "<group>"; };
 		C9AE94C52028565B00BA4262 /* FetchSuggestedUsersResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSuggestedUsersResponseHandler.swift; sourceTree = "<group>"; };
@@ -1734,6 +1740,7 @@
 				185E32BE1E71571E0077E9A8 /* ReportCreationRequestSpec.swift */,
 				18F91EA81F8E0B0B0021F1BF /* CreationViewsCountIncrementRequestSpec.swift */,
 				C9C555A6210F3A6200CBD656 /* FavoriteCreationRequestSpec.swift */,
+				C989E38A211DD67B002D25B9 /* FetchCreationsForChallengeRequestSpec.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -2146,6 +2153,8 @@
 				C9C55598210F359000CBD656 /* FavoriteCreationResponseHandler.swift */,
 				C9C5559A210F36E500CBD656 /* RemoveFavoriteCreationRequest.swift */,
 				C9C5559C210F36F500CBD656 /* RemoveFavoriteCreationResponseHandler.swift */,
+				C989E386211DC9A8002D25B9 /* FetchCreationsForChallengeRequest.swift */,
+				C989E388211DC9BA002D25B9 /* FetchCreationsForChallengeResponseHandler.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -3071,6 +3080,7 @@
 				C92121A62029F8470076EBB6 /* BatchFollowRequest.swift in Sources */,
 				C90F44D22031995200EF2831 /* CreateAHashtagFollowingRequest.swift in Sources */,
 				0846DD551E07E224002722ED /* DeclineCommentResponseHandler.swift in Sources */,
+				C989E389211DC9BA002D25B9 /* FetchCreationsForChallengeResponseHandler.swift in Sources */,
 				183B5BBF1D8BDDD200A19298 /* APIClient_ObjC.swift in Sources */,
 				217745111DD9C9880012FFDC /* UpdateUserAvatarResponseHandler.swift in Sources */,
 				18F6E89E1D021B6500AAC5FB /* GallerySubmissionResponseHandler.swift in Sources */,
@@ -3090,6 +3100,7 @@
 				1823F88C1E548E6C00AD5517 /* DataIncludeMapperDefaultParser.swift in Sources */,
 				1895D36D1D11F81B009B7271 /* EditProfileData.swift in Sources */,
 				18F6E8991D021B6500AAC5FB /* NewCreationUploadRequest.swift in Sources */,
+				C989E387211DC9A8002D25B9 /* FetchCreationsForChallengeRequest.swift in Sources */,
 				08BBFE381D7EB13D005F1F11 /* FeaturedGalleriesRequest.swift in Sources */,
 				18F6E8A61D021B6500AAC5FB /* CreatorsAndManagersResponseHandler.swift in Sources */,
 				181E76D11CC5351D00A1546A /* BubbleMapper.swift in Sources */,
@@ -3265,6 +3276,7 @@
 				185E33811E71571E0077E9A8 /* NewCreatorRequestSpec.swift in Sources */,
 				185E334D1E71571E0077E9A8 /* CustomStyleEditRequestSpec.swift in Sources */,
 				C9393CA7203B335C008EF0CB /* HashtagFollowersRequestSpec.swift in Sources */,
+				C989E38B211DD67B002D25B9 /* FetchCreationsForChallengeRequestSpec.swift in Sources */,
 				185E33721E71571E0077E9A8 /* PartnerApplicationRequestSpec.swift in Sources */,
 				188E03411F3087B4005630D0 /* ChallengesGalleriesSpec.swift in Sources */,
 				185E335E1E71571E0077E9A8 /* UpdateGalleryRequestSpec.swift in Sources */,

@@ -100,7 +100,12 @@ class CreationMapper: Mappable {
         video480Url <- map["attributes.video_480_url"]
         video720Url <- map["attributes.video_720_url"]
 
-        bubblesCount <- map["attributes.bubbles_count"]
+        let bubblesMap = map["attributes.bubbles_count"]
+        if bubblesMap.isKeyPresent {
+            bubblesCount <- bubblesMap
+        } else {
+            bubblesCount <- map["attributes.bubble_count"]
+        }
         commentsCount <- map["attributes.comments_count"]
         viewsCount <- map["attributes.views_count"]
 
@@ -114,7 +119,12 @@ class CreationMapper: Mappable {
         createdAtAge <- map["attributes.created_at_age"]
         createdAtAgePerCreator <- map["attributes.created_at_age_per_creator"]
 
-        userRelationship <- map["relationships.user.data"]
+        let userRelationshipMap = map["relationships.user.data"]
+        if userRelationshipMap.isKeyPresent {
+            userRelationship <- userRelationshipMap
+        } else {
+            userRelationship <- map["relationships.user_profile.data"]
+        }
         creatorRelationships <- map["relationships.creators.data"]
 
         reflectionText <- map["attributes.reflection_text"]
