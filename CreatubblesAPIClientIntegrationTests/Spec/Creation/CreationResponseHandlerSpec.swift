@@ -144,7 +144,7 @@ class CreationResponseHandlerSpec: QuickSpec {
                 }
             }
             
-            fit("Should return correct value for creations in challenge after login") {
+            it("Should return correct value for creations in challenge after login") {
                 let request = FetchCreationsForChallengeRequest(page: nil, perPage: nil, challengeId: "1vIikLL2", sort: .createdAtDesc)
                 let sender = TestComponentsFactory.requestSender
                 waitUntil(timeout: TestConfiguration.timeoutMedium) {
@@ -156,6 +156,7 @@ class CreationResponseHandlerSpec: QuickSpec {
                             (creations: Array<Creation>?, pageInfo: PagingInfo?, error: Error?) -> Void in
                             expect(creations).notTo(beNil())
                             expect(error).to(beNil())
+                            expect(pageInfo).to(beNil())
                             sender.logout()
                             done()
                         })
