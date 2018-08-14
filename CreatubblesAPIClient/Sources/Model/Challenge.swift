@@ -31,6 +31,7 @@ open class Challenge: NSObject, Identifiable {
     open let name: String
     open let bannerUrl: String
     open let gifUrl: String?
+    open let shortUrl: String?
     open let descriptionText: String?
     open let creationsCount: Int
     open let publishedAt: Date?
@@ -59,6 +60,7 @@ open class Challenge: NSObject, Identifiable {
         name = mapper.name ?? ""
         bannerUrl = mapper.bannerUrl ?? ""
         gifUrl = mapper.gifUrl
+        shortUrl = mapper.shortUrl
         creationsCount = mapper.creationsCount ?? 0
         publishedAt = mapper.publishedAt
         endsAt = mapper.endsAt
