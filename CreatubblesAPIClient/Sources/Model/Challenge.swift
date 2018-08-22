@@ -41,6 +41,7 @@ open class Challenge: NSObject, Identifiable {
     open let originalPartnerAppId: String?
     open let isFavorite: Bool
     open let hasSubmitted: Bool
+    open let ownerTrackingId: String?
 
     // MARK: - Relationships
     open let owner: User?
@@ -67,6 +68,7 @@ open class Challenge: NSObject, Identifiable {
         descriptionText = mapper.descriptionText
         state = mapper.parseState()
         difficulty = mapper.parseDifficulty()
+        ownerTrackingId = mapper.ownerTrackingId
         isFavorite = metadata?.favoriteChallengesIdentifiers.contains(identifier) ?? false
         hasSubmitted = metadata?.submittedChallengesIdentifiers.contains(identifier) ?? false
         
