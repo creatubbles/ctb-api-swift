@@ -81,7 +81,12 @@ class UserMapper: Mappable {
         createdAt <- (map["attributes.created_at"], APIClientDateTransform.sharedTransform)
         updatedAt <- (map["attributes.updated_at"], APIClientDateTransform.sharedTransform)
         avatarUrl <- map["attributes.avatar_url"]
-        countryCode <- map["attributes.country_code"]
+        let countryCodeMap = map["attributes.country_code"]
+        if countryCodeMap.isKeyPresent {
+            countryCode <- countryCodeMap
+        } else {
+            countryCode <- map["attributes.country"]
+        }
         countryName <- map["attributes.country_name"]
         age <- map["attributes.age"]
         shortUrl <- map["attributes.short_url"]
