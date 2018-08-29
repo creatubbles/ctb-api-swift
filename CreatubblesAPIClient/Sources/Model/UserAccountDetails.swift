@@ -58,6 +58,7 @@ open class UserAccountDetails: NSObject {
     open let addedBubblesCount: Int
     open let addedCommentsCount: Int
     open let creationsCount: Int
+    open let personalizedAvatarSourceUrl: String?
 
     public init(mapper: UserAccountDetailsMapper, metadata: Metadata?) {
         identifier = mapper.identifier!
@@ -89,7 +90,8 @@ open class UserAccountDetails: NSObject {
         addedBubblesCount = mapper.addedBubblesCount ?? 0
         addedCommentsCount = mapper.addedCommentsCount ?? 0
         creationsCount = mapper.creationsCount ?? 0
-
+        personalizedAvatarSourceUrl = mapper.personalizedAvatarSourceUrl
+        
         abilities = MappingUtils.abilitiesFrom(metadata: metadata, forObjectWithIdentifier: identifier)
         requiresGuardianApproval = mapper.requiresGuardianApproval
         lastGuardianApprovalEmail = mapper.lastGuardianApprovalEmail

@@ -57,6 +57,7 @@ public class UserAccountDetailsMapper: Mappable {
     var addedBubblesCount: Int?
     var addedCommentsCount: Int?
     var creationsCount: Int?
+    var personalizedAvatarSourceUrl: String?
 
     public required init?(map: Map) { /* Intentionally left empty  */ }
 
@@ -87,6 +88,7 @@ public class UserAccountDetailsMapper: Mappable {
         addedBubblesCount <- map["attributes.added_bubbles_count"]
         addedCommentsCount <- map["attributes.added_comments_count"]
         creationsCount <- map["attributes.creations_count"]
+        personalizedAvatarSourceUrl <- map["attributes.personalized_avatar_source_url"]
 
         passwordUpdatedAt <- (map["attributes.password_updated_at"], APIClientDateTransform.sharedTransform)
         currentSignInAt <- (map["attributes.current_sign_in_at"], APIClientDateTransform.sharedTransform)
