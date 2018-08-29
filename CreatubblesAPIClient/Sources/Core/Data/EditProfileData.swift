@@ -44,4 +44,5 @@ open class EditProfileData: NSObject {
     open var receiveNewswletter: Bool?
     open var avatarCreationIdentifier: String?
     open var interestsList: Array<String>?
+    open var personalizedAvatarSourceUrl: String?
 }
