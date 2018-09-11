@@ -141,7 +141,7 @@ public enum SortMethod: String {
 }
 
 public enum ChallengeState: String {
-    case undefined
+    case undefined = "undefined_state"
     case open
     case closed
 }
