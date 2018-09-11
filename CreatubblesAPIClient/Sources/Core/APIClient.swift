@@ -821,6 +821,14 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(ChallengeDAO.self).getChallengeDetails(id: id, completion: completion)
     }
     
+    open func getOpenChallenges(pagingData: PagingData?, completion: ChallengesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(ChallengeDAO.self).getOpenChallenges(pagingData: pagingData, completion: completion)
+    }
+    
+    open func getClosedChallenges(pagingData: PagingData?, completion: ChallengesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(ChallengeDAO.self).getClosedChallenges(pagingData: pagingData, completion: completion)
+    }
+    
     // MARK: - Log listener
     open func addLoggerListnerer(_ listener: LogListener) {
         Logger.addListener(listener: listener)
