@@ -140,7 +140,7 @@ public enum SortMethod: String {
     case uploadTip
 }
 
-@objc public enum ChallengeState: Int {
+public enum ChallengeState: String {
     case undefined
     case open
     case closed
