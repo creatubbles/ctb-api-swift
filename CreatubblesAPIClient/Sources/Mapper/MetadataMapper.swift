@@ -41,6 +41,9 @@ class MetadataMapper: Mappable {
     var submittedChallengesIdentifiers: Array<String>?
     var favoriteChallengesIdentifiers: Array<String>?
 
+    var ownedItemsIdentifiers: Array<String>?
+    var itemsInUseIdentifiers: Array<String>?
+    
     required init?(map: Map) { /* Intentionally left empty  */ }
 
     func mapping(map: Map) {
@@ -58,5 +61,8 @@ class MetadataMapper: Mappable {
         
         submittedChallengesIdentifiers <- map["submitted_challenges"]
         favoriteChallengesIdentifiers <- map["favorite_challenges"]
+        
+        ownedItemsIdentifiers <- map["owned_items"]
+        itemsInUseIdentifiers <- map["items_in_use"]
     }
 }
