@@ -813,6 +813,10 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         return daoAssembly.assembly(ChallengeDAO.self).getPopularChallenges(pagingData: pagingData, completion: completion)
     }
     
+    open func getChallengeDetailsChallenges(pagingData: PagingData?, completion: ChallengesClosure?) -> RequestHandler {
+        return daoAssembly.assembly(ChallengeDAO.self).getChallengeDetailsChallenges(pagingData: pagingData, completion: completion)
+    }
+    
     open func getChallengesNotPaginated(completion: ChallengesClosure?) -> RequestHandler {
         return daoAssembly.assembly(ChallengeDAO.self).getNonPaginatedChallenges(completion: completion)
     }

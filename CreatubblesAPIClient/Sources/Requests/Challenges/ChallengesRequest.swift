@@ -29,6 +29,7 @@ public enum ChallengeGroup: String {
     case home
     case favorite
     case popular
+    case challengeDetails = "challenge_details"
 }
 
 class ChallengesRequest: Request {

@@ -50,6 +50,12 @@ class ChallengeDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getChallengeDetailsChallenges(pagingData: PagingData?, completion: ChallengesClosure?) -> RequestHandler {
+        let request = ChallengesRequest(group: .challengeDetails, page: pagingData?.page, perPage: pagingData?.pageSize)
+        let handler = ChallengesResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     func getNonPaginatedChallenges(completion: ChallengesClosure?) -> RequestHandler {
         let request = ChallengesRequest(page: 1, perPage: 100)
         let handler = ChallengesResponseHandler(completion: completion)
