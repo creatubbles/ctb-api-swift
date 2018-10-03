@@ -118,7 +118,7 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  s.ios.dependency 'ObjectMapper', '2.0'
+  s.ios.dependency 'ObjectMapper', '3.3.0'
   s.ios.dependency "XCGLogger", '4.0.0'
   s.ios.dependency 'RealmSwift', '2.10.1'
   s.ios.dependency 'KeychainAccess', '3.0.1'
