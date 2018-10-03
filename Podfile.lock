@@ -1,54 +1,48 @@
 PODS:
-  - CreatubblesAPIClient (0.2.0):
-    - KeychainAccess (= 3.0.1)
-    - ObjectMapper (= 2.0)
-    - RealmSwift (= 2.10.1)
-    - XCGLogger (= 4.0.0)
   - KeychainAccess (3.0.1)
-  - Nimble (7.0.1)
-  - ObjectMapper (2.0.0)
+  - Nimble (7.0.3)
+  - ObjectMapper (3.3.0)
   - Quick (1.1.0)
   - Realm (2.10.1):
     - Realm/Headers (= 2.10.1)
   - Realm/Headers (2.10.1)
   - RealmSwift (2.10.1):
     - Realm (= 2.10.1)
-  - SwiftLint (0.22.0)
+  - SwiftLint (0.27.0)
   - XCGLogger (4.0.0):
     - XCGLogger/Core (= 4.0.0)
   - XCGLogger/Core (4.0.0)
 
 DEPENDENCIES:
-  - CreatubblesAPIClient (from `https://github.com/creatubbles/ctb-api-swift.git`, branch `develop`)
-  - KeychainAccess (~> 3.0.1)
+  - KeychainAccess
   - Nimble (~> 7.0.0)
-  - ObjectMapper (~> 2.0)
+  - ObjectMapper (~> 3.3)
   - Quick (~> 1.1.0)
-  - RealmSwift (~> 2.10.1)
+  - RealmSwift
   - SwiftLint
-  - XCGLogger (~> 4.0.0)
+  - XCGLogger
 
-EXTERNAL SOURCES:
-  CreatubblesAPIClient:
-    :branch: develop
-    :git: https://github.com/creatubbles/ctb-api-swift.git
-
-CHECKOUT OPTIONS:
-  CreatubblesAPIClient:
-    :commit: 531805ee39bbf6a157fdaedf3ef32595d81d6fe2
-    :git: https://github.com/creatubbles/ctb-api-swift.git
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - KeychainAccess
+    - Nimble
+    - ObjectMapper
+    - Quick
+    - Realm
+    - RealmSwift
+    - SwiftLint
+    - XCGLogger
 
 SPEC CHECKSUMS:
-  CreatubblesAPIClient: f27bc2b736431f7fcfe186e1b4b4b43052f6d9f0
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
-  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
-  ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
+  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Realm: fc7a317a5c2c9ba91f5f235ede4e2ea76e9eba0c
   RealmSwift: 505ed6c15942a2e76f5cfa78a8667cfa997ee75b
-  SwiftLint: 1134786caedd2caab0560d2f36b76414a5a56808
+  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: 7b2b89173957fddf1cc4bd5737f17e58bd7e1404
+PODFILE CHECKSUM: 5f7df6e1773caf6f0756a1c7569fd28760c7d4d5
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3

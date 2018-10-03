@@ -1,6 +1,0 @@
-framework module Pods_CreatubblesAPIClientDemo {
-  umbrella header "Pods-CreatubblesAPIClientDemo-umbrella.h"
-
-  export *
-  module * { export * }
-}

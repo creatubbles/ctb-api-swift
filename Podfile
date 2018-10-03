@@ -8,10 +8,10 @@ def test_pods
 end
 
 def shared_pods
-    pod 'ObjectMapper', '~> 2.0'
-    pod 'XCGLogger', '~> 4.0.0'
-    pod 'RealmSwift',  '~> 2.10.1'
-    pod 'KeychainAccess', '~> 3.0.1'
+    pod 'ObjectMapper', '~> 3.3'
+    pod 'XCGLogger'
+    pod 'RealmSwift'
+    pod 'KeychainAccess'
     pod 'SwiftLint'
 end
 
@@ -27,16 +27,11 @@ target 'CreatubblesAPIClientIntegrationTests' do
     test_pods
 end
 
-target 'CreatubblesAPIClientDemo' do
-    shared_pods
-    pod 'CreatubblesAPIClient', :git => 'https://github.com/creatubbles/ctb-api-swift.git', :branch => 'develop'
-end
-
-post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-            config.build_settings['SWIFT_VERSION'] = '3.0'
-        end
-    end
-end
+#post_install do |installer|
+#    installer.pods_project.targets.each do |target|
+#        target.build_configurations.each do |config|
+#            config.build_settings['SWIFT_VERSION'] = '3.0'
+#        end
+#    end
+#end
 
