@@ -140,7 +140,14 @@ public class RequestSender: NSObject {
                 handler.handleResponse(nil, error: ErrorTransformer.errorsFromResponse(response as? Dictionary<String, AnyObject>).first)
             } else {
                 DispatchQueue.global().async {
-                    handler.handleResponse((response as? Dictionary<String, AnyObject>), error: nil)
+                    if let response = response as? Dictionary<String, AnyObject> {
+                        handler.handleResponse(response, error: nil)
+                    } else if let array = response as? Array<AnyObject> {
+                        // Added this case to handle non standard json-api format array response
+                        handler.handleResponse(["data": array as AnyObject], error: nil)
+                    } else {
+                        handler.handleResponse((response as? Dictionary<String, AnyObject>), error: nil)
+                    }
                 }
             }
         }
