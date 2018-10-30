@@ -43,6 +43,7 @@ open class Challenge: NSObject, Identifiable {
     open let hasSubmitted: Bool
     open let ownerTrackingId: String?
     open let partnerTrackingId: String?
+    open let reward: Int?
 
     // MARK: - Relationships
     open let owner: User?
@@ -72,6 +73,8 @@ open class Challenge: NSObject, Identifiable {
         ownerTrackingId = mapper.ownerTrackingId
         partnerTrackingId = mapper.partnerTrackingId
 
+        reward = mapper.reward
+        
         isFavorite = metadata?.favoriteChallengesIdentifiers.contains(identifier) ?? false
         hasSubmitted = metadata?.submittedChallengesIdentifiers.contains(identifier) ?? false
         

@@ -41,6 +41,7 @@ class ChallengeMapper: Mappable {
     var descriptionText: String?
     var ownerTrackingId: String?
     var partnerTrackingId: String?
+    var reward: Int?
 
     var ownerRelationship: RelationshipMapper?
     var bannerSectionRelationship: RelationshipMapper?
@@ -64,6 +65,7 @@ class ChallengeMapper: Mappable {
         descriptionText <- map["attributes.description"]
         ownerTrackingId <- map["attributes.owner_tracking_id"]
         partnerTrackingId <- map["attributes.partner_tracking_id"]
+        reward <- map["attributes.reward"]
 
         ownerRelationship <- map["relationships.owner.data"]
         bannerSectionRelationship <- map["relationships.banner_section.data"]
