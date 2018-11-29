@@ -26,6 +26,22 @@
 import UIKit
 
 @objc
+open class CreationTool: NSObject {
+    open let identifier: String?
+    open let name: String?
+    
+    init (identifier: String, name: String) {
+        self.identifier = identifier
+        self.name = name
+    }
+    
+    init(mapper: CreationToolMapper) {
+        identifier = mapper.identifier
+        name = mapper.name
+    }
+}
+
+@objc
 open class Challenge: NSObject, Identifiable {
     open let identifier: String
     open let name: String
@@ -44,6 +60,7 @@ open class Challenge: NSObject, Identifiable {
     open let ownerTrackingId: String?
     open let partnerTrackingId: String?
     open let reward: Int?
+    open let requiredTools: Array<CreationTool>
 
     // MARK: - Relationships
     open let owner: User?
@@ -89,6 +106,12 @@ open class Challenge: NSObject, Identifiable {
         
         connectedPartnersRelationships = mapper.parseConnectedPartnersRelashionships()
         connectedPartners = connectedPartnersRelationships?.flatMap { MappingUtils.objectFromMapper(dataMapper, relationship: $0, type: PartnerApplicationProfile.self, shouldMap2ndLevelRelationships: false) }
+        
+        if let requiredToolsMappers = mapper.requiredToolsMappers {
+            requiredTools = requiredToolsMappers.flatMap({ CreationTool(mapper: $0) })
+        } else {
+            requiredTools = []
+        }
         
         if mapper.originalPartnerAppId != nil {
             originalPartnerAppId =  mapper.originalPartnerAppId

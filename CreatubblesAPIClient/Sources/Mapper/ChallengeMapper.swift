@@ -26,6 +26,18 @@
 import UIKit
 import ObjectMapper
 
+class CreationToolMapper: Mappable {
+    var identifier: String?
+    var name: String?
+    
+    // MARK: - Mappable
+    required init?(map: Map) { /* Intentionally left empty  */ }
+    
+    func mapping(map: Map) {
+        identifier <- map["id"]
+        name <- map["name"]
+    }
+}
 class ChallengeMapper: Mappable {
     var identifier: String?
     var name: String?
@@ -42,6 +54,7 @@ class ChallengeMapper: Mappable {
     var ownerTrackingId: String?
     var partnerTrackingId: String?
     var reward: Int?
+    var requiredToolsMappers: Array<CreationToolMapper>?
 
     var ownerRelationship: RelationshipMapper?
     var bannerSectionRelationship: RelationshipMapper?
@@ -66,6 +79,7 @@ class ChallengeMapper: Mappable {
         ownerTrackingId <- map["attributes.owner_tracking_id"]
         partnerTrackingId <- map["attributes.partner_tracking_id"]
         reward <- map["attributes.challenge_reward"]
+        requiredToolsMappers <- map["attributes.required_tools"]
 
         ownerRelationship <- map["relationships.owner.data"]
         bannerSectionRelationship <- map["relationships.banner_section.data"]
