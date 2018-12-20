@@ -30,6 +30,7 @@ public class GalleryInstruction: NSObject, Identifiable {
     public let position: Int?
     public let title: String?
     public let descriptionText: String?
+    public let descriptionHtml: String?
     public let imageUrl: String?
     public let video480Url: String?
     public let video720Url: String?
@@ -40,6 +41,7 @@ public class GalleryInstruction: NSObject, Identifiable {
         position = mapper.position
         title = mapper.title
         descriptionText = mapper.descriptionText
+        descriptionHtml = mapper.descriptionHtml
         imageUrl = mapper.imageUrl
         video480Url = mapper.video480Url
         video720Url = mapper.video720Url

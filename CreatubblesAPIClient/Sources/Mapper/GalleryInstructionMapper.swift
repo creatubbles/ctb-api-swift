@@ -31,6 +31,7 @@ class GalleryInstructionMapper: Mappable {
     var position: Int?
     var title: String?
     var descriptionText: String?
+    var descriptionHtml: String?
     var imageUrl: String?
     var video480Url: String?
     var video720Url: String?
@@ -43,6 +44,7 @@ class GalleryInstructionMapper: Mappable {
         position <- map["attributes.position"]
         title <- map["attributes.title"]
         descriptionText <- map["attributes.content"]
+        descriptionHtml <- map["attributes.content_html"]
         imageUrl <- map["attributes.image.links.original"]
         video480Url <- map["attributes.video_480_url"]
         video720Url <- map["attributes.video_720_url"]
