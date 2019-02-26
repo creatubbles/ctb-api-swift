@@ -432,6 +432,7 @@
 		B225DF7A1EB31F2200AB6F4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF781EB31F2200AB6F4C /* LaunchScreen.storyboard */; };
 		C90C25FA222579ED00F23A0E /* FetchCreationsForHubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90C25F9222579ED00F23A0E /* FetchCreationsForHubRequest.swift */; };
 		C90C25FC22257A3900F23A0E /* FetchCreationsForHubResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90C25FB22257A3900F23A0E /* FetchCreationsForHubResponseHandler.swift */; };
+		C90C25FE22257B5300F23A0E /* FetchCreationsForHubRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90C25FD22257B5300F23A0E /* FetchCreationsForHubRequestSpec.swift */; };
 		C90F44D22031995200EF2831 /* CreateAHashtagFollowingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90F44D12031995200EF2831 /* CreateAHashtagFollowingRequest.swift */; };
 		C90F44D4203199AF00EF2831 /* CreateAHashtagFollowingResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90F44D3203199AF00EF2831 /* CreateAHashtagFollowingResponseHandler.swift */; };
 		C90F44D620319A2D00EF2831 /* DeleteAHashtagFollowingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90F44D520319A2D00EF2831 /* DeleteAHashtagFollowingRequest.swift */; };
@@ -998,6 +999,7 @@
 		C52FFD63D028A2A016EFFBFC /* Pods_CreatubblesAPIClientUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreatubblesAPIClientUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C90C25F9222579ED00F23A0E /* FetchCreationsForHubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreationsForHubRequest.swift; sourceTree = "<group>"; };
 		C90C25FB22257A3900F23A0E /* FetchCreationsForHubResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreationsForHubResponseHandler.swift; sourceTree = "<group>"; };
+		C90C25FD22257B5300F23A0E /* FetchCreationsForHubRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreationsForHubRequestSpec.swift; sourceTree = "<group>"; };
 		C90F44D12031995200EF2831 /* CreateAHashtagFollowingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAHashtagFollowingRequest.swift; sourceTree = "<group>"; };
 		C90F44D3203199AF00EF2831 /* CreateAHashtagFollowingResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAHashtagFollowingResponseHandler.swift; sourceTree = "<group>"; };
 		C90F44D520319A2D00EF2831 /* DeleteAHashtagFollowingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAHashtagFollowingRequest.swift; sourceTree = "<group>"; };
@@ -1739,6 +1741,7 @@
 				18F91EA81F8E0B0B0021F1BF /* CreationViewsCountIncrementRequestSpec.swift */,
 				C9C555A6210F3A6200CBD656 /* FavoriteCreationRequestSpec.swift */,
 				C989E38A211DD67B002D25B9 /* FetchCreationsForChallengeRequestSpec.swift */,
+				C90C25FD22257B5300F23A0E /* FetchCreationsForHubRequestSpec.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -3224,6 +3227,7 @@
 				185E334F1E71571E0077E9A8 /* CustomStyleFetchRequestSpec.swift in Sources */,
 				185E335A1E71571E0077E9A8 /* NewGalleryRequestSpec.swift in Sources */,
 				1CDA410E1F7CE66800823CDC /* AcceptCommentRequestSpec.swift in Sources */,
+				C90C25FE22257B5300F23A0E /* FetchCreationsForHubRequestSpec.swift in Sources */,
 				185E33911E71571E0077E9A8 /* DeleteAUserFollowingRequestSpec.swift in Sources */,
 				185E33891E71571E0077E9A8 /* SwitchUsersRequestSpec.swift in Sources */,
 				185E33271E71571E0077E9A8 /* APIClientSpec.swift in Sources */,
