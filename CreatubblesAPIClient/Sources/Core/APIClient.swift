@@ -858,4 +858,9 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
         let data = CreationUploadSessionPublicData(creationUploadSession: session)
         delegate?.creatubblesAPIClientImageUploadFailed(self, uploadSessionData: data, error: APIClient.errorTypeToNSError(error)!)
     }
+    
+    // Hubs
+    open func getCreationsForHub(hubId: String?, pagingData: PagingData?, sortOrder: SortMethod?, completion: CreationsClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CreationsDAO.self).getCreationsForHub(hubId: hubId, pagingData: pagingData, sortOrder: sortOrder, completion: completion)
+    }
 }

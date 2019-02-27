@@ -112,6 +112,12 @@ class CreationsDAO: NSObject, APIClientDAO {
         return requestSender.send(request, withResponseHandler: handler)
     }
     
+    func getCreationsForHub(hubId: String?, pagingData: PagingData?, sortOrder: SortMethod?, completion: CreationsClosure?) -> RequestHandler {
+        let request = FetchCreationsForHubRequest(page: pagingData?.page, perPage: pagingData?.pageSize, hubId: hubId, sort: sortOrder)
+        let handler = FetchCreationsForHubResponseHandler(completion: completion)
+        return requestSender.send(request, withResponseHandler: handler)
+    }
+    
     // MARK: BatchMode
     func getCreationsInBatchMode(galleryIdentifier galleryId: String?, userId: String?, keyword: String?, sortOrder: SortOrder?, partnerApplicationId: String?, onlyPublic: Bool, completion: CreationsBatchClosure?) -> RequestHandler {
         let fetcher = CreationsQueueBatchFetcher(requestSender: requestSender, userId: userId, galleryId: galleryId, keyword: keyword, partnerApplicationId: partnerApplicationId, sort: sortOrder, onlyPublic: onlyPublic, completion: completion)
