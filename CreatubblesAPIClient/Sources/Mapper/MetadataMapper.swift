@@ -65,6 +65,6 @@ class MetadataMapper: Mappable {
         
         ownedItemsIdentifiers <- map["owned_items"]
         itemsInUseIdentifiers <- map["items_in_use"]
-        itemsInUseIdentifiers <- map["joined_hubs"]
+        joinedHubsIdentifiers <- map["joined_hubs"]
     }
 }
