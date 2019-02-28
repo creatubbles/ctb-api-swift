@@ -44,6 +44,4 @@ class FetchCreationsForHubResponseHandler: ResponseHandler {
             executeOnMainQueue { self.completion?(nil, nil, ErrorTransformer.errorFromResponse(response, error: error)) }
         }
     }
-    
 }
-

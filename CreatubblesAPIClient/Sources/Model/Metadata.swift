@@ -42,7 +42,8 @@ public class Metadata: NSObject {
     
     public let ownedItemsIdentifiers: Array<String>?
     public let itemsInUseIdentifiers: Array<String>?
-    
+    public let joinedHubsIdentifiers: Array<String>?
+
     init(mapper: MetadataMapper) {
         bubbledCreationIdentifiers = mapper.bubbledCreationIdentifiers ?? []
         bubbledUserIdentifiers = mapper.bubbledUserIdentifiers ?? []
@@ -60,5 +61,6 @@ public class Metadata: NSObject {
         
         ownedItemsIdentifiers = mapper.ownedItemsIdentifiers ?? []
         itemsInUseIdentifiers = mapper.itemsInUseIdentifiers ?? []
+        joinedHubsIdentifiers = mapper.joinedHubsIdentifiers ?? []
     }
 }

@@ -43,7 +43,8 @@ class MetadataMapper: Mappable {
 
     var ownedItemsIdentifiers: Array<String>?
     var itemsInUseIdentifiers: Array<String>?
-    
+    var joinedHubsIdentifiers: Array<String>?
+
     required init?(map: Map) { /* Intentionally left empty  */ }
 
     func mapping(map: Map) {
@@ -64,5 +65,6 @@ class MetadataMapper: Mappable {
         
         ownedItemsIdentifiers <- map["owned_items"]
         itemsInUseIdentifiers <- map["items_in_use"]
+        itemsInUseIdentifiers <- map["joined_hubs"]
     }
 }
