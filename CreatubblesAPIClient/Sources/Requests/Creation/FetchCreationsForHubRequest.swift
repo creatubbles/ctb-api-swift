@@ -55,7 +55,7 @@ class FetchCreationsForHubRequest: Request {
             params["per_page"] = perPage as AnyObject?
         }
         if let hubId = hubId {
-            params["filter[hub_ids][]"] = hubId as AnyObject?
+            params["filter[hub_id][]"] = hubId as AnyObject?
         }
         if let sort = sort {
             params["sort"] = sort.rawValue as AnyObject?

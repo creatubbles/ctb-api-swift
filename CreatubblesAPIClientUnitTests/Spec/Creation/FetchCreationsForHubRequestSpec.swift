@@ -47,7 +47,7 @@ class FetchCreationsForHubRequestSpec: QuickSpec {
             it("Should have proper params") {
                 let request = FetchCreationsForHubRequest(page: nil, perPage: nil, hubId: hubId, sort: .createdAtDesc)
                 let params = request.parameters
-                expect(params["filter[hub_ids][]"] as? String).to(equal(hubId))
+                expect(params["filter[hub_id][]"] as? String).to(equal(hubId))
                 expect(params["sort"] as? String).to(equal(SortMethod.createdAtDesc.rawValue))
             }
         }
