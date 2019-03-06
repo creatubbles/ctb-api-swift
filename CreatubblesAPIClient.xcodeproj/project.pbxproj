@@ -466,6 +466,8 @@
 		C9B38FCC222FC56A00D19392 /* SubmitCreationToHubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B38FCB222FC56A00D19392 /* SubmitCreationToHubRequest.swift */; };
 		C9B38FCE222FC57D00D19392 /* SubmitCreationToHubResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B38FCD222FC57D00D19392 /* SubmitCreationToHubResponseHandler.swift */; };
 		C9B38FD0222FC9A500D19392 /* SubmitCreationToHubRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B38FCF222FC9A500D19392 /* SubmitCreationToHubRequestSpec.swift */; };
+		C9B38FD3222FCBEA00D19392 /* HubSubmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B38FD2222FCBEA00D19392 /* HubSubmitter.swift */; };
+		C9B38FD5222FCBF700D19392 /* HubSubmitOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B38FD4222FCBF700D19392 /* HubSubmitOperation.swift */; };
 		C9B5A54320231B3200C3BAF8 /* Hashtag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B5A54220231B3200C3BAF8 /* Hashtag.swift */; };
 		C9B5A54520231C0800C3BAF8 /* HashtagMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B5A54420231C0800C3BAF8 /* HashtagMapper.swift */; };
 		C9B5A54720231D4100C3BAF8 /* HashtagDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B5A54620231D4100C3BAF8 /* HashtagDAO.swift */; };
@@ -1036,6 +1038,8 @@
 		C9B38FCB222FC56A00D19392 /* SubmitCreationToHubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitCreationToHubRequest.swift; sourceTree = "<group>"; };
 		C9B38FCD222FC57D00D19392 /* SubmitCreationToHubResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitCreationToHubResponseHandler.swift; sourceTree = "<group>"; };
 		C9B38FCF222FC9A500D19392 /* SubmitCreationToHubRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitCreationToHubRequestSpec.swift; sourceTree = "<group>"; };
+		C9B38FD2222FCBEA00D19392 /* HubSubmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubSubmitter.swift; sourceTree = "<group>"; };
+		C9B38FD4222FCBF700D19392 /* HubSubmitOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubSubmitOperation.swift; sourceTree = "<group>"; };
 		C9B5A54220231B3200C3BAF8 /* Hashtag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hashtag.swift; sourceTree = "<group>"; };
 		C9B5A54420231C0800C3BAF8 /* HashtagMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagMapper.swift; sourceTree = "<group>"; };
 		C9B5A54620231D4100C3BAF8 /* HashtagDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagDAO.swift; sourceTree = "<group>"; };
@@ -1925,6 +1929,7 @@
 		188BCEA71C64E09800EA4F11 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				C9B38FD1222FCBD400D19392 /* HubSubmitter */,
 				18431BC51E12A65400CEDE83 /* GallerySubmitter */,
 				08E52DF61D6C41FB00262672 /* Filters */,
 				21A79F6A1C81E6C5009E95D1 /* BatchFetch */,
@@ -2399,6 +2404,15 @@
 			path = BatchFollow;
 			sourceTree = "<group>";
 		};
+		C9B38FD1222FCBD400D19392 /* HubSubmitter */ = {
+			isa = PBXGroup;
+			children = (
+				C9B38FD2222FCBEA00D19392 /* HubSubmitter.swift */,
+				C9B38FD4222FCBF700D19392 /* HubSubmitOperation.swift */,
+			);
+			path = HubSubmitter;
+			sourceTree = "<group>";
+		};
 		C9B5A54820231D8800C3BAF8 /* Hashtag */ = {
 			isa = PBXGroup;
 			children = (
@@ -2830,6 +2844,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B38FD5222FCBF700D19392 /* HubSubmitOperation.swift in Sources */,
 				18290AE71D06B24B000EA216 /* GallerySubmission.swift in Sources */,
 				188E033D1F305553005630D0 /* GalleryInstruction.swift in Sources */,
 				18F6E8861D021B6500AAC5FB /* NewBubbleRequest.swift in Sources */,
@@ -2953,6 +2968,7 @@
 				18431BC81E12A65400CEDE83 /* GallerySubmitOperation.swift in Sources */,
 				18290AED1D06E44B000EA216 /* NotificationTextEntity.swift in Sources */,
 				18F91EAD1F8E0BE60021F1BF /* CreationViewsCountIncrementResponseHandler.swift in Sources */,
+				C9B38FD3222FCBEA00D19392 /* HubSubmitter.swift in Sources */,
 				1C740B501FE91EB200910C15 /* CreationUploadSessionOperation.swift in Sources */,
 				6B416A6F1F616A5000A63478 /* SearchTagMapper.swift in Sources */,
 				180C97B11C6DEA4100BC682D /* Creation.swift in Sources */,

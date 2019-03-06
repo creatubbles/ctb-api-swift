@@ -50,6 +50,7 @@ open class NewCreationData: NSObject {
     open var reflectionText: String?
     open var reflectionVideoUrl: String?
     open var galleryIds: Array<String>?
+    open var hubIds: Array<String>?
     open var creatorIds: Array<String>?
     open var creationYear: Int?
     open var creationMonth: Int?
@@ -92,6 +93,7 @@ open class NewCreationData: NSObject {
 
         self.creatorIds = creationDataEntity.creatorIds.flatMap({ $0.creatorIdString })
         self.galleryIds = creationDataEntity.galleryIds.flatMap({ $0.galleryIdString })
+        self.hubIds = creationDataEntity.hubIds.flatMap({ $0.hubIdString })
 
         if(dataType.rawValue == 0) {
             self.image = UIImage(contentsOfFile: url.path)

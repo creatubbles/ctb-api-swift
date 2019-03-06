@@ -33,6 +33,10 @@ class GalleryIdString: Object {
     dynamic var galleryIdString: String?
 }
 
+class HubIdString: Object {
+    dynamic var hubIdString: String?
+}
+
 class NewCreationDataEntity: Object {
     dynamic var name: String?
     dynamic var creationIdentifier: String?
@@ -44,6 +48,7 @@ class NewCreationDataEntity: Object {
 
     var creatorIds = List<CreatorIdString>()
     var galleryIds = List<GalleryIdString>()
+    var hubIds = List<HubIdString>()
 
     var creationYear = RealmOptional<Int>()
     var creationMonth = RealmOptional<Int>()
