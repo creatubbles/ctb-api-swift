@@ -73,7 +73,7 @@ class CreationUploadSession: NSObject, Cancelable {
     fileprivate (set) var creationUpload: CreationUpload?    //Filled during upload flow
     fileprivate (set) var error: Error?
 
-    var isAlreadyFinished: Bool { return state == .confirmedOnServer ||  state == .submittedToGallery || state == .completed}
+    var isAlreadyFinished: Bool { return state == .confirmedOnServer ||  state == .submittedToGallery || state == .completed || state == .submittedToHub}
     var isCancelled: Bool { return state == .cancelled }
     var isFailed: Bool { return error != nil }
 
@@ -456,7 +456,7 @@ class CreationUploadSession: NSObject, Cancelable {
             }
             strongSelf.creation = creation
             if creation.imageOriginalUrl != nil,
-               (strongSelf.state == .submittedToGallery || strongSelf.state == .serverNotified) {
+               (strongSelf.state == .submittedToGallery || strongSelf.state == .serverNotified || strongSelf.state == .submittedToHub) {
                 strongSelf.state = .confirmedOnServer
             }
             completion(error)
