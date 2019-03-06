@@ -465,6 +465,7 @@
 		C9AE94C8202857E600BA4262 /* FetchSuggestedUsersResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AE94C7202857E600BA4262 /* FetchSuggestedUsersResponseHandlerSpec.swift */; };
 		C9B38FCC222FC56A00D19392 /* SubmitCreationToHubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B38FCB222FC56A00D19392 /* SubmitCreationToHubRequest.swift */; };
 		C9B38FCE222FC57D00D19392 /* SubmitCreationToHubResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B38FCD222FC57D00D19392 /* SubmitCreationToHubResponseHandler.swift */; };
+		C9B38FD0222FC9A500D19392 /* SubmitCreationToHubRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B38FCF222FC9A500D19392 /* SubmitCreationToHubRequestSpec.swift */; };
 		C9B5A54320231B3200C3BAF8 /* Hashtag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B5A54220231B3200C3BAF8 /* Hashtag.swift */; };
 		C9B5A54520231C0800C3BAF8 /* HashtagMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B5A54420231C0800C3BAF8 /* HashtagMapper.swift */; };
 		C9B5A54720231D4100C3BAF8 /* HashtagDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B5A54620231D4100C3BAF8 /* HashtagDAO.swift */; };
@@ -1034,6 +1035,7 @@
 		C9AE94C7202857E600BA4262 /* FetchSuggestedUsersResponseHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSuggestedUsersResponseHandlerSpec.swift; sourceTree = "<group>"; };
 		C9B38FCB222FC56A00D19392 /* SubmitCreationToHubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitCreationToHubRequest.swift; sourceTree = "<group>"; };
 		C9B38FCD222FC57D00D19392 /* SubmitCreationToHubResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitCreationToHubResponseHandler.swift; sourceTree = "<group>"; };
+		C9B38FCF222FC9A500D19392 /* SubmitCreationToHubRequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitCreationToHubRequestSpec.swift; sourceTree = "<group>"; };
 		C9B5A54220231B3200C3BAF8 /* Hashtag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hashtag.swift; sourceTree = "<group>"; };
 		C9B5A54420231C0800C3BAF8 /* HashtagMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagMapper.swift; sourceTree = "<group>"; };
 		C9B5A54620231D4100C3BAF8 /* HashtagDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagDAO.swift; sourceTree = "<group>"; };
@@ -1746,6 +1748,7 @@
 				C9C555A6210F3A6200CBD656 /* FavoriteCreationRequestSpec.swift */,
 				C989E38A211DD67B002D25B9 /* FetchCreationsForChallengeRequestSpec.swift */,
 				C90C25FD22257B5300F23A0E /* FetchCreationsForHubRequestSpec.swift */,
+				C9B38FCF222FC9A500D19392 /* SubmitCreationToHubRequestSpec.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -3180,6 +3183,7 @@
 				188E03411F3087B4005630D0 /* ChallengesGalleriesSpec.swift in Sources */,
 				185E335E1E71571E0077E9A8 /* UpdateGalleryRequestSpec.swift in Sources */,
 				185E338F1E71571E0077E9A8 /* CreateAUserFollowingRequestSpec.swift in Sources */,
+				C9B38FD0222FC9A500D19392 /* SubmitCreationToHubRequestSpec.swift in Sources */,
 				185E336C1E71571E0077E9A8 /* NotificationReadRequestSpec.swift in Sources */,
 				185E33431E71571E0077E9A8 /* FetchToybooCreationRequestSpec.swift in Sources */,
 				185E336E1E71571E0077E9A8 /* NotificationsFetchRequestSpec.swift in Sources */,
