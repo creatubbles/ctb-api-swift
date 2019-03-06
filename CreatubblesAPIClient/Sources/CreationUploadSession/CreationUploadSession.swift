@@ -48,9 +48,10 @@ enum CreationUploadSessionState: Int {
     case imageUploaded = 4
     case serverNotified = 5
     case submittedToGallery = 6
-    case cancelled = 7
-    case confirmedOnServer = 8
-    case completed = 9
+    case submittedToHub = 7
+    case cancelled = 8
+    case confirmedOnServer = 9
+    case completed = 10
 }
 
 protocol CreationUploadSessionDelegate: class {
@@ -184,23 +185,28 @@ class CreationUploadSession: NSObject, Cancelable {
                                 weakSelf.uploadToGallery(error: error, completion: { (error) in
                                     weakSelf.notifyDelegateSessionChanged()
 
-                                    weakSelf.refreshCreationStatus(error: error, completion: { (error) in
-                                        weakSelf.error = error
+                                    // if there's no hub to submit to, it completes with success immediately
+                                    weakSelf.uploadToHub(error: error, completion: { (error) in
+                                        weakSelf.notifyDelegateSessionChanged()
+                                        
+                                        weakSelf.refreshCreationStatus(error: error, completion: { (error) in
+                                            weakSelf.error = error
 
-                                        if let error = error {
-                                            Logger.log(.error, "Upload \(weakSelf.localIdentifier) finished with error: \(error)")
-                                            weakSelf.isActive = false
-                                            weakSelf.notifyDelegateSessionChanged(error: error)
-                                            completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
-                                        } else if weakSelf.state == .confirmedOnServer || weakSelf.state == .completed {
-                                            Logger.log(.debug, "Upload \(weakSelf.localIdentifier) finished successfully")
-                                            weakSelf.isActive = false
-                                            weakSelf.state = .completed
-                                            weakSelf.notifyDelegateSessionChanged()
-                                            completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
-                                        } else {
-                                            weakSelf.setupAutoRefreshTimer(refreshCompletion: completion)
-                                        }
+                                            if let error = error {
+                                                Logger.log(.error, "Upload \(weakSelf.localIdentifier) finished with error: \(error)")
+                                                weakSelf.isActive = false
+                                                weakSelf.notifyDelegateSessionChanged(error: error)
+                                                completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
+                                            } else if weakSelf.state == .confirmedOnServer || weakSelf.state == .completed {
+                                                Logger.log(.debug, "Upload \(weakSelf.localIdentifier) finished successfully")
+                                                weakSelf.isActive = false
+                                                weakSelf.state = .completed
+                                                weakSelf.notifyDelegateSessionChanged()
+                                                completion?(weakSelf.creation, ErrorTransformer.errorFromResponse(nil, error: error))
+                                            } else {
+                                                weakSelf.setupAutoRefreshTimer(refreshCompletion: completion)
+                                            }
+                                        })
                                     })
                                 })
                             })
@@ -383,6 +389,39 @@ class CreationUploadSession: NSObject, Cancelable {
             completion(error)
         }
 
+        currentRequest = submitter.submit()
+    }
+    
+    private func uploadToHub(error: Error?, completion: @escaping (Error?) -> Void) {
+        if let error = error {
+            completion(error)
+            return
+        }
+        if state.rawValue >= CreationUploadSessionState.submittedToHub.rawValue {
+            completion(nil)
+            return
+        }
+        
+        // if there's no hub to submit to, we just consider it done
+        guard let hubIdentifiers = creationData.hubIds,
+            !hubIdentifiers.isEmpty
+            else {
+                state = .submittedToHub
+                Logger.log(.debug, "HubId not set for creation to upload:\(self.creation!.identifier)")
+                completion(nil)
+                return
+        }
+        
+        let submitter = HubSubmitter(requestSender: requestSender, creationId: creation!.identifier, hubIdentifiers: hubIdentifiers) {
+            [weak self](error) -> Void in
+            if let weakSelf = self {
+                if error == nil {
+                    weakSelf.state = .submittedToHub
+                }
+            }
+            completion(error)
+        }
+        
         currentRequest = submitter.submit()
     }
 

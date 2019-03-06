@@ -863,4 +863,8 @@ open class APIClient: NSObject, CreationUploadServiceDelegate {
     open func getCreationsForHub(hubId: String?, pagingData: PagingData?, sortOrder: SortMethod?, completion: CreationsClosure?) -> RequestHandler {
         return daoAssembly.assembly(CreationsDAO.self).getCreationsForHub(hubId: hubId, pagingData: pagingData, sortOrder: sortOrder, completion: completion)
     }
+    
+    open func submitCreationToHub(creationIdentifier creationId: String, hubId: String, completion: ErrorClosure?) -> RequestHandler {
+        return daoAssembly.assembly(CreationsDAO.self).submitCreationToHub(creationIdentifier: creationId, hubId: hubId, completion: completion)
+    }
 }
