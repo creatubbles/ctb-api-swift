@@ -3,11 +3,11 @@ PODS:
   - Nimble (7.0.3)
   - ObjectMapper (3.3.0)
   - Quick (1.1.0)
-  - Realm (2.10.1):
-    - Realm/Headers (= 2.10.1)
-  - Realm/Headers (2.10.1)
-  - RealmSwift (2.10.1):
-    - Realm (= 2.10.1)
+  - Realm (3.20.0):
+    - Realm/Headers (= 3.20.0)
+  - Realm/Headers (3.20.0)
+  - RealmSwift (3.20.0):
+    - Realm (= 3.20.0)
   - SwiftLint (0.27.0)
   - XCGLogger (4.0.0):
     - XCGLogger/Core (= 4.0.0)
@@ -18,7 +18,7 @@ DEPENDENCIES:
   - Nimble (~> 7.0.0)
   - ObjectMapper (~> 3.3)
   - Quick (~> 1.1.0)
-  - RealmSwift
+  - RealmSwift (~> 3.20.0)
   - SwiftLint
   - XCGLogger
 
@@ -38,11 +38,11 @@ SPEC CHECKSUMS:
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
-  Realm: fc7a317a5c2c9ba91f5f235ede4e2ea76e9eba0c
-  RealmSwift: 505ed6c15942a2e76f5cfa78a8667cfa997ee75b
+  Realm: 8b2ca5bc6479a91f379b6b42b5922e396cd5ba5a
+  RealmSwift: 1949ef26a279e1845bd51d591b9103adfcd121df
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: 5f7df6e1773caf6f0756a1c7569fd28760c7d4d5
+PODFILE CHECKSUM: b467de94d001cc2ad2fde49ffbf798c9133d20f2
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.5

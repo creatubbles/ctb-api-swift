@@ -417,18 +417,18 @@
 		21CC9E401DF834A100C6538C /* SearchTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC9E3F1DF834A100C6538C /* SearchTag.swift */; };
 		21CC9E431DF8361600C6538C /* SearchTagsFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC9E421DF8361600C6538C /* SearchTagsFetchRequest.swift */; };
 		21CC9E451DF8362C00C6538C /* SearchTagsFetchResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC9E441DF8362C00C6538C /* SearchTagsFetchResponseHandler.swift */; };
-		3F7AD4441EB70B6C0044F6D6 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		3F7AD4461EB70F540044F6D6 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		3F7AD4441EB70B6C0044F6D6 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		3F7AD4461EB70F540044F6D6 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		445A3A5B1DD29F7400986BBB /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A3A5A1DD29F7400986BBB /* String+Localized.swift */; };
 		445A3A5C1DD2A8CD00986BBB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 445A3A5E1DD2A8CD00986BBB /* Localizable.strings */; };
 		5D916F1D7C0D528FDCA37ADB /* Pods_CreatubblesAPIClientIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7184408A7E06B801847505 /* Pods_CreatubblesAPIClientIntegrationTests.framework */; };
 		6B416A6F1F616A5000A63478 /* SearchTagMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B416A6E1F616A5000A63478 /* SearchTagMapper.swift */; };
 		6B416A731F61785600A63478 /* SearchTagsFetchRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B416A721F61785600A63478 /* SearchTagsFetchRequestSpec.swift */; };
 		6B416A751F617AC900A63478 /* SearchTagsFetchResponseHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B416A741F617AC900A63478 /* SearchTagsFetchResponseHandlerSpec.swift */; };
-		B225DF6E1EB31F2200AB6F4C /* (null) in Sources */ = {isa = PBXBuildFile; };
-		B225DF721EB31F2200AB6F4C /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B225DF6E1EB31F2200AB6F4C /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		B225DF721EB31F2200AB6F4C /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		B225DF751EB31F2200AB6F4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF731EB31F2200AB6F4C /* Main.storyboard */; };
-		B225DF771EB31F2200AB6F4C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		B225DF771EB31F2200AB6F4C /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		B225DF7A1EB31F2200AB6F4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225DF781EB31F2200AB6F4C /* LaunchScreen.storyboard */; };
 		C90C25FA222579ED00F23A0E /* FetchCreationsForHubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90C25F9222579ED00F23A0E /* FetchCreationsForHubRequest.swift */; };
 		C90C25FC22257A3900F23A0E /* FetchCreationsForHubResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90C25FB22257A3900F23A0E /* FetchCreationsForHubResponseHandler.swift */; };
@@ -2663,7 +2663,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B225DF7A1EB31F2200AB6F4C /* LaunchScreen.storyboard in Resources */,
-				B225DF771EB31F2200AB6F4C /* (null) in Resources */,
+				B225DF771EB31F2200AB6F4C /* BuildFile in Resources */,
 				B225DF751EB31F2200AB6F4C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2695,7 +2695,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CreatubblesAPIClientIntegrationTests/Pods-CreatubblesAPIClientIntegrationTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-CreatubblesAPIClientIntegrationTests/Pods-CreatubblesAPIClientIntegrationTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
@@ -2716,7 +2716,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CreatubblesAPIClientIntegrationTests/Pods-CreatubblesAPIClientIntegrationTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CreatubblesAPIClientIntegrationTests/Pods-CreatubblesAPIClientIntegrationTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1A27338DFA95FF10DE940F68 /* [CP] Check Pods Manifest.lock */ = {
@@ -2795,7 +2795,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
@@ -2816,7 +2816,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CreatubblesAPIClientUnitTests/Pods-CreatubblesAPIClientUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F1A6ABE96E8721D5AA5B3EB2 /* [CP] Check Pods Manifest.lock */ = {
@@ -3367,10 +3367,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F7AD4461EB70F540044F6D6 /* (null) in Sources */,
-				B225DF721EB31F2200AB6F4C /* (null) in Sources */,
-				3F7AD4441EB70B6C0044F6D6 /* (null) in Sources */,
-				B225DF6E1EB31F2200AB6F4C /* (null) in Sources */,
+				3F7AD4461EB70F540044F6D6 /* BuildFile in Sources */,
+				B225DF721EB31F2200AB6F4C /* BuildFile in Sources */,
+				3F7AD4441EB70B6C0044F6D6 /* BuildFile in Sources */,
+				B225DF6E1EB31F2200AB6F4C /* BuildFile in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
