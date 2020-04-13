@@ -10,7 +10,7 @@ end
 def shared_pods
     pod 'ObjectMapper', '~> 3.3'
     pod 'XCGLogger'
-    pod 'RealmSwift'
+    pod 'RealmSwift', '~> 3.20.0'
     pod 'KeychainAccess'
     pod 'SwiftLint'
 end
